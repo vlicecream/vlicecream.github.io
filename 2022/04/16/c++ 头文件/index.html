@@ -6,13 +6,13 @@
 	<link rel="shortcut icon" href="/img/logo_miccall.png">
 	
 			    <title>
-    Art Space
+    Ame林汀
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/mic_main.css" />
     <link rel="stylesheet" href="/css/dropdownMenu.css" />
-    <meta name="keywords" content="miccall" />
+    <meta name="keywords" content="Ame 林汀" />
     
     	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	 
@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"></head>
+<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
     
 		
 <!-- Layouts -->
@@ -81,7 +81,7 @@
         <!-- Intro 头部显示 e -->
         <!-- Header 头部logo start -->
         <header id="header">
-    <a href="/" class="logo">MICCALL</a>
+    <a href="/" class="logo">Art Space</a>
 </header>
         <!-- Nav 导航条 start -->
         <nav id="nav" class="special" >
@@ -151,22 +151,32 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://xxxxxxxxxx.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon_character-1.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
                 <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ 头文件</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="开文说明"><a href="#开文说明" class="headerlink" title="开文说明"></a>开文说明</h2><p>本文章大多数都是根据以下代码为模范讲解</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">complex</span>(<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>) : <span class="built_in">re</span>(r), <span class="built_in">im</span>(i) &#123;&#125;</span><br><span class="line">  complex &amp;<span class="keyword">operator</span>+=(<span class="type">const</span> complex &amp;);</span><br><span class="line">  <span class="function"><span class="type">double</span> <span class="title">real</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">  <span class="function"><span class="type">double</span> <span class="title">imag</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">double</span> re, im;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">friend</span> complex &amp;__doapl(complex *, <span class="type">const</span> complex &amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">class complex &#123;
+public:
+  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  complex &operator+=(const complex &);
+  double real() const &#123; return re; &#125;
+  double imag() const &#123; return im; &#125;
 
+private:
+  double re, im;
 
-
+  friend complex &__doapl(complex *, const complex &);
+&#125;;
+</code></pre>
 <h2 id="Header-头文件-中的防卫式声明"><a href="#Header-头文件-中的防卫式声明" class="headerlink" title="Header(头文件)中的防卫式声明"></a>Header(头文件)中的防卫式声明</h2><p>guard(防卫式声明)</p>
 <p>目的在于防止过多的inclued</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __COMPLEX__</span></span><br><span class="line"><span class="comment">// 代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre class=" language-c++"><code class="language-c++">#ifndef __COMPLEX__
+#define __COMPLEX__
+// 代码
+#endif
+</code></pre>
 <h2 id="Header的布局"><a href="#Header的布局" class="headerlink" title="Header的布局"></a>Header的布局</h2><p><img src="https://gitee.com/AmeX/photo/raw/master/img/blogImage/image-20220416204937413.png" alt="image-20220416204937413"></p>
 <h2 id="class的声明"><a href="#class的声明" class="headerlink" title="class的声明"></a>class的声明</h2><p>Class 是由 class head &amp; class body 组成的</p>
 <p>当我们不想在class里把类型写死的时候 可以依靠T 需要在head前 加上 “template <typename T>“</p>
@@ -178,66 +188,117 @@
 <p>private: 私有的</p>
 <p>还有一种 保护的  先不讲~ </p>
 <p>Example:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:  <span class="comment">// 公有</span></span><br><span class="line">  <span class="built_in">complex</span>(<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>) : <span class="built_in">re</span>(r), <span class="built_in">im</span>(i) &#123;&#125;</span><br><span class="line">  complex &amp;<span class="keyword">operator</span>+=(<span class="type">const</span> complex &amp;);</span><br><span class="line">  <span class="function"><span class="type">double</span> <span class="title">real</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">  <span class="function"><span class="type">double</span> <span class="title">imag</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:  <span class="comment">// 私有</span></span><br><span class="line">  <span class="type">double</span> re, im;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">friend</span> complex &amp;__doapl(complex *, <span class="type">const</span> complex &amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">class complex &#123;
+public:  // 公有
+  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  complex &operator+=(const complex &);
+  double real() const &#123; return re; &#125;
+  double imag() const &#123; return im; &#125;
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">  cout &lt;&lt; c1.re;</span><br><span class="line">  cout &lt;&lt; c1.im;</span><br><span class="line">&#125;  <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+private:  // 私有
+  double re, im;
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function">complex <span class="title">c2</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">  cout &lt;&lt; c2.real;</span><br><span class="line">  cout &lt;&lt; c2.imag;</span><br><span class="line">&#125;  <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
-
+  friend complex &__doapl(complex *, const complex &);
+&#125;;
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1(2, 1);
+  cout << c1.re;
+  cout << c1.im;
+&#125;  // 错误
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c2(2, 1);
+  cout << c2.real;
+  cout << c2.imag;
+&#125;  // 正确
+</code></pre>
 <p>上述错误的方法 创建了一个对象然后 直接拿 是不可以的 因为是private  这些数据必须通过自己的兄弟传递出去</p>
 <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>What?</p>
 <p>​	如果你想要创建一个对象，有一个函数会自动调用起来，这个就是构造函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;  <span class="comment">// 有参数的创建对象</span></span><br><span class="line">  complex c2;  <span class="comment">// 无参数的创建对象</span></span><br><span class="line">  complex*p = <span class="keyword">new</span> <span class="built_in">comolex</span>(<span class="number">4</span>);  <span class="comment">// 动态的创建对象 是一个指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1(2, 1);  // 有参数的创建对象
+  complex c2;  // 无参数的创建对象
+  complex*p = new comolex(4);  // 动态的创建对象 是一个指针
+&#125;
+</code></pre>
 <p>Tips:</p>
 <p>​	构造函数的名称一定要跟类的名称一致</p>
 <p>​	构造函数是有参数的</p>
 <p>​	参数可以为默认的</p>
 <p>​	返回值是没有指定类型的 也不需要写</p>
 <p>​	re(r) im(i) 是初始列 因为我们在这里面将r i初始化 等同于 在接下来的大括号写{ re &#x3D; r; im &#x3D; i;}</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span>(<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>) : <span class="built_in">re</span>(r), <span class="built_in">im</span>(i) &#123;&#125;</span><br><span class="line"><span class="comment">// r = 0 i = 0 都是设置了默认参数</span></span><br><span class="line"><span class="comment">// re(r) im(i) 是初始列 不需要指定类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ps:上述的一行可以写成 但是推荐上述写法 在初始列 里面将re im 初始化</span></span><br><span class="line"><span class="built_in">complex</span>(<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>) &#123; re = r; im = i; &#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+// r = 0 i = 0 都是设置了默认参数
+// re(r) im(i) 是初始列 不需要指定类型
 
+// ps:上述的一行可以写成 但是推荐上述写法 在初始列 里面将re im 初始化
+complex(double r = 0, double i = 0) &#123; re = r; im = i; &#125;
+</code></pre>
 <h2 id="Overloading-重载"><a href="#Overloading-重载" class="headerlink" title="Overloading(重载)"></a>Overloading(重载)</h2><p>构造函数可以有很多个</p>
 <p>如果你在class body里定义了</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">real</span> <span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">double real () const &#123; return re; &#125;
+</code></pre>
 <p>又在外部定义了</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">real</span><span class="params">(<span class="type">double</span> r)</span> </span>&#123; re = r; &#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">void real(double r) &#123; re = r; &#125;
+</code></pre>
 <p>这两个是不冲突的 因为编译器会把他们换成不一样的名字</p>
 <p>那么我们来看看冲突的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> (<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>) : <span class="built_in">re</span> (r), <span class="built_in">im</span> (i) &#123; &#125;</span><br><span class="line"><span class="built_in">complex</span> (): <span class="built_in">re</span>(<span class="number">0</span>), <span class="built_in">im</span>(<span class="number">0</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">complex (double r = 0, double i = 0) : re (r), im (i) &#123; &#125;
+complex (): re(0), im(0) &#123; &#125;
+</code></pre>
 <p>上述两个不是不行的 因为 如果这么调用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  complex c1;</span><br><span class="line">  <span class="function">complex <span class="title">c2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1;
+  complex c2();
+&#125;
+</code></pre>
 <p>这个时候他就会分不清到底要调用哪一个 complex 所以就会报错</p>
 <h2 id="当构造函数在private区域里"><a href="#当构造函数在private区域里" class="headerlink" title="当构造函数在private区域里"></a>当构造函数在private区域里</h2><p>构造函数在private里面我们无法通过正常的模式构造对象</p>
 <p>所以一般我们是不会把构造函数放在私有区域</p>
 <p>有一个设计模式 Singleton 会把构造函数放在private里</p>
-<h2 id="Const-常量成员函数"><a href="#Const-常量成员函数" class="headerlink" title="Const(常量成员函数)"></a>Const(常量成员函数)</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">real</span> <span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="Const-常量成员函数"><a href="#Const-常量成员函数" class="headerlink" title="Const(常量成员函数)"></a>Const(常量成员函数)</h2><pre class=" language-c++"><code class="language-c++">double real () const &#123; return re; &#125;
+</code></pre>
 <p>作用：</p>
 <p>​	代表 re 不可改变                                                                                                                                                                                                                                                                                                               </p>
 <h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>By value:  值传递  把这个值都传过去  最好别用</p>
 <p>By reference: 指针传递 传指针 一直都会是8 btye 最好传指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Complex&amp; <span class="keyword">operator</span> += &#123; <span class="type">const</span> complex&amp; &#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">Complex& operator += &#123; const complex& &#125;
+</code></pre>
 <p>像这个其实就是 by reference</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> (<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>): <span class="built_in">re</span> (r), <span class="built_in">im</span> (r) &#123; &#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">complex (double r = 0, double i = 0): re (r), im (r) &#123; &#125;
+</code></pre>
 <p>这个就会是 by value</p>
 <h2 id="返回值传递"><a href="#返回值传递" class="headerlink" title="返回值传递"></a>返回值传递</h2><p>跟参数传递一致 最好使用指针传递</p>
-<h2 id="friend-友元"><a href="#friend-友元" class="headerlink" title="friend(友元)"></a>friend(友元)</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">double</span> re, im;</span><br><span class="line">	<span class="keyword">friend</span> complex&amp; __dopal (conplex*, <span class="type">const</span> complex&amp;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex&amp; __doapl (complex* ths, <span class="type">const</span> complex&amp; r) &#123;</span><br><span class="line">  ths-&gt;re += r.re;</span><br><span class="line">  ths-&gt;im += r.im;</span><br><span class="line">  <span class="keyword">return</span> *ths</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="friend-友元"><a href="#friend-友元" class="headerlink" title="friend(友元)"></a>friend(友元)</h2><pre class=" language-c++"><code class="language-c++">private:
+    double re, im;
+    friend complex& __dopal (conplex*, const complex&)
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">inline complex& __doapl (complex* ths, const complex& r) &#123;
+  ths->re += r.re;
+  ths->im += r.im;
+  return *ths
+&#125;
+</code></pre>
 <p>Friend的意义在于打开封装的大门 可以直接从私有区域拿数据</p>
 <p>就好比 借钱 陌生人不可能借钱给他 但是朋友可以考虑 但是朋友太多借太多钱也不好 所以凭你自己选择 如果不设置friend也可以 绕个弯从函数拿 只是慢点</p>
-<h2 id="相同class的各个obj互为friend"><a href="#相同class的各个obj互为friend" class="headerlink" title="相同class的各个obj互为friend"></a>相同class的各个obj互为friend</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">complex</span>(<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>) : <span class="built_in">re</span>(r), <span class="built_in">im</span>(i) &#123;&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(<span class="type">const</span> complex &amp;param)</span> </span>&#123; <span class="keyword">return</span> param.re + param.im; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">double</span> re, im;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="相同class的各个obj互为friend"><a href="#相同class的各个obj互为friend" class="headerlink" title="相同class的各个obj互为friend"></a>相同class的各个obj互为friend</h2><pre class=" language-c++"><code class="language-c++">class complex &#123;
+public:
+  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  
+  int func(const complex &param) &#123; return param.re + param.im; &#125;
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">  complex c2;</span><br><span class="line">  </span><br><span class="line">  c2.<span class="built_in">func</span>(c1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+private:
+  double re, im;
+&#125;;
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1(2, 1);
+  complex c2;
+  
+  c2.func(c1);
+&#125;
+</code></pre>
 <p>在上述代码中 我们竟然可以通过func直接获取到private中的值 可是我们可是也没有设置friend</p>
 <p>因为 (看小标题)</p>
 <h2 id="Class-body-外的各种定义"><a href="#Class-body-外的各种定义" class="headerlink" title="Class body 外的各种定义"></a>Class body 外的各种定义</h2><h2 id="总结代码规范"><a href="#总结代码规范" class="headerlink" title="总结代码规范"></a>总结代码规范</h2><p>1.数据一定放在private</p>
