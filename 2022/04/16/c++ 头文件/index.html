@@ -301,7 +301,15 @@ private:
 </code></pre>
 <p>在上述代码中 我们竟然可以通过func直接获取到private中的值 可是我们可是也没有设置friend</p>
 <p>因为 (看小标题)</p>
-<h2 id="Class-body-外的各种定义"><a href="#Class-body-外的各种定义" class="headerlink" title="Class body 外的各种定义"></a>Class body 外的各种定义</h2><h2 id="总结代码规范"><a href="#总结代码规范" class="headerlink" title="总结代码规范"></a>总结代码规范</h2><p>1.数据一定放在private</p>
+<h2 id="Class-body-外的各种定义"><a href="#Class-body-外的各种定义" class="headerlink" title="Class body 外的各种定义"></a>Class body 外的各种定义</h2><h2 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h2><pre class=" language-c++"><code class="language-c++">c2 += c1;
+</code></pre>
+<h2 id="Return-by-reference语法分析"><a href="#Return-by-reference语法分析" class="headerlink" title="Return by reference语法分析"></a>Return by reference语法分析</h2><pre class=" language-c++"><code class="language-c++">  inline complex &__doapl(complex *ths, const complex &r) &#123;
+    //  ...
+    return *ths;
+  &#125;
+</code></pre>
+<p>传递者无需知道接收者是以referebce形式接收</p>
+<h2 id="总结代码规范"><a href="#总结代码规范" class="headerlink" title="总结代码规范"></a>总结代码规范</h2><p>1.数据一定放在private</p>
 <p>2.数据&amp;返回值尽量以reference传递</p>
 <p>3.const应该加就要加</p>
 <p>4.构造函数的初始列</p>
