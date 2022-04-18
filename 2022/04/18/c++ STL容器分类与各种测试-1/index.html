@@ -151,153 +151,40 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon-1.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon_2.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 容器分类与测试-1</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="标准库与STL"><a href="#标准库与STL" class="headerlink" title="标准库与STL"></a>标准库与STL</h2><pre class=" language-c++"><code class="language-c++">/*
-标准库与STL的差别
-    标准库 > STL 标准库里面百分之70 80都是STL
-    STL 六大部件
-        容器
-        分配器
-        算法
-        迭代器
-        适配器
-        防函数
-*/
+                <h2 id="容器-结构与分类"><a href="#容器-结构与分类" class="headerlink" title="容器-结构与分类"></a>容器-结构与分类</h2><pre class=" language-c++"><code class="language-c++">/*
+Sequence Containers 循序式容器 
+    数组Array: 一段连续的内存空间
+  Vector: 前面不能动 如果放元素 后面会自动扩充  自然就是分配器所分配内存空间
+  双端队列Deque: 两端可进可出
+  列表List: 并不是连续的 每个元素都是指针双向连接起来的
+  单向列表Forward-List: 指针单向连接起来的
+*/ 
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">// 标准库以header files 形式呈现
-// C++标准库的head files 不带.h 例如:
-    #include <vector>
-// 新式 C header files 不带.h 例如
-    #include <cstdio>
-// 旧式 C header files 带.h 仍然可用 例如
-    #include <stdio.h>
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">// 新式headers内的组件封装于 命名空间namespace "std"
-using namespace std;  // 代表直接打开这个namespace 里面的随便用  推荐用这个
-using std::cout // 就可以直接用cout来表示
-  
-// example:
-  #include <string>
-  #include <iostream>
-  #include <vector>
-  using namespace std;
-</code></pre>
-<p><strong>这里推荐直接用新式的习惯</strong></p>
-<h2 id="C-标准库-版本"><a href="#C-标准库-版本" class="headerlink" title="C++标准库 版本"></a>C++标准库 版本</h2><pre class=" language-c++"><code class="language-c++">// 版本其实不影响编程
-</code></pre>
-<h2 id="标准库重要网页"><a href="#标准库重要网页" class="headerlink" title="标准库重要网页"></a>标准库重要网页</h2><pre class=" language-c++"><code class="language-c++">// 标准库网页
-    CPlusPlus.com
-    CppReference.com
-    gcc.gnu.org
-
-// 书籍介绍
-    THE C++ STANDARD LIBRARY
-    STL源码剖析
-</code></pre>
-<h2 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220417210329737.png" alt="image-20220417210329737"></p>
 <pre class=" language-c++"><code class="language-c++">/*
-    容器: 存放data的地方
-    分配器: 分配内存的作用
-    迭代器: 可以理解为一个指针
-    算法: 比如 sort 之类的
-    仿函数: 作用跟函数类似
-    适配器: 相当于转换xxx的功能
-*/
+Associative Containers 关联式容器(key-value)
+    集合 Set/Multiset:  key即是value value则是key
+        Set元素不重复 Multiset元素可以重复
+    map/Multimap: key-value
+        map key不重复 Multimap key可重复
+    在标准库里面并没有必须规定内部实现用什么数据结构实现
+    这两者在c++内部可用红黑树实现 高度平衡二叉树
+    golang里map则用hashTable实现
+*/ 
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">#include <vector>
-#include <algorithm>
-#include <functional>
-#include <iostream>
-
-using namespace std;
-
-int main() &#123;
-  int ia[6] = &#123; 27, 210, 12, 47, 109, 83 &#125;;
-  vector<int, allocator<int>> vi(ia, ia+6);
-
-  cout << count_if(vi.begin(), vi.end(), not1(bind2nd(less<int>(), 40)));
-
-  return 0;
-&#125;
-
-/*
-代码解析:
-    vector 其实就是一个容器
-    allocator: 分配器 可以不写 源代码会有默认的分配器用来分配内存
-    count_if: 一种算法 能够帮我们在某种条件下计算元素的个数
-    vi.begin(): 迭代器 传元素
-    less: 仿函数 比大小 跟a, b比大小 取小
-    bind2nd: 适配器  绑定第二个参数 此处就是可以跟40来比
-    not1: 否定 原本是小于40  现在是大于等于40
-*/
+<pre class=" language-c++"><code class="language-c++">/*
+Unordered Containers 也是一种关联式容器 不定序元素容器(里面的元素没有顺序)
+    HashTable Separate Chaining
+        在golang里详细介绍了hashTable
+        主要内容有取模法，哈希冲突，渐进式扩容
+*/ 
 </code></pre>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><pre class=" language-c++"><code class="language-c++">/*
-    O(1) or O(c) 常数时间
-    O(n) 线性时间
-    O(log2n) 次线性时间
-    O(n平方) 平方时间
-    O(n立方) 立方时间
-    O(2n) 指数时间
-    O(nlog2n) 介于线性及二次方之间的
-*/
-</code></pre>
-<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><pre class=" language-c++"><code class="language-c++">#include <vector>
-#include <algorithm>
-#include <functional>
-#include <iostream>
-
-using namespace std;
-
-int main() &#123;
-  int ia[6] = &#123; 27, 210, 12, 47, 109, 83 &#125;;
-  vector<int, allocator<int>> vi(ia, ia+6);
-
-  cout << count_if(vi.begin(), vi.end(), not1(bind2nd(less<int>(), 40)));
-
-  return 0;
-&#125;
-
-
-/*
-    vi.begin() 指向ia数组的第一个元素的位置
-    vi.end() 指向ia数组最后一个元素的下一个位置
-    这种的我们就叫做前闭后开   [ )
-    所以利用这个我们可以对这个容器用伪代码遍历
-*/
-
-Container<T> c;  // 创建一个容器
-...  // 往容器塞值
-container<T>::iterator ite = c.begin()  // 给一个迭代器
-for (; ite != c.end(); ++ite) &#123; // 如果这个迭代器不到c.end() 就执行代码
-  ...
-&#125;
-
-// 现在有一个可以优化上面的伪代码的方法
-std::vector<double> vec;
-...
-for ( auto elem : vec) &#123;  // auto的作用就是代替 container<T>::iterator
-  std::cout << elem << std::end1;
-&#125;
-
-// 对auto也可以优化
-for ( auto& elem : vec) &#123;
-  elem *= 3
-&#125;
-
-// 对auto再一次解释
-list<string> c;
-...
-list<string>::iterator ite;
-ite = ::find(c.begin(), c.end(), target);
-// 上述代码利用auto可以写成
-list<string> c;
-...
-auto ite = ::find(c.begin(), c.end(), target);
-</code></pre>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213022434.png" alt="image-20220418213022434"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213027949.png" alt="image-20220418213027949"></p>
 
             </div>
 
@@ -360,8 +247,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/17/c++%20STL/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/17/c++%20STL/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/04/18/c++%20STL%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB%E4%B8%8E%E5%90%84%E7%A7%8D%E6%B5%8B%E8%AF%95-1/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/04/18/c++%20STL%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB%E4%B8%8E%E5%90%84%E7%A7%8D%E6%B5%8B%E8%AF%95-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
