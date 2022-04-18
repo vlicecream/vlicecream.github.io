@@ -259,8 +259,7 @@ complex (): re(0), im(0) &#123; &#125;
 <p>有一个设计模式 Singleton 会把构造函数放在private里</p>
 <h2 id="Const-常量成员函数"><a href="#Const-常量成员函数" class="headerlink" title="Const(常量成员函数)"></a>Const(常量成员函数)</h2><pre class=" language-c++"><code class="language-c++">double real () const &#123; return re; &#125;
 </code></pre>
-<p>作用：</p>
-<p>​	代表 re 不可改变                                                                                                                                                                                                                                                                                                               </p>
+<p>作用：代表 数据内容 不可改变                                                                                                                                                                                                                                                                                                               </p>
 <h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>By value:  值传递  把这个值都传过去  最好别用</p>
 <p>By reference: 指针传递 传指针 一直都会是8 btye 最好传指针</p>
 <pre class=" language-c++"><code class="language-c++">Complex& operator += &#123; const complex& &#125;
