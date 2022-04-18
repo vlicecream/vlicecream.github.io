@@ -151,44 +151,115 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon_2.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 容器分类与测试-1</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon_4.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ 头文件-构造函数&amp;参数传递</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="容器-结构与分类"><a href="#容器-结构与分类" class="headerlink" title="容器-结构与分类"></a>容器-结构与分类</h2><pre class=" language-c++"><code class="language-c++">/*
-Sequence Containers 循序式容器 
-    数组Array: 一段连续的内存空间
-  Vector: 前面不能动 如果放元素 后面会自动扩充  自然就是分配器所分配内存空间
-  双端队列Deque: 两端可进可出
-  列表List: 并不是连续的 每个元素都是指针双向连接起来的
-  单向列表Forward-List: 指针单向连接起来的
-*/ 
+                <h2 id="开文说明"><a href="#开文说明" class="headerlink" title="开文说明"></a>开文说明</h2><p>本文章大多数都是根据以下代码为模范讲解</p>
+<pre class=" language-c++"><code class="language-c++">class complex &#123;
+public:
+  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  complex &operator+=(const complex &);
+  double real() const &#123; return re; &#125;
+  double imag() const &#123; return im; &#125;
 
-tip:
-    python中的list可不是c++这种的list cpython中的是基于数组实现的顺序表
-  c++ 标准库中的list更像双向链表 拥有双向链表的优点
+private:
+  double re, im;
+
+  friend complex &__doapl(complex *, const complex &);
+&#125;;
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-Associative Containers 关联式容器(key-value)
-    集合 Set/Multiset:  key即是value value则是key
-        Set元素不重复 Multiset元素可以重复
-    map/Multimap: key-value
-        map key不重复 Multimap key可重复
-    在标准库里面并没有必须规定内部实现用什么数据结构实现
-    这两者在c++内部可用红黑树实现 高度平衡二叉树
-    golang里map则用hashTable实现
-*/ 
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>What?</p>
+<p>​	如果你想要创建一个对象，有一个函数会自动调用起来，这个就是构造函数</p>
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1(2, 1);  // 有参数的创建对象
+  complex c2;  // 无参数的创建对象
+  complex*p = new comolex(4);  // 动态的创建对象 是一个指针
+&#125;
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-Unordered Containers 也是一种关联式容器 不定序元素容器(里面的元素没有顺序)
-    HashTable Separate Chaining
-        在golang里详细介绍了hashTable
-        主要内容有取模法，哈希冲突，渐进式扩容
-*/ 
+<p>Tips:</p>
+<p>​	构造函数的名称一定要跟类的名称一致</p>
+<p>​	构造函数是有参数的</p>
+<p>​	参数可以为默认的</p>
+<p>​	返回值是没有指定类型的 也不需要写</p>
+<p>​	re(r) im(i) 是初始列 因为我们在这里面将r i初始化 等同于 在接下来的大括号写{ re &#x3D; r; im &#x3D; i;}</p>
+<pre class=" language-c++"><code class="language-c++">complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+// r = 0 i = 0 都是设置了默认参数
+// re(r) im(i) 是初始列 不需要指定类型
+
+// ps:上述的一行可以写成 但是推荐上述写法 在初始列 里面将re im 初始化
+complex(double r = 0, double i = 0) &#123; re = r; im = i; &#125;
 </code></pre>
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213022434.png" alt="image-20220418213022434"></p>
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213027949.png" alt="image-20220418213027949"></p>
+<h2 id="Overloading-重载"><a href="#Overloading-重载" class="headerlink" title="Overloading(重载)"></a>Overloading(重载)</h2><p>构造函数可以有很多个</p>
+<p>如果你在class body里定义了</p>
+<pre class=" language-c++"><code class="language-c++">double real () const &#123; return re; &#125;
+</code></pre>
+<p>又在外部定义了</p>
+<pre class=" language-c++"><code class="language-c++">void real(double r) &#123; re = r; &#125;
+</code></pre>
+<p>这两个是不冲突的 因为编译器会把他们换成不一样的名字</p>
+<p>那么我们来看看冲突的</p>
+<pre class=" language-c++"><code class="language-c++">complex (double r = 0, double i = 0) : re (r), im (i) &#123; &#125;
+complex (): re(0), im(0) &#123; &#125;
+</code></pre>
+<p>上述两个不是不行的 因为 如果这么调用</p>
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1;
+  complex c2();
+&#125;
+</code></pre>
+<p>这个时候他就会分不清到底要调用哪一个 complex 所以就会报错</p>
+<h2 id="当构造函数在private区域里"><a href="#当构造函数在private区域里" class="headerlink" title="当构造函数在private区域里"></a>当构造函数在private区域里</h2><p>构造函数在private里面我们无法通过正常的模式构造对象</p>
+<p>所以一般我们是不会把构造函数放在私有区域</p>
+<p>有一个设计模式 Singleton 会把构造函数放在private里</p>
+<h2 id="Const-常量成员函数"><a href="#Const-常量成员函数" class="headerlink" title="Const(常量成员函数)"></a>Const(常量成员函数)</h2><pre class=" language-c++"><code class="language-c++">double real () const &#123; return re; &#125;
+</code></pre>
+<p>作用：代表 数据内容 不可改变                                                                                                                                                                                                                                                                                                               </p>
+<h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>By value:  值传递  把这个值都传过去  最好别用</p>
+<p>By reference: 指针传递 传指针 一直都会是8 btye 最好传指针</p>
+<pre class=" language-c++"><code class="language-c++">Complex& operator += &#123; const complex& &#125;
+</code></pre>
+<p>像这个其实就是 by reference</p>
+<pre class=" language-c++"><code class="language-c++">complex (double r = 0, double i = 0): re (r), im (r) &#123; &#125;
+</code></pre>
+<p>这个就会是 by value</p>
+<h2 id="返回值传递"><a href="#返回值传递" class="headerlink" title="返回值传递"></a>返回值传递</h2><p>跟参数传递一致 最好使用指针传递</p>
+<h2 id="friend-友元"><a href="#friend-友元" class="headerlink" title="friend(友元)"></a>friend(友元)</h2><pre class=" language-c++"><code class="language-c++">private:
+    double re, im;
+    friend complex& __dopal (conplex*, const complex&)
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">inline complex& __doapl (complex* ths, const complex& r) &#123;
+  ths->re += r.re;
+  ths->im += r.im;
+  return *ths
+&#125;
+</code></pre>
+<p>Friend的意义在于打开封装的大门 可以直接从私有区域拿数据</p>
+<p>就好比 借钱 陌生人不可能借钱给他 但是朋友可以考虑 但是朋友太多借太多钱也不好 所以凭你自己选择 如果不设置friend也可以 绕个弯从函数拿 只是慢点</p>
+<h2 id="相同class的各个obj互为friend"><a href="#相同class的各个obj互为friend" class="headerlink" title="相同class的各个obj互为friend"></a>相同class的各个obj互为friend</h2><pre class=" language-c++"><code class="language-c++">class complex &#123;
+public:
+  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  
+  int func(const complex &param) &#123; return param.re + param.im; &#125;
+
+private:
+  double re, im;
+&#125;;
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">&#123;
+  complex c1(2, 1);
+  complex c2;
+  
+  c2.func(c1);
+&#125;
+</code></pre>
+<p>在上述代码中 我们竟然可以通过func直接获取到private中的值 可是我们可是也没有设置friend</p>
+<p>因为 (看小标题)</p>
+<h2 id="什么情况下不需要用到引用传递"><a href="#什么情况下不需要用到引用传递" class="headerlink" title="什么情况下不需要用到引用传递"></a>什么情况下不需要用到引用传递</h2><h2 id="总结代码规范"><a href="#总结代码规范" class="headerlink" title="总结代码规范"></a>总结代码规范</h2><p>1.数据一定放在private</p>
+<p>2.数据&amp;返回值尽量以reference传递</p>
+<p>3.const应该加就要加</p>
+<p>4.构造函数的初始列</p>
 
             </div>
 
@@ -251,8 +322,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/18/c++%20STL%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB%E4%B8%8E%E5%90%84%E7%A7%8D%E6%B5%8B%E8%AF%95-1/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/18/c++%20STL%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB%E4%B8%8E%E5%90%84%E7%A7%8D%E6%B5%8B%E8%AF%95-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/04/16/c++%20%E5%A4%B4%E6%96%87%E4%BB%B6-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0&amp;%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/04/16/c++%20%E5%A4%B4%E6%96%87%E4%BB%B6-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0&amp;%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

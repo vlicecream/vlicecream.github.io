@@ -151,19 +151,44 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon_3.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ 头文件-操作符重载</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon_2.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 容器结构与分类</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h2><pre class=" language-c++"><code class="language-c++">c2 += c1;
+                <h2 id="容器-结构与分类"><a href="#容器-结构与分类" class="headerlink" title="容器-结构与分类"></a>容器-结构与分类</h2><pre class=" language-c++"><code class="language-c++">/*
+Sequence Containers 循序式容器 
+    数组Array: 一段连续的内存空间
+  Vector: 前面不能动 如果放元素 后面会自动扩充  自然就是分配器所分配内存空间
+  双端队列Deque: 两端可进可出
+  列表List: 并不是连续的 每个元素都是指针双向连接起来的
+  单向列表Forward-List: 指针单向连接起来的
+*/ 
+
+tip:
+    python中的list可不是c++这种的list cpython中的是基于数组实现的顺序表
+  c++ 标准库中的list更像双向链表 拥有双向链表的优点
 </code></pre>
-<h2 id="Return-by-reference语法分析"><a href="#Return-by-reference语法分析" class="headerlink" title="Return by reference语法分析"></a>Return by reference语法分析</h2><pre class=" language-c++"><code class="language-c++">inline complex &__doapl(complex *ths, const complex &r) &#123;
-  //  ...
-  return *ths;
-&#125;
+<pre class=" language-c++"><code class="language-c++">/*
+Associative Containers 关联式容器(key-value)
+    集合 Set/Multiset:  key即是value value则是key
+        Set元素不重复 Multiset元素可以重复
+    map/Multimap: key-value
+        map key不重复 Multimap key可重复
+    在标准库里面并没有必须规定内部实现用什么数据结构实现
+    这两者在c++内部可用红黑树实现 高度平衡二叉树
+    golang里map则用hashTable实现
+*/ 
 </code></pre>
-<p>传递者无需知道接收者是以referebce形式接收</p>
+<pre class=" language-c++"><code class="language-c++">/*
+Unordered Containers 也是一种关联式容器 不定序元素容器(里面的元素没有顺序)
+    HashTable Separate Chaining
+        在golang里详细介绍了hashTable
+        主要内容有取模法，哈希冲突，渐进式扩容
+*/ 
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213022434.png" alt="image-20220418213022434"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213027949.png" alt="image-20220418213027949"></p>
 
             </div>
 
@@ -226,8 +251,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/18/c++%20%E5%A4%B4%E6%96%87%E4%BB%B6-2/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/18/c++%20%E5%A4%B4%E6%96%87%E4%BB%B6-2/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/04/18/c++%20STL%E5%AE%B9%E5%99%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E7%B1%BB/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/04/18/c++%20STL%E5%AE%B9%E5%99%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E7%B1%BB/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
