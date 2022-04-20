@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h2><pre class=" language-c++"><code class="language-c++">#include <algorithm>
+                <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c++"><code class="language-c++">#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
@@ -166,28 +166,46 @@
 #include <vector>
 using namespace std;
 namespace jj02 &#123;
-  void test_vector(long &value) &#123;
+  void test_vector(long &value) &#123; // 存进来一个值
     cout << "\ntest_vector().............   \n";
     vector<string> c;
     char buf[10];
     clock_t timeStart = clock();
-    for (long i = 0; i < value; ++i) &#123;
+    for (long i = 0; i < value; ++i) &#123; // values = 1000000 这样会有100万个元素
       try &#123;
         snprintf(buf, 10, "%d", rand());
-        c.push_back(string(buf));
+        /*
+          push_back 放元素 放在尾巴 不存在push_from 如果存在了 放在开头 那100万个元素就得都往后移
+          大部分容器都会有push_back
+        */ 
+        c.push_back(string(buf)); 
       &#125; catch (exception &p) &#123;
         cout << "i=" << i << " " << p.what() << endl;
         abort();
       &#125;
     &#125;
-    cout << "milli-seconds : " << (clock() - timeStart) << endl;
-    cout << "vector.sizq() = " << c.size() << endl;
-    cout << "vector.front()= " << c.front() << endl;
-    cout << "vector.back()= " << c.back() << endl;
-    cout << "vectore.data()= " << c.data() << endl;
-    cout << "vector.capacity()= " << c.capacity() << endl;
+    cout << "milli-seconds : " << (clock() - timeStart) << endl; // 总共时间
+    cout << "vector.sizq() = " << c.size() << endl; // 真正元素的个数
+    cout << "vector.front()= " << c.front() << endl; // 最前面的值
+    cout << "vector.back()= " << c.back() << endl; // 最后面的值
+    cout << "vectore.data()= " << c.data() << endl; // 整个vector的起始地址
+    cout << "vector.capacity()= " << c.capacity() << endl; // 容量 就是空间有多大
   &#125;
 &#125;
+
+/*
+    try &#123;&#125; catch () &#123;&#125;
+    这个try与catch是捕获异常, 目前是要放100万个元素，一个字符串是一个指针的大小, 可能会带来内存不够的可能
+*/
+</code></pre>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre class=" language-c++"><code class="language-c++">// 每个人写代码其实都有自己的习惯 在这里推荐一个小习惯
+
+// 我们把一个单元的测试 都放在一个namespace 每个namespace上面都会有自己有关的头文件 就算有些头文件有重复了 也没有关系 因为我们有防卫式声明 木有事情
+// 变量的声明 都会集中在函数的最前面 测试的话我们可以不要缩进散开来 但是还是根据自己的习惯来
+</code></pre>
+<h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h2><pre class=" language-c++"><code class="language-c++">/*
+    vector 是只能往后扩展 如果空间不够 扩容规则是两倍增长的速度
+*/
 </code></pre>
 
             </div>
