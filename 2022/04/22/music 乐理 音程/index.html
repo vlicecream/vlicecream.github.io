@@ -160,11 +160,17 @@
 西方音乐体系中，音程由度数和音数决定。其中较低的音称为根音<span class="token punctuation">(</span>下方音<span class="token punctuation">)</span>，较高的音称为冠音<span class="token punctuation">(</span>上方音<span class="token punctuation">)</span>
 音程有旋律音程、和声音程、单音程、复音程、协和音程、不协和音程等多种分类方法
 </code></pre>
-<h2 id="度数"><a href="#度数" class="headerlink" title="度数"></a>度数</h2><pre class=" language-go"><code class="language-go">度数就是有多少几个音 比如 c<span class="token operator">-</span>c 只有c 那就是一度 c<span class="token operator">-</span>d 那就是二度
+<h2 id="度数"><a href="#度数" class="headerlink" title="度数"></a>度数</h2><pre class=" language-go"><code class="language-go">度数就是有多少几个音 
+  eg<span class="token punctuation">:</span>
+    c<span class="token operator">-</span>c 只有c 那就是一度
+    c<span class="token operator">-</span>d 那就是二度
 </code></pre>
-<h2 id="音数"><a href="#音数" class="headerlink" title="音数"></a>音数</h2><pre class=" language-go"><code class="language-go">音数可以理解为多少个半音 比如 c<span class="token operator">-</span>#c 只有一个半音 他们音级就是<span class="token number">0.5</span> c<span class="token operator">-</span>d 一个全音 他们就是<span class="token number">1</span>
+<h2 id="音数"><a href="#音数" class="headerlink" title="音数"></a>音数</h2><pre class=" language-go"><code class="language-go">音数可以理解为多少个半音 
+  eg<span class="token punctuation">:</span>
+    c<span class="token operator">-</span>#c 只有一个半音 他们音级就是<span class="token number">0.5</span> 
+    c<span class="token operator">-</span>d  一个全音 他们就是<span class="token number">1</span>
 </code></pre>
-<h2 id="自然音程"><a href="#自然音程" class="headerlink" title="自然音程"></a>自然音程</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">//	在自然调式音阶中各音能构成的音程，叫自然音程</span>
+<h2 id="自然音程"><a href="#自然音程" class="headerlink" title="自然音程"></a>自然音程</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">//	在自然调式音阶中各音能构成的音程，叫自然音程 也就是 所有的 纯音程 大小音程 和 增四减五(三全音)</span>
 
 <span class="token comment" spellcheck="true">/*
     1 4 5 8 只有纯
@@ -177,13 +183,23 @@
     小二度 0.5  大二度 1
     小三度 1.5  大三度 2
     纯四度 2.5
+    增四度 3
+    减五度 3
     纯五度 3.5
     小六度 4  大六度 4.5
     小七度 5  大七度 5.5
     纯八度 6
 */</span>
 </code></pre>
-<h2 id="变化音程"><a href="#变化音程" class="headerlink" title="变化音程"></a>变化音程</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 比</span>
+<h2 id="变化音程"><a href="#变化音程" class="headerlink" title="变化音程"></a>变化音程</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 变化音程是指除增四减五外、不属于自然音程的音程。该词缺陷是无法形成三全音 也就是除三全音外的所有 增 减 倍增 倍减 的音程</span>
+
+<span class="token comment" spellcheck="true">/*
+    增一度 0.5 倍增一度 1.0
+    增二度 1.5 倍增二度 2.0
+    增三度 2.5 倍增三度 3.0
+    增五度  4  倍增五度 4.5
+    未完待续...
+*/</span>
 </code></pre>
 
             </div>
