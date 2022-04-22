@@ -215,14 +215,14 @@ using std::cout // 就可以直接用cout来表示
 
 using namespace std;
 
-int main() &#123;
-  int ia[6] = &#123; 27, 210, 12, 47, 109, 83 &#125;;
+int main() {
+  int ia[6] = { 27, 210, 12, 47, 109, 83 };
   vector<int, allocator<int>> vi(ia, ia+6);
 
   cout << count_if(vi.begin(), vi.end(), not1(bind2nd(less<int>(), 40)));
 
   return 0;
-&#125;
+}
 
 /*
 代码解析:
@@ -252,14 +252,14 @@ int main() &#123;
 
 using namespace std;
 
-int main() &#123;
-  int ia[6] = &#123; 27, 210, 12, 47, 109, 83 &#125;;
+int main() {
+  int ia[6] = { 27, 210, 12, 47, 109, 83 };
   vector<int, allocator<int>> vi(ia, ia+6);
 
   cout << count_if(vi.begin(), vi.end(), not1(bind2nd(less<int>(), 40)));
 
   return 0;
-&#125;
+}
 
 
 /*
@@ -272,21 +272,21 @@ int main() &#123;
 Container<T> c;  // 创建一个容器
 ...  // 往容器塞值
 container<T>::iterator ite = c.begin()  // 给一个迭代器
-for (; ite != c.end(); ++ite) &#123; // 如果这个迭代器不到c.end() 就执行代码
+for (; ite != c.end(); ++ite) { // 如果这个迭代器不到c.end() 就执行代码
   ...
-&#125;
+}
 
 // 现在有一个可以优化上面的伪代码的方法
 std::vector<double> vec;
 ...
-for ( auto elem : vec) &#123;  // auto的作用就是代替 container<T>::iterator
+for ( auto elem : vec) {  // auto的作用就是代替 container<T>::iterator
   std::cout << elem << std::end1;
-&#125;
+}
 
 // 对auto也可以优化
-for ( auto& elem : vec) &#123;
+for ( auto& elem : vec) {
   elem *= 3
-&#125;
+}
 
 // 对auto再一次解释
 list<string> c;

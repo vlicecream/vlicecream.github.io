@@ -165,28 +165,28 @@
 #include <stdexcept>
 #include <string>
 using namespace std;
-namespace jj02 &#123;
-void test_list(long &value) &#123;
+namespace jj02 {
+void test_list(long &value) {
   cout << "\n test_list()......... \n";
   list<string> c;
   char buf[10];
   clock_t timeStart = clock();
-  for (long i = 0; i < value; i++) &#123;
-    try &#123;
+  for (long i = 0; i < value; i++) {
+    try {
       snprintf(buf, 10, "%d", rand());
       c.push_back(buf);
-    &#125; catch (exception p) &#123;
+    } catch (exception p) {
       cout << "i=" << i << " " << p.what() << endl;
       abort();
-    &#125;
-  &#125;
+    }
+  }
   cout << "milli-seconds: " << (clock() - timeStart) << endl;
   cout << "list.size()= " << c.size() << endl;       // 真正元素的个数
   cout << "list.front()= " << c.front() << endl;     // 最前面的值
   cout << "list.back()= " << c.back() << endl;       // 最后面的值
   cout << "list.max_size= " << c.max_size() << endl; // 他的大小 即可以放多少元素
-&#125;
-&#125;
+}
+}
 </code></pre>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre class=" language-c++"><code class="language-c++">
 </code></pre>

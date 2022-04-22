@@ -157,18 +157,18 @@
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="开文说明"><a href="#开文说明" class="headerlink" title="开文说明"></a>开文说明</h2><p>本文章大多数都是根据以下代码为模范讲解</p>
-<pre class=" language-c++"><code class="language-c++">class complex &#123;
+<pre class=" language-c++"><code class="language-c++">class complex {
 public:
-  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  complex(double r = 0, double i = 0) : re(r), im(i) {}
   complex &operator+=(const complex &);
-  double real() const &#123; return re; &#125;
-  double imag() const &#123; return im; &#125;
+  double real() const { return re; }
+  double imag() const { return im; }
 
 private:
   double re, im;
 
   friend complex &__doapl(complex *, const complex &);
-&#125;;
+};
 </code></pre>
 <h2 id="Header-头文件-中的防卫式声明"><a href="#Header-头文件-中的防卫式声明" class="headerlink" title="Header(头文件)中的防卫式声明"></a>Header(头文件)中的防卫式声明</h2><p>guard(防卫式声明)</p>
 <p>目的在于防止过多的inclued</p>
@@ -188,30 +188,30 @@ private:
 <p>private: 私有的</p>
 <p>还有一种 保护的  先不讲~ </p>
 <p>Example:</p>
-<pre class=" language-c++"><code class="language-c++">class complex &#123;
+<pre class=" language-c++"><code class="language-c++">class complex {
 public:  // 公有
-  complex(double r = 0, double i = 0) : re(r), im(i) &#123;&#125;
+  complex(double r = 0, double i = 0) : re(r), im(i) {}
   complex &operator+=(const complex &);
-  double real() const &#123; return re; &#125;
-  double imag() const &#123; return im; &#125;
+  double real() const { return re; }
+  double imag() const { return im; }
 
 private:  // 私有
   double re, im;
 
   friend complex &__doapl(complex *, const complex &);
-&#125;;
+};
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">&#123;
+<pre class=" language-c++"><code class="language-c++">{
   complex c1(2, 1);
   cout << c1.re;
   cout << c1.im;
-&#125;  // 错误
+}  // 错误
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">&#123;
+<pre class=" language-c++"><code class="language-c++">{
   complex c2(2, 1);
   cout << c2.real;
   cout << c2.imag;
-&#125;  // 正确
+}  // 正确
 </code></pre>
 <p>上述错误的方法 创建了一个对象然后 直接拿 是不可以的 因为是private  这些数据必须通过自己的兄弟传递出去</p>
 

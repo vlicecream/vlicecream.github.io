@@ -158,10 +158,10 @@
             <div class="typo" style="padding: 3rem;">
                 <h2 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h2><pre class=" language-c++"><code class="language-c++">c2 += c1;
 </code></pre>
-<h2 id="Return-by-reference语法分析"><a href="#Return-by-reference语法分析" class="headerlink" title="Return by reference语法分析"></a>Return by reference语法分析</h2><pre class=" language-c++"><code class="language-c++">inline complex &__doapl(complex *ths, const complex &r) &#123;
+<h2 id="Return-by-reference语法分析"><a href="#Return-by-reference语法分析" class="headerlink" title="Return by reference语法分析"></a>Return by reference语法分析</h2><pre class=" language-c++"><code class="language-c++">inline complex &__doapl(complex *ths, const complex &r) {
   //  ...
   return *ths;
-&#125;
+}
 </code></pre>
 <p>传递者无需知道接收者是以referebce形式接收</p>
 
