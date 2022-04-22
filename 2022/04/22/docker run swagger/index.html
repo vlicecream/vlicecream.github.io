@@ -96,7 +96,7 @@
 	            <a href="#s1">分类</a>
 	                    <ul class="submenu">
 	                        <li>
-	                        <a class="category-link" href="/categories/c/">c++</a></li><li><a class="category-link" href="/categories/git/">git</a></li><li><a class="category-link" href="/categories/music-%E4%B9%90%E7%90%86/">music 乐理</a></li><li><a class="category-link" href="/categories/%E6%B1%87%E7%BC%96/">汇编</a></li><li><a class="category-link" href="/categories/%E7%AE%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法&数据结构</a>
+	                        <a class="category-link" href="/categories/c/">c++</a></li><li><a class="category-link" href="/categories/docker/">docker</a></li><li><a class="category-link" href="/categories/git/">git</a></li><li><a class="category-link" href="/categories/music-%E4%B9%90%E7%90%86/">music 乐理</a></li><li><a class="category-link" href="/categories/%E6%B1%87%E7%BC%96/">汇编</a></li><li><a class="category-link" href="/categories/%E7%AE%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法&数据结构</a>
 	                    </ul>
 	        </li>
 	        
@@ -151,18 +151,28 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++容器list.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 容器list</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/docker-1.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >docker 运行各种程序</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c++"><code class="language-c++">
-</code></pre>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre class=" language-c++"><code class="language-c++">
-</code></pre>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><pre class=" language-c++"><code class="language-c++">/*
+                <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><pre class=" language-c++"><code class="language-c++">// 下载swagger-editor的容器
+docker pull swaggerapi/swagger-editor 
+docker run -d -p 81:8080 swaggerapi/swagger-editor
 
-*/
+// 下载swagger-ui的容器
+docker pull swaggerapi/swagger-ui
+ 
+// json文件挂在到容器中:
+  
+docker run -d -p 80:8080 -e SWAGGER_JSON=/foo/swagger.json -v /home/service/swagger/swagger.json:/foo/swagger.json swaggerapi/swagger-ui 
+-p：宿主机端口：容器端口，将容器端口暴露给宿主机端口
+-d:后台启动
+-e：执行容器中/foo/swagger.json
+-v：将宿主机中/home/service/swagger/swagger.json挂载到容器 /foo中执行
+
+//web验证
+ip:port
 </code></pre>
 
             </div>
@@ -226,8 +236,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/19/c++%20STL%20%E5%AE%B9%E5%99%A8list/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/19/c++%20STL%20%E5%AE%B9%E5%99%A8list/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/04/22/docker%20run%20swagger/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/04/22/docker%20run%20swagger/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
