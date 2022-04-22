@@ -156,7 +156,37 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+                <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+using namespace std<span class="token punctuation">;</span>
+<span class="token keyword">long</span> <span class="token function">get_a_target_long</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">long</span> target <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"target (0~"</span> <span class="token operator">&lt;&lt;</span> RAND_MAX <span class="token operator">&lt;&lt;</span> <span class="token string">"): "</span><span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> target<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> target<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+string <span class="token function">get_a_target_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">long</span> target <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"target(0~"</span> <span class="token operator">&lt;&lt;</span> RAND_MAX <span class="token operator">&lt;&lt;</span> <span class="token string">"): "</span><span class="token punctuation">;</span>
+  <span class="token function">snprintf</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">"%d"</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">compareLongs</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token operator">*</span><span class="token punctuation">)</span>a<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token operator">*</span><span class="token punctuation">)</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">compareStrings</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span>string <span class="token operator">*</span><span class="token punctuation">)</span>a <span class="token operator">></span> <span class="token operator">*</span><span class="token punctuation">(</span>string <span class="token operator">*</span><span class="token punctuation">)</span>b<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span>string <span class="token operator">*</span><span class="token punctuation">)</span>a <span class="token operator">&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>string <span class="token operator">*</span><span class="token punctuation">)</span>b<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdlib></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;ctime></span></span>
@@ -184,9 +214,10 @@ namespace jj02 <span class="token punctuation">{</span>
   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.size()= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 真正元素的个数</span>
   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.front()= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">// 最前面的值</span>
   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.back()= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 最后面的值</span>
-  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.max_size= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">max_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 他的大小 即可以放多少元素</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.max_size= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">max_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//</span>
+  string target <span class="token operator">=</span> <span class="token function">get_a_target_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// namespace jj02</span>
 </code></pre>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre class=" language-c++"><code class="language-c++">
 </code></pre>
