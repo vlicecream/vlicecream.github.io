@@ -96,7 +96,7 @@
 	            <a href="#s1">分类</a>
 	                    <ul class="submenu">
 	                        <li>
-	                        <a class="category-link" href="/categories/c/">c++</a></li><li><a class="category-link" href="/categories/docker/">docker</a></li><li><a class="category-link" href="/categories/git/">git</a></li><li><a class="category-link" href="/categories/music-%E4%B9%90%E7%90%86/">music 乐理</a></li><li><a class="category-link" href="/categories/%E6%B1%87%E7%BC%96/">汇编</a></li><li><a class="category-link" href="/categories/%E7%AE%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法&数据结构</a>
+	                        <a class="category-link" href="/categories/c/">c++</a></li><li><a class="category-link" href="/categories/docker/">docker</a></li><li><a class="category-link" href="/categories/git/">git</a></li><li><a class="category-link" href="/categories/hexo/">hexo</a></li><li><a class="category-link" href="/categories/music-%E4%B9%90%E7%90%86/">music 乐理</a></li><li><a class="category-link" href="/categories/%E6%B1%87%E7%BC%96/">汇编</a></li><li><a class="category-link" href="/categories/%E7%AE%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法&数据结构</a>
 	                    </ul>
 	        </li>
 	        
@@ -156,37 +156,37 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c++"><code class="language-c++">#include <algorithm>
-#include <cstdio>
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-#include <list>
-#include <stdexcept>
-#include <string>
-using namespace std;
-namespace jj02 {
-void test_list(long &value) {
-  cout << "\n test_list()......... \n";
-  list<string> c;
-  char buf[10];
-  clock_t timeStart = clock();
-  for (long i = 0; i < value; i++) {
-    try {
-      snprintf(buf, 10, "%d", rand());
-      c.push_back(buf);
-    } catch (exception p) {
-      cout << "i=" << i << " " << p.what() << endl;
-      abort();
-    }
-  }
-  cout << "milli-seconds: " << (clock() - timeStart) << endl;
-  cout << "list.size()= " << c.size() << endl;       // 真正元素的个数
-  cout << "list.front()= " << c.front() << endl;     // 最前面的值
-  cout << "list.back()= " << c.back() << endl;       // 最后面的值
-  cout << "list.max_size= " << c.max_size() << endl; // 他的大小 即可以放多少元素
-}
-}
+                <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdlib></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;ctime></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdexcept></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+using namespace std<span class="token punctuation">;</span>
+namespace jj02 <span class="token punctuation">{</span>
+<span class="token keyword">void</span> <span class="token function">test_list</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token operator">&amp;</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n test_list()......... \n"</span><span class="token punctuation">;</span>
+  list<span class="token operator">&lt;</span>string<span class="token operator">></span> c<span class="token punctuation">;</span>
+  <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  clock_t timeStart <span class="token operator">=</span> <span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">long</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> value<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    try <span class="token punctuation">{</span>
+      <span class="token function">snprintf</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      c<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token function">catch</span> <span class="token punctuation">(</span>exception p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      cout <span class="token operator">&lt;&lt;</span> <span class="token string">"i="</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span><span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+      <span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"milli-seconds: "</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span><span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> timeStart<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.size()= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 真正元素的个数</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.front()= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">// 最前面的值</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.back()= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 最后面的值</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"list.max_size= "</span> <span class="token operator">&lt;&lt;</span> c<span class="token punctuation">.</span><span class="token function">max_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 他的大小 即可以放多少元素</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre class=" language-c++"><code class="language-c++">
 </code></pre>
