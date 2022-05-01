@@ -151,51 +151,53 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cat-1.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >栈</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/town-2.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >二分法</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>​	What?</p>
-<p>​		栈就是先进后出</p>
-<p>​	Example</p>
-<p>​		一个箱子 你放4本书进去 拿书的时候只能从上面先拿 这就是先进后出</p>
-<p>​	time complexity</p>
-<p>​		select  O(n)</p>
-<p>​		insert  O(1)</p>
-<p>​		remove  O(1)</p>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>​	What?</p>
-<p>​		队列就是先进先出</p>
-<p>​	Example</p>
-<p>​		排队的时候先来的人就可以先出去 这就是先进先出</p>
-<p>​	time complexity</p>
-<p>​		select  O(n)</p>
-<p>​		insert  O(1)</p>
-<p>​		remove  O(1)</p>
-<h2 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h2><p>​	What?</p>
-<p>​		就是一个队列 可以理解为stack和queue的结合体</p>
-<p>​		可以往最前面添加元素 or 删除元素</p>
-<p>​		也可以往最后面添加元素 or 删除元素</p>
-<p>​	time complexity</p>
-<p>​		select  O(n)</p>
-<p>​		append  O(1)</p>
-<p>​		remove  O(1)</p>
-<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><p>​	what?</p>
-<p>​		元素具有优先级</p>
-<p>​	example</p>
-<p>​		好比你是vip 所以就可以优先获取资源</p>
-<p>​	time complexity</p>
-<p>​		插入操作 O(1)</p>
-<p>​		取出操作 O(logn)  ps: 按照元素的优先级取出</p>
-<p>​	优先队列的底层具体实现</p>
-<p>​		较为多样和复杂 可以用heap bst treap等</p>
-<h2 id="Leetcode题目推荐"><a href="#Leetcode题目推荐" class="headerlink" title="Leetcode题目推荐"></a>Leetcode题目推荐</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// tips: 兄弟们一定要记住题目一旦想了一会 想不出来就去看题解哦～多看别人怎么做的 题目也不要只刷一遍～贵在坚持</span>
+                <h2 id="利用二分法的场景"><a href="#利用二分法的场景" class="headerlink" title="利用二分法的场景"></a>利用二分法的场景</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 在排序的数组中 并且是select 即可尝试二分法</span>
 </code></pre>
-<p>​	<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/min-stack/">https://leetcode-cn.com/problems/min-stack/</a>   最小栈</p>
-<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// tips: 这道题可以先不考虑O(1)时间复杂度  先去尝试O(n)  再O(1)  再考虑不使用额外空间的方法~</span>
+<h2 id="二分法的模板"><a href="#二分法的模板" class="headerlink" title="二分法的模板"></a>二分法的模板</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># python</span>
+left<span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+<span class="token keyword">while</span> left <span class="token operator">&lt;=</span> right<span class="token punctuation">:</span>
+  mid <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
+  <span class="token keyword">if</span> arrat<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
+    <span class="token keyword">break</span>  <span class="token comment" spellcheck="true"># break or return result</span>
+  <span class="token keyword">elif</span> array<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
+    left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+  <span class="token keyword">else</span><span class="token punctuation">:</span>
+    right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
 </code></pre>
-<p>​	<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-parentheses/">https://leetcode-cn.com/problems/valid-parentheses/</a>   有效地括号</p>
-<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// tips: 这道题用到混合数据结构~</span>
+<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// golang</span>
+left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+<span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">{</span>
+  mid <span class="token operator">:=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
+  <span class="token keyword">if</span> array<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target <span class="token punctuation">{</span>
+    <span class="token keyword">break</span> <span class="token comment" spellcheck="true">// break or return result</span>
+  <span class="token punctuation">}</span> elif array<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target <span class="token punctuation">{</span>
+     left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// https://leetcode-cn.com/problems/search-insert-position/ 搜索插入位置</span>
+</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 搜索插入位置</span>
+<span class="token keyword">func</span> <span class="token function">searchInsert</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> target <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+  left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> ans <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">{</span>
+    mid <span class="token operator">:=</span> <span class="token punctuation">(</span>right <span class="token operator">+</span> left<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
+    <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">>=</span> target <span class="token punctuation">{</span>
+      ans <span class="token operator">=</span> mid
+      right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> ans
+<span class="token punctuation">}</span>
 </code></pre>
 
             </div>
@@ -259,8 +261,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/14/%E7%AE%97%E6%B3%95---%E6%A0%88&amp;%E9%98%9F%E5%88%97.../';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/14/%E7%AE%97%E6%B3%95---%E6%A0%88&amp;%E9%98%9F%E5%88%97.../'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/04/13/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E4%BA%8C%E5%88%86%E6%B3%95/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/04/13/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E4%BA%8C%E5%88%86%E6%B3%95/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

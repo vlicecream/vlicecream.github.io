@@ -151,53 +151,59 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/town-2.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >二分法</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon-character-4.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >数组 双指针</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="利用二分法的场景"><a href="#利用二分法的场景" class="headerlink" title="利用二分法的场景"></a>利用二分法的场景</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 在排序的数组中 并且是select 即可尝试二分法</span>
+                <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
+    时间复杂度
+        select O(1)
+        append O(n)
+        removeO(n)
+*/</span>
 </code></pre>
-<h2 id="二分法的模板"><a href="#二分法的模板" class="headerlink" title="二分法的模板"></a>二分法的模板</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># python</span>
-left<span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
-<span class="token keyword">while</span> left <span class="token operator">&lt;=</span> right<span class="token punctuation">:</span>
-  mid <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
-  <span class="token keyword">if</span> arrat<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
-    <span class="token keyword">break</span>  <span class="token comment" spellcheck="true"># break or return result</span>
-  <span class="token keyword">elif</span> array<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
-    left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-  <span class="token keyword">else</span><span class="token punctuation">:</span>
-    right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
+    在有关数组的算法题目里面 双指针其实是很流行的一种解法
+    遇到数组的时候即可思考一下双指针是否可行
+*/</span>
+
+<span class="token comment" spellcheck="true">/*
+    双指针其实就是 利用两个指向数组元素的指针 来搞事情
+    所以双指针其实也是有很多种类型
+*/</span>
 </code></pre>
-<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// golang</span>
-left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
-<span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">{</span>
-  mid <span class="token operator">:=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
-  <span class="token keyword">if</span> array<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target <span class="token punctuation">{</span>
-    <span class="token keyword">break</span> <span class="token comment" spellcheck="true">// break or return result</span>
-  <span class="token punctuation">}</span> elif array<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target <span class="token punctuation">{</span>
-     left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+<h2 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
+    快慢指针其实就是一个指针走的快 一个指针走得慢  题外话 在链表成环 快慢指针非常好用 类似于龟兔赛跑
+    slow fast 两个指针 快指针走的要比慢指针快
+    话不多说 来见题目
+*/</span> 
+
+<span class="token comment" spellcheck="true">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化)</span>
+  slow <span class="token operator">:=</span> <span class="token number">0</span>
+  <span class="token keyword">for</span> fast <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> fast <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> fast<span class="token operator">++</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 根据具体内容写相应代码</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/*
+    https://leetcode-cn.com/problems/move-zeroes/ 移动零
+    https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 删除有序数组的重复项
+*/</span>
 </code></pre>
-<h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// https://leetcode-cn.com/problems/search-insert-position/ 搜索插入位置</span>
-</code></pre>
-<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 搜索插入位置</span>
-<span class="token keyword">func</span> <span class="token function">searchInsert</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> target <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-  left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> ans <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+<h2 id="区域指针"><a href="#区域指针" class="headerlink" title="区域指针"></a>区域指针</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
+    左右指针就是 两个指针一个在数组开始 一个在数组末端
+    一般用于寻找一个区域内的某个东西
+*/</span>
+
+<span class="token comment" spellcheck="true">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化)</span>
+  left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
   <span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">{</span>
-    mid <span class="token operator">:=</span> <span class="token punctuation">(</span>right <span class="token operator">+</span> left<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
-    <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">>=</span> target <span class="token punctuation">{</span>
-      ans <span class="token operator">=</span> mid
-      right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-      left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 根据具体内容写相应代码</span>
   <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> ans
-<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/*
+    https://leetcode-cn.com/problems/container-with-most-water/ 盛最多水的容器
+*/</span>
 </code></pre>
 
             </div>
@@ -261,8 +267,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/13/%E4%BA%8C%E5%88%86%E6%B3%95/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/13/%E4%BA%8C%E5%88%86%E6%B3%95/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/04/15/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E6%95%B0%E7%BB%84--%E5%8F%8C%E6%8C%87%E9%92%88/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/04/15/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E6%95%B0%E7%BB%84--%E5%8F%8C%E6%8C%87%E9%92%88/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
