@@ -156,7 +156,23 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Inheritance-with-virtual-functions"><a href="#Inheritance-with-virtual-functions" class="headerlink" title="Inheritance with virtual functions"></a>Inheritance with virtual functions</h2><pre class=" language-c++"><code class="language-c++">
+                <h2 id="Inheritance-with-virtual-functions"><a href="#Inheritance-with-virtual-functions" class="headerlink" title="Inheritance with virtual functions"></a>Inheritance with virtual functions</h2><pre><code>non-virtual 函数: 你不希望derived class重新定义
+
+virtual 函数: 你希望derived class 重新定义 且他有默认定义
+
+pure virtual 函数: 你希望derived class 一定要重新定义, 你对他没有默认定义
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">class Shape {
+public:
+  virtual void draw() const = 0; // pure virtual
+  virtual void error(const std::string &msg); // impure virtual
+  int objectID() const; // non-virtual
+  ...
+};
+
+// 虚函数应用场景就是 如果确定不了的 就用虚函数 让子类去重新写他
+</code></pre>
+<h2 id="Inheritance-Composition-关系下的构造和析构"><a href="#Inheritance-Composition-关系下的构造和析构" class="headerlink" title="Inheritance + Composition 关系下的构造和析构"></a>Inheritance + Composition 关系下的构造和析构</h2><pre class=" language-c++"><code class="language-c++">如果没有并行的概念 肯定是构造从内到外 析构从外到内
 </code></pre>
 
             </div>
