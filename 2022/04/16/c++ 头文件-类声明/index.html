@@ -172,15 +172,28 @@ private:
 </code></pre>
 <h2 id="Header-头文件-中的防卫式声明"><a href="#Header-头文件-中的防卫式声明" class="headerlink" title="Header(头文件)中的防卫式声明"></a>Header(头文件)中的防卫式声明</h2><p>guard(防卫式声明)</p>
 <p>目的在于防止过多的inclued</p>
-<pre class=" language-c++"><code class="language-c++">#ifndef __COMPLEX__
-#define __COMPLEX__
-// 代码
+<pre class=" language-c++"><code class="language-c++">#ifndef __COMPLEX__  // __COMPLEX__	自由取
+#define __COMPLEX__  // __COMPLEX__	自由取
+...  // class 
 #endif
 </code></pre>
-<h2 id="Header的布局"><a href="#Header的布局" class="headerlink" title="Header的布局"></a>Header的布局</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220416204937413-20220417155611144.png" alt="image-20220416204937413"></p>
+<h2 id="Header的布局"><a href="#Header的布局" class="headerlink" title="Header的布局"></a>Header的布局</h2><pre class=" language-c++"><code class="language-c++">
+</code></pre>
 <h2 id="class的声明"><a href="#class的声明" class="headerlink" title="class的声明"></a>class的声明</h2><p>Class 是由 class head &amp; class body 组成的</p>
 <p>当我们不想在class里把类型写死的时候 可以依靠T 需要在head前 加上 “template <typename T>“</p>
-<p><img src="https://gitee.com/AmeX/photo/raw/master/img/blogImage/image-20220416211929723.png" alt="image-20220416211929723"></p>
+<pre class=" language-c++"><code class="language-c++">class complex { // class head
+  // class body
+public:
+  complex(double r = 0, double i = 0) : re(r), im(i) {}
+  complex &operator+=(const complex &);
+  double real() const { return re; }
+  double imag() const { return im; }
+
+private:
+  double re, im;
+  friend complex &__doapl(complex *, const complex &);
+};
+</code></pre>
 <h2 id="inline函数"><a href="#inline函数" class="headerlink" title="inline函数"></a>inline函数</h2><p>函数若在class body内定义完成 成为inline候选</p>
 <p>但是不是所有的函数都能变成inline</p>
 <p>简单点讲 函数复杂就不会变成inline  终究还是编译器去决定</p>
