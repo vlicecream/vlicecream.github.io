@@ -195,6 +195,64 @@
 </code></pre>
 <h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><pre class=" language-c"><code class="language-c">
 </code></pre>
+<h2 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h2><pre class=" language-c++"><code class="language-c++">/*
+    可以有重复元素的有序集合
+    底层是红黑树实现
+*/
+
+/*
+    在测试代码里面 我们用标准库的find和容器自己的find来对比查找元素的速度
+    按道理其实容器自己的find速度快 因为针对这个容器做了特殊处理 而标准库是要泛用的
+    测试证明 容器自己的find非常的快 因为multiset是关联式容器 直接用key找, 加上是由红黑树实现的
+    但是事情不可能是完美的 查找特别快 但是插入元素就会比较慢
+    multiset key 就是value value 就是ke y
+*/
+</code></pre>
+<h2 id="multimap"><a href="#multimap" class="headerlink" title="multimap"></a>multimap</h2><pre class=" language-c++"><code class="language-c++">/*
+    每个元素分开两个部分 key 和 value  key不可重复
+    底层是红黑树实现
+*/
+
+/*
+    我们往multimap放一对值 得用标准库 "pair" 一对 来放值
+        c.insert(pair<long, string>(key, value));
+    取值的话 第一个值就是 first 第二个值就是second
+        (*pItem).second
+    有没有办法直接拿出key value呢
+    这个就得靠操作符重载之类的自己写啦
+*/
+</code></pre>
+<h2 id="unordered-multiset"><a href="#unordered-multiset" class="headerlink" title="unordered_multiset"></a>unordered_multiset</h2><pre class=" language-c++"><code class="language-c++">/*
+    这种的是由哈希表来实现的
+    哈希表主要核心问题 有 取桶(取模法) 哈希冲突(开放寻址 拉链) 渐进式扩容
+    可以观看golang方面的map介绍 因为golang的map底层就是哈希表
+*/
+</code></pre>
+<h2 id="unordered-multimap"><a href="#unordered-multimap" class="headerlink" title="unordered_multimap"></a>unordered_multimap</h2><pre class=" language-c++"><code class="language-c++">/*
+    底层也是由哈希表来实现
+    哈希表主要核心问题 有 取桶(取模法) 哈希冲突(开放寻址 拉链) 渐进式扩容
+    可以观看golang方面的map介绍 因为golang的map底层就是哈希表
+*/
+</code></pre>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><pre class=" language-c++"><code class="language-c++">/*
+    key就是value value就是key  key不可重复
+    底层也是由红黑树实现
+*/
+</code></pre>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><pre class=" language-c++"><code class="language-c++">/*
+    元素由key value组成 是不可以重复的 但是因为key 不重复 value会重复  他们组合还是不会是一样的
+    这个容器 可以把key 和 value 变成一个pair
+    所以可以用[]放值
+*/
+</code></pre>
+<h2 id="unordered-set"><a href="#unordered-set" class="headerlink" title="unordered_set"></a>unordered_set</h2><pre class=" language-c++"><code class="language-c++">/*
+    哈希表实现的set
+*/
+</code></pre>
+<h2 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h2><pre class=" language-c++"><code class="language-c++">/*
+    哈希表实现的map
+*/
+</code></pre>
 <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-c"><code class="language-c">
 </code></pre>
 
