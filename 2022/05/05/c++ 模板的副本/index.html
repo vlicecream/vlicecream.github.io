@@ -151,66 +151,12 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++智能指针.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ 智能指针&amp;仿函数</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++-分配器.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 分配器</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="pointer-like-classes"><a href="#pointer-like-classes" class="headerlink" title="pointer-like classes"></a>pointer-like classes</h2><pre class=" language-c++"><code class="language-c++">// 智能指针 一个类很像指针 拥有指针的功能确还能额外多做点事 这就叫智能指针
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template<class T>
-class shared_ptr {
-public:
-    T& operator *() const { return *px; }
-+	T& operator ->() const { return px; }
-    shared_ptr(T* p) : px(p) { } // 构造函数
-private:
-    T* px;
-    long* pn;
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">struct Foo {
-    ...
-    void method(void) { ... };
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">shared_ptr<Foo> sp(new Foo);
-Foo f(*sp);
-sp -> method;
-
-/*
-    在这里new了一个sp对象 调用shared_ptr构造函数 没有问题
-    随后Foo f(*sp) 操作符重载 return *px 取到指针所指向的值 也没有问题
-    再然后的 sp -> 这里的意思 是通过sp这个对象 调用method方法 实际也就是 px->method;
-    -> 这个符号很特别 会一直作用下去 -> 作用于sp 虽然作用完了 但是 还是能px->method 所以体现了这一点
-*/
-</code></pre>
-<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><pre class=" language-c++"><code class="language-c++">
-</code></pre>
-<h2 id="function-like-classes-仿函数"><a href="#function-like-classes-仿函数" class="headerlink" title="function-like classes 仿函数"></a>function-like classes 仿函数</h2><pre class=" language-c++"><code class="language-c++">template <class T>
-struct identity : public unary_function<T, T> {
-    const T& operator() (const T& x) const { return x; }
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class Pair>
-struct select1st : public unary_function<Pair, typename Pair::first_type> {
-    const typename Pair::first_type& operator() (const Pair& x) const { return x.first; }
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class Pair>
-struct select2nd : public unary_function<Pair, typename Pair::second_type> {
-    const typename Pair::second_type& operator() (const Pair& x) const { return x.second; }
-};
-</code></pre>
-<h2 id="标准库仿函数的奇特模样"><a href="#标准库仿函数的奇特模样" class="headerlink" title="标准库仿函数的奇特模样"></a>标准库仿函数的奇特模样</h2><pre class=" language-c++"><code class="language-c++">/*
-    我们发现仿函数都会继承一个class 但是发现用不到他 这个为什么呢
-    会在STL有关博客解密 此处不适合
-*/
-
-template <class T>
-struct plus : public binary_function<T, T, T> {
-    T operator() (const T& x, const T& y) const { return x+y; }
-};
+                <h2 id="分配器"><a href="#分配器" class="headerlink" title="分配器"></a>分配器</h2><pre class=" language-c++"><code class="language-c++">// 不要直接去用分配器 应该去使用容器 每个分配器也会有不同的特点
 </code></pre>
 
             </div>
@@ -274,8 +220,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/05/05/c++%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88&amp;%E4%BB%BF%E5%87%BD%E6%95%B0/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/05/05/c++%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88&amp;%E4%BB%BF%E5%87%BD%E6%95%B0/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/05/05/c++%20%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/05/05/c++%20%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

@@ -182,6 +182,15 @@ left<span class="token punctuation">,</span> right <span class="token operator">
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<pre class=" language-c++"><code class="language-c++">// c++
+int left = 0, right = size(nums)-1;
+while (right >= left) {
+  int mid = (right + left)/2;
+  if (nums[mid] == target) return mid;
+  if (nums[mid] < target) left = mid + 1;
+  if (nums[mid] > target) right = mid - 1;
+}
+</code></pre>
 <h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// https://leetcode-cn.com/problems/search-insert-position/ 搜索插入位置</span>
 </code></pre>
 <pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 搜索插入位置</span>
