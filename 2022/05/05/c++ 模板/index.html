@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="class-template"><a href="#class-template" class="headerlink" title="class template"></a>class template</h2><pre class=" language-c++"><code class="language-c++">template<typename T>
+                <h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><pre class=" language-c++"><code class="language-c++">template<typename T>
 class complex {
 public:
   complex(T r = 0, T i = 0) : re(r), im(i) {}
@@ -171,8 +171,10 @@ private:
 };
 </code></pre>
 <pre class=" language-c++"><code class="language-c++">complex<double> c1(2.5, 3.5);
+
+// 显而易见 他的作用就是可变类型
 </code></pre>
-<h2 id="func-template"><a href="#func-template" class="headerlink" title="func template"></a>func template</h2><pre class=" language-c++"><code class="language-c++">template <class T>
+<h2 id="func-template-函数模板"><a href="#func-template-函数模板" class="headerlink" title="func template 函数模板"></a>func template 函数模板</h2><pre class=" language-c++"><code class="language-c++">template <class T>
 inline const T& min(const T& a, const T& b) {
     return b < a ? b : a;
 }
@@ -196,7 +198,7 @@ private:
     所以stone必须实现"<"方法
 */
 </code></pre>
-<h2 id="member-template"><a href="#member-template" class="headerlink" title="member template"></a>member template</h2><pre class=" language-c++"><code class="language-c++">template <class T1, class T2>
+<h2 id="member-template-成员函数"><a href="#member-template-成员函数" class="headerlink" title="member template 成员函数"></a>member template 成员函数</h2><pre class=" language-c++"><code class="language-c++">template <class T1, class T2>
 struct pair {
     typedef T1 first_type;
     typedef T2 second_type;
@@ -263,7 +265,25 @@ shared_ptr<Base1> sptr(new Derived1);
 
 // 智能指针里面可以用成员函数 指向继承自己的成员
 </code></pre>
-<h2 id="specialization-模板偏特化—个数上的偏"><a href="#specialization-模板偏特化—个数上的偏" class="headerlink" title="specialization 模板偏特化—个数上的偏"></a>specialization 模板偏特化—个数上的偏</h2><pre class=" language-c++"><code class="language-c++">template <typename T, typename Alloc=...> // Alloc 分配器 
+<h2 id="specialization-模板特化"><a href="#specialization-模板特化" class="headerlink" title="specialization 模板特化"></a>specialization 模板特化</h2><pre class=" language-c++"><code class="language-c++">template <class key>
+struct hash { };
+// 这样的 直接在template 后面的叫做泛化(全泛化)
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">template<>
+struct hash<char> {
+  size_t operator() (char x) const { return x; }
+};
+
+template<>
+struct hash<int> {
+  size_t operator() (int x) const { return x; }
+};
+
+// 这样的就叫特化
+cout << hash<int>() (1000);
+// 这样就会直接找到hash<int>然后操作符重载 找到"()"
+</code></pre>
+<h2 id="模板偏特化—个数上的偏"><a href="#模板偏特化—个数上的偏" class="headerlink" title="模板偏特化—个数上的偏"></a>模板偏特化—个数上的偏</h2><pre class=" language-c++"><code class="language-c++">template <typename T, typename Alloc=...> // Alloc 分配器 
 class vector {
     ...
 };
@@ -285,8 +305,8 @@ class C<T*> {
     ...
 }; // 这样的意思就是我要求编译器 如果是指针的T 就走这个 不是就走上方
 </code></pre>
-<h2 id="模板模板参数"><a href="#模板模板参数" class="headerlink" title="模板模板参数"></a>模板模板参数</h2><pre class=" language-c++"><code class="language-c++">template <typename T
-        template <typename T>
+<h2 id="模板模板参数"><a href="#模板模板参数" class="headerlink" title="模板模板参数"></a>模板模板参数</h2><pre class=" language-c++"><code class="language-c++">template <typename T,  // 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
+        template <typename T> // 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
             class Container
          >
 class XCls {

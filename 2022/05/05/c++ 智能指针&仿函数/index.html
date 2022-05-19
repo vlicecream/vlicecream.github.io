@@ -185,7 +185,17 @@ sp -> method;
     -> 这个符号很特别 会一直作用下去 -> 作用于sp 虽然作用完了 但是 还是能px->method 所以体现了这一点
 */
 </code></pre>
-<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><pre class=" language-c++"><code class="language-c++">
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><pre class=" language-c++"><code class="language-c++">// 迭代器也有智能指针
+template<class T, class Ref, class Ptr>
+struct __list_iterator {
+  typedef __list_node<T>* link_type;
+  link_type node;
+  bool operator==(const self& x) const { return node == x.node };
+  bool operator->() const { return &(operator*()); }
+  reference operator*() const { return (*node).data; }
+  pointer operator->() const { return &(operator*()); }
+}
+// 像前面的智能指针 就是普通用法 而迭代器的这个例子则就是体现了更好的利用指针去搞事情
 </code></pre>
 <h2 id="function-like-classes-仿函数"><a href="#function-like-classes-仿函数" class="headerlink" title="function-like classes 仿函数"></a>function-like classes 仿函数</h2><pre class=" language-c++"><code class="language-c++">template <class T>
 struct identity : public unary_function<T, T> {
@@ -201,6 +211,8 @@ struct select1st : public unary_function<Pair, typename Pair::first_type> {
 struct select2nd : public unary_function<Pair, typename Pair::second_type> {
     const typename Pair::second_type& operator() (const Pair& x) const { return x.second; }
 };
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">// 只要里面有()则他有可能就是仿函数 可以见操作符重载的重要性
 </code></pre>
 <h2 id="标准库仿函数的奇特模样"><a href="#标准库仿函数的奇特模样" class="headerlink" title="标准库仿函数的奇特模样"></a>标准库仿函数的奇特模样</h2><pre class=" language-c++"><code class="language-c++">/*
     我们发现仿函数都会继承一个class 但是发现用不到他 这个为什么呢
