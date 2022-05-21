@@ -151,84 +151,74 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++-引用.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ 引用-reference</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++-nd.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ 重载-new delete</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><pre class=" language-c++"><code class="language-c++">int x = 0;
-int* p = &x; // p is a pointer to x
-int& p = x; // r is a reference to x
-int x2 = 5;
+                <h2 id="global的重载"><a href="#global的重载" class="headerlink" title="global的重载"></a>global的重载</h2><pre class=" language-c++"><code class="language-c++">void* myAlloc(size_t size) { return malloc(size); }
+void* myFree(void* ptr) { return free(ptr); }
 
-r = x2;
-int& r2= r;
+// 他们不可以被声明于一个namespace中
+inline void* operator new(size_t size) { cout << "jjhou global new() \n"; return myAlloc(size); }
+inline void* operator new[](size_t size) { cout << "jjhou global new[]() \n"; return myAlloc(size); }
+inline void* operator delete(void* ptr) { cout << "jjhou global delete() \n"; return myFree(ptr); }
+inline void* operator delete[](void* ptr) { cout << "jjhou global delete[]() \n"; return myFree(ptr); }
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-    int* p = &x;
-    int *p = &x;
-    以上两行都是可以的 但是个人更喜欢是int* p
-    因为这样的话 p 就是一个变量  这个变量是什么类型 是 pointer to int
+<h2 id="成员函数的重载"><a href="#成员函数的重载" class="headerlink" title="成员函数的重载"></a>成员函数的重载</h2><pre class=" language-c++"><code class="language-c++">class Foo {
+public:
+  void* operator new(size_t);
+  void* operator new[](size_t);
+  void operator delete(void*, size_t);
+  void operator delete[](void*, size_t);
+}
+</code></pre>
+<h2 id="重载new-delete"><a href="#重载new-delete" class="headerlink" title="重载new( ) delete( )"></a>重载new( ) delete( )</h2><pre class=" language-c++"><code class="language-c++">/*
+    我们可以重载 class member operator new() 写出多个版本 前提是每一个版本的声明都必须有独特的参数列
+    其中第一参数必须是size_t 其余参数以new所指定的placement arguments 为初值
+    出现在new(...) 小括号内的便是所谓的placement arguments
 */
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-  int* 是 pointer to int
-  int& 是 reference to int
-  比如 int* p = &x; 我们会说 指针指向了x
-  而 int& r = x; 我们会说 r 代表了 x 其实 r 里面有一个指针指向了 x
-  r 只要代表了 x 就不可以代表别的变量 pointer不同 pointer还可以指向别的变量
-*/
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-    所以我们接下来看
-    int x2 = 5;
-    r = x2;
-    这两行代码 r 不能重新代表其他的变量了 所以 经过 "r = x2;" 后 r 和 x 都变成了 5
-    再然后 int r2 = r; 现在r2是5 ("r2" 代表 "r" 亦相当于代表了 "x")
-*/
-</code></pre>
-<h2 id="假象"><a href="#假象" class="headerlink" title="假象"></a>假象</h2><pre class=" language-c++"><code class="language-c++">/*
-    我们观察 "x" 跟 "r" 的地址和大小 会发现
-    1. sizeof(r) = sizeof(x)
-  2. &x == &r
-  object 和其 reference 的大小相同 地址也相同(但是都是假象)
-  java里面的所有变量都是reference
-*/
-</code></pre>
-<h2 id="reference的常见用途"><a href="#reference的常见用途" class="headerlink" title="reference的常见用途"></a>reference的常见用途</h2><pre class=" language-c++"><code class="language-c++">/*
-    reference 就是一种漂亮的pointer
-    reference 通常不用于声明变量 而用于参数类型和返回类型的描述
-*/ 
-
-// 声明
-void func1(Cls* pobj) { pobj->xxx(); } // pass by pointer
-void func2(Cls obj) { obj.xxx(); } // pass by value
-void func3(Cls& obj) { obj.xxx(); } // pass by reference
-// 调用
-Cls obj;
-func1(&obj);
-func2(obj);
-func(obj);
-
-// 我们能发现 pass by pointer 跟其他的都不一样 而 "value" 和 "reference" 被调用端 写法相同 调用端接口也相同
-
-// 这也就是我们最好用reference 不行再value
-</code></pre>
-<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><pre class=" language-c++"><code class="language-c++">// 以下被视为 "same signature" 所以两者不能同时存在
-double image(const double& im) { ... }
-double image(const double im) { ... }
 
 /*
-    签名的部分为
-        imag(const double im)
-    说白了就是不含 return type
-    
-    这两行 如果不算相同的签名 那么 imag(obj) 就不知道要调用谁
+    我们也可以重载 class member operator delete() 写出多个版本
+    但他们绝不会被delete调用 只有当new所调用的ctor抛出exception 才会调用这些重载版的operator delete()
+    他只可能这样被调用
+    主要处理还未能完全创建成功的object所占用的memory
 */
 </code></pre>
-<pre class=" language-c++"><code class="language-c++">// 问题就来了 const 算不算函数签名呢 
+<pre class=" language-c++"><code class="language-c++">// new()示例
 
-***是滴
+class Foo {
+public:
+  Foo() { cout << "Foo::Foo()" << endl; }
+  Foo(int) { cout << "Foo:Foo(int)" << endl; throw Bad(); } // 故意在这抛出错误 测试delete
+  
+  // 这就是一般的 operator new()
+  void* operator new(size_t size) { return malloc(size); }
+  // 这就是标准库已经提供的 placement new() 的重载 ( 这里简化 )
+  void* operator new(size_t size, void* start) { return start; }
+  // 这个才是崭新的 placement new
+  void* operator new(size_t size, long extra) { return mallc(size+extra); }
+  // 这又是一个placement new
+  void* operator new(size_t size, long extra, char init) { return malloc(size_extra); }
+</code></pre>
+<pre class=" language-c++"><code class="language-c++">// 这是搭配上述的new 的各个 placement delete
+// 当ctor发出异常 这儿对应的opertor (placement) delete 就会被调用
+// 用途就是释放对应的placement new 分配的memory
+// 即使 operator delete(...)未能一一对应也不会出现任何报错 这样的意思是 放弃处理ctor所发出的异常
+
+// 这个就是一般的opertor delete() 的重载
+void operator delete(void*, size_t) { cout << "operator delete(void*, size_t)" << endl; }
+// 这个对应第二个
+void operator delete(void*, void*) { cout << "operator delete(void*, void*)" << endl; }
+// 对应第三个
+void operator delete(void*, long) { cout << "operator delete(void*, long)" << endl; }
+// 对应第四个
+void operator delete(void*, long, char) { cout << "operator delete(void*, long, char)" << endl; }
+
+private:
+    int m_i;
+};
 </code></pre>
 
             </div>
@@ -292,8 +282,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/05/21/c++%20reference/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/05/21/c++%20reference/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/05/21/c++%20%E9%87%8D%E8%BD%BDnew%20delete/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/05/21/c++%20%E9%87%8D%E8%BD%BDnew%20delete/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
