@@ -156,7 +156,28 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2>
+                <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521213329304.png" alt="image-20220521213329304"></p>
+<pre class=" language-c++"><code class="language-c++">/*
+    我们来看看这图片的流程
+    当我们创建一个对象 也就是 "CMyDoc myDoc"
+    就会去父类里面找 然后到了虚函数 就会在vptr&vtbl里面进行动态绑定 所以到了子类 绑定完成后 回到父类继续往下走
+    函数结束后回到myDoc.OnFileOpen();
+*/ 
+
+/*
+    谁调用方法 就代表 "this" 就是他 
+    所以 "this" 就是myDoc   全名就是 CDocument::OnFileOpen(&myDoc);   所以这个this就会传到 OnFileOpen
+    但是看这个是没有参数的 实际上是有的 c++所有的成员函数里面就会有一个this参数
+    指针传进来之后 所有的就是"this"调用
+    this->Serialize();
+    然后这时候就是动态绑定 符合动态绑定的三个条件
+    1. 指针调用
+    2. 因为是子类 拥有向上转型的特点
+    3. 虚函数
+    所以就会调用到子类的Serialize
+*/
+</code></pre>
+
             </div>
 
             <!-- Post Comments -->
