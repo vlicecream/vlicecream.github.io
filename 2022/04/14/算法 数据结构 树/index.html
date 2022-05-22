@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;*
+                <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;*
 	当我们在刷算法题的时候 一般回空间换时间 因为在如今科技发达的社会 硬件已经很牛逼了 所以相比较 时间更为重要
 	还有一个点 就是升维的思想 像数组和链表其实就是一维  跳表就是二维 因此解决了一些难题
 	树其实就是升维思想的一种体现
@@ -167,32 +167,32 @@
 	树跟图的差别在于有没有环
 	链表就是特殊化的树 因为有两个指针
 	树就是特殊化的图 没有环的图就是树
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><pre class="language-go" data-language="go"><code class="language-go"></code></pre>
 
-<h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># python
+<h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><pre class="language-python" data-language="python"><code class="language-python"># python
 class TreeNode:
 	def __init__(self, val):
 		self.val &#x3D; val
-		self.left, self.right &#x3D; None, None<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+		self.left, self.right &#x3D; None, None</code></pre>
 
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; go
+<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; go
 struct TreeNode &#123;
   val int
   left *TreeNode
   right *TreeNode
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c++
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c++
 struct TreeNode &#123;
   int val;
   TreeNode *left;
   TreeNode *right;
   TreeNode(int x): val(x), left(NULL), right(NULL)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<h2 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># python
+<h2 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h2><pre class="language-python" data-language="python"><code class="language-python"># python
 def preorder(self, root):  # 前序遍历
   if root:
     self traverse_path.append(root.val)
@@ -209,9 +209,9 @@ def postorder(self, root):
   if root:
     self postorder(root.left)
     self postorder(root.right)
-    self traverse_path.append(root.val)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    self traverse_path.append(root.val)</code></pre>
 
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; go
+<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; go
 func preorderTraversal(root *TreeNode) (res []int) &#123; &#x2F;&#x2F; 前序遍历 根-左-右
     var preorder func(node *TreeNode)
     preorder &#x3D; func(node *TreeNode) &#123;
@@ -252,9 +252,9 @@ func postorderTraversal(root *TreeNode) (res []int) &#123; &#x2F;&#x2F; 后序�
     &#125;
     postorder(root)
     return res
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; c++
+<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; c++
 class Solution &#123;  &#x2F;&#x2F; 前序遍历
 public:
     void preorder(TreeNode* root, vector&lt;int&gt; &amp;res) &#123;
@@ -301,11 +301,11 @@ public:
         postorder(root, res);
         return res;
     &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
 
 
-<h2 id="题目推荐"><a href="#题目推荐" class="headerlink" title="题目推荐"></a>题目推荐</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;*
+<h2 id="题目推荐"><a href="#题目推荐" class="headerlink" title="题目推荐"></a>题目推荐</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;*
 	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;binary-tree-preorder-traversal&#x2F;submissions&#x2F;  二叉树的前序遍历
 	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;binary-tree-inorder-traversal&#x2F;submissions&#x2F;  二叉树的中序遍历
 	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;binary-tree-postorder-traversal&#x2F;submissions&#x2F; 二叉树的后序遍历
@@ -314,7 +314,7 @@ public:
 &#x2F;*
 	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;validate-binary-search-tree&#x2F;submissions&#x2F; 验证二叉搜索树
 	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;invert-binary-tree&#x2F;submissions&#x2F;   翻转二叉树
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
 
 

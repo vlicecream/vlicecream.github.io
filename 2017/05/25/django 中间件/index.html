@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、DJANGO中间件前戏"><a href="#一、DJANGO中间件前戏" class="headerlink" title="一、DJANGO中间件前戏"></a>一、DJANGO中间件前戏</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、DJANGO中间件前戏"><a href="#一、DJANGO中间件前戏" class="headerlink" title="一、DJANGO中间件前戏"></a>一、DJANGO中间件前戏</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 django中间件是django的门户
 1.请求来的时候需要先经过中间件才能到达真正的django后端
 2.响应走的时候最后也需要经过中间件才能发送出去
@@ -211,9 +211,9 @@ django自带七个中间件
             process_template_response
 
             process_exception
-    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &quot;&quot;&quot;</code></pre>
 
-<h2 id="二、DJANGO中间件必须掌握的方法"><a href="#二、DJANGO中间件必须掌握的方法" class="headerlink" title="二、DJANGO中间件必须掌握的方法"></a>二、DJANGO中间件必须掌握的方法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="二、DJANGO中间件必须掌握的方法"><a href="#二、DJANGO中间件必须掌握的方法" class="headerlink" title="二、DJANGO中间件必须掌握的方法"></a>二、DJANGO中间件必须掌握的方法</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 1.在项目名或者应用名下创建一个任意名称的文件夹
 2.在该文件夹内创建一个任意名称的py文件
 3.在该py文件内需要书写类(这个类必须继承MiddlewareMixin)
@@ -274,9 +274,9 @@ MIDDLEWARE &#x3D; [
 			当视图函数中出现异常的情况下触发
 			顺序是按照配置文件中注册了的中间件从下往上依次经过
 &quot;&quot;&quot;
-	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	</code></pre>
 
-<h2 id="三、CSRF跨站请求伪造"><a href="#三、CSRF跨站请求伪造" class="headerlink" title="三、CSRF跨站请求伪造"></a>三、CSRF跨站请求伪造</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是钓鱼网站	
+<h2 id="三、CSRF跨站请求伪造"><a href="#三、CSRF跨站请求伪造" class="headerlink" title="三、CSRF跨站请求伪造"></a>三、CSRF跨站请求伪造</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是钓鱼网站	
     1.1 钓鱼网站
             我搭建一个跟正规网站一模一样的界面(中国银行)
             用户不小心进入到了我们的网站，用户给某个人打钱
@@ -290,9 +290,9 @@ MIDDLEWARE &#x3D; [
 2.如何规避上述问题
 	csrf跨站请求伪造校验
 		网站在给用户返回一个具有提交数据功能页面的时候会给这个页面加一个唯一标识
-		当这个页面朝后端发送post请求的时候 我的后端会先校验唯一标识，如果唯一标识不对直接拒绝(403 forbbiden)如果成功则正常执行	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+		当这个页面朝后端发送post请求的时候 我的后端会先校验唯一标识，如果唯一标识不对直接拒绝(403 forbbiden)如果成功则正常执行	</code></pre>
 
-<h2 id="四、CSRF校验"><a href="#四、CSRF校验" class="headerlink" title="四、CSRF校验"></a>四、CSRF校验</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.form&amp;Ajax校验
+<h2 id="四、CSRF校验"><a href="#四、CSRF校验" class="headerlink" title="四、CSRF校验"></a>四、CSRF校验</h2><pre class="language-python" data-language="python"><code class="language-python">1.form&amp;Ajax校验
     # form表单如何符合校验
     &lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt;
         &#123;% csrf_token %&#125;
@@ -339,9 +339,9 @@ MIDDLEWARE &#x3D; [
                 xhr.setRequestHeader(&quot;X-CSRFToken&quot;, csrftoken);
             &#125;
         &#125;
-    &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &#125;);</code></pre>
 
-<h2 id="五、CSRF相关装饰器"><a href="#五、CSRF相关装饰器" class="headerlink" title="五、CSRF相关装饰器"></a>五、CSRF相关装饰器</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="五、CSRF相关装饰器"><a href="#五、CSRF相关装饰器" class="headerlink" title="五、CSRF相关装饰器"></a>五、CSRF相关装饰器</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 1.网站整体都不校验csrf，就单单几个视图函数需要校验
 2.网站整体都校验csrf，就单单几个视图函数不校验
 &quot;&quot;&quot;
@@ -382,16 +382,16 @@ class MyCsrfToken(View):
     @method_decorator(csrf_protect)  # 针对csrf_protect 第一种方式可以
     @method_decorator(csrf_exempt)  # 针对csrf_exempt 第一种方式不可以
     def post(self,request):
-        return HttpResponse(&#39;post&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        return HttpResponse(&#39;post&#39;)</code></pre>
 
-<h2 id="六、补充知识点-IMPORTLIB"><a href="#六、补充知识点-IMPORTLIB" class="headerlink" title="六、补充知识点(IMPORTLIB)"></a>六、补充知识点(IMPORTLIB)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 模块:importlib
+<h2 id="六、补充知识点-IMPORTLIB"><a href="#六、补充知识点-IMPORTLIB" class="headerlink" title="六、补充知识点(IMPORTLIB)"></a>六、补充知识点(IMPORTLIB)</h2><pre class="language-python" data-language="python"><code class="language-python"># 模块:importlib
 import importlib
 res &#x3D; &#39;myfile.b&#39;
 ret &#x3D; importlib.import_module(res)  # from myfile import b
 # 该方法最小只能到py文件名
-print(ret)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(ret)</code></pre>
 
-<h2 id="七、重要思想"><a href="#七、重要思想" class="headerlink" title="七、重要思想"></a>七、重要思想</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import settings
+<h2 id="七、重要思想"><a href="#七、重要思想" class="headerlink" title="七、重要思想"></a>七、重要思想</h2><pre class="language-python" data-language="python"><code class="language-python">import settings
 import importlib
 
 
@@ -406,7 +406,7 @@ def send_all(content):
         # 3 生成类的对象
         obj &#x3D; cls()
         # 4 利用鸭子类型直接调用send方法
-        obj.send(content)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        obj.send(content)</code></pre>
 
             </div>
 

@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、COOKIES-amp-SESSION"><a href="#一、COOKIES-amp-SESSION" class="headerlink" title="一、COOKIES&amp;SESSION"></a>一、COOKIES&amp;SESSION</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、COOKIES-amp-SESSION"><a href="#一、COOKIES-amp-SESSION" class="headerlink" title="一、COOKIES&amp;SESSION"></a>一、COOKIES&amp;SESSION</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 发展史
 	1.网站都没有保存用户功能的需求 所有用户访问返回的结果都是一样的
 		eg:新闻、博客、文章...
@@ -200,9 +200,9 @@ token
 总结:
   	1.cookie就是保存在客户端浏览器上的信息
     2.session就是保存在服务端上的信息
-    3.session是基于cookie工作的(其实大部分的保存用户状态的操作都需要使用到cookie)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    3.session是基于cookie工作的(其实大部分的保存用户状态的操作都需要使用到cookie)</code></pre>
 
-<h2 id="二、DJANGO操作COOKIES"><a href="#二、DJANGO操作COOKIES" class="headerlink" title="二、DJANGO操作COOKIES"></a>二、DJANGO操作COOKIES</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 虽然cookie是服务端告诉客户端浏览器需要保存内容
+<h2 id="二、DJANGO操作COOKIES"><a href="#二、DJANGO操作COOKIES" class="headerlink" title="二、DJANGO操作COOKIES"></a>二、DJANGO操作COOKIES</h2><pre class="language-python" data-language="python"><code class="language-python"># 虽然cookie是服务端告诉客户端浏览器需要保存内容
 # 但是客户端浏览器可以选择拒绝保存 如果禁止了 那么 只要是需要记录用户状态的网站登陆功能都无法使用了
 
 # 视图函数的返回值
@@ -287,9 +287,9 @@ def home(request):
     if request.COOKIES.get(&#39;username&#39;) &#x3D;&#x3D; &#39;jason666&#39;:
         return HttpResponse(&quot;我是home页面，只有登陆的用户才能进来哟~&quot;)
     # 没有登陆应该跳转到登陆页面
-    return redirect(&#39;&#x2F;login&#x2F;&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    return redirect(&#39;&#x2F;login&#x2F;&#39;)</code></pre>
 
-<h2 id="三、DJANGO操作SESSION"><a href="#三、DJANGO操作SESSION" class="headerlink" title="三、DJANGO操作SESSION"></a>三、DJANGO操作SESSION</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 代码演示
+<h2 id="三、DJANGO操作SESSION"><a href="#三、DJANGO操作SESSION" class="headerlink" title="三、DJANGO操作SESSION"></a>三、DJANGO操作SESSION</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
     # views
     def set_session(request):
         request.session[&#39;hobby&#39;] &#x3D; &#39;girl&#39;
@@ -375,9 +375,9 @@ def home(request):
         主要是为了节省服务端数据库资源
     &quot;&quot;&quot;
 
-    # 利用session实现登陆验证<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 利用session实现登陆验证</code></pre>
 
-<h2 id="四、CBV添加装饰器"><a href="#四、CBV添加装饰器" class="headerlink" title="四、CBV添加装饰器"></a>四、CBV添加装饰器</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 代码演示
+<h2 id="四、CBV添加装饰器"><a href="#四、CBV添加装饰器" class="headerlink" title="四、CBV添加装饰器"></a>四、CBV添加装饰器</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
 	from django.views import View
 	from django.utils.decorators import method_decorator
 	@method_decorator(input_wrapper, name&#x3D;&#39;get&#39;)  # 方式2(可以添加多个针对不同的方法加不同的装饰器)
@@ -399,7 +399,7 @@ def home(request):
 	from django.utils.decorators import method_decorator
 	要不然普通的加装饰器会报错
 	其实CBV是不建议你直接加装饰器，哪怕成功加上了,也不建议
-	&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	&quot;&quot;&quot;</code></pre>
 
             </div>
 

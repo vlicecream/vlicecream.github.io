@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、三板斧介绍"><a href="#一、三板斧介绍" class="headerlink" title="一、三板斧介绍"></a>一、三板斧介绍</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、三板斧介绍"><a href="#一、三板斧介绍" class="headerlink" title="一、三板斧介绍"></a>一、三板斧介绍</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 HttpResponse
 	返回字符串类型的数据
 
@@ -175,9 +175,9 @@ The view app01.views.index didn&#39;t return an HttpResponse object. It returned
     con &#x3D; Context(&#123;&#39;user&#39;:&#123;&#39;username&#39;:&#39;jason&#39;,&#39;password&#39;:123&#125;&#125;)
     ret &#x3D; res.render(con)
     print(ret)
-    return HttpResponse(ret)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    return HttpResponse(ret)</code></pre>
 
-<h2 id="二、JSONRESPONSE对象"><a href="#二、JSONRESPONSE对象" class="headerlink" title="二、JSONRESPONSE对象"></a>二、JSONRESPONSE对象</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="二、JSONRESPONSE对象"><a href="#二、JSONRESPONSE对象" class="headerlink" title="二、JSONRESPONSE对象"></a>二、JSONRESPONSE对象</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 json格式的数据有什么用？
 	前后端数据交互需要使用到json作为过渡 实现跨语言传输数据
 
@@ -202,9 +202,9 @@ json格式的数据有什么用？
    	    序列化列表报错：In order to allow non-dict objects to be serialized set the safe parameter to False.
         return JsonResponse(l,safe&#x3D;False)  
         默认只能序列化字典 序列化其他需要加safe参数	
-   	    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   	    &quot;&quot;&quot;</code></pre>
 
-<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. form上传文件需要注意的事项
+<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><pre class="language-python" data-language="python"><code class="language-python">1. form上传文件需要注意的事项
     1.1 method必须指定成post
     1.2 enctype必须换成formdata
     
@@ -220,9 +220,9 @@ json格式的数据有什么用？
                 for line in file_obj.chunks():  # 推荐加上chunks方法 其实跟不加是一样的都是一行行的读取
                     f.write(line)
 
-        return render(request,&#39;form.html&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        return render(request,&#39;form.html&#39;)</code></pre>
 
-<h2 id="四、REQUEST对象方法补充"><a href="#四、REQUEST对象方法补充" class="headerlink" title="四、REQUEST对象方法补充"></a>四、REQUEST对象方法补充</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="四、REQUEST对象方法补充"><a href="#四、REQUEST对象方法补充" class="headerlink" title="四、REQUEST对象方法补充"></a>四、REQUEST对象方法补充</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 request.method
 request.POST
 request.GET
@@ -234,9 +234,9 @@ request.get_full_path()  能过获取完整的url及问号后面的参数
 &quot;&quot;&quot;
     print(request.path)  # &#x2F;app01&#x2F;ab_file&#x2F;
     print(request.path_info)  # &#x2F;app01&#x2F;ab_file&#x2F;
-    print(request.get_full_path())  # &#x2F;app01&#x2F;ab_file&#x2F;?username&#x3D;jason<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(request.get_full_path())  # &#x2F;app01&#x2F;ab_file&#x2F;?username&#x3D;jason</code></pre>
 
-<h2 id="五、FBV-amp-CBV"><a href="#五、FBV-amp-CBV" class="headerlink" title="五、FBV&amp;CBV"></a>五、FBV&amp;CBV</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.视图函数既可以是函数也可以是类
+<h2 id="五、FBV-amp-CBV"><a href="#五、FBV-amp-CBV" class="headerlink" title="五、FBV&amp;CBV"></a>五、FBV&amp;CBV</h2><pre class="language-python" data-language="python"><code class="language-python">1.视图函数既可以是函数也可以是类
 
 2. FBV
     def index(request):
@@ -263,9 +263,9 @@ CBV特点
 	
 	内部到底是怎么实现的？
 		CBV内部源码(******)
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="六、CBV源码解析"><a href="#六、CBV源码解析" class="headerlink" title="六、CBV源码解析"></a>六、CBV源码解析</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;自己不要修改源码 除了bug很难找&quot;&quot;&quot;
+<h2 id="六、CBV源码解析"><a href="#六、CBV源码解析" class="headerlink" title="六、CBV源码解析"></a>六、CBV源码解析</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;自己不要修改源码 除了bug很难找&quot;&quot;&quot;
 
 # 突破口在urls.py
 url(r&#39;^login&#x2F;&#39;,views.MyLogin.as_view())
@@ -322,7 +322,7 @@ url(r&#39;^login&#x2F;&#39;,views.MyLogin.as_view())
         自动调用get方法
         &quot;&quot;&quot;
 
-# 要求掌握到不看源码也能够描述出CBV的内部执行流程(******)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 要求掌握到不看源码也能够描述出CBV的内部执行流程(******)</code></pre>
 
             </div>
 

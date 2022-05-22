@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、PYCHARM连接数据库-MYSQL"><a href="#一、PYCHARM连接数据库-MYSQL" class="headerlink" title="一、PYCHARM连接数据库(MYSQL)"></a>一、PYCHARM连接数据库(MYSQL)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、PYCHARM连接数据库-MYSQL"><a href="#一、PYCHARM连接数据库-MYSQL" class="headerlink" title="一、PYCHARM连接数据库(MYSQL)"></a>一、PYCHARM连接数据库(MYSQL)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 三个位置查找数据库相关
 	右侧上方database
 	左下方database
@@ -167,9 +167,9 @@
 pycharm可以充当很多款数据库软件的客户端
 
 	需要提前创建好库
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二、DJANGO连接数据库-MYSQL"><a href="#二、DJANGO连接数据库-MYSQL" class="headerlink" title="二、DJANGO连接数据库(MYSQL)"></a>二、DJANGO连接数据库(MYSQL)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 默认用的是sqlite3
+<h2 id="二、DJANGO连接数据库-MYSQL"><a href="#二、DJANGO连接数据库-MYSQL" class="headerlink" title="二、DJANGO连接数据库(MYSQL)"></a>二、DJANGO连接数据库(MYSQL)</h2><pre class="language-python" data-language="python"><code class="language-python"># 默认用的是sqlite3
 DATABASES &#x3D; &#123;
     &#39;default&#39;: &#123;
         &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,
@@ -197,9 +197,9 @@ DATABASES &#x3D; &#123;
     你需要告诉django不要用默认的mysqldb还是用pymysql
     # 在项目名下的init或者任意的应用名下的init文件中书写以下代码都可以
     import pymysql
-		pymysql.install_as_MySQLdb()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+		pymysql.install_as_MySQLdb()</code></pre>
 
-<h2 id="三、DJANGO-ORM"><a href="#三、DJANGO-ORM" class="headerlink" title="三、DJANGO ORM"></a>三、DJANGO ORM</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="三、DJANGO-ORM"><a href="#三、DJANGO-ORM" class="headerlink" title="三、DJANGO ORM"></a>三、DJANGO ORM</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 ORM. 对象关系映射
 作用:能够让一个不用sql语句的小白也能够通过python 面向对象的代码简单快捷的操作数据库
 不足之处:封装程度太高 有时候sql语句的效率偏低 需要你自己写SQL语句
@@ -250,9 +250,9 @@ class Author(models.Model):
     # username varchar(32)
     username &#x3D; models.CharField(max_length&#x3D;32)
     # password int
-    password &#x3D; models.IntegerField()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    password &#x3D; models.IntegerField()</code></pre>
 
-<h2 id="四、字段的增删改查"><a href="#四、字段的增删改查" class="headerlink" title="四、字段的增删改查"></a>四、字段的增删改查</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 字段的增加
+<h2 id="四、字段的增删改查"><a href="#四、字段的增删改查" class="headerlink" title="四、字段的增删改查"></a>四、字段的增删改查</h2><pre class="language-python" data-language="python"><code class="language-python"># 字段的增加
     1.可以在终端内直接给出默认值
     2.该字段可以为空
         info &#x3D; models.CharField(max_length&#x3D;32,verbose_name&#x3D;&#39;个人简介&#39;,null&#x3D;True)
@@ -272,9 +272,9 @@ class Author(models.Model):
 	执行迁移命令之前最好先检查一下自己写的代码
 &quot;&quot;&quot;
 
-# 个人建议:当你离开你的计算机之后一定要锁屏<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 个人建议:当你离开你的计算机之后一定要锁屏</code></pre>
 
-<h2 id="五、数据的增删改查"><a href="#五、数据的增删改查" class="headerlink" title="五、数据的增删改查"></a>五、数据的增删改查</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 只会介绍一点点 后面会详细的介绍
+<h2 id="五、数据的增删改查"><a href="#五、数据的增删改查" class="headerlink" title="五、数据的增删改查"></a>五、数据的增删改查</h2><pre class="language-python" data-language="python"><code class="language-python"># 只会介绍一点点 后面会详细的介绍
 
 1.查
 res &#x3D; models.User.objects.filter(username&#x3D;username)
@@ -385,9 +385,9 @@ def userlist(request):
 # 删除数据内部其实并不是真正的删除 我们会给数据添加一个标识字段用来表示当前数据是否被删除了，如果数据被删了仅仅只是讲字段修改一个状态
 	username password	is_delete
   jason			123				0
-  egon			123				1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  egon			123				1</code></pre>
 
-<h2 id="六、ORM的表连接"><a href="#六、ORM的表连接" class="headerlink" title="六、ORM的表连接"></a>六、ORM的表连接</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 表与表之间的关系
+<h2 id="六、ORM的表连接"><a href="#六、ORM的表连接" class="headerlink" title="六、ORM的表连接"></a>六、ORM的表连接</h2><pre class="language-python" data-language="python"><code class="language-python">1. 表与表之间的关系
 	一对多   多对多   一对一   没有关系
 	判断表关系的方法:换位思考
     &quot;&quot;&quot;
@@ -474,9 +474,9 @@ def userlist(request):
 
     # 在django1.X版本中外键默认都是级联更新删除的
     # 多对多的表关系可以有好几种创建方式 这里暂且先介绍一种
-    # 针对外键字段里面的其他参数 暂时不要考虑 如果感兴趣自己可以百度试试看<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 针对外键字段里面的其他参数 暂时不要考虑 如果感兴趣自己可以百度试试看</code></pre>
 
-<h2 id="七、测试脚本"><a href="#七、测试脚本" class="headerlink" title="七、测试脚本"></a>七、测试脚本</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="七、测试脚本"><a href="#七、测试脚本" class="headerlink" title="七、测试脚本"></a>七、测试脚本</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 当你只是想测试django中的某一个py文件内容 那么你可以不用书写前后端交互的形式
 而是直接写一个测试脚本即可
 
@@ -490,9 +490,9 @@ if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
     os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;day64.settings&quot;)
     import django
     django.setup()
-    # 在这个代码块的下面就可以测试django里面的单个py文件了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 在这个代码块的下面就可以测试django里面的单个py文件了</code></pre>
 
-<h2 id="八、单表操作"><a href="#八、单表操作" class="headerlink" title="八、单表操作"></a>八、单表操作</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;Django自带的sqlite3数据库对日期格式不敏感 容易出错 所以还是得MySQL 永远的神&quot;&quot;&quot;
+<h2 id="八、单表操作"><a href="#八、单表操作" class="headerlink" title="八、单表操作"></a>八、单表操作</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;Django自带的sqlite3数据库对日期格式不敏感 容易出错 所以还是得MySQL 永远的神&quot;&quot;&quot;
 import os
 
 if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
@@ -530,9 +530,9 @@ if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
     所以我们还是会用filter
     &quot;&quot;&quot;
     user_obj.name &#x3D; &#39;egonPPP&#39;
-    user_obj.save()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    user_obj.save()</code></pre>
 
-<h3 id="1、必知必会十三条"><a href="#1、必知必会十三条" class="headerlink" title="1、必知必会十三条"></a>1、必知必会十三条</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 单表操作必知必会13条(其实还有很多)
+<h3 id="1、必知必会十三条"><a href="#1、必知必会十三条" class="headerlink" title="1、必知必会十三条"></a>1、必知必会十三条</h3><pre class="language-python" data-language="python"><code class="language-python">1. 单表操作必知必会13条(其实还有很多)
     1.1 all() 
     	查看所有数据
         
@@ -584,9 +584,9 @@ if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
         
     1.13 exists()
         基本用不到因为数据本身就自带布尔值  返回的是布尔值
-        res &#x3D; models.User.objects.filter(pk&#x3D;10).exists()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        res &#x3D; models.User.objects.filter(pk&#x3D;10).exists()</code></pre>
 
-<h3 id="2、查看内部SQL语句方法"><a href="#2、查看内部SQL语句方法" class="headerlink" title="2、查看内部SQL语句方法"></a>2、查看内部SQL语句方法</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 方式1
+<h3 id="2、查看内部SQL语句方法"><a href="#2、查看内部SQL语句方法" class="headerlink" title="2、查看内部SQL语句方法"></a>2、查看内部SQL语句方法</h3><pre class="language-python" data-language="python"><code class="language-python"># 方式1
 res &#x3D; models.User.objects.values_list(&#39;name&#39;,&#39;age&#39;)  # &lt;QuerySet [(&#39;jason&#39;, 18), (&#39;egonPPP&#39;, 84)]&gt;
 print(res.query)
 queryset对象才能够点击query查看内部的sql语句
@@ -609,9 +609,9 @@ LOGGING &#x3D; &#123;
             &#39;level&#39;:&#39;DEBUG&#39;,
         &#125;,
     &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<h3 id="3、神奇的双下划线查询"><a href="#3、神奇的双下划线查询" class="headerlink" title="3、神奇的双下划线查询"></a>3、神奇的双下划线查询</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 年龄大于33
+<h3 id="3、神奇的双下划线查询"><a href="#3、神奇的双下划线查询" class="headerlink" title="3、神奇的双下划线查询"></a>3、神奇的双下划线查询</h3><pre class="language-python" data-language="python"><code class="language-python"># 年龄大于33
     res &#x3D; models.User.objects.filter(age__gt&#x3D;33)
     print(res)
 # 年龄小于33
@@ -639,9 +639,9 @@ LOGGING &#x3D; &#123;
     res1 &#x3D; models.User.objects.filter(name__endswith&#x3D;&#39;j&#39;)
 # 查询出注册时间是 2020 1月
     res &#x3D; models.User.objects.filter(register_time__month&#x3D;&#39;1&#39;)
-    res &#x3D; models.User.objects.filter(register_time__year&#x3D;&#39;2020&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    res &#x3D; models.User.objects.filter(register_time__year&#x3D;&#39;2020&#39;)</code></pre>
 
-<h3 id="4、外键的增删改查"><a href="#4、外键的增删改查" class="headerlink" title="4、外键的增删改查"></a>4、外键的增删改查</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 一对多(一对一也是一样的)
+<h3 id="4、外键的增删改查"><a href="#4、外键的增删改查" class="headerlink" title="4、外键的增删改查"></a>4、外键的增删改查</h3><pre class="language-python" data-language="python"><code class="language-python">1. 一对多(一对一也是一样的)
     # 增 第一种方法
         models.Book.objects.create(title&#x3D;&#39;python&#39;, price&#x3D;300.33, publish_id&#x3D;1)
         models.Book.objects.create(title&#x3D;&#39;jpm&#39;, price&#x3D;1111.33, publish_id&#x3D;1)
@@ -711,9 +711,9 @@ LOGGING &#x3D; &#123;
         clear
             括号内不要加任何参数
 
-        &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        &quot;&quot;&quot;</code></pre>
 
-<h2 id="九、多表查询"><a href="#九、多表查询" class="headerlink" title="九、多表查询"></a>九、多表查询</h2><h3 id="1、正向与反向"><a href="#1、正向与反向" class="headerlink" title="1、正向与反向"></a>1、正向与反向</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 正向
+<h2 id="九、多表查询"><a href="#九、多表查询" class="headerlink" title="九、多表查询"></a>九、多表查询</h2><h3 id="1、正向与反向"><a href="#1、正向与反向" class="headerlink" title="1、正向与反向"></a>1、正向与反向</h3><pre class="language-python" data-language="python"><code class="language-python"># 正向
 # 反向
 	外键字段在我手上那么，我查你就是正向
   外键字段如果不在手上，我查你就是反向
@@ -728,9 +728,9 @@ LOGGING &#x3D; &#123;
 反向查询按表名小写
 				_set
 				...
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h3 id="2、子查询-基于对象的跨表查询"><a href="#2、子查询-基于对象的跨表查询" class="headerlink" title="2、子查询(基于对象的跨表查询)"></a>2、子查询(基于对象的跨表查询)</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 正向查询
+<h3 id="2、子查询-基于对象的跨表查询"><a href="#2、子查询-基于对象的跨表查询" class="headerlink" title="2、子查询(基于对象的跨表查询)"></a>2、子查询(基于对象的跨表查询)</h3><pre class="language-python" data-language="python"><code class="language-python">1. 正向查询
     # 1.查询书籍主键为1的出版社  书&gt;&gt;&gt;&gt;&gt;&gt;出版社 外键在书 所以是正向查询
         book_obj &#x3D; models.Book.objects.filter(pk&#x3D;1).first()
         res &#x3D; book_obj.publish
@@ -786,9 +786,9 @@ LOGGING &#x3D; &#123;
             book_obj.publish
             book_obj.authors.all()
             author_obj.author_detail
-     &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+     &quot;&quot;&quot;</code></pre>
 
-<h3 id="3、基于下划线的跨表查询"><a href="#3、基于下划线的跨表查询" class="headerlink" title="3、基于下划线的跨表查询"></a>3、基于下划线的跨表查询</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.查询yxx的手机号和作者姓名
+<h3 id="3、基于下划线的跨表查询"><a href="#3、基于下划线的跨表查询" class="headerlink" title="3、基于下划线的跨表查询"></a>3、基于下划线的跨表查询</h3><pre class="language-python" data-language="python"><code class="language-python">1.查询yxx的手机号和作者姓名
     # 正向
         res &#x3D; models.Author.objects.filter(name&#x3D;&#39;yxx&#39;).values(&#39;author_detail__phone&#39;, &#39;name&#39;)
     # 反向
@@ -823,9 +823,9 @@ LOGGING &#x3D; &#123;
 你只要掌握了正反向的概念
 以及双下划线
 那么你就可以无限制的跨表
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="十、聚合查询"><a href="#十、聚合查询" class="headerlink" title="十、聚合查询"></a>十、聚合查询</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.什么是聚合查询
+<h2 id="十、聚合查询"><a href="#十、聚合查询" class="headerlink" title="十、聚合查询"></a>十、聚合查询</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是聚合查询
 	其实就是MySQL的聚合函数的使用查询
 
 2. 代码演示
@@ -842,9 +842,9 @@ LOGGING &#x3D; &#123;
     print(res)
     # 2.上述方法一次性使用
     res1 &#x3D; models.Book.objects.aggregate(Max(&#39;price&#39;), Min(&#39;price&#39;), Count(&#39;title&#39;), Sum(&#39;price&#39;))
-    print(res1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(res1)</code></pre>
 
-<h2 id="十一、分组查询"><a href="#十一、分组查询" class="headerlink" title="十一、分组查询"></a>十一、分组查询</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 分组查询  annotate
+<h2 id="十一、分组查询"><a href="#十一、分组查询" class="headerlink" title="十一、分组查询"></a>十一、分组查询</h2><pre class="language-python" data-language="python"><code class="language-python"># 分组查询  annotate
     &quot;&quot;&quot;
     MySQL分组查询都有哪些特点
         分组之后默认只能获取到分组的依据 组内其他字段都无法直接获取了
@@ -879,9 +879,9 @@ LOGGING &#x3D; &#123;
     
     你们的机器上如果出现分组查询报错的情况
         你需要修改数据库严格模式
-    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &quot;&quot;&quot;</code></pre>
 
-<h2 id="十二、F查询"><a href="#十二、F查询" class="headerlink" title="十二、F查询"></a>十二、F查询</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是F查询
+<h2 id="十二、F查询"><a href="#十二、F查询" class="headerlink" title="十二、F查询"></a>十二、F查询</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是F查询
 	能够帮助你直接获取到表中某个字段对应的数据
 2. 代码演示
 	from django.db.models import F
@@ -897,9 +897,9 @@ LOGGING &#x3D; &#123;
     from django.db.models.functions import concat
     from django.db.models import values
     models.Book.objects.update(title&#x3D;Concat(F(&#39;title&#39;), Value(&#39;爆款&#39;)))
-    # models.Book.objects.update(title&#x3D;F(&#39;title&#39;) + &#39;爆款&#39;)  # 所有的名称会全部变成空白<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # models.Book.objects.update(title&#x3D;F(&#39;title&#39;) + &#39;爆款&#39;)  # 所有的名称会全部变成空白</code></pre>
 
-<h2 id="十三、Q查询"><a href="#十三、Q查询" class="headerlink" title="十三、Q查询"></a>十三、Q查询</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是Q查询
+<h2 id="十三、Q查询"><a href="#十三、Q查询" class="headerlink" title="十三、Q查询"></a>十三、Q查询</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是Q查询
 	能变换fitler里面的与或非关系
    
 2. 代码演示
@@ -914,9 +914,9 @@ LOGGING &#x3D; &#123;
     q.children.append((&#39;price__lt&#39;,600))
     res &#x3D; models.Book.object.fitler(q)  # 默认还是and关系 所以得加一句代码  q.connector &#x3D; &#39;or&#39;
     print(q)
-    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    </code></pre>
 
-<h2 id="十四、DJANGO中开启事务"><a href="#十四、DJANGO中开启事务" class="headerlink" title="十四、DJANGO中开启事务"></a>十四、DJANGO中开启事务</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十四、DJANGO中开启事务"><a href="#十四、DJANGO中开启事务" class="headerlink" title="十四、DJANGO中开启事务"></a>十四、DJANGO中开启事务</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 事务
 	ACID
 		原子性
@@ -944,9 +944,9 @@ LOGGING &#x3D; &#123;
             # 在with代码快内书写的所有orm操作都是属于同一个事务
     except Exception as e:
         print(e)
-    print(&#39;执行其他操作&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(&#39;执行其他操作&#39;)</code></pre>
 
-<h2 id="十五、ORM常用字段-amp-参数"><a href="#十五、ORM常用字段-amp-参数" class="headerlink" title="十五、ORM常用字段&amp;参数"></a>十五、ORM常用字段&amp;参数</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">AutoField
+<h2 id="十五、ORM常用字段-amp-参数"><a href="#十五、ORM常用字段-amp-参数" class="headerlink" title="十五、ORM常用字段&amp;参数"></a>十五、ORM常用字段&amp;参数</h2><pre class="language-python" data-language="python"><code class="language-python">AutoField
 	主键字段 primary_key&#x3D;True
   
 CharField				varchar
@@ -1021,9 +1021,9 @@ on_delete
 	当删除关联表中的数据时，当前表与其关联的行的行为。
   &quot;&quot;&quot;
   django2.X及以上版本 需要你自己指定外键字段的级联更新级联删除
-  &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  &quot;&quot;&quot;</code></pre>
 
-<h2 id="十六、数据库查询优化"><a href="#十六、数据库查询优化" class="headerlink" title="十六、数据库查询优化"></a>十六、数据库查询优化</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">only与defer	
+<h2 id="十六、数据库查询优化"><a href="#十六、数据库查询优化" class="headerlink" title="十六、数据库查询优化"></a>十六、数据库查询优化</h2><pre class="language-python" data-language="python"><code class="language-python">only与defer	
 select_related与prefetch_related
 
 &quot;&quot;&quot;
@@ -1085,9 +1085,9 @@ orm语句的特点:
             给你的感觉好像也是一次性搞定的
         &quot;&quot;&quot;
         for i in res:
-            print(i.publish.name)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+            print(i.publish.name)</code></pre>
 
-<h2 id="十七、CHOICES参数-数据库字段设计常见"><a href="#十七、CHOICES参数-数据库字段设计常见" class="headerlink" title="十七、CHOICES参数(数据库字段设计常见)"></a>十七、CHOICES参数(数据库字段设计常见)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十七、CHOICES参数-数据库字段设计常见"><a href="#十七、CHOICES参数-数据库字段设计常见" class="headerlink" title="十七、CHOICES参数(数据库字段设计常见)"></a>十七、CHOICES参数(数据库字段设计常见)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 用户表	
 	性别
 	学历
@@ -1144,9 +1144,9 @@ class User(models.Model):
     user_obj &#x3D; models.User.objects.filter(pk&#x3D;4).first()
     # 如果没有对应关系 那么字段是什么还是展示什么
     print(user_obj.get_gender_display())  # 4
-    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    </code></pre>
 
-<h2 id="十八、MTV与MVC模型"><a href="#十八、MTV与MVC模型" class="headerlink" title="十八、MTV与MVC模型"></a>十八、MTV与MVC模型</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># MTV:Django号称是MTV模型
+<h2 id="十八、MTV与MVC模型"><a href="#十八、MTV与MVC模型" class="headerlink" title="十八、MTV与MVC模型"></a>十八、MTV与MVC模型</h2><pre class="language-python" data-language="python"><code class="language-python"># MTV:Django号称是MTV模型
 M:models
 T:templates
 V:views
@@ -1155,9 +1155,9 @@ M:models
 V:views
 C:controller
   
-# vue框架:MVVM模型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# vue框架:MVVM模型</code></pre>
 
-<h2 id="十九、多对多表关系的三种创建方式"><a href="#十九、多对多表关系的三种创建方式" class="headerlink" title="十九、多对多表关系的三种创建方式"></a>十九、多对多表关系的三种创建方式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 全自动:利用orm自动帮我们创建第三张关系表
+<h2 id="十九、多对多表关系的三种创建方式"><a href="#十九、多对多表关系的三种创建方式" class="headerlink" title="十九、多对多表关系的三种创建方式"></a>十九、多对多表关系的三种创建方式</h2><pre class="language-python" data-language="python"><code class="language-python"># 全自动:利用orm自动帮我们创建第三张关系表
 	class Book(models.Model):
         name &#x3D; models.CharField(max_length&#x3D;32)
         authors &#x3D; models.ManyToManyField(to&#x3D;&#39;Author&#39;)
@@ -1210,7 +1210,7 @@ C:controller
     半自动:可以使用orm的正反向查询 但是没法使用add,set,remove,clear这四个方法
     &quot;&quot;&quot;
 
-    # 总结:你需要掌握的是全自动和半自动 为了扩展性更高 一般我们都会采用半自动(写代码要给自己留一条后路)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 总结:你需要掌握的是全自动和半自动 为了扩展性更高 一般我们都会采用半自动(写代码要给自己留一条后路)</code></pre>
 
             </div>
 

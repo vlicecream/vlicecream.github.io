@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,35 +156,35 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="数量不定的模板参数"><a href="#数量不定的模板参数" class="headerlink" title="数量不定的模板参数"></a>数量不定的模板参数</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 就是python 和 golang 的可变长参数
+                <h2 id="数量不定的模板参数"><a href="#数量不定的模板参数" class="headerlink" title="数量不定的模板参数"></a>数量不定的模板参数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 就是python 和 golang 的可变长参数
 
 template &lt;typename T, typename... Types&gt;
 void print (const T&amp; firstArg, const Types&amp;.. args) &#123;
   cout &lt;&lt; firstArg &lt;&lt; endl;
   print(args...);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	python 也有语法糖哦～ 糖很甜 吃糖的时候能有幸福感
   所以语法糖就是能让你感到很幸福 
   对于程序员 很幸福的事情是什么了 当然是秃头(不是)
   进入秃头 啊不是 进入主题
   语法糖就是能让你少写代码
   怎么样 是很幸福吧
-*&#x2F; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F; </code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
+<pre class="language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
 ...
 list&lt;string&gt;::iterator ite;
 ite &#x3D; find(c.begin(), c.end(), target);
 
-&#x2F;&#x2F; 这段代码就可以用 &quot;auto&quot; 这个语法糖来优化<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这段代码就可以用 &quot;auto&quot; 这个语法糖来优化</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
+<pre class="language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
 ...
-auto ite &#x3D; find(c.begin(), c.end(), target);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+auto ite &#x3D; find(c.begin(), c.end(), target);</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; auto 可以让编译器帮我们 获取到这个变量的类型 那我们是不是都用auto就好了呢
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; auto 可以让编译器帮我们 获取到这个变量的类型 那我们是不是都用auto就好了呢
 
 &#x2F;*
 	答案肯定不是的 因为c++是一个能帮助我们写出很好的代码规范的一个高级语言 我们不能太依赖于auto 而且全部用auto 有时候也会报错的
@@ -195,31 +195,31 @@ list&lt;string&gt; c;
 auto ite;
 ite &#x3D; find(c.begin(), c.end(), target);
 
-&#x2F;&#x2F; 这样子的就是错误的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这样子的就是错误的</code></pre>
 
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; for循环 有很多种写法 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; for循环 有很多种写法 </code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 1; i &lt; size(vector); ++i) &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 1; i &lt; size(vector); ++i) &#123;
   ...
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for ( dec1 : coll ) &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">for ( dec1 : coll ) &#123;
   ...
 &#125;
 
 &#x2F;*
 	这种写法 &quot;:&quot; 后面跟的是容器 会将容器里面的值 一个个的遍历出来 放到 dec1 里面
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i : &#123; 2, 3, 4, 5, 6, 7&#125;) &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">for (int i : &#123; 2, 3, 4, 5, 6, 7&#125;) &#123;
   cout &lt;&lt; i &gt;&gt; endl;
 &#125;
 
 &#x2F;*
 	这种写法也是 会把 &#123; &#125; 内的元素 放到 i 中
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;double&gt; vec;
+<pre class="language-c++" data-language="c++"><code class="language-c++">vector&lt;double&gt; vec;
 ...
 for ( auto elem : vec ) &#123;
   cout &lt;&lt; elem &lt;&lt; endl;
@@ -231,7 +231,7 @@ for (auto&amp; elem : vec ) &#123;
   elem *&#x3D; 3;
 &#125;
 
-&#x2F;&#x2F; 这种的是 pass by reference<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这种的是 pass by reference</code></pre>
 
 
             </div>

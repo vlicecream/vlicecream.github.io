@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="一、函数的定义"><a href="#一、函数的定义" class="headerlink" title="一、函数的定义"></a>一、函数的定义</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、什么是函数
+                <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="一、函数的定义"><a href="#一、函数的定义" class="headerlink" title="一、函数的定义"></a>一、函数的定义</h2><pre class="language-python" data-language="python"><code class="language-python">1、什么是函数
 	函数就是封装了某一功能的代码
 2、为什么要函数
 	因为 不利于方便读
@@ -166,9 +166,9 @@
 	先定义(三种方式)
 	后调用(三种方式)
 	返回值(三种方式)
-	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	</code></pre>
 
-<h2 id="二、函数的定义与调用"><a href="#二、函数的定义与调用" class="headerlink" title="二、函数的定义与调用"></a>二、函数的定义与调用</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、函数的定义模板
+<h2 id="二、函数的定义与调用"><a href="#二、函数的定义与调用" class="headerlink" title="二、函数的定义与调用"></a>二、函数的定义与调用</h2><pre class="language-python" data-language="python"><code class="language-python">1、函数的定义模板
 	def 函数名(参数1， 参数2)
     	&quot;&quot;&quot;文档描述&quot;&quot;&quot;
         函数数据
@@ -178,35 +178,35 @@ def func():  # func 为内存的地址 func()则为函数的值
     print(&quot;666&quot;)
 
 
-func()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+func()</code></pre>
 
-<h2 id="三、定义函数的三种形式"><a href="#三、定义函数的三种形式" class="headerlink" title="三、定义函数的三种形式"></a>三、定义函数的三种形式</h2><h3 id="3-1-无参函数"><a href="#3-1-无参函数" class="headerlink" title="3.1 无参函数"></a>3.1 无参函数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func():  # func 为内存的地址 func()则为函数的值
+<h2 id="三、定义函数的三种形式"><a href="#三、定义函数的三种形式" class="headerlink" title="三、定义函数的三种形式"></a>三、定义函数的三种形式</h2><h3 id="3-1-无参函数"><a href="#3-1-无参函数" class="headerlink" title="3.1 无参函数"></a>3.1 无参函数</h3><pre class="language-python" data-language="python"><code class="language-python">def func():  # func 为内存的地址 func()则为函数的值
     print(&quot;666&quot;)
 
 
-func()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+func()</code></pre>
 
-<h3 id="3-2-参数函数"><a href="#3-2-参数函数" class="headerlink" title="3.2 参数函数"></a>3.2 参数函数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func(x, y):  # x &#x3D; 1, y &#x3D; 2
+<h3 id="3-2-参数函数"><a href="#3-2-参数函数" class="headerlink" title="3.2 参数函数"></a>3.2 参数函数</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):  # x &#x3D; 1, y &#x3D; 2
     print(x, y)
 
 
-func(1, 2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+func(1, 2)</code></pre>
 
-<h3 id="3-3-空函数"><a href="#3-3-空函数" class="headerlink" title="3.3 空函数"></a>3.3 空函数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func(x, y):  # func 为内存的地址 func()则为函数的值
+<h3 id="3-3-空函数"><a href="#3-3-空函数" class="headerlink" title="3.3 空函数"></a>3.3 空函数</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):  # func 为内存的地址 func()则为函数的值
     pass
 
 
-func()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+func()</code></pre>
 
-<h3 id="3-4-三大定义函数的应用场景"><a href="#3-4-三大定义函数的应用场景" class="headerlink" title="3.4 三大定义函数的应用场景"></a>3.4 三大定义函数的应用场景</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、无参函数的应用场景
+<h3 id="3-4-三大定义函数的应用场景"><a href="#3-4-三大定义函数的应用场景" class="headerlink" title="3.4 三大定义函数的应用场景"></a>3.4 三大定义函数的应用场景</h3><pre class="language-python" data-language="python"><code class="language-python">1、无参函数的应用场景
 2、有参函数的应用场景
 3、空函数的应用场景
-	当你做个项目的时候，写了很多函数确定功能的时候，可以用空函数先放那，然后根据实际情况再去修改<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+	当你做个项目的时候，写了很多函数确定功能的时候，可以用空函数先放那，然后根据实际情况再去修改</code></pre>
 
-<h2 id="四、调用函数的三种形式"><a href="#四、调用函数的三种形式" class="headerlink" title="四、调用函数的三种形式"></a>四、调用函数的三种形式</h2><h3 id="4-1-语句的形式直接调用"><a href="#4-1-语句的形式直接调用" class="headerlink" title="4.1 语句的形式直接调用"></a>4.1 语句的形式直接调用</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 只调用函数
-func(x, y)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="四、调用函数的三种形式"><a href="#四、调用函数的三种形式" class="headerlink" title="四、调用函数的三种形式"></a>四、调用函数的三种形式</h2><h3 id="4-1-语句的形式直接调用"><a href="#4-1-语句的形式直接调用" class="headerlink" title="4.1 语句的形式直接调用"></a>4.1 语句的形式直接调用</h3><pre class="language-python" data-language="python"><code class="language-python"># 只调用函数
+func(x, y)</code></pre>
 
-<h3 id="4-2-表达式调用"><a href="#4-2-表达式调用" class="headerlink" title="4.2 表达式调用"></a>4.2 表达式调用</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、赋值表达式
+<h3 id="4-2-表达式调用"><a href="#4-2-表达式调用" class="headerlink" title="4.2 表达式调用"></a>4.2 表达式调用</h3><pre class="language-python" data-language="python"><code class="language-python">1、赋值表达式
 def func(x, y):
     res &#x3D; x + y
     return res
@@ -220,34 +220,34 @@ def func(x, y):
     return res
 
 res &#x3D; func(1, 2) * 8
-print(res)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(res)</code></pre>
 
-<h3 id="4-3-函数调用可以当作参数"><a href="#4-3-函数调用可以当作参数" class="headerlink" title="4.3 函数调用可以当作参数"></a>4.3 函数调用可以当作参数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func(x, y):
+<h3 id="4-3-函数调用可以当作参数"><a href="#4-3-函数调用可以当作参数" class="headerlink" title="4.3 函数调用可以当作参数"></a>4.3 函数调用可以当作参数</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):
     res &#x3D; x + y
     return res
 res &#x3D; func(func(1, 2),3)
-print(res)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(res)</code></pre>
 
-<h2 id="五、返回值的三种形式"><a href="#五、返回值的三种形式" class="headerlink" title="五、返回值的三种形式"></a>五、返回值的三种形式</h2><h3 id="5-1-不返回"><a href="#5-1-不返回" class="headerlink" title="5.1 不返回"></a>5.1 不返回</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func(x, y):
-    print(&quot;123&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="五、返回值的三种形式"><a href="#五、返回值的三种形式" class="headerlink" title="五、返回值的三种形式"></a>五、返回值的三种形式</h2><h3 id="5-1-不返回"><a href="#5-1-不返回" class="headerlink" title="5.1 不返回"></a>5.1 不返回</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):
+    print(&quot;123&quot;)</code></pre>
 
-<h3 id="5-2-返回一个值"><a href="#5-2-返回一个值" class="headerlink" title="5.2 返回一个值"></a>5.2 返回一个值</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func(x, y)
+<h3 id="5-2-返回一个值"><a href="#5-2-返回一个值" class="headerlink" title="5.2 返回一个值"></a>5.2 返回一个值</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y)
     return 10
 
 res &#x3D; func()
-print(res)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(res)</code></pre>
 
-<h3 id="5-3-返回多个值"><a href="#5-3-返回多个值" class="headerlink" title="5.3 返回多个值"></a>5.3 返回多个值</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def func(x, y):
+<h3 id="5-3-返回多个值"><a href="#5-3-返回多个值" class="headerlink" title="5.3 返回多个值"></a>5.3 返回多个值</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):
     return 10, 8, [1, 2]
 
 res &#x3D; func()
 print(res)
-# 会以元组的方式返回<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 会以元组的方式返回</code></pre>
 
-<h2 id="六、形参与实参"><a href="#六、形参与实参" class="headerlink" title="六、形参与实参"></a>六、形参与实参</h2><h3 id="6-1-形参与实参"><a href="#6-1-形参与实参" class="headerlink" title="6.1 形参与实参"></a>6.1 形参与实参</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 形参是函数定义时括号内的变量名，接受外界的值
-# 实参则是函数调用时括号里的 可以是常量 变量 表达式的或者三者混合的传入的值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="六、形参与实参"><a href="#六、形参与实参" class="headerlink" title="六、形参与实参"></a>六、形参与实参</h2><h3 id="6-1-形参与实参"><a href="#6-1-形参与实参" class="headerlink" title="6.1 形参与实参"></a>6.1 形参与实参</h3><pre class="language-python" data-language="python"><code class="language-python"># 形参是函数定义时括号内的变量名，接受外界的值
+# 实参则是函数调用时括号里的 可以是常量 变量 表达式的或者三者混合的传入的值</code></pre>
 
-<h3 id="6-2-位置参数"><a href="#6-2-位置参数" class="headerlink" title="6.2 位置参数"></a>6.2 位置参数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、什么是位置参数
+<h3 id="6-2-位置参数"><a href="#6-2-位置参数" class="headerlink" title="6.2 位置参数"></a>6.2 位置参数</h3><pre class="language-python" data-language="python"><code class="language-python">1、什么是位置参数
 位置参数实际上就是按照从左到右的顺序去传参，参数可以是形参也可以是实参
 特点是 必须被传值 多一个不行 少一个不行
 2、
@@ -255,9 +255,9 @@ def func(x, y) # x, y则是形参
 	print(&quot;123&quot;)
 
     
-func(1, 2)  # x &#x3D; 1, y &#x3D; 2,按照顺序传入了x， y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+func(1, 2)  # x &#x3D; 1, y &#x3D; 2,按照顺序传入了x， y</code></pre>
 
-<h3 id="6-3-关键字参数"><a href="#6-3-关键字参数" class="headerlink" title="6.3 关键字参数"></a>6.3 关键字参数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、什么是关键字参数
+<h3 id="6-3-关键字参数"><a href="#6-3-关键字参数" class="headerlink" title="6.3 关键字参数"></a>6.3 关键字参数</h3><pre class="language-python" data-language="python"><code class="language-python">1、什么是关键字参数
 关键字参数则是通过变量名 &#x3D; 值 去准确传递，也可以说是关键字实参,这样就不用按照从左到右的顺序去传参数了
 2、
 def func(x, y)
@@ -272,9 +272,9 @@ func(y&#x3D;1, x&#x3D;2)
 
 
     func(1, z&#x3D;2, y&#x3D;1)
-    3.2 不能重复给一个形参传值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    3.2 不能重复给一个形参传值</code></pre>
 
-<h3 id="6-4-默认形参"><a href="#6-4-默认形参" class="headerlink" title="6.4 默认形参"></a>6.4 默认形参</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、what
+<h3 id="6-4-默认形参"><a href="#6-4-默认形参" class="headerlink" title="6.4 默认形参"></a>6.4 默认形参</h3><pre class="language-python" data-language="python"><code class="language-python">1、what
 	默认形参则是在定义函数时，就已经为形参赋值，这类形参称之为默认参数，当函数有多个参数时，需要将值经常改变的参数定义成位置参数，而将值改变较少的参数定义成默认参数。例如编写一个注册学生信息的函数，如果大多数学生的性别都为男，那完全可以将形参gender定义成默认参数
 2、定义时就已经为参数gender赋值，意味着调用时可以不对gender赋值，这降低了函数调用的复杂度
     # 需要注意：
@@ -287,9 +287,9 @@ func(y&#x3D;1, x&#x3D;2)
 
     student(&#39;Ame&#39;, 18)
     student(&#39;Yuki&#39;, 18)
-    student(&#39;Egon&#39;, 18, &#39;female&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    student(&#39;Egon&#39;, 18, &#39;female&#39;)</code></pre>
 
-<h3 id="6-5-可变长参数"><a href="#6-5-可变长参数" class="headerlink" title="6.5 可变长参数"></a>6.5 可变长参数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.what
+<h3 id="6-5-可变长参数"><a href="#6-5-可变长参数" class="headerlink" title="6.5 可变长参数"></a>6.5 可变长参数</h3><pre class="language-python" data-language="python"><code class="language-python">1.what
 	可变长参数分为两种 一是可变长形参 二是可变可变长实参
 2.可变长形参
 	我们可以用*args **kwargs来接受不固定的值的长度，比如我们不知道要传入多少参数，我们就可以用这两个来接受传入的参数
@@ -318,21 +318,21 @@ func(y&#x3D;1, x&#x3D;2)
     wrapper(1, z&#x3D;2, y&#x3D;3)
 # 分析：首先将实参传值给形参：*args &#x3D; (1,)  **kwargs &#x3D; &#123;&#39;y&#39;:3,&#39;z&#39;:2&#125;
 # 第二步：这里是直接把wrapper(*args,**kwargs)中的形参给到了index(*args,      **kwargs)的实参，
-# 即index(*(1,),**&#123;&#39;y&#39;:3,&#39;z&#39;:2&#125;),这里再次将其打散，然后绑定给x,y,z<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 即index(*(1,),**&#123;&#39;y&#39;:3,&#39;z&#39;:2&#125;),这里再次将其打散，然后绑定给x,y,z</code></pre>
 
-<h2 id="七、名称空间与作用域"><a href="#七、名称空间与作用域" class="headerlink" title="七、名称空间与作用域"></a>七、名称空间与作用域</h2><h3 id="7-1-名称空间"><a href="#7-1-名称空间" class="headerlink" title="7.1 名称空间"></a>7.1 名称空间</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="七、名称空间与作用域"><a href="#七、名称空间与作用域" class="headerlink" title="七、名称空间与作用域"></a>七、名称空间与作用域</h2><h3 id="7-1-名称空间"><a href="#7-1-名称空间" class="headerlink" title="7.1 名称空间"></a>7.1 名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 	名称空间是  在内存栈区中分好不同的名称空间，这样就可以存放一样的变量名的空间，所以因为有名称空间的存在，我们才可以在不同的空间去使用相同的名字
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h3 id="7-2-内置名称空间"><a href="#7-2-内置名称空间" class="headerlink" title="7.2 内置名称空间"></a>7.2 内置名称空间</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="7-2-内置名称空间"><a href="#7-2-内置名称空间" class="headerlink" title="7.2 内置名称空间"></a>7.2 内置名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 存放的名字： 从python解释器内置存放的名字
 存活的周期： 从python打开即生成    python关闭则死亡	   
 &quot;&quot;&quot;
 # 例如
     print
-    input<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    input</code></pre>
 
-<h3 id="7-3-全局名称空间"><a href="#7-3-全局名称空间" class="headerlink" title="7.3 全局名称空间"></a>7.3 全局名称空间</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="7-3-全局名称空间"><a href="#7-3-全局名称空间" class="headerlink" title="7.3 全局名称空间"></a>7.3 全局名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 存放的空间： 既不在函数内，也不再解释器内置里,都为全局名称空间
 存活的周期： 文件的执行即开始，文件的执行结束为死亡
 &quot;&quot;&quot;
@@ -354,9 +354,9 @@ func(y&#x3D;1, x&#x3D;2)
         c &#x3D; 10
     &quot;&quot;&quot;
     这个c也是全局名称空间里面的，虽然他不是顶格写的，但是也是全部皆可调用
-    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &quot;&quot;&quot;</code></pre>
 
-<h3 id="7-4-局部名称空间"><a href="#7-4-局部名称空间" class="headerlink" title="7.4 局部名称空间"></a>7.4 局部名称空间</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="7-4-局部名称空间"><a href="#7-4-局部名称空间" class="headerlink" title="7.4 局部名称空间"></a>7.4 局部名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 存放的空间： 是函数内创造的
 存货的周期： 函数调用开始出生  函数调用结束死亡
 &quot;&quot;&quot;
@@ -366,9 +366,9 @@ func(y&#x3D;1, x&#x3D;2)
         y &#x3D; 1
 
 
-    func()  # 调用时死亡<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    func()  # 调用时死亡</code></pre>
 
-<h3 id="7-5-名称空间的出生顺序和销毁顺序和查找顺序"><a href="#7-5-名称空间的出生顺序和销毁顺序和查找顺序" class="headerlink" title="7.5 名称空间的出生顺序和销毁顺序和查找顺序"></a>7.5 名称空间的出生顺序和销毁顺序和查找顺序</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.出生顺序
+<h3 id="7-5-名称空间的出生顺序和销毁顺序和查找顺序"><a href="#7-5-名称空间的出生顺序和销毁顺序和查找顺序" class="headerlink" title="7.5 名称空间的出生顺序和销毁顺序和查找顺序"></a>7.5 名称空间的出生顺序和销毁顺序和查找顺序</h3><pre class="language-python" data-language="python"><code class="language-python">1.出生顺序
 内置名称空间&gt;全局名称空间&gt;局部名称空间
 2.销毁顺序
 局部名称空间&gt;全局名称空间&gt;内置名称空间
@@ -376,27 +376,27 @@ func(y&#x3D;1, x&#x3D;2)
 # 如果在局部名称空间
 局部名称空间--------全局名称空间--------内置名称空间
 # 如果在全局名称空间
-全局名称空间--------内置名称空间<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+全局名称空间--------内置名称空间</code></pre>
 
-<h3 id="7-6-全局作用域"><a href="#7-6-全局作用域" class="headerlink" title="7.6 全局作用域"></a>7.6 全局作用域</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="7-6-全局作用域"><a href="#7-6-全局作用域" class="headerlink" title="7.6 全局作用域"></a>7.6 全局作用域</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 全局存活
 全局有效： 即所有的函数都能调用他
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h3 id="7-7-局部作用域"><a href="#7-7-局部作用域" class="headerlink" title="7.7 局部作用域"></a>7.7 局部作用域</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="7-7-局部作用域"><a href="#7-7-局部作用域" class="headerlink" title="7.7 局部作用域"></a>7.7 局部作用域</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 局部存活
 局部有效: 即只有函数内才能调用他
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="八、函数对象"><a href="#八、函数对象" class="headerlink" title="八、函数对象"></a>八、函数对象</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 函数对象的特点精髓就是可以把函数看成变量去调用
+<h2 id="八、函数对象"><a href="#八、函数对象" class="headerlink" title="八、函数对象"></a>八、函数对象</h2><pre class="language-python" data-language="python"><code class="language-python"># 函数对象的特点精髓就是可以把函数看成变量去调用
 比如
 	def func(x):
     	print(x)
 
 
-	res &#x3D; func()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	res &#x3D; func()</code></pre>
 
-<h2 id="九、-函数嵌套"><a href="#九、-函数嵌套" class="headerlink" title="九、 函数嵌套"></a>九、 函数嵌套</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 函数嵌套调用就是在一个函数内再调用一个函数
+<h2 id="九、-函数嵌套"><a href="#九、-函数嵌套" class="headerlink" title="九、 函数嵌套"></a>九、 函数嵌套</h2><pre class="language-python" data-language="python"><code class="language-python"># 函数嵌套调用就是在一个函数内再调用一个函数
 # 函数嵌套定义就是在一个函数内再定义一个函数
 	def max1(x, y)
     	if x &gt; y:
@@ -411,9 +411,9 @@ func(y&#x3D;1, x&#x3D;2)
         print(res3)
 
 
-    max(1, 156, 31, 456)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    max(1, 156, 31, 456)</code></pre>
 
-<h2 id="十、闭包函数"><a href="#十、闭包函数" class="headerlink" title="十、闭包函数"></a>十、闭包函数</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.1.什么是闭包函数
+<h2 id="十、闭包函数"><a href="#十、闭包函数" class="headerlink" title="十、闭包函数"></a>十、闭包函数</h2><pre class="language-python" data-language="python"><code class="language-python">1.1.什么是闭包函数
 	闭包函数 &#x3D; 名称空间与作用域 + 函数对象 + 函数嵌套
     其实闭包函数就是一个传参方式
     
@@ -434,16 +434,16 @@ func(y&#x3D;1, x&#x3D;2)
     f()
     &quot;&quot;&quot;
     这就是闭包函数，wrapper被包起来了，只能用到func的x，外界都没有用
-    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &quot;&quot;&quot;</code></pre>
 
-<h2 id="十一、装饰器"><a href="#十一、装饰器" class="headerlink" title="十一、装饰器"></a>十一、装饰器</h2><h3 id="11-1、-装饰器的定义（WHAT-WHY-HOW）"><a href="#11-1、-装饰器的定义（WHAT-WHY-HOW）" class="headerlink" title="11.1、 装饰器的定义（WHAT WHY HOW）"></a>11.1、 装饰器的定义（WHAT WHY HOW）</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.什么是装饰器
+<h2 id="十一、装饰器"><a href="#十一、装饰器" class="headerlink" title="十一、装饰器"></a>十一、装饰器</h2><h3 id="11-1、-装饰器的定义（WHAT-WHY-HOW）"><a href="#11-1、-装饰器的定义（WHAT-WHY-HOW）" class="headerlink" title="11.1、 装饰器的定义（WHAT WHY HOW）"></a>11.1、 装饰器的定义（WHAT WHY HOW）</h3><pre class="language-python" data-language="python"><code class="language-python">1.什么是装饰器
 	装饰器就是装饰某一个东西的工具
 2.为什么要用装饰器
 	因为在源函数代码不改变调用方法&amp;原代码给原函数添加新功能，装饰器是最好的解决工具
 3.怎么用装饰器
-	详见下面<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	详见下面</code></pre>
 
-<h3 id="11-2、-装饰器的实现思路"><a href="#11-2、-装饰器的实现思路" class="headerlink" title="11.2、 装饰器的实现思路"></a>11.2、 装饰器的实现思路</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="11-2、-装饰器的实现思路"><a href="#11-2、-装饰器的实现思路" class="headerlink" title="11.2、 装饰器的实现思路"></a>11.2、 装饰器的实现思路</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 	现有一个原函数index，想要为其添加一个时间差的功能，我们应该怎么做呢
 &quot;&quot;&quot;
 
@@ -601,9 +601,9 @@ func(y&#x3D;1, x&#x3D;2)
 
 
     res &#x3D; index(11)
-    print(res)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(res)</code></pre>
 
-<h3 id="11-3、装饰器的总结模板"><a href="#11-3、装饰器的总结模板" class="headerlink" title="11.3、装饰器的总结模板"></a>11.3、装饰器的总结模板</h3><pre class="line-numbers language-none"><code class="language-none"># 无参装饰器
+<h3 id="11-3、装饰器的总结模板"><a href="#11-3、装饰器的总结模板" class="headerlink" title="11.3、装饰器的总结模板"></a>11.3、装饰器的总结模板</h3><pre class="language-none"><code class="language-none"># 无参装饰器
 def outter(func):
     def wrapper(*args, **kwargs):
         res &#x3D; func(*args, **kwargs)
@@ -617,9 +617,9 @@ def outter(x):
             res &#x3D; func(*args, **kwargs)
             return res
         return wrapper
-   	return foo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   	return foo</code></pre>
 
-<h3 id="11-4-多个装饰器"><a href="#11-4-多个装饰器" class="headerlink" title="11.4 多个装饰器"></a>11.4 多个装饰器</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">import time
+<h3 id="11-4-多个装饰器"><a href="#11-4-多个装饰器" class="headerlink" title="11.4 多个装饰器"></a>11.4 多个装饰器</h3><pre class="language-python" data-language="python"><code class="language-python">import time
 
 
 def deco1(func):
@@ -652,9 +652,9 @@ def index(x):
     print(f&#39;&#123;x&#125;&#39;)
 &#39;&#39;&#39;
 	当多个装饰器叠加的时候 例如这样是先从上而下去执行，但是返回值则是从下而上的去返回 所以deco2的返回值是在deco1，deco1的返回值是在真正的index上
-&#39;&#39;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#39;&#39;&#39;</code></pre>
 
-<h2 id="十二、-有参装饰器"><a href="#十二、-有参装饰器" class="headerlink" title="十二、 有参装饰器"></a>十二、 有参装饰器</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">def login():
+<h2 id="十二、-有参装饰器"><a href="#十二、-有参装饰器" class="headerlink" title="十二、 有参装饰器"></a>十二、 有参装饰器</h2><pre class="language-python" data-language="python"><code class="language-python">def login():
     name &#x3D; input(&#39;name is :&#39;).strip()
     pwd &#x3D; input(&#39;pwd is :&#39;).strip()
 
@@ -708,9 +708,9 @@ def transfer():
 
 index(1, 2)
 name &#x3D; home(&#39;ycc&#39;)
-print(name)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(name)</code></pre>
 
-<h2 id="十三、可迭代对象与迭代器对象"><a href="#十三、可迭代对象与迭代器对象" class="headerlink" title="十三、可迭代对象与迭代器对象"></a>十三、可迭代对象与迭代器对象</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.什么是可迭代对象
+<h2 id="十三、可迭代对象与迭代器对象"><a href="#十三、可迭代对象与迭代器对象" class="headerlink" title="十三、可迭代对象与迭代器对象"></a>十三、可迭代对象与迭代器对象</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是可迭代对象
 	里面有内置的__iter__方法的就是可迭代对象
     &#39;abc&#39;.__iter__
     [1, 2, 3].__iter__
@@ -723,9 +723,9 @@ print(name)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
     
     dic &#x3D; &#123;&#39;x&#39;:1, &#39;y&#39;:2&#125;
     iter_dic &#x3D; iter(dic)
-    print(iter_dic.__next__())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(iter_dic.__next__())</code></pre>
 
-<h2 id="十四、迭代器"><a href="#十四、迭代器" class="headerlink" title="十四、迭代器"></a>十四、迭代器</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.什么是迭代器
+<h2 id="十四、迭代器"><a href="#十四、迭代器" class="headerlink" title="十四、迭代器"></a>十四、迭代器</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是迭代器
     迭代器就是用来迭代取值的工具
 
     什么是迭代？
@@ -812,9 +812,9 @@ print(name)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
     print(&#39;&#x3D;&#39;*50)
 
     for x in iter_names :
-        print(x)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        print(x)</code></pre>
 
-<h2 id="十五、生成器-amp-YIELD"><a href="#十五、生成器-amp-YIELD" class="headerlink" title="十五、生成器&amp;YIELD"></a>十五、生成器&amp;YIELD</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是生成器
+<h2 id="十五、生成器-amp-YIELD"><a href="#十五、生成器-amp-YIELD" class="headerlink" title="十五、生成器&amp;YIELD"></a>十五、生成器&amp;YIELD</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是生成器
 	生成器就是自定义的迭代器
 2. 为什么要用生成器
 	因为生成器也就是迭代器是惰性计算不浪费内存，所以我们有时候可以自己自定义一个迭代器
@@ -837,9 +837,9 @@ print(name)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 相同点：都可以返回任意类型、任意个数的值
 不同点：return只能返回值一次值，函数就立即结束
        yield可以返回多次值，yield可以暂停函数的运行
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="十六、函数递归"><a href="#十六、函数递归" class="headerlink" title="十六、函数递归"></a>十六、函数递归</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是函数递归
+<h2 id="十六、函数递归"><a href="#十六、函数递归" class="headerlink" title="十六、函数递归"></a>十六、函数递归</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是函数递归
 	就是定义一个函数，然后再函数内部调用自己，说白了就是个循环
 2. 函数递归可以分为两个阶段
     2.1 回溯 就是去要的过程
@@ -855,9 +855,9 @@ print(name)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
             else:
                 print(items)
 
-    func(l)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    func(l)</code></pre>
 
-<h2 id="十七、三元表达式"><a href="#十七、三元表达式" class="headerlink" title="十七、三元表达式"></a>十七、三元表达式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 过于麻烦的普通代码
+<h2 id="十七、三元表达式"><a href="#十七、三元表达式" class="headerlink" title="十七、三元表达式"></a>十七、三元表达式</h2><pre class="language-python" data-language="python"><code class="language-python"># 过于麻烦的普通代码
 def func():
     if x &gt; y:
         return x
@@ -868,9 +868,9 @@ def func():
   
 # 三元表达式的格式
 达成条件的返回的值 if 条件 条件没有达成的返回值
-     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+     </code></pre>
 
-<h2 id="十八、各种生成式"><a href="#十八、各种生成式" class="headerlink" title="十八、各种生成式"></a>十八、各种生成式</h2><h3 id="18-1-列表生成式"><a href="#18-1-列表生成式" class="headerlink" title="18.1 列表生成式"></a>18.1 列表生成式</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十八、各种生成式"><a href="#十八、各种生成式" class="headerlink" title="十八、各种生成式"></a>十八、各种生成式</h2><h3 id="18-1-列表生成式"><a href="#18-1-列表生成式" class="headerlink" title="18.1 列表生成式"></a>18.1 列表生成式</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 列表生成式
 &quot;&quot;&quot;
 # 正常思路
@@ -888,19 +888,19 @@ print(new_l)
 # 练习 1 把所有小写字母换成大写字母  2 把所有名字去掉后缀
 l &#x3D; [&quot;xxx_dsb&quot;, &quot;aaa_dsb&quot;, &quot;bbb_dsb&quot;, &quot;ccc_dsb&quot;, &quot;yuki&quot;]
 new_1 &#x3D; [name.upper() for name in l]
-new_l &#x3D; [i.replace(&quot;_dsb&quot;, &#39;&#39;) for i in l if &quot;_dsb&quot; in i]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+new_l &#x3D; [i.replace(&quot;_dsb&quot;, &#39;&#39;) for i in l if &quot;_dsb&quot; in i]</code></pre>
 
-<h3 id="18-2-字典生成式"><a href="#18-2-字典生成式" class="headerlink" title="18.2 字典生成式"></a>18.2 字典生成式</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">keys &#x3D; &#123;&quot;aaa&quot;, &#39;bbb&#39;, &#39;ccc&#39;&#125;
-&#123;k: None for k in keys&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="18-2-字典生成式"><a href="#18-2-字典生成式" class="headerlink" title="18.2 字典生成式"></a>18.2 字典生成式</h3><pre class="language-python" data-language="python"><code class="language-python">keys &#x3D; &#123;&quot;aaa&quot;, &#39;bbb&#39;, &#39;ccc&#39;&#125;
+&#123;k: None for k in keys&#125;</code></pre>
 
-<h3 id="18-3-集合生成式"><a href="#18-3-集合生成式" class="headerlink" title="18.3 集合生成式"></a>18.3 集合生成式</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">keys &#x3D; &#123;&quot;aaa&quot;, &#39;bbb&#39;, &#39;ccc&#39;&#125;
-&#123;k for k in keys&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="18-3-集合生成式"><a href="#18-3-集合生成式" class="headerlink" title="18.3 集合生成式"></a>18.3 集合生成式</h3><pre class="language-python" data-language="python"><code class="language-python">keys &#x3D; &#123;&quot;aaa&quot;, &#39;bbb&#39;, &#39;ccc&#39;&#125;
+&#123;k for k in keys&#125;</code></pre>
 
-<h3 id="18-4-生成器生成式"><a href="#18-4-生成器生成式" class="headerlink" title="18.4 生成器生成式"></a>18.4 生成器生成式</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 把一个文件所有的字符总和取出来
+<h3 id="18-4-生成器生成式"><a href="#18-4-生成器生成式" class="headerlink" title="18.4 生成器生成式"></a>18.4 生成器生成式</h3><pre class="language-python" data-language="python"><code class="language-python"># 把一个文件所有的字符总和取出来
 with open(&quot;stock_data.txt&quot;, mode&#x3D;&quot;rt&quot;, encoding&#x3D;&quot;UTF-8&quot;) as file:
-   print(sum(len(line) for line in file)  # 节约了内存 提高了效率<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+   print(sum(len(line) for line in file)  # 节约了内存 提高了效率</code></pre>
 
-<h2 id="十九、-二分法"><a href="#十九、-二分法" class="headerlink" title="十九、 二分法"></a>十九、 二分法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">需求：如果一个列表储存着从小到大的数字
+<h2 id="十九、-二分法"><a href="#十九、-二分法" class="headerlink" title="十九、 二分法"></a>十九、 二分法</h2><pre class="language-python" data-language="python"><code class="language-python">需求：如果一个列表储存着从小到大的数字
 	然后从中需要找一个数字
     
 1.for循环
@@ -952,9 +952,9 @@ def func(need_num, list):
         print(&quot;find it&quot;)
 
 
-func(need_num, list)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+func(need_num, list)</code></pre>
 
-<h2 id="二十、匿名函数"><a href="#二十、匿名函数" class="headerlink" title="二十、匿名函数"></a>二十、匿名函数</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">匿名函数的应用场景
+<h2 id="二十、匿名函数"><a href="#二十、匿名函数" class="headerlink" title="二十、匿名函数"></a>二十、匿名函数</h2><pre class="language-python" data-language="python"><code class="language-python">匿名函数的应用场景
 	任何只需要用到一次函数，用完即可不要 就可以用匿名函数
 lambda x,y: x+y
 
@@ -980,7 +980,7 @@ salaries&#x3D;&#123;
 &#39;jack&#39;
 同理，我们直接对字典进行排序，默认也是按照字典的键去排序的
 &gt;&gt;&gt; sorted(salaries)
-[&#39;jack&#39;, &#39;lili&#39;, &#39;siry&#39;, &#39;tom&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+[&#39;jack&#39;, &#39;lili&#39;, &#39;siry&#39;, &#39;tom&#39;]</code></pre>
 
             </div>
 

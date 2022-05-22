@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="标准库与STL"><a href="#标准库与STL" class="headerlink" title="标准库与STL"></a>标准库与STL</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+                <h2 id="标准库与STL"><a href="#标准库与STL" class="headerlink" title="标准库与STL"></a>标准库与STL</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 标准库与STL的差别
 	标准库 &gt; STL 标准库里面百分之70 80都是STL
 	STL 六大部件
@@ -166,17 +166,17 @@
 		迭代器
 		适配器
 		防函数
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 标准库以header files 形式呈现
+<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 标准库以header files 形式呈现
 &#x2F;&#x2F; C++标准库的head files 不带.h 例如:
 	#include &lt;vector&gt;
 &#x2F;&#x2F; 新式 C header files 不带.h 例如
 	#include &lt;cstdio&gt;
 &#x2F;&#x2F; 旧式 C header files 带.h 仍然可用 例如
-	#include &lt;stdio.h&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	#include &lt;stdio.h&gt;</code></pre>
 
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 新式headers内的组件封装于 命名空间namespace &quot;std&quot;
+<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 新式headers内的组件封装于 命名空间namespace &quot;std&quot;
 using namespace std;  &#x2F;&#x2F; 代表直接打开这个namespace 里面的随便用  推荐用这个
 using std::cout &#x2F;&#x2F; 就可以直接用cout来表示
   
@@ -184,31 +184,31 @@ using std::cout &#x2F;&#x2F; 就可以直接用cout来表示
   #include &lt;string&gt;
   #include &lt;iostream&gt;
   #include &lt;vector&gt;
-  using namespace std;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  using namespace std;</code></pre>
 
 <p><strong>这里推荐直接用新式的习惯</strong></p>
-<h2 id="C-标准库-版本"><a href="#C-标准库-版本" class="headerlink" title="C++标准库 版本"></a>C++标准库 版本</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 版本其实不影响编程<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="C-标准库-版本"><a href="#C-标准库-版本" class="headerlink" title="C++标准库 版本"></a>C++标准库 版本</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 版本其实不影响编程</code></pre>
 
-<h2 id="标准库重要网页"><a href="#标准库重要网页" class="headerlink" title="标准库重要网页"></a>标准库重要网页</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 标准库网页
+<h2 id="标准库重要网页"><a href="#标准库重要网页" class="headerlink" title="标准库重要网页"></a>标准库重要网页</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 标准库网页
 	CPlusPlus.com
 	CppReference.com
 	gcc.gnu.org
 
 &#x2F;&#x2F; 书籍介绍
 	THE C++ STANDARD LIBRARY
-	STL源码剖析<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	STL源码剖析</code></pre>
 
 <h2 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220417210329737.png" alt="image-20220417210329737"></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	容器: 存放data的地方
 	分配器: 分配内存的作用
 	迭代器: 可以理解为一个指针
 	算法: 比如 sort 之类的
 	仿函数: 作用跟函数类似
 	适配器: 相当于转换xxx的功能
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
+<pre class="language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
 #include &lt;algorithm&gt;
 #include &lt;functional&gt;
 #include &lt;iostream&gt;
@@ -233,9 +233,9 @@ int main() &#123;
 	less: 仿函数 比大小 跟a, b比大小 取小
 	bind2nd: 适配器  绑定第二个参数 此处就是可以跟40来比
 	not1: 否定 原本是小于40  现在是大于等于40
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	O(1) or O(c) 常数时间
 	O(n) 线性时间
 	O(log2n) 次线性时间
@@ -243,9 +243,9 @@ int main() &#123;
 	O(n立方) 立方时间
 	O(2n) 指数时间
 	O(nlog2n) 介于线性及二次方之间的
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
+<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><pre class="language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
 #include &lt;algorithm&gt;
 #include &lt;functional&gt;
 #include &lt;iostream&gt;
@@ -296,7 +296,7 @@ ite &#x3D; ::find(c.begin(), c.end(), target);
 &#x2F;&#x2F; 上述代码利用auto可以写成
 list&lt;string&gt; c;
 ...
-auto ite &#x3D; ::find(c.begin(), c.end(), target);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+auto ite &#x3D; ::find(c.begin(), c.end(), target);</code></pre>
 
 
             </div>

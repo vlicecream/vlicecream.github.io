@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、字符编码"><a href="#一、字符编码" class="headerlink" title="一、字符编码"></a>一、字符编码</h2><h3 id="1-字符编码"><a href="#1-字符编码" class="headerlink" title="1.字符编码"></a>1.字符编码</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.计算机内部存储数据都是以二进制数字的形式存储
+                <h2 id="一、字符编码"><a href="#一、字符编码" class="headerlink" title="一、字符编码"></a>一、字符编码</h2><h3 id="1-字符编码"><a href="#1-字符编码" class="headerlink" title="1.字符编码"></a>1.字符编码</h3><pre class="language-python" data-language="python"><code class="language-python">1.计算机内部存储数据都是以二进制数字的形式存储
 	计算机基于电工作 而电信号只有高低电平两种状态
     也就意味着计算机的世界里只能识别两种状态
     我们人为的将高电平定义为数字1
@@ -182,9 +182,9 @@
     计算机二进制			设定好的对应关系		人类的字符
     
 # 字符编码表
-	规定了人类的字符与数字之间的对应关系<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	规定了人类的字符与数字之间的对应关系</code></pre>
 
-<h3 id="2-字符编码发展史"><a href="#2-字符编码发展史" class="headerlink" title="2.字符编码发展史"></a>2.字符编码发展史</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">一家独大
+<h3 id="2-字符编码发展史"><a href="#2-字符编码发展史" class="headerlink" title="2.字符编码发展史"></a>2.字符编码发展史</h3><pre class="language-python" data-language="python"><code class="language-python">一家独大
 	计算机是由美国人发明的 美国人需要计算机能够识别英文
     所以发明了ASCII码(字符编码表)
     	记录了英文与数字的对应关系
@@ -223,9 +223,9 @@ utf8
     英文还是用1bytes
     中文改用3bytes
 # 内存使用的编码表是unicode 硬盘使用的是utf8
-&#39;&#39;&#39;已经你们只需要记住文本文件编码统一使用utf8即可&#39;&#39;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#39;&#39;&#39;已经你们只需要记住文本文件编码统一使用utf8即可&#39;&#39;&#39;</code></pre>
 
-<h3 id="3-字符编码实操"><a href="#3-字符编码实操" class="headerlink" title="3.字符编码实操"></a>3.字符编码实操</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.解决文件乱码的核心
+<h3 id="3-字符编码实操"><a href="#3-字符编码实操" class="headerlink" title="3.字符编码实操"></a>3.字符编码实操</h3><pre class="language-python" data-language="python"><code class="language-python">1.解决文件乱码的核心
 	文件以什么编码存的就以什么编码取
 2.编码与解码(重要)
 	# 编码
@@ -240,9 +240,9 @@ utf8
         文件头指定编码
         	# -*- conding:utf8 -*-
             name &#x3D; u&#39;jason&#39;
-    python3默认的是utf8码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    python3默认的是utf8码</code></pre>
 
-<h2 id="二、文件操作"><a href="#二、文件操作" class="headerlink" title="二、文件操作"></a>二、文件操作</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">操作系统
+<h2 id="二、文件操作"><a href="#二、文件操作" class="headerlink" title="二、文件操作"></a>二、文件操作</h2><pre class="language-python" data-language="python"><code class="language-python">操作系统
 	windows mac linux
 双击文件
 	硬盘转 磁头读取数据
@@ -291,9 +291,9 @@ with open(r&#39;a.txt&#39;) as f:
 res &#x3D; r&#39;D:\day08\a.txt&#39;
 res1 &#x3D; r&#39;D:\day08\n.txt&#39;
 res2 &#x3D; r&#39;D:\day08\t.txt&#39;
-print(res,res1,res2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(res,res1,res2)</code></pre>
 
-<h2 id="三、文件处理"><a href="#三、文件处理" class="headerlink" title="三、文件处理"></a>三、文件处理</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1、控制文件读写操作的模式
+<h2 id="三、文件处理"><a href="#三、文件处理" class="headerlink" title="三、文件处理"></a>三、文件处理</h2><pre class="language-python" data-language="python"><code class="language-python">1、控制文件读写操作的模式
 r（默认）
 w
 a
@@ -399,9 +399,9 @@ with open(&#39;a.txt&#39;,mode&#x3D;&#39;r+t&#39;,encoding&#x3D;&#39;utf-8&#39;)
 
 with open(&#39;a.txt&#39;,mode&#x3D;&#39;w+t&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
     print(f.readable())   # True
-    print(f.writable())   # True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(f.writable())   # True</code></pre>
 
-<h3 id="1、控制文件指针移动"><a href="#1、控制文件指针移动" class="headerlink" title="1、控制文件指针移动"></a>1、控制文件指针移动</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># f.seek移动的全都是字节个数
+<h3 id="1、控制文件指针移动"><a href="#1、控制文件指针移动" class="headerlink" title="1、控制文件指针移动"></a>1、控制文件指针移动</h3><pre class="language-python" data-language="python"><code class="language-python"># f.seek移动的全都是字节个数
 # f.seek(字节个数,0)  # 文件最开始的地方
 # f.seek(字节个数,1)  # 指针移动到的地方
 # f.seek(字节个数,2)  # 文件末尾
@@ -432,9 +432,9 @@ with open(&#39;a.txt&#39;,mode&#x3D;&#39;ab&#39;) as f:
     print(f.tell())  # 19 追加模式指针移动到最后，显示全部字节
 
 
-# Linux命令：tail -f access.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# Linux命令：tail -f access.log</code></pre>
 
-<h3 id="2、文件修改的两种方式"><a href="#2、文件修改的两种方式" class="headerlink" title="2、文件修改的两种方式"></a>2、文件修改的两种方式</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 例如:a.txt 内容：hello你好kasjdkla
+<h3 id="2、文件修改的两种方式"><a href="#2、文件修改的两种方式" class="headerlink" title="2、文件修改的两种方式"></a>2、文件修改的两种方式</h3><pre class="language-python" data-language="python"><code class="language-python"># 例如:a.txt 内容：hello你好kasjdkla
 
 with open(&#39;a.txt&#39;, mode&#x3D;&#39;r+t&#39;, encoding&#x3D;&#39;utf-8&#39;) as f:
 	f.seek(9,0)
@@ -464,7 +464,7 @@ with open(&#39;test.txt&#39;,mode&#x3D;&#39;rt&#39;,encoding&#x3D;&#39;utf-8&#39
         f2.write(line.replace(&#39;EGON&#39;,&quot;egon&quot;))
 
 os.remove(&#39;test.txt&#39;)
-os.rename(&#39;.test.txt.swp&#39;,&#39;test.txt&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+os.rename(&#39;.test.txt.swp&#39;,&#39;test.txt&#39;)</code></pre>
 
             </div>
 

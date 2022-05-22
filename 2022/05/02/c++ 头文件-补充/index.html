@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,14 +156,14 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">complex
+                <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><pre class="language-c++" data-language="c++"><code class="language-c++">complex
 data members
 static datamembers
 member functions
 static member functions
-&#x2F;&#x2F; conplex 分为 data func 两个部分 只要你加入static 就是静态的意思<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; conplex 分为 data func 两个部分 只要你加入static 就是静态的意思</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">complex c1, c2, c3;
+<pre class="language-c++" data-language="c++"><code class="language-c++">complex c1, c2, c3;
 cout &lt;&lt; c1.real();
 cout &lt;&lt; c2.real();
 &#x2F;&#x2F; 上述代码其实要是看透本质等于下面代码
@@ -177,9 +177,9 @@ cout &lt;&lt; complex::real(&amp;c2);
 &#x2F;&#x2F; 那么什么是静态
 静态就是 不带这个this piont
 &#x2F;&#x2F; 静态用在哪
-存储静态的数据 不会变动的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+存储静态的数据 不会变动的</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Accounr &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">class Accounr &#123;
 public:
   static double my_rate;
   static void set_rate(const double &amp;x);
@@ -198,9 +198,9 @@ int main() &#123;
 	调用static函数有两种方法
 		通过object来调用
 		通过class name来调用
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="把ctors放在private区"><a href="#把ctors放在private区" class="headerlink" title="把ctors放在private区"></a>把ctors放在private区</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 我们可以把ctors放在私有区域 可以放一个唯一的自己 然后外界通过一个static function来得到唯一的自己
+<h2 id="把ctors放在private区"><a href="#把ctors放在private区" class="headerlink" title="把ctors放在private区"></a>把ctors放在private区</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 我们可以把ctors放在私有区域 可以放一个唯一的自己 然后外界通过一个static function来得到唯一的自己
 
 class A &#123;
 public:
@@ -213,22 +213,22 @@ private:
   ...
 &#125;;
 
-&#x2F;&#x2F; 这个其实就是单例模式 但是这个代码不太好 因为唯一的a一直存在 可以放在函数里进行改善<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这个其实就是单例模式 但是这个代码不太好 因为唯一的a一直存在 可以放在函数里进行改善</code></pre>
 
-<h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt;
-class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt;
+class</code></pre>
 
-<h2 id="Function-template-函数模板"><a href="#Function-template-函数模板" class="headerlink" title="Function template 函数模板"></a>Function template 函数模板</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">stone r1(2, 3), r2(3, 3), r3;
+<h2 id="Function-template-函数模板"><a href="#Function-template-函数模板" class="headerlink" title="Function template 函数模板"></a>Function template 函数模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">stone r1(2, 3), r2(3, 3), r3;
 r3 &#x3D; min(r1, r2);
 
-&#x2F;&#x2F; 编译器会对function template 进行参数推导<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 编译器会对function template 进行参数推导</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 推导出来时stone 所以T换成了stone
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 推导出来时stone 所以T换成了stone
 template &lt;class T&gt;
 inline const T &amp;min(const T&amp; a, const T&amp; b) &#123;
   return b&lt;a?b:a;
 &#125;
-&#x2F;&#x2F; 然后操作符重载 调用stone::operator&lt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 然后操作符重载 调用stone::operator&lt;</code></pre>
 
 
 

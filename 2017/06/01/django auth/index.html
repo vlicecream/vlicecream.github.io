@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,16 +156,16 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、AUTH模块前戏"><a href="#一、AUTH模块前戏" class="headerlink" title="一、AUTH模块前戏"></a>一、AUTH模块前戏</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、AUTH模块前戏"><a href="#一、AUTH模块前戏" class="headerlink" title="一、AUTH模块前戏"></a>一、AUTH模块前戏</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 我们在执行数据库迁移命令会自动生成很多表
 auth_user
 django在启动之后就可以做直接访问admin路由，需要输入用户名和密码，数据参考的就是auth_user表，并且还必须是管理员用户才能进入
 
 创建超级用户(管理员)
 python3 manage.py createsuperuser
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二、AUTH模块的使用"><a href="#二、AUTH模块的使用" class="headerlink" title="二、AUTH模块的使用"></a>二、AUTH模块的使用</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 代码演示
+<h2 id="二、AUTH模块的使用"><a href="#二、AUTH模块的使用" class="headerlink" title="二、AUTH模块的使用"></a>二、AUTH模块的使用</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
 # views
     from django.shortcuts import render, HttpResponse, redirect
     from django.contrib import auth
@@ -250,9 +250,9 @@ python3 manage.py createsuperuser
         url(r&#39;^set_password&#x2F;&#39;, views.set_password),
         url(r&#39;^logout&#x2F;&#39;, views.logout),
     	url(r&#39;^register&#x2F;&#39;, views.register),
-    ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    ]</code></pre>
 
-<h2 id="三、基于AUTH模块的使用总结方法"><a href="#三、基于AUTH模块的使用总结方法" class="headerlink" title="三、基于AUTH模块的使用总结方法"></a>三、基于AUTH模块的使用总结方法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 对比用户名&amp;密码是否正确
+<h2 id="三、基于AUTH模块的使用总结方法"><a href="#三、基于AUTH模块的使用总结方法" class="headerlink" title="三、基于AUTH模块的使用总结方法"></a>三、基于AUTH模块的使用总结方法</h2><pre class="language-python" data-language="python"><code class="language-python">1. 对比用户名&amp;密码是否正确
 	user_obj &#x3D; auth.authenticate(request, username&#x3D;username, password&#x3D;password)
     # 括号内必须传入用户名和密码
     print(user_obj)
@@ -290,9 +290,9 @@ python3 manage.py createsuperuser
     User.objects.create_user(username&#x3D;username, password&#x3D;password)
     # 创建超级用户
 	User.objects.create_superuser(username&#x3D;username, email&#x3D;&#39;123@qq.com&#39;, password&#x3D;password)
-    # 在这里创建超级用户必须要填邮箱，而命令行却不用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # 在这里创建超级用户必须要填邮箱，而命令行却不用</code></pre>
 
-<h2 id="四、AUTH模块包拓展"><a href="#四、AUTH模块包拓展" class="headerlink" title="四、AUTH模块包拓展"></a>四、AUTH模块包拓展</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 代码演示
+<h2 id="四、AUTH模块包拓展"><a href="#四、AUTH模块包拓展" class="headerlink" title="四、AUTH模块包拓展"></a>四、AUTH模块包拓展</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
     from django.db import models
     from django.contrib.auth.models import User, AbstractUser
 
@@ -321,7 +321,7 @@ python3 manage.py createsuperuser
                 AUTH_USER_MODEL &#x3D; &#39;app01.UserInfo&#39;
                                     &#39;应用名.表名&#39;    
         &quot;&quot;&quot;
-        phone &#x3D; models.BigIntegerField()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        phone &#x3D; models.BigIntegerField()</code></pre>
 
             </div>
 

@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、路由匹配"><a href="#一、路由匹配" class="headerlink" title="一、路由匹配"></a>一、路由匹配</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是路由匹配
+                <h2 id="一、路由匹配"><a href="#一、路由匹配" class="headerlink" title="一、路由匹配"></a>一、路由匹配</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是路由匹配
 	url(r&quot;test&quot;, views.test)
 	url(r&quot;testadd&quot;, views.test)
     &quot;&quot;&quot;
@@ -187,9 +187,9 @@
  	因为第一个其实是正则表达式 所以我们加限制条件^&#x2F;$即可以
  	而且我们在启动Django后 进入页面就是报错页面 很不爽 所以我们也可以加个首页URL
  	尾页URL则是用来专门当做报错页面，但是方法有很多种 所以我们只要了解尾页即可
- 	&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ 	&quot;&quot;&quot;</code></pre>
 
-<h2 id="二、无名分组"><a href="#二、无名分组" class="headerlink" title="二、无名分组"></a>二、无名分组</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是分组
+<h2 id="二、无名分组"><a href="#二、无名分组" class="headerlink" title="二、无名分组"></a>二、无名分组</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是分组
 	分组其实就是讲正则表达式括号括起来
     
 2. 无名分组代码演示
@@ -201,9 +201,9 @@
 
 &quot;&quot;&quot;
 无名分组其实就是将括号内的正则表达式匹配到的内容当做位置参数传到视图函数去
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="三、有名分组"><a href="#三、有名分组" class="headerlink" title="三、有名分组"></a>三、有名分组</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是有名分组
+<h2 id="三、有名分组"><a href="#三、有名分组" class="headerlink" title="三、有名分组"></a>三、有名分组</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是有名分组
 	有名分组其实就是讲括号内的正则表达式匹配到的内容以关键字参数传到视图函数去
 2. 代码演示
 	可以给正则表达式起个别名
@@ -211,17 +211,17 @@
 
     def testadd(request,year):
         print(year)
-        return HttpResponse(&#39;testadd&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        return HttpResponse(&#39;testadd&#39;)</code></pre>
 
-<h2 id="四、分析无名有名分组"><a href="#四、分析无名有名分组" class="headerlink" title="四、分析无名有名分组"></a>四、分析无名有名分组</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 无名和有名分组是否可以一块用呢
+<h2 id="四、分析无名有名分组"><a href="#四、分析无名有名分组" class="headerlink" title="四、分析无名有名分组"></a>四、分析无名有名分组</h2><pre class="language-python" data-language="python"><code class="language-python">1. 无名和有名分组是否可以一块用呢
 	直接给你答案 不能
     但是一个分组可以用很多次
     
 2. 代码演示(用很多次)
 	url(r&#39;^index&#x2F;(\d+)&#x2F;(\d+)&#x2F;(\d+)&#x2F;&#39;,views.index),
-	url(r&#39;^index&#x2F;(?P&lt;year&gt;\d+)&#x2F;(?P&lt;age&gt;\d+)&#x2F;(?P&lt;month&gt;\d+)&#x2F;&#39;,views.index),<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	url(r&#39;^index&#x2F;(?P&lt;year&gt;\d+)&#x2F;(?P&lt;age&gt;\d+)&#x2F;(?P&lt;month&gt;\d+)&#x2F;&#39;,views.index),</code></pre>
 
-<h2 id="五、反向解析"><a href="#五、反向解析" class="headerlink" title="五、反向解析"></a>五、反向解析</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是反向解析
+<h2 id="五、反向解析"><a href="#五、反向解析" class="headerlink" title="五、反向解析"></a>五、反向解析</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是反向解析
 	通过一些方法得到一个结果 该结果可以直接访问对应的url触发视图函数
 
 2. 代码演示
@@ -236,9 +236,9 @@
 
 &quot;&quot;&quot;
 别名不能出现冲突!!!
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="六、无名有名反向解析"><a href="#六、无名有名反向解析" class="headerlink" title="六、无名有名反向解析"></a>六、无名有名反向解析</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.什么是无名反向解析(直接上代码演示)
+<h2 id="六、无名有名反向解析"><a href="#六、无名有名反向解析" class="headerlink" title="六、无名有名反向解析"></a>六、无名有名反向解析</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是无名反向解析(直接上代码演示)
     url(r&#39;^index&#x2F;(\d+)&#x2F;&#39;, views.index, name&#x3D;&#39;my_index&#39;)
     # 后端写法
     reverse(&#39;my_index&#39;, args&#x3D;(1,))
@@ -268,9 +268,9 @@
        # 有名分组反向解析 写法1  了解
        print(reverse(&#39;ooo&#39;,kwargs&#x3D;&#123;&#39;year&#39;:123&#125;))
        # 简便的写法  减少你的脑容量消耗 记跟无名一样的操作即可
-       print(reverse(&#39;ooo&#39;,args&#x3D;(111,)))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+       print(reverse(&#39;ooo&#39;,args&#x3D;(111,)))</code></pre>
 
-<h2 id="七、路由分配"><a href="#七、路由分配" class="headerlink" title="七、路由分配"></a>七、路由分配</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是路由分配
+<h2 id="七、路由分配"><a href="#七、路由分配" class="headerlink" title="七、路由分配"></a>七、路由分配</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是路由分配
     &quot;&quot;&quot;
     django的每一个应用都可以有自己的templates文件夹 urls.py static文件夹
     正是基于上述的特点 django能够非常好的做到分组开发(每个人只写自己的app)
@@ -315,9 +315,9 @@
 
           urlpatterns &#x3D; [
               url(r&#39;^reg&#x2F;&#39;,views.reg)
-          ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+          ]</code></pre>
 
-<h2 id="八、名称空间"><a href="#八、名称空间" class="headerlink" title="八、名称空间"></a>八、名称空间</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 为什么用名称空间
+<h2 id="八、名称空间"><a href="#八、名称空间" class="headerlink" title="八、名称空间"></a>八、名称空间</h2><pre class="language-python" data-language="python"><code class="language-python">1. 为什么用名称空间
 	在前面我们已经详细的讲了什么是名称空间，在这里我们直接讲为什么要用名称空间
     因为有路由分配我们就可以多人同时进行工作，但是我们取得变量名重复了怎么办
 
@@ -356,9 +356,9 @@
     urlpatterns &#x3D; [
         url(r&#39;^reg&#x2F;&#39;,views.reg,name&#x3D;&#39;app02_reg&#39;)
     ]
-    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    </code></pre>
 
-<h2 id="九、伪静态"><a href="#九、伪静态" class="headerlink" title="九、伪静态"></a>九、伪静态</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是伪静态
+<h2 id="九、伪静态"><a href="#九、伪静态" class="headerlink" title="九、伪静态"></a>九、伪静态</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是伪静态
 	将一个动态网页伪装成静态网页
 2. 什么是静态网页
 	数据是写死的 万年不变
@@ -374,9 +374,9 @@
 4. 伪静态的代码演示
     urlpatterns &#x3D; [
         url(r&#39;^reg.html&#39;,views.reg,name&#x3D;&#39;app02_reg&#39;)
-    ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    ]</code></pre>
 
-<h2 id="十、虚拟环境"><a href="#十、虚拟环境" class="headerlink" title="十、虚拟环境"></a>十、虚拟环境</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十、虚拟环境"><a href="#十、虚拟环境" class="headerlink" title="十、虚拟环境"></a>十、虚拟环境</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 在正常开发中 我们会给每一个项目配备一个该项目独有的解释器环境
 该环境内只有该项目用到的模块 用不到一概不装
 
@@ -393,9 +393,9 @@ linux:缺什么才装什么
 	开发当中我们会给每一个项目配备一个requirements.txt文件
 	里面书写了该项目所有的模块即版本
 	你只需要直接输入一条命令即可一键安装所有模块即版本
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="十一、DJANGO版本区别"><a href="#十一、DJANGO版本区别" class="headerlink" title="十一、DJANGO版本区别"></a>十一、DJANGO版本区别</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;我们将会对比django 1.x 2.x 3.x版本的区别&quot;&quot;&quot;
+<h2 id="十一、DJANGO版本区别"><a href="#十一、DJANGO版本区别" class="headerlink" title="十一、DJANGO版本区别"></a>十一、DJANGO版本区别</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;我们将会对比django 1.x 2.x 3.x版本的区别&quot;&quot;&quot;
 
 1. 第一种区别
     1.x 的路由层用的是url方法
@@ -453,7 +453,7 @@ linux:缺什么才装什么
 	models.ForeignKey(to&#x3D;&#39;Publish&#39;)
 	
 	models.ForeignKey(to&#x3D;&#39;Publish&#39;,on_delete&#x3D;models.CASCADE...)
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
             </div>
 

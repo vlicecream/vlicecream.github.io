@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="一、-模块-WHAT-WHY-HOW"><a href="#一、-模块-WHAT-WHY-HOW" class="headerlink" title="一、 模块(WHAT WHY HOW)"></a>一、 模块(WHAT WHY HOW)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.什么是模块
+                <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="一、-模块-WHAT-WHY-HOW"><a href="#一、-模块-WHAT-WHY-HOW" class="headerlink" title="一、 模块(WHAT WHY HOW)"></a>一、 模块(WHAT WHY HOW)</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是模块
 	包含一系列功能的一个python文件
 	内置模块
 	第三方模块
@@ -193,9 +193,9 @@
     import 第三方   # 分行导入如果同时有内置 第三方 自定义模块，则按内置 第三方 自定义来先后导入
     import 第三方
     import 自定义
-    import 自定义<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    import 自定义</code></pre>
 
-<h2 id="二、一个PYTHON文件的两种用途"><a href="#二、一个PYTHON文件的两种用途" class="headerlink" title="二、一个PYTHON文件的两种用途"></a>二、一个PYTHON文件的两种用途</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 当做文件来运行
+<h2 id="二、一个PYTHON文件的两种用途"><a href="#二、一个PYTHON文件的两种用途" class="headerlink" title="二、一个PYTHON文件的两种用途"></a>二、一个PYTHON文件的两种用途</h2><pre class="language-python" data-language="python"><code class="language-python">1. 当做文件来运行
 2. 当做模块来运行
 # 一定要注意名称空间的顺序
 
@@ -231,9 +231,9 @@ else:
         pass
 
     if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-        start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        start()</code></pre>
 
-<h2 id="三、FROM…-IMPORT…-的导入模块"><a href="#三、FROM…-IMPORT…-的导入模块" class="headerlink" title="三、FROM….IMPORT….的导入模块"></a>三、FROM….IMPORT….的导入模块</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 模式
+<h2 id="三、FROM…-IMPORT…-的导入模块"><a href="#三、FROM…-IMPORT…-的导入模块" class="headerlink" title="三、FROM….IMPORT….的导入模块"></a>三、FROM….IMPORT….的导入模块</h2><pre class="language-python" data-language="python"><code class="language-python"># 模式
        # 1.可以improt语句导入多个模块(推荐使用)
        # import a
        # import b
@@ -279,9 +279,9 @@ else:
    # *也不推荐使用
    # name &#x3D; &#39;egon&#39;
    # from foo import *
-   # print(name) # 此时如果*里也有name，则会将egon覆盖掉，但是你只知道导入了所有模块，并不清楚有没有name模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   # print(name) # 此时如果*里也有name，则会将egon覆盖掉，但是你只知道导入了所有模块，并不清楚有没有name模块</code></pre>
 
-<h2 id="四、互导-循环导入"><a href="#四、互导-循环导入" class="headerlink" title="四、互导(循环导入)"></a>四、互导(循环导入)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 现在有三个py文件 m1.py  m2.py  run.py
+<h2 id="四、互导-循环导入"><a href="#四、互导-循环导入" class="headerlink" title="四、互导(循环导入)"></a>四、互导(循环导入)</h2><pre class="language-python" data-language="python"><code class="language-python"># 现在有三个py文件 m1.py  m2.py  run.py
 
 # m1.py文件内容
 	import m2 from y
@@ -323,9 +323,9 @@ else:
         m1.f1()
         
     # 运用函数定义阶段不执行代码的特点解决这个问题
-	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	</code></pre>
 
-<h2 id="五、模块搜索路径"><a href="#五、模块搜索路径" class="headerlink" title="五、模块搜索路径"></a>五、模块搜索路径</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 无论是import还是from...import...在导入模块时都涉及到查找问题
+<h2 id="五、模块搜索路径"><a href="#五、模块搜索路径" class="headerlink" title="五、模块搜索路径"></a>五、模块搜索路径</h2><pre class="language-python" data-language="python"><code class="language-python"># 无论是import还是from...import...在导入模块时都涉及到查找问题
 # 模块搜索路径,优先级从高到低
 # 1、内存
 # 2、内置
@@ -356,7 +356,7 @@ print(sys.path)
  	# 方法二：
 		from aaa.bbb.ccc import spam  # 导入语句中出现的点，代表路径分隔符
 
-# spam.money  # 使用语句中出现的点，代表问某一个名称空间要名字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# spam.money  # 使用语句中出现的点，代表问某一个名称空间要名字</code></pre>
 
 <h2 id="TIME模块"><a href="#TIME模块" class="headerlink" title="TIME模块"></a>TIME模块</h2><h2 id="DATETIME模块"><a href="#DATETIME模块" class="headerlink" title="DATETIME模块"></a>DATETIME模块</h2><h2 id="RANDOM模块"><a href="#RANDOM模块" class="headerlink" title="RANDOM模块"></a>RANDOM模块</h2><h2 id="OS模块"><a href="#OS模块" class="headerlink" title="OS模块"></a>OS模块</h2><h2 id="SYS模块"><a href="#SYS模块" class="headerlink" title="SYS模块"></a>SYS模块</h2><h2 id="SHUTIL模块"><a href="#SHUTIL模块" class="headerlink" title="SHUTIL模块"></a>SHUTIL模块</h2><h2 id="STRUCT模块"><a href="#STRUCT模块" class="headerlink" title="STRUCT模块"></a>STRUCT模块</h2><h2 id="SOCKET模块"><a href="#SOCKET模块" class="headerlink" title="SOCKET模块"></a>SOCKET模块</h2><h2 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h2><h2 id="JSON的使用"><a href="#JSON的使用" class="headerlink" title="JSON的使用"></a>JSON的使用</h2><h2 id="猴子补丁"><a href="#猴子补丁" class="headerlink" title="猴子补丁"></a>猴子补丁</h2><h2 id="PICKLE的使用"><a href="#PICKLE的使用" class="headerlink" title="PICKLE的使用"></a>PICKLE的使用</h2>
             </div>

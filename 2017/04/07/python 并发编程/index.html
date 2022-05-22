@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,16 +156,16 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h1><h2 id="一、进程的调度"><a href="#一、进程的调度" class="headerlink" title="一、进程的调度"></a>一、进程的调度</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
+                <h1 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h1><h2 id="一、进程的调度"><a href="#一、进程的调度" class="headerlink" title="一、进程的调度"></a>一、进程的调度</h2><pre class="language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
 程序就是文件里的一行行代码，他是个‘死的’
 进程则是文件代码运行起来，他是个‘活’的
 &#39;&#39;&#39;
 # 进程调度的方法
 	1.先来先服务调度算法：对长程序有利 短程序无利
     2.短程序优先调度算法：对短程序有利 长程序无利
-    3.时间片轮转算法与多级反馈队列<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    3.时间片轮转算法与多级反馈队列</code></pre>
 
-<h2 id="二、进程三状态图"><a href="#二、进程三状态图" class="headerlink" title="二、进程三状态图"></a>二、进程三状态图</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 程序在运行前 必须经历就绪阶段
+<h2 id="二、进程三状态图"><a href="#二、进程三状态图" class="headerlink" title="二、进程三状态图"></a>二、进程三状态图</h2><pre class="language-python" data-language="python"><code class="language-python"># 程序在运行前 必须经历就绪阶段
 
 
 # 前两行代码程序正在运行，在运行前得就绪 等待操作系统的运行
@@ -177,9 +177,9 @@ print(name)  # 运行
 time.sleep(1)  # 堵塞
 # 就绪
 print(&#39;程序已经死亡&#39;)  # 运行
-# 死亡<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 死亡</code></pre>
 
-<h2 id="三、同步异步与阻塞非阻塞"><a href="#三、同步异步与阻塞非阻塞" class="headerlink" title="三、同步异步与阻塞非阻塞"></a>三、同步异步与阻塞非阻塞</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;同步与异步&#39;&#39;&#39;
+<h2 id="三、同步异步与阻塞非阻塞"><a href="#三、同步异步与阻塞非阻塞" class="headerlink" title="三、同步异步与阻塞非阻塞"></a>三、同步异步与阻塞非阻塞</h2><pre class="language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;同步与异步&#39;&#39;&#39;
 1.同步  在程序执行完，在原地等着拿任务执行结果，不拿到就不走
 2.异步  在提交了任务请求后，不在原地等着拿任务执行结果，直接执行下一个任务请求
 	#  我们来想想异步那既然都走了怎么拿任务执行结果
@@ -190,9 +190,9 @@ print(&#39;程序已经死亡&#39;)  # 运行
 
 理想状态：时时刻刻让程序保持运行状态
 
-# 最有效率的的是搭配组合是  异步非阻塞<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 最有效率的的是搭配组合是  异步非阻塞</code></pre>
 
-<h2 id="四、创建进程的两种方式"><a href="#四、创建进程的两种方式" class="headerlink" title="四、创建进程的两种方式"></a>四、创建进程的两种方式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 两种方式其实我们都可以猜到啦，看我们学了 面对过程 还有 面对对象 那肯定就是这两种思路啦
+<h2 id="四、创建进程的两种方式"><a href="#四、创建进程的两种方式" class="headerlink" title="四、创建进程的两种方式"></a>四、创建进程的两种方式</h2><pre class="language-python" data-language="python"><code class="language-python"># 两种方式其实我们都可以猜到啦，看我们学了 面对过程 还有 面对对象 那肯定就是这两种思路啦
 # 面对过程
 import time
 from multiprocessing import Process
@@ -224,9 +224,9 @@ class MyProcess(Process):
 if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     g &#x3D; MyProcess()
     g.start()
-    print(&#39;asd&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(&#39;asd&#39;)</code></pre>
 
-<h2 id="五、JOIN方法"><a href="#五、JOIN方法" class="headerlink" title="五、JOIN方法"></a>五、JOIN方法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 我们在上面写了两种方式，一个是面对过程 一个是面对对象，我们平时用面对过程还是很多的，所以我们拿面对过程来举例
+<h2 id="五、JOIN方法"><a href="#五、JOIN方法" class="headerlink" title="五、JOIN方法"></a>五、JOIN方法</h2><pre class="language-python" data-language="python"><code class="language-python"># 我们在上面写了两种方式，一个是面对过程 一个是面对对象，我们平时用面对过程还是很多的，所以我们拿面对过程来举例
     import time
     from multiprocessing import Process
 
@@ -264,9 +264,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     g3.join()
     print(&#39;滚滚滚&#39;, time.time() - start_time)
 # 我们会发现这个时间在子进程完全结束的时候，主进程也最后结束的时候还是只花了3秒钟，同时也要提示，别看g1,g2,g3,看似是有顺序的，实际上是没有顺序的
-# 这个join其实是很少用到的，但是一定还是得要懂得其原理<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 这个join其实是很少用到的，但是一定还是得要懂得其原理</code></pre>
 
-<h2 id="六、进程间的数据相互隔离"><a href="#六、进程间的数据相互隔离" class="headerlink" title="六、进程间的数据相互隔离"></a>六、进程间的数据相互隔离</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 进程间的其实所有的数据都是隔离的，我们来证明这一点
+<h2 id="六、进程间的数据相互隔离"><a href="#六、进程间的数据相互隔离" class="headerlink" title="六、进程间的数据相互隔离"></a>六、进程间的数据相互隔离</h2><pre class="language-python" data-language="python"><code class="language-python"># 进程间的其实所有的数据都是隔离的，我们来证明这一点
     from multiprocessing import Process
 
     number &#x3D; 100
@@ -299,9 +299,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
         b.start()
         b.join()
         print(number)
-# 运行这个你们也就会发现，运行结果是as 666   100<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 运行这个你们也就会发现，运行结果是as 666   100</code></pre>
 
-<h2 id="七、进程对象及其他方法"><a href="#七、进程对象及其他方法" class="headerlink" title="七、进程对象及其他方法"></a>七、进程对象及其他方法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;一台计算机运行了很多进程，那我们怎么才能知道这些进程，是因为计算机就直接把这些诸多进程都加上了PID&#39;&#39;&#39;
+<h2 id="七、进程对象及其他方法"><a href="#七、进程对象及其他方法" class="headerlink" title="七、进程对象及其他方法"></a>七、进程对象及其他方法</h2><pre class="language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;一台计算机运行了很多进程，那我们怎么才能知道这些进程，是因为计算机就直接把这些诸多进程都加上了PID&#39;&#39;&#39;
 &#39;&#39;&#39;
 如何查看
 	windows 打开cmd，输入tasklist即可查看
@@ -320,17 +320,17 @@ os.p.terminate()  # 杀死这个进程
 print(p.is_alive())  # 判断当前这个进程是否存活
 &quot;&quot;&quot;
 	其实要注意 假如这两行代码写一代码块，下面的为True，这是为什么，因为杀死这个进程是交给操作系统去杀死的，是需要少量时间的，然后执行的代码是很快的，所以得中间加个time.sleep(0.1)就好了，同时也要注意，凡是储存布尔值的变量名或者返回的是布尔值的方法名前缀都会是is
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="八、僵尸进程与孤儿进程-了解"><a href="#八、僵尸进程与孤儿进程-了解" class="headerlink" title="八、僵尸进程与孤儿进程(了解)"></a>八、僵尸进程与孤儿进程(了解)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;僵尸进程&quot;&quot;&quot;
+<h2 id="八、僵尸进程与孤儿进程-了解"><a href="#八、僵尸进程与孤儿进程-了解" class="headerlink" title="八、僵尸进程与孤儿进程(了解)"></a>八、僵尸进程与孤儿进程(了解)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;僵尸进程&quot;&quot;&quot;
 	僵尸进程就是死了没死透，依然还存在等着子进程去执行完，所有的进程都会变成僵尸进程，父进程运行完后还得观察子进程的各种信息，比如PID，子进程的运行时间，而且你运行了子程序后，子程序死后不会回收自己的PID，所以是父进程去帮忙回收
     子进程结束后 父进程回去回收子进程的PID
     或者就用join方法来回收子进程的PID
 &quot;&quot;&quot;孤儿进程&quot;&quot;&quot;
     孤儿进程就是子进程存活，父进程意外死亡
-    这个时候操作系统会生成一个“儿童福利院”来回收这些子进程的PID<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    这个时候操作系统会生成一个“儿童福利院”来回收这些子进程的PID</code></pre>
 
-<h2 id="九、守护进程-了解"><a href="#九、守护进程-了解" class="headerlink" title="九、守护进程(了解)"></a>九、守护进程(了解)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import time
+<h2 id="九、守护进程-了解"><a href="#九、守护进程-了解" class="headerlink" title="九、守护进程(了解)"></a>九、守护进程(了解)</h2><pre class="language-python" data-language="python"><code class="language-python">import time
 from multiprocessing import Process
 
 
@@ -344,9 +344,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     p &#x3D; Process(target&#x3D;func, args&#x3D;&#39;Alex&#39;)
     p.daemon &#x3D; True  # 将进程P设成守护进程   这个必须加载start前面，否则会报错
     p.start()
-    print(&#39;Egon驾崩&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(&#39;Egon驾崩&#39;)</code></pre>
 
-<h2 id="十、互斥锁"><a href="#十、互斥锁" class="headerlink" title="十、互斥锁"></a>十、互斥锁</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 大家有没有碰到这样的情况，就是在买票的时候明明还有票，可能过一会来看就没有票了，或者就是还剩下一张票的时候抢，发现没有票了，我们来模仿这个案例，来引出互斥锁
+<h2 id="十、互斥锁"><a href="#十、互斥锁" class="headerlink" title="十、互斥锁"></a>十、互斥锁</h2><pre class="language-python" data-language="python"><code class="language-python"># 大家有没有碰到这样的情况，就是在买票的时候明明还有票，可能过一会来看就没有票了，或者就是还剩下一张票的时候抢，发现没有票了，我们来模仿这个案例，来引出互斥锁
     import time
     import json
     import random
@@ -395,9 +395,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
            
        
    
-# 从这里可以看出锁就是从并行变成了串行，为了数据的安全性 只能牺牲了效率<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 从这里可以看出锁就是从并行变成了串行，为了数据的安全性 只能牺牲了效率</code></pre>
 
-<h2 id="十一、队列介绍"><a href="#十一、队列介绍" class="headerlink" title="十一、队列介绍"></a>十一、队列介绍</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from multiprocessing import Queue
+<h2 id="十一、队列介绍"><a href="#十一、队列介绍" class="headerlink" title="十一、队列介绍"></a>十一、队列介绍</h2><pre class="language-python" data-language="python"><code class="language-python">from multiprocessing import Queue
 
 # 创建队列
 q &#x3D; Queue(5)  # 设置队列的大小，只能存放5个队列
@@ -421,9 +421,9 @@ q.empty()  判断队列是否为空
 q.full()   判断队列是否为满
 q.get_nowait   收不到值不等待立刻报错
 q.
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="十二、LPC-机制"><a href="#十二、LPC-机制" class="headerlink" title="十二、LPC 机制"></a>十二、LPC 机制</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;进程之间的通信&quot;&quot;&quot;
+<h2 id="十二、LPC-机制"><a href="#十二、LPC-机制" class="headerlink" title="十二、LPC 机制"></a>十二、LPC 机制</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;进程之间的通信&quot;&quot;&quot;
 # 两种思路1.实现主进程与子进程之间的通信 2.实现子进程与子进程之间的通信
 1.
 	from multiprocessing import Queue
@@ -459,9 +459,9 @@ q.
         q &#x3D; Process(target&#x3D;communication, args&#x3D;(p,))
         q1 &#x3D; Process(target&#x3D;happy, args&#x3D;(p,))
         q.start()
-        q1.start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        q1.start()</code></pre>
 
-<h2 id="十三、生产者与消费者模型"><a href="#十三、生产者与消费者模型" class="headerlink" title="十三、生产者与消费者模型"></a>十三、生产者与消费者模型</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 运用Queue  
+<h2 id="十三、生产者与消费者模型"><a href="#十三、生产者与消费者模型" class="headerlink" title="十三、生产者与消费者模型"></a>十三、生产者与消费者模型</h2><pre class="language-python" data-language="python"><code class="language-python"># 运用Queue  
     import time
     import random
     from multiprocessing import Process
@@ -532,9 +532,9 @@ q.
         eater.start()
         bot1.join()
         bot2.join()
-        q.join() <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        q.join() </code></pre>
 
-<h2 id="十四、线程理论"><a href="#十四、线程理论" class="headerlink" title="十四、线程理论"></a>十四、线程理论</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十四、线程理论"><a href="#十四、线程理论" class="headerlink" title="十四、线程理论"></a>十四、线程理论</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 1. 什么是线程
 	如果把操作系统比作成一个大工厂，进程就是里面一个个的车间，线程就是车间里的一个个流水线
 	每一个进程肯定自带一个线程
@@ -552,9 +552,9 @@ q.
 			这很明显就是要搞多个线程，因为一个进程里面的多个线程数据是共享的
 3. 怎么用线程
 	后面再讲~~~~~~~~~~~~~~~~~·
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="十五、开启线程的两种方式"><a href="#十五、开启线程的两种方式" class="headerlink" title="十五、开启线程的两种方式"></a>十五、开启线程的两种方式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 面对过程
+<h2 id="十五、开启线程的两种方式"><a href="#十五、开启线程的两种方式" class="headerlink" title="十五、开启线程的两种方式"></a>十五、开启线程的两种方式</h2><pre class="language-python" data-language="python"><code class="language-python"># 面对过程
     from threading import Thread
     import time
 
@@ -591,9 +591,9 @@ q.
         q.start()
         print(&#39;主&#39;)
  
-# 注意 因为开启线程不需要在开启一块独立的内存空间，而开启进程则需要，所以你会发现“主”在线程之后才显示出来，比进程快多了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 注意 因为开启线程不需要在开启一块独立的内存空间，而开启进程则需要，所以你会发现“主”在线程之后才显示出来，比进程快多了</code></pre>
 
-<h2 id="十六、TCP服务端实现并发的效果"><a href="#十六、TCP服务端实现并发的效果" class="headerlink" title="十六、TCP服务端实现并发的效果"></a>十六、TCP服务端实现并发的效果</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 服务端
+<h2 id="十六、TCP服务端实现并发的效果"><a href="#十六、TCP服务端实现并发的效果" class="headerlink" title="十六、TCP服务端实现并发的效果"></a>十六、TCP服务端实现并发的效果</h2><pre class="language-python" data-language="python"><code class="language-python"># 服务端
 	import socket
     from threading import Thread
 
@@ -630,9 +630,9 @@ q.
     while True:
         client.send(&#39;hello world&#39;.encode(&#39;utf8&#39;))
         data &#x3D; client.recv(1024)
-        print(data.decode(&#39;utf-8&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        print(data.decode(&#39;utf-8&#39;))</code></pre>
 
-<h2 id="十七、线程的JOIN方法"><a href="#十七、线程的JOIN方法" class="headerlink" title="十七、线程的JOIN方法"></a>十七、线程的JOIN方法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;JION方法&quot;&quot;&quot;
+<h2 id="十七、线程的JOIN方法"><a href="#十七、线程的JOIN方法" class="headerlink" title="十七、线程的JOIN方法"></a>十七、线程的JOIN方法</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;JION方法&quot;&quot;&quot;
 from threading import Thread
 import time
 
@@ -647,9 +647,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     q &#x3D; Thread(target&#x3D;func, args&#x3D;(&#39;Egon&#39;,))
     q.start()
     q.join()
-    print(&#39;主&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(&#39;主&#39;)</code></pre>
 
-<h2 id="十八、同一个进程下的多个线程"><a href="#十八、同一个进程下的多个线程" class="headerlink" title="十八、同一个进程下的多个线程"></a>十八、同一个进程下的多个线程</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;线程之间数据是通用的&quot;&quot;&quot;
+<h2 id="十八、同一个进程下的多个线程"><a href="#十八、同一个进程下的多个线程" class="headerlink" title="十八、同一个进程下的多个线程"></a>十八、同一个进程下的多个线程</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;线程之间数据是通用的&quot;&quot;&quot;
 from threading import Thread
 
 money &#x3D; 100
@@ -665,9 +665,9 @@ q &#x3D; Thread(target&#x3D;balance())
 q.start()
 print(money)
 
-# 跟进程不一样，线程之间数据是通用的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 跟进程不一样，线程之间数据是通用的</code></pre>
 
-<h2 id="十九、线程对象及其他办法"><a href="#十九、线程对象及其他办法" class="headerlink" title="十九、线程对象及其他办法"></a>十九、线程对象及其他办法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from threading import Thread, active_count, current_thread
+<h2 id="十九、线程对象及其他办法"><a href="#十九、线程对象及其他办法" class="headerlink" title="十九、线程对象及其他办法"></a>十九、线程对象及其他办法</h2><pre class="language-python" data-language="python"><code class="language-python">from threading import Thread, active_count, current_thread
 import os,time
 
 
@@ -685,9 +685,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     t.join()
     print(&#39;主&#39;,active_count())  # 统计当前正在活跃的线程数
     # print(&#39;主&#39;,os.getpid())
-    # print(&#39;主&#39;,current_thread().name)  # 获取线程名字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    # print(&#39;主&#39;,current_thread().name)  # 获取线程名字</code></pre>
 
-<h2 id="二十、守护线程"><a href="#二十、守护线程" class="headerlink" title="二十、守护线程"></a>二十、守护线程</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;守护线程&quot;&quot;&quot;
+<h2 id="二十、守护线程"><a href="#二十、守护线程" class="headerlink" title="二十、守护线程"></a>二十、守护线程</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;守护线程&quot;&quot;&quot;
 import time
 from threading import Thread
 
@@ -729,9 +729,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     q1.start()
     print(&#39;主&#39;)
     
-# 主进程执行完毕也不会死的，必须在没有守护的进程结束后，才会死，所以res是3s，func是1s，所以先后执行的顺序为123,456，主，end123，end456<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 主进程执行完毕也不会死的，必须在没有守护的进程结束后，才会死，所以res是3s，func是1s，所以先后执行的顺序为123,456，主，end123，end456</code></pre>
 
-<h2 id="二十一、线程互斥锁"><a href="#二十一、线程互斥锁" class="headerlink" title="二十一、线程互斥锁"></a>二十一、线程互斥锁</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;线程互斥锁&quot;&quot;&quot;
+<h2 id="二十一、线程互斥锁"><a href="#二十一、线程互斥锁" class="headerlink" title="二十一、线程互斥锁"></a>二十一、线程互斥锁</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;线程互斥锁&quot;&quot;&quot;
 import time
 from threading import Thread
 from threading import Lock
@@ -757,9 +757,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
         q_list.append(q)
     for q in q_list:
         q.join()
-    print(money)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(money)</code></pre>
 
-<h2 id="二十二、GIL全局解释器锁理论介绍-了解"><a href="#二十二、GIL全局解释器锁理论介绍-了解" class="headerlink" title="二十二、GIL全局解释器锁理论介绍(了解)"></a>二十二、GIL全局解释器锁理论介绍(了解)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="二十二、GIL全局解释器锁理论介绍-了解"><a href="#二十二、GIL全局解释器锁理论介绍-了解" class="headerlink" title="二十二、GIL全局解释器锁理论介绍(了解)"></a>二十二、GIL全局解释器锁理论介绍(了解)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple 
 native threads from executing Python bytecodes at once. This lock is necessary mainly 
 because CPython’s memory management is not thread-safe. (However, since the GIL 
@@ -791,9 +791,9 @@ python解释器其实有多个版本
 	3.GIL会导致同一个进程下的多个线程的无法同时执行即无法利用多核优势(******)
 	4.针对不同的数据还是需要加不同的锁处理 
 	5.解释型语言的通病:同一个进程下多个线程无法利用多核优势
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二十三、GIL与普通互斥锁的区别"><a href="#二十三、GIL与普通互斥锁的区别" class="headerlink" title="二十三、GIL与普通互斥锁的区别"></a>二十三、GIL与普通互斥锁的区别</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from threading import Thread,Lock
+<h2 id="二十三、GIL与普通互斥锁的区别"><a href="#二十三、GIL与普通互斥锁的区别" class="headerlink" title="二十三、GIL与普通互斥锁的区别"></a>二十三、GIL与普通互斥锁的区别</h2><pre class="language-python" data-language="python"><code class="language-python">from threading import Thread,Lock
 import time
 
 
@@ -831,9 +831,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
 我进入io GIL自动释放 但是我手上还有一个自己的互斥锁
 其他线程虽然抢到了GIL但是抢不到互斥锁 
 最终GIL还是回到你的手上 你去操作数据
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二十四、同一个进程下的多线程无法利用多核优势-是不是就没有用了"><a href="#二十四、同一个进程下的多线程无法利用多核优势-是不是就没有用了" class="headerlink" title="二十四、同一个进程下的多线程无法利用多核优势,是不是就没有用了"></a>二十四、同一个进程下的多线程无法利用多核优势,是不是就没有用了</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="二十四、同一个进程下的多线程无法利用多核优势-是不是就没有用了"><a href="#二十四、同一个进程下的多线程无法利用多核优势-是不是就没有用了" class="headerlink" title="二十四、同一个进程下的多线程无法利用多核优势,是不是就没有用了"></a>二十四、同一个进程下的多线程无法利用多核优势,是不是就没有用了</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 多线程是否有用要看具体情况
 单核:四个任务(IO密集型\计算密集型)
 多核:四个任务(IO密集型\计算密集型)
@@ -848,9 +848,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
 # IO密集型  
 多核
 	多进程:相对浪费资源
-  多线程:更加节省资源<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  多线程:更加节省资源</code></pre>
 
-<h3 id="24-1代码验证"><a href="#24-1代码验证" class="headerlink" title="24.1代码验证"></a>24.1代码验证</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 计算密集型
+<h3 id="24-1代码验证"><a href="#24-1代码验证" class="headerlink" title="24.1代码验证"></a>24.1代码验证</h3><pre class="language-python" data-language="python"><code class="language-python"># 计算密集型
 from multiprocessing import Process
 from threading import Thread
 import os, time
@@ -901,16 +901,16 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
         l.append(t)
     for p in l:
         p.join()
-    print(time.time()-start_time)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print(time.time()-start_time)</code></pre>
 
-<h3 id="24-2总结"><a href="#24-2总结" class="headerlink" title="24.2总结"></a>24.2总结</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h3 id="24-2总结"><a href="#24-2总结" class="headerlink" title="24.2总结"></a>24.2总结</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 多进程和多线程都有各自的优势
 并且我们后面在写项目的时候通常可以
 	多进程下面再开设多线程
 这样的话既可以利用多核也可以介绍资源消耗
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二十五、死锁现象"><a href="#二十五、死锁现象" class="headerlink" title="二十五、死锁现象"></a>二十五、死锁现象</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from threading import Thread
+<h2 id="二十五、死锁现象"><a href="#二十五、死锁现象" class="headerlink" title="二十五、死锁现象"></a>二十五、死锁现象</h2><pre class="language-python" data-language="python"><code class="language-python">from threading import Thread
 from threading import Lock
 import time
 
@@ -947,9 +947,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
         q.start()
 &quot;&quot;&quot;
 	这就是死锁，你运行了就会发现程序一直在卡死(阻塞)，我们来看原因，一开始第一个线程去抢1锁，抢到以后其他线程就只能看着，然后一线程抢2锁的时候肯定无忧无虑，因为其他线程还在外面待着，然后1线程解了2锁和1锁，这个时候有一个线程一进抢了1锁，1线程又去run2抢了2锁，这时候就尴尬了，2线程要2锁，1线程要1锁，就这成了死锁
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二十六、递归锁"><a href="#二十六、递归锁" class="headerlink" title="二十六、递归锁"></a>二十六、递归锁</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="二十六、递归锁"><a href="#二十六、递归锁" class="headerlink" title="二十六、递归锁"></a>二十六、递归锁</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 递归锁的特点	
 	可以被连续的acquire和release
 	但是只能被第一个抢到这把锁执行上述操作
@@ -960,9 +960,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
 mutexA &#x3D; Lock()
 mutexB &#x3D; Lock()
 # 换成
-mutexA &#x3D; mutexB &#x3D; RLock()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+mutexA &#x3D; mutexB &#x3D; RLock()</code></pre>
 
-<h2 id="二十七、信号量"><a href="#二十七、信号量" class="headerlink" title="二十七、信号量"></a>二十七、信号量</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;注意 信号量在每个阶段所代表的都不一样，在这里表示的是互斥锁&quot;&quot;&quot;
+<h2 id="二十七、信号量"><a href="#二十七、信号量" class="headerlink" title="二十七、信号量"></a>二十七、信号量</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;注意 信号量在每个阶段所代表的都不一样，在这里表示的是互斥锁&quot;&quot;&quot;
 # 如果把互斥锁比喻成厕所，那么信号量就是公共厕所(多个厕所)
 
 # 代码演练
@@ -984,9 +984,9 @@ def task(name):
 if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     for i in range(20):
         q &#x3D; Thread(target&#x3D;task, args&#x3D;(f&#39;伞兵&#123;i&#125;号&#39;, ))
-        q.start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        q.start()</code></pre>
 
-<h2 id="二十八、EVENT事件"><a href="#二十八、EVENT事件" class="headerlink" title="二十八、EVENT事件"></a>二十八、EVENT事件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;Event事件 是指一些线程和一些进程都会在其他的线程进程结束后才会执行，类似于发射信号&#39;&#39;&#39;
+<h2 id="二十八、EVENT事件"><a href="#二十八、EVENT事件" class="headerlink" title="二十八、EVENT事件"></a>二十八、EVENT事件</h2><pre class="language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;Event事件 是指一些线程和一些进程都会在其他的线程进程结束后才会执行，类似于发射信号&#39;&#39;&#39;
 
 from threading import Thread
 from threading import Event
@@ -1013,9 +1013,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     q.start()
     for i in range(10):
         q1 &#x3D; Thread(target&#x3D;car, args&#x3D;(f&#39;&#123;i&#125;&#39;, ))
-        q1.start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        q1.start()</code></pre>
 
-<h2 id="二十九、线程Q"><a href="#二十九、线程Q" class="headerlink" title="二十九、线程Q"></a>二十九、线程Q</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
+<h2 id="二十九、线程Q"><a href="#二十九、线程Q" class="headerlink" title="二十九、线程Q"></a>二十九、线程Q</h2><pre class="language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
 同一个进程下可以开启多个线程，并且数据是共享的
 那我们干嘛还非要进程下使用队列呢
 因为队列 是  管道+锁
@@ -1045,16 +1045,16 @@ q.put((10, &#39;asd&#39;))
 q.put((1, &#39;qwe&#39;))
 q.put((-5, &#39;zxc&#39;))
 print(q.get())
-# 数字越小 优先级越高<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 数字越小 优先级越高</code></pre>
 
-<h2 id="三十、池的概念介绍"><a href="#三十、池的概念介绍" class="headerlink" title="三十、池的概念介绍"></a>三十、池的概念介绍</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="三十、池的概念介绍"><a href="#三十、池的概念介绍" class="headerlink" title="三十、池的概念介绍"></a>三十、池的概念介绍</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 	回想一下我们之前的tcp通信下的并发，每来一个客户端我们就创建一个进程
 	但是无论是开设进程也好线程也好，都会消耗资源，开多个线程消耗资源少，但是终归也是消耗了资源，我们的计算机硬件能让我们开无限多的进程或者线程嘛，当然不能，硬件的开发速度远比不上软件的开发速度，所以我们有个原则就是保证计算机硬件安全前，去最大化的利用资源
 &quot;&quot;&quot;
 &quot;&quot;&quot;池的概念&quot;&quot;&quot;
-# 池是在保证计算机硬件安全的时候，最大化利用起计算机资源的概念，他降低了程序运行效率，但是提高了计算机硬件的安全性，从而保证你的软件运行正常<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 池是在保证计算机硬件安全的时候，最大化利用起计算机资源的概念，他降低了程序运行效率，但是提高了计算机硬件的安全性，从而保证你的软件运行正常</code></pre>
 
-<h2 id="三十一、线程池"><a href="#三十一、线程池" class="headerlink" title="三十一、线程池"></a>三十一、线程池</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from concurrent.futures import ThreadPoolExecutor
+<h2 id="三十一、线程池"><a href="#三十一、线程池" class="headerlink" title="三十一、线程池"></a>三十一、线程池</h2><pre class="language-python" data-language="python"><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 import time
 
 pool &#x3D; ThreadPoolExecutor(5)  # 括号内的参数可以不传 默认是开启计算机cpu个数的5倍的线程 写了5池子里就是开启5个线程
@@ -1084,9 +1084,9 @@ for t in l_list:
     print(&#39;----&gt;&#39;, t.result())
     &quot;&quot;&quot;
     result 会让程序并发变成串行，并且返回异步提交任务的返回结果
-    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &quot;&quot;&quot;</code></pre>
 
-<h2 id="三十二、进程池"><a href="#三十二、进程池" class="headerlink" title="三十二、进程池"></a>三十二、进程池</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from concurrent.futures import ProcessPoolExecutor
+<h2 id="三十二、进程池"><a href="#三十二、进程池" class="headerlink" title="三十二、进程池"></a>三十二、进程池</h2><pre class="language-python" data-language="python"><code class="language-python">from concurrent.futures import ProcessPoolExecutor
 import time
 
 pool &#x3D; ProcessPoolExecutor(5)  # 括号内的参数可以不传 默认是开启计算机cpu个数的5倍的线程 写了5池子里就是开启5个线程
@@ -1122,9 +1122,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
 	from concurrent.futures import ProcessPoolExecutor
 	pool &#x3D; ProcessPoolExecutor(5) 
 	 res &#x3D; pool.submit(task, i).add_done_callback(callback)
-&#39;&#39;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#39;&#39;&#39;</code></pre>
 
-<h2 id="三十三、协程基本原理"><a href="#三十三、协程基本原理" class="headerlink" title="三十三、协程基本原理"></a>三十三、协程基本原理</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="三十三、协程基本原理"><a href="#三十三、协程基本原理" class="headerlink" title="三十三、协程基本原理"></a>三十三、协程基本原理</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 进程：资源单位
 线程：执行单位
 协程：其实这个就是程序员意淫出来的一个 根本不存在
@@ -1139,9 +1139,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
 	cpu两种切换	
 		1.程序遇到IP
 		2.程序长时间占用
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="三十四、GENVET模块"><a href="#三十四、GENVET模块" class="headerlink" title="三十四、GENVET模块"></a>三十四、GENVET模块</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="三十四、GENVET模块"><a href="#三十四、GENVET模块" class="headerlink" title="三十四、GENVET模块"></a>三十四、GENVET模块</h2><pre class="language-python" data-language="python"><code class="language-python"></code></pre>
 
             </div>
 

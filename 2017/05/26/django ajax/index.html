@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、AJAX简介"><a href="#一、AJAX简介" class="headerlink" title="一、AJAX简介"></a>一、AJAX简介</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、AJAX简介"><a href="#一、AJAX简介" class="headerlink" title="一、AJAX简介"></a>一、AJAX简介</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 异步提交
 局部刷新
 例子:github注册
@@ -177,9 +177,9 @@ AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服
 Ajax我们只学习jQuery封装之后的版本(不学原生的 原生的复杂并且在实际项目中也一般不用)
 所以我们在前端页面使用ajax的时候需要确保导入了jQuery
 ps:并不只有jQuery能够实现ajax，其他的框架也可以 但是换汤不换药 原理是一样的
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二、AJAX基本语法"><a href="#二、AJAX基本语法" class="headerlink" title="二、AJAX基本语法"></a>二、AJAX基本语法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="二、AJAX基本语法"><a href="#二、AJAX基本语法" class="headerlink" title="二、AJAX基本语法"></a>二、AJAX基本语法</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 页面上有三个input框
 	在前两个框中输入数字 点击按钮 朝后端发送ajax请求
 	后端计算出结果 再返回给前端动态展示的到第三个input框中
@@ -214,9 +214,9 @@ HttpResponse解决方式
 	1.自己在前端利用JSON.parse()
 	2.在ajax里面配置一个参数
 			(后面再讲)
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="三、前后端传输数据编码格式"><a href="#三、前后端传输数据编码格式" class="headerlink" title="三、前后端传输数据编码格式"></a>三、前后端传输数据编码格式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 我们主要研究post请求数据的编码格式
+<h2 id="三、前后端传输数据编码格式"><a href="#三、前后端传输数据编码格式" class="headerlink" title="三、前后端传输数据编码格式"></a>三、前后端传输数据编码格式</h2><pre class="language-python" data-language="python"><code class="language-python"># 我们主要研究post请求数据的编码格式
 &quot;&quot;&quot;
 get请求数据就是直接放在url后面的
 url?username&#x3D;jason&amp;password&#x3D;123
@@ -252,9 +252,9 @@ url?username&#x3D;jason&amp;password&#x3D;123
 	默认的编码格式也是urlencoded
   数据格式:username&#x3D;jason&amp;age&#x3D;20
 	django后端针对符合urlencoded编码格式的数据都会自动帮你解析封装到request.POST中
-  	username&#x3D;jason&amp;age&#x3D;20	&gt;&gt;&gt; request.POST<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  	username&#x3D;jason&amp;age&#x3D;20	&gt;&gt;&gt; request.POST</code></pre>
 
-<h2 id="四、AJAX发送JSON格式数据"><a href="#四、AJAX发送JSON格式数据" class="headerlink" title="四、AJAX发送JSON格式数据"></a>四、AJAX发送JSON格式数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="四、AJAX发送JSON格式数据"><a href="#四、AJAX发送JSON格式数据" class="headerlink" title="四、AJAX发送JSON格式数据"></a>四、AJAX发送JSON格式数据</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 前后端传输数据的时候一定要确保编码格式跟数据真正的格式是一致的
 不要骗人家!!!
 
@@ -295,9 +295,9 @@ ajax发送json格式数据需要注意点
 	1.contentType参数指定成:application&#x2F;json
 	2.数据是真正的json格式数据
 	3.django后端不会帮你处理json格式数据需要你自己去request.body获取并处理
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="五、AJAX发送文件"><a href="#五、AJAX发送文件" class="headerlink" title="五、AJAX发送文件"></a>五、AJAX发送文件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="五、AJAX发送文件"><a href="#五、AJAX发送文件" class="headerlink" title="五、AJAX发送文件"></a>五、AJAX发送文件</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 ajax发送文件需要借助于js内置对象FormData
 
 &quot;&quot;&quot;
@@ -348,9 +348,9 @@ def ab_file(request):
 				contentType:false,  &#x2F;&#x2F; 不需使用任何编码 django后端能够自动识别formdata对象
         processData:false,  &#x2F;&#x2F; 告诉你的浏览器不要对你的数据进行任何处理
 	3.django后端能够直接识别到formdata对象并且能够将内部的普通键值自动解析并封装到request.POST中 文件数据自动解析并封装到request.FILES中
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="六、DJANGO自带的序列化组件"><a href="#六、DJANGO自带的序列化组件" class="headerlink" title="六、DJANGO自带的序列化组件"></a>六、DJANGO自带的序列化组件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="六、DJANGO自带的序列化组件"><a href="#六、DJANGO自带的序列化组件" class="headerlink" title="六、DJANGO自带的序列化组件"></a>六、DJANGO自带的序列化组件</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 如果发现你可以直接使用MySQL但是无法使用sqlite3
 不要慌张不要恐惧 你只需要按照之前MySQL的操作将sqlite3的驱动装一下即可
 &quot;&quot;&quot;
@@ -408,9 +408,9 @@ def ab_ser(request):
     &quot;fields&quot;: &#123;&quot;username&quot;: &quot;tank&quot;, &quot;age&quot;: 40, &quot;gender&quot;: 4&#125;&#125;
 ]
 写接口就是利用序列化组件渲染数据然后写一个接口文档 该交代交代一下就完事
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="七、DJANGO结合SWEETALERT实现二次操作"><a href="#七、DJANGO结合SWEETALERT实现二次操作" class="headerlink" title="七、DJANGO结合SWEETALERT实现二次操作"></a>七、DJANGO结合SWEETALERT实现二次操作</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#96;&#96;&#96;
+<h2 id="七、DJANGO结合SWEETALERT实现二次操作"><a href="#七、DJANGO结合SWEETALERT实现二次操作" class="headerlink" title="七、DJANGO结合SWEETALERT实现二次操作"></a>七、DJANGO结合SWEETALERT实现二次操作</h2><pre class="language-python" data-language="python"><code class="language-python">&#96;&#96;&#96;
 
 ## 八、批量插入数据
 
@@ -432,9 +432,9 @@ def ab_ser(request):
 &quot;&quot;&quot;
 第一种方法其实是可行的，但是打开页面要载入很长时间
 第二种方法就更为便捷，打开页面载入时间很短，所以就要用第二种方法
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="九、自定义的分页器拷贝及使用"><a href="#九、自定义的分页器拷贝及使用" class="headerlink" title="九、自定义的分页器拷贝及使用"></a>九、自定义的分页器拷贝及使用</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="九、自定义的分页器拷贝及使用"><a href="#九、自定义的分页器拷贝及使用" class="headerlink" title="九、自定义的分页器拷贝及使用"></a>九、自定义的分页器拷贝及使用</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 当我们需要使用到非django内置的第三方功能或者组件代码的时候
 我们一般情况下会创建一个名为utils文件夹 在该文件夹内对模块进行功能性划分
 	utils可以在每个应用下创建 具体结合实际情况
@@ -468,7 +468,7 @@ page_queryset &#x3D; book_queryset[page_obj.start:page_obj.end]
   
 &quot;&quot;&quot;
 你们只需要掌握如何拷贝使用 以及大致的推导思路即可
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
             </div>
 

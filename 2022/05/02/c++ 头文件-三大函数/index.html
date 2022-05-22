@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+                <pre class="language-c++" data-language="c++"><code class="language-c++">int main() &#123;
   String s1();
   String s2(&quot;hello&quot;);
   String s3(s1);  &#x2F;&#x2F; 拷贝构造
@@ -168,9 +168,9 @@
 &#x2F;*
 	我们接下来要根据这个编写头文件 class类来呼应这个调用
 	当class类 有指针的时候 我们不能依靠编译器给我们的特殊函数 需要自己写
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="Big-Three-三个特殊函数"><a href="#Big-Three-三个特殊函数" class="headerlink" title="Big Three 三个特殊函数"></a>Big Three 三个特殊函数</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class String &#123;
+<h2 id="Big-Three-三个特殊函数"><a href="#Big-Three-三个特殊函数" class="headerlink" title="Big Three 三个特殊函数"></a>Big Three 三个特殊函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class String &#123;
 public:
   String(const char* cstr &#x3D; 0);  &#x2F;&#x2F; 构造函数
   String(const String &amp;str);  &#x2F;&#x2F; 他是接受自己的东西 所以这是一个拷贝构造 
@@ -180,9 +180,9 @@ public:
   char* get_c_str() const &#123; return m_data; &#125;
 private:
   char* m_data
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
-<h2 id="ctor-amp-dtor"><a href="#ctor-amp-dtor" class="headerlink" title="ctor&amp;dtor"></a>ctor&amp;dtor</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">inline String::String(const char* cstr &#x3D; 0) &#123;
+<h2 id="ctor-amp-dtor"><a href="#ctor-amp-dtor" class="headerlink" title="ctor&amp;dtor"></a>ctor&amp;dtor</h2><pre class="language-c++" data-language="c++"><code class="language-c++">inline String::String(const char* cstr &#x3D; 0) &#123;
   if (cstr) &#123;
     m_data &#x3D; new char[strlen(cstr)+1];
     strcpy(m_data, cstr);
@@ -196,20 +196,20 @@ inline String::~String() &#123;
   delete[] m_data;
 &#125;  &#x2F;&#x2F; 析构函数 因为上述构造函数 为str分配了一个内存 所以要释放内存 要不然会内存泄漏
 
-&#x2F;&#x2F; class 有指针 多半要做动态分配 所以就要在析构函数 释放内存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; class 有指针 多半要做动态分配 所以就要在析构函数 释放内存</code></pre>
 
-<h2 id="class-with-pointer-members-must-have-copy-ctor-and-拷贝赋值"><a href="#class-with-pointer-members-must-have-copy-ctor-and-拷贝赋值" class="headerlink" title="class with pointer members must have copy ctor and 拷贝赋值"></a>class with pointer members must have copy ctor and 拷贝赋值</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">String a(&quot;Hello&quot;); &#x2F;&#x2F; 这个时候 a 的 data 指向了 &#39;Hello\0&#39; 的地址
+<h2 id="class-with-pointer-members-must-have-copy-ctor-and-拷贝赋值"><a href="#class-with-pointer-members-must-have-copy-ctor-and-拷贝赋值" class="headerlink" title="class with pointer members must have copy ctor and 拷贝赋值"></a>class with pointer members must have copy ctor and 拷贝赋值</h2><pre class="language-c++" data-language="c++"><code class="language-c++">String a(&quot;Hello&quot;); &#x2F;&#x2F; 这个时候 a 的 data 指向了 &#39;Hello\0&#39; 的地址
 String b(&quot;World&quot;); &#x2F;&#x2F; 这个时候 b 的 data 指向了 ‘World\0’ 的地址
-b &#x3D; a; &#x2F;&#x2F; 这个时候 b 就会指向 &#39;Hello\0&#39; 的地址 a&amp;b都指向了同一个地址 可是 &#39;World\0&#39; 还在  造成内存泄漏 而且你改a b就会受到影响 所以这种 &#39;b &#x3D; a&#39; 叫做浅拷贝<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+b &#x3D; a; &#x2F;&#x2F; 这个时候 b 就会指向 &#39;Hello\0&#39; 的地址 a&amp;b都指向了同一个地址 可是 &#39;World\0&#39; 还在  造成内存泄漏 而且你改a b就会受到影响 所以这种 &#39;b &#x3D; a&#39; 叫做浅拷贝</code></pre>
 
-<h2 id="copy-ctor-拷贝构造函数"><a href="#copy-ctor-拷贝构造函数" class="headerlink" title="copy ctor(拷贝构造函数)"></a>copy ctor(拷贝构造函数)</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">inline String::String(const String &amp;str) &#123; &#x2F;&#x2F; 为什么叫构造 因为这是一个构造函数 为什么叫拷贝 因为传参是自己
+<h2 id="copy-ctor-拷贝构造函数"><a href="#copy-ctor-拷贝构造函数" class="headerlink" title="copy ctor(拷贝构造函数)"></a>copy ctor(拷贝构造函数)</h2><pre class="language-c++" data-language="c++"><code class="language-c++">inline String::String(const String &amp;str) &#123; &#x2F;&#x2F; 为什么叫构造 因为这是一个构造函数 为什么叫拷贝 因为传参是自己
   m_data &#x3D; new char[strlen(str.m_data)+1]; &#x2F;&#x2F; 直接取另一个object的private data
   strcpy(m_data, str.m_data);
 &#125;
 
-&#x2F;&#x2F; 这也是深拷贝<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这也是深拷贝</code></pre>
 
-<h2 id="copy-assignment-operator-拷贝赋值函数"><a href="#copy-assignment-operator-拷贝赋值函数" class="headerlink" title="copy assignment operator(拷贝赋值函数)"></a>copy assignment operator(拷贝赋值函数)</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 这个函数就是 如果 有 1 a&amp;b 先把 a 清销毁, 2 在new一个内存空间 , 3 在把 b 拷贝到 a 里面来
+<h2 id="copy-assignment-operator-拷贝赋值函数"><a href="#copy-assignment-operator-拷贝赋值函数" class="headerlink" title="copy assignment operator(拷贝赋值函数)"></a>copy assignment operator(拷贝赋值函数)</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 这个函数就是 如果 有 1 a&amp;b 先把 a 清销毁, 2 在new一个内存空间 , 3 在把 b 拷贝到 a 里面来
 
 inline String&amp; String::operator &#x3D; (const String&amp; str) &#123;
   if (this &#x3D;&#x3D; &amp;str) &#123;  &#x2F;&#x2F; 检测自我赋值
@@ -220,7 +220,7 @@ inline String&amp; String::operator &#x3D; (const String&amp; str) &#123;
   strcpy(m_data, str.m_data);  &#x2F;&#x2F; 3
   return *this;
 &#125;
-&#x2F;&#x2F; 一定要检测自我赋值 要不然 a&amp;b 同时指向一个内存地址 然后杀掉之后 a&amp;b就指定不到值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 一定要检测自我赋值 要不然 a&amp;b 同时指向一个内存地址 然后杀掉之后 a&amp;b就指定不到值</code></pre>
 
 
             </div>

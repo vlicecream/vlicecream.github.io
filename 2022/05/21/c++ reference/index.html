@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,46 +156,46 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int x &#x3D; 0;
+                <h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><pre class="language-c++" data-language="c++"><code class="language-c++">int x &#x3D; 0;
 int* p &#x3D; &amp;x; &#x2F;&#x2F; p is a pointer to x
 int&amp; p &#x3D; x; &#x2F;&#x2F; r is a reference to x
 int x2 &#x3D; 5;
 
 r &#x3D; x2;
-int&amp; r2&#x3D; r;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+int&amp; r2&#x3D; r;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	int* p &#x3D; &amp;x;
 	int *p &#x3D; &amp;x;
 	以上两行都是可以的 但是个人更喜欢是int* p
 	因为这样的话 p 就是一个变量  这个变量是什么类型 是 pointer to int
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
   int* 是 pointer to int
   int&amp; 是 reference to int
   比如 int* p &#x3D; &amp;x; 我们会说 指针指向了x
   而 int&amp; r &#x3D; x; 我们会说 r 代表了 x 其实 r 里面有一个指针指向了 x
   r 只要代表了 x 就不可以代表别的变量 pointer不同 pointer还可以指向别的变量
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	所以我们接下来看
 	int x2 &#x3D; 5;
 	r &#x3D; x2;
 	这两行代码 r 不能重新代表其他的变量了 所以 经过 &quot;r &#x3D; x2;&quot; 后 r 和 x 都变成了 5
 	再然后 int r2 &#x3D; r; 现在r2是5 (&quot;r2&quot; 代表 &quot;r&quot; 亦相当于代表了 &quot;x&quot;)
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="假象"><a href="#假象" class="headerlink" title="假象"></a>假象</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<h2 id="假象"><a href="#假象" class="headerlink" title="假象"></a>假象</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	我们观察 &quot;x&quot; 跟 &quot;r&quot; 的地址和大小 会发现
 	1. sizeof(r) &#x3D; sizeof(x)
   2. &amp;x &#x3D;&#x3D; &amp;r
   object 和其 reference 的大小相同 地址也相同(但是都是假象)
   java里面的所有变量都是reference
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="reference的常见用途"><a href="#reference的常见用途" class="headerlink" title="reference的常见用途"></a>reference的常见用途</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<h2 id="reference的常见用途"><a href="#reference的常见用途" class="headerlink" title="reference的常见用途"></a>reference的常见用途</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	reference 就是一种漂亮的pointer
 	reference 通常不用于声明变量 而用于参数类型和返回类型的描述
 *&#x2F; 
@@ -212,9 +212,9 @@ func(obj);
 
 &#x2F;&#x2F; 我们能发现 pass by pointer 跟其他的都不一样 而 &quot;value&quot; 和 &quot;reference&quot; 被调用端 写法相同 调用端接口也相同
 
-&#x2F;&#x2F; 这也就是我们最好用reference 不行再value<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这也就是我们最好用reference 不行再value</code></pre>
 
-<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 以下被视为 &quot;same signature&quot; 所以两者不能同时存在
+<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 以下被视为 &quot;same signature&quot; 所以两者不能同时存在
 double image(const double&amp; im) &#123; ... &#125;
 double image(const double im) &#123; ... &#125;
 
@@ -224,11 +224,11 @@ double image(const double im) &#123; ... &#125;
 	说白了就是不含 return type
 	
 	这两行 如果不算相同的签名 那么 imag(obj) 就不知道要调用谁
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 问题就来了 const 算不算函数签名呢 
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 问题就来了 const 算不算函数签名呢 
 
-***是滴<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+***是滴</code></pre>
 
 
 

@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -157,7 +157,7 @@
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="开文说明"><a href="#开文说明" class="headerlink" title="开文说明"></a>开文说明</h2><p>本文章大多数都是根据以下代码为模范讲解</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class complex &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">class complex &#123;
 public:
   complex(double r &#x3D; 0, double i &#x3D; 0) : re(r), im(i) &#123;&#125;
   complex&amp; operator+&#x3D;(const complex&amp;);
@@ -168,15 +168,15 @@ private:
   double re, im;
 
   friend complex&amp; __doapl(complex*, const complex&amp;);
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
 <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>What?</p>
 <p>​	如果你想要创建一个对象，有一个函数会自动调用起来，这个就是构造函数</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#123;
   complex c1(2, 1);  &#x2F;&#x2F; 有参数的创建对象
   complex c2;  &#x2F;&#x2F; 无参数的创建对象
   complex*p &#x3D; new comolex(4);  &#x2F;&#x2F; 动态的创建对象 是一个指针
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
 <p>Tips:</p>
 <p>​	构造函数的名称一定要跟类的名称一致</p>
@@ -184,62 +184,62 @@ private:
 <p>​	参数可以为默认的</p>
 <p>​	返回值是没有指定类型的 也不需要写</p>
 <p>​	re(r) im(i) 是初始列 因为我们在这里面将r i初始化 等同于 在接下来的大括号写{ re &#x3D; r; im &#x3D; i;}</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">complex(double r &#x3D; 0, double i &#x3D; 0) : re(r), im(i) &#123;&#125;
+<pre class="language-c++" data-language="c++"><code class="language-c++">complex(double r &#x3D; 0, double i &#x3D; 0) : re(r), im(i) &#123;&#125;
 &#x2F;&#x2F; r &#x3D; 0 i &#x3D; 0 都是设置了默认参数
 &#x2F;&#x2F; re(r) im(i) 是初始列 不需要指定类型
 
 &#x2F;&#x2F; ps:上述的一行可以写成 但是推荐上述写法 在初始列 里面将re im 初始化
-complex(double r &#x3D; 0, double i &#x3D; 0) &#123; re &#x3D; r; im &#x3D; i; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+complex(double r &#x3D; 0, double i &#x3D; 0) &#123; re &#x3D; r; im &#x3D; i; &#125;</code></pre>
 
 <h2 id="Overloading-重载"><a href="#Overloading-重载" class="headerlink" title="Overloading(重载)"></a>Overloading(重载)</h2><p>构造函数可以有很多个</p>
 <p>如果你在class body里定义了</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">double real () const &#123; return re; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-c++" data-language="c++"><code class="language-c++">double real () const &#123; return re; &#125;</code></pre>
 
 <p>又在外部定义了</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void real(double r) &#123; re &#x3D; r; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-c++" data-language="c++"><code class="language-c++">void real(double r) &#123; re &#x3D; r; &#125;</code></pre>
 
 <p>这两个是不冲突的 因为编译器会把他们换成不一样的名字</p>
 <p>那么我们来看看冲突的</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">complex (double r &#x3D; 0, double i &#x3D; 0) : re (r), im (i) &#123; &#125;
-complex (): re(0), im(0) &#123; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="language-c++" data-language="c++"><code class="language-c++">complex (double r &#x3D; 0, double i &#x3D; 0) : re (r), im (i) &#123; &#125;
+complex (): re(0), im(0) &#123; &#125;</code></pre>
 
 <p>上述两个不是不行的 因为 如果这么调用</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#123;
   complex c1;
   complex c2();
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
 <p>这个时候他就会分不清到底要调用哪一个 complex 所以就会报错</p>
 <h2 id="当构造函数在private区域里"><a href="#当构造函数在private区域里" class="headerlink" title="当构造函数在private区域里"></a>当构造函数在private区域里</h2><p>构造函数在private里面我们无法通过正常的模式构造对象</p>
 <p>所以一般我们是不会把构造函数放在私有区域</p>
 <p>有一个设计模式 Singleton 会把构造函数放在private里</p>
-<h2 id="Const-常量成员函数"><a href="#Const-常量成员函数" class="headerlink" title="Const(常量成员函数)"></a>Const(常量成员函数)</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">double real () const &#123; return re; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Const-常量成员函数"><a href="#Const-常量成员函数" class="headerlink" title="Const(常量成员函数)"></a>Const(常量成员函数)</h2><pre class="language-c++" data-language="c++"><code class="language-c++">double real () const &#123; return re; &#125;</code></pre>
 
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">作用：代表 数据内容 不可改变    <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-c" data-language="c"><code class="language-c">作用：代表 数据内容 不可改变    </code></pre>
 
 <p>                                                                                                                                                                                                                                                                                                           </p>
 <h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>By value:  值传递  把这个值都传过去  最好别用</p>
 <p>By reference: 指针传递 传指针 一直都会是8 btye 最好传指针</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Complex&amp; operator +&#x3D; &#123; const complex&amp; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-c++" data-language="c++"><code class="language-c++">Complex&amp; operator +&#x3D; &#123; const complex&amp; &#125;</code></pre>
 
 <p>像这个其实就是 by reference</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">complex (double r &#x3D; 0, double i &#x3D; 0): re (r), im (r) &#123; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-c++" data-language="c++"><code class="language-c++">complex (double r &#x3D; 0, double i &#x3D; 0): re (r), im (r) &#123; &#125;</code></pre>
 
 <p>这个就会是 by value</p>
 <h2 id="返回值传递"><a href="#返回值传递" class="headerlink" title="返回值传递"></a>返回值传递</h2><p>跟参数传递一致 最好使用指针传递</p>
-<h2 id="friend-友元"><a href="#friend-友元" class="headerlink" title="friend(友元)"></a>friend(友元)</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">private:
+<h2 id="friend-友元"><a href="#friend-友元" class="headerlink" title="friend(友元)"></a>friend(友元)</h2><pre class="language-c++" data-language="c++"><code class="language-c++">private:
 	double re, im;
-	friend complex&amp; __dopal (conplex*, const complex&amp;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+	friend complex&amp; __dopal (conplex*, const complex&amp;)</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">inline complex&amp; __doapl (complex* ths, const complex&amp; r) &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">inline complex&amp; __doapl (complex* ths, const complex&amp; r) &#123;
   ths-&gt;re +&#x3D; r.re;
   ths-&gt;im +&#x3D; r.im;
   return *ths
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
 <p>Friend的意义在于打开封装的大门 可以直接从私有区域拿数据</p>
 <p>就好比 借钱 陌生人不可能借钱给他 但是朋友可以考虑 但是朋友太多借太多钱也不好 所以凭你自己选择 如果不设置friend也可以 绕个弯从函数拿 只是慢点</p>
-<h2 id="相同class的各个obj互为friend"><a href="#相同class的各个obj互为friend" class="headerlink" title="相同class的各个obj互为friend"></a>相同class的各个obj互为friend</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class complex &#123;
+<h2 id="相同class的各个obj互为friend"><a href="#相同class的各个obj互为friend" class="headerlink" title="相同class的各个obj互为friend"></a>相同class的各个obj互为friend</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class complex &#123;
 public:
   complex(double r &#x3D; 0, double i &#x3D; 0) : re(r), im(i) &#123;&#125;
   
@@ -248,14 +248,14 @@ public:
 private:
   double re, im;
 &#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#123;
   complex c1(2, 1);
   complex c2;
   
   c2.func(c1);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
 <p>在上述代码中 我们竟然可以通过func直接获取到private中的值 可是我们可是也没有设置friend</p>
 <p>因为 (看小标题)</p>

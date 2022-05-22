@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -157,7 +157,7 @@
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png" alt="image-20220521220322042"></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
  我们根据上述图片来看看例子
 *&#x2F;
 
@@ -168,9 +168,9 @@ str.print();
 	我们 创建了一个常量 str 并且调用print方法
 	但是如果当初设计 string::print() 时候没有指明const 那么会直接报错
 	因为 &quot;const obj&quot; 调用 non-const 成员函数的时候 是不允许的～～
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 我们再来看一个标准库 string 的例子 class template std::basic_string&lt;...&gt; 有如下两个 成员函数
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 我们再来看一个标准库 string 的例子 class template std::basic_string&lt;...&gt; 有如下两个 成员函数
 
 chatT operator[] (size_type pos) const &#123; ... &#125; &#x2F;&#x2F; 不必考虑COW
 
@@ -185,7 +185,7 @@ reference operator[] (size_type pos) &#123; ... &#125; &#x2F;&#x2F; 必须考虑
 	
 	
 	当成员函数的 “const&quot; 和 &quot;non-const&quot; 版本同时存在 const obj 只能调用const 版本 “non-const obj” 只能调用&quot;non-const&quot;版本
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
 
             </div>

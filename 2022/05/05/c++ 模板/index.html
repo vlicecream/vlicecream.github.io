@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;typename T&gt;
+                <h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename T&gt;
 class complex &#123;
 public:
   complex(T r &#x3D; 0, T i &#x3D; 0) : re(r), im(i) &#123;&#125;
@@ -168,37 +168,37 @@ private:
   T re, im;
 
   friend complex &amp;__doapl(complex *, const complex &amp;);
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">complex&lt;double&gt; c1(2.5, 3.5);
+<pre class="language-c++" data-language="c++"><code class="language-c++">complex&lt;double&gt; c1(2.5, 3.5);
 
-&#x2F;&#x2F; 显而易见 他的作用就是可变类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 显而易见 他的作用就是可变类型</code></pre>
 
-<h2 id="func-template-函数模板"><a href="#func-template-函数模板" class="headerlink" title="func template 函数模板"></a>func template 函数模板</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
+<h2 id="func-template-函数模板"><a href="#func-template-函数模板" class="headerlink" title="func template 函数模板"></a>func template 函数模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
 inline const T&amp; min(const T&amp; a, const T&amp; b) &#123;
     return b &lt; a ? b : a;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">stone r1(2, 3), r2(3, 3), r3;
-r3 &#x3D; min(r1, r2);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="language-c++" data-language="c++"><code class="language-c++">stone r1(2, 3), r2(3, 3), r3;
+r3 &#x3D; min(r1, r2);</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class stone &#123;
+<pre class="language-c++" data-language="c++"><code class="language-c++">class stone &#123;
 public:
   stone(int w, int h, int we) : _w(w), _h(h), _weight(we) &#123;&#125;
   bool operator &lt; (const stone&amp; rns) const &#123; return _weight &lt; rhs._weight; &#125;
 private:
   int _w, _h, _weight;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
   解说
 	func template 也是相当于class template 作用
     如果我们用stone类型去生成对象
     实参推导结果: T为stone 于是调用stone::operator&lt;
     所以stone必须实现&quot;&lt;&quot;方法
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<h2 id="member-template-成员函数"><a href="#member-template-成员函数" class="headerlink" title="member template 成员函数"></a>member template 成员函数</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T1, class T2&gt;
+<h2 id="member-template-成员函数"><a href="#member-template-成员函数" class="headerlink" title="member template 成员函数"></a>member template 成员函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T1, class T2&gt;
 struct pair &#123;
     typedef T1 first_type;
     typedef T2 second_type;
@@ -217,9 +217,9 @@ struct pair &#123;
 	我们在外面设置了T1 T2之后 在里面的成员模板又可以让我们在设置一个U1 U2
 	这么说是不是有点听不太懂
 	让我们看个新例子
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
     Base1 鱼类 Dervied1 鲫鱼
     Base2 鸟类 Dervied2 麻雀
     假设我们有这4个class 一一对应继承关系
@@ -232,9 +232,9 @@ pair&lt;Base1, Base2&gt;p2&lt;pair&lt;Dervied1, Dervied2&gt;()&gt;;
 *&#x2F; 
 
 &#x2F;&#x2F; 正着当然可以 反之思维上则说不通 因为鸟类&gt;麻雀 为了显示这种逻辑 成员函数就因此诞生而来
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T1, class T2&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T1, class T2&gt;
 struct pair &#123;
     ...
     T1 first;
@@ -249,9 +249,9 @@ struct pair &#123;
 &#x2F;*
 	看上述的构造函数 传入U1 U2还得first(p.first)等 这样子如果是上述正着来也可以 反之则不行
 	在智能指针中 其实也有实现
-*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*&#x2F;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;typename _Tp&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename _Tp&gt;
 class shared_ptr:public __shared_ptr&lt;_Tp&gt; &#123;
     ...
     template&lt;typename _Tp1&gt;
@@ -264,15 +264,15 @@ class shared_ptr:public __shared_ptr&lt;_Tp&gt; &#123;
 Base1* ptr &#x3D; new Derived1;
 shared_ptr&lt;Base1&gt; sptr(new Derived1);
 
-&#x2F;&#x2F; 智能指针里面可以用成员函数 指向继承自己的成员<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 智能指针里面可以用成员函数 指向继承自己的成员</code></pre>
 
 
 
-<h2 id="specialization-模板特化"><a href="#specialization-模板特化" class="headerlink" title="specialization 模板特化"></a>specialization 模板特化</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class key&gt;
+<h2 id="specialization-模板特化"><a href="#specialization-模板特化" class="headerlink" title="specialization 模板特化"></a>specialization 模板特化</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class key&gt;
 struct hash &#123; &#125;;
-&#x2F;&#x2F; 这样的 直接在template 后面的叫做泛化(全泛化)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这样的 直接在template 后面的叫做泛化(全泛化)</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;&gt;
 struct hash&lt;char&gt; &#123;
   size_t operator() (char x) const &#123; return x; &#125;
 &#125;;
@@ -284,11 +284,11 @@ struct hash&lt;int&gt; &#123;
 
 &#x2F;&#x2F; 这样的就叫特化
 cout &lt;&lt; hash&lt;int&gt;() (1000);
-&#x2F;&#x2F; 这样就会直接找到hash&lt;int&gt;然后操作符重载 找到&quot;()&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 这样就会直接找到hash&lt;int&gt;然后操作符重载 找到&quot;()&quot;</code></pre>
 
 
 
-<h2 id="模板偏特化—个数上的偏"><a href="#模板偏特化—个数上的偏" class="headerlink" title="模板偏特化—个数上的偏"></a>模板偏特化—个数上的偏</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T, typename Alloc&#x3D;...&gt; &#x2F;&#x2F; Alloc 分配器 
+<h2 id="模板偏特化—个数上的偏"><a href="#模板偏特化—个数上的偏" class="headerlink" title="模板偏特化—个数上的偏"></a>模板偏特化—个数上的偏</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T, typename Alloc&#x3D;...&gt; &#x2F;&#x2F; Alloc 分配器 
 class vector &#123;
     ...
 &#125;;
@@ -298,9 +298,9 @@ class vector &#123;
 template &lt;typename Alloc&#x3D;....&gt; &#x2F;&#x2F; Alloc 分配器 
 class vector&lt;bool, Alloc&gt; &#123;
     ...
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
-<h2 id="模板偏特化—范围上的偏"><a href="#模板偏特化—范围上的偏" class="headerlink" title="模板偏特化—范围上的偏"></a>模板偏特化—范围上的偏</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; 
+<h2 id="模板偏特化—范围上的偏"><a href="#模板偏特化—范围上的偏" class="headerlink" title="模板偏特化—范围上的偏"></a>模板偏特化—范围上的偏</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; 
 class C &#123;
     ...
 &#125;;
@@ -308,9 +308,9 @@ class C &#123;
 template &lt;typename T&gt; 
 class C&lt;T*&gt; &#123;
     ...
-&#125;; &#x2F;&#x2F; 这样的意思就是我要求编译器 如果是指针的T 就走这个 不是就走上方<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;; &#x2F;&#x2F; 这样的意思就是我要求编译器 如果是指针的T 就走这个 不是就走上方</code></pre>
 
-<h2 id="模板模板参数"><a href="#模板模板参数" class="headerlink" title="模板模板参数"></a>模板模板参数</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T,  &#x2F;&#x2F; 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
+<h2 id="模板模板参数"><a href="#模板模板参数" class="headerlink" title="模板模板参数"></a>模板模板参数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T,  &#x2F;&#x2F; 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
 		template &lt;typename T&gt; &#x2F;&#x2F; 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
 			class Container
          &gt;
@@ -324,12 +324,12 @@ public:
 XCls&lt;string, list&gt; mylst1;
 &#x2F;&#x2F; 模板模板参数 是为了像这样 我们可以创建一个list容器 里面是string类型 非常灵活 就相当于list&lt;string&gt; c;
 &#x2F;&#x2F; 但是 这样是不行的因为很多容器参数需要好几个 我们平时写一个 是因为其他的参数有默认
-&#x2F;&#x2F; 所以我们需要加两行代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 所以我们需要加两行代码</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;typename T&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename T&gt;
 using lst &#x3D; list&lt;T, allocator&lt;T&gt;&gt;;
 
-&#x2F;&#x2F; 加了这两行代码 再 XCls&lt;string, lst&gt; mylst2; 即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 加了这两行代码 再 XCls&lt;string, lst&gt; mylst2; 即可</code></pre>
 
 
             </div>

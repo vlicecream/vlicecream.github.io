@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -158,10 +158,10 @@
             <div class="typo" style="padding: 3rem;">
                 <p>今天把hexo自带的代码高亮插件换成了hexo-prism-plugin。</p>
 <p>三连后发现Json里的大括号都被转成数字’&amp;#123’ or ‘&amp;#135’(即使用npm直接安装的话版本为2.3.0均会存在这个问题)</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">node_modules&#x2F;hexo-prism-plugin&#x2F;src&#x2F;index.js
-map里未支持大括号，尝试补上&quot;**&amp;#123;**&quot;与&quot;**&amp;#125;**&quot;后发现有效，即在map中加上对应字符即可:**<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="language-go" data-language="go"><code class="language-go">node_modules&#x2F;hexo-prism-plugin&#x2F;src&#x2F;index.js
+map里未支持大括号，尝试补上&quot;**&amp;#123;**&quot;与&quot;**&amp;#125;**&quot;后发现有效，即在map中加上对应字符即可:**</code></pre>
 
-<pre class="line-numbers language-json" data-language="json"><code class="language-json">const map &#x3D; &#123;
+<pre class="language-json" data-language="json"><code class="language-json">const map &#x3D; &#123;
   &#39;&#39;&#39;: &#39;\&#39;&#39;,
   &#39;&amp;&#39;: &#39;&amp;&#39;,
   &#39;&gt;&#39;: &#39;&gt;&#39;,
@@ -169,7 +169,7 @@ map里未支持大括号，尝试补上&quot;**&amp;#123;**&quot;与&quot;**&amp
   &#39;&quot;&#39;: &#39;&quot;&#39;,
   &#39;&amp;#123;&#39;: &#39;&#123;&#39;,
   &#39;&amp;#125;&#39;: &#39;&#125;&#39;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;</code></pre>
 
 
             </div>

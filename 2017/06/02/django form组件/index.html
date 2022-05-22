@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、FORMS表单前戏"><a href="#一、FORMS表单前戏" class="headerlink" title="一、FORMS表单前戏"></a>一、FORMS表单前戏</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、FORMS表单前戏"><a href="#一、FORMS表单前戏" class="headerlink" title="一、FORMS表单前戏"></a>一、FORMS表单前戏</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 写一个注册功能
 	获取用户名和密码 利用form表单提交数据
 	在后端判断用户名和密码是否符合一定的条件
@@ -221,9 +221,9 @@ forms组件
 		实际是获取到用户选择的所有商品的主键值
 		然后在后端查询出所有商品的价格 再次计算一遍
 		如果跟前端一致 那么完成支付如果不一致直接拒绝
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="二、FORMS组件类书写"><a href="#二、FORMS组件类书写" class="headerlink" title="二、FORMS组件类书写"></a>二、FORMS组件类书写</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from django import forms
+<h2 id="二、FORMS组件类书写"><a href="#二、FORMS组件类书写" class="headerlink" title="二、FORMS组件类书写"></a>二、FORMS组件类书写</h2><pre class="language-python" data-language="python"><code class="language-python">from django import forms
 
 
 class MyForm(forms.Form):
@@ -232,9 +232,9 @@ class MyForm(forms.Form):
     # 密码也是一样
     password &#x3D; forms.CharField(min_length&#x3D;3, max_length&#x3D;8)
     # 邮箱必须符合邮箱格式 @xx.com
-    emali &#x3D; forms.EmailField()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    emali &#x3D; forms.EmailField()</code></pre>
 
-<h2 id="三、FORMS组件校验数据"><a href="#三、FORMS组件校验数据" class="headerlink" title="三、FORMS组件校验数据"></a>三、FORMS组件校验数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="三、FORMS组件校验数据"><a href="#三、FORMS组件校验数据" class="headerlink" title="三、FORMS组件校验数据"></a>三、FORMS组件校验数据</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 1.测试环境的准备 可以自己拷贝代码准备
 2.其实在pycharm里面已经帮你准备一个测试环境
 	python console
@@ -263,9 +263,9 @@ class MyForm(forms.Form):
     False
 &quot;&quot;&quot;
 也就意味着校验数据的时候 默认情况下数据可以多传但是绝不可能少传
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="四、FORMS组件渲染标签"><a href="#四、FORMS组件渲染标签" class="headerlink" title="四、FORMS组件渲染标签"></a>四、FORMS组件渲染标签</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="四、FORMS组件渲染标签"><a href="#四、FORMS组件渲染标签" class="headerlink" title="四、FORMS组件渲染标签"></a>四、FORMS组件渲染标签</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 forms组件只会自动帮你渲染获取用户输入的标签(input select radio checkbox)
 不能帮你渲染提交按钮
 &quot;&quot;&quot;
@@ -294,9 +294,9 @@ forms组件只会自动帮你渲染获取用户输入的标签(input select radi
 label属性默认展示的是类中定义的字段首字母大写的形式
 也可以自己修改 直接给字段对象加label属性即可
 	 username &#x3D; forms.CharField(min_length&#x3D;3,max_length&#x3D;8,label&#x3D;&#39;用户名&#39;)
-&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="五、FORMS组件渲染错误信息"><a href="#五、FORMS组件渲染错误信息" class="headerlink" title="五、FORMS组件渲染错误信息"></a>五、FORMS组件渲染错误信息</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="五、FORMS组件渲染错误信息"><a href="#五、FORMS组件渲染错误信息" class="headerlink" title="五、FORMS组件渲染错误信息"></a>五、FORMS组件渲染错误信息</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 浏览器会自动帮你校验数据 但是前端的校验弱不禁风
 如何让浏览器不做校验
 	&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot; novalidate&gt;
@@ -364,9 +364,9 @@ label属性默认展示的是类中定义的字段首字母大写的形式
                                      &#39;invalid&#39;:&#39;邮箱格式不正确&#39;,
                                      &#39;required&#39;: &quot;邮箱不能为空&quot;
                                  &#125;
-                                 )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                                 )</code></pre>
 
-<h2 id="六、FORMS组件钩子函数-HOOK"><a href="#六、FORMS组件钩子函数-HOOK" class="headerlink" title="六、FORMS组件钩子函数(HOOK)"></a>六、FORMS组件钩子函数(HOOK)</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="六、FORMS组件钩子函数-HOOK"><a href="#六、FORMS组件钩子函数-HOOK" class="headerlink" title="六、FORMS组件钩子函数(HOOK)"></a>六、FORMS组件钩子函数(HOOK)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 在特定的节点自动触发完成响应操作
 
 钩子函数在forms组件中就类似于第二道关卡，能够让我们自定义校验规则
@@ -401,9 +401,9 @@ label属性默认展示的是类中定义的字段首字母大写的形式
         if not confirm_password &#x3D;&#x3D; password:
             self.add_error(&#39;confirm_password&#39;,&#39;两次密码不一致&#39;)
         # 将钩子函数钩出来数据再放回去
-        return self.cleaned_data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        return self.cleaned_data</code></pre>
 
-<h2 id="七、重要参数介绍"><a href="#七、重要参数介绍" class="headerlink" title="七、重要参数介绍"></a>七、重要参数介绍</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">label		字段名
+<h2 id="七、重要参数介绍"><a href="#七、重要参数介绍" class="headerlink" title="七、重要参数介绍"></a>七、重要参数介绍</h2><pre class="language-python" data-language="python"><code class="language-python">label		字段名
 error_messages  自定义报错信息
 initial  默认值
 required  控制字段是否必填
@@ -460,7 +460,7 @@ required  控制字段是否必填
         label&#x3D;&quot;爱好&quot;,
         initial&#x3D;[1, 3],
         widget&#x3D;forms.widgets.CheckboxSelectMultiple()
-    )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    )</code></pre>
 
             </div>
 

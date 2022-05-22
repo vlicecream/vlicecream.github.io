@@ -63,7 +63,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-funky.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
     
 		
 <!-- Layouts -->
@@ -156,9 +156,9 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="利用二分法的场景"><a href="#利用二分法的场景" class="headerlink" title="利用二分法的场景"></a>利用二分法的场景</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 在排序的数组中 并且是select 即可尝试二分法<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="利用二分法的场景"><a href="#利用二分法的场景" class="headerlink" title="利用二分法的场景"></a>利用二分法的场景</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 在排序的数组中 并且是select 即可尝试二分法</code></pre>
 
-<h2 id="二分法的模板"><a href="#二分法的模板" class="headerlink" title="二分法的模板"></a>二分法的模板</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># python
+<h2 id="二分法的模板"><a href="#二分法的模板" class="headerlink" title="二分法的模板"></a>二分法的模板</h2><pre class="language-python" data-language="python"><code class="language-python"># python
 left, right &#x3D; 0, len(array)-1
 while left &lt;&#x3D; right:
   mid &#x3D; (left+right)&#x2F;2
@@ -167,9 +167,9 @@ while left &lt;&#x3D; right:
   elif array[mid] &lt; target:
     left &#x3D; mid + 1
   else:
-    right &#x3D; mid - 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    right &#x3D; mid - 1</code></pre>
 
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; golang
+<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; golang
 left, right :&#x3D; 0, len(array)-1
 for left &lt;&#x3D; right &#123;
   mid :&#x3D; (left+right)&#x2F;2
@@ -180,22 +180,22 @@ for left &lt;&#x3D; right &#123;
   &#125; else &#123;
     right &#x3D; mid - 1
   &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c++
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c++
 int left &#x3D; 0, right &#x3D; size(nums)-1;
 while (right &gt;&#x3D; left) &#123;
   int mid &#x3D; (right + left)&#x2F;2;
   if (nums[mid] &#x3D;&#x3D; target) return mid;
   if (nums[mid] &lt; target) left &#x3D; mid + 1;
   if (nums[mid] &gt; target) right &#x3D; mid - 1;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
 
 
-<h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;search-insert-position&#x2F; 搜索插入位置<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;search-insert-position&#x2F; 搜索插入位置</code></pre>
 
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 搜索插入位置
+<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 搜索插入位置
 func searchInsert(nums []int, target int) int &#123;
   left, right, ans :&#x3D; 0, len(nums) -1, len(nums)
   for left &lt;&#x3D; right &#123;
@@ -208,7 +208,7 @@ func searchInsert(nums []int, target int) int &#123;
     &#125;
   &#125;
   return ans
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;</code></pre>
 
 
             </div>
