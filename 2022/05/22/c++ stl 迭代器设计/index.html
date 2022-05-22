@@ -151,12 +151,66 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++-iterator.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 迭代器设计原则</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++-iterator.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 迭代器设计原则&amp;Traits</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Iterator需要遵循的原则"><a href="#Iterator需要遵循的原则" class="headerlink" title="Iterator需要遵循的原则"></a>Iterator需要遵循的原则</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"></code></pre>
+                <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220522215645095.png" alt="image-20220522215645095"></p>
+<h2 id="Iterator必须提供的5种-associated-types"><a href="#Iterator必须提供的5种-associated-types" class="headerlink" title="Iterator必须提供的5种 associated types"></a>Iterator必须提供的5种 associated types</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">Ref</span><span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">Ptr</span><span class="token operator">></span>
+<span class="token keyword">struct</span> <span class="token class-name">__list_iterator</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">typedef</span> std<span class="token double-colon punctuation">::</span>bidirectional_iterator_tag iterator_category<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> _Tp value_type<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> _Tp<span class="token operator">*</span> pointer<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> _Tp<span class="token operator">&amp;</span> reference<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> ptrdiff_t difference_type<span class="token punctuation">;</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+	这也就是为什么 讲解 “list” 的时候 说了 5个一定要写出来
+	上述图 画了 一开始 算法要问迭代器5个问题
+*/</span>
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">I</span><span class="token operator">></span>
+<span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">algorithm</span><span class="token punctuation">(</span>I first<span class="token punctuation">,</span> I last<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  I<span class="token double-colon punctuation">::</span>iterator_category
+  I<span class="token double-colon punctuation">::</span>pointer
+  I<span class="token double-colon punctuation">::</span>reference
+  I<span class="token double-colon punctuation">::</span>value_type
+  I<span class="token double-colon punctuation">::</span>difference_type
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+这样设计 iterator 就能更好的回答 算法的问题</code></pre>
+
+<h2 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+	这样就有一个问题 玩意iterator不是class 就是一个pointer呢
+	pointer 也算一个iterator 一个退化的iterator
+*/</span>
+
+<span class="token comment">/*
+	最好的方法就是写一个中间层去处理 也就是 iterator Traits
+*/</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// iterator Traits 用以分离class iterators 和 non-class iterators</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220522220555088.png" alt="image-20220522220555088"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+	上述图片的 1 2 3 用了模板偏特化 不了解的可以看下 模板知识
+	然后 3 的typedef 注意时T 而不是 const T
+		因为value_type的主要目的是用来声明变量 而声明一个无法被赋值的变量没什么用
+		所以iterator即便是 const  "value type" 也不应加上const
+*/</span></code></pre>
+
+<h2 id="其实还有各式各样的Traits"><a href="#其实还有各式各样的Traits" class="headerlink" title="其实还有各式各样的Traits"></a>其实还有各式各样的Traits</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; type traits
+&#x2F;&#x2F; iterator traits  
+&#x2F;&#x2F; char traits
+&#x2F;&#x2F; allocator traits
+&#x2F;&#x2F; pointer traits
+&#x2F;&#x2F; array traits
+
+&#x2F;&#x2F; 在这里就不一一介绍了 大家可以看源码</code></pre>
 
 
             </div>
