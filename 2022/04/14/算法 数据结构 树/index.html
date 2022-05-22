@@ -156,33 +156,33 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;*
+                <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
 	当我们在刷算法题的时候 一般回空间换时间 因为在如今科技发达的社会 硬件已经很牛逼了 所以相比较 时间更为重要
 	还有一个点 就是升维的思想 像数组和链表其实就是一维  跳表就是二维 因此解决了一些难题
 	树其实就是升维思想的一种体现
-*&#x2F; 
+*/</span> 
 
-&#x2F;*
+<span class="token comment">/*
 	常见的二维数据结构 树  图
 	树跟图的差别在于有没有环
 	链表就是特殊化的树 因为有两个指针
 	树就是特殊化的图 没有环的图就是树
-*&#x2F;</code></pre>
+*/</span></code></pre>
 
 <h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><pre class="language-go" data-language="go"><code class="language-go"></code></pre>
 
-<h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><pre class="language-python" data-language="python"><code class="language-python"># python
-class TreeNode:
-	def __init__(self, val):
-		self.val &#x3D; val
-		self.left, self.right &#x3D; None, None</code></pre>
+<h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># python</span>
+<span class="token keyword">class</span> <span class="token class-name">TreeNode</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>val <span class="token operator">=</span> val
+		self<span class="token punctuation">.</span>left<span class="token punctuation">,</span> self<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token boolean">None</span></code></pre>
 
-<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; go
-struct TreeNode &#123;
-  val int
-  left *TreeNode
-  right *TreeNode
-&#125;</code></pre>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// go</span>
+<span class="token keyword">struct</span> TreeNode <span class="token punctuation">&#123;</span>
+  val <span class="token builtin">int</span>
+  left <span class="token operator">*</span>TreeNode
+  right <span class="token operator">*</span>TreeNode
+<span class="token punctuation">&#125;</span></code></pre>
 
 <pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c++
 struct TreeNode &#123;
@@ -192,129 +192,129 @@ struct TreeNode &#123;
   TreeNode(int x): val(x), left(NULL), right(NULL)
 &#125;</code></pre>
 
-<h2 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h2><pre class="language-python" data-language="python"><code class="language-python"># python
-def preorder(self, root):  # 前序遍历
-  if root:
-    self traverse_path.append(root.val)
-    self preorder(root.left)
-    self preorder(root.right)
+<h2 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># python</span>
+<span class="token keyword">def</span> <span class="token function">preorder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 前序遍历</span>
+  <span class="token keyword">if</span> root<span class="token punctuation">:</span>
+    self traverse_path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    self preorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+    self preorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
     
-def inorder(self, root):  # 中序遍历 二叉搜索树中序遍历一定升序的
-  if root:
-    self inorder(root.left)
-    self traverse_path.append(root.val)
-    self inorder(root.right)
+<span class="token keyword">def</span> <span class="token function">inorder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 中序遍历 二叉搜索树中序遍历一定升序的</span>
+  <span class="token keyword">if</span> root<span class="token punctuation">:</span>
+    self inorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+    self traverse_path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    self inorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
  
-def postorder(self, root):
-  if root:
-    self postorder(root.left)
-    self postorder(root.right)
-    self traverse_path.append(root.val)</code></pre>
+<span class="token keyword">def</span> <span class="token function">postorder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">if</span> root<span class="token punctuation">:</span>
+    self postorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+    self postorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+    self traverse_path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span></code></pre>
 
-<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; go
-func preorderTraversal(root *TreeNode) (res []int) &#123; &#x2F;&#x2F; 前序遍历 根-左-右
-    var preorder func(node *TreeNode)
-    preorder &#x3D; func(node *TreeNode) &#123;
-        if node &#x3D;&#x3D; nil &#123;
-            return
-        &#125;
-        res &#x3D; append(res, node.Val)
-        preorder(node.Left)
-        preorder(node.Right)
-    &#125;
-    preorder(root)
-    return res
-&#125;
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// go</span>
+<span class="token keyword">func</span> <span class="token function">preorderTraversal</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token punctuation">(</span>res <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 前序遍历 根-左-右</span>
+    <span class="token keyword">var</span> preorder <span class="token keyword">func</span><span class="token punctuation">(</span>node <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span>
+    preorder <span class="token operator">=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>node <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> node <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">&#125;</span>
+        res <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> node<span class="token punctuation">.</span>Val<span class="token punctuation">)</span>
+        <span class="token function">preorder</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+        <span class="token function">preorder</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">preorder</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> res
+<span class="token punctuation">&#125;</span>
 
-func inorderTraversal(root *TreeNode) (res []int) &#123; &#x2F;&#x2F; 中序遍历 左-根-右
-    var inorder func(node *TreeNode)
-    inorder &#x3D; func(node *TreeNode) &#123;
-        if node &#x3D;&#x3D; nil &#123;
-            return
-        &#125;
-        inorder(node.Left)
-        res &#x3D; append(res, node.Val)
-        inorder(node.Right)        
-    &#125;
-    inorder(root)
-    return res
-&#125;
+<span class="token keyword">func</span> <span class="token function">inorderTraversal</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token punctuation">(</span>res <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 中序遍历 左-根-右</span>
+    <span class="token keyword">var</span> inorder <span class="token keyword">func</span><span class="token punctuation">(</span>node <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span>
+    inorder <span class="token operator">=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>node <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> node <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+        res <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> node<span class="token punctuation">.</span>Val<span class="token punctuation">)</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>        
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> res
+<span class="token punctuation">&#125;</span>
 
-func postorderTraversal(root *TreeNode) (res []int) &#123; &#x2F;&#x2F; 后序遍历 左-右-根
-    var postorder func(node *TreeNode)
-    postorder &#x3D; func(node *TreeNode) &#123;
-        if node &#x3D;&#x3D; nil &#123;
-            return
-        &#125;
-        postorder(node.Left)
-        postorder(node.Right)
-        res &#x3D; append(res, node.Val)
-    &#125;
-    postorder(root)
-    return res
-&#125;</code></pre>
+<span class="token keyword">func</span> <span class="token function">postorderTraversal</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token punctuation">(</span>res <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 后序遍历 左-右-根</span>
+    <span class="token keyword">var</span> postorder <span class="token keyword">func</span><span class="token punctuation">(</span>node <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span>
+    postorder <span class="token operator">=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>node <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> node <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">postorder</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+        <span class="token function">postorder</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
+        res <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> node<span class="token punctuation">.</span>Val<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">postorder</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> res
+<span class="token punctuation">&#125;</span></code></pre>
 
-<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; c++
-class Solution &#123;  &#x2F;&#x2F; 前序遍历
-public:
-    void preorder(TreeNode* root, vector&lt;int&gt; &amp;res) &#123;
-        if (root &#x3D;&#x3D; nullptr) return;
-        res.push_back(root-&gt;val);
-        preorder(root-&gt;left, res);
-        preorder(root-&gt;right, res);
-    &#125;
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">// c++</span>
+class Solution <span class="token punctuation">&#123;</span>  <span class="token comment">// 前序遍历</span>
+public<span class="token operator">:</span>
+    <span class="token keyword">void</span> <span class="token function">preorder</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>res<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>root<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">preorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">preorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;
-        vector&lt;int&gt; res;
-        preorder(root, res);
-        return res;
-    &#125;
-&#125;;
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">preorderTraversal</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> res<span class="token punctuation">;</span>
+        <span class="token function">preorder</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
-class Solution &#123; &#x2F;&#x2F; 中序遍历
-public:
-    void inorder(TreeNode* root, vector&lt;int&gt; &amp;res) &#123;
-        if (root &#x3D;&#x3D; nullptr) return;
-        inorder(root-&gt;left, res);
-        res.push_back(root-&gt;val);
-        inorder(root-&gt;right, res);
-    &#125;
+class Solution <span class="token punctuation">&#123;</span> <span class="token comment">// 中序遍历</span>
+public<span class="token operator">:</span>
+    <span class="token keyword">void</span> <span class="token function">inorder</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>res<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>root<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123;
-        vector&lt;int&gt; res;
-        inorder(root, res);
-        return res;
-    &#125;
-&#125;;
-
-
-class Solution &#123;  &#x2F;&#x2F; 后序遍历
-public:
-    void postorder(TreeNode* root, vector&lt;int&gt;&amp; res) &#123;
-        if (root &#x3D;&#x3D; nullptr) return;
-        postorder(root-&gt;left, res);
-        postorder(root-&gt;right, res);
-        res.push_back(root-&gt;val);
-    &#125;
-    vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123;
-        vector&lt;int&gt; res;
-        postorder(root, res);
-        return res;
-    &#125;
-&#125;;</code></pre>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">inorderTraversal</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> res<span class="token punctuation">;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 
+class Solution <span class="token punctuation">&#123;</span>  <span class="token comment">// 后序遍历</span>
+public<span class="token operator">:</span>
+    <span class="token keyword">void</span> <span class="token function">postorder</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> res<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token function">postorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">postorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>root<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">postorderTraversal</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> res<span class="token punctuation">;</span>
+        <span class="token function">postorder</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
-<h2 id="题目推荐"><a href="#题目推荐" class="headerlink" title="题目推荐"></a>题目推荐</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;*
-	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;binary-tree-preorder-traversal&#x2F;submissions&#x2F;  二叉树的前序遍历
-	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;binary-tree-inorder-traversal&#x2F;submissions&#x2F;  二叉树的中序遍历
-	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;binary-tree-postorder-traversal&#x2F;submissions&#x2F; 二叉树的后序遍历
-*&#x2F;
 
-&#x2F;*
-	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;validate-binary-search-tree&#x2F;submissions&#x2F; 验证二叉搜索树
-	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;invert-binary-tree&#x2F;submissions&#x2F;   翻转二叉树
-*&#x2F;</code></pre>
+
+<h2 id="题目推荐"><a href="#题目推荐" class="headerlink" title="题目推荐"></a>题目推荐</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
+	https://leetcode-cn.com/problems/binary-tree-preorder-traversal/submissions/  二叉树的前序遍历
+	https://leetcode-cn.com/problems/binary-tree-inorder-traversal/submissions/  二叉树的中序遍历
+	https://leetcode-cn.com/problems/binary-tree-postorder-traversal/submissions/ 二叉树的后序遍历
+*/</span>
+
+<span class="token comment">/*
+	https://leetcode-cn.com/problems/validate-binary-search-tree/submissions/ 验证二叉搜索树
+	https://leetcode-cn.com/problems/invert-binary-tree/submissions/   翻转二叉树
+*/</span></code></pre>
 
 
 

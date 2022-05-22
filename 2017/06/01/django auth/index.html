@@ -156,157 +156,157 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、AUTH模块前戏"><a href="#一、AUTH模块前戏" class="headerlink" title="一、AUTH模块前戏"></a>一、AUTH模块前戏</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、AUTH模块前戏"><a href="#一、AUTH模块前戏" class="headerlink" title="一、AUTH模块前戏"></a>一、AUTH模块前戏</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 我们在执行数据库迁移命令会自动生成很多表
 auth_user
 django在启动之后就可以做直接访问admin路由，需要输入用户名和密码，数据参考的就是auth_user表，并且还必须是管理员用户才能进入
 
 创建超级用户(管理员)
 python3 manage.py createsuperuser
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h2 id="二、AUTH模块的使用"><a href="#二、AUTH模块的使用" class="headerlink" title="二、AUTH模块的使用"></a>二、AUTH模块的使用</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
-# views
-    from django.shortcuts import render, HttpResponse, redirect
-    from django.contrib import auth
-    from django.contrib.auth.decorators import login_required
-    from django.contrib.auth.models import User
+<h2 id="二、AUTH模块的使用"><a href="#二、AUTH模块的使用" class="headerlink" title="二、AUTH模块的使用"></a>二、AUTH模块的使用</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 代码演示
+<span class="token comment"># views</span>
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span> HttpResponse<span class="token punctuation">,</span> redirect
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> auth
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>decorators <span class="token keyword">import</span> login_required
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>models <span class="token keyword">import</span> User
 
-    # Create your views here.
+    <span class="token comment"># Create your views here.</span>
 
-    &quot;&quot;&quot;
+    <span class="token triple-quoted-string string">"""
     我们再用auth的时候 用就用全套的auth提供的方法
-    &quot;&quot;&quot;
+    """</span>
 
 
-    def form_input(request):
-        # 判断是否为POST
-        if request.method &#x3D;&#x3D; &#39;POST&#39;:
-            # 获取前端输入内容
-            username &#x3D; request.POST.get(&#39;username&#39;)
-            password &#x3D; request.POST.get(&#39;password&#39;)
-            &quot;&quot;&quot;
+    <span class="token keyword">def</span> <span class="token function">form_input</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 判断是否为POST</span>
+        <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 获取前端输入内容</span>
+            username <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+            password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+            <span class="token triple-quoted-string string">"""
             验证密码 有两道难题
             1.表在哪
             2.密文怎么对比
-            &quot;&quot;&quot;
-            # 直接用auth模块即可，但是要注意必须把两个参数传进去才行
-            user_obj &#x3D; auth.authenticate(username&#x3D;username, password&#x3D;password)
-            print(user_obj)  # 用户对象 如果上述账号密码不正确则返回一个None
-            # 登陆成功即保存用户数据
-            auth.login(request, user_obj)  # 为什么不用session方法，因为我们用全套的auth方法，而且用了这个auth方法不管在哪你都能request.user拿到登录用户
-            return redirect(&#39;&#x2F;home&#x2F;&#39;)
-        return render(request, &#39;form_input.html&#39;)
+            """</span>
+            <span class="token comment"># 直接用auth模块即可，但是要注意必须把两个参数传进去才行</span>
+            user_obj <span class="token operator">=</span> auth<span class="token punctuation">.</span>authenticate<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span> password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">)</span>  <span class="token comment"># 用户对象 如果上述账号密码不正确则返回一个None</span>
+            <span class="token comment"># 登陆成功即保存用户数据</span>
+            auth<span class="token punctuation">.</span>login<span class="token punctuation">(</span>request<span class="token punctuation">,</span> user_obj<span class="token punctuation">)</span>  <span class="token comment"># 为什么不用session方法，因为我们用全套的auth方法，而且用了这个auth方法不管在哪你都能request.user拿到登录用户</span>
+            <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">'/home/'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'form_input.html'</span><span class="token punctuation">)</span>
 
 
-    @login_required
-    def home(request):
-        print(request.user)  # 依然是用户对象，如果不登录直接拿就是匿名用户
-        # 我们可以用这个内置方法来判断是不是匿名用户
-        print(request.user.is_authenticated)
-        return HttpResponse(&#39;welcome&#39;)
+    <span class="token decorator annotation punctuation">@login_required</span>
+    <span class="token keyword">def</span> <span class="token function">home</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>user<span class="token punctuation">)</span>  <span class="token comment"># 依然是用户对象，如果不登录直接拿就是匿名用户</span>
+        <span class="token comment"># 我们可以用这个内置方法来判断是不是匿名用户</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>is_authenticated<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'welcome'</span><span class="token punctuation">)</span>
 
 
-    @login_required
-    def set_password(request):
-        # 检测是否为POST
-        if request.method &#x3D;&#x3D; &#39;POST&#39;:
-            # 获取到用户数据
-            old_password &#x3D; request.POST.get(&#39;old_password&#39;)
-            new_password &#x3D; request.POST.get(&#39;new_password&#39;)
-            confirm_password &#x3D; request.POST.get(&#39;confirm_password&#39;)
-            # 对比两次密码是否一致
-            if new_password &#x3D;&#x3D; confirm_password:
-                # 对比老密码是否正确,这个地方得用新方法
-                is_right &#x3D; request.user.check_password(old_password)
-                if is_right:
-                    request.user.set_password(new_password)  # 仅仅是在修改对象属性
-                    request.user.save()  # 这一步才是真正保存进数据库的一步
-                    return HttpResponse(&#39;success&#39;)
-        return render(request, &#39;set_password.html&#39;)
+    <span class="token decorator annotation punctuation">@login_required</span>
+    <span class="token keyword">def</span> <span class="token function">set_password</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 检测是否为POST</span>
+        <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 获取到用户数据</span>
+            old_password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'old_password'</span><span class="token punctuation">)</span>
+            new_password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'new_password'</span><span class="token punctuation">)</span>
+            confirm_password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'confirm_password'</span><span class="token punctuation">)</span>
+            <span class="token comment"># 对比两次密码是否一致</span>
+            <span class="token keyword">if</span> new_password <span class="token operator">==</span> confirm_password<span class="token punctuation">:</span>
+                <span class="token comment"># 对比老密码是否正确,这个地方得用新方法</span>
+                is_right <span class="token operator">=</span> request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>check_password<span class="token punctuation">(</span>old_password<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> is_right<span class="token punctuation">:</span>
+                    request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>set_password<span class="token punctuation">(</span>new_password<span class="token punctuation">)</span>  <span class="token comment"># 仅仅是在修改对象属性</span>
+                    request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 这一步才是真正保存进数据库的一步</span>
+                    <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'success'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'set_password.html'</span><span class="token punctuation">)</span>
 
 
-    def logout(request):
-        auth.logout(request)
-        return redirect(&#39;&#x2F;login&#x2F;&#39;)
+    <span class="token keyword">def</span> <span class="token function">logout</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        auth<span class="token punctuation">.</span>logout<span class="token punctuation">(</span>request<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">)</span>
 
 
-    def register(request):
-        if request.method &#x3D;&#x3D; &#39;POST&#39;:
-            username &#x3D; request.POST.get(&#39;username&#39;)
-            password &#x3D; request.POST.get(&#39;password&#39;)
-            User.objects.create_user(username&#x3D;username, password&#x3D;password)
-        return render(request, &#39;form_input.html&#39;)
+    <span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
+            username <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+            password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+            User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create_user<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span> password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'form_input.html'</span><span class="token punctuation">)</span>
 
     
-# urls
-    from django.conf.urls import url
-    from django.contrib import admin
-    from app01 import views
-    urlpatterns &#x3D; [
-        url(r&#39;^admin&#x2F;&#39;, admin.site.urls),
-        url(r&#39;^index&#x2F;&#39;, views.form_input),
-        url(r&#39;^home&#x2F;&#39;, views.home),
-        url(r&#39;^set_password&#x2F;&#39;, views.set_password),
-        url(r&#39;^logout&#x2F;&#39;, views.logout),
-    	url(r&#39;^register&#x2F;&#39;, views.register),
-    ]</code></pre>
+<span class="token comment"># urls</span>
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+    <span class="token keyword">from</span> app01 <span class="token keyword">import</span> views
+    urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^index/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>form_input<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^home/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>home<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^set_password/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>set_password<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^logout/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>logout<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    	url<span class="token punctuation">(</span><span class="token string">r'^register/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>register<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span></code></pre>
 
-<h2 id="三、基于AUTH模块的使用总结方法"><a href="#三、基于AUTH模块的使用总结方法" class="headerlink" title="三、基于AUTH模块的使用总结方法"></a>三、基于AUTH模块的使用总结方法</h2><pre class="language-python" data-language="python"><code class="language-python">1. 对比用户名&amp;密码是否正确
-	user_obj &#x3D; auth.authenticate(request, username&#x3D;username, password&#x3D;password)
-    # 括号内必须传入用户名和密码
-    print(user_obj)
-    print(user_obj.username)
-    print(user_obj.password)
-2. 保存用户状态
-	auth.login(request, user_obj)
-    # 执行了该方法 无论在哪都能request.user
-3. 判断用户当前是否登录
-	request.user.is_anthenticated()
-4. 获取当前用户
-	request.user
-5. 校验用户是否登录装饰器
-	from django.contrib.auth.decorators import login_required
-    # 局部配置
-    @login_required(login_url&#x3D;&#39;&#x2F;login&#x2F;&#39;)
-    # 全局配置
-    LOGIN_URL &#x3D; &#39;&#x2F;LOGIN&#x2F;&#39;
-    &quot;&quot;&quot;
+<h2 id="三、基于AUTH模块的使用总结方法"><a href="#三、基于AUTH模块的使用总结方法" class="headerlink" title="三、基于AUTH模块的使用总结方法"></a>三、基于AUTH模块的使用总结方法</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 对比用户名<span class="token operator">&amp;</span>密码是否正确
+	user_obj <span class="token operator">=</span> auth<span class="token punctuation">.</span>authenticate<span class="token punctuation">(</span>request<span class="token punctuation">,</span> username<span class="token operator">=</span>username<span class="token punctuation">,</span> password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+    <span class="token comment"># 括号内必须传入用户名和密码</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">.</span>username<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">.</span>password<span class="token punctuation">)</span>
+<span class="token number">2.</span> 保存用户状态
+	auth<span class="token punctuation">.</span>login<span class="token punctuation">(</span>request<span class="token punctuation">,</span> user_obj<span class="token punctuation">)</span>
+    <span class="token comment"># 执行了该方法 无论在哪都能request.user</span>
+<span class="token number">3.</span> 判断用户当前是否登录
+	request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>is_anthenticated<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token number">4.</span> 获取当前用户
+	request<span class="token punctuation">.</span>user
+<span class="token number">5.</span> 校验用户是否登录装饰器
+	<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>decorators <span class="token keyword">import</span> login_required
+    <span class="token comment"># 局部配置</span>
+    <span class="token decorator annotation punctuation">@login_required</span><span class="token punctuation">(</span>login_url<span class="token operator">=</span><span class="token string">'/login/'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 全局配置</span>
+    LOGIN_URL <span class="token operator">=</span> <span class="token string">'/LOGIN/'</span>
+    <span class="token triple-quoted-string string">"""
     1.如果同时有局部和全局，应该听谁的
-    	局部&gt;全局
+    	局部>全局
     2.局部和全局那个好呢
     	全局的好处在于不用写重复代码 但是跳转页面都很单一
     	局部的好处在于不同的视图函数在用户没有登录的情况下可以跳转到不同的页面
-    &quot;&quot;&quot;
-6. 比对原密码
-	request.user.check_password(old_password)
-7. 修改密码
-	request.user.set_password(new_password)  # 只是改变了对象属性
-    request.user.save()  # 这才是修改数据库数据
-8. 注销密码
-	auth.logout(request)
-9. 注册用户
-	# 创建普通用户
-    User.objects.create_user(username&#x3D;username, password&#x3D;password)
-    # 创建超级用户
-	User.objects.create_superuser(username&#x3D;username, email&#x3D;&#39;123@qq.com&#39;, password&#x3D;password)
-    # 在这里创建超级用户必须要填邮箱，而命令行却不用</code></pre>
+    """</span>
+<span class="token number">6.</span> 比对原密码
+	request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>check_password<span class="token punctuation">(</span>old_password<span class="token punctuation">)</span>
+<span class="token number">7.</span> 修改密码
+	request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>set_password<span class="token punctuation">(</span>new_password<span class="token punctuation">)</span>  <span class="token comment"># 只是改变了对象属性</span>
+    request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 这才是修改数据库数据</span>
+<span class="token number">8.</span> 注销密码
+	auth<span class="token punctuation">.</span>logout<span class="token punctuation">(</span>request<span class="token punctuation">)</span>
+<span class="token number">9.</span> 注册用户
+	<span class="token comment"># 创建普通用户</span>
+    User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create_user<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span> password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+    <span class="token comment"># 创建超级用户</span>
+	User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create_superuser<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span> email<span class="token operator">=</span><span class="token string">'123@qq.com'</span><span class="token punctuation">,</span> password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+    <span class="token comment"># 在这里创建超级用户必须要填邮箱，而命令行却不用</span></code></pre>
 
-<h2 id="四、AUTH模块包拓展"><a href="#四、AUTH模块包拓展" class="headerlink" title="四、AUTH模块包拓展"></a>四、AUTH模块包拓展</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
-    from django.db import models
-    from django.contrib.auth.models import User, AbstractUser
+<h2 id="四、AUTH模块包拓展"><a href="#四、AUTH模块包拓展" class="headerlink" title="四、AUTH模块包拓展"></a>四、AUTH模块包拓展</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 代码演示
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> models
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>models <span class="token keyword">import</span> User<span class="token punctuation">,</span> AbstractUser
 
 
-    # Create your models here.
+    <span class="token comment"># Create your models here.</span>
 
-    # 第一种方法  一对一表关系 不推荐
-    class UserDetail(models.Model):
-        phone &#x3D; models.CharField(max_length&#x3D;16)
-        user &#x3D; models.OneToOneField(to&#x3D;&#39;User&#39;)
+    <span class="token comment"># 第一种方法  一对一表关系 不推荐</span>
+    <span class="token keyword">class</span> <span class="token class-name">UserDetail</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        phone <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+        user <span class="token operator">=</span> models<span class="token punctuation">.</span>OneToOneField<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'User'</span><span class="token punctuation">)</span>
 
-    # 第二种方法
-    class UserInfo(AbstractUser):
-        &quot;&quot;&quot;
+    <span class="token comment"># 第二种方法</span>
+    <span class="token keyword">class</span> <span class="token class-name">UserInfo</span><span class="token punctuation">(</span>AbstractUser<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
         如果执行了AbstractUser
         那么在执行数据库迁移命令的时候auth_user表就不会再创建出来了
         而UserInfo表中会出现auth_user所有的字段外加自己扩展的阻断
@@ -318,10 +318,10 @@ python3 manage.py createsuperuser
             2.继承的类里面不要覆盖AbstractUser里面的字段名
                 表里面有的字段都不要动，至扩展额外字段即可
             3.需要在配置文件中告诉django你要用UserInfo代替auth_user
-                AUTH_USER_MODEL &#x3D; &#39;app01.UserInfo&#39;
-                                    &#39;应用名.表名&#39;    
-        &quot;&quot;&quot;
-        phone &#x3D; models.BigIntegerField()</code></pre>
+                AUTH_USER_MODEL = 'app01.UserInfo'
+                                    '应用名.表名'    
+        """</span>
+        phone <span class="token operator">=</span> models<span class="token punctuation">.</span>BigIntegerField<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
             </div>
 

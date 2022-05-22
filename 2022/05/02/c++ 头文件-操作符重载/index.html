@@ -162,26 +162,26 @@
 		+&#x3D; 会用到左边的c2上，如果c2有对+&#x3D;的定义 就会调用+&#x3D;函数 操作符本来也就是一个函数
 *&#x2F;</code></pre>
 
-<pre class="language-c" data-language="c"><code class="language-c">inline complex&amp; __doapl(complex* ths, const complex&amp; r) &#123;
-  ths-&gt;re +&#x3D; r.re;
-  ths-&gt;im +&#x3D; r.im;
-  return *ths; &#x2F;&#x2F; 返回的是一个value
-&#125;
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">inline</span> complex<span class="token operator">&amp;</span> <span class="token function">__doapl</span><span class="token punctuation">(</span>complex<span class="token operator">*</span> ths<span class="token punctuation">,</span> <span class="token keyword">const</span> complex<span class="token operator">&amp;</span> r<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  ths<span class="token operator">-></span>re <span class="token operator">+=</span> r<span class="token punctuation">.</span>re<span class="token punctuation">;</span>
+  ths<span class="token operator">-></span>im <span class="token operator">+=</span> r<span class="token punctuation">.</span>im<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token operator">*</span>ths<span class="token punctuation">;</span> <span class="token comment">// 返回的是一个value</span>
+<span class="token punctuation">&#125;</span>
 
-inline complex&amp; complex::operator+&#x3D;(const complex&amp; r) &#123;
-  return __doapl(this, r);
-&#125;
+<span class="token keyword">inline</span> complex<span class="token operator">&amp;</span> complex<span class="token operator">::</span>operator<span class="token operator">+=</span><span class="token punctuation">(</span><span class="token keyword">const</span> complex<span class="token operator">&amp;</span> r<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">__doapl</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;*
-	这个代码就是重写了 +&#x3D; 函数 多包装了一层
-*&#x2F;</code></pre>
+<span class="token comment">/*
+	这个代码就是重写了 += 函数 多包装了一层
+*/</span></code></pre>
 
 <h2 id="成员函数this"><a href="#成员函数this" class="headerlink" title="成员函数this"></a>成员函数this</h2><pre class="language-c" data-language="c"><code class="language-c">在上述代码其实更深一层看 是这样的
-inline complex&amp; complex::operator+&#x3D;(this, const complex&amp; r) &#123;
-  return __doapl(this, r);
-&#125;
-&#x2F;&#x2F; 这个this 就是操作符左边的 也就是c2 但是在我们代码里面不可以写出来 知道他的存在就好
-&#x2F;&#x2F; 那么this 一定在第一个参数吗 其实是不一定的 但是不用考虑</code></pre>
+<span class="token keyword">inline</span> complex<span class="token operator">&amp;</span> complex<span class="token operator">::</span>operator<span class="token operator">+=</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token keyword">const</span> complex<span class="token operator">&amp;</span> r<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">__doapl</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 这个this 就是操作符左边的 也就是c2 但是在我们代码里面不可以写出来 知道他的存在就好</span>
+<span class="token comment">// 那么this 一定在第一个参数吗 其实是不一定的 但是不用考虑</span></code></pre>
 
 
 
@@ -199,30 +199,30 @@ inline complex&amp; complex::operator+&#x3D;(this, const complex&amp; r) &#123;
 *&#x2F;</code></pre>
 
 <p>传递者无需知道接收者是以referebce形式接收</p>
-<h2 id="class-body-外的各种定义"><a href="#class-body-外的各种定义" class="headerlink" title="class body 外的各种定义"></a>class body 外的各种定义</h2><pre class="language-c" data-language="c"><code class="language-c">inline double imag(const complex&amp; x) &#123;
-  return x.imag();
-&#125;
+<h2 id="class-body-外的各种定义"><a href="#class-body-外的各种定义" class="headerlink" title="class body 外的各种定义"></a>class body 外的各种定义</h2><pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">inline</span> <span class="token keyword">double</span> <span class="token function">imag</span><span class="token punctuation">(</span><span class="token keyword">const</span> complex<span class="token operator">&amp;</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> x<span class="token punctuation">.</span><span class="token function">imag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-inline double real(const complex&amp; x) &#123;
-  return x.real();
-&#125;</code></pre>
+<span class="token keyword">inline</span> <span class="token keyword">double</span> <span class="token function">real</span><span class="token punctuation">(</span><span class="token keyword">const</span> complex<span class="token operator">&amp;</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> x<span class="token punctuation">.</span><span class="token function">real</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-<pre class="language-c" data-language="c"><code class="language-c">&#123;
-  complex c1(2, 1);
-  cout &lt;&lt; imag(c1);
-  cout &lt;&lt; real(c1);
-&#125;</code></pre>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span>
+  complex <span class="token function">c1</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token function">imag</span><span class="token punctuation">(</span>c1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token function">real</span><span class="token punctuation">(</span>c1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-<h2 id="非成员函数"><a href="#非成员函数" class="headerlink" title="非成员函数"></a>非成员函数</h2><pre class="language-c" data-language="c"><code class="language-c">&#123;
-  complex c1(2, 1);
-  complex c2;
+<h2 id="非成员函数"><a href="#非成员函数" class="headerlink" title="非成员函数"></a>非成员函数</h2><pre class="language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span>
+  complex <span class="token function">c1</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  complex c2<span class="token punctuation">;</span>
 	
-  c2 &#x3D; c1 + c2;
-  c2 &#x3D; c1 + 5;
-  c2 &#x3D; 7 + c1;
-&#125;
+  c2 <span class="token operator">=</span> c1 <span class="token operator">+</span> c2<span class="token punctuation">;</span>
+  c2 <span class="token operator">=</span> c1 <span class="token operator">+</span> <span class="token number">5</span><span class="token punctuation">;</span>
+  c2 <span class="token operator">=</span> <span class="token number">7</span> <span class="token operator">+</span> c1<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 下面三个操作符 “+” 由复数和实部组成三种 所以需要有三种全局函数</code></pre>
+<span class="token comment">// 下面三个操作符 “+” 由复数和实部组成三种 所以需要有三种全局函数</span></code></pre>
 
 <pre class="language-c++" data-language="c++"><code class="language-c++">inline complex operator + (const complex&amp; x, const complex&amp; y) &#123;
   return complex (real(x) + real(y), imag(x) + imag(y));
@@ -270,15 +270,15 @@ inline complex operator - (const complex&amp; x) &#123;
   cout &lt;&lt; +c2;
 &#125;</code></pre>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2> <pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 一定要学会构造函数中的初始化变量
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2> <pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">// 一定要学会构造函数中的初始化变量</span>
 
-&#x2F;&#x2F; const 需不需要使用 取决于 这个值需不需要修改
+<span class="token comment">// const 需不需要使用 取决于 这个值需不需要修改</span>
 
-&#x2F;&#x2F; pass by reference &amp; return by reference
-	一切都优先考虑 reference 如果像需要用到临时对象 则return by value
-  同时也要注意 需不需要const
+<span class="token comment">// pass by reference &amp; return by reference</span>
+	一切都优先考虑 reference 如果像需要用到临时对象 则<span class="token keyword">return</span> by value
+  同时也要注意 需不需要<span class="token keyword">const</span>
 
-&#x2F;&#x2F; 数据都放在private 私有空间里 函数大部分放在public</code></pre>
+<span class="token comment">// 数据都放在private 私有空间里 函数大部分放在public</span></code></pre>
 
 
 

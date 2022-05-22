@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、PYCHARM连接数据库-MYSQL"><a href="#一、PYCHARM连接数据库-MYSQL" class="headerlink" title="一、PYCHARM连接数据库(MYSQL)"></a>一、PYCHARM连接数据库(MYSQL)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、PYCHARM连接数据库-MYSQL"><a href="#一、PYCHARM连接数据库-MYSQL" class="headerlink" title="一、PYCHARM连接数据库(MYSQL)"></a>一、PYCHARM连接数据库(MYSQL)</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 三个位置查找数据库相关
 	右侧上方database
 	左下方database
@@ -167,39 +167,39 @@
 pycharm可以充当很多款数据库软件的客户端
 
 	需要提前创建好库
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h2 id="二、DJANGO连接数据库-MYSQL"><a href="#二、DJANGO连接数据库-MYSQL" class="headerlink" title="二、DJANGO连接数据库(MYSQL)"></a>二、DJANGO连接数据库(MYSQL)</h2><pre class="language-python" data-language="python"><code class="language-python"># 默认用的是sqlite3
-DATABASES &#x3D; &#123;
-    &#39;default&#39;: &#123;
-        &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,
-        &#39;NAME&#39;: os.path.join(BASE_DIR, &#39;db.sqlite3&#39;),
-    &#125;
-&#125;
+<h2 id="二、DJANGO连接数据库-MYSQL"><a href="#二、DJANGO连接数据库-MYSQL" class="headerlink" title="二、DJANGO连接数据库(MYSQL)"></a>二、DJANGO连接数据库(MYSQL)</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 默认用的是sqlite3</span>
+DATABASES <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'ENGINE'</span><span class="token punctuation">:</span> <span class="token string">'django.db.backends.sqlite3'</span><span class="token punctuation">,</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span> <span class="token string">'db.sqlite3'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-# django链接MySQL
-	1.第一步配置文件中配置
-  	DATABASES &#x3D; &#123;
-    &#39;default&#39;: &#123;
-        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,
-        &#39;NAME&#39;: &#39;day60&#39;,
-        &#39;USER&#39;:&#39;root&#39;,
-        &#39;PASSWORD&#39;:&#39;admin123&#39;,
-        &#39;HOST&#39;:&#39;127.0.0.1&#39;,
-        &#39;PORT&#39;:3306,
-        &#39;CHARSET&#39;:&#39;utf8&#39;
-    &#125;
-&#125;
-  2.代码声明	
+<span class="token comment"># django链接MySQL</span>
+	<span class="token number">1.</span>第一步配置文件中配置
+  	DATABASES <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'ENGINE'</span><span class="token punctuation">:</span> <span class="token string">'django.db.backends.mysql'</span><span class="token punctuation">,</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'day60'</span><span class="token punctuation">,</span>
+        <span class="token string">'USER'</span><span class="token punctuation">:</span><span class="token string">'root'</span><span class="token punctuation">,</span>
+        <span class="token string">'PASSWORD'</span><span class="token punctuation">:</span><span class="token string">'admin123'</span><span class="token punctuation">,</span>
+        <span class="token string">'HOST'</span><span class="token punctuation">:</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+        <span class="token string">'PORT'</span><span class="token punctuation">:</span><span class="token number">3306</span><span class="token punctuation">,</span>
+        <span class="token string">'CHARSET'</span><span class="token punctuation">:</span><span class="token string">'utf8'</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+  <span class="token number">2.</span>代码声明	
   	django默认用的是mysqldb模块链接MySQL
     但是该模块的兼容性不好 需要手动改为用pymysql链接
     
     你需要告诉django不要用默认的mysqldb还是用pymysql
-    # 在项目名下的init或者任意的应用名下的init文件中书写以下代码都可以
-    import pymysql
-		pymysql.install_as_MySQLdb()</code></pre>
+    <span class="token comment"># 在项目名下的init或者任意的应用名下的init文件中书写以下代码都可以</span>
+    <span class="token keyword">import</span> pymysql
+		pymysql<span class="token punctuation">.</span>install_as_MySQLdb<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
-<h2 id="三、DJANGO-ORM"><a href="#三、DJANGO-ORM" class="headerlink" title="三、DJANGO ORM"></a>三、DJANGO ORM</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="三、DJANGO-ORM"><a href="#三、DJANGO-ORM" class="headerlink" title="三、DJANGO ORM"></a>三、DJANGO ORM</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 ORM. 对象关系映射
 作用:能够让一个不用sql语句的小白也能够通过python 面向对象的代码简单快捷的操作数据库
 不足之处:封装程度太高 有时候sql语句的效率偏低 需要你自己写SQL语句
@@ -212,185 +212,185 @@ ORM. 对象关系映射
 
 
 应用下面的models.py文件
-&quot;&quot;&quot;
+"""</span>
 
-1 先去models.py中书写一个类
-	class User(models.Model):
-    # id int primary_key auto_increment
-    id &#x3D; models.AutoField(primary_key&#x3D;True)
-    # username varchar(32)
-    username &#x3D; models.CharField(max_length&#x3D;32)
-    # password int
-    password &#x3D; models.IntegerField()
+<span class="token number">1</span> 先去models<span class="token punctuation">.</span>py中书写一个类
+	<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># id int primary_key auto_increment</span>
+    <span class="token builtin">id</span> <span class="token operator">=</span> models<span class="token punctuation">.</span>AutoField<span class="token punctuation">(</span>primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token comment"># username varchar(32)</span>
+    username <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+    <span class="token comment"># password int</span>
+    password <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-*************************2 数据库迁移命令*************************
-python3 manage.py makemigrations 将操作记录记录到小本本上(migrations文件夹)
+<span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">*</span><span class="token number">2</span> 数据库迁移命令<span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">*</span>
+python3 manage<span class="token punctuation">.</span>py makemigrations 将操作记录记录到小本本上<span class="token punctuation">(</span>migrations文件夹<span class="token punctuation">)</span>
 
-python3 manage.py migrate  将操作真正的同步到数据库中
-# 只要你修改了models.py中跟数据库相关的代码 就必须重新执行上述的两条命令
-******************************************************************
+python3 manage<span class="token punctuation">.</span>py migrate  将操作真正的同步到数据库中
+<span class="token comment"># 只要你修改了models.py中跟数据库相关的代码 就必须重新执行上述的两条命令</span>
+<span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span>
 
-class User(models.Model):
-    # id int primary_key auto_increment
-    id &#x3D; models.AutoField(primary_key&#x3D;True,verbose_name&#x3D;&#39;主键&#39;)
-    # username varchar(32)
-    username &#x3D; models.CharField(max_length&#x3D;32,verbose_name&#x3D;&#39;用户名&#39;)
-    &quot;&quot;&quot;
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># id int primary_key auto_increment</span>
+    <span class="token builtin">id</span> <span class="token operator">=</span> models<span class="token punctuation">.</span>AutoField<span class="token punctuation">(</span>primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>verbose_name<span class="token operator">=</span><span class="token string">'主键'</span><span class="token punctuation">)</span>
+    <span class="token comment"># username varchar(32)</span>
+    username <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span>verbose_name<span class="token operator">=</span><span class="token string">'用户名'</span><span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">"""
     CharField必须要指定max_length参数 不指定会直接报错
     verbose_name该参数是所有字段都有的 就是用来对字段的解释
-    &quot;&quot;&quot;
-    # password int
-    password &#x3D; models.IntegerField(verbose_name&#x3D;&#39;密码&#39;)
+    """</span>
+    <span class="token comment"># password int</span>
+    password <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span>verbose_name<span class="token operator">=</span><span class="token string">'密码'</span><span class="token punctuation">)</span>
 
 
-class Author(models.Model):
-    # 由于一张表中必须要有一个主键字段 并且一般情况下都叫id字段
-    # 所以orm当你不定义主键字段的时候 orm会自动帮你创建一个名为id主键字段
-    # 也就意味着 后续我们在创建模型表的时候如果主键字段名没有额外的叫法 那么主键字段可以省略不写
-    # username varchar(32)
-    username &#x3D; models.CharField(max_length&#x3D;32)
-    # password int
-    password &#x3D; models.IntegerField()</code></pre>
+<span class="token keyword">class</span> <span class="token class-name">Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 由于一张表中必须要有一个主键字段 并且一般情况下都叫id字段</span>
+    <span class="token comment"># 所以orm当你不定义主键字段的时候 orm会自动帮你创建一个名为id主键字段</span>
+    <span class="token comment"># 也就意味着 后续我们在创建模型表的时候如果主键字段名没有额外的叫法 那么主键字段可以省略不写</span>
+    <span class="token comment"># username varchar(32)</span>
+    username <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+    <span class="token comment"># password int</span>
+    password <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
-<h2 id="四、字段的增删改查"><a href="#四、字段的增删改查" class="headerlink" title="四、字段的增删改查"></a>四、字段的增删改查</h2><pre class="language-python" data-language="python"><code class="language-python"># 字段的增加
-    1.可以在终端内直接给出默认值
-    2.该字段可以为空
-        info &#x3D; models.CharField(max_length&#x3D;32,verbose_name&#x3D;&#39;个人简介&#39;,null&#x3D;True)
-    3.直接给字段设置默认值
-        hobby &#x3D; models.CharField(max_length&#x3D;32,verbose_name&#x3D;&#39;兴趣爱好&#39;,default&#x3D;&#39;study&#39;)
+<h2 id="四、字段的增删改查"><a href="#四、字段的增删改查" class="headerlink" title="四、字段的增删改查"></a>四、字段的增删改查</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 字段的增加</span>
+    <span class="token number">1.</span>可以在终端内直接给出默认值
+    <span class="token number">2.</span>该字段可以为空
+        info <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span>verbose_name<span class="token operator">=</span><span class="token string">'个人简介'</span><span class="token punctuation">,</span>null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token number">3.</span>直接给字段设置默认值
+        hobby <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span>verbose_name<span class="token operator">=</span><span class="token string">'兴趣爱好'</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">'study'</span><span class="token punctuation">)</span>
  
-# 字段的修改
+<span class="token comment"># 字段的修改</span>
 	直接修改代码然后执行数据库迁移的两条命令即可！
 
-# 字段的删
+<span class="token comment"># 字段的删</span>
 	直接注释对应的字段然后执行数据库迁移的两条命令即可！
   执行完毕之后字段对应的数据也都没有了
   
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 在操作models.py的时候一定要细心
 	千万不要注释一些字段
 	执行迁移命令之前最好先检查一下自己写的代码
-&quot;&quot;&quot;
+"""</span>
 
-# 个人建议:当你离开你的计算机之后一定要锁屏</code></pre>
+<span class="token comment"># 个人建议:当你离开你的计算机之后一定要锁屏</span></code></pre>
 
-<h2 id="五、数据的增删改查"><a href="#五、数据的增删改查" class="headerlink" title="五、数据的增删改查"></a>五、数据的增删改查</h2><pre class="language-python" data-language="python"><code class="language-python"># 只会介绍一点点 后面会详细的介绍
+<h2 id="五、数据的增删改查"><a href="#五、数据的增删改查" class="headerlink" title="五、数据的增删改查"></a>五、数据的增删改查</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 只会介绍一点点 后面会详细的介绍</span>
 
-1.查
-res &#x3D; models.User.objects.filter(username&#x3D;username)
-&quot;&quot;&quot;
+<span class="token number">1.</span>查
+res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
 返回值你先看成是列表套数据对象的格式
 它也支持索引取值 切片操作 但是不支持负数索引
 它也不推荐你使用索引的方式取值
-user_obj &#x3D; models.User.objects.filter(username&#x3D;username).first()
-&quot;&quot;&quot;
-filter括号内可以携带多个参数 参数与参数之间默认是and关系
-你可以把filter联想成where记忆
+user_obj = models.User.objects.filter(username=username).first()
+"""</span>
+<span class="token builtin">filter</span>括号内可以携带多个参数 参数与参数之间默认是<span class="token keyword">and</span>关系
+你可以把<span class="token builtin">filter</span>联想成where记忆
 
 
 
-2.增
-from app01 import models
-res &#x3D; models.User.objects.create(username&#x3D;username,password&#x3D;password)
-# 返回值就是当前被创建的对象本身
+<span class="token number">2.</span>增
+<span class="token keyword">from</span> app01 <span class="token keyword">import</span> models
+res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span>password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+<span class="token comment"># 返回值就是当前被创建的对象本身</span>
 
-# 第二种增加
-user_obj &#x3D; models.User(username&#x3D;username,password&#x3D;password)
-user_obj.save()  # 保存数据
+<span class="token comment"># 第二种增加</span>
+user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span>password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+user_obj<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 保存数据</span>
 
-3. 先讲数据库中的数据全部展示到前端 然后给每一个数据两个按钮 一个编辑一个删除
+<span class="token number">3.</span> 先讲数据库中的数据全部展示到前端 然后给每一个数据两个按钮 一个编辑一个删除
 
-3.1 查看
-def userlist(request):
-    # 查询出用户表里面所有的数据
-    # 方式1
-    data &#x3D; models.User.objects.filter()
-    print(data)
-    # 方式2
-    user_queryset &#x3D; models.User.objects.all()
-    return render(request,&#39;userlist.html&#39;,&#123;&#39;user_queryset&#39;:user_queryset&#125;)
-    return render(request,&#39;userlist.html&#39;,locals())
+<span class="token number">3.1</span> 查看
+<span class="token keyword">def</span> <span class="token function">userlist</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 查询出用户表里面所有的数据</span>
+    <span class="token comment"># 方式1</span>
+    data <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    <span class="token comment"># 方式2</span>
+    user_queryset <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">'userlist.html'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token string">'user_queryset'</span><span class="token punctuation">:</span>user_queryset<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">'userlist.html'</span><span class="token punctuation">,</span><span class="token builtin">locals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-3.2 编辑功能
-	# 点击编辑按钮朝后端发送编辑数据的请求
-  &quot;&quot;&quot;
+<span class="token number">3.2</span> 编辑功能
+	<span class="token comment"># 点击编辑按钮朝后端发送编辑数据的请求</span>
+  <span class="token triple-quoted-string string">"""
   如何告诉后端用户想要编辑哪条数据?
   	将编辑按钮所在的那一行数据的主键值发送给后端
   	利用url问号后面携带参数的方式
   	
   	&#123;% for user_obj in user_queryset %&#125;
-                        &lt;tr&gt;
-                            &lt;td&gt;&#123;&#123; user_obj.id &#125;&#125;&lt;&#x2F;td&gt;
-                            &lt;td&gt;&#123;&#123; user_obj.username &#125;&#125;&lt;&#x2F;td&gt;
-                            &lt;td&gt;&#123;&#123; user_obj.password &#125;&#125;&lt;&#x2F;td&gt;
-                            &lt;td&gt;
-                                &lt;a href&#x3D;&quot;&#x2F;edit_user&#x2F;?user_id&#x3D;&#123;&#123; user_obj.id &#125;&#125;&quot; class&#x3D;&quot;btn btn-primary btn-xs&quot;&gt;编辑&lt;&#x2F;a&gt;
-                                &lt;a href&#x3D;&quot;&quot; class&#x3D;&quot;btn btn-danger btn-xs&quot;&gt;删除&lt;&#x2F;a&gt;
-                            &lt;&#x2F;td&gt;
-                        &lt;&#x2F;tr&gt;
+                        &lt;tr>
+                            &lt;td>&#123;&#123; user_obj.id &#125;&#125;&lt;/td>
+                            &lt;td>&#123;&#123; user_obj.username &#125;&#125;&lt;/td>
+                            &lt;td>&#123;&#123; user_obj.password &#125;&#125;&lt;/td>
+                            &lt;td>
+                                &lt;a href="/edit_user/?user_id=&#123;&#123; user_obj.id &#125;&#125;" class="btn btn-primary btn-xs">编辑&lt;/a>
+                                &lt;a href="" class="btn btn-danger btn-xs">删除&lt;/a>
+                            &lt;/td>
+                        &lt;/tr>
                     &#123;% endfor %&#125;
-  &quot;&quot;&quot;
-  # 后端查询出用户想要编辑的数据对象 展示到前端页面供用户查看和编辑
-  def edit_user(request):
-    # 获取url问号后面的参数
-    edit_id &#x3D; request.GET.get(&#39;user_id&#39;)
-    # 查询当前用户想要编辑的数据对象
-    edit_obj &#x3D; models.User.objects.filter(id&#x3D;edit_id).first()
+  """</span>
+  <span class="token comment"># 后端查询出用户想要编辑的数据对象 展示到前端页面供用户查看和编辑</span>
+  <span class="token keyword">def</span> <span class="token function">edit_user</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 获取url问号后面的参数</span>
+    edit_id <span class="token operator">=</span> request<span class="token punctuation">.</span>GET<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'user_id'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 查询当前用户想要编辑的数据对象</span>
+    edit_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token operator">=</span>edit_id<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    if request.method &#x3D;&#x3D; &quot;POST&quot;:
-        username &#x3D; request.POST.get(&#39;username&#39;)
-        password &#x3D; request.POST.get(&#39;password&#39;)
-        # 去数据库中修改对应的数据内容
-        # 修改数据方式1
-        models.User.objects.filter(id&#x3D;edit_id).update(username&#x3D;username,password&#x3D;password)
-        &quot;&quot;&quot;
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">"POST"</span><span class="token punctuation">:</span>
+        username <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+        password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+        <span class="token comment"># 去数据库中修改对应的数据内容</span>
+        <span class="token comment"># 修改数据方式1</span>
+        models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token operator">=</span>edit_id<span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>username<span class="token operator">=</span>username<span class="token punctuation">,</span>password<span class="token operator">=</span>password<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
             将filter查询出来的列表中所有的对象全部更新            批量更新操作
             只修改被修改的字段
-        &quot;&quot;&quot;
+        """</span>
 
-        # 修改数据方式2
-        edit_obj.username &#x3D; username
-        edit_obj.password&#x3D; password
-        edit_obj.save()
-        &quot;&quot;&quot;
+        <span class="token comment"># 修改数据方式2</span>
+        edit_obj<span class="token punctuation">.</span>username <span class="token operator">=</span> username
+        edit_obj<span class="token punctuation">.</span>password<span class="token operator">=</span> password
+        edit_obj<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
             上述方法当字段特别多的时候效率会非常的低
             从头到尾将数据的所有字段全部更新一边 无论该字段是否被修改
-        &quot;&quot;&quot;
+        """</span>
         
-        # 跳转到数据的展示页面
-        return redirect(&#39;&#x2F;userlist&#x2F;&#39;)
+        <span class="token comment"># 跳转到数据的展示页面</span>
+        <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">'/userlist/'</span><span class="token punctuation">)</span>
 
 
 
-    # 将数据对象展示到页面上
-    return render(request,&#39;edit_user.html&#39;,locals())
+    <span class="token comment"># 将数据对象展示到页面上</span>
+    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">'edit_user.html'</span><span class="token punctuation">,</span><span class="token builtin">locals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-3.3 删除功能
-	&quot;&quot;&quot;
+<span class="token number">3.3</span> 删除功能
+	<span class="token triple-quoted-string string">"""
 	跟编辑功能逻辑类似
 	def delete_user(request):
     # 获取用户想要删除的数据id值
-    delete_id &#x3D; request.GET.get(&#39;user_id&#39;)
+    delete_id = request.GET.get('user_id')
     # 直接去数据库中找到对应的数据删除即可
-    models.User.objects.filter(id&#x3D;delete_id).delete()
-    &quot;&quot;&quot;
+    models.User.objects.filter(id=delete_id).delete()
+    """</span>
         批量删除
-    &quot;&quot;&quot;
+    <span class="token triple-quoted-string string">"""
     # 跳转到展示页面
 
-    return redirect(&#39;&#x2F;userlist&#x2F;&#39;)	
+    return redirect('/userlist/')	
 	
-	&quot;&quot;&quot;
-# 真正的删除功能应该需要二次确认 我们这里先不做后面会讲
-# 删除数据内部其实并不是真正的删除 我们会给数据添加一个标识字段用来表示当前数据是否被删除了，如果数据被删了仅仅只是讲字段修改一个状态
+	"""</span>
+<span class="token comment"># 真正的删除功能应该需要二次确认 我们这里先不做后面会讲</span>
+<span class="token comment"># 删除数据内部其实并不是真正的删除 我们会给数据添加一个标识字段用来表示当前数据是否被删除了，如果数据被删了仅仅只是讲字段修改一个状态</span>
 	username password	is_delete
-  jason			123				0
-  egon			123				1</code></pre>
+  jason			<span class="token number">123</span>				<span class="token number">0</span>
+  egon			<span class="token number">123</span>				<span class="token number">1</span></code></pre>
 
-<h2 id="六、ORM的表连接"><a href="#六、ORM的表连接" class="headerlink" title="六、ORM的表连接"></a>六、ORM的表连接</h2><pre class="language-python" data-language="python"><code class="language-python">1. 表与表之间的关系
+<h2 id="六、ORM的表连接"><a href="#六、ORM的表连接" class="headerlink" title="六、ORM的表连接"></a>六、ORM的表连接</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 表与表之间的关系
 	一对多   多对多   一对一   没有关系
-	判断表关系的方法:换位思考
-    &quot;&quot;&quot;
+	判断表关系的方法<span class="token punctuation">:</span>换位思考
+    <span class="token triple-quoted-string string">"""
     图书表   出版社表   作者表   作者详情表
 
     图书和出版社是一对多的关系 外键字段建在多的那一方 book
@@ -398,385 +398,385 @@ def userlist(request):
     图书和作者是多对多的关系 需要创建第三张表来专门存储
 
     作者与作者详情表是一对一
-    &quot;&quot;&quot;
+    """</span>
 
-2. 代码演示并解读
-    from django.db import models
+<span class="token number">2.</span> 代码演示并解读
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> models
 
-    # Create your models here.
+    <span class="token comment"># Create your models here.</span>
 
-    &quot;&quot;&quot;这边推荐先写完正常的数据字段 在写外键字段&quot;&quot;&quot;
+    <span class="token triple-quoted-string string">"""这边推荐先写完正常的数据字段 在写外键字段"""</span>
 
 
-    class Book(models.Model):
-        title &#x3D; models.CharField(max_length&#x3D;16)
-        # DecimalField这个是小数   后面的第一个参数是可以有8个小数，第二个参数是保留2个小数
-        price &#x3D; models.DecimalField(max_digits&#x3D;8, decimal_places&#x3D;2)
-        &quot;&quot;&quot;
+    <span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        title <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+        <span class="token comment"># DecimalField这个是小数   后面的第一个参数是可以有8个小数，第二个参数是保留2个小数</span>
+        price <span class="token operator">=</span> models<span class="token punctuation">.</span>DecimalField<span class="token punctuation">(</span>max_digits<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">,</span> decimal_places<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         图书跟出版社是一对多的关系 然后外键建在多的这一方
-        &quot;&quot;&quot;
-        publish &#x3D; models.ForeignKey(to&#x3D;&#39;Publish&#39;)  # to_field 默认就是与出版社表的主键字段做外键关联
-        &quot;&quot;&quot;
+        """</span>
+        publish <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Publish'</span><span class="token punctuation">)</span>  <span class="token comment"># to_field 默认就是与出版社表的主键字段做外键关联</span>
+        <span class="token triple-quoted-string string">"""
         如果字段对应的是ForeignKey 那么会orm会自动在字段的后面加_id
         如果我们在命名变量名的时候如果加上_id 
         orm还是会给你加上_id  就会变成publish_id_id
-        &quot;&quot;&quot;
+        """</span>
 
-        &quot;&quot;&quot;
+        <span class="token triple-quoted-string string">"""
         接下来我们来分析图书跟作者的关系
         这很明显是多对多所以我们对这两个表进行操作
         外键建在哪一方都可以 建议是在用的频率很多的一方
-        &quot;&quot;&quot;
-        author &#x3D; models.ManyToManyField(to&#x3D;&#39;Author&#39;)
-        &quot;&quot;&quot;
+        """</span>
+        author <span class="token operator">=</span> models<span class="token punctuation">.</span>ManyToManyField<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Author'</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         author是个虚拟字段 主要是告诉orm 这两张表是多对多的关系
         然后让orm去创建第三个表
-        &quot;&quot;&quot;
+        """</span>
 
 
-    class Publish(models.Model):
-        name &#x3D; models.CharField(max_length&#x3D;16)
-        addr &#x3D; models.CharField(max_length&#x3D;16)
+    <span class="token keyword">class</span> <span class="token class-name">Publish</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+        addr <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
 
 
-    class Author(models.Model):
-        name &#x3D; models.CharField(max_length&#x3D;32)
-        age &#x3D; models.IntegerField()
-        &quot;&quot;&quot;
+    <span class="token keyword">class</span> <span class="token class-name">Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+        age <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         然后我们再来看看一对一的关系把 外键也是随便建 但是推荐建在查询率较高的的表
         作者与作者详情的关系
-        &quot;&quot;&quot;
-        author_detail &#x3D; models.OneToOneField(to&#x3D;&#39;AuthorDetail&#39;)
-        &quot;&quot;&quot;
+        """</span>
+        author_detail <span class="token operator">=</span> models<span class="token punctuation">.</span>OneToOneField<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'AuthorDetail'</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         OneToOneField也会自动给字段加_id后缀
         所以你也不要自作聪明的自己加_id
-        &quot;&quot;&quot;
+        """</span>
 
 
-    class AuthorDetail(models.Model):
-        phone &#x3D; models.BigIntegerField()  # 或者直接字符类型
-        addr &#x3D; models.CharField(max_length&#x3D;32)
+    <span class="token keyword">class</span> <span class="token class-name">AuthorDetail</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        phone <span class="token operator">=</span> models<span class="token punctuation">.</span>BigIntegerField<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 或者直接字符类型</span>
+        addr <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
         
-3. 再次总结
-    &quot;&quot;&quot;
+<span class="token number">3.</span> 再次总结
+    <span class="token triple-quoted-string string">"""
         orm中如何定义三种关系
-            publish &#x3D; models.ForeignKey(to&#x3D;&#39;Publish&#39;)  # 默认就是与出版社表的主键字段做外键关联
+            publish = models.ForeignKey(to='Publish')  # 默认就是与出版社表的主键字段做外键关联
 
-            authors &#x3D; models.ManyToManyField(to&#x3D;&#39;Author&#39;)
+            authors = models.ManyToManyField(to='Author')
 
-            author_detail &#x3D; models.OneToOneField(to&#x3D;&#39;AuthorDetail&#39;)
+            author_detail = models.OneToOneField(to='AuthorDetail')
 
 
             ForeignKey
             OneToOneField
                 会自动在字段后面加_id后缀
-    &quot;&quot;&quot;
+    """</span>
 
-    # 在django1.X版本中外键默认都是级联更新删除的
-    # 多对多的表关系可以有好几种创建方式 这里暂且先介绍一种
-    # 针对外键字段里面的其他参数 暂时不要考虑 如果感兴趣自己可以百度试试看</code></pre>
+    <span class="token comment"># 在django1.X版本中外键默认都是级联更新删除的</span>
+    <span class="token comment"># 多对多的表关系可以有好几种创建方式 这里暂且先介绍一种</span>
+    <span class="token comment"># 针对外键字段里面的其他参数 暂时不要考虑 如果感兴趣自己可以百度试试看</span></code></pre>
 
-<h2 id="七、测试脚本"><a href="#七、测试脚本" class="headerlink" title="七、测试脚本"></a>七、测试脚本</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="七、测试脚本"><a href="#七、测试脚本" class="headerlink" title="七、测试脚本"></a>七、测试脚本</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 当你只是想测试django中的某一个py文件内容 那么你可以不用书写前后端交互的形式
 而是直接写一个测试脚本即可
 
 脚本代码无论是写在应用下的tests.py还是自己单独开设py文件都可以
-&quot;&quot;&quot;
-# 测试环境的准备 去manage.py中拷贝前四行代码 然后自己写两行
-import os
-import sys
+"""</span>
+<span class="token comment"># 测试环境的准备 去manage.py中拷贝前四行代码 然后自己写两行</span>
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> sys
 
-if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
-    os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;day64.settings&quot;)
-    import django
-    django.setup()
-    # 在这个代码块的下面就可以测试django里面的单个py文件了</code></pre>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>setdefault<span class="token punctuation">(</span><span class="token string">"DJANGO_SETTINGS_MODULE"</span><span class="token punctuation">,</span> <span class="token string">"day64.settings"</span><span class="token punctuation">)</span>
+    <span class="token keyword">import</span> django
+    django<span class="token punctuation">.</span>setup<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 在这个代码块的下面就可以测试django里面的单个py文件了</span></code></pre>
 
-<h2 id="八、单表操作"><a href="#八、单表操作" class="headerlink" title="八、单表操作"></a>八、单表操作</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;Django自带的sqlite3数据库对日期格式不敏感 容易出错 所以还是得MySQL 永远的神&quot;&quot;&quot;
-import os
+<h2 id="八、单表操作"><a href="#八、单表操作" class="headerlink" title="八、单表操作"></a>八、单表操作</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""Django自带的sqlite3数据库对日期格式不敏感 容易出错 所以还是得MySQL 永远的神"""</span>
+<span class="token keyword">import</span> os
 
-if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
-    os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;DjangoOrm1.settings&quot;)
-    import django
-    django.setup()
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>setdefault<span class="token punctuation">(</span><span class="token string">"DJANGO_SETTINGS_MODULE"</span><span class="token punctuation">,</span> <span class="token string">"DjangoOrm1.settings"</span><span class="token punctuation">)</span>
+    <span class="token keyword">import</span> django
+    django<span class="token punctuation">.</span>setup<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    from app01 import models
-# 增
-    models.User.objects.create(name&#x3D;&#39;Ame&#39;, age&#x3D;18, register_time&#x3D;&#39;1999-07-28&#39;)
-    import datetime
-    ctime &#x3D; datetime.datetime.now()
-    user_obj &#x3D; models.User(name&#x3D;&#39;Yuki&#39;, age&#x3D;18, register_time&#x3D;ctime)
-    user_obj.save()
-# 删
-    models.User.objects.filter(pk&#x3D;2).delete()
-    user_obj &#x3D; models.User.objects.filter(pk&#x3D;1).first()
-    user_obj.delete()
-    &quot;&quot;&quot;
+    <span class="token keyword">from</span> app01 <span class="token keyword">import</span> models
+<span class="token comment"># 增</span>
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'Ame'</span><span class="token punctuation">,</span> age<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">,</span> register_time<span class="token operator">=</span><span class="token string">'1999-07-28'</span><span class="token punctuation">)</span>
+    <span class="token keyword">import</span> datetime
+    ctime <span class="token operator">=</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'Yuki'</span><span class="token punctuation">,</span> age<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">,</span> register_time<span class="token operator">=</span>ctime<span class="token punctuation">)</span>
+    user_obj<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 删</span>
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>delete<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user_obj<span class="token punctuation">.</span>delete<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">"""
     pk会自动查找到当前表的主键字段 指代的就是当前表的主键字段
     用了pk之后 你就不需要指代当前表的主键字段到底叫什么了
         uid
         pid
         sid
         ...
-    &quot;&quot;&quot;
-    user_obj &#x3D; models.User.objects.filter(pk&#x3D;1).first()
-    user_obj.delete()
-# 改
-    models.User.objects.filter(pk&#x3D;1).update(name&#x3D;&#39;Yuki&#39;)
-    user_obj &#x3D; models.User.objects.get(pk&#x3D;1)
-    &quot;&quot;&quot;
+    """</span>
+    user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user_obj<span class="token punctuation">.</span>delete<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 改</span>
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'Yuki'</span><span class="token punctuation">)</span>
+    user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>get<span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">"""
     get 方法返回的值其实就是数据的对象，但是我们不用他
     因为假如数据不存在 就会报错 这个很鸡肋
     所以我们还是会用filter
-    &quot;&quot;&quot;
-    user_obj.name &#x3D; &#39;egonPPP&#39;
-    user_obj.save()</code></pre>
+    """</span>
+    user_obj<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'egonPPP'</span>
+    user_obj<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
-<h3 id="1、必知必会十三条"><a href="#1、必知必会十三条" class="headerlink" title="1、必知必会十三条"></a>1、必知必会十三条</h3><pre class="language-python" data-language="python"><code class="language-python">1. 单表操作必知必会13条(其实还有很多)
-    1.1 all() 
+<h3 id="1、必知必会十三条"><a href="#1、必知必会十三条" class="headerlink" title="1、必知必会十三条"></a>1、必知必会十三条</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 单表操作必知必会<span class="token number">13</span>条<span class="token punctuation">(</span>其实还有很多<span class="token punctuation">)</span>
+    <span class="token number">1.1</span> <span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
     	查看所有数据
         
-    1.2 filter()
+    <span class="token number">1.2</span> <span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     	带有过滤条件的查询
         
-    1.3 get() 
+    <span class="token number">1.3</span> get<span class="token punctuation">(</span><span class="token punctuation">)</span> 
     	返回一个数据对象 但是数据不存在会报错
         
-    1.4 first()
+    <span class="token number">1.4</span> first<span class="token punctuation">(</span><span class="token punctuation">)</span>
     	拿queryset里面第一个元素
-        res &#x3D; models.User.objacts.all().first()
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objacts<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
         
-    1.5 last() 
+    <span class="token number">1.5</span> last<span class="token punctuation">(</span><span class="token punctuation">)</span> 
     	拿queryset里面最后一个元素
-        res &#x3D; models.User.objacts.all().last()
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objacts<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>last<span class="token punctuation">(</span><span class="token punctuation">)</span>
         
-    1.6 values() 
-   		可以指定获取的数据字段  select name,age from ...     列表套字典
-   		res &#x3D; models.User.objects.values(&#39;name&#39;,&#39;age&#39;)  
-   		# &lt;QuerySet [&#123;&#39;name&#39;: &#39;jason&#39;, &#39;age&#39;: 18&#125;, &#123;&#39;name&#39;: &#39;egonPPP&#39;, &#39;age&#39;: 84&#125;]&gt;
+    <span class="token number">1.6</span> values<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+   		可以指定获取的数据字段  select name<span class="token punctuation">,</span>age <span class="token keyword">from</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     列表套字典
+   		res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">)</span>  
+   		<span class="token comment"># &lt;QuerySet [&#123;'name': 'jason', 'age': 18&#125;, &#123;'name': 'egonPPP', 'age': 84&#125;]></span>
         
-    1.7 values_list()
+    <span class="token number">1.7</span> values_list<span class="token punctuation">(</span><span class="token punctuation">)</span>
     	跟values差不多，但是可以看做列表套元组
         
-    1.8 distinct()
-    	res &#x3D; models.User.objects.values(&#39;name&#39;,&#39;age&#39;).distinct()
-        &quot;&quot;&quot;
+    <span class="token number">1.8</span> distinct<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    	res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>distinct<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         去重一定要是一模一样的数据
         如果带有主键那么肯定不一样 你在往后的查询中一定不要忽略主键
-        &quot;&quot;&quot;
+        """</span>
         
-    1.9 order_by
-    	models.User.objects.order_by(&#39;age&#39;)  # 升序
-        models.User.object.order_by(&#39;-age&#39;)  # 降序
+    <span class="token number">1.9</span> order_by
+    	models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'age'</span><span class="token punctuation">)</span>  <span class="token comment"># 升序</span>
+        models<span class="token punctuation">.</span>User<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'-age'</span><span class="token punctuation">)</span>  <span class="token comment"># 降序</span>
         
-    1.10 reverse()
-    	反转的前提是 数据已经排过序了  order_by()
-      	res &#x3D; models.User.objects.all()
-       	res1 &#x3D; models.User.objects.order_by(&#39;age&#39;).reverse()
+    <span class="token number">1.10</span> reverse<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    	反转的前提是 数据已经排过序了  order_by<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      	res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+       	res1 <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'age'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reverse<span class="token punctuation">(</span><span class="token punctuation">)</span>
         
-    1.11 count()
+    <span class="token number">1.11</span> count<span class="token punctuation">(</span><span class="token punctuation">)</span>
      	统计当前数据的个数
-    	res &#x3D; models.User.objects.count()
+    	res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span>
         
-    1.12 exclude()
+    <span class="token number">1.12</span> exclude<span class="token punctuation">(</span><span class="token punctuation">)</span>
         排除在外
-        res &#x3D; models.User.objects.exclude(name&#x3D;&#39;jason&#39;)
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>exclude<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'jason'</span><span class="token punctuation">)</span>
         
-    1.13 exists()
+    <span class="token number">1.13</span> exists<span class="token punctuation">(</span><span class="token punctuation">)</span>
         基本用不到因为数据本身就自带布尔值  返回的是布尔值
-        res &#x3D; models.User.objects.filter(pk&#x3D;10).exists()</code></pre>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
-<h3 id="2、查看内部SQL语句方法"><a href="#2、查看内部SQL语句方法" class="headerlink" title="2、查看内部SQL语句方法"></a>2、查看内部SQL语句方法</h3><pre class="language-python" data-language="python"><code class="language-python"># 方式1
-res &#x3D; models.User.objects.values_list(&#39;name&#39;,&#39;age&#39;)  # &lt;QuerySet [(&#39;jason&#39;, 18), (&#39;egonPPP&#39;, 84)]&gt;
-print(res.query)
+<h3 id="2、查看内部SQL语句方法"><a href="#2、查看内部SQL语句方法" class="headerlink" title="2、查看内部SQL语句方法"></a>2、查看内部SQL语句方法</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 方式1</span>
+res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>values_list<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">)</span>  <span class="token comment"># &lt;QuerySet [('jason', 18), ('egonPPP', 84)]></span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>query<span class="token punctuation">)</span>
 queryset对象才能够点击query查看内部的sql语句
 
-# 方式2:所有的sql语句都能查看
-# 去配置文件中配置一下即可
-LOGGING &#x3D; &#123;
-    &#39;version&#39;: 1,
-    &#39;disable_existing_loggers&#39;: False,
-    &#39;handlers&#39;: &#123;
-        &#39;console&#39;:&#123;
-            &#39;level&#39;:&#39;DEBUG&#39;,
-            &#39;class&#39;:&#39;logging.StreamHandler&#39;,
-        &#125;,
-    &#125;,
-    &#39;loggers&#39;: &#123;
-        &#39;django.db.backends&#39;: &#123;
-            &#39;handlers&#39;: [&#39;console&#39;],
-            &#39;propagate&#39;: True,
-            &#39;level&#39;:&#39;DEBUG&#39;,
-        &#125;,
-    &#125;
-&#125;</code></pre>
+<span class="token comment"># 方式2:所有的sql语句都能查看</span>
+<span class="token comment"># 去配置文件中配置一下即可</span>
+LOGGING <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'version'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token string">'disable_existing_loggers'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+    <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'console'</span><span class="token punctuation">:</span><span class="token punctuation">&#123;</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span><span class="token string">'DEBUG'</span><span class="token punctuation">,</span>
+            <span class="token string">'class'</span><span class="token punctuation">:</span><span class="token string">'logging.StreamHandler'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token string">'loggers'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'django.db.backends'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'console'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'propagate'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span><span class="token string">'DEBUG'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-<h3 id="3、神奇的双下划线查询"><a href="#3、神奇的双下划线查询" class="headerlink" title="3、神奇的双下划线查询"></a>3、神奇的双下划线查询</h3><pre class="language-python" data-language="python"><code class="language-python"># 年龄大于33
-    res &#x3D; models.User.objects.filter(age__gt&#x3D;33)
-    print(res)
-# 年龄小于33
-    res &#x3D; models.User.objects.filter(age__lt&#x3D;33)
-    print(res)
-# 大于等于
-    res &#x3D; models.User.objects.filter(age__gte&#x3D;33)
-# 小于等于
-    res &#x3D; models.User.objects.filter(age__lte&#x3D;33)
-# 年龄是18 或者 44
-    res &#x3D; models.User.objects.filter(age__in&#x3D;[18, 44])
-# 年龄在18-80之间 首尾都包括
-    res &#x3D; models.User.objects.filter(age__range&#x3D;[18, 80])
-# 模糊查询 包括一个‘u’
-    res &#x3D; models.User.objects.filter(name__contains&#x3D;&#39;u&#39;)
-    # 是否区分大小写  查询出名字里面含有p的数据  区分大小写
-        res &#x3D; models.User.objects.filter(name__contains&#x3D;&#39;p&#39;)
-        print(res)
-    # 忽略大小写
-        res &#x3D; models.User.objects.filter(name__icontains&#x3D;&#39;p&#39;)
-        print(res)
-# 首字母开头查询
-	res &#x3D; models.User.objects.filter(name__startswith&#x3D;&#39;j&#39;)
-# 尾字母查询
-    res1 &#x3D; models.User.objects.filter(name__endswith&#x3D;&#39;j&#39;)
-# 查询出注册时间是 2020 1月
-    res &#x3D; models.User.objects.filter(register_time__month&#x3D;&#39;1&#39;)
-    res &#x3D; models.User.objects.filter(register_time__year&#x3D;&#39;2020&#39;)</code></pre>
+<h3 id="3、神奇的双下划线查询"><a href="#3、神奇的双下划线查询" class="headerlink" title="3、神奇的双下划线查询"></a>3、神奇的双下划线查询</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 年龄大于33</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>age__gt<span class="token operator">=</span><span class="token number">33</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+<span class="token comment"># 年龄小于33</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>age__lt<span class="token operator">=</span><span class="token number">33</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+<span class="token comment"># 大于等于</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>age__gte<span class="token operator">=</span><span class="token number">33</span><span class="token punctuation">)</span>
+<span class="token comment"># 小于等于</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>age__lte<span class="token operator">=</span><span class="token number">33</span><span class="token punctuation">)</span>
+<span class="token comment"># 年龄是18 或者 44</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>age__in<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment"># 年龄在18-80之间 首尾都包括</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>age__range<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment"># 模糊查询 包括一个‘u’</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name__contains<span class="token operator">=</span><span class="token string">'u'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 是否区分大小写  查询出名字里面含有p的数据  区分大小写</span>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name__contains<span class="token operator">=</span><span class="token string">'p'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token comment"># 忽略大小写</span>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name__icontains<span class="token operator">=</span><span class="token string">'p'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+<span class="token comment"># 首字母开头查询</span>
+	res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name__startswith<span class="token operator">=</span><span class="token string">'j'</span><span class="token punctuation">)</span>
+<span class="token comment"># 尾字母查询</span>
+    res1 <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name__endswith<span class="token operator">=</span><span class="token string">'j'</span><span class="token punctuation">)</span>
+<span class="token comment"># 查询出注册时间是 2020 1月</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>register_time__month<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>register_time__year<span class="token operator">=</span><span class="token string">'2020'</span><span class="token punctuation">)</span></code></pre>
 
-<h3 id="4、外键的增删改查"><a href="#4、外键的增删改查" class="headerlink" title="4、外键的增删改查"></a>4、外键的增删改查</h3><pre class="language-python" data-language="python"><code class="language-python">1. 一对多(一对一也是一样的)
-    # 增 第一种方法
-        models.Book.objects.create(title&#x3D;&#39;python&#39;, price&#x3D;300.33, publish_id&#x3D;1)
-        models.Book.objects.create(title&#x3D;&#39;jpm&#39;, price&#x3D;1111.33, publish_id&#x3D;1)
-        models.Book.objects.create(title&#x3D;&#39;my_song&#39;, price&#x3D;666.33, publish_id&#x3D;2)
-    # 第二种方法
-        publish_obj &#x3D; models.Publish.objects.filter(pk&#x3D;2).first()
-        models.Book.objects.create(title&#x3D;&#39;linux&#39;, price&#x3D;233.33, publish&#x3D;publish_obj)
-        &quot;&quot;&quot;
+<h3 id="4、外键的增删改查"><a href="#4、外键的增删改查" class="headerlink" title="4、外键的增删改查"></a>4、外键的增删改查</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 一对多<span class="token punctuation">(</span>一对一也是一样的<span class="token punctuation">)</span>
+    <span class="token comment"># 增 第一种方法</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">'python'</span><span class="token punctuation">,</span> price<span class="token operator">=</span><span class="token number">300.33</span><span class="token punctuation">,</span> publish_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">'jpm'</span><span class="token punctuation">,</span> price<span class="token operator">=</span><span class="token number">1111.33</span><span class="token punctuation">,</span> publish_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">'my_song'</span><span class="token punctuation">,</span> price<span class="token operator">=</span><span class="token number">666.33</span><span class="token punctuation">,</span> publish_id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token comment"># 第二种方法</span>
+        publish_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Publish<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">'linux'</span><span class="token punctuation">,</span> price<span class="token operator">=</span><span class="token number">233.33</span><span class="token punctuation">,</span> publish<span class="token operator">=</span>publish_obj<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         publish_id 可以直接传ID过去
         publish 这个是虚拟字段 可以直接传对象过去
-        &quot;&quot;&quot;
-    # 删除
-        models.Book.objects.filter(pk&#x3D;3).delete()
-    # 修改
-        models.Book.objects.filter(pk&#x3D;4).update(publish_id&#x3D;1)
-        publish_obj &#x3D; models.Publish.objects.filter(pk&#x3D;2).first()
-        models.Book.objects.filter(pk&#x3D;1).update(publish&#x3D;publish_obj)
+        """</span>
+    <span class="token comment"># 删除</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>delete<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 修改</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>publish_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        publish_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Publish<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>publish<span class="token operator">=</span>publish_obj<span class="token punctuation">)</span>
 
-2. 多对多
-	&quot;&quot;&quot;在这里我们有一个疑问 多对多的第三张表是orm创建的呀，我们怎么去操作他呢&quot;&quot;&quot;
+<span class="token number">2.</span> 多对多
+	<span class="token triple-quoted-string string">"""在这里我们有一个疑问 多对多的第三张表是orm创建的呀，我们怎么去操作他呢"""</span>
 
-    # 如何给书籍添加作者？
-        book_obj &#x3D; models.Book.objects.filter(pk&#x3D;1).first()
-        print(book_obj.authors)  # 就类似于你已经到了第三张关系表了
-        book_obj.authors.add(1)  # 书籍id为1的书籍绑定一个主键为1 的作者
-        book_obj.authors.add(2,3)
+    <span class="token comment"># 如何给书籍添加作者？</span>
+        book_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">)</span>  <span class="token comment"># 就类似于你已经到了第三张关系表了</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># 书籍id为1的书籍绑定一个主键为1 的作者</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
 
-        author_obj &#x3D; models.Author.objects.filter(pk&#x3D;1).first()
-        author_obj1 &#x3D; models.Author.objects.filter(pk&#x3D;2).first()
-        author_obj2 &#x3D; models.Author.objects.filter(pk&#x3D;3).first()
-        book_obj.authors.add(author_obj)
-        book_obj.authors.add(author_obj1,author_obj2)
-        &quot;&quot;&quot;
+        author_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        author_obj1 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        author_obj2 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>add<span class="token punctuation">(</span>author_obj<span class="token punctuation">)</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>add<span class="token punctuation">(</span>author_obj1<span class="token punctuation">,</span>author_obj2<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         add给第三张关系表添加数据
             括号内既可以传数字也可以传对象 并且都支持多个
-        &quot;&quot;&quot;
+        """</span>
 
-    # 删
-        book_obj.authors.remove(2)
-        book_obj.authors.remove(1,3)
+    <span class="token comment"># 删</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
 
-        author_obj &#x3D; models.Author.objects.filter(pk&#x3D;2).first()
-        author_obj1 &#x3D; models.Author.objects.filter(pk&#x3D;3).first()
-        book_obj.authors.remove(author_obj,author_obj1)
-        &quot;&quot;&quot;
+        author_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        author_obj1 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>author_obj<span class="token punctuation">,</span>author_obj1<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         remove
             括号内既可以传数字也可以传对象 并且都支持多个
-        &quot;&quot;&quot;
+        """</span>
 
-    # 修改
-        book_obj.authors.set([1,2])  # 括号内必须给一个可迭代对象
-        book_obj.authors.set([3])  # 括号内必须给一个可迭代对象
+    <span class="token comment"># 修改</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 括号内必须给一个可迭代对象</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 括号内必须给一个可迭代对象</span>
 
-        author_obj &#x3D; models.Author.objects.filter(pk&#x3D;2).first()
-        author_obj1 &#x3D; models.Author.objects.filter(pk&#x3D;3).first()
-        book_obj.authors.set([author_obj,author_obj1])  # 括号内必须给一个可迭代对象
+        author_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        author_obj1 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span>author_obj<span class="token punctuation">,</span>author_obj1<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 括号内必须给一个可迭代对象</span>
 
-        &quot;&quot;&quot;
+        <span class="token triple-quoted-string string">"""
         set
             括号内必须传一个可迭代对象，该对象内既可以数字也可以对象 并且都支持多个
-        &quot;&quot;&quot;
+        """</span>
 
-    # 清空
-    # 在第三张关系表中清空某个书籍与作者的绑定关系
-        book_obj.authors.clear()
-        &quot;&quot;&quot;
+    <span class="token comment"># 清空</span>
+    <span class="token comment"># 在第三张关系表中清空某个书籍与作者的绑定关系</span>
+        book_obj<span class="token punctuation">.</span>authors<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         clear
             括号内不要加任何参数
 
-        &quot;&quot;&quot;</code></pre>
+        """</span></code></pre>
 
-<h2 id="九、多表查询"><a href="#九、多表查询" class="headerlink" title="九、多表查询"></a>九、多表查询</h2><h3 id="1、正向与反向"><a href="#1、正向与反向" class="headerlink" title="1、正向与反向"></a>1、正向与反向</h3><pre class="language-python" data-language="python"><code class="language-python"># 正向
-# 反向
+<h2 id="九、多表查询"><a href="#九、多表查询" class="headerlink" title="九、多表查询"></a>九、多表查询</h2><h3 id="1、正向与反向"><a href="#1、正向与反向" class="headerlink" title="1、正向与反向"></a>1、正向与反向</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 正向</span>
+<span class="token comment"># 反向</span>
 	外键字段在我手上那么，我查你就是正向
   外键字段如果不在手上，我查你就是反向
   
-  book &gt;&gt;&gt;外键字段在书那儿(正向)&gt;&gt;&gt; publish
-  publish	&gt;&gt;&gt;外键字段在书那儿(反向)&gt;&gt;&gt;book
+  book <span class="token operator">>></span><span class="token operator">></span>外键字段在书那儿<span class="token punctuation">(</span>正向<span class="token punctuation">)</span><span class="token operator">>></span><span class="token operator">></span> publish
+  publish	<span class="token operator">>></span><span class="token operator">></span>外键字段在书那儿<span class="token punctuation">(</span>反向<span class="token punctuation">)</span><span class="token operator">>></span><span class="token operator">></span>book
   
   一对一和多对多正反向的判断也是如此
   
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 正向查询按字段
 反向查询按表名小写
 				_set
 				...
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h3 id="2、子查询-基于对象的跨表查询"><a href="#2、子查询-基于对象的跨表查询" class="headerlink" title="2、子查询(基于对象的跨表查询)"></a>2、子查询(基于对象的跨表查询)</h3><pre class="language-python" data-language="python"><code class="language-python">1. 正向查询
-    # 1.查询书籍主键为1的出版社  书&gt;&gt;&gt;&gt;&gt;&gt;出版社 外键在书 所以是正向查询
-        book_obj &#x3D; models.Book.objects.filter(pk&#x3D;1).first()
-        res &#x3D; book_obj.publish
-        print(res)  # 返回值为出版社的对象 所以我们就能直接调用方法来看
-        print(res.name)
-    # 2.查询书籍主键为2的作者   书&gt;&gt;&gt;&gt;&gt;作者  外键在书 所以是正向查询
-        book_obj &#x3D; models.Book.objects.filter(pk&#x3D;2).first()
-        res1 &#x3D; book_obj.author.all()
-        &quot;&quot;&quot;
+<h3 id="2、子查询-基于对象的跨表查询"><a href="#2、子查询-基于对象的跨表查询" class="headerlink" title="2、子查询(基于对象的跨表查询)"></a>2、子查询(基于对象的跨表查询)</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 正向查询
+    <span class="token comment"># 1.查询书籍主键为1的出版社  书>>>>>>出版社 外键在书 所以是正向查询</span>
+        book_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        res <span class="token operator">=</span> book_obj<span class="token punctuation">.</span>publish
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>  <span class="token comment"># 返回值为出版社的对象 所以我们就能直接调用方法来看</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+    <span class="token comment"># 2.查询书籍主键为2的作者   书>>>>>作者  外键在书 所以是正向查询</span>
+        book_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        res1 <span class="token operator">=</span> book_obj<span class="token punctuation">.</span>author<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         app01.Author.None 遇到输出结果是这个的时候就得加.all()
         原因是因为一本书会对应多个作者
-        加了.all()就会返回 &lt;QuerySet [&lt;Author: Author object&gt;, &lt;Author: Author object&gt;]&gt;
-        &quot;&quot;&quot;
-        print(res1)  # 返回值为作者的对象
-        print(res1[0].name)  # 返回的是QuerySet类型，就得依靠索引来查
-    # 3.查询作者yxx的电话号码  作者&gt;&gt;&gt;&gt;&gt;作者详情 外键在作者 所以是正向查询
-        author_obj &#x3D; models.Author.objects.filter(name&#x3D;&#39;yxx&#39;).first()
-        res2 &#x3D; author_obj.author_detail
-        print(res2)  # 返回值为作者详情的对象
-        print(res2.phone)
+        加了.all()就会返回 &lt;QuerySet [&lt;Author: Author object>, &lt;Author: Author object>]>
+        """</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res1<span class="token punctuation">)</span>  <span class="token comment"># 返回值为作者的对象</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span>  <span class="token comment"># 返回的是QuerySet类型，就得依靠索引来查</span>
+    <span class="token comment"># 3.查询作者yxx的电话号码  作者>>>>>作者详情 外键在作者 所以是正向查询</span>
+        author_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'yxx'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        res2 <span class="token operator">=</span> author_obj<span class="token punctuation">.</span>author_detail
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res2<span class="token punctuation">)</span>  <span class="token comment"># 返回值为作者详情的对象</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res2<span class="token punctuation">.</span>phone<span class="token punctuation">)</span>
         
-2. 反向查询
-    # 4.查询出版社是东方出版社出版的书  出版社&gt;&gt;&gt;&gt;&gt;书  出版社没有外键 所以是反向
-        publish_obj &#x3D; models.Publish.objects.filter(name&#x3D;&#39;东方&#39;).first()
-        res &#x3D; publish_obj.book_set.all()  # 返回值为书的对象
-        print(res)
+<span class="token number">2.</span> 反向查询
+    <span class="token comment"># 4.查询出版社是东方出版社出版的书  出版社>>>>>书  出版社没有外键 所以是反向</span>
+        publish_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Publish<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'东方'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        res <span class="token operator">=</span> publish_obj<span class="token punctuation">.</span>book_set<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 返回值为书的对象</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
 
-    # 5.查询作者是yxx写过的书   作者&gt;&gt;&gt;&gt;书  作者没有外键 所以是反向
-        author_obj &#x3D; models.Author.objects.filter(name&#x3D;&#39;yxx&#39;).first()
-        res1 &#x3D; author_obj.book_set.all()
-        print(res1)
+    <span class="token comment"># 5.查询作者是yxx写过的书   作者>>>>书  作者没有外键 所以是反向</span>
+        author_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'yxx'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        res1 <span class="token operator">=</span> author_obj<span class="token punctuation">.</span>book_set<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res1<span class="token punctuation">)</span>
 
-    # 6.查询手机号是28的作者姓名
-        author_detail_obj &#x3D; models.AuthorDetail.objects.filter(phone&#x3D;28).first()
-        res &#x3D; author_detail_obj.author
-        print(res.name)
-        &quot;&quot;&quot;
+    <span class="token comment"># 6.查询手机号是28的作者姓名</span>
+        author_detail_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>AuthorDetail<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>phone<span class="token operator">=</span><span class="token number">28</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        res <span class="token operator">=</span> author_detail_obj<span class="token punctuation">.</span>author
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         基于对象 
             反向查询的时候
                 当你的查询结果可以有多个的时候 就必须加_set.all()
                 当你的结果只有一个的时候 不需要加_set.all()
             自己总结出 自己方便记忆的即可 每个人都可以不一样
-        &quot;&quot;&quot;
+        """</span>
 
-3.注意
-    &quot;&quot;&quot;
+<span class="token number">3.</span>注意
+    <span class="token triple-quoted-string string">"""
     在书写orm语句的时候跟写sql语句一样的
     不要企图一次性将orm语句写完 如果比较复杂 就写一点看一点
 
@@ -786,137 +786,137 @@ LOGGING &#x3D; &#123;
             book_obj.publish
             book_obj.authors.all()
             author_obj.author_detail
-     &quot;&quot;&quot;</code></pre>
+     """</span></code></pre>
 
-<h3 id="3、基于下划线的跨表查询"><a href="#3、基于下划线的跨表查询" class="headerlink" title="3、基于下划线的跨表查询"></a>3、基于下划线的跨表查询</h3><pre class="language-python" data-language="python"><code class="language-python">1.查询yxx的手机号和作者姓名
-    # 正向
-        res &#x3D; models.Author.objects.filter(name&#x3D;&#39;yxx&#39;).values(&#39;author_detail__phone&#39;, &#39;name&#39;)
-    # 反向
-        res1 &#x3D; models.AuthorDetail.objects.filter(author__name&#x3D;&#39;yxx&#39;).values(&#39;author__name&#39;, &#39;phone&#39;)
-        print(res1)
+<h3 id="3、基于下划线的跨表查询"><a href="#3、基于下划线的跨表查询" class="headerlink" title="3、基于下划线的跨表查询"></a>3、基于下划线的跨表查询</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>查询yxx的手机号和作者姓名
+    <span class="token comment"># 正向</span>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'yxx'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'author_detail__phone'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 反向</span>
+        res1 <span class="token operator">=</span> models<span class="token punctuation">.</span>AuthorDetail<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author__name<span class="token operator">=</span><span class="token string">'yxx'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'author__name'</span><span class="token punctuation">,</span> <span class="token string">'phone'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res1<span class="token punctuation">)</span>
 
-2.查询书籍主键为1的出版社名称和书的名称
-    # 正向
-    	res2 &#x3D; models.Book.objects.filter(pk&#x3D;1).values(&#39;publish__name&#39;, &#39;title&#39;)
-    # 反向
-        res3 &#x3D; models.Publish.objects.filter(book__id&#x3D;1).values(&#39;name&#39;, &#39;book__title&#39;)
-        print(res2)
-        print(res3)
+<span class="token number">2.</span>查询书籍主键为<span class="token number">1</span>的出版社名称和书的名称
+    <span class="token comment"># 正向</span>
+    	res2 <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'publish__name'</span><span class="token punctuation">,</span> <span class="token string">'title'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 反向</span>
+        res3 <span class="token operator">=</span> models<span class="token punctuation">.</span>Publish<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>book__id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'book__title'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res2<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res3<span class="token punctuation">)</span>
 
-3.查询书籍主键为1的作者姓名
-    # 正向
-    	res4 &#x3D; models.Book.objects.filter(pk&#x3D;1).values(&#39;author__name&#39;)
-    # 反向
-        res5 &#x3D; models.Author.objects.filter(book__id&#x3D;1).values(&#39;name&#39;)
-        print(res4)
-        print(res5)
+<span class="token number">3.</span>查询书籍主键为<span class="token number">1</span>的作者姓名
+    <span class="token comment"># 正向</span>
+    	res4 <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'author__name'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 反向</span>
+        res5 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>book__id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res4<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res5<span class="token punctuation">)</span>
 
-4.查询书籍主键是1的作者的手机号
-    # 正向
-   		res6 &#x3D; models.Book.objects.filter(pk&#x3D;1).values(&quot;author__author_detail__phone&quot;)
-    # 反向
-        res7 &#x3D; models.Author.objects.filter(book__id&#x3D;1).values(&#39;author_detail__phone&#39;)
-        print(res6)
-        print(res7)
+<span class="token number">4.</span>查询书籍主键是<span class="token number">1</span>的作者的手机号
+    <span class="token comment"># 正向</span>
+   		res6 <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">"author__author_detail__phone"</span><span class="token punctuation">)</span>
+    <span class="token comment"># 反向</span>
+        res7 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>book__id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'author_detail__phone'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res6<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res7<span class="token punctuation">)</span>
         
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 你只要掌握了正反向的概念
 以及双下划线
 那么你就可以无限制的跨表
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h2 id="十、聚合查询"><a href="#十、聚合查询" class="headerlink" title="十、聚合查询"></a>十、聚合查询</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是聚合查询
+<h2 id="十、聚合查询"><a href="#十、聚合查询" class="headerlink" title="十、聚合查询"></a>十、聚合查询</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>什么是聚合查询
 	其实就是MySQL的聚合函数的使用查询
 
-2. 代码演示
-	# 聚合查询      aggregate
-    &quot;&quot;&quot;
+<span class="token number">2.</span> 代码演示
+	<span class="token comment"># 聚合查询      aggregate</span>
+    <span class="token triple-quoted-string string">"""
     聚合查询通常情况下都是配合分组一起使用的
     只要是跟数据库相关的模块 
         基本上都在django.db.models里面
         如果上述没有那么应该在django.db里面
-    &quot;&quot;&quot;
-    from django.db.models import Max,Min,Avg,Count,Sum
-    # 1 所有书的平均价格
-    res &#x3D; models.Book.objects.aggregate(Avg(&#39;price&#39;))
-    print(res)
-    # 2.上述方法一次性使用
-    res1 &#x3D; models.Book.objects.aggregate(Max(&#39;price&#39;), Min(&#39;price&#39;), Count(&#39;title&#39;), Sum(&#39;price&#39;))
-    print(res1)</code></pre>
+    """</span>
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db<span class="token punctuation">.</span>models <span class="token keyword">import</span> Max<span class="token punctuation">,</span>Min<span class="token punctuation">,</span>Avg<span class="token punctuation">,</span>Count<span class="token punctuation">,</span>Sum
+    <span class="token comment"># 1 所有书的平均价格</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>aggregate<span class="token punctuation">(</span>Avg<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token comment"># 2.上述方法一次性使用</span>
+    res1 <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>aggregate<span class="token punctuation">(</span>Max<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Min<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Count<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Sum<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res1<span class="token punctuation">)</span></code></pre>
 
-<h2 id="十一、分组查询"><a href="#十一、分组查询" class="headerlink" title="十一、分组查询"></a>十一、分组查询</h2><pre class="language-python" data-language="python"><code class="language-python"># 分组查询  annotate
-    &quot;&quot;&quot;
+<h2 id="十一、分组查询"><a href="#十一、分组查询" class="headerlink" title="十一、分组查询"></a>十一、分组查询</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 分组查询  annotate</span>
+    <span class="token triple-quoted-string string">"""
     MySQL分组查询都有哪些特点
         分组之后默认只能获取到分组的依据 组内其他字段都无法直接获取了
             严格模式
                 ONLY_FULL_GROUP_BY
                 
-    &quot;&quot;&quot;
+    """</span>
     
-    from django.db.models import Max, Min, Avg, Count, Sum
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db<span class="token punctuation">.</span>models <span class="token keyword">import</span> Max<span class="token punctuation">,</span> Min<span class="token punctuation">,</span> Avg<span class="token punctuation">,</span> Count<span class="token punctuation">,</span> Sum
 
-# 1.统计每一本书的作者个数
-    res &#x3D; models.Book.objects.annotate(author_num&#x3D;(Count(&#39;author&#39;))).values(&#39;author_num&#39;)
-    res1 &#x3D; models.Book.objects.annotate(author_num&#x3D;Count(&#39;author__id&#39;)).values(&#39;title&#39;, &#39;author_num&#39;)
-    print(res, res1)
-# 2.统计每个出版社卖的最便宜的书的价格
-    res2 &#x3D; models.Publish.objects.annotate(min_price&#x3D;(Min(&#39;book__price&#39;))).values(&#39;min_price&#39;)
-    print(res2)
-# 3.统计不止一个作者的图书
-    res3 &#x3D; models.Book.objects.annotate(author_num&#x3D;(Count(&#39;author__id&#39;))).filter(author_num__gt&#x3D;1).values(&#39;title&#39;,
-                                                                                                      &#39;author_num&#39;)
-    print(res3)
-# 4.查询每个作者出的书的总价格
-    res4 &#x3D; models.Author.objects.annotate(price_sum&#x3D;(Sum(&#39;book__price&#39;))).values(&#39;price_sum&#39;)
-    print(res4)
+<span class="token comment"># 1.统计每一本书的作者个数</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span>author_num<span class="token operator">=</span><span class="token punctuation">(</span>Count<span class="token punctuation">(</span><span class="token string">'author'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'author_num'</span><span class="token punctuation">)</span>
+    res1 <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span>author_num<span class="token operator">=</span>Count<span class="token punctuation">(</span><span class="token string">'author__id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">,</span> <span class="token string">'author_num'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> res1<span class="token punctuation">)</span>
+<span class="token comment"># 2.统计每个出版社卖的最便宜的书的价格</span>
+    res2 <span class="token operator">=</span> models<span class="token punctuation">.</span>Publish<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span>min_price<span class="token operator">=</span><span class="token punctuation">(</span>Min<span class="token punctuation">(</span><span class="token string">'book__price'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'min_price'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res2<span class="token punctuation">)</span>
+<span class="token comment"># 3.统计不止一个作者的图书</span>
+    res3 <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span>author_num<span class="token operator">=</span><span class="token punctuation">(</span>Count<span class="token punctuation">(</span><span class="token string">'author__id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author_num__gt<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">,</span>
+                                                                                                      <span class="token string">'author_num'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res3<span class="token punctuation">)</span>
+<span class="token comment"># 4.查询每个作者出的书的总价格</span>
+    res4 <span class="token operator">=</span> models<span class="token punctuation">.</span>Author<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span>price_sum<span class="token operator">=</span><span class="token punctuation">(</span>Sum<span class="token punctuation">(</span><span class="token string">'book__price'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'price_sum'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res4<span class="token punctuation">)</span>
 
     
-    &quot;&quot;&quot;
+    <span class="token triple-quoted-string string">"""
     如果我想按照指定的字段分组该如何处理呢？
-        models.Book.objects.values(&#39;price&#39;).annotate()
+        models.Book.objects.values('price').annotate()
     后续BBS作业会使用
     
     
     你们的机器上如果出现分组查询报错的情况
         你需要修改数据库严格模式
-    &quot;&quot;&quot;</code></pre>
+    """</span></code></pre>
 
-<h2 id="十二、F查询"><a href="#十二、F查询" class="headerlink" title="十二、F查询"></a>十二、F查询</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是F查询
+<h2 id="十二、F查询"><a href="#十二、F查询" class="headerlink" title="十二、F查询"></a>十二、F查询</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是F查询
 	能够帮助你直接获取到表中某个字段对应的数据
-2. 代码演示
-	from django.db.models import F
-    # 1.查询卖出数大于库存数的书籍
-    res &#x3D; models.Book.objects.filter(sale__gt&#x3D;F(&#39;inventory&#39;))
-    print(res)
-    # 2.将所有书籍的价格提升500块
-    models.Book.object.update(F(&#39;price&#39;) + 500)
-    # 3.将所有书的名称后面加上爆款两个字
-    &quot;&quot;&quot;
+<span class="token number">2.</span> 代码演示
+	<span class="token keyword">from</span> django<span class="token punctuation">.</span>db<span class="token punctuation">.</span>models <span class="token keyword">import</span> F
+    <span class="token comment"># 1.查询卖出数大于库存数的书籍</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>sale__gt<span class="token operator">=</span>F<span class="token punctuation">(</span><span class="token string">'inventory'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token comment"># 2.将所有书籍的价格提升500块</span>
+    models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>F<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">500</span><span class="token punctuation">)</span>
+    <span class="token comment"># 3.将所有书的名称后面加上爆款两个字</span>
+    <span class="token triple-quoted-string string">"""
     在操作字符类型的数据的时候 F不能够直接做到字符串的拼接
-    &quot;&quot;&quot;
-    from django.db.models.functions import concat
-    from django.db.models import values
-    models.Book.objects.update(title&#x3D;Concat(F(&#39;title&#39;), Value(&#39;爆款&#39;)))
-    # models.Book.objects.update(title&#x3D;F(&#39;title&#39;) + &#39;爆款&#39;)  # 所有的名称会全部变成空白</code></pre>
+    """</span>
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db<span class="token punctuation">.</span>models<span class="token punctuation">.</span>functions <span class="token keyword">import</span> concat
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db<span class="token punctuation">.</span>models <span class="token keyword">import</span> values
+    models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>update<span class="token punctuation">(</span>title<span class="token operator">=</span>Concat<span class="token punctuation">(</span>F<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Value<span class="token punctuation">(</span><span class="token string">'爆款'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># models.Book.objects.update(title=F('title') + '爆款')  # 所有的名称会全部变成空白</span></code></pre>
 
-<h2 id="十三、Q查询"><a href="#十三、Q查询" class="headerlink" title="十三、Q查询"></a>十三、Q查询</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是Q查询
+<h2 id="十三、Q查询"><a href="#十三、Q查询" class="headerlink" title="十三、Q查询"></a>十三、Q查询</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是Q查询
 	能变换fitler里面的与或非关系
    
-2. 代码演示
-	from django.db.models import Q
-    # 1.查询卖出数大于100或者价格小于600的书籍
-   	res &#x3D; models.Book.object.filter(sale__gt&#x3D;100, price__lt&#x3D;600)  # filter 里面默认是and关系 直接改成or not可不行
-    res &#x3D; models.Book.object.fitler(Q(sale__gt&#x3D;100)|(price__lt&#x3D;600)  # |是 or 关系
-    res &#x3D; models.Book.object.fitler(~(sale__gt&#x3D;100)|(price__lt&#x3D;600)  # ~是 not 关系
-    # Q的高级用法 能够将查询条件的左边也变成字符串格式
-    q &#x3D; Q()
-    q.children.append((&#39;maichu__gt&#39;,100))
-    q.children.append((&#39;price__lt&#39;,600))
-    res &#x3D; models.Book.object.fitler(q)  # 默认还是and关系 所以得加一句代码  q.connector &#x3D; &#39;or&#39;
-    print(q)
+<span class="token number">2.</span> 代码演示
+	<span class="token keyword">from</span> django<span class="token punctuation">.</span>db<span class="token punctuation">.</span>models <span class="token keyword">import</span> Q
+    <span class="token comment"># 1.查询卖出数大于100或者价格小于600的书籍</span>
+   	res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>sale__gt<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> price__lt<span class="token operator">=</span><span class="token number">600</span><span class="token punctuation">)</span>  <span class="token comment"># filter 里面默认是and关系 直接改成or not可不行</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span>fitler<span class="token punctuation">(</span>Q<span class="token punctuation">(</span>sale__gt<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span>price__lt<span class="token operator">=</span><span class="token number">600</span><span class="token punctuation">)</span>  <span class="token comment"># |是 or 关系</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span>fitler<span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">(</span>sale__gt<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span>price__lt<span class="token operator">=</span><span class="token number">600</span><span class="token punctuation">)</span>  <span class="token comment"># ~是 not 关系</span>
+    <span class="token comment"># Q的高级用法 能够将查询条件的左边也变成字符串格式</span>
+    q <span class="token operator">=</span> Q<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>children<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'maichu__gt'</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>children<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'price__lt'</span><span class="token punctuation">,</span><span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span>fitler<span class="token punctuation">(</span>q<span class="token punctuation">)</span>  <span class="token comment"># 默认还是and关系 所以得加一句代码  q.connector = 'or'</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span>
     </code></pre>
 
-<h2 id="十四、DJANGO中开启事务"><a href="#十四、DJANGO中开启事务" class="headerlink" title="十四、DJANGO中开启事务"></a>十四、DJANGO中开启事务</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十四、DJANGO中开启事务"><a href="#十四、DJANGO中开启事务" class="headerlink" title="十四、DJANGO中开启事务"></a>十四、DJANGO中开启事务</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 事务
 	ACID
 		原子性
@@ -932,141 +932,141 @@ LOGGING &#x3D; &#123;
 		rollback
 	事务的确认
 		commit
-&quot;&quot;&quot;
-# 目前你只需要掌握Django中如何简单的开启事务
-# 事务
-    from django.db import transaction
-    try:
-        with transaction.atomic():
-            # sql1
-            # sql2
-            ...
-            # 在with代码快内书写的所有orm操作都是属于同一个事务
-    except Exception as e:
-        print(e)
-    print(&#39;执行其他操作&#39;)</code></pre>
+"""</span>
+<span class="token comment"># 目前你只需要掌握Django中如何简单的开启事务</span>
+<span class="token comment"># 事务</span>
+    <span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> transaction
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> transaction<span class="token punctuation">.</span>atomic<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment"># sql1</span>
+            <span class="token comment"># sql2</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+            <span class="token comment"># 在with代码快内书写的所有orm操作都是属于同一个事务</span>
+    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行其他操作'</span><span class="token punctuation">)</span></code></pre>
 
 <h2 id="十五、ORM常用字段-amp-参数"><a href="#十五、ORM常用字段-amp-参数" class="headerlink" title="十五、ORM常用字段&amp;参数"></a>十五、ORM常用字段&amp;参数</h2><pre class="language-python" data-language="python"><code class="language-python">AutoField
-	主键字段 primary_key&#x3D;True
+	主键字段 primary_key<span class="token operator">=</span><span class="token boolean">True</span>
   
 CharField				varchar
 	verbose_name	字段的注释
   max_length		长度
   
-IntegerField			int
+IntegerField			<span class="token builtin">int</span>
 BigIntegerField		bigint
 
 DecimalField
-	max_digits&#x3D;8
-  decimal_places&#x3D;2
+	max_digits<span class="token operator">=</span><span class="token number">8</span>
+  decimal_places<span class="token operator">=</span><span class="token number">2</span>
 
-EmailFiled				varchar(254)
+EmailFiled				varchar<span class="token punctuation">(</span><span class="token number">254</span><span class="token punctuation">)</span>
 
 DateField					date
 DateTimeField			datetime
-	auto_now:每次修改数据的时候都会自动更新当前时间
-  auto_now_add:只在创建数据的时候记录创建时间后续不会自动修改了
+	auto_now<span class="token punctuation">:</span>每次修改数据的时候都会自动更新当前时间
+  auto_now_add<span class="token punctuation">:</span>只在创建数据的时候记录创建时间后续不会自动修改了
     
-BooleanField(Field)				- 布尔值类型
-	该字段传布尔值(False&#x2F;True) 	数据库里面存0&#x2F;1
+BooleanField<span class="token punctuation">(</span>Field<span class="token punctuation">)</span>				<span class="token operator">-</span> 布尔值类型
+	该字段传布尔值<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token operator">/</span><span class="token boolean">True</span><span class="token punctuation">)</span> 	数据库里面存<span class="token number">0</span><span class="token operator">/</span><span class="token number">1</span>
 
-TextField(Field)					- 文本类型
-	该字段可以用来存大段内容(文章、博客...)  没有字数限制
+TextField<span class="token punctuation">(</span>Field<span class="token punctuation">)</span>					<span class="token operator">-</span> 文本类型
+	该字段可以用来存大段内容<span class="token punctuation">(</span>文章、博客<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>  没有字数限制
   后面的bbs作业 文章字段用的就是TextField
 
 
-FileField(Field)					- 字符类型
-   upload_to &#x3D; &quot;&#x2F;data&quot;
-  给该字段传一个文件对象，会自动将文件保存到&#x2F;data目录下然后将文件路径保存到数据库中
-  &#x2F;data&#x2F;a.txt
+FileField<span class="token punctuation">(</span>Field<span class="token punctuation">)</span>					<span class="token operator">-</span> 字符类型
+   upload_to <span class="token operator">=</span> <span class="token string">"/data"</span>
+  给该字段传一个文件对象，会自动将文件保存到<span class="token operator">/</span>data目录下然后将文件路径保存到数据库中
+  <span class="token operator">/</span>data<span class="token operator">/</span>a<span class="token punctuation">.</span>txt
   后面bbs作业也会涉及
 
-# 更多字段
-直接参考博客:https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Dominic-Ji&#x2F;p&#x2F;9203990.html
+<span class="token comment"># 更多字段</span>
+直接参考博客<span class="token punctuation">:</span>https<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>cnblogs<span class="token punctuation">.</span>com<span class="token operator">/</span>Dominic<span class="token operator">-</span>Ji<span class="token operator">/</span>p<span class="token operator">/</span><span class="token number">9203990</span><span class="token punctuation">.</span>html
 
     
-# django除了给你提供了很多字段类型之外 还支持你自定义字段
-class MyCharField(models.Field):
-    def __init__(self,max_length,*args,**kwargs):
-        self.max_length &#x3D; max_length
-        # 调用父类的init方法
-        super().__init__(max_length&#x3D;max_length,*args,**kwargs)  # 一定要是关键字的形式传入
+<span class="token comment"># django除了给你提供了很多字段类型之外 还支持你自定义字段</span>
+<span class="token keyword">class</span> <span class="token class-name">MyCharField</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Field<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>max_length<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>max_length <span class="token operator">=</span> max_length
+        <span class="token comment"># 调用父类的init方法</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>max_length<span class="token operator">=</span>max_length<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>  <span class="token comment"># 一定要是关键字的形式传入</span>
 
-    def db_type(self, connection):
-        &quot;&quot;&quot;
+    <span class="token keyword">def</span> <span class="token function">db_type</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> connection<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
         返回真正的数据类型及各种约束条件
         :param connection:
         :return:
-        &quot;&quot;&quot;
-        return &#39;char(%s)&#39;%self.max_length
+        """</span>
+        <span class="token keyword">return</span> <span class="token string">'char(%s)'</span><span class="token operator">%</span>self<span class="token punctuation">.</span>max_length
 
-# 自定义字段使用
-myfield &#x3D; MyCharField(max_length&#x3D;16,null&#x3D;True)
+<span class="token comment"># 自定义字段使用</span>
+myfield <span class="token operator">=</span> MyCharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span>null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
 
 
-# 外键字段及参数
-unique&#x3D;True
-	ForeignKey(unique&#x3D;True)   &#x3D;&#x3D;&#x3D;			OneToOneField()
-  # 你在用前面字段创建一对一 orm会有一个提示信息 orm推荐你使用后者但是前者也能用
+<span class="token comment"># 外键字段及参数</span>
+unique<span class="token operator">=</span><span class="token boolean">True</span>
+	ForeignKey<span class="token punctuation">(</span>unique<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>   <span class="token operator">==</span><span class="token operator">=</span>			OneToOneField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment"># 你在用前面字段创建一对一 orm会有一个提示信息 orm推荐你使用后者但是前者也能用</span>
   
 db_index
-	如果db_index&#x3D;True 则代表着为此字段设置索引
-  (复习索引是什么)
+	如果db_index<span class="token operator">=</span><span class="token boolean">True</span> 则代表着为此字段设置索引
+  <span class="token punctuation">(</span>复习索引是什么<span class="token punctuation">)</span>
 
 to_field
 	设置要关联的表的字段  默认不写关联的就是另外一张的主键字段
 
 on_delete
 	当删除关联表中的数据时，当前表与其关联的行的行为。
-  &quot;&quot;&quot;
+  <span class="token triple-quoted-string string">"""
   django2.X及以上版本 需要你自己指定外键字段的级联更新级联删除
-  &quot;&quot;&quot;</code></pre>
+  """</span></code></pre>
 
 <h2 id="十六、数据库查询优化"><a href="#十六、数据库查询优化" class="headerlink" title="十六、数据库查询优化"></a>十六、数据库查询优化</h2><pre class="language-python" data-language="python"><code class="language-python">only与defer	
 select_related与prefetch_related
 
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 orm语句的特点:
 	惰性查询
 		如果你仅仅只是书写了orm语句 在后面根本没有用到该语句所查询出来的参数
 		那么orm会自动识别 直接不执行
-&quot;&quot;&quot;
-# only与defer
-    	res &#x3D; models.Book.objects.all()
-        print(res)  # 要用数据了才会走数据库
+"""</span>
+<span class="token comment"># only与defer</span>
+    	res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>  <span class="token comment"># 要用数据了才会走数据库</span>
 
-        # 想要获取书籍表中所有数的名字
-        res &#x3D; models.Book.objects.values(&#39;title&#39;)
-        for d in res:
-            print(d.get(&#39;title&#39;))
-        # 你给我实现获取到的是一个数据对象 然后点title就能够拿到书名 并且没有其他字段
-        res &#x3D; models.Book.objects.only(&#39;title&#39;)
-        res &#x3D; models.Book.objects.all()
-        print(res)  # &lt;QuerySet [&lt;Book: 三国演义爆款&gt;, &lt;Book: 红楼梦爆款&gt;, &lt;Book: 论语爆款&gt;, &lt;Book: 聊斋爆款&gt;, &lt;Book: 老子爆款&gt;]&gt;
-        for i in res:
-            print(i.title)  # 点击only括号内的字段 不会走数据库
-            print(i.price)  # 点击only括号内没有的字段 会重新走数据库查询而all不需要走了
+        <span class="token comment"># 想要获取书籍表中所有数的名字</span>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> d <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 你给我实现获取到的是一个数据对象 然后点title就能够拿到书名 并且没有其他字段</span>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>only<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">)</span>
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>  <span class="token comment"># &lt;QuerySet [&lt;Book: 三国演义爆款>, &lt;Book: 红楼梦爆款>, &lt;Book: 论语爆款>, &lt;Book: 聊斋爆款>, &lt;Book: 老子爆款>]></span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>title<span class="token punctuation">)</span>  <span class="token comment"># 点击only括号内的字段 不会走数据库</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>price<span class="token punctuation">)</span>  <span class="token comment"># 点击only括号内没有的字段 会重新走数据库查询而all不需要走了</span>
 
-        res &#x3D; models.Book.objects.defer(&#39;title&#39;)  # 对象除了没有title属性之外其他的都有
-        for i in res:
-            print(i.price)
-        &quot;&quot;&quot;
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>defer<span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">)</span>  <span class="token comment"># 对象除了没有title属性之外其他的都有</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>price<span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""
         defer与only刚好相反
             defer括号内放的字段不在查询出来的对象里面 查询该字段需要重新走数据
             而如果查询的是非括号内的字段 则不需要走数据库了
 
-        &quot;&quot;&quot;
+        """</span>
     
 
-# select_related与prefetch_related
+<span class="token comment"># select_related与prefetch_related</span>
     select_related与prefetch_related  跟跨表操作有关
-        res &#x3D; models.Book.objects.all()
-        for i in res:
-            print(i.publish.name)  # 每循环一次就要走一次数据库查询
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>publish<span class="token punctuation">.</span>name<span class="token punctuation">)</span>  <span class="token comment"># 每循环一次就要走一次数据库查询</span>
 
-        res &#x3D; models.Book.objects.select_related(&#39;authors&#39;)  # INNER JOIN
-        &quot;&quot;&quot;
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>select_related<span class="token punctuation">(</span><span class="token string">'authors'</span><span class="token punctuation">)</span>  <span class="token comment"># INNER JOIN</span>
+        <span class="token triple-quoted-string string">"""
         select_related内部直接先将book与publish连起来 然后一次性将大表里面的所有数据
         全部封装给查询出来的对象
             这个时候对象无论是点击book表的数据还是publish的数据都无需再走数据库查询了
@@ -1074,20 +1074,20 @@ orm语句的特点:
         select_related括号内只能放外键字段    一对多 一对一
             多对多也不行
 
-        &quot;&quot;&quot;
-        for i in res:
-            print(i.publish.name)  # 每循环一次就要走一次数据库查询
+        """</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>publish<span class="token punctuation">.</span>name<span class="token punctuation">)</span>  <span class="token comment"># 每循环一次就要走一次数据库查询</span>
 
-        res &#x3D; models.Book.objects.prefetch_related(&#39;publish&#39;)  # 子查询
-        &quot;&quot;&quot;
+        res <span class="token operator">=</span> models<span class="token punctuation">.</span>Book<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>prefetch_related<span class="token punctuation">(</span><span class="token string">'publish'</span><span class="token punctuation">)</span>  <span class="token comment"># 子查询</span>
+        <span class="token triple-quoted-string string">"""
         prefetch_related该方法内部其实就是子查询
             将子查询查询出来的所有结果也给你封装到对象中
             给你的感觉好像也是一次性搞定的
-        &quot;&quot;&quot;
-        for i in res:
-            print(i.publish.name)</code></pre>
+        """</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>publish<span class="token punctuation">.</span>name<span class="token punctuation">)</span></code></pre>
 
-<h2 id="十七、CHOICES参数-数据库字段设计常见"><a href="#十七、CHOICES参数-数据库字段设计常见" class="headerlink" title="十七、CHOICES参数(数据库字段设计常见)"></a>十七、CHOICES参数(数据库字段设计常见)</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十七、CHOICES参数-数据库字段设计常见"><a href="#十七、CHOICES参数-数据库字段设计常见" class="headerlink" title="十七、CHOICES参数(数据库字段设计常见)"></a>十七、CHOICES参数(数据库字段设计常见)</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 用户表	
 	性别
 	学历
@@ -1099,107 +1099,107 @@ orm语句的特点:
 针对某个可以列举完全的可能性字段，我们应该如何存储
 
 只要某个字段的可能性是可以列举完全的，那么一般情况下都会采用choices参数
-&quot;&quot;&quot;
-class User(models.Model):
-    username &#x3D; models.CharField(max_length&#x3D;32)
-    age &#x3D; models.IntegerField()
-    # 性别
-    gender_choices &#x3D; (
-        (1,&#39;男&#39;),
-        (2,&#39;女&#39;),
-        (3,&#39;其他&#39;),
-    )
-    gender &#x3D; models.IntegerField(choices&#x3D;gender_choices)
+"""</span>
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+    age <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 性别</span>
+    gender_choices <span class="token operator">=</span> <span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'其他'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    gender <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span>choices<span class="token operator">=</span>gender_choices<span class="token punctuation">)</span>
     
-    score_choices &#x3D; (
-        (&#39;A&#39;,&#39;优秀&#39;),
-        (&#39;B&#39;,&#39;良好&#39;),
-        (&#39;C&#39;,&#39;及格&#39;),
-        (&#39;D&#39;,&#39;不合格&#39;),
-    )
-    # 保证字段类型跟列举出来的元祖第一个数据类型一致即可
-    score &#x3D; models.CharField(choices&#x3D;score_choices,null&#x3D;True)
-    &quot;&quot;&quot;
+    score_choices <span class="token operator">=</span> <span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'优秀'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">'B'</span><span class="token punctuation">,</span><span class="token string">'良好'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">'C'</span><span class="token punctuation">,</span><span class="token string">'及格'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">'D'</span><span class="token punctuation">,</span><span class="token string">'不合格'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token comment"># 保证字段类型跟列举出来的元祖第一个数据类型一致即可</span>
+    score <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>choices<span class="token operator">=</span>score_choices<span class="token punctuation">,</span>null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">"""
     该gender字段存的还是数字 但是如果存的数字在上面元祖列举的范围之内
     那么可以非常轻松的获取到数字对应的真正的内容
     
     1.gender字段存的数字不在上述元祖列举的范围内容
     2.如果在 如何获取对应的中文信息
-    &quot;&quot;&quot;
+    """</span>
     
       
-    from app01 import models
-    models.User.objects.create(username&#x3D;&#39;jason&#39;,age&#x3D;18,gender&#x3D;1)
-    models.User.objects.create(username&#x3D;&#39;egon&#39;,age&#x3D;85,gender&#x3D;2)
-    models.User.objects.create(username&#x3D;&#39;tank&#39;,age&#x3D;40,gender&#x3D;3)
-    # 存的时候 没有列举出来的数字也能存（范围还是按照字段类型决定）
-    models.User.objects.create(username&#x3D;&#39;tony&#39;,age&#x3D;45,gender&#x3D;4)
+    <span class="token keyword">from</span> app01 <span class="token keyword">import</span> models
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>username<span class="token operator">=</span><span class="token string">'jason'</span><span class="token punctuation">,</span>age<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">,</span>gender<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>username<span class="token operator">=</span><span class="token string">'egon'</span><span class="token punctuation">,</span>age<span class="token operator">=</span><span class="token number">85</span><span class="token punctuation">,</span>gender<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>username<span class="token operator">=</span><span class="token string">'tank'</span><span class="token punctuation">,</span>age<span class="token operator">=</span><span class="token number">40</span><span class="token punctuation">,</span>gender<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token comment"># 存的时候 没有列举出来的数字也能存（范围还是按照字段类型决定）</span>
+    models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>username<span class="token operator">=</span><span class="token string">'tony'</span><span class="token punctuation">,</span>age<span class="token operator">=</span><span class="token number">45</span><span class="token punctuation">,</span>gender<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span>
 
-    # 取
-    user_obj &#x3D; models.User.objects.filter(pk&#x3D;1).first()
-    print(user_obj.gender)  # 1
-    # 只要是choices参数的字段 如果你想要获取对应信息 固定写法 get_字段名_display()
-    print(user_obj.get_gender_display())
+    <span class="token comment"># 取</span>
+    user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">.</span>gender<span class="token punctuation">)</span>  <span class="token comment"># 1</span>
+    <span class="token comment"># 只要是choices参数的字段 如果你想要获取对应信息 固定写法 get_字段名_display()</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">.</span>get_gender_display<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    user_obj &#x3D; models.User.objects.filter(pk&#x3D;4).first()
-    # 如果没有对应关系 那么字段是什么还是展示什么
-    print(user_obj.get_gender_display())  # 4
+    user_obj <span class="token operator">=</span> models<span class="token punctuation">.</span>User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 如果没有对应关系 那么字段是什么还是展示什么</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>user_obj<span class="token punctuation">.</span>get_gender_display<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 4</span>
     </code></pre>
 
-<h2 id="十八、MTV与MVC模型"><a href="#十八、MTV与MVC模型" class="headerlink" title="十八、MTV与MVC模型"></a>十八、MTV与MVC模型</h2><pre class="language-python" data-language="python"><code class="language-python"># MTV:Django号称是MTV模型
-M:models
-T:templates
-V:views
-# MVC:其实django本质也是MVC
-M:models
-V:views
-C:controller
+<h2 id="十八、MTV与MVC模型"><a href="#十八、MTV与MVC模型" class="headerlink" title="十八、MTV与MVC模型"></a>十八、MTV与MVC模型</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># MTV:Django号称是MTV模型</span>
+M<span class="token punctuation">:</span>models
+T<span class="token punctuation">:</span>templates
+V<span class="token punctuation">:</span>views
+<span class="token comment"># MVC:其实django本质也是MVC</span>
+M<span class="token punctuation">:</span>models
+V<span class="token punctuation">:</span>views
+C<span class="token punctuation">:</span>controller
   
-# vue框架:MVVM模型</code></pre>
+<span class="token comment"># vue框架:MVVM模型</span></code></pre>
 
-<h2 id="十九、多对多表关系的三种创建方式"><a href="#十九、多对多表关系的三种创建方式" class="headerlink" title="十九、多对多表关系的三种创建方式"></a>十九、多对多表关系的三种创建方式</h2><pre class="language-python" data-language="python"><code class="language-python"># 全自动:利用orm自动帮我们创建第三张关系表
-	class Book(models.Model):
-        name &#x3D; models.CharField(max_length&#x3D;32)
-        authors &#x3D; models.ManyToManyField(to&#x3D;&#39;Author&#39;)
-	class Author(models.Model):
-   		name &#x3D; models.CharField(max_length&#x3D;32)
-	&quot;&quot;&quot;
+<h2 id="十九、多对多表关系的三种创建方式"><a href="#十九、多对多表关系的三种创建方式" class="headerlink" title="十九、多对多表关系的三种创建方式"></a>十九、多对多表关系的三种创建方式</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 全自动:利用orm自动帮我们创建第三张关系表</span>
+	<span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+        authors <span class="token operator">=</span> models<span class="token punctuation">.</span>ManyToManyField<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Author'</span><span class="token punctuation">)</span>
+	<span class="token keyword">class</span> <span class="token class-name">Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+   		name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+	<span class="token triple-quoted-string string">"""
 	优点:代码不需要你写 非常的方便 还支持orm提供操作第三张关系表的方法...
 	不足之处:第三张关系表的扩展性极差(没有办法额外添加字段...)
-	&quot;&quot;&quot;
-# 纯手动
-    class Book(models.Model):
-      	name &#x3D; models.CharField(max_length&#x3D;32)
+	"""</span>
+<span class="token comment"># 纯手动</span>
+    <span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      	name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
 
-    class Author(models.Model):
-        name &#x3D; models.CharField(max_length&#x3D;32)
+    <span class="token keyword">class</span> <span class="token class-name">Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
   
-	class Book2Author(models.Model):
-        book_id &#x3D; models.ForeignKey(to&#x3D;&#39;Book&#39;)
-        author_id &#x3D; models.ForeignKey(to&#x3D;&#39;Author&#39;)
-      &#39;&#39;&#39;
+	<span class="token keyword">class</span> <span class="token class-name">Book2Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        book_id <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Book'</span><span class="token punctuation">)</span>
+        author_id <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Author'</span><span class="token punctuation">)</span>
+      <span class="token triple-quoted-string string">'''
       优点:第三张表完全取决于你自己进行额外的扩展
       不足之处:需要写的代码较多，不能够再使用orm提供的简单的方法
       不建议你用该方式
-      &#39;&#39;&#39;
-# 半自动
-    class Book(models.Model):
-        name &#x3D; models.CharField(max_length&#x3D;32)
-        authors &#x3D; models.ManyToManyField(to&#x3D;&#39;Author&#39;,
-                                         through&#x3D;&#39;Book2Author&#39;,
-                                         through_fields&#x3D;(&#39;book&#39;,&#39;author&#39;)
-                                         )
-    class Author(models.Model):
-        name &#x3D; models.CharField(max_length&#x3D;32)
-        # books &#x3D; models.ManyToManyField(to&#x3D;&#39;Book&#39;,
-        #                                  through&#x3D;&#39;Book2Author&#39;,
-        #                                  through_fields&#x3D;(&#39;author&#39;,&#39;book&#39;)
-        #                                  )
-    class Book2Author(models.Model):
-        book &#x3D; models.ForeignKey(to&#x3D;&#39;Book&#39;)
-        author &#x3D; models.ForeignKey(to&#x3D;&#39;Author&#39;)
+      '''</span>
+<span class="token comment"># 半自动</span>
+    <span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+        authors <span class="token operator">=</span> models<span class="token punctuation">.</span>ManyToManyField<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Author'</span><span class="token punctuation">,</span>
+                                         through<span class="token operator">=</span><span class="token string">'Book2Author'</span><span class="token punctuation">,</span>
+                                         through_fields<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'book'</span><span class="token punctuation">,</span><span class="token string">'author'</span><span class="token punctuation">)</span>
+                                         <span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+        <span class="token comment"># books = models.ManyToManyField(to='Book',</span>
+        <span class="token comment">#                                  through='Book2Author',</span>
+        <span class="token comment">#                                  through_fields=('author','book')</span>
+        <span class="token comment">#                                  )</span>
+    <span class="token keyword">class</span> <span class="token class-name">Book2Author</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        book <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Book'</span><span class="token punctuation">)</span>
+        author <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Author'</span><span class="token punctuation">)</span>
 
-    &quot;&quot;&quot;
+    <span class="token triple-quoted-string string">"""
     through_fields字段先后顺序
         判断的本质：
             通过第三张表查询对应的表 需要用到哪个字段就把哪个字段放前面
@@ -1208,9 +1208,9 @@ C:controller
 
 
     半自动:可以使用orm的正反向查询 但是没法使用add,set,remove,clear这四个方法
-    &quot;&quot;&quot;
+    """</span>
 
-    # 总结:你需要掌握的是全自动和半自动 为了扩展性更高 一般我们都会采用半自动(写代码要给自己留一条后路)</code></pre>
+    <span class="token comment"># 总结:你需要掌握的是全自动和半自动 为了扩展性更高 一般我们都会采用半自动(写代码要给自己留一条后路)</span></code></pre>
 
             </div>
 

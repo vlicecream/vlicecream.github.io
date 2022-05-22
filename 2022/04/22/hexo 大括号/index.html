@@ -158,18 +158,18 @@
             <div class="typo" style="padding: 3rem;">
                 <p>今天把hexo自带的代码高亮插件换成了hexo-prism-plugin。</p>
 <p>三连后发现Json里的大括号都被转成数字’&amp;#123’ or ‘&amp;#135’(即使用npm直接安装的话版本为2.3.0均会存在这个问题)</p>
-<pre class="language-go" data-language="go"><code class="language-go">node_modules&#x2F;hexo-prism-plugin&#x2F;src&#x2F;index.js
-map里未支持大括号，尝试补上&quot;**&amp;#123;**&quot;与&quot;**&amp;#125;**&quot;后发现有效，即在map中加上对应字符即可:**</code></pre>
+<pre class="language-go" data-language="go"><code class="language-go">node_modules<span class="token operator">/</span>hexo<span class="token operator">-</span>prism<span class="token operator">-</span>plugin<span class="token operator">/</span>src<span class="token operator">/</span>index<span class="token punctuation">.</span>js
+<span class="token keyword">map</span>里未支持大括号，尝试补上<span class="token string">"**&amp;#123;**"</span>与<span class="token string">"**&amp;#125;**"</span>后发现有效，即在<span class="token keyword">map</span>中加上对应字符即可<span class="token punctuation">:</span><span class="token operator">*</span><span class="token operator">*</span></code></pre>
 
-<pre class="language-json" data-language="json"><code class="language-json">const map &#x3D; &#123;
-  &#39;&#39;&#39;: &#39;\&#39;&#39;,
-  &#39;&amp;&#39;: &#39;&amp;&#39;,
-  &#39;&gt;&#39;: &#39;&gt;&#39;,
-  &#39;&lt;&#39;: &#39;&lt;&#39;,
-  &#39;&quot;&#39;: &#39;&quot;&#39;,
-  &#39;&amp;#123;&#39;: &#39;&#123;&#39;,
-  &#39;&amp;#125;&#39;: &#39;&#125;&#39;
-&#125;;</code></pre>
+<pre class="language-json" data-language="json"><code class="language-json">const map = <span class="token punctuation">&#123;</span>
+  '&amp;#<span class="token number">39</span>;'<span class="token operator">:</span> '\''<span class="token punctuation">,</span>
+  '&amp;amp;'<span class="token operator">:</span> '&amp;'<span class="token punctuation">,</span>
+  '&amp;gt;'<span class="token operator">:</span> '>'<span class="token punctuation">,</span>
+  '&amp;lt;'<span class="token operator">:</span> '&lt;'<span class="token punctuation">,</span>
+  '&amp;quot;'<span class="token operator">:</span> '"'<span class="token punctuation">,</span>
+  '&amp;#<span class="token number">123</span>;'<span class="token operator">:</span> '<span class="token punctuation">&#123;</span>'<span class="token punctuation">,</span>
+  '&amp;#<span class="token number">125</span>;'<span class="token operator">:</span> '<span class="token punctuation">&#125;</span>'
+<span class="token punctuation">&#125;</span>;</code></pre>
 
 
             </div>

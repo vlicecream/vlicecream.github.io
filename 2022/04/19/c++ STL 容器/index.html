@@ -161,14 +161,14 @@
 &#x2F;&#x2F; 我们把一个单元的测试 都放在一个namespace 每个namespace上面都会有自己有关的头文件 就算有些头文件有重复了 也没有关系 因为我们有防卫式声明 木有事情
 &#x2F;&#x2F; 变量的声明 都会集中在函数的最前面 测试的话我们可以不要缩进散开来 但是还是根据自己的习惯来</code></pre>
 
-<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><pre class="language-c" data-language="c"><code class="language-c">&#x2F;*
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">/*
 	namespace jj01
 	
 	数组是固定大小的序列容器, 里面的元素是一段连续的内存地址
-	通用格式 array&lt;类型名, 元素个数&gt;数组名;
+	通用格式 array&lt;类型名, 元素个数>数组名;
 		ps: 元素个数不能是变量 因为长度固定
 	array并不支持(也就是不允许你指定)分配器的哦～
-*&#x2F; </code></pre>
+*/</span> </code></pre>
 
 <h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	namespace jj02
@@ -179,17 +179,17 @@
 	如果vector元素类型为string，则默认初始化为空字符串
 *&#x2F;</code></pre>
 
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><pre class="language-c" data-language="c"><code class="language-c">&#x2F;*
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">/*
   namespace jj03
   
   扩容是不可能在原来的地方也就是内存地址扩容两倍 所以扩容后内存地址肯定会变 而且扩容的很缓慢 
   	但是list不一样 他是有指针的 相当于一个萝卜一个坑～ 每放一个元素进去 就会有指向这个元素的地址
   list 不可以用全局的 ::sort 方法 必须要用他自己类自带的sort算法 因为分配器的原因
-*</code></pre>
+*</span></code></pre>
 
-<h2 id="Forward-list"><a href="#Forward-list" class="headerlink" title="Forward_list"></a>Forward_list</h2><pre class="language-c" data-language="c"><code class="language-c">&#x2F;*
+<h2 id="Forward-list"><a href="#Forward-list" class="headerlink" title="Forward_list"></a>Forward_list</h2><pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">/*
 	单向链表 只有push_front 方法 只允许你从一端放入
-*&#x2F;</code></pre>
+*/</span></code></pre>
 
 <h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><pre class="language-c" data-language="c"><code class="language-c"></code></pre>
 

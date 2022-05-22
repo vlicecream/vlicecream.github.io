@@ -156,129 +156,129 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、流程控制"><a href="#一、流程控制" class="headerlink" title="一、流程控制"></a>一、流程控制</h2><h3 id="1-1-顺序结构"><a href="#1-1-顺序结构" class="headerlink" title="1.1 顺序结构"></a>1.1 顺序结构</h3><pre class="language-python" data-language="python"><code class="language-python"># 代码自上而下的去运行</code></pre>
+                <h2 id="一、流程控制"><a href="#一、流程控制" class="headerlink" title="一、流程控制"></a>一、流程控制</h2><h3 id="1-1-顺序结构"><a href="#1-1-顺序结构" class="headerlink" title="1.1 顺序结构"></a>1.1 顺序结构</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 代码自上而下的去运行</span></code></pre>
 
-<h3 id="1-2-分支结构"><a href="#1-2-分支结构" class="headerlink" title="1.2 分支结构"></a>1.2 分支结构</h3><pre class="language-python" data-language="python"><code class="language-python"># 代码运行到某个分支之后根据条件的不同执行不同的代码
-# 其实就是if 判断</code></pre>
+<h3 id="1-2-分支结构"><a href="#1-2-分支结构" class="headerlink" title="1.2 分支结构"></a>1.2 分支结构</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 代码运行到某个分支之后根据条件的不同执行不同的代码</span>
+<span class="token comment"># 其实就是if 判断</span></code></pre>
 
-<h3 id="1-3-循环结构"><a href="#1-3-循环结构" class="headerlink" title="1.3 循环结构"></a>1.3 循环结构</h3><pre class="language-python" data-language="python"><code class="language-python"># 代码运行着某个地方一直重复执行一段代码直到结束
-# while for</code></pre>
+<h3 id="1-3-循环结构"><a href="#1-3-循环结构" class="headerlink" title="1.3 循环结构"></a>1.3 循环结构</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 代码运行着某个地方一直重复执行一段代码直到结束</span>
+<span class="token comment"># while for</span></code></pre>
 
-<h2 id="二、IF-判断"><a href="#二、IF-判断" class="headerlink" title="二、IF 判断"></a>二、IF 判断</h2><pre class="language-python" data-language="python"><code class="language-python">1、格式 
-    if 条件 :
+<h2 id="二、IF-判断"><a href="#二、IF-判断" class="headerlink" title="二、IF 判断"></a>二、IF 判断</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1</span>、格式 
+    <span class="token keyword">if</span> 条件 <span class="token punctuation">:</span>
         条件成立后的代码
         
-2、普通 if
-# 如果女孩子的年龄小于30岁 打印小姐姐
-girl_age &#x3D; 58
-if girl_age &lt; 30:  # if判断
-    print(&#39;小姐姐好&#39;)
+<span class="token number">2</span>、普通 <span class="token keyword">if</span>
+<span class="token comment"># 如果女孩子的年龄小于30岁 打印小姐姐</span>
+girl_age <span class="token operator">=</span> <span class="token number">58</span>
+<span class="token keyword">if</span> girl_age <span class="token operator">&lt;</span> <span class="token number">30</span><span class="token punctuation">:</span>  <span class="token comment"># if判断</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'小姐姐好'</span><span class="token punctuation">)</span>
     
-3、if 与 else
-# 如果女孩子的年龄小于30岁 打印小姐姐 否则打印认错人了
-girl_age &#x3D; 68
-if girl_age &lt; 30:
-    print(&#39;小姐姐好&#39;)
-else:
-    print(&#39;认错人了&#39;)
+<span class="token number">3</span>、<span class="token keyword">if</span> 与 <span class="token keyword">else</span>
+<span class="token comment"># 如果女孩子的年龄小于30岁 打印小姐姐 否则打印认错人了</span>
+girl_age <span class="token operator">=</span> <span class="token number">68</span>
+<span class="token keyword">if</span> girl_age <span class="token operator">&lt;</span> <span class="token number">30</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'小姐姐好'</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'认错人了'</span><span class="token punctuation">)</span>
     
- 4、if 与 elif
-# 如果女孩子的年龄小于30岁 打印小姐姐 小于40随打印阿姨我不想努力了 小于50岁拜拜 否则躺平
+ <span class="token number">4</span>、<span class="token keyword">if</span> 与 <span class="token keyword">elif</span>
+<span class="token comment"># 如果女孩子的年龄小于30岁 打印小姐姐 小于40随打印阿姨我不想努力了 小于50岁拜拜 否则躺平</span>
 
-girl_age &#x3D; 28
-if girl_age &lt; 30:
-    print(&#39;小姐姐&#39;)
-elif girl_age &lt; 40:
-    print(&#39;阿姨我不想努力了&#39;)
-elif girl_age &lt; 50:
-    print(&#39;拜拜&#39;)
-else:
-    print(&#39;躺平&#39;)
+girl_age <span class="token operator">=</span> <span class="token number">28</span>
+<span class="token keyword">if</span> girl_age <span class="token operator">&lt;</span> <span class="token number">30</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'小姐姐'</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> girl_age <span class="token operator">&lt;</span> <span class="token number">40</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'阿姨我不想努力了'</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> girl_age <span class="token operator">&lt;</span> <span class="token number">50</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'拜拜'</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'躺平'</span><span class="token punctuation">)</span>
     </code></pre>
 
-<h2 id="三、WHILE-循环"><a href="#三、WHILE-循环" class="headerlink" title="三、WHILE 循环"></a>三、WHILE 循环</h2><pre class="language-python" data-language="python"><code class="language-python">1、格式
-while 条件：
+<h2 id="三、WHILE-循环"><a href="#三、WHILE-循环" class="headerlink" title="三、WHILE 循环"></a>三、WHILE 循环</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1</span>、格式
+<span class="token keyword">while</span> 条件：
 	代码
     代码
-    ...
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
-2、while普通
-while True:
-    # 1.获取用户的用户名和密码
-    username &#x3D; input(&#39;username&gt;&gt;&gt;:&#39;)
-    password &#x3D; input(&#39;password&gt;&gt;&gt;:&#39;)
-    # 2.判断用户名和密码是否正确
-    if username &#x3D;&#x3D; &#39;jason&#39; and password &#x3D;&#x3D; &#39;123&#39;:
-        print(&#39;登录成功&#39;)
-    else:
-        print(&#39;用户名或密码错误&#39;)
+<span class="token number">2</span>、<span class="token keyword">while</span>普通
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token comment"># 1.获取用户的用户名和密码</span>
+    username <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'username>>>:'</span><span class="token punctuation">)</span>
+    password <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'password>>>:'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 2.判断用户名和密码是否正确</span>
+    <span class="token keyword">if</span> username <span class="token operator">==</span> <span class="token string">'jason'</span> <span class="token keyword">and</span> password <span class="token operator">==</span> <span class="token string">'123'</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'登录成功'</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'用户名或密码错误'</span><span class="token punctuation">)</span>
  
-3、while循环嵌套
-while True:
-    res &#x3D; input(&#39;start&gt;&gt;&gt;:&#39;)
-    while True:
-        # 1.获取用户的用户名和密码
-        username &#x3D; input(&#39;username&gt;&gt;&gt;:&#39;)
-        password &#x3D; input(&#39;password&gt;&gt;&gt;:&#39;)
-        # 2.判断用户名和密码是否正确
-        if username &#x3D;&#x3D; &#39;jason&#39; and password &#x3D;&#x3D; &#39;123&#39;:
-            print(&#39;登录成功&#39;)
-        else:
-            print(&#39;用户名或密码错误&#39;)
-    break
+<span class="token number">3</span>、<span class="token keyword">while</span>循环嵌套
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    res <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'start>>>:'</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token comment"># 1.获取用户的用户名和密码</span>
+        username <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'username>>>:'</span><span class="token punctuation">)</span>
+        password <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'password>>>:'</span><span class="token punctuation">)</span>
+        <span class="token comment"># 2.判断用户名和密码是否正确</span>
+        <span class="token keyword">if</span> username <span class="token operator">==</span> <span class="token string">'jason'</span> <span class="token keyword">and</span> password <span class="token operator">==</span> <span class="token string">'123'</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'登录成功'</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'用户名或密码错误'</span><span class="token punctuation">)</span>
+    <span class="token keyword">break</span>
 
-4、while 与 else
-# 当while没有被break主动结束的情况下自动结束了 则会走else
-count &#x3D; 1
-while count &lt; 11:
-    if count &#x3D;&#x3D; 7:
-        count +&#x3D; 1
-        continue
-    print(count)
-    # 让count自增1
-    count +&#x3D; 1
-else:
-    print(&#39;当while没有被break主动结束的情况下自动结束了 则会走else&#39;)</code></pre>
+<span class="token number">4</span>、<span class="token keyword">while</span> 与 <span class="token keyword">else</span>
+<span class="token comment"># 当while没有被break主动结束的情况下自动结束了 则会走else</span>
+count <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">while</span> count <span class="token operator">&lt;</span> <span class="token number">11</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token number">7</span><span class="token punctuation">:</span>
+        count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">continue</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span>
+    <span class="token comment"># 让count自增1</span>
+    count <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'当while没有被break主动结束的情况下自动结束了 则会走else'</span><span class="token punctuation">)</span></code></pre>
 
-<h2 id="四、-FOR-循环"><a href="#四、-FOR-循环" class="headerlink" title="四、 FOR 循环"></a>四、 FOR 循环</h2><pre class="language-python" data-language="python"><code class="language-python"># for循环能够做到的事情while循环都可以做,但是for循环使用起来比while更加的简单快捷
-    name_list &#x3D; [&#39;jason&#39;,&#39;egon&#39;,&#39;kevin&#39;,&#39;tony&#39;]
-    print(len(name_list))  # 4
-    # 使用while循环将列表中的元素依次打印出来
-    count &#x3D; 0
-    while count &lt; len(name_list):
-        print(name_list[count])
-        count +&#x3D; 1
+<h2 id="四、-FOR-循环"><a href="#四、-FOR-循环" class="headerlink" title="四、 FOR 循环"></a>四、 FOR 循环</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># for循环能够做到的事情while循环都可以做,但是for循环使用起来比while更加的简单快捷</span>
+    name_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'jason'</span><span class="token punctuation">,</span><span class="token string">'egon'</span><span class="token punctuation">,</span><span class="token string">'kevin'</span><span class="token punctuation">,</span><span class="token string">'tony'</span><span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>name_list<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 4</span>
+    <span class="token comment"># 使用while循环将列表中的元素依次打印出来</span>
+    count <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> count <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>name_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>name_list<span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        count <span class="token operator">+=</span> <span class="token number">1</span>
 
-    # for循环
-    for name in name_list:
-        print(name)
+    <span class="token comment"># for循环</span>
+    <span class="token keyword">for</span> name <span class="token keyword">in</span> name_list<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
     
-    # range
-    for i in range(11)
+    <span class="token comment"># range</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span>
     
-    # break
-    for i in [1,2,3,4,5,6]:
-        if i &#x3D;&#x3D; 4:
-            break  # 结束本层for循环  与while+break一致
-        print(i)
+    <span class="token comment"># break</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>  <span class="token comment"># 结束本层for循环  与while+break一致</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
 
-	# continue
-    for i in [1,2,3,4,5,6]:
-        if i &#x3D;&#x3D; 4:
-            continue  # 结束本次for循环  与while+continue一致
-        print(i)
+	<span class="token comment"># continue</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
+            <span class="token keyword">continue</span>  <span class="token comment"># 结束本次for循环  与while+continue一致</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
 
-	# else  for循环正常结束之后走else 否则不走  与while+else一致
-    for i in range(5):
-        if i &#x3D;&#x3D; 3:
-            break
-        print(i)
-    else:
-        print(&#39;快结束了&#39;)
+	<span class="token comment"># else  for循环正常结束之后走else 否则不走  与while+else一致</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'快结束了'</span><span class="token punctuation">)</span>
     
     </code></pre>
 
-<h2 id="五、作业"><a href="#五、作业" class="headerlink" title="五、作业"></a>五、作业</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="五、作业"><a href="#五、作业" class="headerlink" title="五、作业"></a>五、作业</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 1.猜年龄的游戏
     1.必写
         错误的情况下只能猜三次
@@ -287,91 +287,91 @@ else:
         三次错误之后提示用户三次机会已用完
         问他是否继续  如果继续则再给三次机会
         如果不继续则直接退出
-&quot;&quot;&quot;
-def func(): 
-    i &#x3D; 0
-    while i &lt;&#x3D; 3:
-        i +&#x3D; 1
-        yield i
-        if i &#x3D;&#x3D; 3:
-            i &#x3D; 0
-for i in func(): 
-    age &#x3D; input(&quot;猜猜本姑娘的年龄，有三次机会，猜对了我就嫁给你，所以你的答案是：&quot;)
-    age &#x3D; int(age)
-    if age &#x3D;&#x3D; 18:
-        print(&quot;哎呀，真被你猜对了，竟然便宜了你&quot;)
-        break
-    elif i &#x3D;&#x3D; 3:
-        print(&quot;真是服了你这个憨批，唉，我在给你三次机会把，你继续吗&quot;)
-        count &#x3D; input(&quot;是男人就冲 1&#x2F;冲 2&#x2F;遭不住遭不住：&quot;)
-        count &#x3D; int(count)
-        if count &#x3D;&#x3D; 1:
-            print(&quot;是男人就冲&quot;)
-        else:
-            print(&quot;唉，遭不住遭不住&quot;)
-            break
-    else:
-        print(&quot;你这个憨批&quot;)
+"""</span>
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> 
+    i <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> i <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">:</span>
+        i <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">yield</span> i
+        <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            i <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> 
+    age <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"猜猜本姑娘的年龄，有三次机会，猜对了我就嫁给你，所以你的答案是："</span><span class="token punctuation">)</span>
+    age <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> age <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"哎呀，真被你猜对了，竟然便宜了你"</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">elif</span> i <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"真是服了你这个憨批，唉，我在给你三次机会把，你继续吗"</span><span class="token punctuation">)</span>
+        count <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"是男人就冲 1/冲 2/遭不住遭不住："</span><span class="token punctuation">)</span>
+        count <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"是男人就冲"</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"唉，遭不住遭不住"</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"你这个憨批"</span><span class="token punctuation">)</span>
         
         
         
-Tag &#x3D; True
-while Tag:
-    for i in range(1, 4):
-        age &#x3D; int(input(&#39;请输入年龄：&#39;).strip())
-        if age &#x3D;&#x3D; 18:
-            print(&#39;猜对了&#39;)
-            Tag &#x3D; False
-            break
-        else:
-            print(&#39;猜错了&#39;)
-    else:
-        a &#x3D; input(&#39;是否继续？&#39;).strip()
-        if a &#x3D;&#x3D; &#39;Y&#39;:
-            pass
-        else:
-            break
+Tag <span class="token operator">=</span> <span class="token boolean">True</span>
+<span class="token keyword">while</span> Tag<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        age <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'请输入年龄：'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> age <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'猜对了'</span><span class="token punctuation">)</span>
+            Tag <span class="token operator">=</span> <span class="token boolean">False</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'猜错了'</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        a <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'是否继续？'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> a <span class="token operator">==</span> <span class="token string">'Y'</span><span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
 
 
-count &#x3D; 0
-while count &lt; 3:
-    age &#x3D; int(input(&#39;猜年龄&#39;).strip())
-    if age &#x3D;&#x3D; 18:
-        print(&#39;恭喜你猜对了&#39;)
-        break
-    else:
-        print(&#39;答错了&#39;)
-        count +&#x3D; 1
-        if count &#x3D;&#x3D; 3:
-            print(&#39;你已猜错三次&#39;)
-            is_continue &#x3D; input(&#39;是否继续？&#39;)
-            if is_continue &#x3D;&#x3D; &#39;y&#39;:
-                count &#x3D; 0
+count <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> count <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">:</span>
+    age <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'猜年龄'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> age <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'恭喜你猜对了'</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'答错了'</span><span class="token punctuation">)</span>
+        count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'你已猜错三次'</span><span class="token punctuation">)</span>
+            is_continue <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'是否继续？'</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> is_continue <span class="token operator">==</span> <span class="token string">'y'</span><span class="token punctuation">:</span>
+                count <span class="token operator">=</span> <span class="token number">0</span>
 
         
         
         
-i &#x3D; 1
-while i &lt;&#x3D; 3:
-    age &#x3D; input(&quot;猜猜本姑娘的年龄，有三次机会，猜对了我就嫁给你，所以你的答案是：&quot;)
-    # age &#x3D; int(age)
-    if age &#x3D;&#x3D; &quot;18&quot;:  # age &#x3D;&#x3D; 18
-        print(&quot;哎呀，真被你猜对了，竟然便宜了你&quot;)
-        break
-    elif i &#x3D;&#x3D; 3:
-        print(&quot;真是服了你这个憨批，唉，我在给你三次机会把，你继续吗&quot;)
-        count &#x3D; input(&quot;是男人就冲 1&#x2F;冲 2&#x2F;遭不住遭不住：&quot;)
-        # count &#x3D; int(count)
-        if count &#x3D;&#x3D; &quot;1&quot;:  # if count &#x3D;&#x3D; 1
-            print(&quot;是男人就冲&quot;)
-            i &#x3D; 1
-            continue
-        else:
-            print(&quot;唉，遭不住遭不住&quot;)
-            break
-    else:
-        print(&quot;你这个憨批&quot;)
-    i +&#x3D; 1</code></pre>
+i <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">while</span> i <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">:</span>
+    age <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"猜猜本姑娘的年龄，有三次机会，猜对了我就嫁给你，所以你的答案是："</span><span class="token punctuation">)</span>
+    <span class="token comment"># age = int(age)</span>
+    <span class="token keyword">if</span> age <span class="token operator">==</span> <span class="token string">"18"</span><span class="token punctuation">:</span>  <span class="token comment"># age == 18</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"哎呀，真被你猜对了，竟然便宜了你"</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">elif</span> i <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"真是服了你这个憨批，唉，我在给你三次机会把，你继续吗"</span><span class="token punctuation">)</span>
+        count <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"是男人就冲 1/冲 2/遭不住遭不住："</span><span class="token punctuation">)</span>
+        <span class="token comment"># count = int(count)</span>
+        <span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token string">"1"</span><span class="token punctuation">:</span>  <span class="token comment"># if count == 1</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"是男人就冲"</span><span class="token punctuation">)</span>
+            i <span class="token operator">=</span> <span class="token number">1</span>
+            <span class="token keyword">continue</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"唉，遭不住遭不住"</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"你这个憨批"</span><span class="token punctuation">)</span>
+    i <span class="token operator">+=</span> <span class="token number">1</span></code></pre>
 
             </div>
 

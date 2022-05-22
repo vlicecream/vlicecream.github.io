@@ -156,10 +156,10 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、路由匹配"><a href="#一、路由匹配" class="headerlink" title="一、路由匹配"></a>一、路由匹配</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是路由匹配
-	url(r&quot;test&quot;, views.test)
-	url(r&quot;testadd&quot;, views.test)
-    &quot;&quot;&quot;
+                <h2 id="一、路由匹配"><a href="#一、路由匹配" class="headerlink" title="一、路由匹配"></a>一、路由匹配</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是路由匹配
+	url<span class="token punctuation">(</span><span class="token string">r"test"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>test<span class="token punctuation">)</span>
+	url<span class="token punctuation">(</span><span class="token string">r"testadd"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>test<span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">"""
     这就是路由匹配
     url的第一个其实是正则表达式
     	只要第一个正则表达式内容匹配到了就不会往下匹配，直接执行视图函数
@@ -170,108 +170,108 @@
     	一次不行，加了斜杠再来一次
     	当然也可以取消
     	只要在配置文件里面增加一条代码
-    	APPEND_SLASH &#x3D; False  默认是True
-    &quot;&quot;&quot;
-2. 解决办法
-	urlpatterns &#x3D; [
-    url(r&#39;^admin&#x2F;&#39;, admin.site.urls),
-    # 首页
-    url(r&#39;^$&#39;,views.home),
-    # 路由匹配
-    url(r&#39;^test&#x2F;$&#39;,views.test),
-    url(r&#39;^testadd&#x2F;$&#39;,views.testadd),
-    # 尾页(了解)
-    url(r&#39;&#39;,views.error),
-	]
- 	&quot;&quot;&quot;
- 	因为第一个其实是正则表达式 所以我们加限制条件^&#x2F;$即可以
+    	APPEND_SLASH = False  默认是True
+    """</span>
+<span class="token number">2.</span> 解决办法
+	urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment"># 首页</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^$'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>home<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment"># 路由匹配</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^test/$'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>test<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^testadd/$'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>testadd<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment"># 尾页(了解)</span>
+    url<span class="token punctuation">(</span><span class="token string">r''</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">]</span>
+ 	<span class="token triple-quoted-string string">"""
+ 	因为第一个其实是正则表达式 所以我们加限制条件^/$即可以
  	而且我们在启动Django后 进入页面就是报错页面 很不爽 所以我们也可以加个首页URL
  	尾页URL则是用来专门当做报错页面，但是方法有很多种 所以我们只要了解尾页即可
- 	&quot;&quot;&quot;</code></pre>
+ 	"""</span></code></pre>
 
-<h2 id="二、无名分组"><a href="#二、无名分组" class="headerlink" title="二、无名分组"></a>二、无名分组</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是分组
+<h2 id="二、无名分组"><a href="#二、无名分组" class="headerlink" title="二、无名分组"></a>二、无名分组</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是分组
 	分组其实就是讲正则表达式括号括起来
     
-2. 无名分组代码演示
-    url(r&#39;^test&#x2F;(\d+)&#x2F;&#39;,views.test)
+<span class="token number">2.</span> 无名分组代码演示
+    url<span class="token punctuation">(</span><span class="token string">r'^test/(\d+)/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>test<span class="token punctuation">)</span>
 
-    def test(request,xx):
-        print(xx)
-        return HttpResponse(&#39;test&#39;)
+    <span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span>xx<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>xx<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>
 
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 无名分组其实就是将括号内的正则表达式匹配到的内容当做位置参数传到视图函数去
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h2 id="三、有名分组"><a href="#三、有名分组" class="headerlink" title="三、有名分组"></a>三、有名分组</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是有名分组
+<h2 id="三、有名分组"><a href="#三、有名分组" class="headerlink" title="三、有名分组"></a>三、有名分组</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是有名分组
 	有名分组其实就是讲括号内的正则表达式匹配到的内容以关键字参数传到视图函数去
-2. 代码演示
+<span class="token number">2.</span> 代码演示
 	可以给正则表达式起个别名
-    url(r&#39;^testadd&#x2F;(?p&lt;year&gt;\d+)&#39;,views.testadd)
+    url<span class="token punctuation">(</span><span class="token string">r'^testadd/(?p&lt;year>\d+)'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>testadd<span class="token punctuation">)</span>
 
-    def testadd(request,year):
-        print(year)
-        return HttpResponse(&#39;testadd&#39;)</code></pre>
+    <span class="token keyword">def</span> <span class="token function">testadd</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span>year<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>year<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'testadd'</span><span class="token punctuation">)</span></code></pre>
 
-<h2 id="四、分析无名有名分组"><a href="#四、分析无名有名分组" class="headerlink" title="四、分析无名有名分组"></a>四、分析无名有名分组</h2><pre class="language-python" data-language="python"><code class="language-python">1. 无名和有名分组是否可以一块用呢
+<h2 id="四、分析无名有名分组"><a href="#四、分析无名有名分组" class="headerlink" title="四、分析无名有名分组"></a>四、分析无名有名分组</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 无名和有名分组是否可以一块用呢
 	直接给你答案 不能
     但是一个分组可以用很多次
     
-2. 代码演示(用很多次)
-	url(r&#39;^index&#x2F;(\d+)&#x2F;(\d+)&#x2F;(\d+)&#x2F;&#39;,views.index),
-	url(r&#39;^index&#x2F;(?P&lt;year&gt;\d+)&#x2F;(?P&lt;age&gt;\d+)&#x2F;(?P&lt;month&gt;\d+)&#x2F;&#39;,views.index),</code></pre>
+<span class="token number">2.</span> 代码演示<span class="token punctuation">(</span>用很多次<span class="token punctuation">)</span>
+	url<span class="token punctuation">(</span><span class="token string">r'^index/(\d+)/(\d+)/(\d+)/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	url<span class="token punctuation">(</span><span class="token string">r'^index/(?P&lt;year>\d+)/(?P&lt;age>\d+)/(?P&lt;month>\d+)/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span></code></pre>
 
-<h2 id="五、反向解析"><a href="#五、反向解析" class="headerlink" title="五、反向解析"></a>五、反向解析</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是反向解析
+<h2 id="五、反向解析"><a href="#五、反向解析" class="headerlink" title="五、反向解析"></a>五、反向解析</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是反向解析
 	通过一些方法得到一个结果 该结果可以直接访问对应的url触发视图函数
 
-2. 代码演示
-    # 先给路由与视图函数起一个别名
-        url(r&#39;^func_kkk&#x2F;&#39;,views.func,name&#x3D;&#39;ooo&#39;)
-    # 反向解析
-        # 后端反向解析
-        from django.shortcuts import render,HttpResponse,redirect,reverse
-        reverse(&#39;ooo&#39;)
-      # 前端反向解析
-        &lt;a href&#x3D;&quot;&#123;% url &#39;ooo&#39; %&#125;&quot;&gt;111&lt;&#x2F;a&gt;
+<span class="token number">2.</span> 代码演示
+    <span class="token comment"># 先给路由与视图函数起一个别名</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^func_kkk/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>func<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'ooo'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 反向解析</span>
+        <span class="token comment"># 后端反向解析</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span>HttpResponse<span class="token punctuation">,</span>redirect<span class="token punctuation">,</span>reverse
+        reverse<span class="token punctuation">(</span><span class="token string">'ooo'</span><span class="token punctuation">)</span>
+      <span class="token comment"># 前端反向解析</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"&#123;% url 'ooo' %&#125;"</span><span class="token operator">></span><span class="token number">111</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
 
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 别名不能出现冲突!!!
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h2 id="六、无名有名反向解析"><a href="#六、无名有名反向解析" class="headerlink" title="六、无名有名反向解析"></a>六、无名有名反向解析</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是无名反向解析(直接上代码演示)
-    url(r&#39;^index&#x2F;(\d+)&#x2F;&#39;, views.index, name&#x3D;&#39;my_index&#39;)
-    # 后端写法
-    reverse(&#39;my_index&#39;, args&#x3D;(1,))
-    # 前端写法
-    &#123;% url &#39;mi_index&#39; 1 %&#125;
-&quot;&quot;&quot;
+<h2 id="六、无名有名反向解析"><a href="#六、无名有名反向解析" class="headerlink" title="六、无名有名反向解析"></a>六、无名有名反向解析</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>什么是无名反向解析<span class="token punctuation">(</span>直接上代码演示<span class="token punctuation">)</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^index/(\d+)/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>index<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'my_index'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 后端写法</span>
+    reverse<span class="token punctuation">(</span><span class="token string">'my_index'</span><span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># 前端写法</span>
+    <span class="token punctuation">&#123;</span><span class="token operator">%</span> url <span class="token string">'mi_index'</span> <span class="token number">1</span> <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+<span class="token triple-quoted-string string">"""
 这个数字我们应该填什么 推荐是这个数据的主键，所以这个反向解析可以用于数据的编辑删除等
-	url(r&#39;^edit&#x2F;(\d+)&#x2F;&#39;,views.edit,name&#x3D;&#39;xxx&#39;)
+	url(r'^edit/(\d+)/',views.edit,name='xxx')
 	
 	def edit(request,edit_id):
-		reverse(&#39;xxx&#39;,args&#x3D;(edit_id,))
+		reverse('xxx',args=(edit_id,))
 		
 	&#123;%for user_obj in user_queryset%&#125;
-		&lt;a href&#x3D;&quot;&#123;% url &#39;xxx&#39; user_obj.id %&#125;&quot;&gt;编辑&lt;&#x2F;a&gt;
+		&lt;a href="&#123;% url 'xxx' user_obj.id %&#125;">编辑&lt;/a>
 	&#123;%endfor%&#125;
-&quot;&quot;&quot;
+"""</span>
 
-2. 什么是有名反向解析(上代码)
-   url(r&#39;^func&#x2F;(?P&lt;year&gt;\d+)&#x2F;&#39;,views.func,name&#x3D;&#39;ooo&#39;)
-   2.1 前端
-		# 了解		
-        &lt;a href&#x3D;&quot;&#123;% url &#39;ooo&#39; year&#x3D;123 %&#125;&quot;&gt;111&lt;&#x2F;a&gt;  
-        # 记忆
-        &lt;a href&#x3D;&quot;&#123;% url &#39;ooo&#39; 123 %&#125;&quot;&gt;222&lt;&#x2F;a&gt;  			
+<span class="token number">2.</span> 什么是有名反向解析<span class="token punctuation">(</span>上代码<span class="token punctuation">)</span>
+   url<span class="token punctuation">(</span><span class="token string">r'^func/(?P&lt;year>\d+)/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>func<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'ooo'</span><span class="token punctuation">)</span>
+   <span class="token number">2.1</span> 前端
+		<span class="token comment"># 了解		</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"&#123;% url 'ooo' year=123 %&#125;"</span><span class="token operator">></span><span class="token number">111</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>  
+        <span class="token comment"># 记忆</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"&#123;% url 'ooo' 123 %&#125;"</span><span class="token operator">></span><span class="token number">222</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>  			
 
-   2.2 后端	
-       # 有名分组反向解析 写法1  了解
-       print(reverse(&#39;ooo&#39;,kwargs&#x3D;&#123;&#39;year&#39;:123&#125;))
-       # 简便的写法  减少你的脑容量消耗 记跟无名一样的操作即可
-       print(reverse(&#39;ooo&#39;,args&#x3D;(111,)))</code></pre>
+   <span class="token number">2.2</span> 后端	
+       <span class="token comment"># 有名分组反向解析 写法1  了解</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'ooo'</span><span class="token punctuation">,</span>kwargs<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">'year'</span><span class="token punctuation">:</span><span class="token number">123</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+       <span class="token comment"># 简便的写法  减少你的脑容量消耗 记跟无名一样的操作即可</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'ooo'</span><span class="token punctuation">,</span>args<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">111</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 
-<h2 id="七、路由分配"><a href="#七、路由分配" class="headerlink" title="七、路由分配"></a>七、路由分配</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是路由分配
-    &quot;&quot;&quot;
+<h2 id="七、路由分配"><a href="#七、路由分配" class="headerlink" title="七、路由分配"></a>七、路由分配</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是路由分配
+    <span class="token triple-quoted-string string">"""
     django的每一个应用都可以有自己的templates文件夹 urls.py static文件夹
     正是基于上述的特点 django能够非常好的做到分组开发(每个人只写自己的app)
     作为组长 只需要将手下书写的app全部拷贝到一个新的django项目中 然后在配置文件里面注册所有的app再利用路由分发的特点将所有的		app整合起来
@@ -282,101 +282,101 @@
     利用路由分发之后 总路由不再干路由与视图函数的直接对应关系
     而是做一个分发处理
     识别当前url是属于哪个应用下的 直接分发给对应的应用去处理
-    &quot;&quot;&quot;
+    """</span>
 
-2. 代码演示
-    # 总路由
-    	from django.conf.urls import url, include
-        from app01 import urls as app01_urls
-        from app02 import urls as app02_urls
-        urlpatterns &#x3D; [
-            url(r&#39;^admin&#x2F;&#39;, admin.site.urls),
-            # 1.路由分发
-            url(r&#39;^app01&#x2F;&#39;,include(app01_urls)),  # 只要url前缀是app01开头 全部交给app01处理
-            url(r&#39;^app02&#x2F;&#39;,include(app02_urls))   # 只要url前缀是app02开头 全部交给app02处理
+<span class="token number">2.</span> 代码演示
+    <span class="token comment"># 总路由</span>
+    	<span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url<span class="token punctuation">,</span> include
+        <span class="token keyword">from</span> app01 <span class="token keyword">import</span> urls <span class="token keyword">as</span> app01_urls
+        <span class="token keyword">from</span> app02 <span class="token keyword">import</span> urls <span class="token keyword">as</span> app02_urls
+        urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+            url<span class="token punctuation">(</span><span class="token string">r'^admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token comment"># 1.路由分发</span>
+            url<span class="token punctuation">(</span><span class="token string">r'^app01/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span>app01_urls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 只要url前缀是app01开头 全部交给app01处理</span>
+            url<span class="token punctuation">(</span><span class="token string">r'^app02/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span>app02_urls<span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment"># 只要url前缀是app02开头 全部交给app02处理</span>
 
-            # 2.终极写法  推荐使用
-            url(r&#39;^app01&#x2F;&#39;,include(&#39;app01.urls&#39;)),
-            url(r&#39;^app02&#x2F;&#39;,include(&#39;app02.urls&#39;))
-            # 注意事项:总路由里面的url千万不能加$结尾
-        ]
+            <span class="token comment"># 2.终极写法  推荐使用</span>
+            url<span class="token punctuation">(</span><span class="token string">r'^app01/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span><span class="token string">'app01.urls'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            url<span class="token punctuation">(</span><span class="token string">r'^app02/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span><span class="token string">'app02.urls'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token comment"># 注意事项:总路由里面的url千万不能加$结尾</span>
+        <span class="token punctuation">]</span>
 
-    # 子路由
-      # app01 urls.py
-          from django.conf.urls import url
-          from app01 import views
+    <span class="token comment"># 子路由</span>
+      <span class="token comment"># app01 urls.py</span>
+          <span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url
+          <span class="token keyword">from</span> app01 <span class="token keyword">import</span> views
 
-          urlpatterns &#x3D; [
-              url(r&#39;^reg&#x2F;&#39;,views.reg)
-          ]
-      # app02 urls.py
-          from django.conf.urls import url
-          from app02 import views
+          urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+              url<span class="token punctuation">(</span><span class="token string">r'^reg/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">)</span>
+          <span class="token punctuation">]</span>
+      <span class="token comment"># app02 urls.py</span>
+          <span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url
+          <span class="token keyword">from</span> app02 <span class="token keyword">import</span> views
 
-          urlpatterns &#x3D; [
-              url(r&#39;^reg&#x2F;&#39;,views.reg)
-          ]</code></pre>
+          urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+              url<span class="token punctuation">(</span><span class="token string">r'^reg/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">)</span>
+          <span class="token punctuation">]</span></code></pre>
 
-<h2 id="八、名称空间"><a href="#八、名称空间" class="headerlink" title="八、名称空间"></a>八、名称空间</h2><pre class="language-python" data-language="python"><code class="language-python">1. 为什么用名称空间
+<h2 id="八、名称空间"><a href="#八、名称空间" class="headerlink" title="八、名称空间"></a>八、名称空间</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 为什么用名称空间
 	在前面我们已经详细的讲了什么是名称空间，在这里我们直接讲为什么要用名称空间
     因为有路由分配我们就可以多人同时进行工作，但是我们取得变量名重复了怎么办
 
-2.当多个应用出现了相同的别名 我们研究反向解析会不会自动识别应用前缀
-    &quot;&quot;&quot;
+<span class="token number">2.</span>当多个应用出现了相同的别名 我们研究反向解析会不会自动识别应用前缀
+    <span class="token triple-quoted-string string">"""
     正常情况下的反向解析是没有办法自动识别前缀的
-    &quot;&quot;&quot;
+    """</span>
 
-3.名称空间 代码演示
-	# 总路由
-    url(r&#39;^app01&#x2F;&#39;,include(&#39;app01.urls&#39;,namespace&#x3D;&#39;app01&#39;)),
-    url(r&#39;^app02&#x2F;&#39;,include(&#39;app02.urls&#39;,namespace&#x3D;&#39;app02&#39;))
-    # 解析的时候
-  	# app01
-  	urlpatterns &#x3D; [
-    url(r&#39;^reg&#x2F;&#39;,views.reg,name&#x3D;&#39;reg&#39;)
-		]
-    # app02
-    urlpatterns &#x3D; [
-    url(r&#39;^reg&#x2F;&#39;,views.reg,name&#x3D;&#39;reg&#39;)
-		]
+<span class="token number">3.</span>名称空间 代码演示
+	<span class="token comment"># 总路由</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^app01/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span><span class="token string">'app01.urls'</span><span class="token punctuation">,</span>namespace<span class="token operator">=</span><span class="token string">'app01'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^app02/'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span><span class="token string">'app02.urls'</span><span class="token punctuation">,</span>namespace<span class="token operator">=</span><span class="token string">'app02'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># 解析的时候</span>
+  	<span class="token comment"># app01</span>
+  	urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^reg/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'reg'</span><span class="token punctuation">)</span>
+		<span class="token punctuation">]</span>
+    <span class="token comment"># app02</span>
+    urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^reg/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'reg'</span><span class="token punctuation">)</span>
+		<span class="token punctuation">]</span>
     
-  	reverse(&#39;app01:reg&#39;)
-    reverse(&#39;app02:reg&#39;)
+  	reverse<span class="token punctuation">(</span><span class="token string">'app01:reg'</span><span class="token punctuation">)</span>
+    reverse<span class="token punctuation">(</span><span class="token string">'app02:reg'</span><span class="token punctuation">)</span>
     
-    &#123;% url &#39;app01:reg&#39; %&#125;
-    &#123;% url &#39;app02:reg&#39; %&#125;
-    # 其实只要保证名字不冲突 就没有必要使用名称空间
-    &quot;&quot;&quot;
+    <span class="token punctuation">&#123;</span><span class="token operator">%</span> url <span class="token string">'app01:reg'</span> <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#123;</span><span class="token operator">%</span> url <span class="token string">'app02:reg'</span> <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+    <span class="token comment"># 其实只要保证名字不冲突 就没有必要使用名称空间</span>
+    <span class="token triple-quoted-string string">"""
     一般情况下 有多个app的时候我们在起别名的时候会加上app的前缀
     这样的话就能够确保多个app之间名字不冲突的问题
-    &quot;&quot;&quot;
-    urlpatterns &#x3D; [
-        url(r&#39;^reg&#x2F;&#39;,views.reg,name&#x3D;&#39;app01_reg&#39;)
-    ]
-    urlpatterns &#x3D; [
-        url(r&#39;^reg&#x2F;&#39;,views.reg,name&#x3D;&#39;app02_reg&#39;)
-    ]
+    """</span>
+    urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^reg/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'app01_reg'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+    urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^reg/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'app02_reg'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
     </code></pre>
 
-<h2 id="九、伪静态"><a href="#九、伪静态" class="headerlink" title="九、伪静态"></a>九、伪静态</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是伪静态
+<h2 id="九、伪静态"><a href="#九、伪静态" class="headerlink" title="九、伪静态"></a>九、伪静态</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 什么是伪静态
 	将一个动态网页伪装成静态网页
-2. 什么是静态网页
+<span class="token number">2.</span> 什么是静态网页
 	数据是写死的 万年不变
-3. 为什么要用伪静态
+<span class="token number">3.</span> 为什么要用伪静态
 		伪装的目的在于增大本网站的seo查询力度
 		并且增加搜索引擎收藏本网上的概率
 	
 	搜索引擎本质上就是一个巨大的爬虫程序
 	
-	总结:
+	总结<span class="token punctuation">:</span>
 		无论你怎么优化 怎么处理
 		始终还是干不过RMB玩家
-4. 伪静态的代码演示
-    urlpatterns &#x3D; [
-        url(r&#39;^reg.html&#39;,views.reg,name&#x3D;&#39;app02_reg&#39;)
-    ]</code></pre>
+<span class="token number">4.</span> 伪静态的代码演示
+    urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+        url<span class="token punctuation">(</span><span class="token string">r'^reg.html'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>reg<span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'app02_reg'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span></code></pre>
 
-<h2 id="十、虚拟环境"><a href="#十、虚拟环境" class="headerlink" title="十、虚拟环境"></a>十、虚拟环境</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+<h2 id="十、虚拟环境"><a href="#十、虚拟环境" class="headerlink" title="十、虚拟环境"></a>十、虚拟环境</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 在正常开发中 我们会给每一个项目配备一个该项目独有的解释器环境
 该环境内只有该项目用到的模块 用不到一概不装
 
@@ -393,67 +393,67 @@ linux:缺什么才装什么
 	开发当中我们会给每一个项目配备一个requirements.txt文件
 	里面书写了该项目所有的模块即版本
 	你只需要直接输入一条命令即可一键安装所有模块即版本
-&quot;&quot;&quot;</code></pre>
+"""</span></code></pre>
 
-<h2 id="十一、DJANGO版本区别"><a href="#十一、DJANGO版本区别" class="headerlink" title="十一、DJANGO版本区别"></a>十一、DJANGO版本区别</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;我们将会对比django 1.x 2.x 3.x版本的区别&quot;&quot;&quot;
+<h2 id="十一、DJANGO版本区别"><a href="#十一、DJANGO版本区别" class="headerlink" title="十一、DJANGO版本区别"></a>十一、DJANGO版本区别</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""我们将会对比django 1.x 2.x 3.x版本的区别"""</span>
 
-1. 第一种区别
-    1.x 的路由层用的是url方法
-    2.x &amp; 3.x则使用的是path方法
+<span class="token number">1.</span> 第一种区别
+    <span class="token number">1</span><span class="token punctuation">.</span>x 的路由层用的是url方法
+    <span class="token number">2</span><span class="token punctuation">.</span>x <span class="token operator">&amp;</span> <span class="token number">3</span><span class="token punctuation">.</span>x则使用的是path方法
    	path方法第一个参数是不支持正则表达式的
     url方法则是支持
-    也正是因为这点所以2.x 3.x 给了一个re_path方法 
+    也正是因为这点所以<span class="token number">2</span><span class="token punctuation">.</span>x <span class="token number">3</span><span class="token punctuation">.</span>x 给了一个re_path方法 
     re_path第一个参数是支持正则表达式的
-    2.x &amp; 3.x里面的re_path相当于1.x的url
+    <span class="token number">2</span><span class="token punctuation">.</span>x <span class="token operator">&amp;</span> <span class="token number">3</span><span class="token punctuation">.</span>x里面的re_path相当于<span class="token number">1</span><span class="token punctuation">.</span>x的url
     
-2.虽然path不支持正则 但是它的内部支持五种转换器
-	path(&#39;index&#x2F;&lt;int:id&gt;&#x2F;&#39;,index)
-	# 将第二个路由里面的内容先转成整型然后以关键字的形式传递给后面的视图函数
-	def index(request,id):
-         print(id,type(id))
-         return HttpResponse(&#39;index&#39;)
+<span class="token number">2.</span>虽然path不支持正则 但是它的内部支持五种转换器
+	path<span class="token punctuation">(</span><span class="token string">'index/&lt;int:id>/'</span><span class="token punctuation">,</span>index<span class="token punctuation">)</span>
+	<span class="token comment"># 将第二个路由里面的内容先转成整型然后以关键字的形式传递给后面的视图函数</span>
+	<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+         <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">,</span><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+         <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span>
     
  
   
-   	str,匹配除了路径分隔符（&#x2F;）之外的非空字符串，这是默认的形式
-	int,匹配正整数，包含0。
-	slug,匹配字母、数字以及横杠、下划线组成的字符串。
-	uuid,匹配格式化的uuid，如 075194d3-6885-417e-a8a8-6c931e272f00。
-	path,匹配任何非空字符串，包含了路径分隔符（&#x2F;）（不能用？）
+   	<span class="token builtin">str</span><span class="token punctuation">,</span>匹配除了路径分隔符（<span class="token operator">/</span>）之外的非空字符串，这是默认的形式
+	<span class="token builtin">int</span><span class="token punctuation">,</span>匹配正整数，包含<span class="token number">0</span>。
+	slug<span class="token punctuation">,</span>匹配字母、数字以及横杠、下划线组成的字符串。
+	uuid<span class="token punctuation">,</span>匹配格式化的uuid，如 075194d3<span class="token operator">-</span><span class="token number">6885</span><span class="token operator">-</span>417e<span class="token operator">-</span>a8a8<span class="token operator">-</span>6c931e272f00。
+	path<span class="token punctuation">,</span>匹配任何非空字符串，包含了路径分隔符（<span class="token operator">/</span>）（不能用？）
 	
-3.除了有默认的五个转换器之外 还支持自定义转换器(了解)
-	class MonthConverter:
-    regex&#x3D;&#39;\d&#123;2&#125;&#39; # 属性名必须为regex
+<span class="token number">3.</span>除了有默认的五个转换器之外 还支持自定义转换器<span class="token punctuation">(</span>了解<span class="token punctuation">)</span>
+	<span class="token keyword">class</span> <span class="token class-name">MonthConverter</span><span class="token punctuation">:</span>
+    regex<span class="token operator">=</span><span class="token string">'\d&#123;2&#125;'</span> <span class="token comment"># 属性名必须为regex</span>
 
-    def to_python(self, value):
-        return int(value)
+    <span class="token keyword">def</span> <span class="token function">to_python</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">int</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
 
-    def to_url(self, value):
-        return value # 匹配的regex是两个数字，返回的结果也必须是两个数字
+    <span class="token keyword">def</span> <span class="token function">to_url</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> value <span class="token comment"># 匹配的regex是两个数字，返回的结果也必须是两个数字</span>
 	
 	
-	from django.urls import path,register_converter
-	from app01.path_converts import MonthConverter
+	<span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path<span class="token punctuation">,</span>register_converter
+	<span class="token keyword">from</span> app01<span class="token punctuation">.</span>path_converts <span class="token keyword">import</span> MonthConverter
 
-	# 先注册转换器
-	register_converter(MonthConverter,&#39;mon&#39;)
+	<span class="token comment"># 先注册转换器</span>
+	register_converter<span class="token punctuation">(</span>MonthConverter<span class="token punctuation">,</span><span class="token string">'mon'</span><span class="token punctuation">)</span>
 
-	from app01 import views
+	<span class="token keyword">from</span> app01 <span class="token keyword">import</span> views
 
 
-	urlpatterns &#x3D; [
-    path(&#39;articles&#x2F;&lt;int:year&gt;&#x2F;&lt;mon:month&gt;&#x2F;&lt;slug:other&gt;&#x2F;&#39;, 	views.article_detail, name&#x3D;&#39;aaa&#39;),
+	urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    path<span class="token punctuation">(</span><span class="token string">'articles/&lt;int:year>/&lt;mon:month>/&lt;slug:other>/'</span><span class="token punctuation">,</span> 	views<span class="token punctuation">.</span>article_detail<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'aaa'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 
-]
+<span class="token punctuation">]</span>
 
     
-4.第二种区别
-	模型层里面1.X外键默认都是级联更新删除的
-	但是到了2.X和3.X中需要你自己手动配置参数
-	models.ForeignKey(to&#x3D;&#39;Publish&#39;)
+<span class="token number">4.</span>第二种区别
+	模型层里面<span class="token number">1</span><span class="token punctuation">.</span>X外键默认都是级联更新删除的
+	但是到了<span class="token number">2</span><span class="token punctuation">.</span>X和<span class="token number">3</span><span class="token punctuation">.</span>X中需要你自己手动配置参数
+	models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Publish'</span><span class="token punctuation">)</span>
 	
-	models.ForeignKey(to&#x3D;&#39;Publish&#39;,on_delete&#x3D;models.CASCADE...)
-&quot;&quot;&quot;</code></pre>
+	models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>to<span class="token operator">=</span><span class="token string">'Publish'</span><span class="token punctuation">,</span>on_delete<span class="token operator">=</span>models<span class="token punctuation">.</span>CASCADE<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token string">""</span>"</code></pre>
 
             </div>
 

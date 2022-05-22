@@ -156,126 +156,126 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><pre class="language-python" data-language="python"><code class="language-python"># 什么是异常
+                <h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 什么是异常</span>
 	异常就是你程序报错，导致了程序中途终止
    
-# 为什么要处理异常
+<span class="token comment"># 为什么要处理异常</span>
 	为了程序的健壮性，不会轻易报错停止
     将发生的异常写入日志
    
-# 怎么处理异常
-	1.语法上的异常
-        a &#x3D; 1
-        b &#x3D; 0
-        if a&gt;b
-            print(&#39;123&#39;)
-        &#39;&#39;&#39;
-            if a&gt;b
+<span class="token comment"># 怎么处理异常</span>
+	<span class="token number">1.</span>语法上的异常
+        a <span class="token operator">=</span> <span class="token number">1</span>
+        b <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> a<span class="token operator">></span>b
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">'''
+            if a>b
                  ^
         SyntaxError: invalid syntax
-        &#39;&#39;&#39;
-    # 这种就是语法上的问题，那我们应该怎么处理呢，是直接修改正确，这种愚蠢的错误，不允许发生
+        '''</span>
+    <span class="token comment"># 这种就是语法上的问题，那我们应该怎么处理呢，是直接修改正确，这种愚蠢的错误，不允许发生</span>
 
-	2.逻辑上的异常
-    2.1 可以预测到的逻辑上的异常
-        age &#x3D; input(&#39;-----&gt;&#39;)
-        age &#x3D; int(age)
-        if age &#x3D;&#x3D; 18:
-            print(&#39;恭喜你猜对了&#39;)	
-   &#39;&#39;&#39;
+	<span class="token number">2.</span>逻辑上的异常
+    <span class="token number">2.1</span> 可以预测到的逻辑上的异常
+        age <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'----->'</span><span class="token punctuation">)</span>
+        age <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> age <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'恭喜你猜对了'</span><span class="token punctuation">)</span>	
+   <span class="token triple-quoted-string string">'''
    这种的就是能预测到的异常，万一用户zz偏要输入字符串怎么办呢，那我们应该怎么解决这个，既然能预测到了，就直接增加判断去解决其问题，不要用异常处理，为什么呢，稍后为你揭秘
-   &#39;&#39;&#39;
-	age &#x3D; input(&#39;-----&gt;&#39;)
-    if age.isdigit():
-        age &#x3D; int(age)
-        if age &#x3D;&#x3D; 18:
-            print(&#39;恭喜你猜对了&#39;)
-    else:
-        print(&#39;必须输入数字&#39;)
+   '''</span>
+	age <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'----->'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> age<span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        age <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> age <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'恭喜你猜对了'</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'必须输入数字'</span><span class="token punctuation">)</span>
         
-   2.2 不可以预测到的逻辑上的异常
-	# 在后面的套接字中我们会遇到一个不可以预测到的逻辑上的异常，在软件与服务器之间的传输信息中，我们是预测不到发生什么错误的，所以就得去异常处理
-    # 异常处理模板
-    try:
-        子代码块  # 有可能抛出异常的代码块
-    except 异常类型 as 变量名:
-        pass
-    except 异常类型1 as 变量名1:
-        pass
-    except 异常类型2 as 变量名2:
-        pass
-    else:
-        pass  # 这个是如果这个子代码块没有抛出异常，就会执行的代码
-    finally:
-        pass  # 这个是无论这个子代码块有没有抛出异常，都会执行的代码
-    &#39;&#39;&#39;
+   <span class="token number">2.2</span> 不可以预测到的逻辑上的异常
+	<span class="token comment"># 在后面的套接字中我们会遇到一个不可以预测到的逻辑上的异常，在软件与服务器之间的传输信息中，我们是预测不到发生什么错误的，所以就得去异常处理</span>
+    <span class="token comment"># 异常处理模板</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        子代码块  <span class="token comment"># 有可能抛出异常的代码块</span>
+    <span class="token keyword">except</span> 异常类型 <span class="token keyword">as</span> 变量名<span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">except</span> 异常类型<span class="token number">1</span> <span class="token keyword">as</span> 变量名<span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">except</span> 异常类型<span class="token number">2</span> <span class="token keyword">as</span> 变量名<span class="token number">2</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>  <span class="token comment"># 这个是如果这个子代码块没有抛出异常，就会执行的代码</span>
+    <span class="token keyword">finally</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>  <span class="token comment"># 这个是无论这个子代码块有没有抛出异常，都会执行的代码</span>
+    <span class="token triple-quoted-string string">'''
     那么这个异常处理是降低了代码可读性还是提高了，其实是降低了，所以异常处理能不用就不用，你不是写BUG的，只有在不可预测的逻辑性异常才要用
-    &#39;&#39;&#39;</code></pre>
+    '''</span></code></pre>
 
-<h1 id="异常处理的实际使用"><a href="#异常处理的实际使用" class="headerlink" title="异常处理的实际使用"></a>异常处理的实际使用</h1><pre class="language-python" data-language="python"><code class="language-python">    try:
-        print(&#39;----------------&#39;)
-        l_list &#x3D; [1, 2, 3]
-        l_list[3]
-        print(&#39;----------------&#39;)
+<h1 id="异常处理的实际使用"><a href="#异常处理的实际使用" class="headerlink" title="异常处理的实际使用"></a>异常处理的实际使用</h1><pre class="language-python" data-language="python"><code class="language-python">    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+        l_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+        l_list<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
         xxx
-        print(&#39;----------------&#39;)
-    except IndexError as l:
-        print(&#39;异常以出现&#39;, l)
-    &#39;&#39;&#39;
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> IndexError <span class="token keyword">as</span> l<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'异常以出现'</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">'''
     ----------------
     异常以出现 list index out of range
-    &#39;&#39;&#39;
-# 从这里可以看出先报错l_list没有索引3的错误，但是报错后，后面的同级代码也自然不运行了
-# 万一我们遇到不知道什么
-    try:
-        print(&#39;----------------&#39;)
-        l_list &#x3D; [1, 2, 3]
-        # l_list[3]
-        print(&#39;----------------&#39;)
+    '''</span>
+<span class="token comment"># 从这里可以看出先报错l_list没有索引3的错误，但是报错后，后面的同级代码也自然不运行了</span>
+<span class="token comment"># 万一我们遇到不知道什么</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+        l_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+        <span class="token comment"># l_list[3]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
         xxx
-        print(&#39;----------------&#39;)
-    except IndexError as l:
-        print(&#39;异常以出现&#39;, l)
-    except NameError as e:
-        print(&#39;异常以出现&#39;, e)
-    &#39;&#39;&#39;
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> IndexError <span class="token keyword">as</span> l<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'异常以出现'</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span>
+    <span class="token keyword">except</span> NameError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'异常以出现'</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">'''
     ----------------
     ----------------
-    异常以出现 name &#39;xxx&#39; is not defined
-    &#39;&#39;&#39;
-# 当不知道什么错的时候，后面可以加新的错误类型，但是这里也能看出来print是重复代码了，我们怎么解决呢
-	except (IndexError, NameError) as l:
-   		print(&#39;异常以出现&#39;, l)
-# 这样即可，那有没有万能异常解决的代码呢，什么类型都可以解决，有的
-	except Exception as e:
-    	pass
-# 然后我们加else finally 的用法
-# else
-	try:
-        print(&#39;----------------&#39;)
-        l_list &#x3D; [1, 2, 3]
-        # l_list[3]
-        print(&#39;----------------&#39;)
+    异常以出现 name 'xxx' is not defined
+    '''</span>
+<span class="token comment"># 当不知道什么错的时候，后面可以加新的错误类型，但是这里也能看出来print是重复代码了，我们怎么解决呢</span>
+	<span class="token keyword">except</span> <span class="token punctuation">(</span>IndexError<span class="token punctuation">,</span> NameError<span class="token punctuation">)</span> <span class="token keyword">as</span> l<span class="token punctuation">:</span>
+   		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'异常以出现'</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span>
+<span class="token comment"># 这样即可，那有没有万能异常解决的代码呢，什么类型都可以解决，有的</span>
+	<span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    	<span class="token keyword">pass</span>
+<span class="token comment"># 然后我们加else finally 的用法</span>
+<span class="token comment"># else</span>
+	<span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+        l_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+        <span class="token comment"># l_list[3]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
         xxx
-        print(&#39;----------------&#39;)
-    # except (IndexError, NameError) as l:
-    #     print(&#39;异常以出现&#39;, l)
-    else:
-        print(&#39;123&#39;)  # else与try无法直接连用，得通过except，else是这个是如果这个子代码块没有抛出异常，就会执行的代码
-# finally
-	try:
-        print(&#39;----------------&#39;)
-        l_list &#x3D; [1, 2, 3]
-        l_list[3]
-        print(&#39;----------------&#39;)
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+    <span class="token comment"># except (IndexError, NameError) as l:</span>
+    <span class="token comment">#     print('异常以出现', l)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>  <span class="token comment"># else与try无法直接连用，得通过except，else是这个是如果这个子代码块没有抛出异常，就会执行的代码</span>
+<span class="token comment"># finally</span>
+	<span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+        l_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+        l_list<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
         xxx
-        print(&#39;----------------&#39;)
-    # except (IndexError, NameError) as l:
-    #     print(&#39;异常以出现&#39;, l)
-    # else:
-    #     print(&#39;123&#39;)
-    finally:
-        print(&#39;123&#39;)  # finally是可以能直接和try连用的，finally一般是会写直接调离系统的代码</code></pre>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'----------------'</span><span class="token punctuation">)</span>
+    <span class="token comment"># except (IndexError, NameError) as l:</span>
+    <span class="token comment">#     print('异常以出现', l)</span>
+    <span class="token comment"># else:</span>
+    <span class="token comment">#     print('123')</span>
+    <span class="token keyword">finally</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>  <span class="token comment"># finally是可以能直接和try连用的，finally一般是会写直接调离系统的代码</span></code></pre>
 
             </div>
 

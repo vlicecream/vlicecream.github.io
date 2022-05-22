@@ -168,23 +168,23 @@
 		防函数
 *&#x2F;</code></pre>
 
-<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 标准库以header files 形式呈现
-&#x2F;&#x2F; C++标准库的head files 不带.h 例如:
-	#include &lt;vector&gt;
-&#x2F;&#x2F; 新式 C header files 不带.h 例如
-	#include &lt;cstdio&gt;
-&#x2F;&#x2F; 旧式 C header files 带.h 仍然可用 例如
-	#include &lt;stdio.h&gt;</code></pre>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">// 标准库以header files 形式呈现</span>
+<span class="token comment">// C++标准库的head files 不带.h 例如:</span>
+	<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token comment">// 新式 C header files 不带.h 例如</span>
+	<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token comment">// 旧式 C header files 带.h 仍然可用 例如</span>
+	<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span></code></pre>
 
-<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 新式headers内的组件封装于 命名空间namespace &quot;std&quot;
-using namespace std;  &#x2F;&#x2F; 代表直接打开这个namespace 里面的随便用  推荐用这个
-using std::cout &#x2F;&#x2F; 就可以直接用cout来表示
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">// 新式headers内的组件封装于 命名空间namespace "std"</span>
+using namespace std<span class="token punctuation">;</span>  <span class="token comment">// 代表直接打开这个namespace 里面的随便用  推荐用这个</span>
+using std<span class="token operator">::</span>cout <span class="token comment">// 就可以直接用cout来表示</span>
   
-&#x2F;&#x2F; example:
-  #include &lt;string&gt;
-  #include &lt;iostream&gt;
-  #include &lt;vector&gt;
-  using namespace std;</code></pre>
+<span class="token comment">// example:</span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+  using namespace std<span class="token punctuation">;</span></code></pre>
 
 <p><strong>这里推荐直接用新式的习惯</strong></p>
 <h2 id="C-标准库-版本"><a href="#C-标准库-版本" class="headerlink" title="C++标准库 版本"></a>C++标准库 版本</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 版本其实不影响编程</code></pre>
@@ -208,23 +208,23 @@ using std::cout &#x2F;&#x2F; 就可以直接用cout来表示
 	适配器: 相当于转换xxx的功能
 *&#x2F;</code></pre>
 
-<pre class="language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-#include &lt;functional&gt;
-#include &lt;iostream&gt;
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 
-using namespace std;
+using namespace std<span class="token punctuation">;</span>
 
-int main() &#123;
-  int ia[6] &#x3D; &#123; 27, 210, 12, 47, 109, 83 &#125;;
-  vector&lt;int, allocator&lt;int&gt;&gt; vi(ia, ia+6);
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> ia<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">27</span><span class="token punctuation">,</span> <span class="token number">210</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">47</span><span class="token punctuation">,</span> <span class="token number">109</span><span class="token punctuation">,</span> <span class="token number">83</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> allocator<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> <span class="token function">vi</span><span class="token punctuation">(</span>ia<span class="token punctuation">,</span> ia<span class="token operator">+</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  cout &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;int&gt;(), 40)));
+  cout <span class="token operator">&lt;&lt;</span> <span class="token function">count_if</span><span class="token punctuation">(</span>vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> vi<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">not1</span><span class="token punctuation">(</span><span class="token function">bind2nd</span><span class="token punctuation">(</span>less<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  return 0;
-&#125;
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;*
+<span class="token comment">/*
 代码解析:
 	vector 其实就是一个容器
 	allocator: 分配器 可以不写 源代码会有默认的分配器用来分配内存
@@ -233,7 +233,7 @@ int main() &#123;
 	less: 仿函数 比大小 跟a, b比大小 取小
 	bind2nd: 适配器  绑定第二个参数 此处就是可以跟40来比
 	not1: 否定 原本是小于40  现在是大于等于40
-*&#x2F;</code></pre>
+*/</span></code></pre>
 
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 	O(1) or O(c) 常数时间
@@ -245,58 +245,58 @@ int main() &#123;
 	O(nlog2n) 介于线性及二次方之间的
 *&#x2F;</code></pre>
 
-<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><pre class="language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-#include &lt;functional&gt;
-#include &lt;iostream&gt;
+<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 
-using namespace std;
+using namespace std<span class="token punctuation">;</span>
 
-int main() &#123;
-  int ia[6] &#x3D; &#123; 27, 210, 12, 47, 109, 83 &#125;;
-  vector&lt;int, allocator&lt;int&gt;&gt; vi(ia, ia+6);
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> ia<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">27</span><span class="token punctuation">,</span> <span class="token number">210</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">47</span><span class="token punctuation">,</span> <span class="token number">109</span><span class="token punctuation">,</span> <span class="token number">83</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> allocator<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> <span class="token function">vi</span><span class="token punctuation">(</span>ia<span class="token punctuation">,</span> ia<span class="token operator">+</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  cout &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;int&gt;(), 40)));
+  cout <span class="token operator">&lt;&lt;</span> <span class="token function">count_if</span><span class="token punctuation">(</span>vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> vi<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">not1</span><span class="token punctuation">(</span><span class="token function">bind2nd</span><span class="token punctuation">(</span>less<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  return 0;
-&#125;
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
 
-&#x2F;*
+<span class="token comment">/*
 	vi.begin() 指向ia数组的第一个元素的位置
 	vi.end() 指向ia数组最后一个元素的下一个位置
 	这种的我们就叫做前闭后开   [ )
 	所以利用这个我们可以对这个容器用伪代码遍历
-*&#x2F;
+*/</span>
 
-Container&lt;T&gt; c;  &#x2F;&#x2F; 创建一个容器
-...  &#x2F;&#x2F; 往容器塞值
-container&lt;T&gt;::iterator ite &#x3D; c.begin()  &#x2F;&#x2F; 给一个迭代器
-for (; ite !&#x3D; c.end(); ++ite) &#123; &#x2F;&#x2F; 如果这个迭代器不到c.end() 就执行代码
-  ...
-&#125;
+Container<span class="token operator">&lt;</span>T<span class="token operator">></span> c<span class="token punctuation">;</span>  <span class="token comment">// 创建一个容器</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>  <span class="token comment">// 往容器塞值</span>
+container<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span>iterator ite <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 给一个迭代器</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> ite <span class="token operator">!=</span> c<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>ite<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 如果这个迭代器不到c.end() 就执行代码</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 现在有一个可以优化上面的伪代码的方法
-std::vector&lt;double&gt; vec;
-...
-for ( auto elem : vec) &#123;  &#x2F;&#x2F; auto的作用就是代替 container&lt;T&gt;::iterator
-  std::cout &lt;&lt; elem &lt;&lt; std::end1;
-&#125;
+<span class="token comment">// 现在有一个可以优化上面的伪代码的方法</span>
+std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> vec<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span> <span class="token keyword">auto</span> elem <span class="token operator">:</span> vec<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  <span class="token comment">// auto的作用就是代替 container&lt;T>::iterator</span>
+  std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> elem <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>end1<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 对auto也可以优化
-for ( auto&amp; elem : vec) &#123;
-  elem *&#x3D; 3
-&#125;
+<span class="token comment">// 对auto也可以优化</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> elem <span class="token operator">:</span> vec<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  elem <span class="token operator">*=</span> <span class="token number">3</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 对auto再一次解释
-list&lt;string&gt; c;
-...
-list&lt;string&gt;::iterator ite;
-ite &#x3D; ::find(c.begin(), c.end(), target);
-&#x2F;&#x2F; 上述代码利用auto可以写成
-list&lt;string&gt; c;
-...
-auto ite &#x3D; ::find(c.begin(), c.end(), target);</code></pre>
+<span class="token comment">// 对auto再一次解释</span>
+list<span class="token operator">&lt;</span>string<span class="token operator">></span> c<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+list<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token operator">::</span>iterator ite<span class="token punctuation">;</span>
+ite <span class="token operator">=</span> <span class="token operator">::</span><span class="token function">find</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 上述代码利用auto可以写成</span>
+list<span class="token operator">&lt;</span>string<span class="token operator">></span> c<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">auto</span> ite <span class="token operator">=</span> <span class="token operator">::</span><span class="token function">find</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
 
             </div>

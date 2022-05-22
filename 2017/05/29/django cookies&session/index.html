@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、COOKIES-amp-SESSION"><a href="#一、COOKIES-amp-SESSION" class="headerlink" title="一、COOKIES&amp;SESSION"></a>一、COOKIES&amp;SESSION</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+                <h2 id="一、COOKIES-amp-SESSION"><a href="#一、COOKIES-amp-SESSION" class="headerlink" title="一、COOKIES&amp;SESSION"></a>一、COOKIES&amp;SESSION</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
 发展史
 	1.网站都没有保存用户功能的需求 所有用户访问返回的结果都是一样的
 		eg:新闻、博客、文章...
@@ -178,14 +178,14 @@
 但是如果你拿到了截获到了该随机字符串，那么你就可以冒充当前用户 其实还是有安全隐患的
 
 你要知道在web领域没有绝对的安全也没有绝对的不安全
-&quot;&quot;&quot;
-# cookie
+"""</span>
+<span class="token comment"># cookie</span>
 	服务端保存在客户端浏览器上的信息都可以称之为cookie
-  	它的表现形式一般都是k:v键值对(可以有多个)
-# session
-	数据是保存在服务端的并且它的表现形式一般也是k:v键值对(可以有多个)
+  	它的表现形式一般都是k<span class="token punctuation">:</span>v键值对<span class="token punctuation">(</span>可以有多个<span class="token punctuation">)</span>
+<span class="token comment"># session</span>
+	数据是保存在服务端的并且它的表现形式一般也是k<span class="token punctuation">:</span>v键值对<span class="token punctuation">(</span>可以有多个<span class="token punctuation">)</span>
     
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 下述内容暂时了解即可 先给我搞明白最简单的cookie与session使用再说话！
 token
 	session虽然数据是保存在服务端的 但是禁不住数据量大
@@ -194,42 +194,42 @@ token
     将加密之后的结果拼接在信息后面 整体返回给浏览器保存 
     浏览器下次访问的时候带着该信息 服务端自动切去前面一段信息再次使用自己的加密算法
     跟浏览器尾部的密文进行比对jwt认证三段信息
-&quot;&quot;&quot;    
+"""</span>    
 
 	
-总结:
-  	1.cookie就是保存在客户端浏览器上的信息
-    2.session就是保存在服务端上的信息
-    3.session是基于cookie工作的(其实大部分的保存用户状态的操作都需要使用到cookie)</code></pre>
+总结<span class="token punctuation">:</span>
+  	<span class="token number">1</span><span class="token punctuation">.</span>cookie就是保存在客户端浏览器上的信息
+    <span class="token number">2</span><span class="token punctuation">.</span>session就是保存在服务端上的信息
+    <span class="token number">3</span><span class="token punctuation">.</span>session是基于cookie工作的<span class="token punctuation">(</span>其实大部分的保存用户状态的操作都需要使用到cookie<span class="token punctuation">)</span></code></pre>
 
-<h2 id="二、DJANGO操作COOKIES"><a href="#二、DJANGO操作COOKIES" class="headerlink" title="二、DJANGO操作COOKIES"></a>二、DJANGO操作COOKIES</h2><pre class="language-python" data-language="python"><code class="language-python"># 虽然cookie是服务端告诉客户端浏览器需要保存内容
-# 但是客户端浏览器可以选择拒绝保存 如果禁止了 那么 只要是需要记录用户状态的网站登陆功能都无法使用了
+<h2 id="二、DJANGO操作COOKIES"><a href="#二、DJANGO操作COOKIES" class="headerlink" title="二、DJANGO操作COOKIES"></a>二、DJANGO操作COOKIES</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 虽然cookie是服务端告诉客户端浏览器需要保存内容</span>
+<span class="token comment"># 但是客户端浏览器可以选择拒绝保存 如果禁止了 那么 只要是需要记录用户状态的网站登陆功能都无法使用了</span>
 
-# 视图函数的返回值
-    return HttpResponse()
-    return render()
-    return redirect()
+<span class="token comment"># 视图函数的返回值</span>
+    <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    obj1 &#x3D; HttpResponse()
-# 操作cookie
-	return obj1
+    obj1 <span class="token operator">=</span> HttpResponse<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 操作cookie</span>
+	<span class="token keyword">return</span> obj1
 
-	obj2 &#x3D; render()
-# 操作cookie
-	return obj2
+	obj2 <span class="token operator">=</span> render<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 操作cookie</span>
+	<span class="token keyword">return</span> obj2
 
-	obj3 &#x3D; redirect()
-# 操作cookie
-	return obj3
-# 如果你想要操作cookie，你就不得不利用obj对象
+	obj3 <span class="token operator">=</span> redirect<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 操作cookie</span>
+	<span class="token keyword">return</span> obj3
+<span class="token comment"># 如果你想要操作cookie，你就不得不利用obj对象</span>
 
-&quot;&quot;&quot;
+<span class="token triple-quoted-string string">"""
 设置cookie
 	obj.set_cookie(key,value)
 获取cookie
 	request.COOKIES.get(key)
 在设置cookie的时候可以添加一个超时时间
-	obj.set_cookie(&#39;username&#39;, &#39;jason666&#39;,max_age&#x3D;3,expires&#x3D;3)
+	obj.set_cookie('username', 'jason666',max_age=3,expires=3)
 	
 	max_age
 	expires
@@ -237,87 +237,87 @@ token
 		需要注意的是 针对IE浏览器需要使用expires
 主动删除cookie(注销功能)
 	
-&quot;&quot;&quot;
-# 我们完成一个真正的登陆功能
-# 校验用户是否登陆的装饰器
-&quot;&quot;&quot;
+"""</span>
+<span class="token comment"># 我们完成一个真正的登陆功能</span>
+<span class="token comment"># 校验用户是否登陆的装饰器</span>
+<span class="token triple-quoted-string string">"""
 用户如果在没有登陆的情况下想访问一个需要登陆的页面
 那么先跳转到登陆页面 当用户输入正确的用户名和密码之后
 应该跳转到用户之前想要访问的页面去 而不是直接写死
-&quot;&quot;&quot;
+"""</span>
 
-# 登录认证装饰器
-def login_auth(func):
-    def inner(request,*args,**kwargs):
-        # print(request.path_info)
-        # print(request.get_full_path())  # 能够获取到用户上一次想要访问的url
-        target_url &#x3D; request.get_full_path()
-        if request.COOKIES.get(&#39;username&#39;):
-            return func(request,*args,**kwargs)
-        else:
-            return redirect(&#39;&#x2F;login&#x2F;?next&#x3D;%s&#39;%target_url)
-    return inner
+<span class="token comment"># 登录认证装饰器</span>
+<span class="token keyword">def</span> <span class="token function">login_auth</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">inner</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(request.path_info)</span>
+        <span class="token comment"># print(request.get_full_path())  # 能够获取到用户上一次想要访问的url</span>
+        target_url <span class="token operator">=</span> request<span class="token punctuation">.</span>get_full_path<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> request<span class="token punctuation">.</span>COOKIES<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> func<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">'/login/?next=%s'</span><span class="token operator">%</span>target_url<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> inner
 
-def login(request):
-    if request.method &#x3D;&#x3D; &#39;POST&#39;:
-        username &#x3D; request.POST.get(&#39;username&#39;)
-        password &#x3D; request.POST.get(&#39;password&#39;)
-        if username &#x3D;&#x3D; &#39;jason&#39; and password &#x3D;&#x3D; &#39;123&#39;:
-            # 获取用户上一次想要访问的url
-            target_url &#x3D; request.GET.get(&#39;next&#39;)  # 这个结果可能是None
-            if target_url:
-                obj &#x3D; redirect(target_url)
-            else:
-                # 保存用户登陆状态
-                obj &#x3D; redirect(&#39;&#x2F;home&#x2F;&#39;)
-            # 让浏览器记录cookie数据
-            obj.set_cookie(&#39;username&#39;, &#39;jason666&#39;)
-            &quot;&quot;&quot;
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
+        username <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+        password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> username <span class="token operator">==</span> <span class="token string">'jason'</span> <span class="token keyword">and</span> password <span class="token operator">==</span> <span class="token string">'123'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 获取用户上一次想要访问的url</span>
+            target_url <span class="token operator">=</span> request<span class="token punctuation">.</span>GET<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'next'</span><span class="token punctuation">)</span>  <span class="token comment"># 这个结果可能是None</span>
+            <span class="token keyword">if</span> target_url<span class="token punctuation">:</span>
+                obj <span class="token operator">=</span> redirect<span class="token punctuation">(</span>target_url<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token comment"># 保存用户登陆状态</span>
+                obj <span class="token operator">=</span> redirect<span class="token punctuation">(</span><span class="token string">'/home/'</span><span class="token punctuation">)</span>
+            <span class="token comment"># 让浏览器记录cookie数据</span>
+            obj<span class="token punctuation">.</span>set_cookie<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">,</span> <span class="token string">'jason666'</span><span class="token punctuation">)</span>
+            <span class="token triple-quoted-string string">"""
             浏览器不单单会帮你存
             而且后面每次访问你的时候还会带着它过来
-            &quot;&quot;&quot;
-            # 跳转到一个需要用户登陆之后才能看的页面
-            return obj
-    return render(request,&#39;login.html&#39;)
+            """</span>
+            <span class="token comment"># 跳转到一个需要用户登陆之后才能看的页面</span>
+            <span class="token keyword">return</span> obj
+    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">'login.html'</span><span class="token punctuation">)</span>
 
 
-@login_auth
-def home(request):
-    # 获取cookie信息 判断你有没有
-    if request.COOKIES.get(&#39;username&#39;) &#x3D;&#x3D; &#39;jason666&#39;:
-        return HttpResponse(&quot;我是home页面，只有登陆的用户才能进来哟~&quot;)
-    # 没有登陆应该跳转到登陆页面
-    return redirect(&#39;&#x2F;login&#x2F;&#39;)</code></pre>
+<span class="token decorator annotation punctuation">@login_auth</span>
+<span class="token keyword">def</span> <span class="token function">home</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 获取cookie信息 判断你有没有</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>COOKIES<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'jason666'</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">"我是home页面，只有登陆的用户才能进来哟~"</span><span class="token punctuation">)</span>
+    <span class="token comment"># 没有登陆应该跳转到登陆页面</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">)</span></code></pre>
 
-<h2 id="三、DJANGO操作SESSION"><a href="#三、DJANGO操作SESSION" class="headerlink" title="三、DJANGO操作SESSION"></a>三、DJANGO操作SESSION</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
-    # views
-    def set_session(request):
-        request.session[&#39;hobby&#39;] &#x3D; &#39;girl&#39;
-        # request.session[&#39;hobby1&#39;] &#x3D; &#39;girl1&#39;
-        # request.session[&#39;hobby2&#39;] &#x3D; &#39;girl2&#39;
-        # request.session[&#39;hobby3&#39;] &#x3D; &#39;girl3&#39;
-        # request.session.set_expiry()
-        &quot;&quot;&quot;
+<h2 id="三、DJANGO操作SESSION"><a href="#三、DJANGO操作SESSION" class="headerlink" title="三、DJANGO操作SESSION"></a>三、DJANGO操作SESSION</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 代码演示
+    <span class="token comment"># views</span>
+    <span class="token keyword">def</span> <span class="token function">set_session</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        request<span class="token punctuation">.</span>session<span class="token punctuation">[</span><span class="token string">'hobby'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'girl'</span>
+        <span class="token comment"># request.session['hobby1'] = 'girl1'</span>
+        <span class="token comment"># request.session['hobby2'] = 'girl2'</span>
+        <span class="token comment"># request.session['hobby3'] = 'girl3'</span>
+        <span class="token comment"># request.session.set_expiry()</span>
+        <span class="token triple-quoted-string string">"""
         内部发送了那些事
             1.django内部会自动帮你生成一个随机字符串
             2.django内部自动将随机字符串和对应的数据存储到django_session表中
                 2.1先在内存中产生操作数据的缓存
                 2.2在响应结果django中间件的时候才真正的操作数据库
             3.将产生的随机字符串返回给客户端浏览器保存
-        &quot;&quot;&quot;
-        return HttpResponse(&#39;嘿嘿嘿&#39;)
+        """</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'嘿嘿嘿'</span><span class="token punctuation">)</span>
 
 
-    def get_session(request):
-        # print(request.session.get(&#39;hobby&#39;))
-        if request.session.get(&#39;hobby&#39;):
-            print(request.session)
-            print(request.session.get(&quot;hobby&quot;))
-            print(request.session.get(&quot;hobby1&quot;))
-            print(request.session.get(&quot;hobby2&quot;))
-            print(request.session.get(&quot;hobby3&quot;))
+    <span class="token keyword">def</span> <span class="token function">get_session</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(request.session.get('hobby'))</span>
+        <span class="token keyword">if</span> request<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'hobby'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>session<span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"hobby"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"hobby1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"hobby2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"hobby3"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-            &quot;&quot;&quot;
+            <span class="token triple-quoted-string string">"""
             内部发送了那些事
                 1.自动从浏览器请求中获取sessionid对应的随机字符串
                 2.拿着该随机字符串去django_session表中查找对应的数据
@@ -325,12 +325,12 @@ def home(request):
                     如果比对上了 则将对应的数据取出并以字典的形式封装到request.session中
                     如果比对不上 则request.session.get()返回的是None
 
-            &quot;&quot;&quot;
-            return HttpResponse(&quot;哈哈哈&quot;)
-        return HttpResponse(&quot;大爷 关门了 明晚再来吧&quot;)
+            """</span>
+            <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">"哈哈哈"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">"大爷 关门了 明晚再来吧"</span><span class="token punctuation">)</span>
     
-2. 进一步解释说明
-    &quot;&quot;&quot;
+<span class="token number">2.</span> 进一步解释说明
+    <span class="token triple-quoted-string string">"""
     session数据是保存在服务端的(存？)，给客户端返回的是一个随机字符串
         sessionid:随机字符串
 
@@ -342,10 +342,10 @@ def home(request):
         但是你也可以人为的修改它
 
     设置session	
-    request.session[&#39;key&#39;] &#x3D; value
+    request.session['key'] = value
 
     获取session
-    request.session.get(&#39;key&#39;)
+    request.session.get('key')
 
     设置过期时间
     request.session.set_expiry()
@@ -373,33 +373,33 @@ def home(request):
         (当session过期的时候可能会出现多条数据对应一个浏览器，但是该现象不会持续很久，内部会自动识别过期的数据清除 你也可以通过代码清除)
 
         主要是为了节省服务端数据库资源
-    &quot;&quot;&quot;
+    """</span>
 
-    # 利用session实现登陆验证</code></pre>
+    <span class="token comment"># 利用session实现登陆验证</span></code></pre>
 
-<h2 id="四、CBV添加装饰器"><a href="#四、CBV添加装饰器" class="headerlink" title="四、CBV添加装饰器"></a>四、CBV添加装饰器</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
-	from django.views import View
-	from django.utils.decorators import method_decorator
-	@method_decorator(input_wrapper, name&#x3D;&#39;get&#39;)  # 方式2(可以添加多个针对不同的方法加不同的装饰器)
-    @method_decorator(input_wrapper, name&#x3D;&#39;post&#39;)
-    class MyViews(View):
-        @method_decorator(input_wrapper)  # 方式三 这是利用了View源码的特征 会给类所有的方法加上装饰器
-        def dispatch(self, request, *args, **kwargs):
-            return super().dispatch(request, *args, **kwargs)
+<h2 id="四、CBV添加装饰器"><a href="#四、CBV添加装饰器" class="headerlink" title="四、CBV添加装饰器"></a>四、CBV添加装饰器</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 代码演示
+	<span class="token keyword">from</span> django<span class="token punctuation">.</span>views <span class="token keyword">import</span> View
+	<span class="token keyword">from</span> django<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>decorators <span class="token keyword">import</span> method_decorator
+	<span class="token decorator annotation punctuation">@method_decorator</span><span class="token punctuation">(</span>input_wrapper<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'get'</span><span class="token punctuation">)</span>  <span class="token comment"># 方式2(可以添加多个针对不同的方法加不同的装饰器)</span>
+    <span class="token decorator annotation punctuation">@method_decorator</span><span class="token punctuation">(</span>input_wrapper<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'post'</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">MyViews</span><span class="token punctuation">(</span>View<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token decorator annotation punctuation">@method_decorator</span><span class="token punctuation">(</span>input_wrapper<span class="token punctuation">)</span>  <span class="token comment"># 方式三 这是利用了View源码的特征 会给类所有的方法加上装饰器</span>
+        <span class="token keyword">def</span> <span class="token function">dispatch</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>dispatch<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
 
-        @method_decorator(input_wrapper)  # 第一种方式 指名道姓
-        def get(self):
-            return HttpResponse(&#39;get&#39;)
+        <span class="token decorator annotation punctuation">@method_decorator</span><span class="token punctuation">(</span>input_wrapper<span class="token punctuation">)</span>  <span class="token comment"># 第一种方式 指名道姓</span>
+        <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'get'</span><span class="token punctuation">)</span>
 
-        def post(self):
-            return HttpResponse(&#39;post&#39;)
-2. 解释说明
-	&quot;&quot;&quot;
+        <span class="token keyword">def</span> <span class="token function">post</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'post'</span><span class="token punctuation">)</span>
+<span class="token number">2.</span> 解释说明
+	<span class="token triple-quoted-string string">"""
 	CBV想要加上装饰器得导入模块  
 	from django.utils.decorators import method_decorator
 	要不然普通的加装饰器会报错
 	其实CBV是不建议你直接加装饰器，哪怕成功加上了,也不建议
-	&quot;&quot;&quot;</code></pre>
+	"""</span></code></pre>
 
             </div>
 

@@ -166,36 +166,36 @@
 	再然后就是音名 音名就是国际化很通用的名称 一般我们用来书写
 *&#x2F;</code></pre>
 
-<h2 id="十二平均律"><a href="#十二平均律" class="headerlink" title="十二平均律"></a>十二平均律</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 我们国际化用的最多的乃是十二平均律 上述的乃是最基本的自然音 通过十二平均律 又多了变化音
+<h2 id="十二平均律"><a href="#十二平均律" class="headerlink" title="十二平均律"></a>十二平均律</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 我们国际化用的最多的乃是十二平均律 上述的乃是最基本的自然音 通过十二平均律 又多了变化音</span>
 
-C #C&#x2F;bC D #D&#x2F;bE E F #F&#x2F;bG G #G&#x2F;bA A #A&#x2F;bB B C
+C #C<span class="token operator">/</span>bC D #D<span class="token operator">/</span>bE E F #F<span class="token operator">/</span>bG G #G<span class="token operator">/</span>bA A #A<span class="token operator">/</span>bB B C
 
-&#x2F;&#x2F; 像带有#&#x2F;b的就是变化音了  钢琴的白键就是自然音 黑键就是变化音</code></pre>
+<span class="token comment">// 像带有#/b的就是变化音了  钢琴的白键就是自然音 黑键就是变化音</span></code></pre>
 
-<h2 id="x2F-b"><a href="#x2F-b" class="headerlink" title="#&#x2F;b"></a>#&#x2F;b</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; # 升 （把音升高一个半音）
-&#x2F;&#x2F; b 降	(把音降低一个半音)
+<h2 id="x2F-b"><a href="#x2F-b" class="headerlink" title="#&#x2F;b"></a>#&#x2F;b</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// # 升 （把音升高一个半音）</span>
+<span class="token comment">// b 降	(把音降低一个半音)</span>
 
-tip: 像我们一直说降一个key 实际就是整体降一个半音</code></pre>
+tip<span class="token punctuation">:</span> 像我们一直说降一个key 实际就是整体降一个半音</code></pre>
 
-<h2 id="半音-x2F-全音"><a href="#半音-x2F-全音" class="headerlink" title="半音&#x2F;全音"></a>半音&#x2F;全音</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 半音 相邻的两个音
-&#x2F;&#x2F; 全音 隔了一个音两个音
+<h2 id="半音-x2F-全音"><a href="#半音-x2F-全音" class="headerlink" title="半音&#x2F;全音"></a>半音&#x2F;全音</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 半音 相邻的两个音</span>
+<span class="token comment">// 全音 隔了一个音两个音</span>
 
-C #C&#x2F;bD D #D&#x2F;bE E F #F&#x2F;bG G #G&#x2F;bA A #A&#x2F;bB B C
+C #C<span class="token operator">/</span>bD D #D<span class="token operator">/</span>bE E F #F<span class="token operator">/</span>bG G #G<span class="token operator">/</span>bA A #A<span class="token operator">/</span>bB B C
 
-&#x2F;*
-	还是这个 像 C 或者 #C&#x2F;bD 就是相邻的 所以他们俩就是半音的关系
+<span class="token comment">/*
+	还是这个 像 C 或者 #C/bD 就是相邻的 所以他们俩就是半音的关系
 	C 和 D 他们隔了一个音就是全音的关系
 	那我们在看 C 和 #D或者E 呢 他们隔了很多音 这种的另有关系 后续再讲啦
-*&#x2F;</code></pre>
+*/</span></code></pre>
 
-<h2 id="音的分组"><a href="#音的分组" class="headerlink" title="音的分组"></a>音的分组</h2><pre class="language-go" data-language="go"><code class="language-go">7个基本音级不断循环反复，构成整个乐音音列
+<h2 id="音的分组"><a href="#音的分组" class="headerlink" title="音的分组"></a>音的分组</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">7</span>个基本音级不断循环反复，构成整个乐音音列
 从C音开始到其高八度C之间的音列称为一组
-通常以低音谱表第2间的C音开始而排列成的一组音
+通常以低音谱表第<span class="token number">2</span>间的C音开始而排列成的一组音
 用小写拉丁字母c、d、e、f、g、a、b标记   称小字组  由此向上各组依次称小字一组、小字二组等
 向下各组依次用大写拉丁字母标记  称大字组、大字一组、 大字二组等
-小字一组的c位于大谱表的中央加线上,故称为中央c;在键盘上的位置也居于中央
+小字一组的c位于大谱表的中央加线上<span class="token punctuation">,</span>故称为中央c<span class="token punctuation">;</span>在键盘上的位置也居于中央
 
-&#x2F;&#x2F; 中央c很重要哦～</code></pre>
+<span class="token comment">// 中央c很重要哦～</span></code></pre>
 
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesoctaves-2.JPG" alt="音名的分组"></p>
 <h2 id="音域与音区"><a href="#音域与音区" class="headerlink" title="音域与音区"></a>音域与音区</h2><pre class="language-go" data-language="go"><code class="language-go">音区是音域中的一部分，分为高音区、中音区、低音区三种
@@ -208,9 +208,9 @@ C #C&#x2F;bD D #D&#x2F;bE E F #F&#x2F;bG G #G&#x2F;bA A #A&#x2F;bB B C
 
 
 
-<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 对自然音和变化音之间的半音和全音的关系理清
-&#x2F;&#x2F; 记住唱名和简谱和音名之间的对应
-&#x2F;&#x2F; 对钢琴边弹边唱 练习视唱(对于乐理角度 这个练习不重要)</code></pre>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 对自然音和变化音之间的半音和全音的关系理清</span>
+<span class="token comment">// 记住唱名和简谱和音名之间的对应</span>
+<span class="token comment">// 对钢琴边弹边唱 练习视唱(对于乐理角度 这个练习不重要)</span></code></pre>
 
 
             </div>
