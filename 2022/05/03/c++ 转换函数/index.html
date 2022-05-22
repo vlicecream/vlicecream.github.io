@@ -156,75 +156,17 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="conversion-function-转换函数"><a href="#conversion-function-转换函数" class="headerlink" title="conversion function 转换函数"></a>conversion function 转换函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class Fraction &#123;
-public:
-  Fraction(int num, int den&#x3D;1):m_numerator(num), m_denominator(den) &#123; &#125;
-  operator double() const &#123;
-    return (double)(m_numerator &#x2F; m_denominator);
-  &#125;  &#x2F;&#x2F; 这就转换函数 因为转换完就是double 所以不需要写typename 然后因为不会改变 所以也加了const
-private:
-  int m_numerator; &#x2F;&#x2F; 分子
-  int m_denominator; &#x2F;&#x2F; 分母
-&#125;</code></pre>
+                <h2 id="conversion-function-转换函数"><a href="#conversion-function-转换函数" class="headerlink" title="conversion function 转换函数"></a>conversion function 转换函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Fraction</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Fraction</span>(<span class="type">int</span> num, <span class="type">int</span> den=<span class="number">1</span>):<span class="built_in">m_numerator</span>(num), <span class="built_in">m_denominator</span>(den) &#123; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">double</span>)(m_numerator / m_denominator);</span><br><span class="line">  &#125;  <span class="comment">// 这就转换函数 因为转换完就是double 所以不需要写typename 然后因为不会改变 所以也加了const</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> m_numerator; <span class="comment">// 分子</span></span><br><span class="line">  <span class="type">int</span> m_denominator; <span class="comment">// 分母</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">Fraction f(3, 5);
-double d &#x3D; 4 + f; &#x2F;&#x2F; 调用operator double() 将 f 转为 double 这样 double + double &#x3D; double 可以执行</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Fraction <span class="title">f</span><span class="params">(<span class="number">3</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> d = <span class="number">4</span> + f; <span class="comment">// 调用operator double() 将 f 转为 double 这样 double + double = double 可以执行</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Non-explicit-one-argument-ctor-没有explicit且只要一个实参的ctor"><a href="#Non-explicit-one-argument-ctor-没有explicit且只要一个实参的ctor" class="headerlink" title="Non-explicit-one-argument ctor  (没有explicit且只要一个实参的ctor)"></a>Non-explicit-one-argument ctor  (没有explicit且只要一个实参的ctor)</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class Fraction &#123;
-public:
-  Fraction(int num, int den&#x3D;1):m_numerator(num), m_denominator(den) &#123; &#125;
-  Fraction operator + (const Fraction &amp;f) &#123;
-    return Fraction(...);
-  &#125;
-private:
-  int m_numerator;
-  int m_denominator;
-&#125;;</code></pre>
+<h2 id="Non-explicit-one-argument-ctor-没有explicit且只要一个实参的ctor"><a href="#Non-explicit-one-argument-ctor-没有explicit且只要一个实参的ctor" class="headerlink" title="Non-explicit-one-argument ctor  (没有explicit且只要一个实参的ctor)"></a>Non-explicit-one-argument ctor  (没有explicit且只要一个实参的ctor)</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Fraction</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Fraction</span>(<span class="type">int</span> num, <span class="type">int</span> den=<span class="number">1</span>):<span class="built_in">m_numerator</span>(num), <span class="built_in">m_denominator</span>(den) &#123; &#125;</span><br><span class="line">  Fraction <span class="keyword">operator</span> + (<span class="type">const</span> Fraction &amp;f) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Fraction</span>(...);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> m_numerator;</span><br><span class="line">  <span class="type">int</span> m_denominator;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">Fraction f(3, 5);
-Fraction d2&#x3D;f+4; 
-&#x2F;*
-	首先肯定会去找 &quot;+&quot; 这个操作符 找到之后作用于左手边 f f就是Fraction 现在已经找到了
-	但是 &quot;+&quot; 的设计理念 右边是Fraction 所以就会想能不能把4转换为Fraction
-	4 同时 也是4分之1 正好den默认值为1 所以就会自动转换为4分之1
-*&#x2F; </code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Fraction <span class="title">f</span><span class="params">(<span class="number">3</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line">Fraction d2=f+<span class="number">4</span>; </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	首先肯定会去找 &quot;+&quot; 这个操作符 找到之后作用于左手边 f f就是Fraction 现在已经找到了</span></span><br><span class="line"><span class="comment">	但是 &quot;+&quot; 的设计理念 右边是Fraction 所以就会想能不能把4转换为Fraction</span></span><br><span class="line"><span class="comment">	4 同时 也是4分之1 正好den默认值为1 所以就会自动转换为4分之1</span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">class Fraction &#123;
-public:
-  Fraction(int num, int den&#x3D;1):m_numerator(num), m_denominator(den) &#123; &#125;
-  
-  operator double() const &#123;
-    return (double)(m_numerator&#x2F;m_denominator);
-  &#125;
-  
-  Fraction operator + (const Fraction &amp;f) &#123;
-    return Fraction(...);
-  &#125;
-private:
-  int m_numerator;
-  int m_denominator;
-&#125;;
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Fraction</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Fraction</span>(<span class="type">int</span> num, <span class="type">int</span> den=<span class="number">1</span>):<span class="built_in">m_numerator</span>(num), <span class="built_in">m_denominator</span>(den) &#123; &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">double</span>)(m_numerator/m_denominator);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  Fraction <span class="keyword">operator</span> + (<span class="type">const</span> Fraction &amp;f) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Fraction</span>(...);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> m_numerator;</span><br><span class="line">  <span class="type">int</span> m_denominator;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Fraction <span class="title">f</span><span class="params">(<span class="number">3</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line">Fraction d2=f+<span class="number">4</span>; </span><br><span class="line"><span class="comment">// 在上述加了 double 后 还是一样的调用 就会不行 因为编译器发现了 double的走法也可以 这样就会有两种不同的走法</span></span><br></pre></td></tr></table></figure>
 
-Fraction f(3, 5);
-Fraction d2&#x3D;f+4; 
-&#x2F;&#x2F; 在上述加了 double 后 还是一样的调用 就会不行 因为编译器发现了 double的走法也可以 这样就会有两种不同的走法</code></pre>
-
-<h2 id="explicit-one-argument-ctor"><a href="#explicit-one-argument-ctor" class="headerlink" title="explicit-one-argument ctor"></a>explicit-one-argument ctor</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; explicit 明白的 明确的 就是告诉编译器 不要自动 既然是构造函数 就真的要用到构造函数的时候在用到
-class Fraction &#123;
-public:
-  explicit Fraction(int num, int den&#x3D;1):m_numerator(num), m_denominator(den) &#123; &#125;
-  
-  operator double() const &#123;
-    return (double)(m_numerator&#x2F;m_denominator);
-  &#125;
-  
-  Fraction operator + (const Fraction &amp;f) &#123;
-    return Fraction(...);
-  &#125;
-private:
-  int m_numerator;
-  int m_denominator;
-&#125;;</code></pre>
+<h2 id="explicit-one-argument-ctor"><a href="#explicit-one-argument-ctor" class="headerlink" title="explicit-one-argument ctor"></a>explicit-one-argument ctor</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// explicit 明白的 明确的 就是告诉编译器 不要自动 既然是构造函数 就真的要用到构造函数的时候在用到</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Fraction</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">Fraction</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> den=<span class="number">1</span>)</span>:m_numerator(num), m_denominator(den) &#123;</span> &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">double</span>)(m_numerator/m_denominator);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  Fraction <span class="keyword">operator</span> + (<span class="type">const</span> Fraction &amp;f) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Fraction</span>(...);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> m_numerator;</span><br><span class="line">  <span class="type">int</span> m_denominator;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
             </div>

@@ -156,831 +156,91 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="一、函数的定义"><a href="#一、函数的定义" class="headerlink" title="一、函数的定义"></a>一、函数的定义</h2><pre class="language-python" data-language="python"><code class="language-python">1、什么是函数
-	函数就是封装了某一功能的代码
-2、为什么要函数
-	因为 不利于方便读
-    	 代码冗余
-         维护性差 拓展性也差
-3、怎么用函数
-	先定义(三种方式)
-	后调用(三种方式)
-	返回值(三种方式)
-	</code></pre>
+                <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="一、函数的定义"><a href="#一、函数的定义" class="headerlink" title="一、函数的定义"></a>一、函数的定义</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、什么是函数</span><br><span class="line">	函数就是封装了某一功能的代码</span><br><span class="line"><span class="number">2</span>、为什么要函数</span><br><span class="line">	因为 不利于方便读</span><br><span class="line">    	 代码冗余</span><br><span class="line">         维护性差 拓展性也差</span><br><span class="line"><span class="number">3</span>、怎么用函数</span><br><span class="line">	先定义(三种方式)</span><br><span class="line">	后调用(三种方式)</span><br><span class="line">	返回值(三种方式)</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
 
-<h2 id="二、函数的定义与调用"><a href="#二、函数的定义与调用" class="headerlink" title="二、函数的定义与调用"></a>二、函数的定义与调用</h2><pre class="language-python" data-language="python"><code class="language-python">1、函数的定义模板
-	def 函数名(参数1， 参数2)
-    	&quot;&quot;&quot;文档描述&quot;&quot;&quot;
-        函数数据
-        return 值
-2、函数的调用    
-def func():  # func 为内存的地址 func()则为函数的值
-    print(&quot;666&quot;)
+<h2 id="二、函数的定义与调用"><a href="#二、函数的定义与调用" class="headerlink" title="二、函数的定义与调用"></a>二、函数的定义与调用</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、函数的定义模板</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">函数名</span>(<span class="params">参数<span class="number">1</span>， 参数<span class="number">2</span></span>)</span><br><span class="line">    	<span class="string">&quot;&quot;&quot;文档描述&quot;&quot;&quot;</span></span><br><span class="line">        函数数据</span><br><span class="line">        <span class="keyword">return</span> 值</span><br><span class="line"><span class="number">2</span>、函数的调用    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():  <span class="comment"># func 为内存的地址 func()则为函数的值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;666&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
 
+<h2 id="三、定义函数的三种形式"><a href="#三、定义函数的三种形式" class="headerlink" title="三、定义函数的三种形式"></a>三、定义函数的三种形式</h2><h3 id="3-1-无参函数"><a href="#3-1-无参函数" class="headerlink" title="3.1 无参函数"></a>3.1 无参函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():  <span class="comment"># func 为内存的地址 func()则为函数的值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;666&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
 
-func()</code></pre>
+<h3 id="3-2-参数函数"><a href="#3-2-参数函数" class="headerlink" title="3.2 参数函数"></a>3.2 参数函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):  <span class="comment"># x = 1, y = 2</span></span><br><span class="line">    <span class="built_in">print</span>(x, y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="三、定义函数的三种形式"><a href="#三、定义函数的三种形式" class="headerlink" title="三、定义函数的三种形式"></a>三、定义函数的三种形式</h2><h3 id="3-1-无参函数"><a href="#3-1-无参函数" class="headerlink" title="3.1 无参函数"></a>3.1 无参函数</h3><pre class="language-python" data-language="python"><code class="language-python">def func():  # func 为内存的地址 func()则为函数的值
-    print(&quot;666&quot;)
-
-
-func()</code></pre>
+<h3 id="3-3-空函数"><a href="#3-3-空函数" class="headerlink" title="3.3 空函数"></a>3.3 空函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):  <span class="comment"># func 为内存的地址 func()则为函数的值</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-2-参数函数"><a href="#3-2-参数函数" class="headerlink" title="3.2 参数函数"></a>3.2 参数函数</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):  # x &#x3D; 1, y &#x3D; 2
-    print(x, y)
+<h3 id="3-4-三大定义函数的应用场景"><a href="#3-4-三大定义函数的应用场景" class="headerlink" title="3.4 三大定义函数的应用场景"></a>3.4 三大定义函数的应用场景</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、无参函数的应用场景</span><br><span class="line"><span class="number">2</span>、有参函数的应用场景</span><br><span class="line"><span class="number">3</span>、空函数的应用场景</span><br><span class="line">	当你做个项目的时候，写了很多函数确定功能的时候，可以用空函数先放那，然后根据实际情况再去修改</span><br></pre></td></tr></table></figure>
 
+<h2 id="四、调用函数的三种形式"><a href="#四、调用函数的三种形式" class="headerlink" title="四、调用函数的三种形式"></a>四、调用函数的三种形式</h2><h3 id="4-1-语句的形式直接调用"><a href="#4-1-语句的形式直接调用" class="headerlink" title="4.1 语句的形式直接调用"></a>4.1 语句的形式直接调用</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只调用函数</span></span><br><span class="line">func(x, y)</span><br></pre></td></tr></table></figure>
 
-func(1, 2)</code></pre>
+<h3 id="4-2-表达式调用"><a href="#4-2-表达式调用" class="headerlink" title="4.2 表达式调用"></a>4.2 表达式调用</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、赋值表达式</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):</span><br><span class="line">    res = x + y</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">res = func(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、算术表达式</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):</span><br><span class="line">    res = x + y</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">res = func(<span class="number">1</span>, <span class="number">2</span>) * <span class="number">8</span></span><br><span class="line"><span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-3-空函数"><a href="#3-3-空函数" class="headerlink" title="3.3 空函数"></a>3.3 空函数</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):  # func 为内存的地址 func()则为函数的值
-    pass
-
-
-func()</code></pre>
-
-<h3 id="3-4-三大定义函数的应用场景"><a href="#3-4-三大定义函数的应用场景" class="headerlink" title="3.4 三大定义函数的应用场景"></a>3.4 三大定义函数的应用场景</h3><pre class="language-python" data-language="python"><code class="language-python">1、无参函数的应用场景
-2、有参函数的应用场景
-3、空函数的应用场景
-	当你做个项目的时候，写了很多函数确定功能的时候，可以用空函数先放那，然后根据实际情况再去修改</code></pre>
-
-<h2 id="四、调用函数的三种形式"><a href="#四、调用函数的三种形式" class="headerlink" title="四、调用函数的三种形式"></a>四、调用函数的三种形式</h2><h3 id="4-1-语句的形式直接调用"><a href="#4-1-语句的形式直接调用" class="headerlink" title="4.1 语句的形式直接调用"></a>4.1 语句的形式直接调用</h3><pre class="language-python" data-language="python"><code class="language-python"># 只调用函数
-func(x, y)</code></pre>
-
-<h3 id="4-2-表达式调用"><a href="#4-2-表达式调用" class="headerlink" title="4.2 表达式调用"></a>4.2 表达式调用</h3><pre class="language-python" data-language="python"><code class="language-python">1、赋值表达式
-def func(x, y):
-    res &#x3D; x + y
-    return res
-
-res &#x3D; func(1, 2)
-print(res)
-
-2、算术表达式
-def func(x, y):
-    res &#x3D; x + y
-    return res
-
-res &#x3D; func(1, 2) * 8
-print(res)</code></pre>
-
-<h3 id="4-3-函数调用可以当作参数"><a href="#4-3-函数调用可以当作参数" class="headerlink" title="4.3 函数调用可以当作参数"></a>4.3 函数调用可以当作参数</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):
-    res &#x3D; x + y
-    return res
-res &#x3D; func(func(1, 2),3)
-print(res)</code></pre>
-
-<h2 id="五、返回值的三种形式"><a href="#五、返回值的三种形式" class="headerlink" title="五、返回值的三种形式"></a>五、返回值的三种形式</h2><h3 id="5-1-不返回"><a href="#5-1-不返回" class="headerlink" title="5.1 不返回"></a>5.1 不返回</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):
-    print(&quot;123&quot;)</code></pre>
-
-<h3 id="5-2-返回一个值"><a href="#5-2-返回一个值" class="headerlink" title="5.2 返回一个值"></a>5.2 返回一个值</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y)
-    return 10
-
-res &#x3D; func()
-print(res)</code></pre>
-
-<h3 id="5-3-返回多个值"><a href="#5-3-返回多个值" class="headerlink" title="5.3 返回多个值"></a>5.3 返回多个值</h3><pre class="language-python" data-language="python"><code class="language-python">def func(x, y):
-    return 10, 8, [1, 2]
-
-res &#x3D; func()
-print(res)
-# 会以元组的方式返回</code></pre>
-
-<h2 id="六、形参与实参"><a href="#六、形参与实参" class="headerlink" title="六、形参与实参"></a>六、形参与实参</h2><h3 id="6-1-形参与实参"><a href="#6-1-形参与实参" class="headerlink" title="6.1 形参与实参"></a>6.1 形参与实参</h3><pre class="language-python" data-language="python"><code class="language-python"># 形参是函数定义时括号内的变量名，接受外界的值
-# 实参则是函数调用时括号里的 可以是常量 变量 表达式的或者三者混合的传入的值</code></pre>
-
-<h3 id="6-2-位置参数"><a href="#6-2-位置参数" class="headerlink" title="6.2 位置参数"></a>6.2 位置参数</h3><pre class="language-python" data-language="python"><code class="language-python">1、什么是位置参数
-位置参数实际上就是按照从左到右的顺序去传参，参数可以是形参也可以是实参
-特点是 必须被传值 多一个不行 少一个不行
-2、
-def func(x, y) # x, y则是形参
-	print(&quot;123&quot;)
-
-    
-func(1, 2)  # x &#x3D; 1, y &#x3D; 2,按照顺序传入了x， y</code></pre>
-
-<h3 id="6-3-关键字参数"><a href="#6-3-关键字参数" class="headerlink" title="6.3 关键字参数"></a>6.3 关键字参数</h3><pre class="language-python" data-language="python"><code class="language-python">1、什么是关键字参数
-关键字参数则是通过变量名 &#x3D; 值 去准确传递，也可以说是关键字实参,这样就不用按照从左到右的顺序去传参数了
-2、
-def func(x, y)
-	print(x, y)
-    
-    
-func(y&#x3D;1, x&#x3D;2)
-3、注意
-	3.1 位置参数必须在关键字参数前，例如
-        def func(x, y, z)
-        print(x, y, z)
-
-
-    func(1, z&#x3D;2, y&#x3D;1)
-    3.2 不能重复给一个形参传值</code></pre>
-
-<h3 id="6-4-默认形参"><a href="#6-4-默认形参" class="headerlink" title="6.4 默认形参"></a>6.4 默认形参</h3><pre class="language-python" data-language="python"><code class="language-python">1、what
-	默认形参则是在定义函数时，就已经为形参赋值，这类形参称之为默认参数，当函数有多个参数时，需要将值经常改变的参数定义成位置参数，而将值改变较少的参数定义成默认参数。例如编写一个注册学生信息的函数，如果大多数学生的性别都为男，那完全可以将形参gender定义成默认参数
-2、定义时就已经为参数gender赋值，意味着调用时可以不对gender赋值，这降低了函数调用的复杂度
-    # 需要注意：
-        默认参数必须在位置参数之后
-        默认参数的值仅在函数定义阶段被赋值一次
-3、代码
-    def student(name, age, gender&#x3D;&#39;male&#39;):
-        print(name, age, gender)
-
-
-    student(&#39;Ame&#39;, 18)
-    student(&#39;Yuki&#39;, 18)
-    student(&#39;Egon&#39;, 18, &#39;female&#39;)</code></pre>
-
-<h3 id="6-5-可变长参数"><a href="#6-5-可变长参数" class="headerlink" title="6.5 可变长参数"></a>6.5 可变长参数</h3><pre class="language-python" data-language="python"><code class="language-python">1.what
-	可变长参数分为两种 一是可变长形参 二是可变可变长实参
-2.可变长形参
-	我们可以用*args **kwargs来接受不固定的值的长度，比如我们不知道要传入多少参数，我们就可以用这两个来接受传入的参数
-    # *args会传入后以元组的方式来保存
-    # **kwargs参数传入后会以字典的方式去保存
-3.可变长实参
-	# 打散
-    我们用元组传入后 元组的数据会以打散后位置参数传入形参
-    字典方式传入后，字典就会以关键字实参模式传入形参
-4.代码1
-    def func(*args, **kwargs):
-        print(args, kwargs)
-    func(1, 2, 3, 4, 5, 4, x&#x3D;1, y&#x3D;2, z&#x3D;3, c&#x3D;4)
-    &quot;&quot;&quot;
-    (1, 2, 3, 4, 5, 4) &#123;&#39;x&#39;: 1, &#39;y&#39;: 2, &#39;z&#39;: 3, &#39;c&#39;: 4&#125;
-    &quot;&quot;&quot;
-5.代码2
-    def index(x, y, z):
-        print(x, y, z)
-
-
-    def wrapper(*args, **kwargs):
-        index(*args, **kwargs)
-
-
-    wrapper(1, z&#x3D;2, y&#x3D;3)
-# 分析：首先将实参传值给形参：*args &#x3D; (1,)  **kwargs &#x3D; &#123;&#39;y&#39;:3,&#39;z&#39;:2&#125;
-# 第二步：这里是直接把wrapper(*args,**kwargs)中的形参给到了index(*args,      **kwargs)的实参，
-# 即index(*(1,),**&#123;&#39;y&#39;:3,&#39;z&#39;:2&#125;),这里再次将其打散，然后绑定给x,y,z</code></pre>
-
-<h2 id="七、名称空间与作用域"><a href="#七、名称空间与作用域" class="headerlink" title="七、名称空间与作用域"></a>七、名称空间与作用域</h2><h3 id="7-1-名称空间"><a href="#7-1-名称空间" class="headerlink" title="7.1 名称空间"></a>7.1 名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-	名称空间是  在内存栈区中分好不同的名称空间，这样就可以存放一样的变量名的空间，所以因为有名称空间的存在，我们才可以在不同的空间去使用相同的名字
-&quot;&quot;&quot;</code></pre>
-
-<h3 id="7-2-内置名称空间"><a href="#7-2-内置名称空间" class="headerlink" title="7.2 内置名称空间"></a>7.2 内置名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-存放的名字： 从python解释器内置存放的名字
-存活的周期： 从python打开即生成    python关闭则死亡	   
-&quot;&quot;&quot;
-# 例如
-    print
-    input</code></pre>
-
-<h3 id="7-3-全局名称空间"><a href="#7-3-全局名称空间" class="headerlink" title="7.3 全局名称空间"></a>7.3 全局名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-存放的空间： 既不在函数内，也不再解释器内置里,都为全局名称空间
-存活的周期： 文件的执行即开始，文件的执行结束为死亡
-&quot;&quot;&quot;
-# 例如1
-    def func()
-        x &#x3D; 5
-        y &#x3D; 1
-
-
-    func()  # func既不是函数内 也不是内置内，所以为全局名称空间，其他的都一样
-# 例如2
-    x &#x3D; 250
-    y &#x3D; 38
-    &quot;&quot;&quot;
-    x和y也是全局名称空间里面的，全局也皆可调用
-    &quot;&quot;&quot;
-    # 例如3
-    if 3&gt;1:
-        c &#x3D; 10
-    &quot;&quot;&quot;
-    这个c也是全局名称空间里面的，虽然他不是顶格写的，但是也是全部皆可调用
-    &quot;&quot;&quot;</code></pre>
-
-<h3 id="7-4-局部名称空间"><a href="#7-4-局部名称空间" class="headerlink" title="7.4 局部名称空间"></a>7.4 局部名称空间</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-存放的空间： 是函数内创造的
-存货的周期： 函数调用开始出生  函数调用结束死亡
-&quot;&quot;&quot;
-# 例如
-    def func()  # x, y则在局部名称空间 定义时出生
-        x &#x3D; 5
-        y &#x3D; 1
-
-
-    func()  # 调用时死亡</code></pre>
-
-<h3 id="7-5-名称空间的出生顺序和销毁顺序和查找顺序"><a href="#7-5-名称空间的出生顺序和销毁顺序和查找顺序" class="headerlink" title="7.5 名称空间的出生顺序和销毁顺序和查找顺序"></a>7.5 名称空间的出生顺序和销毁顺序和查找顺序</h3><pre class="language-python" data-language="python"><code class="language-python">1.出生顺序
-内置名称空间&gt;全局名称空间&gt;局部名称空间
-2.销毁顺序
-局部名称空间&gt;全局名称空间&gt;内置名称空间
-3.查找顺序
-# 如果在局部名称空间
-局部名称空间--------全局名称空间--------内置名称空间
-# 如果在全局名称空间
-全局名称空间--------内置名称空间</code></pre>
-
-<h3 id="7-6-全局作用域"><a href="#7-6-全局作用域" class="headerlink" title="7.6 全局作用域"></a>7.6 全局作用域</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-全局存活
-全局有效： 即所有的函数都能调用他
-&quot;&quot;&quot;</code></pre>
-
-<h3 id="7-7-局部作用域"><a href="#7-7-局部作用域" class="headerlink" title="7.7 局部作用域"></a>7.7 局部作用域</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-局部存活
-局部有效: 即只有函数内才能调用他
-&quot;&quot;&quot;</code></pre>
-
-<h2 id="八、函数对象"><a href="#八、函数对象" class="headerlink" title="八、函数对象"></a>八、函数对象</h2><pre class="language-python" data-language="python"><code class="language-python"># 函数对象的特点精髓就是可以把函数看成变量去调用
-比如
-	def func(x):
-    	print(x)
-
-
-	res &#x3D; func()</code></pre>
-
-<h2 id="九、-函数嵌套"><a href="#九、-函数嵌套" class="headerlink" title="九、 函数嵌套"></a>九、 函数嵌套</h2><pre class="language-python" data-language="python"><code class="language-python"># 函数嵌套调用就是在一个函数内再调用一个函数
-# 函数嵌套定义就是在一个函数内再定义一个函数
-	def max1(x, y)
-    	if x &gt; y:
-            return x
-        else:
-            return y
-        
-    def max(a, b, c, d):
-        res1 &#x3D; max1(a, b)
-        res2 &#x3D; max1(res1, c)
-        res3 &#x3D; max1(res2, d)
-        print(res3)
-
-
-    max(1, 156, 31, 456)</code></pre>
-
-<h2 id="十、闭包函数"><a href="#十、闭包函数" class="headerlink" title="十、闭包函数"></a>十、闭包函数</h2><pre class="language-python" data-language="python"><code class="language-python">1.1.什么是闭包函数
-	闭包函数 &#x3D; 名称空间与作用域 + 函数对象 + 函数嵌套
-    其实闭包函数就是一个传参方式
-    
-1.2.为什么要用闭包函数
-	万一函数的参数被占用了，我们应该怎么传参就用闭包函数
-    
-1.3.怎么用闭包函数
-    def func(x):
-        x &#x3D; 100
-
-        def wrapper():
-            print(x)
-
-        return wrapper
-
-
-    f &#x3D; func()
-    f()
-    &quot;&quot;&quot;
-    这就是闭包函数，wrapper被包起来了，只能用到func的x，外界都没有用
-    &quot;&quot;&quot;</code></pre>
-
-<h2 id="十一、装饰器"><a href="#十一、装饰器" class="headerlink" title="十一、装饰器"></a>十一、装饰器</h2><h3 id="11-1、-装饰器的定义（WHAT-WHY-HOW）"><a href="#11-1、-装饰器的定义（WHAT-WHY-HOW）" class="headerlink" title="11.1、 装饰器的定义（WHAT WHY HOW）"></a>11.1、 装饰器的定义（WHAT WHY HOW）</h3><pre class="language-python" data-language="python"><code class="language-python">1.什么是装饰器
-	装饰器就是装饰某一个东西的工具
-2.为什么要用装饰器
-	因为在源函数代码不改变调用方法&amp;原代码给原函数添加新功能，装饰器是最好的解决工具
-3.怎么用装饰器
-	详见下面</code></pre>
-
-<h3 id="11-2、-装饰器的实现思路"><a href="#11-2、-装饰器的实现思路" class="headerlink" title="11.2、 装饰器的实现思路"></a>11.2、 装饰器的实现思路</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-	现有一个原函数index，想要为其添加一个时间差的功能，我们应该怎么做呢
-&quot;&quot;&quot;
-
-# 方案一  这就已经修改了他的原代码了
-	import time
-
-
-    def index(x):
-        start_time &#x3D; time.time()
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-        print(time.time() - start_time)
-
-    index(1)
-# 方案二 没有修改原函数的代码&amp;调用，但是代码冗余
-    def index(x):
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-
-
-    start_time &#x3D; time.time()
-    index(1)
-    print(time.time() - start_time)
-
-    start_time &#x3D; time.time()
-    index(1)
-    print(time.time() - start_time)
-
-
-# 方案三 解决了代码冗余问题，但是原函数的调用我们修改了，而且wrapper写死了，只能调用index
-    def index(x):
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-
-
-    def wrapper():
-        start_time &#x3D; time.time()
-        index(1)
-        print(time.time() - start_time)
-
-
-    wrapper()
-
-
-# 方案四 我们先搞定调用index函数写死问题
-    def index(x):
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-
-
-    def outter(func):
-        def wrapper():
-            start_time &#x3D; time.time()
-            func(1)
-            print(time.time() - start_time)
-
-        return wrapper
-
-
-    index &#x3D; outter(index)
-    index()
-
-
-# 方案五  然后在搞定index函数参数问题
-    def index(x):
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-
-
-    def outter(func):
-        def wrapper(*args, **kwargs):
-            start_time &#x3D; time.time()
-            func(*args, **kwargs)
-            print(time.time() - start_time)
-
-        return wrapper
-
-
-    index &#x3D; outter(index)
-    index(11)
-
-
-# 方案六  在搞定index返回值的问题，这样就把wrapper伪装成index伪装的很好了
-    def index(x):
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-        return 123
-
-
-    def outter(func):
-        def wrapper(*args, **kwargs):
-            start_time &#x3D; time.time()
-            res &#x3D; func(*args, **kwargs)
-            print(time.time() - start_time)
-            return res
-
-        return wrapper
-
-
-    index &#x3D; outter(index)
-    res &#x3D; index(11)
-	print(res)
+<h3 id="4-3-函数调用可以当作参数"><a href="#4-3-函数调用可以当作参数" class="headerlink" title="4.3 函数调用可以当作参数"></a>4.3 函数调用可以当作参数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):</span><br><span class="line">    res = x + y</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">res = func(func(<span class="number">1</span>, <span class="number">2</span>),<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
 
+<h2 id="五、返回值的三种形式"><a href="#五、返回值的三种形式" class="headerlink" title="五、返回值的三种形式"></a>五、返回值的三种形式</h2><h3 id="5-1-不返回"><a href="#5-1-不返回" class="headerlink" title="5.1 不返回"></a>5.1 不返回</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-# 方案七 在让wrapper更像index一点
-    def index(x):
-        &quot;&quot;&quot;
-        这是index的配置信息
-        &quot;&quot;&quot;
-
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-        return 123
-
-
-    def outter(func):
-        def wrapper(*args, **kwargs):
-            start_time &#x3D; time.time()
-            res &#x3D; func(*args, **kwargs)
-            print(time.time() - start_time)
-            return res
-
-        wrapper.__name__ &#x3D; index.__name__
-        wrapper.__doc__ &#x3D; index.__doc__
-        return wrapper
-
-
-    index &#x3D; outter(index)
-    res &#x3D; index(11)
-    print(res)
-
-
-# 语法糖
-    def outter(func):
-        from functools import wraps
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            start_time &#x3D; time.time()
-            res &#x3D; func(*args, **kwargs)
-            print(time.time() - start_time)
-            return res
-
-        return wrapper
-
-
-    @outter
-    def index(x):
-        &quot;&quot;&quot;
-        这是index的配置信息
-        &quot;&quot;&quot;
-
-        print(f&#39;welcome to index &#123;x&#125;&#39;)
-        time.sleep(3)
-        return 123
-
-
-    res &#x3D; index(11)
-    print(res)</code></pre>
-
-<h3 id="11-3、装饰器的总结模板"><a href="#11-3、装饰器的总结模板" class="headerlink" title="11.3、装饰器的总结模板"></a>11.3、装饰器的总结模板</h3><pre class="language-none"><code class="language-none"># 无参装饰器
-def outter(func):
-    def wrapper(*args, **kwargs):
-        res &#x3D; func(*args, **kwargs)
-        return res
-    return wrapper
-
-# 有参装饰器
-def outter(x):
-    def foo(func):
-        def wrapper(*args, **kwargs):
-            res &#x3D; func(*args, **kwargs)
-            return res
-        return wrapper
-   	return foo</code></pre>
-
-<h3 id="11-4-多个装饰器"><a href="#11-4-多个装饰器" class="headerlink" title="11.4 多个装饰器"></a>11.4 多个装饰器</h3><pre class="language-python" data-language="python"><code class="language-python">import time
-
-
-def deco1(func):
-    print(&#39;----deco1&#39;)
-
-    def wrapper(*args, **kwargs):
-        start_time &#x3D; time.time()
-        res &#x3D; func(*args, **kwargs)
-        print(time.time() - start_time)
-        return res
-
-    return wrapper()
-
-
-def deco2(func):
-    print(&#39;----deco2&#39;)
-
-    def wrapper(*args, **kwargs):
-        start_time &#x3D; time.time()
-        res &#x3D; func(*args, **kwargs)
-        print(time.time() - start_time)
-        return res
-
-    return wrapper()
-
-
-@deco1
-@deco2
-def index(x):
-    print(f&#39;&#123;x&#125;&#39;)
-&#39;&#39;&#39;
-	当多个装饰器叠加的时候 例如这样是先从上而下去执行，但是返回值则是从下而上的去返回 所以deco2的返回值是在deco1，deco1的返回值是在真正的index上
-&#39;&#39;&#39;</code></pre>
-
-<h2 id="十二、-有参装饰器"><a href="#十二、-有参装饰器" class="headerlink" title="十二、 有参装饰器"></a>十二、 有参装饰器</h2><pre class="language-python" data-language="python"><code class="language-python">def login():
-    name &#x3D; input(&#39;name is :&#39;).strip()
-    pwd &#x3D; input(&#39;pwd is :&#39;).strip()
-
-    if name &#x3D;&#x3D; &#39;ycc&#39; and pwd &#x3D;&#x3D; &#39;123&#39;:
-        print(&#39;login successful&#39;)
-    else:
-        print(&#39;name or pwd error&#39;)
-
-def auth(db_type):
-    def deco(func):
-        def wrapper(*args,**kwargs):
-
-            if db_type &#x3D;&#x3D; &#39;file&#39;:
-                login()
-                print(&#39;基于文件验证&#39;)
-                # res &#x3D; func(*args,**kwargs)
-                # return res
-            elif db_type &#x3D;&#x3D; &#39;mysql&#39;:
-                login()
-                print(&#39;基于数据库验证&#39;)
-                # res &#x3D; func(*args, **kwargs)
-                # return res
-
-            elif db_type &#x3D;&#x3D; &#39;ldap&#39;:
-                login()
-                print(&#39;基于ldap验证&#39;)
-                # res &#x3D; func(*args, **kwargs)
-                # return res
-            res &#x3D; func(*args, **kwargs)
-            return res
-        return wrapper
-    return deco
-
-
-@auth(db_type&#x3D;&#39;file&#39;)
-def index(x, y):
-    print(x, y)
-
-
-@auth(db_type&#x3D;&#39;mysql&#39;)
-def home(name):
-    # print(&#39;welcome %s to home page&#39;%name)
-    print(f&#39;welcome &#123;name&#125; to home page&#39;)
-    return name
-
-
-@auth(db_type&#x3D;&#39;ldap&#39;)
-def transfer():
-    print(&#39;transfer&#39;)
-
-
-index(1, 2)
-name &#x3D; home(&#39;ycc&#39;)
-print(name)</code></pre>
-
-<h2 id="十三、可迭代对象与迭代器对象"><a href="#十三、可迭代对象与迭代器对象" class="headerlink" title="十三、可迭代对象与迭代器对象"></a>十三、可迭代对象与迭代器对象</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是可迭代对象
-	里面有内置的__iter__方法的就是可迭代对象
-    &#39;abc&#39;.__iter__
-    [1, 2, 3].__iter__
-    &#123;&#39;x&#39;:1, &#39;y&#39;:2&#125;.__iter__
-# 调用一个可迭代对象的__iter__()会得到一个返回值，改返回值是迭代器对象
-2.迭代对象对象的特点：
-	2.1 内置有__next__方法
-    iter_s &#x3D; s.__iter__()  # iter_s &#x3D; iter(s)
-    print(iter_s.__next__())
-    
-    dic &#x3D; &#123;&#39;x&#39;:1, &#39;y&#39;:2&#125;
-    iter_dic &#x3D; iter(dic)
-    print(iter_dic.__next__())</code></pre>
-
-<h2 id="十四、迭代器"><a href="#十四、迭代器" class="headerlink" title="十四、迭代器"></a>十四、迭代器</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是迭代器
-    迭代器就是用来迭代取值的工具
-
-    什么是迭代？
-        迭代就是一个重复的过程，但是每次重复都是基于上一次的结果进行的
-
-        # 单纯的重复不叫迭代
-        while True:
-            1+1
-
-        # 下面才是迭代的过程
-        count &#x3D; 1
-        while count &lt; 5:
-            print(count)
-            count +&#x3D; 1
-
-2.为何要用迭代器
-    优点
-    (1) 找到一种通用的迭代取值方案-&gt;for循环
-    （2）惰性计算，节省内存
-
-    缺点：
-        1、不能取指定的值，只能往后next
-        2、迭代器对象是一次性的：一个迭代器对象值取干净了，不能继续取了
-
-3.可迭代对象
-    3.1 内置有__iter__方法的对象都是可迭代对象
-            &quot;abc&quot;.__iter__()
-            [1, 2, 3].__iter__()
-            (1, 2, 3).__iter__()
-            &#123;&quot;x&quot;: 1, &quot;y&quot;: 2&#125;.__iter__()
-            &#123;1, 2, 3, 4&#125;.__iter__()
-            open(&#39;a.txt&#39;, mode&#x3D;&#39;r&#39;).__iter__()
-            open(&#39;a.txt&#39;, mode&#x3D;&#39;r&#39;).__next__()
-
-
-# 调用可迭代对象的__iter__()会得到一个返回值，该返回值是迭代器对象
-迭代对象对象的特点：
-          1、内置有__next__()方法
-          2、内置有__iter__()方法
-
-    s &#x3D; &quot;abc&quot;
-    iter_s &#x3D; s.__iter__()  # iter_s &#x3D; iter(s)
-    print(iter_s.__next__())  # print(next(ites_s))
-    print(iter_s.__next__())
-    print(iter_s.__next__())
-    print(iter_s.__next__())
-
-
-    dic &#x3D; &#123;&quot;x&quot;:1,&quot;y&quot;:2&#125;
-    iter_dic &#x3D; dic.__iter__()
-    print(iter_dic.__next__())
-    print(iter_dic.__next__())
-
-4. for工作原理
-    4.1 调用in后那个对象的__iter__方法，得到一个迭代器对象iter_names
-    4.2 x&#x3D;next(iter_names),然后运行循环体代码
-    4.3 重复步骤2，直到取完值，抛出异常，for循环会帮我们捕捉异常结束循环
-    
-    
-5.for循环里面的内部原理
-	names &#x3D; [&#39;egon&#39;, &#39;tom&#39;, &#39;jack&#39;, &#39;lili&#39;, &#39;ttt&#39;]
-
-
-    iter_s1 &#x3D; iter(names)
-    print(next(iter_s1))
-    print(next(iter_s1))
-    print(next(iter_s1))
-    print(next(iter_s1))
-    print(next(iter_s1))
-
-    iter_s2&#x3D;iter(names)
-
-    print(next(iter_s2))
-    print(next(iter_s2))
-    print(next(iter_s2))
-    print(next(iter_s2))
-    print(next(iter_s2))
-
-# 下面的第二个for循环其实是取不出值的
-    iter_names &#x3D; iter(names)
-    for x in iter_names :
-        print(x)
-
-    print(&#39;&#x3D;&#39;*50)
-
-    for x in iter_names :
-        print(x)</code></pre>
-
-<h2 id="十五、生成器-amp-YIELD"><a href="#十五、生成器-amp-YIELD" class="headerlink" title="十五、生成器&amp;YIELD"></a>十五、生成器&amp;YIELD</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是生成器
-	生成器就是自定义的迭代器
-2. 为什么要用生成器
-	因为生成器也就是迭代器是惰性计算不浪费内存，所以我们有时候可以自己自定义一个迭代器
-3. 如何定义生成器
-	# 这个就得用到我们的秘籍-----yield
-    def func():
-    print(&#39;one...&#39;)
-    yield 111
-    print(&#39;two...&#39;)
-    yield 222
-    print(&#39;three...&#39;)
-    yield 333
-    print(&#39;fourth&#39;)
-
-# 函数内但凡出现yield关键字，再调用函数不会立即执行函数体代码，而会返回一个
-# 生成器对象，生成器对象本质就是一个自定义的迭代器对象
-
-4. yield 对比 return
-&quot;&quot;&quot;
-相同点：都可以返回任意类型、任意个数的值
-不同点：return只能返回值一次值，函数就立即结束
-       yield可以返回多次值，yield可以暂停函数的运行
-&quot;&quot;&quot;</code></pre>
-
-<h2 id="十六、函数递归"><a href="#十六、函数递归" class="headerlink" title="十六、函数递归"></a>十六、函数递归</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是函数递归
-	就是定义一个函数，然后再函数内部调用自己，说白了就是个循环
-2. 函数递归可以分为两个阶段
-    2.1 回溯 就是去要的过程
-    2.2 递推 要到了回来的过程
-3. 函数递归应用
-    l &#x3D; [1, [2, [3, [4, [5, [6, [7, [8]]]]]]]]
-
-
-    def func(l):
-        for items in l:
-            if type(items) is list:
-                func(items)
-            else:
-                print(items)
-
-    func(l)</code></pre>
-
-<h2 id="十七、三元表达式"><a href="#十七、三元表达式" class="headerlink" title="十七、三元表达式"></a>十七、三元表达式</h2><pre class="language-python" data-language="python"><code class="language-python"># 过于麻烦的普通代码
-def func():
-    if x &gt; y:
-        return x
-    else:
-        return y
-# 三元表达式
-  x if x &gt; y else y
-  
-# 三元表达式的格式
-达成条件的返回的值 if 条件 条件没有达成的返回值
-     </code></pre>
-
-<h2 id="十八、各种生成式"><a href="#十八、各种生成式" class="headerlink" title="十八、各种生成式"></a>十八、各种生成式</h2><h3 id="18-1-列表生成式"><a href="#18-1-列表生成式" class="headerlink" title="18.1 列表生成式"></a>18.1 列表生成式</h3><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
-列表生成式
-&quot;&quot;&quot;
-# 正常思路
-l &#x3D; [&quot;xxx_dsb&quot;, &quot;aaa_dsb&quot;, &quot;bbb_dsb&quot;, &quot;ccc_dsb&quot;, &quot;yuki&quot;]
-new_l &#x3D; []
-for i in l:
-    if i.endswith(&quot;dsb&quot;):
-        new_l.append(i)
-print(new_l)
-# 列表生成式
-l &#x3D; [&quot;xxx_dsb&quot;, &quot;aaa_dsb&quot;, &quot;bbb_dsb&quot;, &quot;ccc_dsb&quot;, &quot;yuki&quot;]
-new_l &#x3D; [i for i in l if i.endswith(&quot;dsb&quot;)]
-print(new_l)
-
-# 练习 1 把所有小写字母换成大写字母  2 把所有名字去掉后缀
-l &#x3D; [&quot;xxx_dsb&quot;, &quot;aaa_dsb&quot;, &quot;bbb_dsb&quot;, &quot;ccc_dsb&quot;, &quot;yuki&quot;]
-new_1 &#x3D; [name.upper() for name in l]
-new_l &#x3D; [i.replace(&quot;_dsb&quot;, &#39;&#39;) for i in l if &quot;_dsb&quot; in i]</code></pre>
-
-<h3 id="18-2-字典生成式"><a href="#18-2-字典生成式" class="headerlink" title="18.2 字典生成式"></a>18.2 字典生成式</h3><pre class="language-python" data-language="python"><code class="language-python">keys &#x3D; &#123;&quot;aaa&quot;, &#39;bbb&#39;, &#39;ccc&#39;&#125;
-&#123;k: None for k in keys&#125;</code></pre>
-
-<h3 id="18-3-集合生成式"><a href="#18-3-集合生成式" class="headerlink" title="18.3 集合生成式"></a>18.3 集合生成式</h3><pre class="language-python" data-language="python"><code class="language-python">keys &#x3D; &#123;&quot;aaa&quot;, &#39;bbb&#39;, &#39;ccc&#39;&#125;
-&#123;k for k in keys&#125;</code></pre>
-
-<h3 id="18-4-生成器生成式"><a href="#18-4-生成器生成式" class="headerlink" title="18.4 生成器生成式"></a>18.4 生成器生成式</h3><pre class="language-python" data-language="python"><code class="language-python"># 把一个文件所有的字符总和取出来
-with open(&quot;stock_data.txt&quot;, mode&#x3D;&quot;rt&quot;, encoding&#x3D;&quot;UTF-8&quot;) as file:
-   print(sum(len(line) for line in file)  # 节约了内存 提高了效率</code></pre>
-
-<h2 id="十九、-二分法"><a href="#十九、-二分法" class="headerlink" title="十九、 二分法"></a>十九、 二分法</h2><pre class="language-python" data-language="python"><code class="language-python">需求：如果一个列表储存着从小到大的数字
-	然后从中需要找一个数字
-    
-1.for循环
-	list &#x3D; [-6, -1, 2, 5, 6, 10, 12, 16, 20, 25, 28, 30, 65, 98]
-    need_num &#x3D; 25
-    for i in list:
-        if i &#x3D;&#x3D; need_num:
-            break
-    print(i)
-
-&quot;&quot;&quot;
-这样是可以找出来，但是这样假如列表有很多元素，比如一千万个
-这样寻找会效率非常低，所以应该改进
-&quot;&quot;&quot;
-2.二分法  
-# 思路模板
-list &#x3D; [-6, -1, 2, 5, 6, 10, 12, 16, 20, 25, 28, 30, 65, 98]
-need_num &#x3D; 25
-def func():
-    median &#x3D; 中间值
-    if 中间值 &gt; need_num：
-        就要从左边开始寻找
-        list &#x3D; 左边的列表
-        def func()
-    elif 中间值 &lt; need_num:
-        就要从右边开始寻找
-        list &#x3D; 右边的列表
-        def func()
-    else：
-        print(find it)
-        
-# 实现
-list &#x3D; [-6, -1, 2, 5, 6, 10, 12, 16, 20, 25, 28, 30, 65, 98]
-need_num &#x3D; 30
-
-
-def func(need_num, list):
-    print(list)
-    median &#x3D; len(list) &#x2F;&#x2F; 2
-    if list[median] &gt; need_num:
-        list &#x3D; list[0:median]
-        print(list)
-        func(need_num, list)
-    elif list[median] &lt; need_num:
-        list &#x3D; list[median:]
-        print(list)
-        func(need_num, list)
-    else:
-        print(&quot;find it&quot;)
-
-
-func(need_num, list)</code></pre>
-
-<h2 id="二十、匿名函数"><a href="#二十、匿名函数" class="headerlink" title="二十、匿名函数"></a>二十、匿名函数</h2><pre class="language-python" data-language="python"><code class="language-python">匿名函数的应用场景
-	任何只需要用到一次函数，用完即可不要 就可以用匿名函数
-lambda x,y: x+y
-
-匿名函数与有名函数有相同的作用域，但是匿名意味着引用计数为0，使用一次就释放，所以匿名函数用于临时使用一次的场景，匿名函数通常与其他函数配合使用，我们以下述字典为例来介绍它
-
-salaries&#x3D;&#123;
-    &#39;siry&#39;:3000,
-    &#39;tom&#39;:7000,
-    &#39;lili&#39;:10000,
-    &#39;jack&#39;:2000
-&#125;
-要想取得薪水的最大值，我们可以使用内置函数max
-&gt;&gt;&gt; max(salaries)
-&#39;tom&#39;
-&gt;&gt;&gt; min(salaries)
-&#39;jack&#39;
-内置max和min都支持迭代器协议，工作原理都是迭代字典，取得是字典的键，因而比较的是键的最大和最小值，而我们想要的是比较值的最大值与最小值，于是做出如下改动
-# 函数max会迭代字典salaries，每取出一个“人名”就会当做参数传给指定的匿名函数，然后将匿名函数的返回值当做比较依据，最终返回薪资最高的那个人的名字
-&gt;&gt;&gt; max(salaries,key&#x3D;lambda k:salaries[k]) 
-&#39;lili&#39;
-# 原理同上
-&gt;&gt;&gt; min(salaries,key&#x3D;lambda k:salaries[k])
-&#39;jack&#39;
-同理，我们直接对字典进行排序，默认也是按照字典的键去排序的
-&gt;&gt;&gt; sorted(salaries)
-[&#39;jack&#39;, &#39;lili&#39;, &#39;siry&#39;, &#39;tom&#39;]</code></pre>
+<h3 id="5-2-返回一个值"><a href="#5-2-返回一个值" class="headerlink" title="5.2 返回一个值"></a>5.2 返回一个值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">res = func()</span><br><span class="line"><span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-返回多个值"><a href="#5-3-返回多个值" class="headerlink" title="5.3 返回多个值"></a>5.3 返回多个值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>, <span class="number">8</span>, [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">res = func()</span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line"><span class="comment"># 会以元组的方式返回</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="六、形参与实参"><a href="#六、形参与实参" class="headerlink" title="六、形参与实参"></a>六、形参与实参</h2><h3 id="6-1-形参与实参"><a href="#6-1-形参与实参" class="headerlink" title="6.1 形参与实参"></a>6.1 形参与实参</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 形参是函数定义时括号内的变量名，接受外界的值</span></span><br><span class="line"><span class="comment"># 实参则是函数调用时括号里的 可以是常量 变量 表达式的或者三者混合的传入的值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-位置参数"><a href="#6-2-位置参数" class="headerlink" title="6.2 位置参数"></a>6.2 位置参数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、什么是位置参数</span><br><span class="line">位置参数实际上就是按照从左到右的顺序去传参，参数可以是形参也可以是实参</span><br><span class="line">特点是 必须被传值 多一个不行 少一个不行</span><br><span class="line"><span class="number">2</span>、</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>) <span class="comment"># x, y则是形参</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">func(<span class="number">1</span>, <span class="number">2</span>)  <span class="comment"># x = 1, y = 2,按照顺序传入了x， y</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-关键字参数"><a href="#6-3-关键字参数" class="headerlink" title="6.3 关键字参数"></a>6.3 关键字参数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、什么是关键字参数</span><br><span class="line">关键字参数则是通过变量名 = 值 去准确传递，也可以说是关键字实参,这样就不用按照从左到右的顺序去传参数了</span><br><span class="line"><span class="number">2</span>、</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y</span>)</span><br><span class="line">	<span class="built_in">print</span>(x, y)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">func(y=<span class="number">1</span>, x=<span class="number">2</span>)</span><br><span class="line"><span class="number">3</span>、注意</span><br><span class="line">	<span class="number">3.1</span> 位置参数必须在关键字参数前，例如</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x, y, z</span>)</span><br><span class="line">        <span class="built_in">print</span>(x, y, z)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    func(<span class="number">1</span>, z=<span class="number">2</span>, y=<span class="number">1</span>)</span><br><span class="line">    <span class="number">3.2</span> 不能重复给一个形参传值</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-默认形参"><a href="#6-4-默认形参" class="headerlink" title="6.4 默认形参"></a>6.4 默认形参</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、what</span><br><span class="line">	默认形参则是在定义函数时，就已经为形参赋值，这类形参称之为默认参数，当函数有多个参数时，需要将值经常改变的参数定义成位置参数，而将值改变较少的参数定义成默认参数。例如编写一个注册学生信息的函数，如果大多数学生的性别都为男，那完全可以将形参gender定义成默认参数</span><br><span class="line"><span class="number">2</span>、定义时就已经为参数gender赋值，意味着调用时可以不对gender赋值，这降低了函数调用的复杂度</span><br><span class="line">    <span class="comment"># 需要注意：</span></span><br><span class="line">        默认参数必须在位置参数之后</span><br><span class="line">        默认参数的值仅在函数定义阶段被赋值一次</span><br><span class="line"><span class="number">3</span>、代码</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age, gender=<span class="string">&#x27;male&#x27;</span></span>):</span><br><span class="line">        <span class="built_in">print</span>(name, age, gender)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    student(<span class="string">&#x27;Ame&#x27;</span>, <span class="number">18</span>)</span><br><span class="line">    student(<span class="string">&#x27;Yuki&#x27;</span>, <span class="number">18</span>)</span><br><span class="line">    student(<span class="string">&#x27;Egon&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;female&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5-可变长参数"><a href="#6-5-可变长参数" class="headerlink" title="6.5 可变长参数"></a>6.5 可变长参数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>what</span><br><span class="line">	可变长参数分为两种 一是可变长形参 二是可变可变长实参</span><br><span class="line"><span class="number">2.</span>可变长形参</span><br><span class="line">	我们可以用*args **kwargs来接受不固定的值的长度，比如我们不知道要传入多少参数，我们就可以用这两个来接受传入的参数</span><br><span class="line">    <span class="comment"># *args会传入后以元组的方式来保存</span></span><br><span class="line">    <span class="comment"># **kwargs参数传入后会以字典的方式去保存</span></span><br><span class="line"><span class="number">3.</span>可变长实参</span><br><span class="line">	<span class="comment"># 打散</span></span><br><span class="line">    我们用元组传入后 元组的数据会以打散后位置参数传入形参</span><br><span class="line">    字典方式传入后，字典就会以关键字实参模式传入形参</span><br><span class="line"><span class="number">4.</span>代码<span class="number">1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(args, kwargs)</span><br><span class="line">    func(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, x=<span class="number">1</span>, y=<span class="number">2</span>, z=<span class="number">3</span>, c=<span class="number">4</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    (1, 2, 3, 4, 5, 4) &#123;&#x27;x&#x27;: 1, &#x27;y&#x27;: 2, &#x27;z&#x27;: 3, &#x27;c&#x27;: 4&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"><span class="number">5.</span>代码<span class="number">2</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x, y, z</span>):</span><br><span class="line">        <span class="built_in">print</span>(x, y, z)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        index(*args, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    wrapper(<span class="number">1</span>, z=<span class="number">2</span>, y=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 分析：首先将实参传值给形参：*args = (1,)  **kwargs = &#123;&#x27;y&#x27;:3,&#x27;z&#x27;:2&#125;</span></span><br><span class="line"><span class="comment"># 第二步：这里是直接把wrapper(*args,**kwargs)中的形参给到了index(*args,      **kwargs)的实参，</span></span><br><span class="line"><span class="comment"># 即index(*(1,),**&#123;&#x27;y&#x27;:3,&#x27;z&#x27;:2&#125;),这里再次将其打散，然后绑定给x,y,z</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="七、名称空间与作用域"><a href="#七、名称空间与作用域" class="headerlink" title="七、名称空间与作用域"></a>七、名称空间与作用域</h2><h3 id="7-1-名称空间"><a href="#7-1-名称空间" class="headerlink" title="7.1 名称空间"></a>7.1 名称空间</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">	名称空间是  在内存栈区中分好不同的名称空间，这样就可以存放一样的变量名的空间，所以因为有名称空间的存在，我们才可以在不同的空间去使用相同的名字</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-内置名称空间"><a href="#7-2-内置名称空间" class="headerlink" title="7.2 内置名称空间"></a>7.2 内置名称空间</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">存放的名字： 从python解释器内置存放的名字</span></span><br><span class="line"><span class="string">存活的周期： 从python打开即生成    python关闭则死亡	   </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line">    <span class="built_in">print</span></span><br><span class="line">    <span class="built_in">input</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-全局名称空间"><a href="#7-3-全局名称空间" class="headerlink" title="7.3 全局名称空间"></a>7.3 全局名称空间</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">存放的空间： 既不在函数内，也不再解释器内置里,都为全局名称空间</span></span><br><span class="line"><span class="string">存活的周期： 文件的执行即开始，文件的执行结束为死亡</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 例如1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>()</span><br><span class="line">        x = <span class="number">5</span></span><br><span class="line">        y = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    func()  <span class="comment"># func既不是函数内 也不是内置内，所以为全局名称空间，其他的都一样</span></span><br><span class="line"><span class="comment"># 例如2</span></span><br><span class="line">    x = <span class="number">250</span></span><br><span class="line">    y = <span class="number">38</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    x和y也是全局名称空间里面的，全局也皆可调用</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 例如3</span></span><br><span class="line">    <span class="keyword">if</span> <span class="number">3</span>&gt;<span class="number">1</span>:</span><br><span class="line">        c = <span class="number">10</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    这个c也是全局名称空间里面的，虽然他不是顶格写的，但是也是全部皆可调用</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-4-局部名称空间"><a href="#7-4-局部名称空间" class="headerlink" title="7.4 局部名称空间"></a>7.4 局部名称空间</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">存放的空间： 是函数内创造的</span></span><br><span class="line"><span class="string">存货的周期： 函数调用开始出生  函数调用结束死亡</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>()  <span class="comment"># x, y则在局部名称空间 定义时出生</span></span><br><span class="line">        x = <span class="number">5</span></span><br><span class="line">        y = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    func()  <span class="comment"># 调用时死亡</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-5-名称空间的出生顺序和销毁顺序和查找顺序"><a href="#7-5-名称空间的出生顺序和销毁顺序和查找顺序" class="headerlink" title="7.5 名称空间的出生顺序和销毁顺序和查找顺序"></a>7.5 名称空间的出生顺序和销毁顺序和查找顺序</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>出生顺序</span><br><span class="line">内置名称空间&gt;全局名称空间&gt;局部名称空间</span><br><span class="line"><span class="number">2.</span>销毁顺序</span><br><span class="line">局部名称空间&gt;全局名称空间&gt;内置名称空间</span><br><span class="line"><span class="number">3.</span>查找顺序</span><br><span class="line"><span class="comment"># 如果在局部名称空间</span></span><br><span class="line">局部名称空间--------全局名称空间--------内置名称空间</span><br><span class="line"><span class="comment"># 如果在全局名称空间</span></span><br><span class="line">全局名称空间--------内置名称空间</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-6-全局作用域"><a href="#7-6-全局作用域" class="headerlink" title="7.6 全局作用域"></a>7.6 全局作用域</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">全局存活</span></span><br><span class="line"><span class="string">全局有效： 即所有的函数都能调用他</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-7-局部作用域"><a href="#7-7-局部作用域" class="headerlink" title="7.7 局部作用域"></a>7.7 局部作用域</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">局部存活</span></span><br><span class="line"><span class="string">局部有效: 即只有函数内才能调用他</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="八、函数对象"><a href="#八、函数对象" class="headerlink" title="八、函数对象"></a>八、函数对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 函数对象的特点精髓就是可以把函数看成变量去调用</span></span><br><span class="line">比如</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x</span>):</span><br><span class="line">    	<span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	res = func()</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、-函数嵌套"><a href="#九、-函数嵌套" class="headerlink" title="九、 函数嵌套"></a>九、 函数嵌套</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 函数嵌套调用就是在一个函数内再调用一个函数</span></span><br><span class="line"><span class="comment"># 函数嵌套定义就是在一个函数内再定义一个函数</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">max1</span>(<span class="params">x, y</span>)</span><br><span class="line">    	<span class="keyword">if</span> x &gt; y:</span><br><span class="line">            <span class="keyword">return</span> x</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> y</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">max</span>(<span class="params">a, b, c, d</span>):</span><br><span class="line">        res1 = max1(a, b)</span><br><span class="line">        res2 = max1(res1, c)</span><br><span class="line">        res3 = max1(res2, d)</span><br><span class="line">        <span class="built_in">print</span>(res3)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">max</span>(<span class="number">1</span>, <span class="number">156</span>, <span class="number">31</span>, <span class="number">456</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="十、闭包函数"><a href="#十、闭包函数" class="headerlink" title="十、闭包函数"></a>十、闭包函数</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.1</span>.什么是闭包函数</span><br><span class="line">	闭包函数 = 名称空间与作用域 + 函数对象 + 函数嵌套</span><br><span class="line">    其实闭包函数就是一个传参方式</span><br><span class="line">    </span><br><span class="line"><span class="number">1.2</span>.为什么要用闭包函数</span><br><span class="line">	万一函数的参数被占用了，我们应该怎么传参就用闭包函数</span><br><span class="line">    </span><br><span class="line"><span class="number">1.3</span>.怎么用闭包函数</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x</span>):</span><br><span class="line">        x = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">            <span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    f = func()</span><br><span class="line">    f()</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    这就是闭包函数，wrapper被包起来了，只能用到func的x，外界都没有用</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十一、装饰器"><a href="#十一、装饰器" class="headerlink" title="十一、装饰器"></a>十一、装饰器</h2><h3 id="11-1、-装饰器的定义（WHAT-WHY-HOW）"><a href="#11-1、-装饰器的定义（WHAT-WHY-HOW）" class="headerlink" title="11.1、 装饰器的定义（WHAT WHY HOW）"></a>11.1、 装饰器的定义（WHAT WHY HOW）</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>什么是装饰器</span><br><span class="line">	装饰器就是装饰某一个东西的工具</span><br><span class="line"><span class="number">2.</span>为什么要用装饰器</span><br><span class="line">	因为在源函数代码不改变调用方法&amp;原代码给原函数添加新功能，装饰器是最好的解决工具</span><br><span class="line"><span class="number">3.</span>怎么用装饰器</span><br><span class="line">	详见下面</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-2、-装饰器的实现思路"><a href="#11-2、-装饰器的实现思路" class="headerlink" title="11.2、 装饰器的实现思路"></a>11.2、 装饰器的实现思路</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">	现有一个原函数index，想要为其添加一个时间差的功能，我们应该怎么做呢</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案一  这就已经修改了他的原代码了</span></span><br><span class="line">	<span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line"></span><br><span class="line">    index(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 方案二 没有修改原函数的代码&amp;调用，但是代码冗余</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    start_time = time.time()</span><br><span class="line">    index(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line"></span><br><span class="line">    start_time = time.time()</span><br><span class="line">    index(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案三 解决了代码冗余问题，但是原函数的调用我们修改了，而且wrapper写死了，只能调用index</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        index(<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    wrapper()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案四 我们先搞定调用index函数写死问题</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">outter</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">            start_time = time.time()</span><br><span class="line">            func(<span class="number">1</span>)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    index = outter(index)</span><br><span class="line">    index()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案五  然后在搞定index函数参数问题</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">outter</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start_time = time.time()</span><br><span class="line">            func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    index = outter(index)</span><br><span class="line">    index(<span class="number">11</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案六  在搞定index返回值的问题，这样就把wrapper伪装成index伪装的很好了</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">outter</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start_time = time.time()</span><br><span class="line">            res = func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    index = outter(index)</span><br><span class="line">    res = index(<span class="number">11</span>)</span><br><span class="line">	<span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案七 在让wrapper更像index一点</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        这是index的配置信息</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">outter</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start_time = time.time()</span><br><span class="line">            res = func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        wrapper.__name__ = index.__name__</span><br><span class="line">        wrapper.__doc__ = index.__doc__</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    index = outter(index)</span><br><span class="line">    res = index(<span class="number">11</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 语法糖</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">outter</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="meta">        @wraps(<span class="params">func</span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start_time = time.time()</span><br><span class="line">            res = func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">    @outter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        这是index的配置信息</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;welcome to index <span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    res = index(<span class="number">11</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-3、装饰器的总结模板"><a href="#11-3、装饰器的总结模板" class="headerlink" title="11.3、装饰器的总结模板"></a>11.3、装饰器的总结模板</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"># 无参装饰器</span><br><span class="line">def outter(func):</span><br><span class="line">    def <span class="keyword">wrapper</span>(*args, **kwargs):</span><br><span class="line">        res = func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">wrapper</span></span><br><span class="line"></span><br><span class="line"># 有参装饰器</span><br><span class="line">def outter(x):</span><br><span class="line">    def foo(func):</span><br><span class="line">        def <span class="keyword">wrapper</span>(*args, **kwargs):</span><br><span class="line">            res = func(*args, **kwargs)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">wrapper</span></span><br><span class="line">   	<span class="keyword">return</span> foo</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-4-多个装饰器"><a href="#11-4-多个装饰器" class="headerlink" title="11.4 多个装饰器"></a>11.4 多个装饰器</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">deco1</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;----deco1&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        res = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">deco2</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;----deco2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        res = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start_time)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@deco1</span></span><br><span class="line"><span class="meta">@deco2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;x&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">	当多个装饰器叠加的时候 例如这样是先从上而下去执行，但是返回值则是从下而上的去返回 所以deco2的返回值是在deco1，deco1的返回值是在真正的index上</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十二、-有参装饰器"><a href="#十二、-有参装饰器" class="headerlink" title="十二、 有参装饰器"></a>十二、 有参装饰器</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    name = <span class="built_in">input</span>(<span class="string">&#x27;name is :&#x27;</span>).strip()</span><br><span class="line">    pwd = <span class="built_in">input</span>(<span class="string">&#x27;pwd is :&#x27;</span>).strip()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> name == <span class="string">&#x27;ycc&#x27;</span> <span class="keyword">and</span> pwd == <span class="string">&#x27;123&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;login successful&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;name or pwd error&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">auth</span>(<span class="params">db_type</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deco</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> db_type == <span class="string">&#x27;file&#x27;</span>:</span><br><span class="line">                login()</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;基于文件验证&#x27;</span>)</span><br><span class="line">                <span class="comment"># res = func(*args,**kwargs)</span></span><br><span class="line">                <span class="comment"># return res</span></span><br><span class="line">            <span class="keyword">elif</span> db_type == <span class="string">&#x27;mysql&#x27;</span>:</span><br><span class="line">                login()</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;基于数据库验证&#x27;</span>)</span><br><span class="line">                <span class="comment"># res = func(*args, **kwargs)</span></span><br><span class="line">                <span class="comment"># return res</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> db_type == <span class="string">&#x27;ldap&#x27;</span>:</span><br><span class="line">                login()</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;基于ldap验证&#x27;</span>)</span><br><span class="line">                <span class="comment"># res = func(*args, **kwargs)</span></span><br><span class="line">                <span class="comment"># return res</span></span><br><span class="line">            res = func(*args, **kwargs)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> deco</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@auth(<span class="params">db_type=<span class="string">&#x27;file&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="built_in">print</span>(x, y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@auth(<span class="params">db_type=<span class="string">&#x27;mysql&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">home</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="comment"># print(&#x27;welcome %s to home page&#x27;%name)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;welcome <span class="subst">&#123;name&#125;</span> to home page&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@auth(<span class="params">db_type=<span class="string">&#x27;ldap&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transfer</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;transfer&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">name = home(<span class="string">&#x27;ycc&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(name)</span><br></pre></td></tr></table></figure>
+
+<h2 id="十三、可迭代对象与迭代器对象"><a href="#十三、可迭代对象与迭代器对象" class="headerlink" title="十三、可迭代对象与迭代器对象"></a>十三、可迭代对象与迭代器对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>什么是可迭代对象</span><br><span class="line">	里面有内置的__iter__方法的就是可迭代对象</span><br><span class="line">    <span class="string">&#x27;abc&#x27;</span>.__iter__</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].__iter__</span><br><span class="line">    &#123;<span class="string">&#x27;x&#x27;</span>:<span class="number">1</span>, <span class="string">&#x27;y&#x27;</span>:<span class="number">2</span>&#125;.__iter__</span><br><span class="line"><span class="comment"># 调用一个可迭代对象的__iter__()会得到一个返回值，改返回值是迭代器对象</span></span><br><span class="line"><span class="number">2.</span>迭代对象对象的特点：</span><br><span class="line">	<span class="number">2.1</span> 内置有__next__方法</span><br><span class="line">    iter_s = s.__iter__()  <span class="comment"># iter_s = iter(s)</span></span><br><span class="line">    <span class="built_in">print</span>(iter_s.__next__())</span><br><span class="line">    </span><br><span class="line">    dic = &#123;<span class="string">&#x27;x&#x27;</span>:<span class="number">1</span>, <span class="string">&#x27;y&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">    iter_dic = <span class="built_in">iter</span>(dic)</span><br><span class="line">    <span class="built_in">print</span>(iter_dic.__next__())</span><br></pre></td></tr></table></figure>
+
+<h2 id="十四、迭代器"><a href="#十四、迭代器" class="headerlink" title="十四、迭代器"></a>十四、迭代器</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>什么是迭代器</span><br><span class="line">    迭代器就是用来迭代取值的工具</span><br><span class="line"></span><br><span class="line">    什么是迭代？</span><br><span class="line">        迭代就是一个重复的过程，但是每次重复都是基于上一次的结果进行的</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 单纯的重复不叫迭代</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="number">1</span>+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 下面才是迭代的过程</span></span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> count &lt; <span class="number">5</span>:</span><br><span class="line">            <span class="built_in">print</span>(count)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>为何要用迭代器</span><br><span class="line">    优点</span><br><span class="line">    (<span class="number">1</span>) 找到一种通用的迭代取值方案-&gt;<span class="keyword">for</span>循环</span><br><span class="line">    （<span class="number">2</span>）惰性计算，节省内存</span><br><span class="line"></span><br><span class="line">    缺点：</span><br><span class="line">        <span class="number">1</span>、不能取指定的值，只能往后<span class="built_in">next</span></span><br><span class="line">        <span class="number">2</span>、迭代器对象是一次性的：一个迭代器对象值取干净了，不能继续取了</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>可迭代对象</span><br><span class="line">    <span class="number">3.1</span> 内置有__iter__方法的对象都是可迭代对象</span><br><span class="line">            <span class="string">&quot;abc&quot;</span>.__iter__()</span><br><span class="line">            [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].__iter__()</span><br><span class="line">            (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).__iter__()</span><br><span class="line">            &#123;<span class="string">&quot;x&quot;</span>: <span class="number">1</span>, <span class="string">&quot;y&quot;</span>: <span class="number">2</span>&#125;.__iter__()</span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;.__iter__()</span><br><span class="line">            <span class="built_in">open</span>(<span class="string">&#x27;a.txt&#x27;</span>, mode=<span class="string">&#x27;r&#x27;</span>).__iter__()</span><br><span class="line">            <span class="built_in">open</span>(<span class="string">&#x27;a.txt&#x27;</span>, mode=<span class="string">&#x27;r&#x27;</span>).__next__()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用可迭代对象的__iter__()会得到一个返回值，该返回值是迭代器对象</span></span><br><span class="line">迭代对象对象的特点：</span><br><span class="line">          <span class="number">1</span>、内置有__next__()方法</span><br><span class="line">          <span class="number">2</span>、内置有__iter__()方法</span><br><span class="line"></span><br><span class="line">    s = <span class="string">&quot;abc&quot;</span></span><br><span class="line">    iter_s = s.__iter__()  <span class="comment"># iter_s = iter(s)</span></span><br><span class="line">    <span class="built_in">print</span>(iter_s.__next__())  <span class="comment"># print(next(ites_s))</span></span><br><span class="line">    <span class="built_in">print</span>(iter_s.__next__())</span><br><span class="line">    <span class="built_in">print</span>(iter_s.__next__())</span><br><span class="line">    <span class="built_in">print</span>(iter_s.__next__())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    dic = &#123;<span class="string">&quot;x&quot;</span>:<span class="number">1</span>,<span class="string">&quot;y&quot;</span>:<span class="number">2</span>&#125;</span><br><span class="line">    iter_dic = dic.__iter__()</span><br><span class="line">    <span class="built_in">print</span>(iter_dic.__next__())</span><br><span class="line">    <span class="built_in">print</span>(iter_dic.__next__())</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> <span class="keyword">for</span>工作原理</span><br><span class="line">    <span class="number">4.1</span> 调用<span class="keyword">in</span>后那个对象的__iter__方法，得到一个迭代器对象iter_names</span><br><span class="line">    <span class="number">4.2</span> x=<span class="built_in">next</span>(iter_names),然后运行循环体代码</span><br><span class="line">    <span class="number">4.3</span> 重复步骤<span class="number">2</span>，直到取完值，抛出异常，<span class="keyword">for</span>循环会帮我们捕捉异常结束循环</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="number">5.</span><span class="keyword">for</span>循环里面的内部原理</span><br><span class="line">	names = [<span class="string">&#x27;egon&#x27;</span>, <span class="string">&#x27;tom&#x27;</span>, <span class="string">&#x27;jack&#x27;</span>, <span class="string">&#x27;lili&#x27;</span>, <span class="string">&#x27;ttt&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    iter_s1 = <span class="built_in">iter</span>(names)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s1))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s1))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s1))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s1))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s1))</span><br><span class="line"></span><br><span class="line">    iter_s2=<span class="built_in">iter</span>(names)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s2))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s2))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s2))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s2))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">next</span>(iter_s2))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的第二个for循环其实是取不出值的</span></span><br><span class="line">    iter_names = <span class="built_in">iter</span>(names)</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iter_names :</span><br><span class="line">        <span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;=&#x27;</span>*<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iter_names :</span><br><span class="line">        <span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<h2 id="十五、生成器-amp-YIELD"><a href="#十五、生成器-amp-YIELD" class="headerlink" title="十五、生成器&amp;YIELD"></a>十五、生成器&amp;YIELD</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 什么是生成器</span><br><span class="line">	生成器就是自定义的迭代器</span><br><span class="line"><span class="number">2.</span> 为什么要用生成器</span><br><span class="line">	因为生成器也就是迭代器是惰性计算不浪费内存，所以我们有时候可以自己自定义一个迭代器</span><br><span class="line"><span class="number">3.</span> 如何定义生成器</span><br><span class="line">	<span class="comment"># 这个就得用到我们的秘籍-----yield</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;one...&#x27;</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">111</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;two...&#x27;</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">222</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;three...&#x27;</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">333</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;fourth&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 函数内但凡出现yield关键字，再调用函数不会立即执行函数体代码，而会返回一个</span></span><br><span class="line"><span class="comment"># 生成器对象，生成器对象本质就是一个自定义的迭代器对象</span></span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> <span class="keyword">yield</span> 对比 <span class="keyword">return</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">相同点：都可以返回任意类型、任意个数的值</span></span><br><span class="line"><span class="string">不同点：return只能返回值一次值，函数就立即结束</span></span><br><span class="line"><span class="string">       yield可以返回多次值，yield可以暂停函数的运行</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十六、函数递归"><a href="#十六、函数递归" class="headerlink" title="十六、函数递归"></a>十六、函数递归</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 什么是函数递归</span><br><span class="line">	就是定义一个函数，然后再函数内部调用自己，说白了就是个循环</span><br><span class="line"><span class="number">2.</span> 函数递归可以分为两个阶段</span><br><span class="line">    <span class="number">2.1</span> 回溯 就是去要的过程</span><br><span class="line">    <span class="number">2.2</span> 递推 要到了回来的过程</span><br><span class="line"><span class="number">3.</span> 函数递归应用</span><br><span class="line">    l = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>, [<span class="number">5</span>, [<span class="number">6</span>, [<span class="number">7</span>, [<span class="number">8</span>]]]]]]]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">l</span>):</span><br><span class="line">        <span class="keyword">for</span> items <span class="keyword">in</span> l:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">type</span>(items) <span class="keyword">is</span> <span class="built_in">list</span>:</span><br><span class="line">                func(items)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(items)</span><br><span class="line"></span><br><span class="line">    func(l)</span><br></pre></td></tr></table></figure>
+
+<h2 id="十七、三元表达式"><a href="#十七、三元表达式" class="headerlink" title="十七、三元表达式"></a>十七、三元表达式</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 过于麻烦的普通代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="keyword">if</span> x &gt; y:</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> y</span><br><span class="line"><span class="comment"># 三元表达式</span></span><br><span class="line">  x <span class="keyword">if</span> x &gt; y <span class="keyword">else</span> y</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 三元表达式的格式</span></span><br><span class="line">达成条件的返回的值 <span class="keyword">if</span> 条件 条件没有达成的返回值</span><br><span class="line">     </span><br></pre></td></tr></table></figure>
+
+<h2 id="十八、各种生成式"><a href="#十八、各种生成式" class="headerlink" title="十八、各种生成式"></a>十八、各种生成式</h2><h3 id="18-1-列表生成式"><a href="#18-1-列表生成式" class="headerlink" title="18.1 列表生成式"></a>18.1 列表生成式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">列表生成式</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 正常思路</span></span><br><span class="line">l = [<span class="string">&quot;xxx_dsb&quot;</span>, <span class="string">&quot;aaa_dsb&quot;</span>, <span class="string">&quot;bbb_dsb&quot;</span>, <span class="string">&quot;ccc_dsb&quot;</span>, <span class="string">&quot;yuki&quot;</span>]</span><br><span class="line">new_l = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> l:</span><br><span class="line">    <span class="keyword">if</span> i.endswith(<span class="string">&quot;dsb&quot;</span>):</span><br><span class="line">        new_l.append(i)</span><br><span class="line"><span class="built_in">print</span>(new_l)</span><br><span class="line"><span class="comment"># 列表生成式</span></span><br><span class="line">l = [<span class="string">&quot;xxx_dsb&quot;</span>, <span class="string">&quot;aaa_dsb&quot;</span>, <span class="string">&quot;bbb_dsb&quot;</span>, <span class="string">&quot;ccc_dsb&quot;</span>, <span class="string">&quot;yuki&quot;</span>]</span><br><span class="line">new_l = [i <span class="keyword">for</span> i <span class="keyword">in</span> l <span class="keyword">if</span> i.endswith(<span class="string">&quot;dsb&quot;</span>)]</span><br><span class="line"><span class="built_in">print</span>(new_l)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 练习 1 把所有小写字母换成大写字母  2 把所有名字去掉后缀</span></span><br><span class="line">l = [<span class="string">&quot;xxx_dsb&quot;</span>, <span class="string">&quot;aaa_dsb&quot;</span>, <span class="string">&quot;bbb_dsb&quot;</span>, <span class="string">&quot;ccc_dsb&quot;</span>, <span class="string">&quot;yuki&quot;</span>]</span><br><span class="line">new_1 = [name.upper() <span class="keyword">for</span> name <span class="keyword">in</span> l]</span><br><span class="line">new_l = [i.replace(<span class="string">&quot;_dsb&quot;</span>, <span class="string">&#x27;&#x27;</span>) <span class="keyword">for</span> i <span class="keyword">in</span> l <span class="keyword">if</span> <span class="string">&quot;_dsb&quot;</span> <span class="keyword">in</span> i]</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-2-字典生成式"><a href="#18-2-字典生成式" class="headerlink" title="18.2 字典生成式"></a>18.2 字典生成式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">keys = &#123;<span class="string">&quot;aaa&quot;</span>, <span class="string">&#x27;bbb&#x27;</span>, <span class="string">&#x27;ccc&#x27;</span>&#125;</span><br><span class="line">&#123;k: <span class="literal">None</span> <span class="keyword">for</span> k <span class="keyword">in</span> keys&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-3-集合生成式"><a href="#18-3-集合生成式" class="headerlink" title="18.3 集合生成式"></a>18.3 集合生成式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">keys = &#123;<span class="string">&quot;aaa&quot;</span>, <span class="string">&#x27;bbb&#x27;</span>, <span class="string">&#x27;ccc&#x27;</span>&#125;</span><br><span class="line">&#123;k <span class="keyword">for</span> k <span class="keyword">in</span> keys&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-4-生成器生成式"><a href="#18-4-生成器生成式" class="headerlink" title="18.4 生成器生成式"></a>18.4 生成器生成式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 把一个文件所有的字符总和取出来</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;stock_data.txt&quot;</span>, mode=<span class="string">&quot;rt&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">   <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">len</span>(line) <span class="keyword">for</span> line <span class="keyword">in</span> file)  <span class="comment"># 节约了内存 提高了效率</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十九、-二分法"><a href="#十九、-二分法" class="headerlink" title="十九、 二分法"></a>十九、 二分法</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">需求：如果一个列表储存着从小到大的数字</span><br><span class="line">	然后从中需要找一个数字</span><br><span class="line">    </span><br><span class="line"><span class="number">1.</span><span class="keyword">for</span>循环</span><br><span class="line">	<span class="built_in">list</span> = [-<span class="number">6</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">16</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">28</span>, <span class="number">30</span>, <span class="number">65</span>, <span class="number">98</span>]</span><br><span class="line">    need_num = <span class="number">25</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">list</span>:</span><br><span class="line">        <span class="keyword">if</span> i == need_num:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">这样是可以找出来，但是这样假如列表有很多元素，比如一千万个</span></span><br><span class="line"><span class="string">这样寻找会效率非常低，所以应该改进</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">2.</span>二分法  </span><br><span class="line"><span class="comment"># 思路模板</span></span><br><span class="line"><span class="built_in">list</span> = [-<span class="number">6</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">16</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">28</span>, <span class="number">30</span>, <span class="number">65</span>, <span class="number">98</span>]</span><br><span class="line">need_num = <span class="number">25</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    median = 中间值</span><br><span class="line">    <span class="keyword">if</span> 中间值 &gt; need_num：</span><br><span class="line">        就要从左边开始寻找</span><br><span class="line">        <span class="built_in">list</span> = 左边的列表</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">func</span>()</span><br><span class="line">    <span class="keyword">elif</span> 中间值 &lt; need_num:</span><br><span class="line">        就要从右边开始寻找</span><br><span class="line">        <span class="built_in">list</span> = 右边的列表</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">func</span>()</span><br><span class="line">    <span class="keyword">else</span>：</span><br><span class="line">        <span class="built_in">print</span>(find it)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 实现</span></span><br><span class="line"><span class="built_in">list</span> = [-<span class="number">6</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">16</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">28</span>, <span class="number">30</span>, <span class="number">65</span>, <span class="number">98</span>]</span><br><span class="line">need_num = <span class="number">30</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">need_num, <span class="built_in">list</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line">    median = <span class="built_in">len</span>(<span class="built_in">list</span>) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">list</span>[median] &gt; need_num:</span><br><span class="line">        <span class="built_in">list</span> = <span class="built_in">list</span>[<span class="number">0</span>:median]</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line">        func(need_num, <span class="built_in">list</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">list</span>[median] &lt; need_num:</span><br><span class="line">        <span class="built_in">list</span> = <span class="built_in">list</span>[median:]</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line">        func(need_num, <span class="built_in">list</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;find it&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func(need_num, <span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="二十、匿名函数"><a href="#二十、匿名函数" class="headerlink" title="二十、匿名函数"></a>二十、匿名函数</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">匿名函数的应用场景</span><br><span class="line">	任何只需要用到一次函数，用完即可不要 就可以用匿名函数</span><br><span class="line"><span class="keyword">lambda</span> x,y: x+y</span><br><span class="line"></span><br><span class="line">匿名函数与有名函数有相同的作用域，但是匿名意味着引用计数为<span class="number">0</span>，使用一次就释放，所以匿名函数用于临时使用一次的场景，匿名函数通常与其他函数配合使用，我们以下述字典为例来介绍它</span><br><span class="line"></span><br><span class="line">salaries=&#123;</span><br><span class="line">    <span class="string">&#x27;siry&#x27;</span>:<span class="number">3000</span>,</span><br><span class="line">    <span class="string">&#x27;tom&#x27;</span>:<span class="number">7000</span>,</span><br><span class="line">    <span class="string">&#x27;lili&#x27;</span>:<span class="number">10000</span>,</span><br><span class="line">    <span class="string">&#x27;jack&#x27;</span>:<span class="number">2000</span></span><br><span class="line">&#125;</span><br><span class="line">要想取得薪水的最大值，我们可以使用内置函数<span class="built_in">max</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">max</span>(salaries)</span><br><span class="line"><span class="string">&#x27;tom&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">min</span>(salaries)</span><br><span class="line"><span class="string">&#x27;jack&#x27;</span></span><br><span class="line">内置<span class="built_in">max</span>和<span class="built_in">min</span>都支持迭代器协议，工作原理都是迭代字典，取得是字典的键，因而比较的是键的最大和最小值，而我们想要的是比较值的最大值与最小值，于是做出如下改动</span><br><span class="line"><span class="comment"># 函数max会迭代字典salaries，每取出一个“人名”就会当做参数传给指定的匿名函数，然后将匿名函数的返回值当做比较依据，最终返回薪资最高的那个人的名字</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">max</span>(salaries,key=<span class="keyword">lambda</span> k:salaries[k]) </span><br><span class="line"><span class="string">&#x27;lili&#x27;</span></span><br><span class="line"><span class="comment"># 原理同上</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">min</span>(salaries,key=<span class="keyword">lambda</span> k:salaries[k])</span><br><span class="line"><span class="string">&#x27;jack&#x27;</span></span><br><span class="line">同理，我们直接对字典进行排序，默认也是按照字典的键去排序的</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sorted</span>(salaries)</span><br><span class="line">[<span class="string">&#x27;jack&#x27;</span>, <span class="string">&#x27;lili&#x27;</span>, <span class="string">&#x27;siry&#x27;</span>, <span class="string">&#x27;tom&#x27;</span>]</span><br></pre></td></tr></table></figure>
 
             </div>
 

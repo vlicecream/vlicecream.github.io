@@ -156,23 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 下载swagger-editor的容器
-docker pull swaggerapi&#x2F;swagger-editor 
-docker run -d -p 81:8080 swaggerapi&#x2F;swagger-editor
-
-&#x2F;&#x2F; 下载swagger-ui的容器
-docker pull swaggerapi&#x2F;swagger-ui
- 
-&#x2F;&#x2F; json文件挂在到容器中:
-  
-docker run -d -p 80:8080 -e SWAGGER_JSON&#x3D;&#x2F;foo&#x2F;swagger.json -v &#x2F;home&#x2F;service&#x2F;swagger&#x2F;swagger.json:&#x2F;foo&#x2F;swagger.json swaggerapi&#x2F;swagger-ui 
--p：宿主机端口：容器端口，将容器端口暴露给宿主机端口
--d:后台启动
--e：执行容器中&#x2F;foo&#x2F;swagger.json
--v：将宿主机中&#x2F;home&#x2F;service&#x2F;swagger&#x2F;swagger.json挂载到容器 &#x2F;foo中执行
-
-&#x2F;&#x2F;web验证
-ip:port</code></pre>
+                <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 下载swagger-editor的容器</span></span><br><span class="line">docker pull swaggerapi/swagger-editor </span><br><span class="line">docker run -d -p <span class="number">81</span>:<span class="number">8080</span> swaggerapi/swagger-editor</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下载swagger-ui的容器</span></span><br><span class="line">docker pull swaggerapi/swagger-ui</span><br><span class="line"> </span><br><span class="line"><span class="comment">// json文件挂在到容器中:</span></span><br><span class="line">  </span><br><span class="line">docker run -d -p <span class="number">80</span>:<span class="number">8080</span> -e SWAGGER_JSON=/foo/swagger.json -v /home/service/swagger/swagger.json:/foo/swagger.json swaggerapi/swagger-ui </span><br><span class="line">-p：宿主机端口：容器端口，将容器端口暴露给宿主机端口</span><br><span class="line">-d:后台启动</span><br><span class="line">-e：执行容器中/foo/swagger.json</span><br><span class="line">-v：将宿主机中/home/service/swagger/swagger.json挂载到容器 /foo中执行</span><br><span class="line"></span><br><span class="line"><span class="comment">//web验证</span></span><br><span class="line">ip:port</span><br></pre></td></tr></table></figure>
 
 
             </div>

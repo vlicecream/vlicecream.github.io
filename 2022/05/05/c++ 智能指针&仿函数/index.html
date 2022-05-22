@@ -156,75 +156,27 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="pointer-like-classes"><a href="#pointer-like-classes" class="headerlink" title="pointer-like classes"></a>pointer-like classes</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 智能指针 一个类很像指针 拥有指针的功能确还能额外多做点事 这就叫智能指针</code></pre>
+                <h2 id="pointer-like-classes"><a href="#pointer-like-classes" class="headerlink" title="pointer-like classes"></a>pointer-like classes</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 智能指针 一个类很像指针 拥有指针的功能确还能额外多做点事 这就叫智能指针</span></span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;class T&gt;
-class shared_ptr &#123;
-public:
-	T&amp; operator *() const &#123; return *px; &#125;
-+	T&amp; operator -&gt;() const &#123; return px; &#125;
-	shared_ptr(T* p) : px(p) &#123; &#125; &#x2F;&#x2F; 构造函数
-private:
-	T* px;
-	long* pn;
-&#125;;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">shared_ptr</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	T&amp; <span class="keyword">operator</span> *() <span class="type">const</span> &#123; <span class="keyword">return</span> *px; &#125;</span><br><span class="line">+	T&amp; <span class="keyword">operator</span> -&gt;() <span class="type">const</span> &#123; <span class="keyword">return</span> px; &#125;</span><br><span class="line">	<span class="built_in">shared_ptr</span>(T* p) : <span class="built_in">px</span>(p) &#123; &#125; <span class="comment">// 构造函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	T* px;</span><br><span class="line">	<span class="type">long</span>* pn;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">struct Foo &#123;
-    ...
-    void method(void) &#123; ... &#125;;
-&#125;;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">method</span><span class="params">(<span class="type">void</span>)</span> </span>&#123; ... &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">shared_ptr&lt;Foo&gt; sp(new Foo);
-Foo f(*sp);
-sp -&gt; method;
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">shared_ptr&lt;Foo&gt; <span class="title">sp</span><span class="params">(<span class="keyword">new</span> Foo)</span></span>;</span><br><span class="line"><span class="function">Foo <span class="title">f</span><span class="params">(*sp)</span></span>;</span><br><span class="line">sp -&gt; method;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	在这里new了一个sp对象 调用shared_ptr构造函数 没有问题</span></span><br><span class="line"><span class="comment">	随后Foo f(*sp) 操作符重载 return *px 取到指针所指向的值 也没有问题</span></span><br><span class="line"><span class="comment">	再然后的 sp -&gt; 这里的意思 是通过sp这个对象 调用method方法 实际也就是 px-&gt;method;</span></span><br><span class="line"><span class="comment">	-&gt; 这个符号很特别 会一直作用下去 -&gt; 作用于sp 虽然作用完了 但是 还是能px-&gt;method 所以体现了这一点</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-&#x2F;*
-	在这里new了一个sp对象 调用shared_ptr构造函数 没有问题
-	随后Foo f(*sp) 操作符重载 return *px 取到指针所指向的值 也没有问题
-	再然后的 sp -&gt; 这里的意思 是通过sp这个对象 调用method方法 实际也就是 px-&gt;method;
-	-&gt; 这个符号很特别 会一直作用下去 -&gt; 作用于sp 虽然作用完了 但是 还是能px-&gt;method 所以体现了这一点
-*&#x2F;</code></pre>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 迭代器也有智能指针</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Ref</span>, <span class="keyword">class</span> <span class="title class_">Ptr</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__list_iterator</span> &#123;</span><br><span class="line">  <span class="keyword">typedef</span> __list_node&lt;T&gt;* link_type;</span><br><span class="line">  link_type node;</span><br><span class="line">  <span class="type">bool</span> <span class="keyword">operator</span>==(<span class="type">const</span> self&amp; x) <span class="type">const</span> &#123; <span class="keyword">return</span> node == x.node &#125;;</span><br><span class="line">  <span class="type">bool</span> <span class="keyword">operator</span>-&gt;() <span class="type">const</span> &#123; <span class="keyword">return</span> &amp;(<span class="keyword">operator</span>*()); &#125;</span><br><span class="line">  reference <span class="keyword">operator</span>*() <span class="type">const</span> &#123; <span class="keyword">return</span> (*node).data; &#125;</span><br><span class="line">  pointer <span class="keyword">operator</span>-&gt;() <span class="type">const</span> &#123; <span class="keyword">return</span> &amp;(<span class="keyword">operator</span>*()); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 像前面的智能指针 就是普通用法 而迭代器的这个例子则就是体现了更好的利用指针去搞事情</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 迭代器也有智能指针
-template&lt;class T, class Ref, class Ptr&gt;
-struct __list_iterator &#123;
-  typedef __list_node&lt;T&gt;* link_type;
-  link_type node;
-  bool operator&#x3D;&#x3D;(const self&amp; x) const &#123; return node &#x3D;&#x3D; x.node &#125;;
-  bool operator-&gt;() const &#123; return &amp;(operator*()); &#125;
-  reference operator*() const &#123; return (*node).data; &#125;
-  pointer operator-&gt;() const &#123; return &amp;(operator*()); &#125;
-&#125;
-&#x2F;&#x2F; 像前面的智能指针 就是普通用法 而迭代器的这个例子则就是体现了更好的利用指针去搞事情</code></pre>
+<h2 id="function-like-classes-仿函数"><a href="#function-like-classes-仿函数" class="headerlink" title="function-like classes 仿函数"></a>function-like classes 仿函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">identity</span> : <span class="keyword">public</span> unary_function&lt;T, T&gt; &#123;</span><br><span class="line">    <span class="function"><span class="type">const</span> T&amp; <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">const</span> T&amp; x)</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="function-like-classes-仿函数"><a href="#function-like-classes-仿函数" class="headerlink" title="function-like classes 仿函数"></a>function-like classes 仿函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
-struct identity : public unary_function&lt;T, T&gt; &#123;
-    const T&amp; operator() (const T&amp; x) const &#123; return x; &#125;
-&#125;;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Pair</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">select1st</span> : <span class="keyword">public</span> unary_function&lt;Pair, <span class="keyword">typename</span> Pair::first_type&gt; &#123;</span><br><span class="line">    <span class="function"><span class="type">const</span> <span class="keyword">typename</span> Pair::first_type&amp; <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">const</span> Pair&amp; x)</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> x.first; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class Pair&gt;
-struct select1st : public unary_function&lt;Pair, typename Pair::first_type&gt; &#123;
-    const typename Pair::first_type&amp; operator() (const Pair&amp; x) const &#123; return x.first; &#125;
-&#125;;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Pair</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">select2nd</span> : <span class="keyword">public</span> unary_function&lt;Pair, <span class="keyword">typename</span> Pair::second_type&gt; &#123;</span><br><span class="line">    <span class="function"><span class="type">const</span> <span class="keyword">typename</span> Pair::second_type&amp; <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">const</span> Pair&amp; x)</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> x.second; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class Pair&gt;
-struct select2nd : public unary_function&lt;Pair, typename Pair::second_type&gt; &#123;
-    const typename Pair::second_type&amp; operator() (const Pair&amp; x) const &#123; return x.second; &#125;
-&#125;;</code></pre>
-
-<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 只要里面有()则他有可能就是仿函数 可以见操作符重载的重要性</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 只要里面有()则他有可能就是仿函数 可以见操作符重载的重要性</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="标准库仿函数的奇特模样"><a href="#标准库仿函数的奇特模样" class="headerlink" title="标准库仿函数的奇特模样"></a>标准库仿函数的奇特模样</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
-	我们发现仿函数都会继承一个class 但是发现用不到他 这个为什么呢
-	会在STL有关博客解密 此处不适合
-*&#x2F;
-
-template &lt;class T&gt;
-struct plus : public binary_function&lt;T, T, T&gt; &#123;
-    T operator() (const T&amp; x, const T&amp; y) const &#123; return x+y; &#125;
-&#125;;</code></pre>
+<h2 id="标准库仿函数的奇特模样"><a href="#标准库仿函数的奇特模样" class="headerlink" title="标准库仿函数的奇特模样"></a>标准库仿函数的奇特模样</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们发现仿函数都会继承一个class 但是发现用不到他 这个为什么呢</span></span><br><span class="line"><span class="comment">	会在STL有关博客解密 此处不适合</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">plus</span> : <span class="keyword">public</span> binary_function&lt;T, T, T&gt; &#123;</span><br><span class="line">    <span class="function">T <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">const</span> T&amp; x, <span class="type">const</span> T&amp; y)</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> x+y; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
             </div>

@@ -156,48 +156,15 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Inheritance-with-virtual-functions"><a href="#Inheritance-with-virtual-functions" class="headerlink" title="Inheritance with virtual functions"></a>Inheritance with virtual functions</h2><pre class="language-none"><code class="language-none">non-virtual 函数: 你不希望derived class重新定义
-
-virtual 函数: 你希望derived class 重新定义 且他有默认定义
-
-pure virtual 函数: 你希望derived class 一定要重新定义, 你对他没有默认定义</code></pre>
+                <h2 id="Inheritance-with-virtual-functions"><a href="#Inheritance-with-virtual-functions" class="headerlink" title="Inheritance with virtual functions"></a>Inheritance with virtual functions</h2><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">non-virtual 函数: 你不希望derived <span class="keyword">class</span>重新定义</span><br><span class="line"></span><br><span class="line"><span class="symbol">virtual</span> 函数: 你希望<span class="symbol">derived</span> <span class="symbol">class</span> 重新定义 且他有默认定义</span><br><span class="line"></span><br><span class="line"><span class="symbol">pure</span> <span class="symbol">virtual</span> 函数: 你希望<span class="symbol">derived</span> <span class="symbol">class</span> 一定要重新定义, 你对他没有默认定义</span><br></pre></td></tr></table></figure>
 
 
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">class Shape &#123;
-public:
-  virtual void draw() const &#x3D; 0; &#x2F;&#x2F; pure virtual
-  virtual void error(const std::string &amp;msg); &#x2F;&#x2F; impure virtual
-  int objectID() const; &#x2F;&#x2F; non-virtual
-  ...
-&#125;;
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>; <span class="comment">// pure virtual</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">error</span><span class="params">(<span class="type">const</span> std::string &amp;msg)</span></span>; <span class="comment">// impure virtual</span></span><br><span class="line">  <span class="function"><span class="type">int</span> <span class="title">objectID</span><span class="params">()</span> <span class="type">const</span></span>; <span class="comment">// non-virtual</span></span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 虚函数应用场景就是 如果确定不了的 就用虚函数 让子类去重新写他 当然也可以用空函数 空函数不一定要重写 pure virtual 一定要重写</span></span><br></pre></td></tr></table></figure>
 
-&#x2F;&#x2F; 虚函数应用场景就是 如果确定不了的 就用虚函数 让子类去重新写他 当然也可以用空函数 空函数不一定要重写 pure virtual 一定要重写</code></pre>
+<h2 id="Inheritance-Composition-关系下的构造和析构"><a href="#Inheritance-Composition-关系下的构造和析构" class="headerlink" title="Inheritance + Composition 关系下的构造和析构"></a>Inheritance + Composition 关系下的构造和析构</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">如果没有并行的概念 肯定是构造从内到外 析构从外到内</span><br></pre></td></tr></table></figure>
 
-<h2 id="Inheritance-Composition-关系下的构造和析构"><a href="#Inheritance-Composition-关系下的构造和析构" class="headerlink" title="Inheritance + Composition 关系下的构造和析构"></a>Inheritance + Composition 关系下的构造和析构</h2><pre class="language-c++" data-language="c++"><code class="language-c++">如果没有并行的概念 肯定是构造从内到外 析构从外到内</code></pre>
-
-<h2 id="Delegation-Inheritance"><a href="#Delegation-Inheritance" class="headerlink" title="Delegation + Inheritance"></a>Delegation + Inheritance</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class Subject &#123;
-  int m_value;
-  vector&lt;Observer*&gt;m_views;
-public:
-  void attach(Observer* obs) &#123;
-    m_views.push_back(obs);
-  &#125;
-  void set_val(int value) &#123;
-    notify();
-  &#125;
-  void notify() &#123;
-    for (int i &#x3D; 0; i &lt; m_views.size(); ++i) &#123;
-      m_views[i]-&gt;update(this, m_value);
-    &#125;
-  &#125;
-&#125;;
-
-
-class Observer &#123;
-public:
-  virtual void update(Subject* sub, int value) &#x3D; 0;
-&#125;;</code></pre>
+<h2 id="Delegation-Inheritance"><a href="#Delegation-Inheritance" class="headerlink" title="Delegation + Inheritance"></a>Delegation + Inheritance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Subject</span> &#123;</span><br><span class="line">  <span class="type">int</span> m_value;</span><br><span class="line">  vector&lt;Observer*&gt;m_views;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">attach</span><span class="params">(Observer* obs)</span> </span>&#123;</span><br><span class="line">    m_views.<span class="built_in">push_back</span>(obs);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">set_val</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">notify</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">notify</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_views.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">      m_views[i]-&gt;<span class="built_in">update</span>(<span class="keyword">this</span>, m_value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Observer</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">update</span><span class="params">(Subject* sub, <span class="type">int</span> value)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
 

@@ -157,25 +157,7 @@
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521213329304.png" alt="image-20220521213329304"></p>
-<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
-	我们来看看这图片的流程
-	当我们创建一个对象 也就是 &quot;CMyDoc myDoc&quot;
-	就会去父类里面找 然后到了虚函数 就会在vptr&amp;vtbl里面进行动态绑定 所以到了子类 绑定完成后 回到父类继续往下走
-	函数结束后回到myDoc.OnFileOpen();
-*&#x2F; 
-
-&#x2F;*
-	谁调用方法 就代表 &quot;this&quot; 就是他 
-	所以 &quot;this&quot; 就是myDoc   全名就是 CDocument::OnFileOpen(&amp;myDoc);   所以这个this就会传到 OnFileOpen
-	但是看这个是没有参数的 实际上是有的 c++所有的成员函数里面就会有一个this参数
-	指针传进来之后 所有的就是&quot;this&quot;调用
-	this-&gt;Serialize();
-	然后这时候就是动态绑定 符合动态绑定的三个条件
-	1. 指针调用
-	2. 因为是子类 拥有向上转型的特点
-	3. 虚函数
-	所以就会调用到子类的Serialize
-*&#x2F;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们来看看这图片的流程</span></span><br><span class="line"><span class="comment">	当我们创建一个对象 也就是 &quot;CMyDoc myDoc&quot;</span></span><br><span class="line"><span class="comment">	就会去父类里面找 然后到了虚函数 就会在vptr&amp;vtbl里面进行动态绑定 所以到了子类 绑定完成后 回到父类继续往下走</span></span><br><span class="line"><span class="comment">	函数结束后回到myDoc.OnFileOpen();</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	谁调用方法 就代表 &quot;this&quot; 就是他 </span></span><br><span class="line"><span class="comment">	所以 &quot;this&quot; 就是myDoc   全名就是 CDocument::OnFileOpen(&amp;myDoc);   所以这个this就会传到 OnFileOpen</span></span><br><span class="line"><span class="comment">	但是看这个是没有参数的 实际上是有的 c++所有的成员函数里面就会有一个this参数</span></span><br><span class="line"><span class="comment">	指针传进来之后 所有的就是&quot;this&quot;调用</span></span><br><span class="line"><span class="comment">	this-&gt;Serialize();</span></span><br><span class="line"><span class="comment">	然后这时候就是动态绑定 符合动态绑定的三个条件</span></span><br><span class="line"><span class="comment">	1. 指针调用</span></span><br><span class="line"><span class="comment">	2. 因为是子类 拥有向上转型的特点</span></span><br><span class="line"><span class="comment">	3. 虚函数</span></span><br><span class="line"><span class="comment">	所以就会调用到子类的Serialize</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 
             </div>

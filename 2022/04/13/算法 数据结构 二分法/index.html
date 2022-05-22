@@ -156,59 +156,19 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="利用二分法的场景"><a href="#利用二分法的场景" class="headerlink" title="利用二分法的场景"></a>利用二分法的场景</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 在排序的数组中 并且是select 即可尝试二分法</code></pre>
+                <h2 id="利用二分法的场景"><a href="#利用二分法的场景" class="headerlink" title="利用二分法的场景"></a>利用二分法的场景</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在排序的数组中 并且是select 即可尝试二分法</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="二分法的模板"><a href="#二分法的模板" class="headerlink" title="二分法的模板"></a>二分法的模板</h2><pre class="language-python" data-language="python"><code class="language-python"># python
-left, right &#x3D; 0, len(array)-1
-while left &lt;&#x3D; right:
-  mid &#x3D; (left+right)&#x2F;2
-  if arrat[mid] &#x3D;&#x3D; target:
-    break  # break or return result
-  elif array[mid] &lt; target:
-    left &#x3D; mid + 1
-  else:
-    right &#x3D; mid - 1</code></pre>
+<h2 id="二分法的模板"><a href="#二分法的模板" class="headerlink" title="二分法的模板"></a>二分法的模板</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line">left, right = <span class="number">0</span>, <span class="built_in">len</span>(array)-<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> left &lt;= right:</span><br><span class="line">  mid = (left+right)/<span class="number">2</span></span><br><span class="line">  <span class="keyword">if</span> arrat[mid] == target:</span><br><span class="line">    <span class="keyword">break</span>  <span class="comment"># break or return result</span></span><br><span class="line">  <span class="keyword">elif</span> array[mid] &lt; target:</span><br><span class="line">    left = mid + <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    right = mid - <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; golang
-left, right :&#x3D; 0, len(array)-1
-for left &lt;&#x3D; right &#123;
-  mid :&#x3D; (left+right)&#x2F;2
-  if array[mid] &#x3D;&#x3D; target &#123;
-    break &#x2F;&#x2F; break or return result
-  &#125; elif array[mid] &lt; target &#123;
-     left &#x3D; mid + 1
-  &#125; else &#123;
-    right &#x3D; mid - 1
-  &#125;
-&#125;</code></pre>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// golang</span></span><br><span class="line">left, right := <span class="number">0</span>, <span class="built_in">len</span>(array)<span class="number">-1</span></span><br><span class="line"><span class="keyword">for</span> left &lt;= right &#123;</span><br><span class="line">  mid := (left+right)/<span class="number">2</span></span><br><span class="line">  <span class="keyword">if</span> array[mid] == target &#123;</span><br><span class="line">    <span class="keyword">break</span> <span class="comment">// break or return result</span></span><br><span class="line">  &#125; elif array[mid] &lt; target &#123;</span><br><span class="line">     left = mid + <span class="number">1</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    right = mid - <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c++
-int left &#x3D; 0, right &#x3D; size(nums)-1;
-while (right &gt;&#x3D; left) &#123;
-  int mid &#x3D; (right + left)&#x2F;2;
-  if (nums[mid] &#x3D;&#x3D; target) return mid;
-  if (nums[mid] &lt; target) left &#x3D; mid + 1;
-  if (nums[mid] &gt; target) right &#x3D; mid - 1;
-&#125;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// c++</span></span><br><span class="line"><span class="type">int</span> left = <span class="number">0</span>, right = <span class="built_in">size</span>(nums)<span class="number">-1</span>;</span><br><span class="line"><span class="keyword">while</span> (right &gt;= left) &#123;</span><br><span class="line">  <span class="type">int</span> mid = (right + left)/<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line">  <span class="keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (nums[mid] &gt; target) right = mid - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;search-insert-position&#x2F; 搜索插入位置</code></pre>
+<h2 id="leetcode-example"><a href="#leetcode-example" class="headerlink" title="leetcode_example"></a>leetcode_example</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://leetcode-cn.com/problems/search-insert-position/ 搜索插入位置</span></span><br></pre></td></tr></table></figure>
 
-<pre class="language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 搜索插入位置
-func searchInsert(nums []int, target int) int &#123;
-  left, right, ans :&#x3D; 0, len(nums) -1, len(nums)
-  for left &lt;&#x3D; right &#123;
-    mid :&#x3D; (right + left)&#x2F;2
-    if nums[mid] &gt;&#x3D; target &#123;
-      ans &#x3D; mid
-      right &#x3D; mid - 1
-    &#125; else &#123;
-      left &#x3D; mid + 1
-    &#125;
-  &#125;
-  return ans
-&#125;</code></pre>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 搜索插入位置</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">searchInsert</span><span class="params">(nums []<span class="type">int</span>, target <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">  left, right, ans := <span class="number">0</span>, <span class="built_in">len</span>(nums) <span class="number">-1</span>, <span class="built_in">len</span>(nums)</span><br><span class="line">  <span class="keyword">for</span> left &lt;= right &#123;</span><br><span class="line">    mid := (right + left)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt;= target &#123;</span><br><span class="line">      ans = mid</span><br><span class="line">      right = mid - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      left = mid + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
             </div>

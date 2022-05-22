@@ -157,35 +157,9 @@
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png" alt="image-20220521220322042"></p>
-<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
- 我们根据上述图片来看看例子
-*&#x2F;
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 我们根据上述图片来看看例子</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">const</span> String <span class="title">str</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">str.<span class="built_in">print</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们 创建了一个常量 str 并且调用print方法</span></span><br><span class="line"><span class="comment">	但是如果当初设计 string::print() 时候没有指明const 那么会直接报错</span></span><br><span class="line"><span class="comment">	因为 &quot;const obj&quot; 调用 non-const 成员函数的时候 是不允许的～～</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-const String str(&quot;hello world&quot;);
-str.print();
-
-&#x2F;*
-	我们 创建了一个常量 str 并且调用print方法
-	但是如果当初设计 string::print() 时候没有指明const 那么会直接报错
-	因为 &quot;const obj&quot; 调用 non-const 成员函数的时候 是不允许的～～
-*&#x2F;</code></pre>
-
-<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 我们再来看一个标准库 string 的例子 class template std::basic_string&lt;...&gt; 有如下两个 成员函数
-
-chatT operator[] (size_type pos) const &#123; ... &#125; &#x2F;&#x2F; 不必考虑COW
-
-reference operator[] (size_type pos) &#123; ... &#125; &#x2F;&#x2F; 必须考虑COW
-
-&#x2F;*
-	在设计字符串的时候 因为字符串是共享的 可能a拷贝一份 b拷贝一份 就有多份 最致命的是 如果a修改了 b的字符串也随之修改了
-	所以我们必须要考虑这个共享的问题
-	所以这个就考虑到了 const 下面的没有const 那么可能就会修改字符串 上面的有 const 那么就不允许修改
-	下面是可行的 因为 non-const 成员函数 是可以创建 non-const obj的 
-	但是上面的const 成员函数 又可以创建 const obj 油可以创建 “non-const obj” 那么编译器会怎么调用呢
-	
-	
-	当成员函数的 “const&quot; 和 &quot;non-const&quot; 版本同时存在 const obj 只能调用const 版本 “non-const obj” 只能调用&quot;non-const&quot;版本
-*&#x2F;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 我们再来看一个标准库 string 的例子 class template std::basic_string&lt;...&gt; 有如下两个 成员函数</span></span><br><span class="line"></span><br><span class="line">chatT <span class="keyword">operator</span>[] (size_type pos) <span class="type">const</span> &#123; ... &#125; <span class="comment">// 不必考虑COW</span></span><br><span class="line"></span><br><span class="line">reference <span class="keyword">operator</span>[] (size_type pos) &#123; ... &#125; <span class="comment">// 必须考虑COW</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	在设计字符串的时候 因为字符串是共享的 可能a拷贝一份 b拷贝一份 就有多份 最致命的是 如果a修改了 b的字符串也随之修改了</span></span><br><span class="line"><span class="comment">	所以我们必须要考虑这个共享的问题</span></span><br><span class="line"><span class="comment">	所以这个就考虑到了 const 下面的没有const 那么可能就会修改字符串 上面的有 const 那么就不允许修改</span></span><br><span class="line"><span class="comment">	下面是可行的 因为 non-const 成员函数 是可以创建 non-const obj的 </span></span><br><span class="line"><span class="comment">	但是上面的const 成员函数 又可以创建 const obj 油可以创建 “non-const obj” 那么编译器会怎么调用呢</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">	当成员函数的 “const&quot; 和 &quot;non-const&quot; 版本同时存在 const obj 只能调用const 版本 “non-const obj” 只能调用&quot;non-const&quot;版本</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 
             </div>

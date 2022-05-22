@@ -156,129 +156,36 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h2><pre class="language-c++" data-language="c++"><code class="language-c++">c2 +&#x3D; c1;
-&#x2F;*
-	+&#x3D; 就是一个操作符 那么操作符是怎么被编译器看待的 +&#x3D; 是二元操作符
-		+&#x3D; 会用到左边的c2上，如果c2有对+&#x3D;的定义 就会调用+&#x3D;函数 操作符本来也就是一个函数
-*&#x2F;</code></pre>
+                <h2 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">c2 += c1;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	+= 就是一个操作符 那么操作符是怎么被编译器看待的 += 是二元操作符</span></span><br><span class="line"><span class="comment">		+= 会用到左边的c2上，如果c2有对+=的定义 就会调用+=函数 操作符本来也就是一个函数</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<pre class="language-c" data-language="c"><code class="language-c">inline complex&amp; __doapl(complex* ths, const complex&amp; r) &#123;
-  ths-&gt;re +&#x3D; r.re;
-  ths-&gt;im +&#x3D; r.im;
-  return *ths; &#x2F;&#x2F; 返回的是一个value
-&#125;
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">complex</span>&amp; __doapl(<span class="type">complex</span>* ths, <span class="type">const</span> <span class="type">complex</span>&amp; r) &#123;</span><br><span class="line">  ths-&gt;re += r.re;</span><br><span class="line">  ths-&gt;im += r.im;</span><br><span class="line">  <span class="keyword">return</span> *ths; <span class="comment">// 返回的是一个value</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="type">complex</span>&amp; <span class="type">complex</span>::operator+=(<span class="type">const</span> <span class="type">complex</span>&amp; r) &#123;</span><br><span class="line">  <span class="keyword">return</span> __doapl(this, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	这个代码就是重写了 += 函数 多包装了一层</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-inline complex&amp; complex::operator+&#x3D;(const complex&amp; r) &#123;
-  return __doapl(this, r);
-&#125;
-
-&#x2F;*
-	这个代码就是重写了 +&#x3D; 函数 多包装了一层
-*&#x2F;</code></pre>
-
-<h2 id="成员函数this"><a href="#成员函数this" class="headerlink" title="成员函数this"></a>成员函数this</h2><pre class="language-c" data-language="c"><code class="language-c">在上述代码其实更深一层看 是这样的
-inline complex&amp; complex::operator+&#x3D;(this, const complex&amp; r) &#123;
-  return __doapl(this, r);
-&#125;
-&#x2F;&#x2F; 这个this 就是操作符左边的 也就是c2 但是在我们代码里面不可以写出来 知道他的存在就好
-&#x2F;&#x2F; 那么this 一定在第一个参数吗 其实是不一定的 但是不用考虑</code></pre>
+<h2 id="成员函数this"><a href="#成员函数this" class="headerlink" title="成员函数this"></a>成员函数this</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">在上述代码其实更深一层看 是这样的</span><br><span class="line"><span class="keyword">inline</span> <span class="type">complex</span>&amp; <span class="type">complex</span>::operator+=(this, <span class="type">const</span> <span class="type">complex</span>&amp; r) &#123;</span><br><span class="line">  <span class="keyword">return</span> __doapl(this, r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这个this 就是操作符左边的 也就是c2 但是在我们代码里面不可以写出来 知道他的存在就好</span></span><br><span class="line"><span class="comment">// 那么this 一定在第一个参数吗 其实是不一定的 但是不用考虑</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 
-<h2 id="Return-by-reference语法分析"><a href="#Return-by-reference语法分析" class="headerlink" title="Return by reference语法分析"></a>Return by reference语法分析</h2><pre class="language-c++" data-language="c++"><code class="language-c++">inline complex&amp; __doapl(complex* ths, const complex&amp; r) &#123;
-  &#x2F;&#x2F;  ...
-  return *ths;
-&#125;
-&#x2F;*
-  complex *ths 是指针的方式传进来
-  return 的时候 *ths 是返回指针所指向的value
-  然而声明返回值的时候 说返回的是一个内存地址&amp;
-	这是允许的 你返回一个value 接受端怎么接受 是不需要管的
-*&#x2F;</code></pre>
+<h2 id="Return-by-reference语法分析"><a href="#Return-by-reference语法分析" class="headerlink" title="Return by reference语法分析"></a>Return by reference语法分析</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex&amp; __doapl(complex* ths, <span class="type">const</span> complex&amp; r) &#123;</span><br><span class="line">  <span class="comment">//  ...</span></span><br><span class="line">  <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  complex *ths 是指针的方式传进来</span></span><br><span class="line"><span class="comment">  return 的时候 *ths 是返回指针所指向的value</span></span><br><span class="line"><span class="comment">  然而声明返回值的时候 说返回的是一个内存地址&amp;</span></span><br><span class="line"><span class="comment">	这是允许的 你返回一个value 接受端怎么接受 是不需要管的</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 <p>传递者无需知道接收者是以referebce形式接收</p>
-<h2 id="class-body-外的各种定义"><a href="#class-body-外的各种定义" class="headerlink" title="class body 外的各种定义"></a>class body 外的各种定义</h2><pre class="language-c" data-language="c"><code class="language-c">inline double imag(const complex&amp; x) &#123;
-  return x.imag();
-&#125;
+<h2 id="class-body-外的各种定义"><a href="#class-body-外的各种定义" class="headerlink" title="class body 外的各种定义"></a>class body 外的各种定义</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">double</span> <span class="title function_">imag</span><span class="params">(<span class="type">const</span> <span class="type">complex</span>&amp; x)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x.imag();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="type">double</span> <span class="title function_">real</span><span class="params">(<span class="type">const</span> <span class="type">complex</span>&amp; x)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x.real();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-inline double real(const complex&amp; x) &#123;
-  return x.real();
-&#125;</code></pre>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="type">complex</span> <span class="title function_">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; imag(c1);</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; real(c1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c" data-language="c"><code class="language-c">&#123;
-  complex c1(2, 1);
-  cout &lt;&lt; imag(c1);
-  cout &lt;&lt; real(c1);
-&#125;</code></pre>
+<h2 id="非成员函数"><a href="#非成员函数" class="headerlink" title="非成员函数"></a>非成员函数</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="type">complex</span> <span class="title function_">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span>;</span><br><span class="line">  <span class="type">complex</span> c2;</span><br><span class="line">	</span><br><span class="line">  c2 = c1 + c2;</span><br><span class="line">  c2 = c1 + <span class="number">5</span>;</span><br><span class="line">  c2 = <span class="number">7</span> + c1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面三个操作符 “+” 由复数和实部组成三种 所以需要有三种全局函数</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="非成员函数"><a href="#非成员函数" class="headerlink" title="非成员函数"></a>非成员函数</h2><pre class="language-c" data-language="c"><code class="language-c">&#123;
-  complex c1(2, 1);
-  complex c2;
-	
-  c2 &#x3D; c1 + c2;
-  c2 &#x3D; c1 + 5;
-  c2 &#x3D; 7 + c1;
-&#125;
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x, <span class="type">const</span> complex&amp; y) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">complex</span> (<span class="built_in">real</span>(x) + <span class="built_in">real</span>(y), <span class="built_in">imag</span>(x) + <span class="built_in">imag</span>(y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-&#x2F;&#x2F; 下面三个操作符 “+” 由复数和实部组成三种 所以需要有三种全局函数</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x, <span class="type">double</span> y) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">complex</span> (<span class="built_in">real</span>(x) + y, <span class="built_in">imag</span>(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">inline complex operator + (const complex&amp; x, const complex&amp; y) &#123;
-  return complex (real(x) + real(y), imag(x) + imag(y));
-&#125;</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex <span class="keyword">operator</span> + (<span class="type">double</span> x, <span class="type">const</span> complex&amp; y) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">complex</span> (x + <span class="built_in">real</span>(y), <span class="built_in">imag</span>(y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">inline complex operator + (const complex&amp; x, double y) &#123;
-  return complex (real(x) + y, imag(x);
-&#125;</code></pre>
+<h2 id="临时对象"><a href="#临时对象" class="headerlink" title="临时对象"></a>临时对象</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">上面三个 <span class="string">&quot;+&quot;</span> 函数绝不可<span class="keyword">return</span> by reference</span><br><span class="line">因为 他们返回的必定是个local object</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	上述的 + 并不是+=</span></span><br><span class="line"><span class="comment">	x 和 y 相加后的 data 并没有 地方放 所以在函数里一定会放在一个东西里 在这里也就是complex()</span></span><br><span class="line"><span class="comment">	complex() 相当于 int() 都会创建一个临时对象 这样的意思就是下一行就挂了 只是临时的作用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">complex</span>(); <span class="comment">// 临时对象 构造函数是又会有默认值的</span></span><br><span class="line">  <span class="built_in">complex</span>(<span class="number">4</span>, <span class="number">5</span>); <span class="comment">// 临时对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre class="language-c++" data-language="c++"><code class="language-c++">inline complex operator + (double x, const complex&amp; y) &#123;
-  return complex (x + real(y), imag(y));
-&#125;</code></pre>
+<h2 id="一个好玩的源码"><a href="#一个好玩的源码" class="headerlink" title="一个好玩的源码"></a>一个好玩的源码</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x) &#123;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> complex <span class="keyword">operator</span> - (<span class="type">const</span> complex&amp; x) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">complex</span> (-<span class="built_in">real</span>(x), -<span class="built_in">imag</span>(x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	上面 + - 是正负的意思 &quot;-&quot; 就是取反 产生新的数据 所以需要临时对象 不能return by reference</span></span><br><span class="line"><span class="comment">	但是 &quot;+&quot; 为什么不 return by reference 呢 这是标准库里面的源码 但是源码不代表就是完美的</span></span><br><span class="line"><span class="comment">	这里其实个人理解 return by reference 更佳</span></span><br><span class="line"><span class="comment">	所以一定要有自己的想法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span> ,<span class="number">1</span>)</span></span>;</span><br><span class="line">  complex c2;</span><br><span class="line">  cout &lt;&lt; -c1;</span><br><span class="line">  cout &lt;&lt; +c2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="临时对象"><a href="#临时对象" class="headerlink" title="临时对象"></a>临时对象</h2><pre class="language-c++" data-language="c++"><code class="language-c++">上面三个 &quot;+&quot; 函数绝不可return by reference
-因为 他们返回的必定是个local object
-&#x2F;*
-	上述的 + 并不是+&#x3D;
-	x 和 y 相加后的 data 并没有 地方放 所以在函数里一定会放在一个东西里 在这里也就是complex()
-	complex() 相当于 int() 都会创建一个临时对象 这样的意思就是下一行就挂了 只是临时的作用
-*&#x2F;
-&#123;
-  complex(); &#x2F;&#x2F; 临时对象 构造函数是又会有默认值的
-  complex(4, 5); &#x2F;&#x2F; 临时对象
-&#125;</code></pre>
-
-<h2 id="一个好玩的源码"><a href="#一个好玩的源码" class="headerlink" title="一个好玩的源码"></a>一个好玩的源码</h2><pre class="language-c++" data-language="c++"><code class="language-c++">inline complex operator + (const complex&amp; x) &#123;
-  return x;
-&#125;
-
-inline complex operator - (const complex&amp; x) &#123;
-  return complex (-real(x), -imag(x));
-&#125;
-
-&#x2F;*
-	上面 + - 是正负的意思 &quot;-&quot; 就是取反 产生新的数据 所以需要临时对象 不能return by reference
-	但是 &quot;+&quot; 为什么不 return by reference 呢 这是标准库里面的源码 但是源码不代表就是完美的
-	这里其实个人理解 return by reference 更佳
-	所以一定要有自己的想法
-*&#x2F;
-
-&#123;
-  complex c1(2 ,1);
-  complex c2;
-  cout &lt;&lt; -c1;
-  cout &lt;&lt; +c2;
-&#125;</code></pre>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2> <pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 一定要学会构造函数中的初始化变量
-
-&#x2F;&#x2F; const 需不需要使用 取决于 这个值需不需要修改
-
-&#x2F;&#x2F; pass by reference &amp; return by reference
-	一切都优先考虑 reference 如果像需要用到临时对象 则return by value
-  同时也要注意 需不需要const
-
-&#x2F;&#x2F; 数据都放在private 私有空间里 函数大部分放在public</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2> <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 一定要学会构造函数中的初始化变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const 需不需要使用 取决于 这个值需不需要修改</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// pass by reference &amp; return by reference</span></span><br><span class="line">	一切都优先考虑 reference 如果像需要用到临时对象 则<span class="keyword">return</span> by value</span><br><span class="line">  同时也要注意 需不需要<span class="type">const</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据都放在private 私有空间里 函数大部分放在public</span></span><br></pre></td></tr></table></figure>
 
 
 
