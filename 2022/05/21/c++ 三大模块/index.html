@@ -156,83 +156,83 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="数量不定的模板参数"><a href="#数量不定的模板参数" class="headerlink" title="数量不定的模板参数"></a>数量不定的模板参数</h2><pre class=" language-c++"><code class="language-c++">// 就是python 和 golang 的可变长参数
+                <h2 id="数量不定的模板参数"><a href="#数量不定的模板参数" class="headerlink" title="数量不定的模板参数"></a>数量不定的模板参数</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 就是python 和 golang 的可变长参数
 
-template <typename T, typename... Types>
-void print (const T& firstArg, const Types&.. args) {
-  cout << firstArg << endl;
+template &lt;typename T, typename... Types&gt;
+void print (const T&amp; firstArg, const Types&amp;.. args) &#123;
+  cout &lt;&lt; firstArg &lt;&lt; endl;
   print(args...);
-}
-</code></pre>
-<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><pre class=" language-c++"><code class="language-c++">/*
-    python 也有语法糖哦～ 糖很甜 吃糖的时候能有幸福感
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	python 也有语法糖哦～ 糖很甜 吃糖的时候能有幸福感
   所以语法糖就是能让你感到很幸福 
   对于程序员 很幸福的事情是什么了 当然是秃头(不是)
   进入秃头 啊不是 进入主题
   语法糖就是能让你少写代码
   怎么样 是很幸福吧
-*/ 
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">list<string> c;
+*&#x2F; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
 ...
-list<string>::iterator ite;
-ite = find(c.begin(), c.end(), target);
+list&lt;string&gt;::iterator ite;
+ite &#x3D; find(c.begin(), c.end(), target);
 
-// 这段代码就可以用 "auto" 这个语法糖来优化
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">list<string> c;
+&#x2F;&#x2F; 这段代码就可以用 &quot;auto&quot; 这个语法糖来优化<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
 ...
-auto ite = find(c.begin(), c.end(), target);
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">// auto 可以让编译器帮我们 获取到这个变量的类型 那我们是不是都用auto就好了呢
+auto ite &#x3D; find(c.begin(), c.end(), target);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-/*
-    答案肯定不是的 因为c++是一个能帮助我们写出很好的代码规范的一个高级语言 我们不能太依赖于auto 而且全部用auto 有时候也会报错的
-*/
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; auto 可以让编译器帮我们 获取到这个变量的类型 那我们是不是都用auto就好了呢
 
-list<string> c;
+&#x2F;*
+	答案肯定不是的 因为c++是一个能帮助我们写出很好的代码规范的一个高级语言 我们不能太依赖于auto 而且全部用auto 有时候也会报错的
+*&#x2F;
+
+list&lt;string&gt; c;
 ...
 auto ite;
-ite = find(c.begin(), c.end(), target);
+ite &#x3D; find(c.begin(), c.end(), target);
 
-// 这样子的就是错误的
-</code></pre>
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class=" language-c++"><code class="language-c++">// for循环 有很多种写法 
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">for (int i = 1; i < size(vector); ++i) {
+&#x2F;&#x2F; 这样子的就是错误的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; for循环 有很多种写法 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 1; i &lt; size(vector); ++i) &#123;
   ...
-}
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">for ( dec1 : coll ) {
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for ( dec1 : coll ) &#123;
   ...
-}
+&#125;
 
-/*
-    这种写法 ":" 后面跟的是容器 会将容器里面的值 一个个的遍历出来 放到 dec1 里面
-*/
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">for (int i : { 2, 3, 4, 5, 6, 7}) {
-  cout << i >> endl;
-}
+&#x2F;*
+	这种写法 &quot;:&quot; 后面跟的是容器 会将容器里面的值 一个个的遍历出来 放到 dec1 里面
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-/*
-    这种写法也是 会把 { } 内的元素 放到 i 中
-*/
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">vector<double> vec;
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i : &#123; 2, 3, 4, 5, 6, 7&#125;) &#123;
+  cout &lt;&lt; i &gt;&gt; endl;
+&#125;
+
+&#x2F;*
+	这种写法也是 会把 &#123; &#125; 内的元素 放到 i 中
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;double&gt; vec;
 ...
-for ( auto elem : vec ) {
-  cout << elem << endl;
-}
+for ( auto elem : vec ) &#123;
+  cout &lt;&lt; elem &lt;&lt; endl;
+&#125;
 
-// auto 获取elem 的类型 然后 遍历 vec 里面的元素 放到elem 里面 这种的是 pass by value
+&#x2F;&#x2F; auto 获取elem 的类型 然后 遍历 vec 里面的元素 放到elem 里面 这种的是 pass by value
 
-for (auto& elem : vec ) {
-  elem *= 3;
-}
+for (auto&amp; elem : vec ) &#123;
+  elem *&#x3D; 3;
+&#125;
 
-// 这种的是 pass by reference
-</code></pre>
+&#x2F;&#x2F; 这种的是 pass by reference<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
 

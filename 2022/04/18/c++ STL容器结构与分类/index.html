@@ -156,37 +156,37 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="容器-结构与分类"><a href="#容器-结构与分类" class="headerlink" title="容器-结构与分类"></a>容器-结构与分类</h2><pre class=" language-c++"><code class="language-c++">/*
+                <h2 id="容器-结构与分类"><a href="#容器-结构与分类" class="headerlink" title="容器-结构与分类"></a>容器-结构与分类</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 Sequence Containers 循序式容器 
-    数组Array: 一段连续的内存空间
+	数组Array: 一段连续的内存空间
   Vector: 前面不能动 如果放元素 后面会自动扩充  自然就是分配器所分配内存空间
   双端队列Deque: 两端可进可出
   列表List: 并不是连续的 每个元素都是指针双向连接起来的
   单向列表Forward-List: 指针单向连接起来的
-*/ 
+*&#x2F; 
 
 tip:
-    python中的list可不是c++这种的list cpython中的是基于数组实现的顺序表
-  c++ 标准库中的list是双向链表 拥有双向链表的优点
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
+	python中的list可不是c++这种的list cpython中的是基于数组实现的顺序表
+  c++ 标准库中的list是双向链表 拥有双向链表的优点<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 Associative Containers 关联式容器(key-value)
-    集合 Set/Multiset:  key即是value value则是key
-        Set元素不重复 Multiset元素可以重复
-    map/Multimap: key-value
-        map key不重复 Multimap key可重复
-    在标准库里面并没有必须规定内部实现用什么数据结构实现
-    这两者在c++内部可用红黑树实现 高度平衡二叉树
-    golang里map则用hashTable实现
-*/ 
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
+	集合 Set&#x2F;Multiset:  key即是value value则是key
+		Set元素不重复 Multiset元素可以重复
+	map&#x2F;Multimap: key-value
+		map key不重复 Multimap key可重复
+	在标准库里面并没有必须规定内部实现用什么数据结构实现
+	这两者在c++内部可用红黑树实现 高度平衡二叉树
+	golang里map则用hashTable实现
+*&#x2F; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
 Unordered Containers 也是一种关联式容器 不定序元素容器(里面的元素没有顺序)
-    HashTable Separate Chaining
-        在golang里详细介绍了hashTable
-        主要内容有取模法，哈希冲突，渐进式扩容
-*/ 
-</code></pre>
+	HashTable Separate Chaining
+		在golang里详细介绍了hashTable
+		主要内容有取模法，哈希冲突，渐进式扩容
+*&#x2F; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213022434.png" alt="image-20220418213022434"></p>
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220418213027949.png" alt="image-20220418213027949"></p>
 

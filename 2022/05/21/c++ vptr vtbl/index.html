@@ -156,58 +156,58 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="vptr-amp-vtbl"><a href="#vptr-amp-vtbl" class="headerlink" title="vptr&amp;vtbl"></a>vptr&amp;vtbl</h2><pre class=" language-c++"><code class="language-c++">class A {
+                <h2 id="vptr-amp-vtbl"><a href="#vptr-amp-vtbl" class="headerlink" title="vptr&amp;vtbl"></a>vptr&amp;vtbl</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class A &#123;
 pubilc:
-    virtual void vfunc1();
+	virtual void vfunc1();
   virtual void vfunc2();
-                  void func1();
-                  void func2();
+  				void func1();
+  				void func2();
 private:
   int m_data1, m_data2;
-};
+&#125;;
 
-class B : public A {
+class B : public A &#123;
 pubilc:
-    virtual void vfunc1();
-                  void func2();
+	virtual void vfunc1();
+  				void func2();
 private:
   int m_data3;
-};
+&#125;;
 
-class C : public B {
+class C : public B &#123;
 pubilc:
-    virtual void vfunc1();
-                  void func2();
+	virtual void vfunc1();
+  				void func2();
 private:
   int m_data1, m_data4;
-};
-</code></pre>
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521213437372.png" alt="image-20220521213437372"></p>
-<pre class=" language-c++"><code class="language-c++">/*
-    我们可以看道 最左边的表 上面记录着 继承父类和自己的数据
-    除了数据外 还有一个记录着内存地址 这个就是虚指针(tptr) 他指向了一个虚表(vtbl)
-    这个虚表里面记录着他的虚函数的内存地址 每个内存地址就是对应的虚函数
-*/
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-    当c++ 对一个虚函数进行调用
-    他会考虑是静态绑定 还是要动态绑定
-    静态绑定 就是 call xxx  call(汇编语言的一个动作) xxx(addr)
-    如果是满足三个条件就会动态绑定
-    1. 通过指针来调用
-    2. 指针满足向上转型
-    3. 调用的是虚函数
-    只要满足这三个条件 就会变成 (*(p->vptr)[n])(p); 或者 (* p->vptr[n] )(p);
-    为什么叫动态绑定 因为要看 "p" 是什么
-*/
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">/*
-    list<A*> myList;
-    
-    这种的 是利用多态的思路 来实现的
-    比如 一个list 需要放多个不同大小的 比如 矩形 圆形 长方形 各种的 就可以直接放父类A 的指针 指向不同大小的 具体图形 因为对于指针来说 都是4个byte
-*/
-</code></pre>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	我们可以看道 最左边的表 上面记录着 继承父类和自己的数据
+	除了数据外 还有一个记录着内存地址 这个就是虚指针(tptr) 他指向了一个虚表(vtbl)
+	这个虚表里面记录着他的虚函数的内存地址 每个内存地址就是对应的虚函数
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	当c++ 对一个虚函数进行调用
+	他会考虑是静态绑定 还是要动态绑定
+	静态绑定 就是 call xxx  call(汇编语言的一个动作) xxx(addr)
+	如果是满足三个条件就会动态绑定
+	1. 通过指针来调用
+	2. 指针满足向上转型
+	3. 调用的是虚函数
+	只要满足这三个条件 就会变成 (*(p-&gt;vptr)[n])(p); 或者 (* p-&gt;vptr[n] )(p);
+	为什么叫动态绑定 因为要看 &quot;p&quot; 是什么
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	list&lt;A*&gt; myList;
+	
+	这种的 是利用多态的思路 来实现的
+	比如 一个list 需要放多个不同大小的 比如 矩形 圆形 长方形 各种的 就可以直接放父类A 的指针 指向不同大小的 具体图形 因为对于指针来说 都是4个byte
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
 

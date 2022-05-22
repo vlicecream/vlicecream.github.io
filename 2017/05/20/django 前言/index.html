@@ -156,8 +156,8 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、纯手撸WEB框架"><a href="#一、纯手撸WEB框架" class="headerlink" title="一、纯手撸WEB框架"></a>一、纯手撸WEB框架</h2><pre class=" language-python"><code class="language-python"><span class="token number">1.</span>HTTP协议
-    <span class="token triple-quoted-string string">"""
+                <h2 id="一、纯手撸WEB框架"><a href="#一、纯手撸WEB框架" class="headerlink" title="一、纯手撸WEB框架"></a>一、纯手撸WEB框架</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.HTTP协议
+    &quot;&quot;&quot;
     网络协议
     HTTP协议				数据传输是明文
     HTTPS协议				数据传输是密文
@@ -167,7 +167,7 @@
         1.基于请求响应
         2.基于TCP、IP作用于应用层之上的协议
         3.无状态
-        4.短/无链接
+        4.短&#x2F;无链接
 
     数据格式
         请求首行
@@ -181,188 +181,188 @@
         3XX			
         4XX			403 404
         5XX			500
-    """</span>
-<span class="token number">2</span><span class="token punctuation">.</span>如何做到后缀的不同返回不同的内容
-    拿到用户输入的后缀 做判断 
+    &quot;&quot;&quot;
+2.如何做到后缀的不同返回不同的内容
+	拿到用户输入的后缀 做判断 
 
-<span class="token number">3</span><span class="token punctuation">.</span> 代码演示
-    <span class="token comment" spellcheck="true"># 你可以将web框架理解成服务端</span>
-    <span class="token keyword">import</span> socket
-
-
-    server <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># TCP  三次握手四次挥手  osi七层</span>
-    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># IP协议 以太网协议 arp协议...</span>
-    server<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 池 ...</span>
-
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        conn<span class="token punctuation">,</span> addr <span class="token operator">=</span> server<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        data <span class="token operator">=</span> conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># print(data)  # 二进制数据</span>
-        data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 字符串</span>
-        <span class="token comment" spellcheck="true"># 获取字符串中特定的内容       正则  如果字符串有规律也可以考虑用切割</span>
-        conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>b<span class="token string">'HTTP/1.1 200 OK\r\n\r\n'</span><span class="token punctuation">)</span>
-        current_path <span class="token operator">=</span> data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-        <span class="token comment" spellcheck="true"># print(current_path)</span>
-        <span class="token keyword">if</span> current_path <span class="token operator">==</span> <span class="token string">'/index'</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># conn.send(b'index heiheihei')</span>
-            <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/01 myhtml.html'</span><span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-                conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">elif</span> current_path <span class="token operator">==</span> <span class="token string">'/login'</span><span class="token punctuation">:</span>
-            conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>b<span class="token string">'login'</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 你直接忽略favicon.ico</span>
-            conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>b<span class="token string">'hello web'</span><span class="token punctuation">)</span>
-        conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token number">4</span><span class="token punctuation">.</span>不足之处
-    <span class="token number">4.1</span> 代码重复<span class="token punctuation">(</span>服务端代码所有人都要重复写<span class="token punctuation">)</span>
-    <span class="token number">4.2</span> 手动处理http格式的数据 并且只能拿到url后缀 其他数据获取繁琐<span class="token punctuation">(</span>数据格式一样处理的代码其实也大致一样 重复写<span class="token punctuation">)</span>
-    <span class="token number">4.3</span> 并发的问题
-</code></pre>
-<h2 id="二、借助于WSGIREF模块帮你撸"><a href="#二、借助于WSGIREF模块帮你撸" class="headerlink" title="二、借助于WSGIREF模块帮你撸"></a>二、借助于WSGIREF模块帮你撸</h2><pre class=" language-python"><code class="language-python"><span class="token number">1</span><span class="token punctuation">.</span> 代码演示
-
-<span class="token triple-quoted-string string">"""接下来会演示封装好的代码"""</span>
-
-<span class="token comment" spellcheck="true"># 基于wsgiref模块.py</span>
-    <span class="token keyword">from</span> wsgiref<span class="token punctuation">.</span>simple_server <span class="token keyword">import</span> make_server
-    <span class="token keyword">from</span> urls <span class="token keyword">import</span> urls
-    <span class="token keyword">from</span> views <span class="token keyword">import</span> <span class="token operator">*</span>
+3. 代码演示
+    # 你可以将web框架理解成服务端
+    import socket
 
 
-    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""
+    server &#x3D; socket.socket()  # TCP  三次握手四次挥手  osi七层
+    server.bind((&#39;127.0.0.1&#39;,8080))  # IP协议 以太网协议 arp协议...
+    server.listen(5)  # 池 ...
+
+    while True:
+        conn, addr &#x3D; server.accept()
+        data &#x3D; conn.recv(1024)
+        # print(data)  # 二进制数据
+        data &#x3D; data.decode(&#39;utf-8&#39;)  # 字符串
+        # 获取字符串中特定的内容       正则  如果字符串有规律也可以考虑用切割
+        conn.send(b&#39;HTTP&#x2F;1.1 200 OK\r\n\r\n&#39;)
+        current_path &#x3D; data.split(&#39; &#39;)[1]
+        # print(current_path)
+        if current_path &#x3D;&#x3D; &#39;&#x2F;index&#39;:
+            # conn.send(b&#39;index heiheihei&#39;)
+            with open(r&#39;templates&#x2F;01 myhtml.html&#39;, &#39;rb&#39;) as f:
+                conn.send(f.read())
+        elif current_path &#x3D;&#x3D; &#39;&#x2F;login&#39;:
+            conn.send(b&#39;login&#39;)
+        else:
+            # 你直接忽略favicon.ico
+            conn.send(b&#39;hello web&#39;)
+        conn.close()
+
+4.不足之处
+	4.1 代码重复(服务端代码所有人都要重复写)
+	4.2 手动处理http格式的数据 并且只能拿到url后缀 其他数据获取繁琐(数据格式一样处理的代码其实也大致一样 重复写)
+	4.3 并发的问题<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="二、借助于WSGIREF模块帮你撸"><a href="#二、借助于WSGIREF模块帮你撸" class="headerlink" title="二、借助于WSGIREF模块帮你撸"></a>二、借助于WSGIREF模块帮你撸</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 代码演示
+
+&quot;&quot;&quot;接下来会演示封装好的代码&quot;&quot;&quot;
+
+# 基于wsgiref模块.py
+    from wsgiref.simple_server import make_server
+    from urls import urls
+    from views import *
+
+
+    def run(env, response):
+        &quot;&quot;&quot;
         :param env:请求相关的所有数据
         :param response:响应相关的所有数据
         :return: 返回给浏览器的数据
-        """</span>
-        <span class="token comment" spellcheck="true"># print(env)  # 大字典  wsgiref模块帮你处理好http格式的数据 封装成了字典让你更加方便的操作</span>
-        <span class="token comment" spellcheck="true"># 从env中取</span>
-        response<span class="token punctuation">(</span><span class="token string">'200 OK'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 响应首行 响应头</span>
-        current_path <span class="token operator">=</span> env<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'PATH_INFO'</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># if current_path == '/index':</span>
-        <span class="token comment" spellcheck="true">#     return [b'index']</span>
-        <span class="token comment" spellcheck="true"># elif current_path == '/login':</span>
-        <span class="token comment" spellcheck="true">#     return [b'login']</span>
-        <span class="token comment" spellcheck="true"># return [b'404 error']</span>
-        <span class="token comment" spellcheck="true"># 定义一个变量 存储匹配到的函数名</span>
-        func <span class="token operator">=</span> None
-        <span class="token keyword">for</span> url <span class="token keyword">in</span> urls<span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># url (),()</span>
-            <span class="token keyword">if</span> current_path <span class="token operator">==</span> url<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-                <span class="token comment" spellcheck="true"># 将url对应的函数名赋值给func</span>
-                func <span class="token operator">=</span> url<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-                <span class="token keyword">break</span>  <span class="token comment" spellcheck="true"># 匹配到一个之后 应该立刻结束for循环</span>
-        <span class="token comment" spellcheck="true"># 判断func是否有值</span>
-        <span class="token keyword">if</span> func<span class="token punctuation">:</span>
-            res <span class="token operator">=</span> func<span class="token punctuation">(</span>env<span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            res <span class="token operator">=</span> error<span class="token punctuation">(</span>env<span class="token punctuation">)</span>
+        &quot;&quot;&quot;
+        # print(env)  # 大字典  wsgiref模块帮你处理好http格式的数据 封装成了字典让你更加方便的操作
+        # 从env中取
+        response(&#39;200 OK&#39;, [])  # 响应首行 响应头
+        current_path &#x3D; env.get(&#39;PATH_INFO&#39;)
+        # if current_path &#x3D;&#x3D; &#39;&#x2F;index&#39;:
+        #     return [b&#39;index&#39;]
+        # elif current_path &#x3D;&#x3D; &#39;&#x2F;login&#39;:
+        #     return [b&#39;login&#39;]
+        # return [b&#39;404 error&#39;]
+        # 定义一个变量 存储匹配到的函数名
+        func &#x3D; None
+        for url in urls:  # url (),()
+            if current_path &#x3D;&#x3D; url[0]:
+                # 将url对应的函数名赋值给func
+                func &#x3D; url[1]
+                break  # 匹配到一个之后 应该立刻结束for循环
+        # 判断func是否有值
+        if func:
+            res &#x3D; func(env)
+        else:
+            res &#x3D; error(env)
 
-        <span class="token keyword">return</span> <span class="token punctuation">[</span>res<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        return [res.encode(&#39;utf-8&#39;)]
 
 
-    <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-        server <span class="token operator">=</span> make_server<span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span><span class="token number">8080</span><span class="token punctuation">,</span>run<span class="token punctuation">)</span>
-        <span class="token triple-quoted-string string">"""
+    if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+        server &#x3D; make_server(&#39;127.0.0.1&#39;,8080,run)
+        &quot;&quot;&quot;
         会实时监听127.0.0.1:8080地址 只要有客户端来了
         都会交给run函数处理(加括号触发run函数的运行)
 
         flask启动源码
-            make_server('127.0.0.1',8080,obj)
+            make_server(&#39;127.0.0.1&#39;,8080,obj)
             __call__
-        """</span>
-        server<span class="token punctuation">.</span>serve_forever<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 启动服务端</span>
+        &quot;&quot;&quot;
+        server.serve_forever()  # 启动服务端
         
         
         
-<span class="token comment" spellcheck="true"># urls.py  </span>
-    <span class="token keyword">from</span> views <span class="token keyword">import</span> <span class="token operator">*</span>
-    <span class="token comment" spellcheck="true"># url与函数的对应关系</span>
-    urls <span class="token operator">=</span> <span class="token punctuation">[</span>
-        <span class="token punctuation">(</span><span class="token string">'/index'</span><span class="token punctuation">,</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token string">'/login'</span><span class="token punctuation">,</span>login<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token string">'/xxx'</span><span class="token punctuation">,</span>xxx<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token string">'/get_time'</span><span class="token punctuation">,</span>get_time<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token string">'/get_dict'</span><span class="token punctuation">,</span>get_dict<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token string">'/get_user'</span><span class="token punctuation">,</span>get_user<span class="token punctuation">)</span>
-    <span class="token punctuation">]</span>
+# urls.py  
+    from views import *
+    # url与函数的对应关系
+    urls &#x3D; [
+        (&#39;&#x2F;index&#39;,index),
+        (&#39;&#x2F;login&#39;,login),
+        (&#39;&#x2F;xxx&#39;,xxx),
+        (&#39;&#x2F;get_time&#39;,get_time),
+        (&#39;&#x2F;get_dict&#39;,get_dict),
+        (&#39;&#x2F;get_user&#39;,get_user)
+    ]
     
-<span class="token comment" spellcheck="true"># views.py</span>
-    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-           <span class="token keyword">return</span> <span class="token string">'index'</span>
+# views.py
+    def index(env):
+   		return &#39;index&#39;
 
 
-    <span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token string">"login"</span>
+    def login(env):
+        return &quot;login&quot;
 
 
-    <span class="token keyword">def</span> <span class="token function">error</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token string">'404 error'</span>
+    def error(env):
+        return &#39;404 error&#39;
 
 
-    <span class="token keyword">def</span> <span class="token function">xxx</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/02 myxxx.html'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    def xxx(env):
+        with open(r&#39;templates&#x2F;02 myxxx.html&#39;,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+            return f.read()
 
-    <span class="token keyword">import</span> datetime
-    <span class="token keyword">def</span> <span class="token function">get_time</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        current_time <span class="token operator">=</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d %X'</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 如何将后端获取到的数据"传递"给html文件？</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/03 mytime.html'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># data就是一堆字符串</span>
-        data <span class="token operator">=</span> data<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'dwadasdsadsadasdas'</span><span class="token punctuation">,</span>current_time<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># 在后端将html页面处理好之后再返回给前端</span>
-        <span class="token keyword">return</span> data
-
-
-    <span class="token keyword">from</span> jinja2 <span class="token keyword">import</span> Template
-    <span class="token keyword">def</span> <span class="token function">get_dict</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        user_dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'username'</span><span class="token punctuation">:</span><span class="token string">'jason'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">'hobby'</span><span class="token punctuation">:</span><span class="token string">'read'</span><span class="token punctuation">}</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/04 get_dict.html'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        tmp <span class="token operator">=</span> Template<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-        res <span class="token operator">=</span> tmp<span class="token punctuation">.</span>render<span class="token punctuation">(</span>user<span class="token operator">=</span>user_dic<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict</span>
-        <span class="token keyword">return</span> res
+    import datetime
+    def get_time(env):
+        current_time &#x3D; datetime.datetime.now().strftime(&#39;%Y-%m-%d %X&#39;)
+        # 如何将后端获取到的数据&quot;传递&quot;给html文件？
+        with open(r&#39;templates&#x2F;03 mytime.html&#39;,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+            data &#x3D; f.read()
+            # data就是一堆字符串
+        data &#x3D; data.replace(&#39;dwadasdsadsadasdas&#39;,current_time)   # 在后端将html页面处理好之后再返回给前端
+        return data
 
 
-    <span class="token keyword">import</span> pymysql
-    <span class="token keyword">def</span> <span class="token function">get_user</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 去数据库中获取数据 传递给html页面 借助于模版语法 发送给浏览器</span>
-        conn <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>
-            host <span class="token operator">=</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
-            port <span class="token operator">=</span> <span class="token number">3306</span><span class="token punctuation">,</span>
-            user <span class="token operator">=</span> <span class="token string">'root'</span><span class="token punctuation">,</span>
-            password <span class="token operator">=</span> <span class="token string">'admin123'</span><span class="token punctuation">,</span>
-            db<span class="token operator">=</span><span class="token string">'day59'</span><span class="token punctuation">,</span>
-            charset <span class="token operator">=</span> <span class="token string">'utf8'</span><span class="token punctuation">,</span>
-            autocommit <span class="token operator">=</span> <span class="token boolean">True</span>
-        <span class="token punctuation">)</span>
-        cursor <span class="token operator">=</span> conn<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span>cursor<span class="token operator">=</span>pymysql<span class="token punctuation">.</span>cursors<span class="token punctuation">.</span>DictCursor<span class="token punctuation">)</span>
-        sql <span class="token operator">=</span> <span class="token string">'select * from userinfo'</span>
-        affect_rows <span class="token operator">=</span> cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
-        data_list <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># [{},{},{}]</span>
-        <span class="token comment" spellcheck="true"># 将获取到的数据传递给html文件</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/05 get_data.html'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        tmp <span class="token operator">=</span> Template<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-        res <span class="token operator">=</span> tmp<span class="token punctuation">.</span>render<span class="token punctuation">(</span>user_list<span class="token operator">=</span>data_list<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict</span>
-        <span class="token keyword">return</span> res
+    from jinja2 import Template
+    def get_dict(env):
+        user_dic &#x3D; &#123;&#39;username&#39;:&#39;jason&#39;,&#39;age&#39;:18,&#39;hobby&#39;:&#39;read&#39;&#125;
+        with open(r&#39;templates&#x2F;04 get_dict.html&#39;,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+            data &#x3D; f.read()
+        tmp &#x3D; Template(data)
+        res &#x3D; tmp.render(user&#x3D;user_dic)
+        # 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict
+        return res
 
 
-    <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-        get_user<span class="token punctuation">(</span><span class="token number">111</span><span class="token punctuation">)</span>
+    import pymysql
+    def get_user(env):
+        # 去数据库中获取数据 传递给html页面 借助于模版语法 发送给浏览器
+        conn &#x3D; pymysql.connect(
+            host &#x3D; &#39;127.0.0.1&#39;,
+            port &#x3D; 3306,
+            user &#x3D; &#39;root&#39;,
+            password &#x3D; &#39;admin123&#39;,
+            db&#x3D;&#39;day59&#39;,
+            charset &#x3D; &#39;utf8&#39;,
+            autocommit &#x3D; True
+        )
+        cursor &#x3D; conn.cursor(cursor&#x3D;pymysql.cursors.DictCursor)
+        sql &#x3D; &#39;select * from userinfo&#39;
+        affect_rows &#x3D; cursor.execute(sql)
+        data_list &#x3D; cursor.fetchall()  # [&#123;&#125;,&#123;&#125;,&#123;&#125;]
+        # 将获取到的数据传递给html文件
+        with open(r&#39;templates&#x2F;05 get_data.html&#39;,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+            data &#x3D; f.read()
+        tmp &#x3D; Template(data)
+        res &#x3D; tmp.render(user_list&#x3D;data_list)
+        # 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict
+        return res
+
+
+    if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+        get_user(111)
         
-<span class="token number">2</span><span class="token punctuation">.</span> 总结
-<span class="token triple-quoted-string string">"""
+2. 总结
+&quot;&quot;&quot;
 urls.py						路由与视图函数对应关系
 views.py					视图函数(后端业务逻辑)
 templates文件夹		专门用来存储html文件
-"""</span>
-<span class="token comment" spellcheck="true"># 按照功能的不同拆分之后 后续添加功能只需要在urls.py书写对应关系然后取views.py书写业务逻辑即可</span>
-</code></pre>
-<h2 id="三、动静态网页"><a href="#三、动静态网页" class="headerlink" title="三、动静态网页"></a>三、动静态网页</h2><pre class=" language-python"><code class="language-python"><span class="token number">1</span><span class="token punctuation">.</span> 什么是动静态网页
-    <span class="token triple-quoted-string string">"""
+&quot;&quot;&quot;
+# 按照功能的不同拆分之后 后续添加功能只需要在urls.py书写对应关系然后取views.py书写业务逻辑即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="三、动静态网页"><a href="#三、动静态网页" class="headerlink" title="三、动静态网页"></a>三、动静态网页</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 什么是动静态网页
+    &quot;&quot;&quot;
     静态网页
         页面上的数据是直接写死的 万年不变
     动态网页
@@ -370,381 +370,380 @@ templates文件夹		专门用来存储html文件
         eg:
             1.后端获取当前时间展示到html页面上
             2.数据是从数据库中获取的展示到html页面上
-    """</span>	
+    &quot;&quot;&quot;	
 
-<span class="token number">2</span><span class="token punctuation">.</span> 代码演示<span class="token punctuation">(</span>如何写动态网页<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 动态网页制作</span>
-    <span class="token keyword">import</span> datetime
-    <span class="token keyword">def</span> <span class="token function">get_time</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        current_time <span class="token operator">=</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d %X'</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 如何将后端获取到的数据"传递"给html文件？</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/03 mytime.html'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># data就是一堆字符串</span>
-        data <span class="token operator">=</span> data<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'dwadasdsadsadasdas'</span><span class="token punctuation">,</span>current_time<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># 在后端将html页面处理好之后再返回给前端</span>
-        <span class="token keyword">return</span> data
+2. 代码演示(如何写动态网页)
+    # 动态网页制作
+    import datetime
+    def get_time(env):
+        current_time &#x3D; datetime.datetime.now().strftime(&#39;%Y-%m-%d %X&#39;)
+        # 如何将后端获取到的数据&quot;传递&quot;给html文件？
+        with open(r&#39;templates&#x2F;03 mytime.html&#39;,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+            data &#x3D; f.read()
+            # data就是一堆字符串
+        data &#x3D; data.replace(&#39;dwadasdsadsadasdas&#39;,current_time)   # 在后端将html页面处理好之后再返回给前端
+        return data
 
-    <span class="token comment" spellcheck="true"># 将一个字典传递给html文件 并且可以在文件上方便快捷的操作字典数据</span>
-    <span class="token keyword">from</span> jinja2 <span class="token keyword">import</span> Template
-    <span class="token keyword">def</span> <span class="token function">get_dict</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        user_dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'username'</span><span class="token punctuation">:</span><span class="token string">'jason'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">'hobby'</span><span class="token punctuation">:</span><span class="token string">'read'</span><span class="token punctuation">}</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>r<span class="token string">'templates/04 get_dict.html'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            data <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        tmp <span class="token operator">=</span> Template<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-        res <span class="token operator">=</span> tmp<span class="token punctuation">.</span>render<span class="token punctuation">(</span>user<span class="token operator">=</span>user_dic<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict</span>
-        <span class="token keyword">return</span> res
+    # 将一个字典传递给html文件 并且可以在文件上方便快捷的操作字典数据
+    from jinja2 import Template
+    def get_dict(env):
+        user_dic &#x3D; &#123;&#39;username&#39;:&#39;jason&#39;,&#39;age&#39;:18,&#39;hobby&#39;:&#39;read&#39;&#125;
+        with open(r&#39;templates&#x2F;04 get_dict.html&#39;,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+            data &#x3D; f.read()
+        tmp &#x3D; Template(data)
+        res &#x3D; tmp.render(user&#x3D;user_dic)
+        # 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict
+        return res
 
-    <span class="token comment" spellcheck="true"># 后端获取数据库中数据展示到前端页面</span>
-</code></pre>
-<h2 id="四、模版语法之JINJA2模块"><a href="#四、模版语法之JINJA2模块" class="headerlink" title="四、模版语法之JINJA2模块"></a>四、模版语法之JINJA2模块</h2><pre class=" language-python"><code class="language-python">pip3 install jinja2
-<span class="token triple-quoted-string string">"""模版语法是在后端起作用的"""</span>
+	# 后端获取数据库中数据展示到前端页面<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment" spellcheck="true"># 模版语法(非常贴近python语法)</span>
-    <span class="token punctuation">{</span><span class="token punctuation">{</span> user <span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token punctuation">{</span><span class="token punctuation">{</span> user<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token punctuation">{</span><span class="token punctuation">{</span> user<span class="token punctuation">.</span>age <span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token punctuation">{</span><span class="token punctuation">{</span> user<span class="token punctuation">[</span><span class="token string">'hobby'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<h2 id="四、模版语法之JINJA2模块"><a href="#四、模版语法之JINJA2模块" class="headerlink" title="四、模版语法之JINJA2模块"></a>四、模版语法之JINJA2模块</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">pip3 install jinja2
+&quot;&quot;&quot;模版语法是在后端起作用的&quot;&quot;&quot;
 
-<span class="token comment" spellcheck="true"># for 循环</span>
-    <span class="token punctuation">{</span><span class="token operator">%</span> <span class="token keyword">for</span> user_dict <span class="token keyword">in</span> user_list <span class="token operator">%</span><span class="token punctuation">}</span>
-                            <span class="token operator">&lt;</span>tr<span class="token operator">></span>
-                                <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> user_dict<span class="token punctuation">.</span>id<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-                                <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> user_dict<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-                                <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> user_dict<span class="token punctuation">.</span>password<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-                                <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> user_dict<span class="token punctuation">.</span>hobby<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-                            <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-    <span class="token punctuation">{</span><span class="token operator">%</span> endfor<span class="token operator">%</span><span class="token punctuation">}</span>
-</code></pre>
-<h2 id="五、自定义简易版本WEB框架请求流程图"><a href="#五、自定义简易版本WEB框架请求流程图" class="headerlink" title="五、自定义简易版本WEB框架请求流程图"></a>五、自定义简易版本WEB框架请求流程图</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+# 模版语法(非常贴近python语法)
+    &#123;&#123; user &#125;&#125;
+    &#123;&#123; user.get(&#39;username&#39;)&#125;&#125;
+    &#123;&#123; user.age &#125;&#125;
+    &#123;&#123; user[&#39;hobby&#39;] &#125;&#125;
+
+# for 循环
+    &#123;% for user_dict in user_list %&#125;
+                            &lt;tr&gt;
+                                &lt;td&gt;&#123;&#123; user_dict.id&#125;&#125;&lt;&#x2F;td&gt;
+                                &lt;td&gt;&#123;&#123; user_dict.username&#125;&#125;&lt;&#x2F;td&gt;
+                                &lt;td&gt;&#123;&#123; user_dict.password&#125;&#125;&lt;&#x2F;td&gt;
+                                &lt;td&gt;&#123;&#123; user_dict.hobby&#125;&#125;&lt;&#x2F;td&gt;
+                            &lt;&#x2F;tr&gt;
+    &#123;% endfor%&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="五、自定义简易版本WEB框架请求流程图"><a href="#五、自定义简易版本WEB框架请求流程图" class="headerlink" title="五、自定义简易版本WEB框架请求流程图"></a>五、自定义简易版本WEB框架请求流程图</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 wsgiref模块
-    1.请求来的时候解析http格式的数据 封装成大字典
-    2.响应走的时候给数据打包成符合http格式 再返回给浏览器
+	1.请求来的时候解析http格式的数据 封装成大字典
+	2.响应走的时候给数据打包成符合http格式 再返回给浏览器
 
-"""</span>
-</code></pre>
-<h2 id="六、PYTHON三大主流WEB框架"><a href="#六、PYTHON三大主流WEB框架" class="headerlink" title="六、PYTHON三大主流WEB框架"></a>六、PYTHON三大主流WEB框架</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="六、PYTHON三大主流WEB框架"><a href="#六、PYTHON三大主流WEB框架" class="headerlink" title="六、PYTHON三大主流WEB框架"></a>六、PYTHON三大主流WEB框架</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 django
-    特点:大而全 自带的功能特别特别特别的多 类似于航空母舰
-    不足之处:
-        有时候过于笨重
+	特点:大而全 自带的功能特别特别特别的多 类似于航空母舰
+	不足之处:
+		有时候过于笨重
 
 flask
-    特点:小而精  自带的功能特别特别特别的少 类似于游骑兵
-    第三方的模块特别特别特别的多，如果将flask第三方的模块加起来完全可以盖过django
-    并且也越来越像django
-    不足之处:
-        比较依赖于第三方的开发者
-        
+	特点:小而精  自带的功能特别特别特别的少 类似于游骑兵
+	第三方的模块特别特别特别的多，如果将flask第三方的模块加起来完全可以盖过django
+	并且也越来越像django
+	不足之处:
+		比较依赖于第三方的开发者
+		
 tornado
-    特点:异步非阻塞 支持高并发
-        牛逼到甚至可以开发游戏服务器
-    不足之处:
-        暂时你不会
-"""</span>
+	特点:异步非阻塞 支持高并发
+		牛逼到甚至可以开发游戏服务器
+	不足之处:
+		暂时你不会
+&quot;&quot;&quot;
 
 
-A<span class="token punctuation">:</span>socket部分
-B<span class="token punctuation">:</span>路由与视图函数对应关系<span class="token punctuation">(</span>路由匹配<span class="token punctuation">)</span>
-C<span class="token punctuation">:</span>模版语法
+A:socket部分
+B:路由与视图函数对应关系(路由匹配)
+C:模版语法
 
 django
-    A用的是别人的		wsgiref模块
-    B用的是自己的
-    C用的是自己的<span class="token punctuation">(</span>没有jinja2好用 但是也很方便<span class="token punctuation">)</span>
+	A用的是别人的		wsgiref模块
+	B用的是自己的
+	C用的是自己的(没有jinja2好用 但是也很方便)
 
 flask
-    A用的是别人的		werkzeug<span class="token punctuation">(</span>内部还是wsgiref模块<span class="token punctuation">)</span>
-    B自己写的
-    C用的别人的<span class="token punctuation">(</span>jinja2<span class="token punctuation">)</span>
+	A用的是别人的		werkzeug(内部还是wsgiref模块)
+	B自己写的
+	C用的别人的(jinja2)
 
 tornado
-    A，B，C都是自己写的
-</code></pre>
-<h2 id="七、DJANGO注意事项"><a href="#七、DJANGO注意事项" class="headerlink" title="七、DJANGO注意事项"></a>七、DJANGO注意事项</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 如何让你的计算机能够正常的启动django项目</span>
-    <span class="token number">1</span><span class="token punctuation">.</span>计算机的名称不能有中文
-  <span class="token number">2</span><span class="token punctuation">.</span>一个pycharm窗口只开一个项目
-  <span class="token number">3</span><span class="token punctuation">.</span>项目里面所有的文件也尽量不要出现中文
-  <span class="token number">4.</span>python解释器尽量使用<span class="token number">3.4</span><span class="token operator">~</span><span class="token number">3.6</span>之间的版本
-      <span class="token punctuation">(</span>如果你的项目报错 你点击最后一个报错信息
-    去源码中把逗号删掉<span class="token punctuation">)</span>
+	A，B，C都是自己写的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="七、DJANGO注意事项"><a href="#七、DJANGO注意事项" class="headerlink" title="七、DJANGO注意事项"></a>七、DJANGO注意事项</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 如何让你的计算机能够正常的启动django项目
+	1.计算机的名称不能有中文
+  2.一个pycharm窗口只开一个项目
+  3.项目里面所有的文件也尽量不要出现中文
+  4.python解释器尽量使用3.4~3.6之间的版本
+  	(如果你的项目报错 你点击最后一个报错信息
+    去源码中把逗号删掉)
     
-<span class="token comment" spellcheck="true"># django版本问题</span>
-    <span class="token number">1.</span>X <span class="token number">2.</span>X <span class="token number">3.</span>X<span class="token punctuation">(</span>直接忽略<span class="token punctuation">)</span>
-  <span class="token number">1.</span>X和<span class="token number">2.</span>X本身差距也不大 我们讲解主要以<span class="token number">1.</span>X为例 会讲解<span class="token number">2.</span>X区别
-  公司之前用的<span class="token number">1.8</span> 满满过渡到了<span class="token number">1.11</span>版本 有一些项目用的<span class="token number">2.0</span>
+# django版本问题
+	1.X 2.X 3.X(直接忽略)
+  1.X和2.X本身差距也不大 我们讲解主要以1.X为例 会讲解2.X区别
+  公司之前用的1.8 满满过渡到了1.11版本 有一些项目用的2.0
  
-<span class="token comment" spellcheck="true"># django安装</span>
-    pip3 install django<span class="token operator">==</span><span class="token number">1.11</span><span class="token punctuation">.</span><span class="token number">11</span>
+# django安装
+	pip3 install django&#x3D;&#x3D;1.11.11
   如果已经安装了其他版本 无需自己卸载
   直接重新装 会自动卸载安装新的
   
   如果报错 看看是不是timeout 如果是 那么只是网速波动
   重新安装即可
   
-  验证是否安装成功的方式<span class="token number">1</span>
-      终端输入django<span class="token operator">-</span>admin看看有没有反应
-</code></pre>
-<h2 id="八、DJANGO基本操作"><a href="#八、DJANGO基本操作" class="headerlink" title="八、DJANGO基本操作"></a>八、DJANGO基本操作</h2><pre class=" language-python"><code class="language-python"><span class="token number">1</span><span class="token punctuation">.</span> 命令行操作
-    <span class="token number">1.1</span> 创建django项目
-        <span class="token triple-quoted-string string">"""
+  验证是否安装成功的方式1
+  	终端输入django-admin看看有没有反应<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="八、DJANGO基本操作"><a href="#八、DJANGO基本操作" class="headerlink" title="八、DJANGO基本操作"></a>八、DJANGO基本操作</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. 命令行操作
+	1.1 创建django项目
+        &quot;&quot;&quot;
         你可以先切换到对应的D盘 然后再创建
-        """</span>
-        django<span class="token operator">-</span>admin startproject mysite
+        &quot;&quot;&quot;
+        django-admin startproject mysite
     
-          manage<span class="token punctuation">.</span>py
-          mysite文件夹
-            __init__<span class="token punctuation">.</span>py
-            settings<span class="token punctuation">.</span>py
-            urls<span class="token punctuation">.</span>py
-            wsgi<span class="token punctuation">.</span>py
-     <span class="token number">1.2</span> 启动django项目
-        <span class="token triple-quoted-string string">"""
+      	manage.py
+      	mysite文件夹
+        	__init__.py
+        	settings.py
+            urls.py
+            wsgi.py
+     1.2 启动django项目
+        &quot;&quot;&quot;
         一定要先切换到项目目录下	
-        cd /mysite
-        """</span>
-          python3 manage<span class="token punctuation">.</span>py runserver
-          <span class="token comment" spellcheck="true"># http://127.0.0.1:8000/</span>
+        cd &#x2F;mysite
+        &quot;&quot;&quot;
+          python3 manage.py runserver
+          # http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;
  
-    <span class="token number">1.3</span> 创建应用
-        <span class="token triple-quoted-string string">"""
+	1.3 创建应用
+        &quot;&quot;&quot;
         Next, start your first app by running python manage.py startapp [app_label].
-        """</span>
-        python3 manage<span class="token punctuation">.</span>py startapp app01
+        &quot;&quot;&quot;
+        python3 manage.py startapp app01
         应用名应该做到见名知意
           user
           order
           web
-          <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-          但是我们示范就用app01<span class="token operator">/</span><span class="token number">02</span><span class="token operator">/</span><span class="token number">03</span><span class="token operator">/</span><span class="token number">04</span>
+          ...
+          但是我们示范就用app01&#x2F;02&#x2F;03&#x2F;04
 
         有很多文件
   
-<span class="token number">2</span><span class="token punctuation">.</span> pycharm操作
-    <span class="token number">2.1</span> new project 选择左侧第二个django即可
+2. pycharm操作
+	2.1 new project 选择左侧第二个django即可
   
-      <span class="token number">2.2</span> 启动
-          <span class="token number">1</span><span class="token punctuation">.</span>还是用命令行启动
-        <span class="token number">2</span><span class="token punctuation">.</span>点击绿色小箭头即可
+  	2.2 启动
+  		1.还是用命令行启动
+    	2.点击绿色小箭头即可
 
-      <span class="token number">2.3</span> 创建应用
-          <span class="token number">1.</span>pycharm提供的终端直接输入完整命令
-        <span class="token number">2.</span>pycharm 
-              tools 
-                run manage<span class="token punctuation">.</span>py task提示<span class="token punctuation">(</span>前期不要用 给我背完整命令<span class="token punctuation">)</span>
-    <span class="token number">2.4</span> 修改端口号以及创建server	
-        edit confi<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  	2.3 创建应用
+  		1.pycharm提供的终端直接输入完整命令
+    	2.pycharm 
+      		tools 
+        		run manage.py task提示(前期不要用 给我背完整命令)
+	2.4 修改端口号以及创建server	
+		edit confi....
   
- 
-</code></pre>
-<h2 id="九、应用"><a href="#九、应用" class="headerlink" title="九、应用"></a>九、应用</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="九、应用"><a href="#九、应用" class="headerlink" title="九、应用"></a>九、应用</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 django是一款专门用来开发app的web框架
 
 django框架就类似于是一所大学(空壳子)
 app就类似于大学里面各个学院(具体功能的app)
-    比如开发淘宝
-        订单相关
-        用户相关
-        投诉相关
-        创建不同的app对应不同的功能
-    
-    选课系统
-        学生功能
-        老师功能
+	比如开发淘宝
+		订单相关
+		用户相关
+		投诉相关
+		创建不同的app对应不同的功能
+	
+	选课系统
+		学生功能
+		老师功能
 
 一个app就是一个独立的功能模块
-"""</span>
-<span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">*</span>创建的应用一定要去配置文件中注册<span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span>
-INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token string">'django.contrib.admin'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.auth'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.contenttypes'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.sessions'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.messages'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.staticfiles'</span><span class="token punctuation">,</span>
-    <span class="token string">'app01.apps.App01Config'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 全写</span>
-      <span class="token string">'app01'</span><span class="token punctuation">,</span>			 <span class="token comment" spellcheck="true"># 简写</span>
-<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># 创建出来的的应用第一步先去配置文件中注册 其他的先不要给我干</span>
-ps<span class="token punctuation">:</span>你在用pycharm创建项目的时候 pycharm可以帮你创建一个app并且自动注册
-<span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">**</span><span class="token operator">*</span>
-</code></pre>
-<h2 id="十、主要文件介绍"><a href="#十、主要文件介绍" class="headerlink" title="十、主要文件介绍"></a>十、主要文件介绍</h2><pre class=" language-python"><code class="language-python"><span class="token operator">-</span>mysite项目文件夹
-    <span class="token operator">-</span><span class="token operator">-</span>mysite文件夹
-      <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>settings<span class="token punctuation">.</span>py	配置文件
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>urls<span class="token punctuation">.</span>py			路由与视图函数对应关系<span class="token punctuation">(</span>路由层<span class="token punctuation">)</span>
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>wsgi<span class="token punctuation">.</span>py			wsgiref模块<span class="token punctuation">(</span>不考虑<span class="token punctuation">)</span>
-  <span class="token operator">-</span><span class="token operator">-</span>manage<span class="token punctuation">.</span>py				django的入口文件
-  <span class="token operator">-</span><span class="token operator">-</span>db<span class="token punctuation">.</span>sqlite3			django自带的sqlite3数据库<span class="token punctuation">(</span>小型数据库 功能不是很多还有bug<span class="token punctuation">)</span>
-  <span class="token operator">-</span><span class="token operator">-</span>app01文件夹
-      <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>admin<span class="token punctuation">.</span>py			django后台管理
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>apps<span class="token punctuation">.</span>py			注册使用
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>migrations文件夹		数据库迁移记录
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>models<span class="token punctuation">.</span>py		数据库相关的 模型类<span class="token punctuation">(</span>orm<span class="token punctuation">)</span>
-      <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>tests<span class="token punctuation">.</span>py			测试文件
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>views<span class="token punctuation">.</span>py			视图函数<span class="token punctuation">(</span>视图层<span class="token punctuation">)</span>
-</code></pre>
-<h2 id="十一、命令行与PYCHARM创建的区别"><a href="#十一、命令行与PYCHARM创建的区别" class="headerlink" title="十一、命令行与PYCHARM创建的区别"></a>十一、命令行与PYCHARM创建的区别</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 1 命令行创建不会自动有templatew文件夹 需要你自己手动创建而pycharm会自动帮你创建并且还会自动在配置文件中配置对应的路径</span>
-<span class="token comment" spellcheck="true"># pycharm创建</span>
-TEMPLATES <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-        <span class="token string">'BACKEND'</span><span class="token punctuation">:</span> <span class="token string">'django.template.backends.django.DjangoTemplates'</span><span class="token punctuation">,</span>
-        <span class="token string">'DIRS'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span> <span class="token string">'templates'</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># 命令行创建</span>
-TEMPLATES <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-        <span class="token string">'BACKEND'</span><span class="token punctuation">:</span> <span class="token string">'django.template.backends.django.DjangoTemplates'</span><span class="token punctuation">,</span>
-        <span class="token string">'DIRS'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span>
-<span class="token triple-quoted-string string">"""
+&quot;&quot;&quot;
+***********************创建的应用一定要去配置文件中注册**********************
+INSTALLED_APPS &#x3D; [
+    &#39;django.contrib.admin&#39;,
+    &#39;django.contrib.auth&#39;,
+    &#39;django.contrib.contenttypes&#39;,
+    &#39;django.contrib.sessions&#39;,
+    &#39;django.contrib.messages&#39;,
+    &#39;django.contrib.staticfiles&#39;,
+    &#39;app01.apps.App01Config&#39;,  # 全写
+  	&#39;app01&#39;,			 # 简写
+]
+# 创建出来的的应用第一步先去配置文件中注册 其他的先不要给我干
+ps:你在用pycharm创建项目的时候 pycharm可以帮你创建一个app并且自动注册
+***********************************************************************<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="十、主要文件介绍"><a href="#十、主要文件介绍" class="headerlink" title="十、主要文件介绍"></a>十、主要文件介绍</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">-mysite项目文件夹
+	--mysite文件夹
+  	---settings.py	配置文件
+    ---urls.py			路由与视图函数对应关系(路由层)
+    ---wsgi.py			wsgiref模块(不考虑)
+  --manage.py				django的入口文件
+  --db.sqlite3			django自带的sqlite3数据库(小型数据库 功能不是很多还有bug)
+  --app01文件夹
+  	---admin.py			django后台管理
+    ---apps.py			注册使用
+    ---migrations文件夹		数据库迁移记录
+    ---models.py		数据库相关的 模型类(orm)
+  	---tests.py			测试文件
+    ---views.py			视图函数(视图层)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="十一、命令行与PYCHARM创建的区别"><a href="#十一、命令行与PYCHARM创建的区别" class="headerlink" title="十一、命令行与PYCHARM创建的区别"></a>十一、命令行与PYCHARM创建的区别</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 1 命令行创建不会自动有templatew文件夹 需要你自己手动创建而pycharm会自动帮你创建并且还会自动在配置文件中配置对应的路径
+# pycharm创建
+TEMPLATES &#x3D; [
+    &#123;
+        &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,
+        &#39;DIRS&#39;: [os.path.join(BASE_DIR, &#39;templates&#39;)]
+]
+# 命令行创建
+TEMPLATES &#x3D; [
+    &#123;
+        &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,
+        &#39;DIRS&#39;: [],
+]
+&quot;&quot;&quot;
 也就意味着你在用命令创建django项目的时候不单单需要创建templates文件夹还需要去配置文件中配置路径
-'DIRS': [os.path.join(BASE_DIR, 'templates')]
-"""</span>
-</code></pre>
-<h2 id="十一、DJANGO小白必会三板斧"><a href="#十一、DJANGO小白必会三板斧" class="headerlink" title="十一、DJANGO小白必会三板斧"></a>十一、DJANGO小白必会三板斧</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+&#39;DIRS&#39;: [os.path.join(BASE_DIR, &#39;templates&#39;)]
+&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="十一、DJANGO小白必会三板斧"><a href="#十一、DJANGO小白必会三板斧" class="headerlink" title="十一、DJANGO小白必会三板斧"></a>十一、DJANGO小白必会三板斧</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 HttpResponse
-    返回字符串类型的数据
+	返回字符串类型的数据
 
 render
-    返回html文件的
+	返回html文件的
 
 redirect
-    重定向
-      return redirect('https://www.mzitu.com/')
-    return redirect('/home/')
-"""</span>
-</code></pre>
-<h2 id="十二、静态文件配置"><a href="#十二、静态文件配置" class="headerlink" title="十二、静态文件配置"></a>十二、静态文件配置</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 登陆功能</span>
+	重定向
+	  return redirect(&#39;https:&#x2F;&#x2F;www.mzitu.com&#x2F;&#39;)
+    return redirect(&#39;&#x2F;home&#x2F;&#39;)
+&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token triple-quoted-string string">"""
+<h2 id="十二、静态文件配置"><a href="#十二、静态文件配置" class="headerlink" title="十二、静态文件配置"></a>十二、静态文件配置</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 登陆功能
+
+&quot;&quot;&quot;
 我们将html文件默认都放在templates文件夹下
 我们将网站所使用的静态文件默认都放在static文件夹下
 
 静态文件
-    前端已经写好了的 能够直接调用使用的文件
-        网站写好的js文件
-        网站写好的css文件
-        网站用到的图片文件
-        第三方前端框架
-        ...
-        拿来就可以直接使用的
-"""</span>
-<span class="token comment" spellcheck="true"># django默认是不会自动帮你创建static文件夹 需要你自己手动创建</span>
+	前端已经写好了的 能够直接调用使用的文件
+		网站写好的js文件
+		网站写好的css文件
+		网站用到的图片文件
+		第三方前端框架
+		...
+		拿来就可以直接使用的
+&quot;&quot;&quot;
+# django默认是不会自动帮你创建static文件夹 需要你自己手动创建
 一般情况下我们在static文件夹内还会做进一步的划分处理
-    <span class="token operator">-</span>static
-      <span class="token operator">-</span><span class="token operator">-</span>js
-    <span class="token operator">-</span><span class="token operator">-</span>css
-    <span class="token operator">-</span><span class="token operator">-</span>img
+	-static
+  	--js
+    --css
+    --img
     其他第三方文件
 
-<span class="token triple-quoted-string string">"""
+&quot;&quot;&quot;
 在浏览器中输入url能够看到对应的资源
 是因为后端提前开设了该资源的借口
 如果访问不到资源 说明后端没有开设该资源的借口
 
-http://127.0.0.1:8000/static/bootstrap-3.3.7-dist/css/bootstrap.min.css
-"""</span>
+http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;static&#x2F;bootstrap-3.3.7-dist&#x2F;css&#x2F;bootstrap.min.css
+&quot;&quot;&quot;
 
-<span class="token comment" spellcheck="true"># 静态文件配置</span>
+# 静态文件配置
 
-<span class="token triple-quoted-string string">"""
+&quot;&quot;&quot;
 ****************************************************************
 当你在写django项目的时候 可能会出现后端代码修改了但是前端页面没有变化的情况
-    1.你在同一个端口开了好几个django项目 
-        一直在跑的其实是第一个django项目
-    
-    2.浏览器缓存的问题
-        settings
-            network
-                disable cache 勾选上	
+	1.你在同一个端口开了好几个django项目 
+		一直在跑的其实是第一个django项目
+	
+	2.浏览器缓存的问题
+		settings
+			network
+				disable cache 勾选上	
 *****************************************************************
-"""</span>
+&quot;&quot;&quot;
 
-STATIC_URL <span class="token operator">=</span> <span class="token string">'/ooo/'</span>  <span class="token comment" spellcheck="true"># 类似于访问静态文件的令牌</span>
-<span class="token triple-quoted-string string">"""如果你想要访问静态文件 你就必须以static开头"""</span>
-<span class="token triple-quoted-string string">"""
-/static/bootstrap-3.3.7-dist/js/bootstrap.min.js
+STATIC_URL &#x3D; &#39;&#x2F;ooo&#x2F;&#39;  # 类似于访问静态文件的令牌
+&quot;&quot;&quot;如果你想要访问静态文件 你就必须以static开头&quot;&quot;&quot;
+&quot;&quot;&quot;
+&#x2F;static&#x2F;bootstrap-3.3.7-dist&#x2F;js&#x2F;bootstrap.min.js
 
-/static/令牌
+&#x2F;static&#x2F;令牌
 取列表里面从上往下依次查找
-    bootstrap-3.3.7-dist/js/bootstrap.min.js
+    bootstrap-3.3.7-dist&#x2F;js&#x2F;bootstrap.min.js
     都没有才会报错
-"""</span>
-<span class="token comment" spellcheck="true"># 静态文件配置</span>
-STATICFILES_DIRS <span class="token operator">=</span> <span class="token punctuation">[</span>
-    os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span><span class="token string">'static'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span><span class="token string">'static1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span><span class="token string">'static2'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span>
+&quot;&quot;&quot;
+# 静态文件配置
+STATICFILES_DIRS &#x3D; [
+    os.path.join(BASE_DIR,&#39;static&#39;),
+    os.path.join(BASE_DIR,&#39;static1&#39;),
+    os.path.join(BASE_DIR,&#39;static2&#39;),
+]
 
-<span class="token comment" spellcheck="true"># 静态文件动态解析</span>
-    <span class="token punctuation">{</span><span class="token operator">%</span> load static <span class="token operator">%</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+# 静态文件动态解析
+    &#123;% load static %&#125;
+    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;% static &#39;bootstrap-3.3.7-dist&#x2F;css&#x2F;bootstrap.min.css&#39; %&#125;&quot;&gt;
+    &lt;script src&#x3D;&quot;&#123;% static &#39;bootstrap-3.3.7-dist&#x2F;js&#x2F;bootstrap.min.js&#39; %&#125;&quot;&gt;&lt;&#x2F;script&gt;
     
     
-<span class="token comment" spellcheck="true"># form表单默认是get请求数据</span>
-    http<span class="token punctuation">:</span><span class="token operator">//</span><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">8000</span><span class="token operator">/</span>login<span class="token operator">/</span>?username<span class="token operator">=</span>jason<span class="token operator">&amp;</span>password<span class="token operator">=</span><span class="token number">123</span>
-<span class="token triple-quoted-string string">"""
+# form表单默认是get请求数据
+	http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;login&#x2F;?username&#x3D;jason&amp;password&#x3D;123
+&quot;&quot;&quot;
 form表单action参数
-    1.不写 默认朝当前所在的url提交数据
-    2.全写 指名道姓
-    3.只写后缀 /login/
-"""</span>
+	1.不写 默认朝当前所在的url提交数据
+	2.全写 指名道姓
+	3.只写后缀 &#x2F;login&#x2F;
+&quot;&quot;&quot;
 
 
-<span class="token comment" spellcheck="true"># 在前期我们使用django提交post请求的时候 需要取配置文件中注释掉一行代码</span>
-MIDDLEWARE <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token string">'django.middleware.security.SecurityMiddleware'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.sessions.middleware.SessionMiddleware'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.middleware.common.CommonMiddleware'</span><span class="token punctuation">,</span>
-    <span class="token comment" spellcheck="true"># 'django.middleware.csrf.CsrfViewMiddleware',</span>
-    <span class="token string">'django.contrib.auth.middleware.AuthenticationMiddleware'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.contrib.messages.middleware.MessageMiddleware'</span><span class="token punctuation">,</span>
-    <span class="token string">'django.middleware.clickjacking.XFrameOptionsMiddleware'</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span>
-</code></pre>
-<h2 id="十三、REQUEST对象方法初识"><a href="#十三、REQUEST对象方法初识" class="headerlink" title="十三、REQUEST对象方法初识"></a>十三、REQUEST对象方法初识</h2><pre class=" language-python"><code class="language-python">request<span class="token punctuation">.</span>method <span class="token comment" spellcheck="true"># 返回请求方式 并且是全大写的字符串形式  &lt;class 'str'></span>
-request<span class="token punctuation">.</span>POST  <span class="token comment" spellcheck="true"># 获取用户post请求提交的普通数据不包含文件</span>
-request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 只获取列表最后一个元素</span>
-request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>getlist<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 直接将列表取出</span>
-request<span class="token punctuation">.</span>GET  <span class="token comment" spellcheck="true"># 获取用户提交的get请求数据</span>
-request<span class="token punctuation">.</span>GET<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 只获取列表最后一个元素</span>
-request<span class="token punctuation">.</span>GET<span class="token punctuation">.</span>getlist<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 直接将列表取出</span>
-<span class="token triple-quoted-string string">"""
+# 在前期我们使用django提交post请求的时候 需要取配置文件中注释掉一行代码
+MIDDLEWARE &#x3D; [
+    &#39;django.middleware.security.SecurityMiddleware&#39;,
+    &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;,
+    &#39;django.middleware.common.CommonMiddleware&#39;,
+    # &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+    &#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;,
+    &#39;django.contrib.messages.middleware.MessageMiddleware&#39;,
+    &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="十三、REQUEST对象方法初识"><a href="#十三、REQUEST对象方法初识" class="headerlink" title="十三、REQUEST对象方法初识"></a>十三、REQUEST对象方法初识</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">request.method # 返回请求方式 并且是全大写的字符串形式  &lt;class &#39;str&#39;&gt;
+request.POST  # 获取用户post请求提交的普通数据不包含文件
+request.POST.get()  # 只获取列表最后一个元素
+request.POST.getlist()  # 直接将列表取出
+request.GET  # 获取用户提交的get请求数据
+request.GET.get()  # 只获取列表最后一个元素
+request.GET.getlist()  # 直接将列表取出
+&quot;&quot;&quot;
 get请求携带的数据是有大小限制的 大概好像只有4KB左右
 而post请求则没有限制
-"""</span>
+&quot;&quot;&quot;
   
-<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 返回一个登陆界面</span>
-    <span class="token triple-quoted-string string">"""
+def login(request):
+    # 返回一个登陆界面
+    &quot;&quot;&quot;
     get请求和post请求应该有不同的处理机制
     :param request: 请求相关的数据对象 里面有很多简易的方法
     :return:
-    """</span>
+    &quot;&quot;&quot;
 
-    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">"收到了 宝贝"</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'login.html'</span><span class="token punctuation">)</span>
-</code></pre>
-<h2 id="十四、DJANGO生命周期流程图"><a href="#十四、DJANGO生命周期流程图" class="headerlink" title="十四、DJANGO生命周期流程图"></a>十四、DJANGO生命周期流程图</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 每个人都要会画 这个图是你们后期复习django最好的一个梳理方式</span>
+    if request.method &#x3D;&#x3D; &#39;POST&#39;:
+        return HttpResponse(&quot;收到了 宝贝&quot;)
+    return render(request, &#39;login.html&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="十四、DJANGO生命周期流程图"><a href="#十四、DJANGO生命周期流程图" class="headerlink" title="十四、DJANGO生命周期流程图"></a>十四、DJANGO生命周期流程图</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 每个人都要会画 这个图是你们后期复习django最好的一个梳理方式
 
 
-<span class="token comment" spellcheck="true"># 扩展知识点</span>
-    <span class="token triple-quoted-string string">"""
-    缓存数据库
-        提前已经将你想要的数据准备好了 你来直接拿就可以
-        提高效率和响应时间
-        
-    当你在修改你的数据的时候 你会发现数据并不是立刻修改完成的
-    而是需要经过一段时间才会修改
-        博客园
-    
-    了解即可
-    """</span>
-</code></pre>
+# 扩展知识点
+	&quot;&quot;&quot;
+	缓存数据库
+		提前已经将你想要的数据准备好了 你来直接拿就可以
+		提高效率和响应时间
+		
+	当你在修改你的数据的时候 你会发现数据并不是立刻修改完成的
+	而是需要经过一段时间才会修改
+		博客园
+	
+	了解即可
+	&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
 

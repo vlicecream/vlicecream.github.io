@@ -156,47 +156,51 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Inheritance-with-virtual-functions"><a href="#Inheritance-with-virtual-functions" class="headerlink" title="Inheritance with virtual functions"></a>Inheritance with virtual functions</h2><pre><code>non-virtual 函数: 你不希望derived class重新定义
+                <h2 id="Inheritance-with-virtual-functions"><a href="#Inheritance-with-virtual-functions" class="headerlink" title="Inheritance with virtual functions"></a>Inheritance with virtual functions</h2><pre class="line-numbers language-none"><code class="language-none">non-virtual 函数: 你不希望derived class重新定义
 
 virtual 函数: 你希望derived class 重新定义 且他有默认定义
 
-pure virtual 函数: 你希望derived class 一定要重新定义, 你对他没有默认定义
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">class Shape {
+pure virtual 函数: 你希望derived class 一定要重新定义, 你对他没有默认定义<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Shape &#123;
 public:
-  virtual void draw() const = 0; // pure virtual
-  virtual void error(const std::string &msg); // impure virtual
-  int objectID() const; // non-virtual
+  virtual void draw() const &#x3D; 0; &#x2F;&#x2F; pure virtual
+  virtual void error(const std::string &amp;msg); &#x2F;&#x2F; impure virtual
+  int objectID() const; &#x2F;&#x2F; non-virtual
   ...
-};
+&#125;;
 
-// 虚函数应用场景就是 如果确定不了的 就用虚函数 让子类去重新写他 当然也可以用空函数 空函数不一定要重写 pure virtual 一定要重写
-</code></pre>
-<h2 id="Inheritance-Composition-关系下的构造和析构"><a href="#Inheritance-Composition-关系下的构造和析构" class="headerlink" title="Inheritance + Composition 关系下的构造和析构"></a>Inheritance + Composition 关系下的构造和析构</h2><pre class=" language-c++"><code class="language-c++">如果没有并行的概念 肯定是构造从内到外 析构从外到内
-</code></pre>
-<h2 id="Delegation-Inheritance"><a href="#Delegation-Inheritance" class="headerlink" title="Delegation + Inheritance"></a>Delegation + Inheritance</h2><pre class=" language-c++"><code class="language-c++">class Subject {
+&#x2F;&#x2F; 虚函数应用场景就是 如果确定不了的 就用虚函数 让子类去重新写他 当然也可以用空函数 空函数不一定要重写 pure virtual 一定要重写<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Inheritance-Composition-关系下的构造和析构"><a href="#Inheritance-Composition-关系下的构造和析构" class="headerlink" title="Inheritance + Composition 关系下的构造和析构"></a>Inheritance + Composition 关系下的构造和析构</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">如果没有并行的概念 肯定是构造从内到外 析构从外到内<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="Delegation-Inheritance"><a href="#Delegation-Inheritance" class="headerlink" title="Delegation + Inheritance"></a>Delegation + Inheritance</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Subject &#123;
   int m_value;
-  vector<Observer*>m_views;
+  vector&lt;Observer*&gt;m_views;
 public:
-  void attach(Observer *obs) {
+  void attach(Observer *obs) &#123;
     m_views.push_back(obs);
-  }
-  void set_val(int value) {
+  &#125;
+  void set_val(int value) &#123;
     notify();
-  }
-  void notify() {
-    for (int i = 0; i < m_views.size(); ++i) {
-      m_views[i]->update(this, m_value);
-    }
-  }
-};
+  &#125;
+  void notify() &#123;
+    for (int i &#x3D; 0; i &lt; m_views.size(); ++i) &#123;
+      m_views[i]-&gt;update(this, m_value);
+    &#125;
+  &#125;
+&#125;;
 
 
-class Observer {
+class Observer &#123;
 public:
-  virtual void update(Subject *sub, int value) = 0;
-};
-</code></pre>
+  virtual void update(Subject *sub, int value) &#x3D; 0;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
             </div>
 

@@ -156,73 +156,73 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、三板斧介绍"><a href="#一、三板斧介绍" class="headerlink" title="一、三板斧介绍"></a>一、三板斧介绍</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+                <h2 id="一、三板斧介绍"><a href="#一、三板斧介绍" class="headerlink" title="一、三板斧介绍"></a>一、三板斧介绍</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 HttpResponse
-    返回字符串类型的数据
+	返回字符串类型的数据
 
 render
-    返回html文件的   并且在返回给浏览器之前还可以给html文件传值
+	返回html文件的   并且在返回给浏览器之前还可以给html文件传值
 
 redirect
-    重定向
-"""</span>
-<span class="token comment" spellcheck="true"># 视图函数必须要返回一个HttpResponse对象  正确   研究三者的源码即可得处结论</span>
-The view app01<span class="token punctuation">.</span>views<span class="token punctuation">.</span>index didn't <span class="token keyword">return</span> an HttpResponse object<span class="token punctuation">.</span> It returned None instead<span class="token punctuation">.</span>
+	重定向
+&quot;&quot;&quot;
+# 视图函数必须要返回一个HttpResponse对象  正确   研究三者的源码即可得处结论
+The view app01.views.index didn&#39;t return an HttpResponse object. It returned None instead.
 
-<span class="token comment" spellcheck="true"># render简单内部原理</span>
-    <span class="token keyword">from</span> django<span class="token punctuation">.</span>template <span class="token keyword">import</span> Template<span class="token punctuation">,</span>Context
-    res <span class="token operator">=</span> Template<span class="token punctuation">(</span><span class="token string">'&lt;h1>{{ user }}&lt;/h1>'</span><span class="token punctuation">)</span>
-    con <span class="token operator">=</span> Context<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'user'</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">'username'</span><span class="token punctuation">:</span><span class="token string">'jason'</span><span class="token punctuation">,</span><span class="token string">'password'</span><span class="token punctuation">:</span><span class="token number">123</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-    ret <span class="token operator">=</span> res<span class="token punctuation">.</span>render<span class="token punctuation">(</span>con<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
-</code></pre>
-<h2 id="二、JSONRESPONSE对象"><a href="#二、JSONRESPONSE对象" class="headerlink" title="二、JSONRESPONSE对象"></a>二、JSONRESPONSE对象</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+# render简单内部原理
+	from django.template import Template,Context
+    res &#x3D; Template(&#39;&lt;h1&gt;&#123;&#123; user &#125;&#125;&lt;&#x2F;h1&gt;&#39;)
+    con &#x3D; Context(&#123;&#39;user&#39;:&#123;&#39;username&#39;:&#39;jason&#39;,&#39;password&#39;:123&#125;&#125;)
+    ret &#x3D; res.render(con)
+    print(ret)
+    return HttpResponse(ret)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="二、JSONRESPONSE对象"><a href="#二、JSONRESPONSE对象" class="headerlink" title="二、JSONRESPONSE对象"></a>二、JSONRESPONSE对象</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 json格式的数据有什么用？
-    前后端数据交互需要使用到json作为过渡 实现跨语言传输数据
+	前后端数据交互需要使用到json作为过渡 实现跨语言传输数据
 
 前端序列化
-    JSON.stringify()					json.dumps()
-    JSON.parse()							json.loads()
-"""</span>
+	JSON.stringify()					json.dumps()
+	JSON.parse()							json.loads()
+&quot;&quot;&quot;
 
-<span class="token number">1</span><span class="token punctuation">.</span> 代码演示
-    <span class="token keyword">import</span> json
-    <span class="token keyword">from</span> django<span class="token punctuation">.</span>http <span class="token keyword">import</span> JsonResponse
-    <span class="token keyword">def</span> <span class="token function">ab_json</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        user_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'username'</span><span class="token punctuation">:</span><span class="token string">'jason好帅哦,我好喜欢!'</span><span class="token punctuation">,</span><span class="token string">'password'</span><span class="token punctuation">:</span><span class="token string">'123'</span><span class="token punctuation">,</span><span class="token string">'hobby'</span><span class="token punctuation">:</span><span class="token string">'girl'</span><span class="token punctuation">}</span>
-        l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">111</span><span class="token punctuation">,</span><span class="token number">222</span><span class="token punctuation">,</span><span class="token number">333</span><span class="token punctuation">,</span><span class="token number">444</span><span class="token punctuation">,</span><span class="token number">555</span><span class="token punctuation">]</span>
-        <span class="token comment" spellcheck="true"># 先转成json格式字符串</span>
-        <span class="token comment" spellcheck="true"># json_str = json.dumps(user_dict,ensure_ascii=False)</span>
-        <span class="token comment" spellcheck="true"># 将该字符串返回</span>
-        <span class="token comment" spellcheck="true"># return HttpResponse(json_str)</span>
+1. 代码演示
+    import json
+    from django.http import JsonResponse
+    def ab_json(request):
+        user_dict &#x3D; &#123;&#39;username&#39;:&#39;jason好帅哦,我好喜欢!&#39;,&#39;password&#39;:&#39;123&#39;,&#39;hobby&#39;:&#39;girl&#39;&#125;
+        l &#x3D; [111,222,333,444,555]
+        # 先转成json格式字符串
+        # json_str &#x3D; json.dumps(user_dict,ensure_ascii&#x3D;False)
+        # 将该字符串返回
+        # return HttpResponse(json_str)
         读源码掌握用法
-        <span class="token keyword">return</span> JsonResponse<span class="token punctuation">(</span>user_dict<span class="token punctuation">,</span>json_dumps_params<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'ensure_ascii'</span><span class="token punctuation">:</span><span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-           <span class="token triple-quoted-string string">"""
-           序列化列表报错：In order to allow non-dict objects to be serialized set the safe parameter to False.
-        return JsonResponse(l,safe=False)  
+        return JsonResponse(user_dict,json_dumps_params&#x3D;&#123;&#39;ensure_ascii&#39;:False&#125;)
+   	    &quot;&quot;&quot;
+   	    序列化列表报错：In order to allow non-dict objects to be serialized set the safe parameter to False.
+        return JsonResponse(l,safe&#x3D;False)  
         默认只能序列化字典 序列化其他需要加safe参数	
-           """</span>
-</code></pre>
-<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><pre class=" language-python"><code class="language-python"><span class="token number">1</span><span class="token punctuation">.</span> form上传文件需要注意的事项
-    <span class="token number">1.1</span> method必须指定成post
-    <span class="token number">1.2</span> enctype必须换成formdata
-    
-<span class="token number">2</span><span class="token punctuation">.</span> 代码演示
-    <span class="token keyword">def</span> <span class="token function">ab_file</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># print(request.POST)  # 只能获取普通的简直对数据 文件不行</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>FILES<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 获取文件数据</span>
-            <span class="token comment" spellcheck="true"># &lt;MultiValueDict: {'file':[&lt;InMemoryUploadedFile:u=1288812541,1979816195&amp;fm=26&amp;gp=0.jpg(image/jpeg)>]}></span>
-            file_obj <span class="token operator">=</span> request<span class="token punctuation">.</span>FILES<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'file'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 文件对象</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>file_obj<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-            <span class="token keyword">with</span> open<span class="token punctuation">(</span>file_obj<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token string">'wb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-                <span class="token keyword">for</span> line <span class="token keyword">in</span> file_obj<span class="token punctuation">.</span>chunks<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 推荐加上chunks方法 其实跟不加是一样的都是一行行的读取</span>
-                    f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+   	    &quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-        <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">'form.html'</span><span class="token punctuation">)</span>
-</code></pre>
-<h2 id="四、REQUEST对象方法补充"><a href="#四、REQUEST对象方法补充" class="headerlink" title="四、REQUEST对象方法补充"></a>四、REQUEST对象方法补充</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1. form上传文件需要注意的事项
+    1.1 method必须指定成post
+    1.2 enctype必须换成formdata
+    
+2. 代码演示
+    def ab_file(request):
+        if request.method &#x3D;&#x3D; &#39;POST&#39;:
+            # print(request.POST)  # 只能获取普通的简直对数据 文件不行
+            print(request.FILES)  # 获取文件数据
+            # &lt;MultiValueDict: &#123;&#39;file&#39;:[&lt;InMemoryUploadedFile:u&#x3D;1288812541,1979816195&amp;fm&#x3D;26&amp;gp&#x3D;0.jpg(image&#x2F;jpeg)&gt;]&#125;&gt;
+            file_obj &#x3D; request.FILES.get(&#39;file&#39;)  # 文件对象
+            print(file_obj.name)
+            with open(file_obj.name,&#39;wb&#39;) as f:
+                for line in file_obj.chunks():  # 推荐加上chunks方法 其实跟不加是一样的都是一行行的读取
+                    f.write(line)
+
+        return render(request,&#39;form.html&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="四、REQUEST对象方法补充"><a href="#四、REQUEST对象方法补充" class="headerlink" title="四、REQUEST对象方法补充"></a>四、REQUEST对象方法补充</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
 request.method
 request.POST
 request.GET
@@ -231,48 +231,48 @@ request.body  # 原生的浏览器发过来的二进制数据  后面详细的�
 request.path 
 request.path_info
 request.get_full_path()  能过获取完整的url及问号后面的参数 
-"""</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>path<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># /app01/ab_file/</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>path_info<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># /app01/ab_file/</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>get_full_path<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># /app01/ab_file/?username=jason</span>
-</code></pre>
-<h2 id="五、FBV-amp-CBV"><a href="#五、FBV-amp-CBV" class="headerlink" title="五、FBV&amp;CBV"></a>五、FBV&amp;CBV</h2><pre class=" language-python"><code class="language-python"><span class="token number">1</span><span class="token punctuation">.</span>视图函数既可以是函数也可以是类
+&quot;&quot;&quot;
+    print(request.path)  # &#x2F;app01&#x2F;ab_file&#x2F;
+    print(request.path_info)  # &#x2F;app01&#x2F;ab_file&#x2F;
+    print(request.get_full_path())  # &#x2F;app01&#x2F;ab_file&#x2F;?username&#x3D;jason<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">2</span><span class="token punctuation">.</span> FBV
-    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-      <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span>
+<h2 id="五、FBV-amp-CBV"><a href="#五、FBV-amp-CBV" class="headerlink" title="五、FBV&amp;CBV"></a>五、FBV&amp;CBV</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">1.视图函数既可以是函数也可以是类
 
-<span class="token number">3</span><span class="token punctuation">.</span> CBV
-    <span class="token comment" spellcheck="true"># CBV路由</span>
-    url<span class="token punctuation">(</span>r<span class="token string">'^login/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>MyLogin<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+2. FBV
+    def index(request):
+      return HttpResponse(&#39;index&#39;)
+
+3. CBV
+    # CBV路由
+    url(r&#39;^login&#x2F;&#39;,views.MyLogin.as_view())
     
-    <span class="token keyword">from</span> django<span class="token punctuation">.</span>views <span class="token keyword">import</span> View
-    <span class="token keyword">class</span> <span class="token class-name">MyLogin</span><span class="token punctuation">(</span>View<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">'form.html'</span><span class="token punctuation">)</span>
+	from django.views import View
+	class MyLogin(View):
+    	def get(self,request):
+        	return render(request,&#39;form.html&#39;)
 
-        <span class="token keyword">def</span> <span class="token function">post</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'post方法'</span><span class="token punctuation">)</span>
+    	def post(self,request):
+        	return HttpResponse(&#39;post方法&#39;)
 
 
       
-<span class="token triple-quoted-string string">"""
+&quot;&quot;&quot;
 FBV和CBV各有千秋
 CBV特点
-    能够直接根据请求方式的不同直接匹配到对应的方法执行
-    
-    内部到底是怎么实现的？
-        CBV内部源码(******)
-"""</span>
-</code></pre>
-<h2 id="六、CBV源码解析"><a href="#六、CBV源码解析" class="headerlink" title="六、CBV源码解析"></a>六、CBV源码解析</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""自己不要修改源码 除了bug很难找"""</span>
+	能够直接根据请求方式的不同直接匹配到对应的方法执行
+	
+	内部到底是怎么实现的？
+		CBV内部源码(******)
+&quot;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment" spellcheck="true"># 突破口在urls.py</span>
-url<span class="token punctuation">(</span>r<span class="token string">'^login/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>MyLogin<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># url(r'^login/',views.view)  FBV一模一样</span>
-<span class="token comment" spellcheck="true"># CBV与FBV在路由匹配上本质是一样的 都是路由 对应 函数内存地址</span>
-<span class="token triple-quoted-string string">"""
-函数名/方法名 加括号执行优先级最高
+<h2 id="六、CBV源码解析"><a href="#六、CBV源码解析" class="headerlink" title="六、CBV源码解析"></a>六、CBV源码解析</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;自己不要修改源码 除了bug很难找&quot;&quot;&quot;
+
+# 突破口在urls.py
+url(r&#39;^login&#x2F;&#39;,views.MyLogin.as_view())
+# url(r&#39;^login&#x2F;&#39;,views.view)  FBV一模一样
+# CBV与FBV在路由匹配上本质是一样的 都是路由 对应 函数内存地址
+&quot;&quot;&quot;
+函数名&#x2F;方法名 加括号执行优先级最高
 猜测
     as_view()
         要么是被@staicmethod修饰的静态方法
@@ -281,49 +281,48 @@ url<span class="token punctuation">(</span>r<span class="token string">'^login/'
     @classonlymethod
     def as_view(cls, **initkwargs):
         pass
-"""</span>
+&quot;&quot;&quot;
 
     @classonlymethod
-    <span class="token keyword">def</span> <span class="token function">as_view</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> <span class="token operator">**</span>initkwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""
+    def as_view(cls, **initkwargs):
+        &quot;&quot;&quot;
         cls就是我们自己写的类   MyCBV
         Main entry point for a request-response process.
-        """</span>
-        <span class="token keyword">def</span> <span class="token function">view</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            self <span class="token operator">=</span> cls<span class="token punctuation">(</span><span class="token operator">**</span>initkwargs<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># cls是我们自己写的类</span>
-            <span class="token comment" spellcheck="true"># self = MyLogin(**initkwargs)  产生一个我们自己写的类的对象</span>
-            <span class="token keyword">return</span> self<span class="token punctuation">.</span>dispatch<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-            <span class="token triple-quoted-string string">"""
+        &quot;&quot;&quot;
+        def view(request, *args, **kwargs):
+            self &#x3D; cls(**initkwargs)  # cls是我们自己写的类
+            # self &#x3D; MyLogin(**initkwargs)  产生一个我们自己写的类的对象
+            return self.dispatch(request, *args, **kwargs)
+            &quot;&quot;&quot;
             以后你们会经常需要看源码 但是在看python源码的时候 一定要时刻提醒自己面向对象属性方法查找顺序
                 先从对象自己找
                 再去产生对象的类里面找
                 之后再去父类找
                 ...
             总结:看源码只要看到了self点一个东西 一定要问你自己当前这个self到底是谁
-            """</span>
-        <span class="token keyword">return</span> view
+            &quot;&quot;&quot;
+        return view
       
-        <span class="token comment" spellcheck="true"># CBV的精髓</span>
-    <span class="token keyword">def</span> <span class="token function">dispatch</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 获取当前请求的小写格式 然后比对当前请求方式是否合法</span>
-        <span class="token comment" spellcheck="true"># get请求为例</span>
-        <span class="token comment" spellcheck="true"># post请求</span>
-        <span class="token keyword">if</span> request<span class="token punctuation">.</span>method<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">in</span> self<span class="token punctuation">.</span>http_method_names<span class="token punctuation">:</span>
-            handler <span class="token operator">=</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">.</span>method<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>http_method_not_allowed<span class="token punctuation">)</span>
-            <span class="token triple-quoted-string string">"""
+		# CBV的精髓
+    def dispatch(self, request, *args, **kwargs):
+        # 获取当前请求的小写格式 然后比对当前请求方式是否合法
+        # get请求为例
+        # post请求
+        if request.method.lower() in self.http_method_names:
+            handler &#x3D; getattr(self, request.method.lower(), self.http_method_not_allowed)
+            &quot;&quot;&quot;
             反射:通过字符串来操作对象的属性或者方法
-                handler = getattr(自己写的类产生的对象,'get',当找不到get属性或者方法的时候就会用第三个参数)
-                handler = 我们自己写的类里面的get方法
-            """</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            handler <span class="token operator">=</span> self<span class="token punctuation">.</span>http_method_not_allowed
-        <span class="token keyword">return</span> handler<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-        <span class="token triple-quoted-string string">"""
+                handler &#x3D; getattr(自己写的类产生的对象,&#39;get&#39;,当找不到get属性或者方法的时候就会用第三个参数)
+                handler &#x3D; 我们自己写的类里面的get方法
+            &quot;&quot;&quot;
+        else:
+            handler &#x3D; self.http_method_not_allowed
+        return handler(request, *args, **kwargs)
+        &quot;&quot;&quot;
         自动调用get方法
-        """</span>
+        &quot;&quot;&quot;
 
-<span class="token comment" spellcheck="true"># 要求掌握到不看源码也能够描述出CBV的内部执行流程(******)</span>
-</code></pre>
+# 要求掌握到不看源码也能够描述出CBV的内部执行流程(******)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
 

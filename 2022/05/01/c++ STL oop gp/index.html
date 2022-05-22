@@ -156,81 +156,81 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="源码之前-了无秘密"><a href="#源码之前-了无秘密" class="headerlink" title="源码之前                                         了无秘密"></a>源码之前                                         了无秘密</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// 使用一个东西 不知道他的原理 是悲哀的(说白了就是要会看源代码)</span>
-</code></pre>
-<h2 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h2><pre class=" language-c++"><code class="language-c++">// oop 企图将 datas 和 methos 关联在一起
-template <class T, class Alloc = alloc>
-class list {
+                <h2 id="源码之前-了无秘密"><a href="#源码之前-了无秘密" class="headerlink" title="源码之前                                         了无秘密"></a>源码之前                                         了无秘密</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 使用一个东西 不知道他的原理 是悲哀的(说白了就是要会看源代码)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; oop 企图将 datas 和 methos 关联在一起
+template &lt;class T, class Alloc &#x3D; alloc&gt;
+class list &#123;
   ...
   void sort()
-};
-</code></pre>
-<h2 id="GP"><a href="#GP" class="headerlink" title="GP"></a>GP</h2><pre class=" language-c++"><code class="language-c++">// GP 却是将datas 和 methods 分开来
-// 下面定义的类都可以直接通过全局的 ::sort 来调用sort方法 如果是OOP思想 只能在类里面去定义这个方法
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class T, class Alloc = alloc>
-class deque {
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="GP"><a href="#GP" class="headerlink" title="GP"></a>GP</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; GP 却是将datas 和 methods 分开来
+&#x2F;&#x2F; 下面定义的类都可以直接通过全局的 ::sort 来调用sort方法 如果是OOP思想 只能在类里面去定义这个方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T, class Alloc &#x3D; alloc&gt;
+class deque &#123;
   ...
-}; // 定义 deque 类
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class T, class Alloc = alloc>
-class vector {
+&#125;; &#x2F;&#x2F; 定义 deque 类<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T, class Alloc &#x3D; alloc&gt;
+class vector &#123;
   ...
-}; // 定义 vector 类
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <typename _RandomAccessIterator>
-inline void sort(_RandomAccessIterator __first, _RandomAccessIterator __last) {
+&#125;; &#x2F;&#x2F; 定义 vector 类<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename _RandomAccessIterator&gt;
+inline void sort(_RandomAccessIterator __first, _RandomAccessIterator __last) &#123;
   ...
-}; // 定义 sort 方法
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <typename _RandomAccessIterator, typename _Compare>
-inline void sort(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp) {
+&#125;; &#x2F;&#x2F; 定义 sort 方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename _RandomAccessIterator, typename _Compare&gt;
+inline void sort(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp) &#123;
   ...
-}; // 定义 sort 方法
-</code></pre>
+&#125;; &#x2F;&#x2F; 定义 sort 方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="两个类是怎么能够调用到sort"><a href="#两个类是怎么能够调用到sort" class="headerlink" title="两个类是怎么能够调用到sort"></a>两个类是怎么能够调用到sort</h3><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimagesimage-20220501212438449.png" alt="image-20220501212438449"></p>
-<h2 id="运用GP的好处"><a href="#运用GP的好处" class="headerlink" title="运用GP的好处"></a>运用GP的好处</h2><pre><code>1. Containers(容器) &amp; Algorithms(算法) 团队可各自闭门造车 其间以Iterator(迭代器)沟通即可
+<h2 id="运用GP的好处"><a href="#运用GP的好处" class="headerlink" title="运用GP的好处"></a>运用GP的好处</h2><pre class="line-numbers language-none"><code class="language-none">1. Containers(容器) &amp; Algorithms(算法) 团队可各自闭门造车 其间以Iterator(迭代器)沟通即可
 
-2. Algorithms 通过 Iterators 确定操作范围 并通过iterators 取用 Container 元素
-</code></pre>
-<h2 id="在函数中加入自己的计算方式"><a href="#在函数中加入自己的计算方式" class="headerlink" title="在函数中加入自己的计算方式"></a>在函数中加入自己的计算方式</h2><pre class=" language-c++"><code class="language-c++">// 所有algorithms(算法), 最终设计元素本身的操作 无非就是比大小
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">bool strLonger(const string &s1, const string &s2) {
-  return s1.size() < s2.size();
-}
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class T>
-inline const T& max(const T &a, const T &b) {
-  return a<b?b:a;
-}
+2. Algorithms 通过 Iterators 确定操作范围 并通过iterators 取用 Container 元素<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-cout << "max of zoo and hello: " << max(string("zoo"), string("hello")) << endl;
-// zoo
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class T, class Compare>
-inline const T &max(const T &a, const T &b, Compare comp) {
+<h2 id="在函数中加入自己的计算方式"><a href="#在函数中加入自己的计算方式" class="headerlink" title="在函数中加入自己的计算方式"></a>在函数中加入自己的计算方式</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 所有algorithms(算法), 最终设计元素本身的操作 无非就是比大小<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">bool strLonger(const string &amp;s1, const string &amp;s2) &#123;
+  return s1.size() &lt; s2.size();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
+inline const T&amp; max(const T &amp;a, const T &amp;b) &#123;
+  return a&lt;b?b:a;
+&#125;
+
+cout &lt;&lt; &quot;max of zoo and hello: &quot; &lt;&lt; max(string(&quot;zoo&quot;), string(&quot;hello&quot;)) &lt;&lt; endl;
+&#x2F;&#x2F; zoo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T, class Compare&gt;
+inline const T &amp;max(const T &amp;a, const T &amp;b, Compare comp) &#123;
   return comp(a, b)?b:a
-} 
+&#125; 
 
-cout << "longest of zoo and hello:" << max(string("zoo"). string("hello"), strLonger) << endl;
-// hello
-</code></pre>
-<h2 id="为什么list不能使用全局变量的sort"><a href="#为什么list不能使用全局变量的sort" class="headerlink" title="为什么list不能使用全局变量的sort"></a>为什么list不能使用全局变量的sort</h2><pre class=" language-c++"><code class="language-c++">// 我们来看看sort源码吧
-template <class RandomAccessItreator>
-inline void sort(RandomAccessIterator first, RandomAccessIterator last) {
-    if (first != last) {
+cout &lt;&lt; &quot;longest of zoo and hello:&quot; &lt;&lt; max(string(&quot;zoo&quot;). string(&quot;hello&quot;), strLonger) &lt;&lt; endl;
+&#x2F;&#x2F; hello<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="为什么list不能使用全局变量的sort"><a href="#为什么list不能使用全局变量的sort" class="headerlink" title="为什么list不能使用全局变量的sort"></a>为什么list不能使用全局变量的sort</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 我们来看看sort源码吧
+template &lt;class RandomAccessItreator&gt;
+inline void sort(RandomAccessIterator first, RandomAccessIterator last) &#123;
+	if (first !&#x3D; last) &#123;
     __introsort_loop(first, last, value_type(first), __lg(last-first)*2);
     __final_insertion_sort(first, last);
-  }  
-}
+  &#125;  
+&#125;
 
-template <class RandomAccessIterator, class T, class Size>
-void __introsort_loop(RandomAccessIterator first, RandomAccessIterator last, T*, Size depth_limit) {
+template &lt;class RandomAccessIterator, class T, class Size&gt;
+void __introsort_loop(RandomAccessIterator first, RandomAccessIterator last, T*, Size depth_limit) &#123;
   ...
-  RandomAccessIterator cut = __unguarded_partition(first, last, T(__mdedian(*first, *(first+(last-first)/2), *(last-1))));
-}  // 注意到(first + (last - first)/2) 只有RandomAccessIterator分配器才能操作
-// list 是个双向链表 他不是连续的内存空间 所以没办法用这个分配器
-</code></pre>
+  RandomAccessIterator cut &#x3D; __unguarded_partition(first, last, T(__mdedian(*first, *(first+(last-first)&#x2F;2), *(last-1))));
+&#125;  &#x2F;&#x2F; 注意到(first + (last - first)&#x2F;2) 只有RandomAccessIterator分配器才能操作
+&#x2F;&#x2F; list 是个双向链表 他不是连续的内存空间 所以没办法用这个分配器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
 

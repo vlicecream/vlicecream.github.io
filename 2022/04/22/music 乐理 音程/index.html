@@ -156,29 +156,29 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="音程是什么"><a href="#音程是什么" class="headerlink" title="音程是什么"></a>音程是什么</h2><pre class=" language-go"><code class="language-go">音程（Interval）是一个特定乐音体系中，两个音之间音高的距离
-西方音乐体系中，音程由度数和音数决定。其中较低的音称为根音<span class="token punctuation">(</span>下方音<span class="token punctuation">)</span>，较高的音称为冠音<span class="token punctuation">(</span>上方音<span class="token punctuation">)</span>
-音程有旋律音程、和声音程、单音程、复音程、协和音程、不协和音程等多种分类方法
-</code></pre>
-<h2 id="度数"><a href="#度数" class="headerlink" title="度数"></a>度数</h2><pre class=" language-go"><code class="language-go">度数就是有多少几个音 
-  eg<span class="token punctuation">:</span>
-    c<span class="token operator">-</span>c 只有c 那就是一度
-    c<span class="token operator">-</span>d 那就是二度
-</code></pre>
-<h2 id="音数"><a href="#音数" class="headerlink" title="音数"></a>音数</h2><pre class=" language-go"><code class="language-go">音数可以理解为多少个半音 
-  eg<span class="token punctuation">:</span>
-    c<span class="token operator">-</span>#c 只有一个半音 他们音级就是<span class="token number">0.5</span> 
-    c<span class="token operator">-</span>d  一个全音 他们就是<span class="token number">1</span>
-</code></pre>
+                <h2 id="音程是什么"><a href="#音程是什么" class="headerlink" title="音程是什么"></a>音程是什么</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">音程（Interval）是一个特定乐音体系中，两个音之间音高的距离
+西方音乐体系中，音程由度数和音数决定。其中较低的音称为根音(下方音)，较高的音称为冠音(上方音)
+音程有旋律音程、和声音程、单音程、复音程、协和音程、不协和音程等多种分类方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="度数"><a href="#度数" class="headerlink" title="度数"></a>度数</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">度数就是有多少几个音 
+  eg:
+    c-c 只有c 那就是一度
+    c-d 那就是二度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="音数"><a href="#音数" class="headerlink" title="音数"></a>音数</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">音数可以理解为多少个半音 
+  eg:
+    c-#c 只有一个半音 他们音级就是0.5 
+    c-d  一个全音 他们就是1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="冠音-amp-低音"><a href="#冠音-amp-低音" class="headerlink" title="冠音&amp;低音"></a>冠音&amp;低音</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E4%B8%8B%E8%BD%BD.png" alt="下载"></p>
-<h2 id="自然音程"><a href="#自然音程" class="headerlink" title="自然音程"></a>自然音程</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">//	在自然调式音阶中各音能构成的音程，叫自然音程 也就是 所有的 纯音程 大小音程 和 增四减五(三全音)</span>
+<h2 id="自然音程"><a href="#自然音程" class="headerlink" title="自然音程"></a>自然音程</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F;	在自然调式音阶中各音能构成的音程，叫自然音程 也就是 所有的 纯音程 大小音程 和 增四减五(三全音)
 
-<span class="token comment" spellcheck="true">/*
-    1 4 5 8 只有纯
-    2 3 6 7 只有大小
-*/</span>
+&#x2F;*
+	1 4 5 8 只有纯
+	2 3 6 7 只有大小
+*&#x2F;
 
-<span class="token comment" spellcheck="true">/*
+&#x2F;*
   前面为自然音程的名称 后面的数字为音数
       纯一度 0
       小二度 0.5  大二度 1
@@ -190,11 +190,11 @@
       小六度 4  大六度 4.5
       小七度 5  大七度 5.5
       纯八度 6
-*/</span>
-</code></pre>
-<h2 id="变化音程"><a href="#变化音程" class="headerlink" title="变化音程"></a>变化音程</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 变化音程是指除增四减五外、不属于自然音程的音程。该词缺陷是无法形成三全音 也就是除三全音外的所有 增 减 倍增 倍减 的音程</span>
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment" spellcheck="true">/*
+<h2 id="变化音程"><a href="#变化音程" class="headerlink" title="变化音程"></a>变化音程</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 变化音程是指除增四减五外、不属于自然音程的音程。该词缺陷是无法形成三全音 也就是除三全音外的所有 增 减 倍增 倍减 的音程
+
+&#x2F;*
   前面为自然音程的名称 后面的数字为音数
     增一度 0.5  倍增一度 1.0
     增二度 1.5  倍增二度 2.0   减二度 0 
@@ -204,57 +204,60 @@
     增六度 5    倍增六度 5.5   减六度 3.5  倍减六度 3.0
     增七度 6    倍增七度 6.5   减七度 4.5  倍减七度 4
     增八度 6.5  倍增八度  7    减八度 5.5  倍减八度 5
-*/</span>
-</code></pre>
-<h2 id="减一度"><a href="#减一度" class="headerlink" title="减一度"></a>减一度</h2><pre class=" language-go"><code class="language-go">
-</code></pre>
-<h2 id="音程中的概念简述"><a href="#音程中的概念简述" class="headerlink" title="音程中的概念简述"></a>音程中的概念简述</h2><pre class=" language-go"><code class="language-go">旋律音程
-    两个音先后奏响即是旋律音程
-和声音程
-    两个音同时奏响即是和声音程
-冠音
-    音程高的音
-根音
-    音程低的音
-音程的度数
-    音程在五线谱上所包含线与间的数目叫度数
-音程的音数
-    音程中所包含全音和半音的数目叫音数
-自然音程
-    纯音程（纯一度、纯四度、纯五度、纯八度）大音程（大二度、大三度、大六度、大七度）小音程（小二度、小三度、小六度、小七度）增四度 减五度叫做“自然音程”
-变化音程
-    除增四度和减五度，一切增、减、倍增、倍减音程都叫“变化音程”
-增音程
-    大音程和纯音程增加半音时，叫增音程
-减音程
-    小音程和纯音程减少半音时，叫减音程
-倍增音程
-    增音程和纯音程增加半音时，称为倍增音程
-倍减音程
-    减音程减少半音时，称为倍减音程
-单音程
-    不超过八度音程叫做单音程
-复音程
-    超过八度音程叫做复音程
-等音程
-    两个音程听弹奏效果 音响效果相同但是写法和意义不同的音程叫做等音程
-音程的转位
-    音程根音与冠音的位置互换 音程的转位是有规则的噢～
-协和音程
-    极完全协和音程
-        即声音极为融合的纯一度和纯八度
-    完全协和音程
-        即声音融合的纯四度和纯五度
-    不完全协和音程
-        即声音不十分融合的大、小三度和大、小六度
-不协和音程
-    听起来不融合的大、小二度，大、小七度，以及所有增、减、倍增、倍减音程。
-</code></pre>
-<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 对于专业的音乐生 要做成小卡片 从c1-c2 所有自然音程 要求看一眼 迅速反应出来 1min之内说出所有卡片</span>
-<span class="token comment" spellcheck="true">// 别信做不到 因为我就是这么过来的</span>
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment" spellcheck="true">// 至于也是兴趣爱好 每张卡片至少一秒反应过来 要记住 想玩音乐 乐理不懂？ 何来的即兴 永远没有自己的free style</span>
-</code></pre>
+<h2 id="减一度"><a href="#减一度" class="headerlink" title="减一度"></a>减一度</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#96;&#96;&#96;
+
+## 音程中的概念简述
+
+&#96;&#96;&#96;go
+旋律音程
+	两个音先后奏响即是旋律音程
+和声音程
+	两个音同时奏响即是和声音程
+冠音
+	音程高的音
+根音
+	音程低的音
+音程的度数
+	音程在五线谱上所包含线与间的数目叫度数
+音程的音数
+	音程中所包含全音和半音的数目叫音数
+自然音程
+	纯音程（纯一度、纯四度、纯五度、纯八度）大音程（大二度、大三度、大六度、大七度）小音程（小二度、小三度、小六度、小七度）增四度 减五度叫做“自然音程”
+变化音程
+	除增四度和减五度，一切增、减、倍增、倍减音程都叫“变化音程”
+增音程
+	大音程和纯音程增加半音时，叫增音程
+减音程
+	小音程和纯音程减少半音时，叫减音程
+倍增音程
+	增音程和纯音程增加半音时，称为倍增音程
+倍减音程
+	减音程减少半音时，称为倍减音程
+单音程
+	不超过八度音程叫做单音程
+复音程
+	超过八度音程叫做复音程
+等音程
+	两个音程听弹奏效果 音响效果相同但是写法和意义不同的音程叫做等音程
+音程的转位
+	音程根音与冠音的位置互换 音程的转位是有规则的噢～
+协和音程
+	极完全协和音程
+		即声音极为融合的纯一度和纯八度
+	完全协和音程
+		即声音融合的纯四度和纯五度
+	不完全协和音程
+		即声音不十分融合的大、小三度和大、小六度
+不协和音程
+	听起来不融合的大、小二度，大、小七度，以及所有增、减、倍增、倍减音程。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;&#x2F; 对于专业的音乐生 要做成小卡片 从c1-c2 所有自然音程 要求看一眼 迅速反应出来 1min之内说出所有卡片
+&#x2F;&#x2F; 别信做不到 因为我就是这么过来的
+
+&#x2F;&#x2F; 至于也是兴趣爱好 每张卡片至少一秒反应过来 要记住 想玩音乐 乐理不懂？ 何来的即兴 永远没有自己的free style<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
 

@@ -156,74 +156,76 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="pointer-like-classes"><a href="#pointer-like-classes" class="headerlink" title="pointer-like classes"></a>pointer-like classes</h2><pre class=" language-c++"><code class="language-c++">// 智能指针 一个类很像指针 拥有指针的功能确还能额外多做点事 这就叫智能指针
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template<class T>
-class shared_ptr {
+                <h2 id="pointer-like-classes"><a href="#pointer-like-classes" class="headerlink" title="pointer-like classes"></a>pointer-like classes</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 智能指针 一个类很像指针 拥有指针的功能确还能额外多做点事 这就叫智能指针<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class T&gt;
+class shared_ptr &#123;
 public:
-    T& operator *() const { return *px; }
-+	T& operator ->() const { return px; }
-    shared_ptr(T* p) : px(p) { } // 构造函数
+	T&amp; operator *() const &#123; return *px; &#125;
++	T&amp; operator -&gt;() const &#123; return px; &#125;
+	shared_ptr(T* p) : px(p) &#123; &#125; &#x2F;&#x2F; 构造函数
 private:
-    T* px;
-    long* pn;
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">struct Foo {
+	T* px;
+	long* pn;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">struct Foo &#123;
     ...
-    void method(void) { ... };
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">shared_ptr<Foo> sp(new Foo);
+    void method(void) &#123; ... &#125;;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">shared_ptr&lt;Foo&gt; sp(new Foo);
 Foo f(*sp);
-sp -> method;
+sp -&gt; method;
 
-/*
-    在这里new了一个sp对象 调用shared_ptr构造函数 没有问题
-    随后Foo f(*sp) 操作符重载 return *px 取到指针所指向的值 也没有问题
-    再然后的 sp -> 这里的意思 是通过sp这个对象 调用method方法 实际也就是 px->method;
-    -> 这个符号很特别 会一直作用下去 -> 作用于sp 虽然作用完了 但是 还是能px->method 所以体现了这一点
-*/
-</code></pre>
-<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><pre class=" language-c++"><code class="language-c++">// 迭代器也有智能指针
-template<class T, class Ref, class Ptr>
-struct __list_iterator {
-  typedef __list_node<T>* link_type;
+&#x2F;*
+	在这里new了一个sp对象 调用shared_ptr构造函数 没有问题
+	随后Foo f(*sp) 操作符重载 return *px 取到指针所指向的值 也没有问题
+	再然后的 sp -&gt; 这里的意思 是通过sp这个对象 调用method方法 实际也就是 px-&gt;method;
+	-&gt; 这个符号很特别 会一直作用下去 -&gt; 作用于sp 虽然作用完了 但是 还是能px-&gt;method 所以体现了这一点
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 迭代器也有智能指针
+template&lt;class T, class Ref, class Ptr&gt;
+struct __list_iterator &#123;
+  typedef __list_node&lt;T&gt;* link_type;
   link_type node;
-  bool operator==(const self& x) const { return node == x.node };
-  bool operator->() const { return &(operator*()); }
-  reference operator*() const { return (*node).data; }
-  pointer operator->() const { return &(operator*()); }
-}
-// 像前面的智能指针 就是普通用法 而迭代器的这个例子则就是体现了更好的利用指针去搞事情
-</code></pre>
-<h2 id="function-like-classes-仿函数"><a href="#function-like-classes-仿函数" class="headerlink" title="function-like classes 仿函数"></a>function-like classes 仿函数</h2><pre class=" language-c++"><code class="language-c++">template <class T>
-struct identity : public unary_function<T, T> {
-    const T& operator() (const T& x) const { return x; }
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class Pair>
-struct select1st : public unary_function<Pair, typename Pair::first_type> {
-    const typename Pair::first_type& operator() (const Pair& x) const { return x.first; }
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">template <class Pair>
-struct select2nd : public unary_function<Pair, typename Pair::second_type> {
-    const typename Pair::second_type& operator() (const Pair& x) const { return x.second; }
-};
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">// 只要里面有()则他有可能就是仿函数 可以见操作符重载的重要性
-</code></pre>
-<h2 id="标准库仿函数的奇特模样"><a href="#标准库仿函数的奇特模样" class="headerlink" title="标准库仿函数的奇特模样"></a>标准库仿函数的奇特模样</h2><pre class=" language-c++"><code class="language-c++">/*
-    我们发现仿函数都会继承一个class 但是发现用不到他 这个为什么呢
-    会在STL有关博客解密 此处不适合
-*/
+  bool operator&#x3D;&#x3D;(const self&amp; x) const &#123; return node &#x3D;&#x3D; x.node &#125;;
+  bool operator-&gt;() const &#123; return &amp;(operator*()); &#125;
+  reference operator*() const &#123; return (*node).data; &#125;
+  pointer operator-&gt;() const &#123; return &amp;(operator*()); &#125;
+&#125;
+&#x2F;&#x2F; 像前面的智能指针 就是普通用法 而迭代器的这个例子则就是体现了更好的利用指针去搞事情<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-template <class T>
-struct plus : public binary_function<T, T, T> {
-    T operator() (const T& x, const T& y) const { return x+y; }
-};
-</code></pre>
+<h2 id="function-like-classes-仿函数"><a href="#function-like-classes-仿函数" class="headerlink" title="function-like classes 仿函数"></a>function-like classes 仿函数</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
+struct identity : public unary_function&lt;T, T&gt; &#123;
+    const T&amp; operator() (const T&amp; x) const &#123; return x; &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class Pair&gt;
+struct select1st : public unary_function&lt;Pair, typename Pair::first_type&gt; &#123;
+    const typename Pair::first_type&amp; operator() (const Pair&amp; x) const &#123; return x.first; &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class Pair&gt;
+struct select2nd : public unary_function&lt;Pair, typename Pair::second_type&gt; &#123;
+    const typename Pair::second_type&amp; operator() (const Pair&amp; x) const &#123; return x.second; &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 只要里面有()则他有可能就是仿函数 可以见操作符重载的重要性<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="标准库仿函数的奇特模样"><a href="#标准库仿函数的奇特模样" class="headerlink" title="标准库仿函数的奇特模样"></a>标准库仿函数的奇特模样</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	我们发现仿函数都会继承一个class 但是发现用不到他 这个为什么呢
+	会在STL有关博客解密 此处不适合
+*&#x2F;
+
+template &lt;class T&gt;
+struct plus : public binary_function&lt;T, T, T&gt; &#123;
+    T operator() (const T&amp; x, const T&amp; y) const &#123; return x+y; &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
 

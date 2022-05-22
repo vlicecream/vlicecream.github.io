@@ -156,24 +156,24 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><pre class=" language-c++"><code class="language-c++">// 下载swagger-editor的容器
-docker pull swaggerapi/swagger-editor 
-docker run -d -p 81:8080 swaggerapi/swagger-editor
+                <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 下载swagger-editor的容器
+docker pull swaggerapi&#x2F;swagger-editor 
+docker run -d -p 81:8080 swaggerapi&#x2F;swagger-editor
 
-// 下载swagger-ui的容器
-docker pull swaggerapi/swagger-ui
+&#x2F;&#x2F; 下载swagger-ui的容器
+docker pull swaggerapi&#x2F;swagger-ui
  
-// json文件挂在到容器中:
+&#x2F;&#x2F; json文件挂在到容器中:
   
-docker run -d -p 80:8080 -e SWAGGER_JSON=/foo/swagger.json -v /home/service/swagger/swagger.json:/foo/swagger.json swaggerapi/swagger-ui 
+docker run -d -p 80:8080 -e SWAGGER_JSON&#x3D;&#x2F;foo&#x2F;swagger.json -v &#x2F;home&#x2F;service&#x2F;swagger&#x2F;swagger.json:&#x2F;foo&#x2F;swagger.json swaggerapi&#x2F;swagger-ui 
 -p：宿主机端口：容器端口，将容器端口暴露给宿主机端口
 -d:后台启动
--e：执行容器中/foo/swagger.json
--v：将宿主机中/home/service/swagger/swagger.json挂载到容器 /foo中执行
+-e：执行容器中&#x2F;foo&#x2F;swagger.json
+-v：将宿主机中&#x2F;home&#x2F;service&#x2F;swagger&#x2F;swagger.json挂载到容器 &#x2F;foo中执行
 
-//web验证
-ip:port
-</code></pre>
+&#x2F;&#x2F;web验证
+ip:port<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
 

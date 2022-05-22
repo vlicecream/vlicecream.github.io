@@ -156,55 +156,57 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
-    时间复杂度
-        select O(1)
-        append O(n)
-        removeO(n)
-*/</span>
-</code></pre>
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
-    在有关数组的算法题目里面 双指针其实是很流行的一种解法
-    遇到数组的时候即可思考一下双指针是否可行
-*/</span>
+                <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;*
+	时间复杂度
+		select O(1)
+		append O(n)
+		removeO(n)
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment" spellcheck="true">/*
-    双指针其实就是 利用两个指向数组元素的指针 来搞事情
-    所以双指针其实也是有很多种类型
-*/</span>
-</code></pre>
-<h2 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
-    快慢指针其实就是一个指针走的快 一个指针走得慢  题外话 在链表成环 快慢指针非常好用 类似于龟兔赛跑
-    slow fast 两个指针 快指针走的要比慢指针快
-    话不多说 来见题目
-*/</span> 
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;*
+	在有关数组的算法题目里面 双指针其实是很流行的一种解法
+	遇到数组的时候即可思考一下双指针是否可行
+*&#x2F;
 
-<span class="token comment" spellcheck="true">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化)</span>
-  slow <span class="token operator">:=</span> <span class="token number">0</span>
-  <span class="token keyword">for</span> fast <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> fast <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> fast<span class="token operator">++</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 根据具体内容写相应代码</span>
-  <span class="token punctuation">}</span>
+&#x2F;*
+	双指针其实就是 利用两个指向数组元素的指针 来搞事情
+	所以双指针其实也是有很多种类型
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment" spellcheck="true">/*
-    https://leetcode-cn.com/problems/move-zeroes/ 移动零
-    https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 删除有序数组的重复项
-*/</span>
-</code></pre>
-<h2 id="区域指针"><a href="#区域指针" class="headerlink" title="区域指针"></a>区域指针</h2><pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">/*
-    左右指针就是 两个指针一个在数组开始 一个在数组末端
-    一般用于寻找一个区域内的某个东西
-*/</span>
+<h2 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;*
+	快慢指针其实就是一个指针走的快 一个指针走得慢  题外话 在链表成环 快慢指针非常好用 类似于龟兔赛跑
+	slow fast 两个指针 快指针走的要比慢指针快
+	话不多说 来见题目
+*&#x2F; 
 
-<span class="token comment" spellcheck="true">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化)</span>
-  left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
-  <span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 根据具体内容写相应代码</span>
-  <span class="token punctuation">}</span>
+&#x2F;&#x2F; 通用格式(也只是参考而已，具体的还得看具体题目进行变化)
+  slow :&#x3D; 0
+  for fast :&#x3D; 0; fast &lt; len(array)-1; fast++ &#123;
+    &#x2F;&#x2F; 根据具体内容写相应代码
+  &#125;
 
-<span class="token comment" spellcheck="true">/*
-    https://leetcode-cn.com/problems/container-with-most-water/ 盛最多水的容器
-*/</span>
-</code></pre>
+&#x2F;*
+	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;move-zeroes&#x2F; 移动零
+	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;remove-duplicates-from-sorted-array&#x2F; 删除有序数组的重复项
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="区域指针"><a href="#区域指针" class="headerlink" title="区域指针"></a>区域指针</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go">&#x2F;*
+	左右指针就是 两个指针一个在数组开始 一个在数组末端
+	一般用于寻找一个区域内的某个东西
+*&#x2F;
+
+&#x2F;&#x2F; 通用格式(也只是参考而已，具体的还得看具体题目进行变化)
+  left, right :&#x3D; 0, 0
+  for left &lt;&#x3D; right &#123;
+    &#x2F;&#x2F; 根据具体内容写相应代码
+  &#125;
+
+&#x2F;*
+	https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;container-with-most-water&#x2F; 盛最多水的容器
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
             </div>
 
