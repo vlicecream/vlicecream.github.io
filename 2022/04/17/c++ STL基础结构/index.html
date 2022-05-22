@@ -156,25 +156,147 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="标准库与STL"><a href="#标准库与STL" class="headerlink" title="标准库与STL"></a>标准库与STL</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">标准库与STL的差别</span></span><br><span class="line"><span class="comment">	标准库 &gt; STL 标准库里面百分之70 80都是STL</span></span><br><span class="line"><span class="comment">	STL 六大部件</span></span><br><span class="line"><span class="comment">		容器</span></span><br><span class="line"><span class="comment">		分配器</span></span><br><span class="line"><span class="comment">		算法</span></span><br><span class="line"><span class="comment">		迭代器</span></span><br><span class="line"><span class="comment">		适配器</span></span><br><span class="line"><span class="comment">		防函数</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+                <h2 id="标准库与STL"><a href="#标准库与STL" class="headerlink" title="标准库与STL"></a>标准库与STL</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+标准库与STL的差别
+	标准库 &gt; STL 标准库里面百分之70 80都是STL
+	STL 六大部件
+		容器
+		分配器
+		算法
+		迭代器
+		适配器
+		防函数
+*&#x2F;</code></pre>
 
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 标准库以header files 形式呈现</span></span><br><span class="line"><span class="comment">// C++标准库的head files 不带.h 例如:</span></span><br><span class="line">	<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="comment">// 新式 C header files 不带.h 例如</span></span><br><span class="line">	<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="comment">// 旧式 C header files 带.h 仍然可用 例如</span></span><br><span class="line">	<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 标准库以header files 形式呈现
+&#x2F;&#x2F; C++标准库的head files 不带.h 例如:
+	#include &lt;vector&gt;
+&#x2F;&#x2F; 新式 C header files 不带.h 例如
+	#include &lt;cstdio&gt;
+&#x2F;&#x2F; 旧式 C header files 带.h 仍然可用 例如
+	#include &lt;stdio.h&gt;</code></pre>
 
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 新式headers内的组件封装于 命名空间namespace &quot;std&quot;</span></span><br><span class="line">using namespace <span class="built_in">std</span>;  <span class="comment">// 代表直接打开这个namespace 里面的随便用  推荐用这个</span></span><br><span class="line">using <span class="built_in">std</span>::<span class="built_in">cout</span> <span class="comment">// 就可以直接用cout来表示</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// example:</span></span><br><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line">  using namespace <span class="built_in">std</span>;</span><br></pre></td></tr></table></figure>
+<pre class="language-c" data-language="c"><code class="language-c">&#x2F;&#x2F; 新式headers内的组件封装于 命名空间namespace &quot;std&quot;
+using namespace std;  &#x2F;&#x2F; 代表直接打开这个namespace 里面的随便用  推荐用这个
+using std::cout &#x2F;&#x2F; 就可以直接用cout来表示
+  
+&#x2F;&#x2F; example:
+  #include &lt;string&gt;
+  #include &lt;iostream&gt;
+  #include &lt;vector&gt;
+  using namespace std;</code></pre>
 
 <p><strong>这里推荐直接用新式的习惯</strong></p>
-<h2 id="C-标准库-版本"><a href="#C-标准库-版本" class="headerlink" title="C++标准库 版本"></a>C++标准库 版本</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 版本其实不影响编程</span></span><br></pre></td></tr></table></figure>
+<h2 id="C-标准库-版本"><a href="#C-标准库-版本" class="headerlink" title="C++标准库 版本"></a>C++标准库 版本</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 版本其实不影响编程</code></pre>
 
-<h2 id="标准库重要网页"><a href="#标准库重要网页" class="headerlink" title="标准库重要网页"></a>标准库重要网页</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 标准库网页</span></span><br><span class="line">	CPlusPlus.com</span><br><span class="line">	CppReference.com</span><br><span class="line">	gcc.gnu.org</span><br><span class="line"></span><br><span class="line"><span class="comment">// 书籍介绍</span></span><br><span class="line">	THE C++ STANDARD LIBRARY</span><br><span class="line">	STL源码剖析</span><br></pre></td></tr></table></figure>
+<h2 id="标准库重要网页"><a href="#标准库重要网页" class="headerlink" title="标准库重要网页"></a>标准库重要网页</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 标准库网页
+	CPlusPlus.com
+	CppReference.com
+	gcc.gnu.org
+
+&#x2F;&#x2F; 书籍介绍
+	THE C++ STANDARD LIBRARY
+	STL源码剖析</code></pre>
 
 <h2 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220417210329737.png" alt="image-20220417210329737"></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	容器: 存放data的地方</span></span><br><span class="line"><span class="comment">	分配器: 分配内存的作用</span></span><br><span class="line"><span class="comment">	迭代器: 可以理解为一个指针</span></span><br><span class="line"><span class="comment">	算法: 比如 sort 之类的</span></span><br><span class="line"><span class="comment">	仿函数: 作用跟函数类似</span></span><br><span class="line"><span class="comment">	适配器: 相当于转换xxx的功能</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	容器: 存放data的地方
+	分配器: 分配内存的作用
+	迭代器: 可以理解为一个指针
+	算法: 比如 sort 之类的
+	仿函数: 作用跟函数类似
+	适配器: 相当于转换xxx的功能
+*&#x2F;</code></pre>
 
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="type">int</span> ia[<span class="number">6</span>] = &#123; <span class="number">27</span>, <span class="number">210</span>, <span class="number">12</span>, <span class="number">47</span>, <span class="number">109</span>, <span class="number">83</span> &#125;;</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="type">int</span>, allocator&lt;<span class="type">int</span>&gt;&gt; vi(ia, ia+<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;<span class="type">int</span>&gt;(), <span class="number">40</span>)));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">代码解析:</span></span><br><span class="line"><span class="comment">	vector 其实就是一个容器</span></span><br><span class="line"><span class="comment">	allocator: 分配器 可以不写 源代码会有默认的分配器用来分配内存</span></span><br><span class="line"><span class="comment">	count_if: 一种算法 能够帮我们在某种条件下计算元素的个数</span></span><br><span class="line"><span class="comment">	vi.begin(): 迭代器 传元素</span></span><br><span class="line"><span class="comment">	less: 仿函数 比大小 跟a, b比大小 取小</span></span><br><span class="line"><span class="comment">	bind2nd: 适配器  绑定第二个参数 此处就是可以跟40来比</span></span><br><span class="line"><span class="comment">	not1: 否定 原本是小于40  现在是大于等于40</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
 
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	O(1) or O(c) 常数时间</span></span><br><span class="line"><span class="comment">	O(n) 线性时间</span></span><br><span class="line"><span class="comment">	O(log2n) 次线性时间</span></span><br><span class="line"><span class="comment">	O(n平方) 平方时间</span></span><br><span class="line"><span class="comment">	O(n立方) 立方时间</span></span><br><span class="line"><span class="comment">	O(2n) 指数时间</span></span><br><span class="line"><span class="comment">	O(nlog2n) 介于线性及二次方之间的</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+using namespace std;
 
-<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="type">int</span> ia[<span class="number">6</span>] = &#123; <span class="number">27</span>, <span class="number">210</span>, <span class="number">12</span>, <span class="number">47</span>, <span class="number">109</span>, <span class="number">83</span> &#125;;</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="type">int</span>, allocator&lt;<span class="type">int</span>&gt;&gt; vi(ia, ia+<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;<span class="type">int</span>&gt;(), <span class="number">40</span>)));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	vi.begin() 指向ia数组的第一个元素的位置</span></span><br><span class="line"><span class="comment">	vi.end() 指向ia数组最后一个元素的下一个位置</span></span><br><span class="line"><span class="comment">	这种的我们就叫做前闭后开   [ )</span></span><br><span class="line"><span class="comment">	所以利用这个我们可以对这个容器用伪代码遍历</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">Container&lt;T&gt; c;  <span class="comment">// 创建一个容器</span></span><br><span class="line">...  <span class="comment">// 往容器塞值</span></span><br><span class="line">container&lt;T&gt;::iterator ite = c.begin()  <span class="comment">// 给一个迭代器</span></span><br><span class="line"><span class="keyword">for</span> (; ite != c.end(); ++ite) &#123; <span class="comment">// 如果这个迭代器不到c.end() 就执行代码</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在有一个可以优化上面的伪代码的方法</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="type">double</span>&gt; vec;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">auto</span> elem : vec) &#123;  <span class="comment">// auto的作用就是代替 container&lt;T&gt;::iterator</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; elem &lt;&lt; <span class="built_in">std</span>::end1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对auto也可以优化</span></span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">auto</span>&amp; elem : vec) &#123;</span><br><span class="line">  elem *= <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对auto再一次解释</span></span><br><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; c;</span><br><span class="line">...</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::iterator ite;</span><br><span class="line">ite = ::find(c.begin(), c.end(), target);</span><br><span class="line"><span class="comment">// 上述代码利用auto可以写成</span></span><br><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; c;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">auto</span> ite = ::find(c.begin(), c.end(), target);</span><br></pre></td></tr></table></figure>
+int main() &#123;
+  int ia[6] &#x3D; &#123; 27, 210, 12, 47, 109, 83 &#125;;
+  vector&lt;int, allocator&lt;int&gt;&gt; vi(ia, ia+6);
+
+  cout &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;int&gt;(), 40)));
+
+  return 0;
+&#125;
+
+&#x2F;*
+代码解析:
+	vector 其实就是一个容器
+	allocator: 分配器 可以不写 源代码会有默认的分配器用来分配内存
+	count_if: 一种算法 能够帮我们在某种条件下计算元素的个数
+	vi.begin(): 迭代器 传元素
+	less: 仿函数 比大小 跟a, b比大小 取小
+	bind2nd: 适配器  绑定第二个参数 此处就是可以跟40来比
+	not1: 否定 原本是小于40  现在是大于等于40
+*&#x2F;</code></pre>
+
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	O(1) or O(c) 常数时间
+	O(n) 线性时间
+	O(log2n) 次线性时间
+	O(n平方) 平方时间
+	O(n立方) 立方时间
+	O(2n) 指数时间
+	O(nlog2n) 介于线性及二次方之间的
+*&#x2F;</code></pre>
+
+<h2 id="前闭后开-区间"><a href="#前闭后开-区间" class="headerlink" title="前闭后开 区间"></a>前闭后开 区间</h2><pre class="language-c" data-language="c"><code class="language-c">#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+int main() &#123;
+  int ia[6] &#x3D; &#123; 27, 210, 12, 47, 109, 83 &#125;;
+  vector&lt;int, allocator&lt;int&gt;&gt; vi(ia, ia+6);
+
+  cout &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;int&gt;(), 40)));
+
+  return 0;
+&#125;
+
+
+&#x2F;*
+	vi.begin() 指向ia数组的第一个元素的位置
+	vi.end() 指向ia数组最后一个元素的下一个位置
+	这种的我们就叫做前闭后开   [ )
+	所以利用这个我们可以对这个容器用伪代码遍历
+*&#x2F;
+
+Container&lt;T&gt; c;  &#x2F;&#x2F; 创建一个容器
+...  &#x2F;&#x2F; 往容器塞值
+container&lt;T&gt;::iterator ite &#x3D; c.begin()  &#x2F;&#x2F; 给一个迭代器
+for (; ite !&#x3D; c.end(); ++ite) &#123; &#x2F;&#x2F; 如果这个迭代器不到c.end() 就执行代码
+  ...
+&#125;
+
+&#x2F;&#x2F; 现在有一个可以优化上面的伪代码的方法
+std::vector&lt;double&gt; vec;
+...
+for ( auto elem : vec) &#123;  &#x2F;&#x2F; auto的作用就是代替 container&lt;T&gt;::iterator
+  std::cout &lt;&lt; elem &lt;&lt; std::end1;
+&#125;
+
+&#x2F;&#x2F; 对auto也可以优化
+for ( auto&amp; elem : vec) &#123;
+  elem *&#x3D; 3
+&#125;
+
+&#x2F;&#x2F; 对auto再一次解释
+list&lt;string&gt; c;
+...
+list&lt;string&gt;::iterator ite;
+ite &#x3D; ::find(c.begin(), c.end(), target);
+&#x2F;&#x2F; 上述代码利用auto可以写成
+list&lt;string&gt; c;
+...
+auto ite &#x3D; ::find(c.begin(), c.end(), target);</code></pre>
 
 
             </div>

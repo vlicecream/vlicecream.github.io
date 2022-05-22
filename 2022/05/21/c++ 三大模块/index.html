@@ -156,25 +156,82 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="数量不定的模板参数"><a href="#数量不定的模板参数" class="headerlink" title="数量不定的模板参数"></a>数量不定的模板参数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 就是python 和 golang 的可变长参数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Types&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span> <span class="params">(<span class="type">const</span> T&amp; firstArg, <span class="type">const</span> Types&amp;.. args)</span> </span>&#123;</span><br><span class="line">  cout &lt;&lt; firstArg &lt;&lt; endl;</span><br><span class="line">  <span class="built_in">print</span>(args...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <h2 id="数量不定的模板参数"><a href="#数量不定的模板参数" class="headerlink" title="数量不定的模板参数"></a>数量不定的模板参数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 就是python 和 golang 的可变长参数
 
-<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	python 也有语法糖哦～ 糖很甜 吃糖的时候能有幸福感</span></span><br><span class="line"><span class="comment">  所以语法糖就是能让你感到很幸福 </span></span><br><span class="line"><span class="comment">  对于程序员 很幸福的事情是什么了 当然是秃头(不是)</span></span><br><span class="line"><span class="comment">  进入秃头 啊不是 进入主题</span></span><br><span class="line"><span class="comment">  语法糖就是能让你少写代码</span></span><br><span class="line"><span class="comment">  怎么样 是很幸福吧</span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
+template &lt;typename T, typename... Types&gt;
+void print (const T&amp; firstArg, const Types&amp;.. args) &#123;
+  cout &lt;&lt; firstArg &lt;&lt; endl;
+  print(args...);
+&#125;</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">list&lt;string&gt; c;</span><br><span class="line">...</span><br><span class="line">list&lt;string&gt;::iterator ite;</span><br><span class="line">ite = <span class="built_in">find</span>(c.<span class="built_in">begin</span>(), c.<span class="built_in">end</span>(), target);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这段代码就可以用 &quot;auto&quot; 这个语法糖来优化</span></span><br></pre></td></tr></table></figure>
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	python 也有语法糖哦～ 糖很甜 吃糖的时候能有幸福感
+  所以语法糖就是能让你感到很幸福 
+  对于程序员 很幸福的事情是什么了 当然是秃头(不是)
+  进入秃头 啊不是 进入主题
+  语法糖就是能让你少写代码
+  怎么样 是很幸福吧
+*&#x2F; </code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">list&lt;string&gt; c;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">auto</span> ite = <span class="built_in">find</span>(c.<span class="built_in">begin</span>(), c.<span class="built_in">end</span>(), target);</span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
+...
+list&lt;string&gt;::iterator ite;
+ite &#x3D; find(c.begin(), c.end(), target);
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// auto 可以让编译器帮我们 获取到这个变量的类型 那我们是不是都用auto就好了呢</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	答案肯定不是的 因为c++是一个能帮助我们写出很好的代码规范的一个高级语言 我们不能太依赖于auto 而且全部用auto 有时候也会报错的</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">list&lt;string&gt; c;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">auto</span> ite;</span><br><span class="line">ite = <span class="built_in">find</span>(c.<span class="built_in">begin</span>(), c.<span class="built_in">end</span>(), target);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样子的就是错误的</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 这段代码就可以用 &quot;auto&quot; 这个语法糖来优化</code></pre>
 
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// for循环 有很多种写法 </span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">list&lt;string&gt; c;
+...
+auto ite &#x3D; find(c.begin(), c.end(), target);</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="built_in">size</span>(vector); ++i) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; auto 可以让编译器帮我们 获取到这个变量的类型 那我们是不是都用auto就好了呢
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> ( dec1 : coll ) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	这种写法 &quot;:&quot; 后面跟的是容器 会将容器里面的值 一个个的遍历出来 放到 dec1 里面</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+&#x2F;*
+	答案肯定不是的 因为c++是一个能帮助我们写出很好的代码规范的一个高级语言 我们不能太依赖于auto 而且全部用auto 有时候也会报错的
+*&#x2F;
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i : &#123; <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;) &#123;</span><br><span class="line">  cout &lt;&lt; i &gt;&gt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	这种写法也是 会把 &#123; &#125; 内的元素 放到 i 中</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+list&lt;string&gt; c;
+...
+auto ite;
+ite &#x3D; find(c.begin(), c.end(), target);
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="type">double</span>&gt; vec;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">auto</span> elem : vec ) &#123;</span><br><span class="line">  cout &lt;&lt; elem &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// auto 获取elem 的类型 然后 遍历 vec 里面的元素 放到elem 里面 这种的是 pass by value</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; elem : vec ) &#123;</span><br><span class="line">  elem *= <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这种的是 pass by reference</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 这样子的就是错误的</code></pre>
+
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; for循环 有很多种写法 </code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 1; i &lt; size(vector); ++i) &#123;
+  ...
+&#125;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">for ( dec1 : coll ) &#123;
+  ...
+&#125;
+
+&#x2F;*
+	这种写法 &quot;:&quot; 后面跟的是容器 会将容器里面的值 一个个的遍历出来 放到 dec1 里面
+*&#x2F;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">for (int i : &#123; 2, 3, 4, 5, 6, 7&#125;) &#123;
+  cout &lt;&lt; i &gt;&gt; endl;
+&#125;
+
+&#x2F;*
+	这种写法也是 会把 &#123; &#125; 内的元素 放到 i 中
+*&#x2F;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">vector&lt;double&gt; vec;
+...
+for ( auto elem : vec ) &#123;
+  cout &lt;&lt; elem &lt;&lt; endl;
+&#125;
+
+&#x2F;&#x2F; auto 获取elem 的类型 然后 遍历 vec 里面的元素 放到elem 里面 这种的是 pass by value
+
+for (auto&amp; elem : vec ) &#123;
+  elem *&#x3D; 3;
+&#125;
+
+&#x2F;&#x2F; 这种的是 pass by reference</code></pre>
 
 
             </div>

@@ -156,19 +156,257 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、DJANGO中间件前戏"><a href="#一、DJANGO中间件前戏" class="headerlink" title="一、DJANGO中间件前戏"></a>一、DJANGO中间件前戏</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">django中间件是django的门户</span></span><br><span class="line"><span class="string">1.请求来的时候需要先经过中间件才能到达真正的django后端</span></span><br><span class="line"><span class="string">2.响应走的时候最后也需要经过中间件才能发送出去</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">django自带七个中间件</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">1.</span> django请求生命周期流程图</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 研究django中间件代码规律</span><br><span class="line"></span><br><span class="line">    MIDDLEWARE = [</span><br><span class="line">        <span class="string">&#x27;django.middleware.security.SecurityMiddleware&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;django.contrib.sessions.middleware.SessionMiddleware&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;django.middleware.common.CommonMiddleware&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;django.middleware.csrf.CsrfViewMiddleware&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;django.contrib.auth.middleware.AuthenticationMiddleware&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;django.contrib.messages.middleware.MessageMiddleware&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;django.middleware.clickjacking.XFrameOptionsMiddleware&#x27;</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SessionMiddleware</span>(<span class="title class_ inherited__">MiddlewareMixin</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">process_request</span>(<span class="params">self, request</span>):</span><br><span class="line">            session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME)</span><br><span class="line">            request.session = self.SessionStore(session_key)</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">process_response</span>(<span class="params">self, request, response</span>):</span><br><span class="line">            <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">CsrfViewMiddleware</span>(<span class="title class_ inherited__">MiddlewareMixin</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">process_request</span>(<span class="params">self, request</span>):</span><br><span class="line">            csrf_token = self._get_token(request)</span><br><span class="line">            <span class="keyword">if</span> csrf_token <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="comment"># Use same token next time.</span></span><br><span class="line">                request.META[<span class="string">&#x27;CSRF_COOKIE&#x27;</span>] = csrf_token</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">process_view</span>(<span class="params">self, request, callback, callback_args, callback_kwargs</span>):</span><br><span class="line">            <span class="keyword">return</span> self._accept(request)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">process_response</span>(<span class="params">self, request, response</span>):</span><br><span class="line">            <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">AuthenticationMiddleware</span>(<span class="title class_ inherited__">MiddlewareMixin</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">process_request</span>(<span class="params">self, request</span>):</span><br><span class="line">            request.user = SimpleLazyObject(<span class="keyword">lambda</span>: get_user(request))</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    django支持程序员自定义中间件并且暴露给程序员五个可以自定义的方法</span></span><br><span class="line"><span class="string">        1.必须掌握</span></span><br><span class="line"><span class="string">            process_request</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            process_response</span></span><br><span class="line"><span class="string">        2.了解即可</span></span><br><span class="line"><span class="string">            process_view</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            process_template_response</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            process_exception</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+                <h2 id="一、DJANGO中间件前戏"><a href="#一、DJANGO中间件前戏" class="headerlink" title="一、DJANGO中间件前戏"></a>一、DJANGO中间件前戏</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+django中间件是django的门户
+1.请求来的时候需要先经过中间件才能到达真正的django后端
+2.响应走的时候最后也需要经过中间件才能发送出去
 
-<h2 id="二、DJANGO中间件必须掌握的方法"><a href="#二、DJANGO中间件必须掌握的方法" class="headerlink" title="二、DJANGO中间件必须掌握的方法"></a>二、DJANGO中间件必须掌握的方法</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1.在项目名或者应用名下创建一个任意名称的文件夹</span></span><br><span class="line"><span class="string">2.在该文件夹内创建一个任意名称的py文件</span></span><br><span class="line"><span class="string">3.在该py文件内需要书写类(这个类必须继承MiddlewareMixin)</span></span><br><span class="line"><span class="string">	然后在这个类里面就可以自定义五个方法了</span></span><br><span class="line"><span class="string">	(这五个方法并不是全部都需要书写，用几个写几个)</span></span><br><span class="line"><span class="string">4.需要将类的路径以字符串的形式注册到配置文件中才能生效</span></span><br><span class="line"><span class="string">MIDDLEWARE = [</span></span><br><span class="line"><span class="string">    &#x27;django.middleware.security.SecurityMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;django.contrib.sessions.middleware.SessionMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;django.middleware.common.CommonMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;django.middleware.csrf.CsrfViewMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;django.contrib.auth.middleware.AuthenticationMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;django.contrib.messages.middleware.MessageMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;django.middleware.clickjacking.XFrameOptionsMiddleware&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;你自己写的中间件的路径1&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;你自己写的中间件的路径2&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;你自己写的中间件的路径3&#x27;,</span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1.必须掌握</span></span><br><span class="line"><span class="string">		process_request </span></span><br><span class="line"><span class="string">			1.请求来的时候需要经过每一个中间件里面的process_request方法</span></span><br><span class="line"><span class="string">			结果的顺序是按照配置文件中注册的中间件从上往下的顺序依次执行</span></span><br><span class="line"><span class="string">			2.如果中间件里面没有定义该方法，那么直接跳过执行下一个中间件</span></span><br><span class="line"><span class="string">			3.如果该方法返回了HttpResponse对象，那么请求将不再继续往后执行</span></span><br><span class="line"><span class="string">			而是直接原路返回(校验失败不允许访问...)</span></span><br><span class="line"><span class="string">			process_request方法就是用来做全局相关的所有限制功能</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">		process_response</span></span><br><span class="line"><span class="string">			1.响应走的时候需要结果每一个中间件里面的process_response方法</span></span><br><span class="line"><span class="string">			该方法有两个额外的参数request,response</span></span><br><span class="line"><span class="string">			2.该方法必须返回一个HttpResponse对象</span></span><br><span class="line"><span class="string">				1.默认返回的就是形参response</span></span><br><span class="line"><span class="string">				2.你也可以自己返回自己的</span></span><br><span class="line"><span class="string">			3.顺序是按照配置文件中注册了的中间件从下往上依次经过</span></span><br><span class="line"><span class="string">				如果你没有定义的话 直接跳过执行下一个</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		研究如果在第一个process_request方法就已经返回了HttpResponse对象，那么响应走的时候是经过所有的中间件里面的process_response还是有其他情况</span></span><br><span class="line"><span class="string">		是其他情况</span></span><br><span class="line"><span class="string">			就是会直接走同级别的process_reponse返回</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		flask框架也有一个中间件但是它的规律</span></span><br><span class="line"><span class="string">			只要返回数据了就必须经过所有中间件里面的类似于process_reponse方法</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">2.了解即可</span></span><br><span class="line"><span class="string">		process_view</span></span><br><span class="line"><span class="string">			路由匹配成功之后执行视图函数之前，会自动执行中间件里面的该放法</span></span><br><span class="line"><span class="string">			顺序是按照配置文件中注册的中间件从上往下的顺序依次执行</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">		process_template_response</span></span><br><span class="line"><span class="string">			返回的HttpResponse对象有render属性的时候才会触发</span></span><br><span class="line"><span class="string">			顺序是按照配置文件中注册了的中间件从下往上依次经过</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">		process_exception</span></span><br><span class="line"><span class="string">			当视图函数中出现异常的情况下触发</span></span><br><span class="line"><span class="string">			顺序是按照配置文件中注册了的中间件从下往上依次经过</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+django自带七个中间件
+&quot;&quot;&quot;
+1. django请求生命周期流程图
 
-<h2 id="三、CSRF跨站请求伪造"><a href="#三、CSRF跨站请求伪造" class="headerlink" title="三、CSRF跨站请求伪造"></a>三、CSRF跨站请求伪造</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 什么是钓鱼网站	</span><br><span class="line">    <span class="number">1.1</span> 钓鱼网站</span><br><span class="line">            我搭建一个跟正规网站一模一样的界面(中国银行)</span><br><span class="line">            用户不小心进入到了我们的网站，用户给某个人打钱</span><br><span class="line">            打钱的操作确确实实是提交给了中国银行的系统，用户的钱也确确实实减少了</span><br><span class="line">            但是唯一不同的时候打钱的账户不适用户想要打的账户变成了一个莫名其妙的账户</span><br><span class="line"></span><br><span class="line">    <span class="number">1.2</span> 内部本质</span><br><span class="line">            我们在钓鱼网站的页面 针对对方账户 只给用户提供一个没有name属性的普通<span class="built_in">input</span>框</span><br><span class="line">            然后我们在内部隐藏一个已经写好name和value的<span class="built_in">input</span>框</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>如何规避上述问题</span><br><span class="line">	csrf跨站请求伪造校验</span><br><span class="line">		网站在给用户返回一个具有提交数据功能页面的时候会给这个页面加一个唯一标识</span><br><span class="line">		当这个页面朝后端发送post请求的时候 我的后端会先校验唯一标识，如果唯一标识不对直接拒绝(<span class="number">403</span> forbbiden)如果成功则正常执行	</span><br></pre></td></tr></table></figure>
+2. 研究django中间件代码规律
 
-<h2 id="四、CSRF校验"><a href="#四、CSRF校验" class="headerlink" title="四、CSRF校验"></a>四、CSRF校验</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>form&amp;Ajax校验</span><br><span class="line">    <span class="comment"># form表单如何符合校验</span></span><br><span class="line">    &lt;form action=<span class="string">&quot;&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">        &lt;p&gt;username:&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;username&quot;</span>&gt;&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;target_user:&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;target_user&quot;</span>&gt;&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;money:&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;money&quot;</span>&gt;&lt;/p&gt;</span><br><span class="line">        &lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ajax如何符合校验</span></span><br><span class="line">    // 第一种 利用标签查找获取页面上的随机字符串</span><br><span class="line">    &#123;<span class="comment">#data:&#123;&quot;username&quot;:&#x27;jason&#x27;,&#x27;csrfmiddlewaretoken&#x27;:$(&#x27;[name=csrfmiddlewaretoken]&#x27;).val()&#125;,#&#125;</span></span><br><span class="line">    // 第二种 利用模版语法提供的快捷书写</span><br><span class="line">    &#123;<span class="comment">#data:&#123;&quot;username&quot;:&#x27;jason&#x27;,&#x27;csrfmiddlewaretoken&#x27;:&#x27;&#123;&#123; csrf_token &#125;&#125;&#x27;&#125;,#&#125;</span></span><br><span class="line">    // 第三种 通用方式直接拷贝js代码并应用到自己的html页面上即可</span><br><span class="line">    data:&#123;<span class="string">&quot;username&quot;</span>:<span class="string">&#x27;jason&#x27;</span>&#125;</span><br><span class="line"><span class="number">2.j</span>s代码</span><br><span class="line">    function getCookie(name) &#123;</span><br><span class="line">        var cookieValue = null;</span><br><span class="line">        <span class="keyword">if</span> (document.cookie &amp;&amp; document.cookie !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">            var cookies = document.cookie.split(<span class="string">&#x27;;&#x27;</span>);</span><br><span class="line">            <span class="keyword">for</span> (var i = <span class="number">0</span>; i &lt; cookies.length; i++) &#123;</span><br><span class="line">                var cookie = jQuery.trim(cookies[i]);</span><br><span class="line">                // Does this cookie string begin <span class="keyword">with</span> the name we want?</span><br><span class="line">                <span class="keyword">if</span> (cookie.substring(<span class="number">0</span>, name.length + <span class="number">1</span>) === (name + <span class="string">&#x27;=&#x27;</span>)) &#123;</span><br><span class="line">                    cookieValue = decodeURIComponent(cookie.substring(name.length + <span class="number">1</span>));</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cookieValue;</span><br><span class="line">    &#125;</span><br><span class="line">    var csrftoken = getCookie(<span class="string">&#x27;csrftoken&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function csrfSafeMethod(method) &#123;</span><br><span class="line">        // these HTTP methods do <span class="keyword">not</span> require CSRF protection</span><br><span class="line">        <span class="keyword">return</span> (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $.ajaxSetup(&#123;</span><br><span class="line">        beforeSend: function (xhr, settings) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!csrfSafeMethod(settings.<span class="built_in">type</span>) &amp;&amp; !this.crossDomain) &#123;</span><br><span class="line">                xhr.setRequestHeader(<span class="string">&quot;X-CSRFToken&quot;</span>, csrftoken);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+    MIDDLEWARE &#x3D; [
+        &#39;django.middleware.security.SecurityMiddleware&#39;,
+        &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;,
+        &#39;django.middleware.common.CommonMiddleware&#39;,
+        &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+        &#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;,
+        &#39;django.contrib.messages.middleware.MessageMiddleware&#39;,
+        &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+    ]
 
-<h2 id="五、CSRF相关装饰器"><a href="#五、CSRF相关装饰器" class="headerlink" title="五、CSRF相关装饰器"></a>五、CSRF相关装饰器</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1.网站整体都不校验csrf，就单单几个视图函数需要校验</span></span><br><span class="line"><span class="string">2.网站整体都校验csrf，就单单几个视图函数不校验</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_protect,csrf_exempt</span><br><span class="line"><span class="keyword">from</span> django.utils.decorators <span class="keyword">import</span> method_decorator</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">csrf_protect  需要校验</span></span><br><span class="line"><span class="string">    针对csrf_protect符合我们之前所学的装饰器的三种玩法</span></span><br><span class="line"><span class="string">csrf_exempt   忽视校验</span></span><br><span class="line"><span class="string">    针对csrf_exempt只能给dispatch方法加才有效</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="meta">@csrf_protect</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transfer</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        username = request.POST.get(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line">        target_user = request.POST.get(<span class="string">&#x27;target_user&#x27;</span>)</span><br><span class="line">        money = request.POST.get(<span class="string">&#x27;money&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s给%s转了%s元&#x27;</span>%(username,target_user,money))</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">&#x27;transfer.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line"></span><br><span class="line"><span class="meta">@method_decorator(<span class="params">csrf_protect,name=<span class="string">&#x27;post&#x27;</span></span>)  </span><span class="comment"># 针对csrf_protect 第二种方式可以</span></span><br><span class="line"><span class="meta">@method_decorator(<span class="params">csrf_exempt,name=<span class="string">&#x27;post&#x27;</span></span>)  </span><span class="comment"># 针对csrf_exempt 第二种方式不可以</span></span><br><span class="line"><span class="meta">@method_decorator(<span class="params">csrf_exempt,name=<span class="string">&#x27;dispatch&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyCsrfToken</span>(<span class="title class_ inherited__">View</span>):</span><br><span class="line"><span class="meta">    @method_decorator(<span class="params">csrf_protect</span>)  </span><span class="comment"># 针对csrf_protect 第三种方式可以</span></span><br><span class="line"><span class="meta">    @method_decorator(<span class="params">csrf_exempt</span>)  </span><span class="comment"># 针对csrf_exempt 第三种方式可以</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dispatch</span>(<span class="params">self, request, *args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>(MyCsrfToken, self).dispatch(request,*args,**kwargs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self,request</span>):</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;get&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @method_decorator(<span class="params">csrf_protect</span>)  </span><span class="comment"># 针对csrf_protect 第一种方式可以</span></span><br><span class="line"><span class="meta">    @method_decorator(<span class="params">csrf_exempt</span>)  </span><span class="comment"># 针对csrf_exempt 第一种方式不可以</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">post</span>(<span class="params">self,request</span>):</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;post&#x27;</span>)</span><br></pre></td></tr></table></figure>
+    class SessionMiddleware(MiddlewareMixin):
+        def process_request(self, request):
+            session_key &#x3D; request.COOKIES.get(settings.SESSION_COOKIE_NAME)
+            request.session &#x3D; self.SessionStore(session_key)
+        def process_response(self, request, response):
+            return response
 
-<h2 id="六、补充知识点-IMPORTLIB"><a href="#六、补充知识点-IMPORTLIB" class="headerlink" title="六、补充知识点(IMPORTLIB)"></a>六、补充知识点(IMPORTLIB)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 模块:importlib</span></span><br><span class="line"><span class="keyword">import</span> importlib</span><br><span class="line">res = <span class="string">&#x27;myfile.b&#x27;</span></span><br><span class="line">ret = importlib.import_module(res)  <span class="comment"># from myfile import b</span></span><br><span class="line"><span class="comment"># 该方法最小只能到py文件名</span></span><br><span class="line"><span class="built_in">print</span>(ret)</span><br></pre></td></tr></table></figure>
+    class CsrfViewMiddleware(MiddlewareMixin):
+        def process_request(self, request):
+            csrf_token &#x3D; self._get_token(request)
+            if csrf_token is not None:
+                # Use same token next time.
+                request.META[&#39;CSRF_COOKIE&#39;] &#x3D; csrf_token
+        def process_view(self, request, callback, callback_args, callback_kwargs):
+            return self._accept(request)
 
-<h2 id="七、重要思想"><a href="#七、重要思想" class="headerlink" title="七、重要思想"></a>七、重要思想</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">import</span> importlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_all</span>(<span class="params">content</span>):</span><br><span class="line">    <span class="keyword">for</span> path_str <span class="keyword">in</span> settings.NOTIFY_LIST:  <span class="comment">#&#x27;notify.email.Email&#x27;</span></span><br><span class="line">        module_path,class_name = path_str.rsplit(<span class="string">&#x27;.&#x27;</span>,maxsplit=<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># module_path = &#x27;notify.email&#x27;  class_name = &#x27;Email&#x27;</span></span><br><span class="line">        <span class="comment"># 1 利用字符串导入模块</span></span><br><span class="line">        module = importlib.import_module(module_path)  <span class="comment"># from notify import email</span></span><br><span class="line">        <span class="comment"># 2 利用反射获取类名</span></span><br><span class="line">        cls = <span class="built_in">getattr</span>(module,class_name)  <span class="comment"># Email、QQ、Wechat</span></span><br><span class="line">        <span class="comment"># 3 生成类的对象</span></span><br><span class="line">        obj = cls()</span><br><span class="line">        <span class="comment"># 4 利用鸭子类型直接调用send方法</span></span><br><span class="line">        obj.send(content)</span><br></pre></td></tr></table></figure>
+        def process_response(self, request, response):
+            return response
+
+    class AuthenticationMiddleware(MiddlewareMixin):
+        def process_request(self, request):
+            request.user &#x3D; SimpleLazyObject(lambda: get_user(request))
+    &quot;&quot;&quot;
+    django支持程序员自定义中间件并且暴露给程序员五个可以自定义的方法
+        1.必须掌握
+            process_request
+
+            process_response
+        2.了解即可
+            process_view
+
+            process_template_response
+
+            process_exception
+    &quot;&quot;&quot;</code></pre>
+
+<h2 id="二、DJANGO中间件必须掌握的方法"><a href="#二、DJANGO中间件必须掌握的方法" class="headerlink" title="二、DJANGO中间件必须掌握的方法"></a>二、DJANGO中间件必须掌握的方法</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+1.在项目名或者应用名下创建一个任意名称的文件夹
+2.在该文件夹内创建一个任意名称的py文件
+3.在该py文件内需要书写类(这个类必须继承MiddlewareMixin)
+	然后在这个类里面就可以自定义五个方法了
+	(这五个方法并不是全部都需要书写，用几个写几个)
+4.需要将类的路径以字符串的形式注册到配置文件中才能生效
+MIDDLEWARE &#x3D; [
+    &#39;django.middleware.security.SecurityMiddleware&#39;,
+    &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;,
+    &#39;django.middleware.common.CommonMiddleware&#39;,
+    &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+    &#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;,
+    &#39;django.contrib.messages.middleware.MessageMiddleware&#39;,
+    &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+    &#39;你自己写的中间件的路径1&#39;,
+    &#39;你自己写的中间件的路径2&#39;,
+    &#39;你自己写的中间件的路径3&#39;,
+]
+
+&quot;&quot;&quot;
+&quot;&quot;&quot;
+1.必须掌握
+		process_request 
+			1.请求来的时候需要经过每一个中间件里面的process_request方法
+			结果的顺序是按照配置文件中注册的中间件从上往下的顺序依次执行
+			2.如果中间件里面没有定义该方法，那么直接跳过执行下一个中间件
+			3.如果该方法返回了HttpResponse对象，那么请求将不再继续往后执行
+			而是直接原路返回(校验失败不允许访问...)
+			process_request方法就是用来做全局相关的所有限制功能
+			
+		process_response
+			1.响应走的时候需要结果每一个中间件里面的process_response方法
+			该方法有两个额外的参数request,response
+			2.该方法必须返回一个HttpResponse对象
+				1.默认返回的就是形参response
+				2.你也可以自己返回自己的
+			3.顺序是按照配置文件中注册了的中间件从下往上依次经过
+				如果你没有定义的话 直接跳过执行下一个
+		
+		研究如果在第一个process_request方法就已经返回了HttpResponse对象，那么响应走的时候是经过所有的中间件里面的process_response还是有其他情况
+		是其他情况
+			就是会直接走同级别的process_reponse返回
+		
+		flask框架也有一个中间件但是它的规律
+			只要返回数据了就必须经过所有中间件里面的类似于process_reponse方法
+			
+			
+2.了解即可
+		process_view
+			路由匹配成功之后执行视图函数之前，会自动执行中间件里面的该放法
+			顺序是按照配置文件中注册的中间件从上往下的顺序依次执行
+			
+		process_template_response
+			返回的HttpResponse对象有render属性的时候才会触发
+			顺序是按照配置文件中注册了的中间件从下往上依次经过
+			
+		process_exception
+			当视图函数中出现异常的情况下触发
+			顺序是按照配置文件中注册了的中间件从下往上依次经过
+&quot;&quot;&quot;
+	</code></pre>
+
+<h2 id="三、CSRF跨站请求伪造"><a href="#三、CSRF跨站请求伪造" class="headerlink" title="三、CSRF跨站请求伪造"></a>三、CSRF跨站请求伪造</h2><pre class="language-python" data-language="python"><code class="language-python">1. 什么是钓鱼网站	
+    1.1 钓鱼网站
+            我搭建一个跟正规网站一模一样的界面(中国银行)
+            用户不小心进入到了我们的网站，用户给某个人打钱
+            打钱的操作确确实实是提交给了中国银行的系统，用户的钱也确确实实减少了
+            但是唯一不同的时候打钱的账户不适用户想要打的账户变成了一个莫名其妙的账户
+
+    1.2 内部本质
+            我们在钓鱼网站的页面 针对对方账户 只给用户提供一个没有name属性的普通input框
+            然后我们在内部隐藏一个已经写好name和value的input框
+
+2.如何规避上述问题
+	csrf跨站请求伪造校验
+		网站在给用户返回一个具有提交数据功能页面的时候会给这个页面加一个唯一标识
+		当这个页面朝后端发送post请求的时候 我的后端会先校验唯一标识，如果唯一标识不对直接拒绝(403 forbbiden)如果成功则正常执行	</code></pre>
+
+<h2 id="四、CSRF校验"><a href="#四、CSRF校验" class="headerlink" title="四、CSRF校验"></a>四、CSRF校验</h2><pre class="language-python" data-language="python"><code class="language-python">1.form&amp;Ajax校验
+    # form表单如何符合校验
+    &lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt;
+        &#123;% csrf_token %&#125;
+        &lt;p&gt;username:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;&#x2F;p&gt;
+        &lt;p&gt;target_user:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;target_user&quot;&gt;&lt;&#x2F;p&gt;
+        &lt;p&gt;money:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;money&quot;&gt;&lt;&#x2F;p&gt;
+        &lt;input type&#x3D;&quot;submit&quot;&gt;
+    &lt;&#x2F;form&gt;
+
+    # ajax如何符合校验
+    &#x2F;&#x2F; 第一种 利用标签查找获取页面上的随机字符串
+    &#123;#data:&#123;&quot;username&quot;:&#39;jason&#39;,&#39;csrfmiddlewaretoken&#39;:$(&#39;[name&#x3D;csrfmiddlewaretoken]&#39;).val()&#125;,#&#125;
+    &#x2F;&#x2F; 第二种 利用模版语法提供的快捷书写
+    &#123;#data:&#123;&quot;username&quot;:&#39;jason&#39;,&#39;csrfmiddlewaretoken&#39;:&#39;&#123;&#123; csrf_token &#125;&#125;&#39;&#125;,#&#125;
+    &#x2F;&#x2F; 第三种 通用方式直接拷贝js代码并应用到自己的html页面上即可
+    data:&#123;&quot;username&quot;:&#39;jason&#39;&#125;
+2.js代码
+    function getCookie(name) &#123;
+        var cookieValue &#x3D; null;
+        if (document.cookie &amp;&amp; document.cookie !&#x3D;&#x3D; &#39;&#39;) &#123;
+            var cookies &#x3D; document.cookie.split(&#39;;&#39;);
+            for (var i &#x3D; 0; i &lt; cookies.length; i++) &#123;
+                var cookie &#x3D; jQuery.trim(cookies[i]);
+                &#x2F;&#x2F; Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) &#x3D;&#x3D;&#x3D; (name + &#39;&#x3D;&#39;)) &#123;
+                    cookieValue &#x3D; decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        return cookieValue;
+    &#125;
+    var csrftoken &#x3D; getCookie(&#39;csrftoken&#39;);
+
+
+    function csrfSafeMethod(method) &#123;
+        &#x2F;&#x2F; these HTTP methods do not require CSRF protection
+        return (&#x2F;^(GET|HEAD|OPTIONS|TRACE)$&#x2F;.test(method));
+    &#125;
+
+    $.ajaxSetup(&#123;
+        beforeSend: function (xhr, settings) &#123;
+            if (!csrfSafeMethod(settings.type) &amp;&amp; !this.crossDomain) &#123;
+                xhr.setRequestHeader(&quot;X-CSRFToken&quot;, csrftoken);
+            &#125;
+        &#125;
+    &#125;);</code></pre>
+
+<h2 id="五、CSRF相关装饰器"><a href="#五、CSRF相关装饰器" class="headerlink" title="五、CSRF相关装饰器"></a>五、CSRF相关装饰器</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+1.网站整体都不校验csrf，就单单几个视图函数需要校验
+2.网站整体都校验csrf，就单单几个视图函数不校验
+&quot;&quot;&quot;
+from django.views.decorators.csrf import csrf_protect,csrf_exempt
+from django.utils.decorators import method_decorator
+&quot;&quot;&quot;
+csrf_protect  需要校验
+    针对csrf_protect符合我们之前所学的装饰器的三种玩法
+csrf_exempt   忽视校验
+    针对csrf_exempt只能给dispatch方法加才有效
+&quot;&quot;&quot;
+@csrf_exempt
+@csrf_protect
+def transfer(request):
+    if request.method &#x3D;&#x3D; &#39;POST&#39;:
+        username &#x3D; request.POST.get(&#39;username&#39;)
+        target_user &#x3D; request.POST.get(&#39;target_user&#39;)
+        money &#x3D; request.POST.get(&#39;money&#39;)
+        print(&#39;%s给%s转了%s元&#39;%(username,target_user,money))
+    return render(request,&#39;transfer.html&#39;)
+
+
+
+from django.views import View
+
+@method_decorator(csrf_protect,name&#x3D;&#39;post&#39;)  # 针对csrf_protect 第二种方式可以
+@method_decorator(csrf_exempt,name&#x3D;&#39;post&#39;)  # 针对csrf_exempt 第二种方式不可以
+@method_decorator(csrf_exempt,name&#x3D;&#39;dispatch&#39;)
+class MyCsrfToken(View):
+    @method_decorator(csrf_protect)  # 针对csrf_protect 第三种方式可以
+    @method_decorator(csrf_exempt)  # 针对csrf_exempt 第三种方式可以
+    def dispatch(self, request, *args, **kwargs):
+        return super(MyCsrfToken, self).dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        return HttpResponse(&#39;get&#39;)
+
+    @method_decorator(csrf_protect)  # 针对csrf_protect 第一种方式可以
+    @method_decorator(csrf_exempt)  # 针对csrf_exempt 第一种方式不可以
+    def post(self,request):
+        return HttpResponse(&#39;post&#39;)</code></pre>
+
+<h2 id="六、补充知识点-IMPORTLIB"><a href="#六、补充知识点-IMPORTLIB" class="headerlink" title="六、补充知识点(IMPORTLIB)"></a>六、补充知识点(IMPORTLIB)</h2><pre class="language-python" data-language="python"><code class="language-python"># 模块:importlib
+import importlib
+res &#x3D; &#39;myfile.b&#39;
+ret &#x3D; importlib.import_module(res)  # from myfile import b
+# 该方法最小只能到py文件名
+print(ret)</code></pre>
+
+<h2 id="七、重要思想"><a href="#七、重要思想" class="headerlink" title="七、重要思想"></a>七、重要思想</h2><pre class="language-python" data-language="python"><code class="language-python">import settings
+import importlib
+
+
+def send_all(content):
+    for path_str in settings.NOTIFY_LIST:  #&#39;notify.email.Email&#39;
+        module_path,class_name &#x3D; path_str.rsplit(&#39;.&#39;,maxsplit&#x3D;1)
+        # module_path &#x3D; &#39;notify.email&#39;  class_name &#x3D; &#39;Email&#39;
+        # 1 利用字符串导入模块
+        module &#x3D; importlib.import_module(module_path)  # from notify import email
+        # 2 利用反射获取类名
+        cls &#x3D; getattr(module,class_name)  # Email、QQ、Wechat
+        # 3 生成类的对象
+        obj &#x3D; cls()
+        # 4 利用鸭子类型直接调用send方法
+        obj.send(content)</code></pre>
 
             </div>
 

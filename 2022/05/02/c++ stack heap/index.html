@@ -156,25 +156,85 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span> &#123; ... &#125;;</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">  <span class="function">Complex <span class="title">c1</span><span class="params">(<span class="number">1</span> ,<span class="number">2</span>)</span></span>;  <span class="comment">// s1所占用的空间来自stack</span></span><br><span class="line">  Complex* p = <span class="keyword">new</span> <span class="built_in">complex</span>(<span class="number">3</span>);  <span class="comment">// complex(3) 是个临时动态 占用空间乃是以new分配 并由heap保管</span></span><br><span class="line">  <span class="comment">// 用new就得自己手动的delete掉</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <pre class="language-c++" data-language="c++"><code class="language-c++">class complex &#123; ... &#125;;
+...
+&#123;
+  Complex c1(1 ,2);  &#x2F;&#x2F; s1所占用的空间来自stack
+  Complex* p &#x3D; new complex(3);  &#x2F;&#x2F; complex(3) 是个临时动态 占用空间乃是以new分配 并由heap保管
+  &#x2F;&#x2F; 用new就得自己手动的delete掉
+&#125;</code></pre>
 
-<h2 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	存在于scope(作用域)的一块内存空间</span></span><br><span class="line"><span class="comment">	当你调用函数 函数本身即会形成一个stack用来放置他所接受的参数 以及返回地址</span></span><br><span class="line"><span class="comment">	在函数本体内声明的任何变量 其所使用的内存块都取自上述的stack</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	存在于scope(作用域)的一块内存空间
+	当你调用函数 函数本身即会形成一个stack用来放置他所接受的参数 以及返回地址
+	在函数本体内声明的任何变量 其所使用的内存块都取自上述的stack
+*&#x2F;</code></pre>
 
-<h2 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	由操作系统提供的一块golbal内存空间 程序可动态分配从某中获得若干区块</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	由操作系统提供的一块golbal内存空间 程序可动态分配从某中获得若干区块
+*&#x2F;</code></pre>
 
-<h2 id="stack-objects-的生命周期"><a href="#stack-objects-的生命周期" class="headerlink" title="stack objects 的生命周期"></a>stack objects 的生命周期</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在scope结束之际结束 就会调用他的析构函数</span></span><br><span class="line"><span class="comment">// 这种作用域内的object 又称为 auto object 因为会被自动清理</span></span><br></pre></td></tr></table></figure>
+<h2 id="stack-objects-的生命周期"><a href="#stack-objects-的生命周期" class="headerlink" title="stack objects 的生命周期"></a>stack objects 的生命周期</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 在scope结束之际结束 就会调用他的析构函数
+&#x2F;&#x2F; 这种作用域内的object 又称为 auto object 因为会被自动清理</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> &#123; ... &#125;;</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="type">static</span> Complex <span class="title">c2</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c2 便是所谓的static object 生命在作用域scope 结束之后仍然存在 直到整个程序结束</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">class Complex &#123; ... &#125;;
+...
+&#123;
+  static Complex c2(1, 2); 
+&#125;
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Conplex</span> &#123; ... &#125;;</span><br><span class="line">...</span><br><span class="line"><span class="function">Complex <span class="title">c3</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c3 是在全局作用域中 golbal object 其生命在整个程序结束之后才结束</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; c2 便是所谓的static object 生命在作用域scope 结束之后仍然存在 直到整个程序结束</code></pre>
 
-<h2 id="Heap-objects-生命周期"><a href="#Heap-objects-生命周期" class="headerlink" title="Heap objects 生命周期"></a>Heap objects 生命周期</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> &#123; ... &#125;;</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">  complex* p = <span class="keyword">new</span> complex;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	p 所指的便是heap object 其生命在他被deleted之际结束</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">class Conplex &#123; ... &#125;;
+...
+Complex c3(1, 2);
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> &#123; ... &#125;;</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">  complex* p = <span class="keyword">new</span> complex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	这会出现内存泄漏</span></span><br><span class="line"><span class="comment">	当作用域结束后 heap object还存在 然后指针p已经死了 所以没有办法 delete</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+int main() &#123;
+  ...
+&#125;
 
-<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// new: 先分配memory 再调用ctor</span></span><br><span class="line">  </span><br><span class="line">complex* pc = <span class="keyword">new</span> <span class="built_in">Complex</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译器转换为</span></span><br><span class="line">Complex* pc;</span><br><span class="line"><span class="type">void</span> *mem = <span class="keyword">operator</span> <span class="built_in">new</span>( <span class="built_in">sizeof</span>(complex) );  <span class="comment">// 分配内存 其内部调用malloc(n)</span></span><br><span class="line">pc = <span class="built_in">static_cast</span>&lt;Complex*&gt;(mem);  <span class="comment">//转型</span></span><br><span class="line">pc-&gt;Complex::<span class="built_in">Complex</span>(<span class="number">1</span>, <span class="number">2</span>); </span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; c3 是在全局作用域中 golbal object 其生命在整个程序结束之后才结束</code></pre>
 
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 先调用dtor 在释放memory</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> ps;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译器转换为</span></span><br><span class="line">String::~<span class="built_in">String</span>(ps); <span class="comment">// 析构函数</span></span><br><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(ps)</span></span>; <span class="comment">// 释放内存</span></span><br></pre></td></tr></table></figure>
+<h2 id="Heap-objects-生命周期"><a href="#Heap-objects-生命周期" class="headerlink" title="Heap objects 生命周期"></a>Heap objects 生命周期</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class Complex &#123; ... &#125;;
+...
+&#123;
+  complex* p &#x3D; new complex;
+  ...
+  delete p;
+&#125;
+
+&#x2F;*
+	p 所指的便是heap object 其生命在他被deleted之际结束
+*&#x2F;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">class Complex &#123; ... &#125;;
+...
+&#123;
+  complex* p &#x3D; new complex;
+&#125;
+
+&#x2F;*
+	这会出现内存泄漏
+	当作用域结束后 heap object还存在 然后指针p已经死了 所以没有办法 delete
+*&#x2F;</code></pre>
+
+<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; new: 先分配memory 再调用ctor
+  
+complex* pc &#x3D; new Complex(1, 2);
+
+&#x2F;&#x2F; 编译器转换为
+Complex* pc;
+void *mem &#x3D; operator new( sizeof(complex) );  &#x2F;&#x2F; 分配内存 其内部调用malloc(n)
+pc &#x3D; static_cast&lt;Complex*&gt;(mem);  &#x2F;&#x2F;转型
+pc-&gt;Complex::Complex(1, 2); </code></pre>
+
+<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 先调用dtor 在释放memory
+
+delete ps;
+
+&#x2F;&#x2F; 编译器转换为
+String::~String(ps); &#x2F;&#x2F; 析构函数
+operator delete(ps); &#x2F;&#x2F; 释放内存</code></pre>
 
 
             </div>

@@ -156,27 +156,105 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、ROUND"><a href="#一、ROUND" class="headerlink" title="一、ROUND"></a>一、ROUND</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.什么是round</span><br><span class="line">	ROUND(f,p) 返回 f 舍入到 p 位小数。</span><br><span class="line">	小数位数可能是负数，这将四舍五入到最接近的 10（当 p 为 -1）或 100（当 p 为 -2）或 1000（当 p 为 -3）等。</span><br><span class="line">	可以保留小数并四舍五入</span><br><span class="line">        round(1231.86,0)  # 1232</span><br><span class="line">        round(1231.86,1)  # 1231.9</span><br><span class="line">        round(1231.86,-3)  # 1000</span><br><span class="line">2.语句演示</span><br><span class="line">	select name, round(population/1000,1) from xxx;</span><br></pre></td></tr></table></figure>
+                <h2 id="一、ROUND"><a href="#一、ROUND" class="headerlink" title="一、ROUND"></a>一、ROUND</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1.什么是round
+	ROUND(f,p) 返回 f 舍入到 p 位小数。
+	小数位数可能是负数，这将四舍五入到最接近的 10（当 p 为 -1）或 100（当 p 为 -2）或 1000（当 p 为 -3）等。
+	可以保留小数并四舍五入
+        round(1231.86,0)  # 1232
+        round(1231.86,1)  # 1231.9
+        round(1231.86,-3)  # 1000
+2.语句演示
+	select name, round(population&#x2F;1000,1) from xxx;</code></pre>
 
-<h2 id="二、CASE"><a href="#二、CASE" class="headerlink" title="二、CASE"></a>二、CASE</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.什么是case</span><br><span class="line">	CASE 允许您在不同条件下返回不同的值。</span><br><span class="line">	如果没有任何条件匹配（并且没有 ELSE），则返回 NULL。</span><br><span class="line">	</span><br><span class="line">2.语句演示</span><br><span class="line">	case when 条件1 then 值1</span><br><span class="line">		when 条件2 then 值2</span><br><span class="line">		else def_valve end</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	select name, population,</span><br><span class="line">	case when population&lt;1000000 then &#x27;small&#x27;</span><br><span class="line">         when population&lt;10000000 when &#x27;medium&#x27;</span><br><span class="line">         else &#x27;large&#x27; end</span><br><span class="line">    from world</span><br></pre></td></tr></table></figure>
+<h2 id="二、CASE"><a href="#二、CASE" class="headerlink" title="二、CASE"></a>二、CASE</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1.什么是case
+	CASE 允许您在不同条件下返回不同的值。
+	如果没有任何条件匹配（并且没有 ELSE），则返回 NULL。
+	
+2.语句演示
+	case when 条件1 then 值1
+		when 条件2 then 值2
+		else def_valve end
+		
+		
+	select name, population,
+	case when population&lt;1000000 then &#39;small&#39;
+         when population&lt;10000000 when &#39;medium&#39;
+         else &#39;large&#39; end
+    from world</code></pre>
 
-<h2 id="三、ORDER-BY"><a href="#三、ORDER-BY" class="headerlink" title="三、ORDER BY"></a>三、ORDER BY</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是order by</span><br><span class="line">	能对数据进行升序降序排队</span><br><span class="line"></span><br><span class="line">2. 语句演示</span><br><span class="line">	select name, continent from world where name in (&#x27;Argentina&#x27;, &#x27;Australia&#x27;) order by name asc;  # ASC 升序</span><br><span class="line">	select name, continent from world where name in (&#x27;Argentina&#x27;, &#x27;Australia&#x27;) order by name desc;  # DESC 降序</span><br></pre></td></tr></table></figure>
+<h2 id="三、ORDER-BY"><a href="#三、ORDER-BY" class="headerlink" title="三、ORDER BY"></a>三、ORDER BY</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是order by
+	能对数据进行升序降序排队
 
-<h2 id="四、CONCAT"><a href="#四、CONCAT" class="headerlink" title="四、CONCAT"></a>四、CONCAT</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是concat</span><br><span class="line">	可以拼接两个或者多个字符串</span><br><span class="line">	这个操作是串联</span><br><span class="line"></span><br><span class="line">2. 语句演示</span><br><span class="line">	select name, concat(population,&#x27;%&#x27;) from world;</span><br></pre></td></tr></table></figure>
+2. 语句演示
+	select name, continent from world where name in (&#39;Argentina&#39;, &#39;Australia&#39;) order by name asc;  # ASC 升序
+	select name, continent from world where name in (&#39;Argentina&#39;, &#39;Australia&#39;) order by name desc;  # DESC 降序</code></pre>
 
-<h2 id="五、SUM"><a href="#五、SUM" class="headerlink" title="五、SUM"></a>五、SUM</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是sum</span><br><span class="line">	求和</span><br><span class="line"></span><br><span class="line">2. 代码演示</span><br><span class="line">	select sum(gdp) from world where continent = &#x27;Africa&#x27;;</span><br></pre></td></tr></table></figure>
+<h2 id="四、CONCAT"><a href="#四、CONCAT" class="headerlink" title="四、CONCAT"></a>四、CONCAT</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是concat
+	可以拼接两个或者多个字符串
+	这个操作是串联
 
-<h2 id="六、-MAX-amp-MIN"><a href="#六、-MAX-amp-MIN" class="headerlink" title="六、 MAX&amp;MIN"></a>六、 MAX&amp;MIN</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是max&amp;min</span><br><span class="line">	比较最大&amp;比较最小</span><br><span class="line"></span><br><span class="line">2. 代码演示</span><br><span class="line"> 	select post,max(salary) from emp group by post;</span><br><span class="line"></span><br><span class="line">	select post,min(salary) from emp group by post;</span><br></pre></td></tr></table></figure>
+2. 语句演示
+	select name, concat(population,&#39;%&#39;) from world;</code></pre>
 
-<h2 id="七、DISTINCT"><a href="#七、DISTINCT" class="headerlink" title="七、DISTINCT"></a>七、DISTINCT</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是distinct</span><br><span class="line">	去重</span><br><span class="line">	一定要注意 必须是完全一样的数据才可以去重！！！</span><br><span class="line">	一定不要将逐渐忽视了 有逐渐存在的情况下 是不可能去重的</span><br><span class="line"></span><br><span class="line">2. 代码演示</span><br><span class="line">	select distinct id,age from emp;</span><br></pre></td></tr></table></figure>
+<h2 id="五、SUM"><a href="#五、SUM" class="headerlink" title="五、SUM"></a>五、SUM</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是sum
+	求和
 
-<h2 id="八、-COUNT"><a href="#八、-COUNT" class="headerlink" title="八、 COUNT"></a>八、 COUNT</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是count</span><br><span class="line">	可以总计次数</span><br><span class="line"></span><br><span class="line">2. 代码演示</span><br><span class="line">	select continent, count(name) from world group by continent</span><br></pre></td></tr></table></figure>
+2. 代码演示
+	select sum(gdp) from world where continent &#x3D; &#39;Africa&#39;;</code></pre>
 
-<h2 id="九、GROUP-BY"><a href="#九、GROUP-BY" class="headerlink" title="九、GROUP BY"></a>九、GROUP BY</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是group by</span><br><span class="line">	可以进行分组</span><br><span class="line">	简单来说：1、与distinct类似，自带去重效果</span><br><span class="line">    配合聚合函数使用&#123;sum()、max()、min()、avg()、count()&#125;</span><br><span class="line">    配合HAVING</span><br><span class="line"></span><br><span class="line">2. 代码演示</span><br><span class="line">	select continent, name from world group by continent</span><br></pre></td></tr></table></figure>
+<h2 id="六、-MAX-amp-MIN"><a href="#六、-MAX-amp-MIN" class="headerlink" title="六、 MAX&amp;MIN"></a>六、 MAX&amp;MIN</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是max&amp;min
+	比较最大&amp;比较最小
 
-<h2 id="十、-HAVING"><a href="#十、-HAVING" class="headerlink" title="十、 HAVING"></a>十、 HAVING</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是having</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">    having的语法根where是一致的</span><br><span class="line">    只不过having是在分组之后进行的过滤操作</span><br><span class="line">    即having是可以直接使用聚合函数的</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    </span><br><span class="line">2. 代码演示</span><br><span class="line">	select continent from world group by continent having sum(population)&gt;100000000;</span><br></pre></td></tr></table></figure>
+2. 代码演示
+ 	select post,max(salary) from emp group by post;
 
-<h2 id="十一、JOIN"><a href="#十一、JOIN" class="headerlink" title="十一、JOIN"></a>十一、JOIN</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 什么是join</span><br><span class="line">	合拼两个或多个表格</span><br><span class="line">	语句FROM 表示合拼两个表格game 和 goal的数据 ，语句 ON 表示如何找出 game中每一列应该配对goal中的哪一列</span><br><span class="line">2. 代码演示</span><br><span class="line">	select team1,team2,player from game join goal on (id=matchid) where player like &#x27;Mario%&#x27;;</span><br><span class="line">3. 补充知识</span><br><span class="line">	上述代码又可以写成 </span><br><span class="line">		select team1,team2,player from game,goal where id=matchid and player like &#x27;Mario%&#x27;;</span><br><span class="line">	如果是合拼三个表格</span><br><span class="line">		select name from movie,actor,casting where movie.id = movieid and actor.id = actorid and title = &#x27;Alien&#x27;;</span><br><span class="line">	三个表格 jion 写法</span><br><span class="line">		select name from movie join casting on movieid = movie.id join actor on actorid = actor.id where title = &#x27;Alien&#x27;；</span><br></pre></td></tr></table></figure>
+	select post,min(salary) from emp group by post;</code></pre>
+
+<h2 id="七、DISTINCT"><a href="#七、DISTINCT" class="headerlink" title="七、DISTINCT"></a>七、DISTINCT</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是distinct
+	去重
+	一定要注意 必须是完全一样的数据才可以去重！！！
+	一定不要将逐渐忽视了 有逐渐存在的情况下 是不可能去重的
+
+2. 代码演示
+	select distinct id,age from emp;</code></pre>
+
+<h2 id="八、-COUNT"><a href="#八、-COUNT" class="headerlink" title="八、 COUNT"></a>八、 COUNT</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是count
+	可以总计次数
+
+2. 代码演示
+	select continent, count(name) from world group by continent</code></pre>
+
+<h2 id="九、GROUP-BY"><a href="#九、GROUP-BY" class="headerlink" title="九、GROUP BY"></a>九、GROUP BY</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是group by
+	可以进行分组
+	简单来说：1、与distinct类似，自带去重效果
+    配合聚合函数使用&#123;sum()、max()、min()、avg()、count()&#125;
+    配合HAVING
+
+2. 代码演示
+	select continent, name from world group by continent</code></pre>
+
+<h2 id="十、-HAVING"><a href="#十、-HAVING" class="headerlink" title="十、 HAVING"></a>十、 HAVING</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是having
+	&quot;&quot;&quot;
+    having的语法根where是一致的
+    只不过having是在分组之后进行的过滤操作
+    即having是可以直接使用聚合函数的
+    &quot;&quot;&quot;
+    
+2. 代码演示
+	select continent from world group by continent having sum(population)&gt;100000000;</code></pre>
+
+<h2 id="十一、JOIN"><a href="#十一、JOIN" class="headerlink" title="十一、JOIN"></a>十一、JOIN</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是join
+	合拼两个或多个表格
+	语句FROM 表示合拼两个表格game 和 goal的数据 ，语句 ON 表示如何找出 game中每一列应该配对goal中的哪一列
+2. 代码演示
+	select team1,team2,player from game join goal on (id&#x3D;matchid) where player like &#39;Mario%&#39;;
+3. 补充知识
+	上述代码又可以写成 
+		select team1,team2,player from game,goal where id&#x3D;matchid and player like &#39;Mario%&#39;;
+	如果是合拼三个表格
+		select name from movie,actor,casting where movie.id &#x3D; movieid and actor.id &#x3D; actorid and title &#x3D; &#39;Alien&#39;;
+	三个表格 jion 写法
+		select name from movie join casting on movieid &#x3D; movie.id join actor on actorid &#x3D; actor.id where title &#x3D; &#39;Alien&#39;；</code></pre>
 
             </div>
 

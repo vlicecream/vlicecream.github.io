@@ -156,13 +156,172 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、AUTH模块前戏"><a href="#一、AUTH模块前戏" class="headerlink" title="一、AUTH模块前戏"></a>一、AUTH模块前戏</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">我们在执行数据库迁移命令会自动生成很多表</span></span><br><span class="line"><span class="string">auth_user</span></span><br><span class="line"><span class="string">django在启动之后就可以做直接访问admin路由，需要输入用户名和密码，数据参考的就是auth_user表，并且还必须是管理员用户才能进入</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">创建超级用户(管理员)</span></span><br><span class="line"><span class="string">python3 manage.py createsuperuser</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+                <h2 id="一、AUTH模块前戏"><a href="#一、AUTH模块前戏" class="headerlink" title="一、AUTH模块前戏"></a>一、AUTH模块前戏</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+我们在执行数据库迁移命令会自动生成很多表
+auth_user
+django在启动之后就可以做直接访问admin路由，需要输入用户名和密码，数据参考的就是auth_user表，并且还必须是管理员用户才能进入
 
-<h2 id="二、AUTH模块的使用"><a href="#二、AUTH模块的使用" class="headerlink" title="二、AUTH模块的使用"></a>二、AUTH模块的使用</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 代码演示</span><br><span class="line"><span class="comment"># views</span></span><br><span class="line">    <span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, HttpResponse, redirect</span><br><span class="line">    <span class="keyword">from</span> django.contrib <span class="keyword">import</span> auth</span><br><span class="line">    <span class="keyword">from</span> django.contrib.auth.decorators <span class="keyword">import</span> login_required</span><br><span class="line">    <span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    我们再用auth的时候 用就用全套的auth提供的方法</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">form_input</span>(<span class="params">request</span>):</span><br><span class="line">        <span class="comment"># 判断是否为POST</span></span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">            <span class="comment"># 获取前端输入内容</span></span><br><span class="line">            username = request.POST.get(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line">            password = request.POST.get(<span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">            <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">            验证密码 有两道难题</span></span><br><span class="line"><span class="string">            1.表在哪</span></span><br><span class="line"><span class="string">            2.密文怎么对比</span></span><br><span class="line"><span class="string">            &quot;&quot;&quot;</span></span><br><span class="line">            <span class="comment"># 直接用auth模块即可，但是要注意必须把两个参数传进去才行</span></span><br><span class="line">            user_obj = auth.authenticate(username=username, password=password)</span><br><span class="line">            <span class="built_in">print</span>(user_obj)  <span class="comment"># 用户对象 如果上述账号密码不正确则返回一个None</span></span><br><span class="line">            <span class="comment"># 登陆成功即保存用户数据</span></span><br><span class="line">            auth.login(request, user_obj)  <span class="comment"># 为什么不用session方法，因为我们用全套的auth方法，而且用了这个auth方法不管在哪你都能request.user拿到登录用户</span></span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">&#x27;/home/&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">&#x27;form_input.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">    @login_required</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">home</span>(<span class="params">request</span>):</span><br><span class="line">        <span class="built_in">print</span>(request.user)  <span class="comment"># 依然是用户对象，如果不登录直接拿就是匿名用户</span></span><br><span class="line">        <span class="comment"># 我们可以用这个内置方法来判断是不是匿名用户</span></span><br><span class="line">        <span class="built_in">print</span>(request.user.is_authenticated)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;welcome&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">    @login_required</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_password</span>(<span class="params">request</span>):</span><br><span class="line">        <span class="comment"># 检测是否为POST</span></span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">            <span class="comment"># 获取到用户数据</span></span><br><span class="line">            old_password = request.POST.get(<span class="string">&#x27;old_password&#x27;</span>)</span><br><span class="line">            new_password = request.POST.get(<span class="string">&#x27;new_password&#x27;</span>)</span><br><span class="line">            confirm_password = request.POST.get(<span class="string">&#x27;confirm_password&#x27;</span>)</span><br><span class="line">            <span class="comment"># 对比两次密码是否一致</span></span><br><span class="line">            <span class="keyword">if</span> new_password == confirm_password:</span><br><span class="line">                <span class="comment"># 对比老密码是否正确,这个地方得用新方法</span></span><br><span class="line">                is_right = request.user.check_password(old_password)</span><br><span class="line">                <span class="keyword">if</span> is_right:</span><br><span class="line">                    request.user.set_password(new_password)  <span class="comment"># 仅仅是在修改对象属性</span></span><br><span class="line">                    request.user.save()  <span class="comment"># 这一步才是真正保存进数据库的一步</span></span><br><span class="line">                    <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;success&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">&#x27;set_password.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">logout</span>(<span class="params">request</span>):</span><br><span class="line">        auth.logout(request)</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&#x27;/login/&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">register</span>(<span class="params">request</span>):</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">            username = request.POST.get(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line">            password = request.POST.get(<span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">            User.objects.create_user(username=username, password=password)</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">&#x27;form_input.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment"># urls</span></span><br><span class="line">    <span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line">    <span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line">    <span class="keyword">from</span> app01 <span class="keyword">import</span> views</span><br><span class="line">    urlpatterns = [</span><br><span class="line">        url(<span class="string">r&#x27;^admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">        url(<span class="string">r&#x27;^index/&#x27;</span>, views.form_input),</span><br><span class="line">        url(<span class="string">r&#x27;^home/&#x27;</span>, views.home),</span><br><span class="line">        url(<span class="string">r&#x27;^set_password/&#x27;</span>, views.set_password),</span><br><span class="line">        url(<span class="string">r&#x27;^logout/&#x27;</span>, views.logout),</span><br><span class="line">    	url(<span class="string">r&#x27;^register/&#x27;</span>, views.register),</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+创建超级用户(管理员)
+python3 manage.py createsuperuser
+&quot;&quot;&quot;</code></pre>
 
-<h2 id="三、基于AUTH模块的使用总结方法"><a href="#三、基于AUTH模块的使用总结方法" class="headerlink" title="三、基于AUTH模块的使用总结方法"></a>三、基于AUTH模块的使用总结方法</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 对比用户名&amp;密码是否正确</span><br><span class="line">	user_obj = auth.authenticate(request, username=username, password=password)</span><br><span class="line">    <span class="comment"># 括号内必须传入用户名和密码</span></span><br><span class="line">    <span class="built_in">print</span>(user_obj)</span><br><span class="line">    <span class="built_in">print</span>(user_obj.username)</span><br><span class="line">    <span class="built_in">print</span>(user_obj.password)</span><br><span class="line"><span class="number">2.</span> 保存用户状态</span><br><span class="line">	auth.login(request, user_obj)</span><br><span class="line">    <span class="comment"># 执行了该方法 无论在哪都能request.user</span></span><br><span class="line"><span class="number">3.</span> 判断用户当前是否登录</span><br><span class="line">	request.user.is_anthenticated()</span><br><span class="line"><span class="number">4.</span> 获取当前用户</span><br><span class="line">	request.user</span><br><span class="line"><span class="number">5.</span> 校验用户是否登录装饰器</span><br><span class="line">	<span class="keyword">from</span> django.contrib.auth.decorators <span class="keyword">import</span> login_required</span><br><span class="line">    <span class="comment"># 局部配置</span></span><br><span class="line"><span class="meta">    @login_required(<span class="params">login_url=<span class="string">&#x27;/login/&#x27;</span></span>)</span></span><br><span class="line">    <span class="comment"># 全局配置</span></span><br><span class="line">    LOGIN_URL = <span class="string">&#x27;/LOGIN/&#x27;</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    1.如果同时有局部和全局，应该听谁的</span></span><br><span class="line"><span class="string">    	局部&gt;全局</span></span><br><span class="line"><span class="string">    2.局部和全局那个好呢</span></span><br><span class="line"><span class="string">    	全局的好处在于不用写重复代码 但是跳转页面都很单一</span></span><br><span class="line"><span class="string">    	局部的好处在于不同的视图函数在用户没有登录的情况下可以跳转到不同的页面</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"><span class="number">6.</span> 比对原密码</span><br><span class="line">	request.user.check_password(old_password)</span><br><span class="line"><span class="number">7.</span> 修改密码</span><br><span class="line">	request.user.set_password(new_password)  <span class="comment"># 只是改变了对象属性</span></span><br><span class="line">    request.user.save()  <span class="comment"># 这才是修改数据库数据</span></span><br><span class="line"><span class="number">8.</span> 注销密码</span><br><span class="line">	auth.logout(request)</span><br><span class="line"><span class="number">9.</span> 注册用户</span><br><span class="line">	<span class="comment"># 创建普通用户</span></span><br><span class="line">    User.objects.create_user(username=username, password=password)</span><br><span class="line">    <span class="comment"># 创建超级用户</span></span><br><span class="line">	User.objects.create_superuser(username=username, email=<span class="string">&#x27;123@qq.com&#x27;</span>, password=password)</span><br><span class="line">    <span class="comment"># 在这里创建超级用户必须要填邮箱，而命令行却不用</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、AUTH模块的使用"><a href="#二、AUTH模块的使用" class="headerlink" title="二、AUTH模块的使用"></a>二、AUTH模块的使用</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
+# views
+    from django.shortcuts import render, HttpResponse, redirect
+    from django.contrib import auth
+    from django.contrib.auth.decorators import login_required
+    from django.contrib.auth.models import User
 
-<h2 id="四、AUTH模块包拓展"><a href="#四、AUTH模块包拓展" class="headerlink" title="四、AUTH模块包拓展"></a>四、AUTH模块包拓展</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 代码演示</span><br><span class="line">    <span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line">    <span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User, AbstractUser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create your models here.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第一种方法  一对一表关系 不推荐</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">UserDetail</span>(models.Model):</span><br><span class="line">        phone = models.CharField(max_length=<span class="number">16</span>)</span><br><span class="line">        user = models.OneToOneField(to=<span class="string">&#x27;User&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方法</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">UserInfo</span>(<span class="title class_ inherited__">AbstractUser</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        如果执行了AbstractUser</span></span><br><span class="line"><span class="string">        那么在执行数据库迁移命令的时候auth_user表就不会再创建出来了</span></span><br><span class="line"><span class="string">        而UserInfo表中会出现auth_user所有的字段外加自己扩展的阻断</span></span><br><span class="line"><span class="string">        这么做的好处在于你能够直接点击你自己的表更加快速的完成操作及扩展</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        前提:</span></span><br><span class="line"><span class="string">            1.在继承之前没有执行过数据库迁移命令</span></span><br><span class="line"><span class="string">                auth_user没有被创建 如果当前库已经创建了那么你就重新换一个库</span></span><br><span class="line"><span class="string">            2.继承的类里面不要覆盖AbstractUser里面的字段名</span></span><br><span class="line"><span class="string">                表里面有的字段都不要动，至扩展额外字段即可</span></span><br><span class="line"><span class="string">            3.需要在配置文件中告诉django你要用UserInfo代替auth_user</span></span><br><span class="line"><span class="string">                AUTH_USER_MODEL = &#x27;app01.UserInfo&#x27;</span></span><br><span class="line"><span class="string">                                    &#x27;应用名.表名&#x27;    </span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        phone = models.BigIntegerField()</span><br></pre></td></tr></table></figure>
+    # Create your views here.
+
+    &quot;&quot;&quot;
+    我们再用auth的时候 用就用全套的auth提供的方法
+    &quot;&quot;&quot;
+
+
+    def form_input(request):
+        # 判断是否为POST
+        if request.method &#x3D;&#x3D; &#39;POST&#39;:
+            # 获取前端输入内容
+            username &#x3D; request.POST.get(&#39;username&#39;)
+            password &#x3D; request.POST.get(&#39;password&#39;)
+            &quot;&quot;&quot;
+            验证密码 有两道难题
+            1.表在哪
+            2.密文怎么对比
+            &quot;&quot;&quot;
+            # 直接用auth模块即可，但是要注意必须把两个参数传进去才行
+            user_obj &#x3D; auth.authenticate(username&#x3D;username, password&#x3D;password)
+            print(user_obj)  # 用户对象 如果上述账号密码不正确则返回一个None
+            # 登陆成功即保存用户数据
+            auth.login(request, user_obj)  # 为什么不用session方法，因为我们用全套的auth方法，而且用了这个auth方法不管在哪你都能request.user拿到登录用户
+            return redirect(&#39;&#x2F;home&#x2F;&#39;)
+        return render(request, &#39;form_input.html&#39;)
+
+
+    @login_required
+    def home(request):
+        print(request.user)  # 依然是用户对象，如果不登录直接拿就是匿名用户
+        # 我们可以用这个内置方法来判断是不是匿名用户
+        print(request.user.is_authenticated)
+        return HttpResponse(&#39;welcome&#39;)
+
+
+    @login_required
+    def set_password(request):
+        # 检测是否为POST
+        if request.method &#x3D;&#x3D; &#39;POST&#39;:
+            # 获取到用户数据
+            old_password &#x3D; request.POST.get(&#39;old_password&#39;)
+            new_password &#x3D; request.POST.get(&#39;new_password&#39;)
+            confirm_password &#x3D; request.POST.get(&#39;confirm_password&#39;)
+            # 对比两次密码是否一致
+            if new_password &#x3D;&#x3D; confirm_password:
+                # 对比老密码是否正确,这个地方得用新方法
+                is_right &#x3D; request.user.check_password(old_password)
+                if is_right:
+                    request.user.set_password(new_password)  # 仅仅是在修改对象属性
+                    request.user.save()  # 这一步才是真正保存进数据库的一步
+                    return HttpResponse(&#39;success&#39;)
+        return render(request, &#39;set_password.html&#39;)
+
+
+    def logout(request):
+        auth.logout(request)
+        return redirect(&#39;&#x2F;login&#x2F;&#39;)
+
+
+    def register(request):
+        if request.method &#x3D;&#x3D; &#39;POST&#39;:
+            username &#x3D; request.POST.get(&#39;username&#39;)
+            password &#x3D; request.POST.get(&#39;password&#39;)
+            User.objects.create_user(username&#x3D;username, password&#x3D;password)
+        return render(request, &#39;form_input.html&#39;)
+
+    
+# urls
+    from django.conf.urls import url
+    from django.contrib import admin
+    from app01 import views
+    urlpatterns &#x3D; [
+        url(r&#39;^admin&#x2F;&#39;, admin.site.urls),
+        url(r&#39;^index&#x2F;&#39;, views.form_input),
+        url(r&#39;^home&#x2F;&#39;, views.home),
+        url(r&#39;^set_password&#x2F;&#39;, views.set_password),
+        url(r&#39;^logout&#x2F;&#39;, views.logout),
+    	url(r&#39;^register&#x2F;&#39;, views.register),
+    ]</code></pre>
+
+<h2 id="三、基于AUTH模块的使用总结方法"><a href="#三、基于AUTH模块的使用总结方法" class="headerlink" title="三、基于AUTH模块的使用总结方法"></a>三、基于AUTH模块的使用总结方法</h2><pre class="language-python" data-language="python"><code class="language-python">1. 对比用户名&amp;密码是否正确
+	user_obj &#x3D; auth.authenticate(request, username&#x3D;username, password&#x3D;password)
+    # 括号内必须传入用户名和密码
+    print(user_obj)
+    print(user_obj.username)
+    print(user_obj.password)
+2. 保存用户状态
+	auth.login(request, user_obj)
+    # 执行了该方法 无论在哪都能request.user
+3. 判断用户当前是否登录
+	request.user.is_anthenticated()
+4. 获取当前用户
+	request.user
+5. 校验用户是否登录装饰器
+	from django.contrib.auth.decorators import login_required
+    # 局部配置
+    @login_required(login_url&#x3D;&#39;&#x2F;login&#x2F;&#39;)
+    # 全局配置
+    LOGIN_URL &#x3D; &#39;&#x2F;LOGIN&#x2F;&#39;
+    &quot;&quot;&quot;
+    1.如果同时有局部和全局，应该听谁的
+    	局部&gt;全局
+    2.局部和全局那个好呢
+    	全局的好处在于不用写重复代码 但是跳转页面都很单一
+    	局部的好处在于不同的视图函数在用户没有登录的情况下可以跳转到不同的页面
+    &quot;&quot;&quot;
+6. 比对原密码
+	request.user.check_password(old_password)
+7. 修改密码
+	request.user.set_password(new_password)  # 只是改变了对象属性
+    request.user.save()  # 这才是修改数据库数据
+8. 注销密码
+	auth.logout(request)
+9. 注册用户
+	# 创建普通用户
+    User.objects.create_user(username&#x3D;username, password&#x3D;password)
+    # 创建超级用户
+	User.objects.create_superuser(username&#x3D;username, email&#x3D;&#39;123@qq.com&#39;, password&#x3D;password)
+    # 在这里创建超级用户必须要填邮箱，而命令行却不用</code></pre>
+
+<h2 id="四、AUTH模块包拓展"><a href="#四、AUTH模块包拓展" class="headerlink" title="四、AUTH模块包拓展"></a>四、AUTH模块包拓展</h2><pre class="language-python" data-language="python"><code class="language-python">1. 代码演示
+    from django.db import models
+    from django.contrib.auth.models import User, AbstractUser
+
+
+    # Create your models here.
+
+    # 第一种方法  一对一表关系 不推荐
+    class UserDetail(models.Model):
+        phone &#x3D; models.CharField(max_length&#x3D;16)
+        user &#x3D; models.OneToOneField(to&#x3D;&#39;User&#39;)
+
+    # 第二种方法
+    class UserInfo(AbstractUser):
+        &quot;&quot;&quot;
+        如果执行了AbstractUser
+        那么在执行数据库迁移命令的时候auth_user表就不会再创建出来了
+        而UserInfo表中会出现auth_user所有的字段外加自己扩展的阻断
+        这么做的好处在于你能够直接点击你自己的表更加快速的完成操作及扩展
+
+        前提:
+            1.在继承之前没有执行过数据库迁移命令
+                auth_user没有被创建 如果当前库已经创建了那么你就重新换一个库
+            2.继承的类里面不要覆盖AbstractUser里面的字段名
+                表里面有的字段都不要动，至扩展额外字段即可
+            3.需要在配置文件中告诉django你要用UserInfo代替auth_user
+                AUTH_USER_MODEL &#x3D; &#39;app01.UserInfo&#39;
+                                    &#39;应用名.表名&#39;    
+        &quot;&quot;&quot;
+        phone &#x3D; models.BigIntegerField()</code></pre>
 
             </div>
 

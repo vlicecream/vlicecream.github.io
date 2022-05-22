@@ -156,9 +156,126 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 什么是异常</span></span><br><span class="line">	异常就是你程序报错，导致了程序中途终止</span><br><span class="line">   </span><br><span class="line"><span class="comment"># 为什么要处理异常</span></span><br><span class="line">	为了程序的健壮性，不会轻易报错停止</span><br><span class="line">    将发生的异常写入日志</span><br><span class="line">   </span><br><span class="line"><span class="comment"># 怎么处理异常</span></span><br><span class="line">	<span class="number">1.</span>语法上的异常</span><br><span class="line">        a = <span class="number">1</span></span><br><span class="line">        b = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> a&gt;b</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">            if a&gt;b</span></span><br><span class="line"><span class="string">                 ^</span></span><br><span class="line"><span class="string">        SyntaxError: invalid syntax</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 这种就是语法上的问题，那我们应该怎么处理呢，是直接修改正确，这种愚蠢的错误，不允许发生</span></span><br><span class="line"></span><br><span class="line">	<span class="number">2.</span>逻辑上的异常</span><br><span class="line">    <span class="number">2.1</span> 可以预测到的逻辑上的异常</span><br><span class="line">        age = <span class="built_in">input</span>(<span class="string">&#x27;-----&gt;&#x27;</span>)</span><br><span class="line">        age = <span class="built_in">int</span>(age)</span><br><span class="line">        <span class="keyword">if</span> age == <span class="number">18</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;恭喜你猜对了&#x27;</span>)	</span><br><span class="line">   <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">   这种的就是能预测到的异常，万一用户zz偏要输入字符串怎么办呢，那我们应该怎么解决这个，既然能预测到了，就直接增加判断去解决其问题，不要用异常处理，为什么呢，稍后为你揭秘</span></span><br><span class="line"><span class="string">   &#x27;&#x27;&#x27;</span></span><br><span class="line">	age = <span class="built_in">input</span>(<span class="string">&#x27;-----&gt;&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> age.isdigit():</span><br><span class="line">        age = <span class="built_in">int</span>(age)</span><br><span class="line">        <span class="keyword">if</span> age == <span class="number">18</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;恭喜你猜对了&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;必须输入数字&#x27;</span>)</span><br><span class="line">        </span><br><span class="line">   <span class="number">2.2</span> 不可以预测到的逻辑上的异常</span><br><span class="line">	<span class="comment"># 在后面的套接字中我们会遇到一个不可以预测到的逻辑上的异常，在软件与服务器之间的传输信息中，我们是预测不到发生什么错误的，所以就得去异常处理</span></span><br><span class="line">    <span class="comment"># 异常处理模板</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        子代码块  <span class="comment"># 有可能抛出异常的代码块</span></span><br><span class="line">    <span class="keyword">except</span> 异常类型 <span class="keyword">as</span> 变量名:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">except</span> 异常类型<span class="number">1</span> <span class="keyword">as</span> 变量名<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">except</span> 异常类型<span class="number">2</span> <span class="keyword">as</span> 变量名<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">pass</span>  <span class="comment"># 这个是如果这个子代码块没有抛出异常，就会执行的代码</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">pass</span>  <span class="comment"># 这个是无论这个子代码块有没有抛出异常，都会执行的代码</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    那么这个异常处理是降低了代码可读性还是提高了，其实是降低了，所以异常处理能不用就不用，你不是写BUG的，只有在不可预测的逻辑性异常才要用</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+                <h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><pre class="language-python" data-language="python"><code class="language-python"># 什么是异常
+	异常就是你程序报错，导致了程序中途终止
+   
+# 为什么要处理异常
+	为了程序的健壮性，不会轻易报错停止
+    将发生的异常写入日志
+   
+# 怎么处理异常
+	1.语法上的异常
+        a &#x3D; 1
+        b &#x3D; 0
+        if a&gt;b
+            print(&#39;123&#39;)
+        &#39;&#39;&#39;
+            if a&gt;b
+                 ^
+        SyntaxError: invalid syntax
+        &#39;&#39;&#39;
+    # 这种就是语法上的问题，那我们应该怎么处理呢，是直接修改正确，这种愚蠢的错误，不允许发生
 
-<h1 id="异常处理的实际使用"><a href="#异常处理的实际使用" class="headerlink" title="异常处理的实际使用"></a>异常处理的实际使用</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        l_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">        l_list[<span class="number">3</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        xxx</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> IndexError <span class="keyword">as</span> l:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;异常以出现&#x27;</span>, l)</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    ----------------</span></span><br><span class="line"><span class="string">    异常以出现 list index out of range</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 从这里可以看出先报错l_list没有索引3的错误，但是报错后，后面的同级代码也自然不运行了</span></span><br><span class="line"><span class="comment"># 万一我们遇到不知道什么</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        l_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">        <span class="comment"># l_list[3]</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        xxx</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> IndexError <span class="keyword">as</span> l:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;异常以出现&#x27;</span>, l)</span><br><span class="line">    <span class="keyword">except</span> NameError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;异常以出现&#x27;</span>, e)</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    ----------------</span></span><br><span class="line"><span class="string">    ----------------</span></span><br><span class="line"><span class="string">    异常以出现 name &#x27;xxx&#x27; is not defined</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 当不知道什么错的时候，后面可以加新的错误类型，但是这里也能看出来print是重复代码了，我们怎么解决呢</span></span><br><span class="line">	<span class="keyword">except</span> (IndexError, NameError) <span class="keyword">as</span> l:</span><br><span class="line">   		<span class="built_in">print</span>(<span class="string">&#x27;异常以出现&#x27;</span>, l)</span><br><span class="line"><span class="comment"># 这样即可，那有没有万能异常解决的代码呢，什么类型都可以解决，有的</span></span><br><span class="line">	<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    	<span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 然后我们加else finally 的用法</span></span><br><span class="line"><span class="comment"># else</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        l_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">        <span class="comment"># l_list[3]</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        xxx</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">    <span class="comment"># except (IndexError, NameError) as l:</span></span><br><span class="line">    <span class="comment">#     print(&#x27;异常以出现&#x27;, l)</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;123&#x27;</span>)  <span class="comment"># else与try无法直接连用，得通过except，else是这个是如果这个子代码块没有抛出异常，就会执行的代码</span></span><br><span class="line"><span class="comment"># finally</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        l_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">        l_list[<span class="number">3</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">        xxx</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">    <span class="comment"># except (IndexError, NameError) as l:</span></span><br><span class="line">    <span class="comment">#     print(&#x27;异常以出现&#x27;, l)</span></span><br><span class="line">    <span class="comment"># else:</span></span><br><span class="line">    <span class="comment">#     print(&#x27;123&#x27;)</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;123&#x27;</span>)  <span class="comment"># finally是可以能直接和try连用的，finally一般是会写直接调离系统的代码</span></span><br></pre></td></tr></table></figure>
+	2.逻辑上的异常
+    2.1 可以预测到的逻辑上的异常
+        age &#x3D; input(&#39;-----&gt;&#39;)
+        age &#x3D; int(age)
+        if age &#x3D;&#x3D; 18:
+            print(&#39;恭喜你猜对了&#39;)	
+   &#39;&#39;&#39;
+   这种的就是能预测到的异常，万一用户zz偏要输入字符串怎么办呢，那我们应该怎么解决这个，既然能预测到了，就直接增加判断去解决其问题，不要用异常处理，为什么呢，稍后为你揭秘
+   &#39;&#39;&#39;
+	age &#x3D; input(&#39;-----&gt;&#39;)
+    if age.isdigit():
+        age &#x3D; int(age)
+        if age &#x3D;&#x3D; 18:
+            print(&#39;恭喜你猜对了&#39;)
+    else:
+        print(&#39;必须输入数字&#39;)
+        
+   2.2 不可以预测到的逻辑上的异常
+	# 在后面的套接字中我们会遇到一个不可以预测到的逻辑上的异常，在软件与服务器之间的传输信息中，我们是预测不到发生什么错误的，所以就得去异常处理
+    # 异常处理模板
+    try:
+        子代码块  # 有可能抛出异常的代码块
+    except 异常类型 as 变量名:
+        pass
+    except 异常类型1 as 变量名1:
+        pass
+    except 异常类型2 as 变量名2:
+        pass
+    else:
+        pass  # 这个是如果这个子代码块没有抛出异常，就会执行的代码
+    finally:
+        pass  # 这个是无论这个子代码块有没有抛出异常，都会执行的代码
+    &#39;&#39;&#39;
+    那么这个异常处理是降低了代码可读性还是提高了，其实是降低了，所以异常处理能不用就不用，你不是写BUG的，只有在不可预测的逻辑性异常才要用
+    &#39;&#39;&#39;</code></pre>
+
+<h1 id="异常处理的实际使用"><a href="#异常处理的实际使用" class="headerlink" title="异常处理的实际使用"></a>异常处理的实际使用</h1><pre class="language-python" data-language="python"><code class="language-python">    try:
+        print(&#39;----------------&#39;)
+        l_list &#x3D; [1, 2, 3]
+        l_list[3]
+        print(&#39;----------------&#39;)
+        xxx
+        print(&#39;----------------&#39;)
+    except IndexError as l:
+        print(&#39;异常以出现&#39;, l)
+    &#39;&#39;&#39;
+    ----------------
+    异常以出现 list index out of range
+    &#39;&#39;&#39;
+# 从这里可以看出先报错l_list没有索引3的错误，但是报错后，后面的同级代码也自然不运行了
+# 万一我们遇到不知道什么
+    try:
+        print(&#39;----------------&#39;)
+        l_list &#x3D; [1, 2, 3]
+        # l_list[3]
+        print(&#39;----------------&#39;)
+        xxx
+        print(&#39;----------------&#39;)
+    except IndexError as l:
+        print(&#39;异常以出现&#39;, l)
+    except NameError as e:
+        print(&#39;异常以出现&#39;, e)
+    &#39;&#39;&#39;
+    ----------------
+    ----------------
+    异常以出现 name &#39;xxx&#39; is not defined
+    &#39;&#39;&#39;
+# 当不知道什么错的时候，后面可以加新的错误类型，但是这里也能看出来print是重复代码了，我们怎么解决呢
+	except (IndexError, NameError) as l:
+   		print(&#39;异常以出现&#39;, l)
+# 这样即可，那有没有万能异常解决的代码呢，什么类型都可以解决，有的
+	except Exception as e:
+    	pass
+# 然后我们加else finally 的用法
+# else
+	try:
+        print(&#39;----------------&#39;)
+        l_list &#x3D; [1, 2, 3]
+        # l_list[3]
+        print(&#39;----------------&#39;)
+        xxx
+        print(&#39;----------------&#39;)
+    # except (IndexError, NameError) as l:
+    #     print(&#39;异常以出现&#39;, l)
+    else:
+        print(&#39;123&#39;)  # else与try无法直接连用，得通过except，else是这个是如果这个子代码块没有抛出异常，就会执行的代码
+# finally
+	try:
+        print(&#39;----------------&#39;)
+        l_list &#x3D; [1, 2, 3]
+        l_list[3]
+        print(&#39;----------------&#39;)
+        xxx
+        print(&#39;----------------&#39;)
+    # except (IndexError, NameError) as l:
+    #     print(&#39;异常以出现&#39;, l)
+    # else:
+    #     print(&#39;123&#39;)
+    finally:
+        print(&#39;123&#39;)  # finally是可以能直接和try连用的，finally一般是会写直接调离系统的代码</code></pre>
 
             </div>
 

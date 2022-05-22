@@ -156,41 +156,180 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">complex</span>(T r = <span class="number">0</span>, T i = <span class="number">0</span>) : <span class="built_in">re</span>(r), <span class="built_in">im</span>(i) &#123;&#125;</span><br><span class="line">  complex &amp;<span class="keyword">operator</span>+=(<span class="type">const</span> complex &amp;);</span><br><span class="line">  <span class="function">T <span class="title">real</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">  <span class="function">T <span class="title">imag</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  T re, im;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">friend</span> complex &amp;__doapl(complex *, <span class="type">const</span> complex &amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+                <h2 id="class-template-类模板"><a href="#class-template-类模板" class="headerlink" title="class template 类模板"></a>class template 类模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename T&gt;
+class complex &#123;
+public:
+  complex(T r &#x3D; 0, T i &#x3D; 0) : re(r), im(i) &#123;&#125;
+  complex &amp;operator+&#x3D;(const complex &amp;);
+  T real() const &#123; return re; &#125;
+  T imag() const &#123; return im; &#125;
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">complex&lt;<span class="type">double</span>&gt; <span class="title">c1</span><span class="params">(<span class="number">2.5</span>, <span class="number">3.5</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显而易见 他的作用就是可变类型</span></span><br></pre></td></tr></table></figure>
+private:
+  T re, im;
 
-<h2 id="func-template-函数模板"><a href="#func-template-函数模板" class="headerlink" title="func template 函数模板"></a>func template 函数模板</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">const</span> T&amp; <span class="title">min</span><span class="params">(<span class="type">const</span> T&amp; a, <span class="type">const</span> T&amp; b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b &lt; a ? b : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  friend complex &amp;__doapl(complex *, const complex &amp;);
+&#125;;</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">stone <span class="title">r1</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>)</span>, <span class="title">r2</span><span class="params">(<span class="number">3</span>, <span class="number">3</span>)</span>, r3</span>;</span><br><span class="line">r3 = <span class="built_in">min</span>(r1, r2);</span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">complex&lt;double&gt; c1(2.5, 3.5);
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">stone</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">stone</span>(<span class="type">int</span> w, <span class="type">int</span> h, <span class="type">int</span> we) : _w(w), _h(h), _weight(we) &#123;&#125;</span><br><span class="line">  <span class="type">bool</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> stone&amp; rns) <span class="type">const</span> &#123; <span class="keyword">return</span> _weight &lt; rhs._weight; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> _w, _h, _weight;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 显而易见 他的作用就是可变类型</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  解说</span></span><br><span class="line"><span class="comment">	func template 也是相当于class template 作用</span></span><br><span class="line"><span class="comment">    如果我们用stone类型去生成对象</span></span><br><span class="line"><span class="comment">    实参推导结果: T为stone 于是调用stone::operator&lt;</span></span><br><span class="line"><span class="comment">    所以stone必须实现&quot;&lt;&quot;方法</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="func-template-函数模板"><a href="#func-template-函数模板" class="headerlink" title="func template 函数模板"></a>func template 函数模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
+inline const T&amp; min(const T&amp; a, const T&amp; b) &#123;
+    return b &lt; a ? b : a;
+&#125;</code></pre>
 
-<h2 id="member-template-成员函数"><a href="#member-template-成员函数" class="headerlink" title="member template 成员函数"></a>member template 成员函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T1</span>, <span class="keyword">class</span> <span class="title class_">T2</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">pair</span> &#123;</span><br><span class="line">    <span class="keyword">typedef</span> T1 first_type;</span><br><span class="line">    <span class="keyword">typedef</span> T2 second_type;</span><br><span class="line">    </span><br><span class="line">    T1 first;</span><br><span class="line">    T2 second;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">pair</span>() : <span class="built_in">first</span>(<span class="built_in">T1</span>()), <span class="built_in">second</span>(<span class="built_in">T2</span>()) &#123; &#125;</span><br><span class="line">    <span class="built_in">pair</span>()(<span class="type">const</span> T1&amp; a, <span class="type">const</span> T2&amp; b) : <span class="built_in">first</span>(a), <span class="built_in">second</span>(b) &#123; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">U1</span>, <span class="keyword">class</span> <span class="title class_">U2</span>&gt;</span><br><span class="line">    <span class="built_in">pair</span>(<span class="type">const</span> pair&lt;U1, U2&gt;&amp; p) : <span class="built_in">first</span>(p.first), <span class="built_in">second</span>(p.second) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们在外面设置了T1 T2之后 在里面的成员模板又可以让我们在设置一个U1 U2</span></span><br><span class="line"><span class="comment">	这么说是不是有点听不太懂</span></span><br><span class="line"><span class="comment">	让我们看个新例子</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">stone r1(2, 3), r2(3, 3), r3;
+r3 &#x3D; min(r1, r2);</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    Base1 鱼类 Dervied1 鲫鱼</span></span><br><span class="line"><span class="comment">    Base2 鸟类 Dervied2 麻雀</span></span><br><span class="line"><span class="comment">    假设我们有这4个class 一一对应继承关系</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line">pair&lt;Base1, Base2&gt;p2&lt;<span class="built_in">pair</span>&lt;Dervied1, Dervied2&gt;()&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	把一个由鲫鱼和麻雀组成的pair 放进(拷贝到)一个由鱼类和鸟类构成的pair中 可以吗 反之 可以嘛</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">// 正着当然可以 反之思维上则说不通 因为鸟类&gt;麻雀 为了显示这种逻辑 成员函数就因此诞生而来</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">class stone &#123;
+public:
+  stone(int w, int h, int we) : _w(w), _h(h), _weight(we) &#123;&#125;
+  bool operator &lt; (const stone&amp; rns) const &#123; return _weight &lt; rhs._weight; &#125;
+private:
+  int _w, _h, _weight;
+&#125;;</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T1</span>, <span class="keyword">class</span> <span class="title class_">T2</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">pair</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    T1 first;</span><br><span class="line">    T2 second;</span><br><span class="line">    <span class="built_in">pair</span>():<span class="built_in">first</span>(<span class="built_in">T1</span>()), <span class="built_in">second</span>(<span class="built_in">T2</span>()) &#123; &#125;</span><br><span class="line">    <span class="built_in">pair</span>(<span class="type">const</span> T1&amp; a, <span class="type">const</span> T2&amp; b):<span class="built_in">first</span>(a), <span class="built_in">second</span>(b) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">U1</span>, <span class="keyword">class</span> <span class="title class_">U2</span>&gt;</span><br><span class="line">    <span class="built_in">pair</span>(<span class="type">const</span> pair&lt;U1, U2&gt;&amp; p):<span class="built_in">first</span>(p.first), <span class="built_in">second</span>(p.second) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	看上述的构造函数 传入U1 U2还得first(p.first)等 这样子如果是上述正着来也可以 反之则不行</span></span><br><span class="line"><span class="comment">	在智能指针中 其实也有实现</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+  解说
+	func template 也是相当于class template 作用
+    如果我们用stone类型去生成对象
+    实参推导结果: T为stone 于是调用stone::operator&lt;
+    所以stone必须实现&quot;&lt;&quot;方法
+*&#x2F;</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">shared_ptr</span>:<span class="keyword">public</span> __shared_ptr&lt;_Tp&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp1&gt;</span></span><br><span class="line"><span class="function">    <span class="keyword">explicit</span> <span class="title">shared_ptr</span><span class="params">(_Tpl*__p)</span>:__shared_ptr&lt;_Tp&gt;(__p)&#123;</span> &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Base1* ptr = <span class="keyword">new</span> Derived1;</span><br><span class="line"><span class="function">shared_ptr&lt;Base1&gt; <span class="title">sptr</span><span class="params">(<span class="keyword">new</span> Derived1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 智能指针里面可以用成员函数 指向继承自己的成员</span></span><br></pre></td></tr></table></figure>
+<h2 id="member-template-成员函数"><a href="#member-template-成员函数" class="headerlink" title="member template 成员函数"></a>member template 成员函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T1, class T2&gt;
+struct pair &#123;
+    typedef T1 first_type;
+    typedef T2 second_type;
+    
+    T1 first;
+    T2 second;
+    
+    pair() : first(T1()), second(T2()) &#123; &#125;
+    pair()(const T1&amp; a, const T2&amp; b) : first(a), second(b) &#123; &#125;
+    
+    template &lt;class U1, class U2&gt;
+    pair(const pair&lt;U1, U2&gt;&amp; p) : first(p.first), second(p.second) &#123; &#125;
+&#125;;
+
+&#x2F;*
+	我们在外面设置了T1 T2之后 在里面的成员模板又可以让我们在设置一个U1 U2
+	这么说是不是有点听不太懂
+	让我们看个新例子
+*&#x2F;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+    Base1 鱼类 Dervied1 鲫鱼
+    Base2 鸟类 Dervied2 麻雀
+    假设我们有这4个class 一一对应继承关系
+*&#x2F; 
+
+pair&lt;Base1, Base2&gt;p2&lt;pair&lt;Dervied1, Dervied2&gt;()&gt;;
+
+&#x2F;*
+	把一个由鲫鱼和麻雀组成的pair 放进(拷贝到)一个由鱼类和鸟类构成的pair中 可以吗 反之 可以嘛
+*&#x2F; 
+
+&#x2F;&#x2F; 正着当然可以 反之思维上则说不通 因为鸟类&gt;麻雀 为了显示这种逻辑 成员函数就因此诞生而来
+</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class T1, class T2&gt;
+struct pair &#123;
+    ...
+    T1 first;
+    T2 second;
+    pair():first(T1()), second(T2()) &#123; &#125;
+    pair(const T1&amp; a, const T2&amp; b):first(a), second(b) &#123;&#125;
+    
+    template &lt;class U1, class U2&gt;
+    pair(const pair&lt;U1, U2&gt;&amp; p):first(p.first), second(p.second) &#123;&#125;
+&#125;;
+
+&#x2F;*
+	看上述的构造函数 传入U1 U2还得first(p.first)等 这样子如果是上述正着来也可以 反之则不行
+	在智能指针中 其实也有实现
+*&#x2F;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename _Tp&gt;
+class shared_ptr:public __shared_ptr&lt;_Tp&gt; &#123;
+    ...
+    template&lt;typename _Tp1&gt;
+    explicit shared_ptr(_Tpl*__p):__shared_ptr&lt;_Tp&gt;(__p)&#123; &#125;
+    ...
+&#125;
 
 
 
-<h2 id="specialization-模板特化"><a href="#specialization-模板特化" class="headerlink" title="specialization 模板特化"></a>specialization 模板特化</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">key</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hash</span> &#123; &#125;;</span><br><span class="line"><span class="comment">// 这样的 直接在template 后面的叫做泛化(全泛化)</span></span><br></pre></td></tr></table></figure>
+Base1* ptr &#x3D; new Derived1;
+shared_ptr&lt;Base1&gt; sptr(new Derived1);
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hash</span>&lt;<span class="type">char</span>&gt; &#123;</span><br><span class="line">  <span class="function"><span class="type">size_t</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">char</span> x)</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hash</span>&lt;<span class="type">int</span>&gt; &#123;</span><br><span class="line">  <span class="function"><span class="type">size_t</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">int</span> x)</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样的就叫特化</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">hash</span>&lt;<span class="type">int</span>&gt;() (<span class="number">1000</span>);</span><br><span class="line"><span class="comment">// 这样就会直接找到hash&lt;int&gt;然后操作符重载 找到&quot;()&quot;</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 智能指针里面可以用成员函数 指向继承自己的成员</code></pre>
 
 
 
-<h2 id="模板偏特化—个数上的偏"><a href="#模板偏特化—个数上的偏" class="headerlink" title="模板偏特化—个数上的偏"></a>模板偏特化—个数上的偏</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Alloc=...&gt; <span class="comment">// Alloc 分配器 </span></span><br><span class="line"><span class="keyword">class</span> vector &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果第一个typename 一直为bool 的话 为了节省空间 我们可以进行绑定优化</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Alloc=....&gt; <span class="comment">// Alloc 分配器 </span></span><br><span class="line"><span class="keyword">class</span> vector&lt;<span class="type">bool</span>, Alloc&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="specialization-模板特化"><a href="#specialization-模板特化" class="headerlink" title="specialization 模板特化"></a>specialization 模板特化</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;class key&gt;
+struct hash &#123; &#125;;
+&#x2F;&#x2F; 这样的 直接在template 后面的叫做泛化(全泛化)</code></pre>
 
-<h2 id="模板偏特化—范围上的偏"><a href="#模板偏特化—范围上的偏" class="headerlink" title="模板偏特化—范围上的偏"></a>模板偏特化—范围上的偏</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span>&lt;T*&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;; <span class="comment">// 这样的意思就是我要求编译器 如果是指针的T 就走这个 不是就走上方</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;&gt;
+struct hash&lt;char&gt; &#123;
+  size_t operator() (char x) const &#123; return x; &#125;
+&#125;;
 
-<h2 id="模板模板参数"><a href="#模板模板参数" class="headerlink" title="模板模板参数"></a>模板模板参数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T,  <span class="comment">// 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法</span></span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="comment">// 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法</span></span><br><span class="line">			<span class="keyword">class</span> <span class="title class_">Container</span></span><br><span class="line">         &gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">XCls</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Container&lt;T&gt; c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">XCls&lt;string, list&gt; mylst1;</span><br><span class="line"><span class="comment">// 模板模板参数 是为了像这样 我们可以创建一个list容器 里面是string类型 非常灵活 就相当于list&lt;string&gt; c;</span></span><br><span class="line"><span class="comment">// 但是 这样是不行的因为很多容器参数需要好几个 我们平时写一个 是因为其他的参数有默认</span></span><br><span class="line"><span class="comment">// 所以我们需要加两行代码</span></span><br></pre></td></tr></table></figure>
+template&lt;&gt;
+struct hash&lt;int&gt; &#123;
+  size_t operator() (int x) const &#123; return x; &#125;
+&#125;;
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> lst = list&lt;T, allocator&lt;T&gt;&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加了这两行代码 再 XCls&lt;string, lst&gt; mylst2; 即可</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 这样的就叫特化
+cout &lt;&lt; hash&lt;int&gt;() (1000);
+&#x2F;&#x2F; 这样就会直接找到hash&lt;int&gt;然后操作符重载 找到&quot;()&quot;</code></pre>
+
+
+
+<h2 id="模板偏特化—个数上的偏"><a href="#模板偏特化—个数上的偏" class="headerlink" title="模板偏特化—个数上的偏"></a>模板偏特化—个数上的偏</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T, typename Alloc&#x3D;...&gt; &#x2F;&#x2F; Alloc 分配器 
+class vector &#123;
+    ...
+&#125;;
+
+&#x2F;&#x2F; 如果第一个typename 一直为bool 的话 为了节省空间 我们可以进行绑定优化
+
+template &lt;typename Alloc&#x3D;....&gt; &#x2F;&#x2F; Alloc 分配器 
+class vector&lt;bool, Alloc&gt; &#123;
+    ...
+&#125;;</code></pre>
+
+<h2 id="模板偏特化—范围上的偏"><a href="#模板偏特化—范围上的偏" class="headerlink" title="模板偏特化—范围上的偏"></a>模板偏特化—范围上的偏</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; 
+class C &#123;
+    ...
+&#125;;
+
+template &lt;typename T&gt; 
+class C&lt;T*&gt; &#123;
+    ...
+&#125;; &#x2F;&#x2F; 这样的意思就是我要求编译器 如果是指针的T 就走这个 不是就走上方</code></pre>
+
+<h2 id="模板模板参数"><a href="#模板模板参数" class="headerlink" title="模板模板参数"></a>模板模板参数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template &lt;typename T,  &#x2F;&#x2F; 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
+		template &lt;typename T&gt; &#x2F;&#x2F; 如果这里的typename 是 class 那是历史遗留问题 其实是老的写法
+			class Container
+         &gt;
+class XCls &#123;
+private:
+    Container&lt;T&gt; c;
+public:
+    ...
+&#125;;
+
+XCls&lt;string, list&gt; mylst1;
+&#x2F;&#x2F; 模板模板参数 是为了像这样 我们可以创建一个list容器 里面是string类型 非常灵活 就相当于list&lt;string&gt; c;
+&#x2F;&#x2F; 但是 这样是不行的因为很多容器参数需要好几个 我们平时写一个 是因为其他的参数有默认
+&#x2F;&#x2F; 所以我们需要加两行代码</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename T&gt;
+using lst &#x3D; list&lt;T, allocator&lt;T&gt;&gt;;
+
+&#x2F;&#x2F; 加了这两行代码 再 XCls&lt;string, lst&gt; mylst2; 即可</code></pre>
 
 
             </div>

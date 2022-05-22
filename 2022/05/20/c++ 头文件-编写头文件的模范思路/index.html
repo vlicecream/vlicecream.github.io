@@ -156,25 +156,120 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="class内"><a href="#class内" class="headerlink" title="class内"></a>class内</h1><h2 id="编写防卫式声明"><a href="#编写防卫式声明" class="headerlink" title="编写防卫式声明"></a>编写防卫式声明</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STRING__  <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STRING__  <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+                <h1 id="class内"><a href="#class内" class="headerlink" title="class内"></a>class内</h1><h2 id="编写防卫式声明"><a href="#编写防卫式声明" class="headerlink" title="编写防卫式声明"></a>编写防卫式声明</h2><pre class="language-c++" data-language="c++"><code class="language-c++">#ifndef __STRING__  &#x2F;&#x2F; __STRING__	自由取
+#define __STRING__  &#x2F;&#x2F; __STRING__	自由取
+#endif</code></pre>
 
-<h2 id="编写class-head"><a href="#编写class-head" class="headerlink" title="编写class head"></a>编写class head</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STRING__  <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STRING__  <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="编写class-head"><a href="#编写class-head" class="headerlink" title="编写class head"></a>编写class head</h2><pre class="language-c++" data-language="c++"><code class="language-c++">#ifndef __STRING__  &#x2F;&#x2F; __STRING__	自由取
+#define __STRING__  &#x2F;&#x2F; __STRING__	自由取
 
-<h2 id="编写数据-并放入private"><a href="#编写数据-并放入private" class="headerlink" title="编写数据 并放入private"></a>编写数据 并放入private</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STRING__  <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STRING__  <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">char</span>* m_data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// __STRING__</span></span></span><br></pre></td></tr></table></figure>
+class String &#123;
+  
+&#125;;
 
-<h2 id="编写构造函数"><a href="#编写构造函数" class="headerlink" title="编写构造函数"></a>编写构造函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	编写构造函数一定要注意</span></span><br><span class="line"><span class="comment">		1 类的名称相同</span></span><br><span class="line"><span class="comment">		2.1 有哪些传参数 2.2 需不需要默认值 2.3 参数传递是 pass by value 还是 pass by reference</span></span><br><span class="line"><span class="comment">		3 合理利用初始列 初始列就是设初始值 也就把re im 设置为 r m</span></span><br><span class="line"><span class="comment">		4 &#123; &#125; 里面可能会有内存分配等～</span></span><br><span class="line"><span class="comment">		5 const</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STRING__ <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STRING__ <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">String</span>(<span class="type">const</span> <span class="type">char</span>* cstr = <span class="number">0</span>); <span class="comment">// 构造函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">char</span>* m_data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// __STRING__</span></span></span><br></pre></td></tr></table></figure>
+#endif</code></pre>
 
-<h2 id="设计三大函数"><a href="#设计三大函数" class="headerlink" title="设计三大函数"></a>设计三大函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// **********ps: 这种带着指针的类一定要记住三大函数</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STRING__ <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STRING__ <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">String</span>(<span class="type">const</span> <span class="type">char</span>* cstr = <span class="number">0</span>); <span class="comment">// 构造函数</span></span><br><span class="line">	<span class="built_in">String</span>(<span class="type">const</span> String&amp; str);  <span class="comment">// 拷贝构造</span></span><br><span class="line">  String&amp; <span class="keyword">operator</span>=(<span class="type">const</span> String&amp; str); <span class="comment">// 拷贝赋值</span></span><br><span class="line">  ~<span class="built_in">String</span>();  <span class="comment">// 析构函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">char</span>* m_data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// __STRING__</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="编写数据-并放入private"><a href="#编写数据-并放入private" class="headerlink" title="编写数据 并放入private"></a>编写数据 并放入private</h2><pre class="language-c++" data-language="c++"><code class="language-c++">#ifndef __STRING__  &#x2F;&#x2F; __STRING__	自由取
+#define __STRING__  &#x2F;&#x2F; __STRING__	自由取
 
-<h2 id="设计其他函数"><a href="#设计其他函数" class="headerlink" title="设计其他函数"></a>设计其他函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STRING__ <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STRING__ <span class="comment">// __STRING__	自由取</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">String</span>(<span class="type">const</span> <span class="type">char</span>* cstr = <span class="number">0</span>); <span class="comment">// 构造函数</span></span><br><span class="line">	<span class="built_in">String</span>(<span class="type">const</span> String&amp; str);  <span class="comment">// 拷贝构造</span></span><br><span class="line">  String&amp; <span class="keyword">operator</span>=(<span class="type">const</span> String&amp; str); <span class="comment">// 拷贝赋值</span></span><br><span class="line">  ~<span class="built_in">String</span>();  <span class="comment">// 析构函数</span></span><br><span class="line">  <span class="function"><span class="type">char</span>* <span class="title">get_c_str</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> m_data; &#125;  <span class="comment">// 拿到私有的数据</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">char</span>* m_data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// __STRING__</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	当我们设计一个函数的时候 一定要思考 要不要加const</span></span><br><span class="line"><span class="comment">	到底要不要加 只需要看 这个参数会不会改变 如果不会 不能改变 则加const</span></span><br><span class="line"><span class="comment">	结合此处代码考虑 取出和构造的拷贝的时候 都不会改变str 所以就加一个const</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+class String &#123;
+private:
+  char* m_data;
+&#125;;
 
-<h1 id="class-外"><a href="#class-外" class="headerlink" title="class 外"></a>class 外</h1><h2 id="ctor-amp-dtor"><a href="#ctor-amp-dtor" class="headerlink" title="ctor&amp;dtor"></a>ctor&amp;dtor</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">String::String</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* cstr = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (cstr) &#123;</span><br><span class="line">    m_data = <span class="keyword">new</span> <span class="type">char</span>[<span class="built_in">strlen</span>(cstr)+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_data, cstr);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    m_data = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">1</span>];</span><br><span class="line">    *m_data = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  <span class="comment">// c里面字符串是以 &#x27;\0&#x27; 为结束符号 这是构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> String::~<span class="built_in">String</span>() &#123;</span><br><span class="line">  <span class="keyword">delete</span>[] m_data;</span><br><span class="line">&#125;  <span class="comment">// 析构函数 因为上述构造函数 为str分配了一个内存 所以要释放内存 要不然会内存泄漏</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// class 有指针 多半要做动态分配 所以就要在析构函数 释放内存</span></span><br></pre></td></tr></table></figure>
+#endif &#x2F;&#x2F; __STRING__</code></pre>
+
+<h2 id="编写构造函数"><a href="#编写构造函数" class="headerlink" title="编写构造函数"></a>编写构造函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	编写构造函数一定要注意
+		1 类的名称相同
+		2.1 有哪些传参数 2.2 需不需要默认值 2.3 参数传递是 pass by value 还是 pass by reference
+		3 合理利用初始列 初始列就是设初始值 也就把re im 设置为 r m
+		4 &#123; &#125; 里面可能会有内存分配等～
+		5 const
+*&#x2F;
+
+
+#ifndef __STRING__ &#x2F;&#x2F; __STRING__	自由取
+#define __STRING__ &#x2F;&#x2F; __STRING__	自由取
+
+class String &#123;
+public:
+  String(const char* cstr &#x3D; 0); &#x2F;&#x2F; 构造函数
+private:
+  char* m_data;
+&#125;;
+
+#endif &#x2F;&#x2F; __STRING__</code></pre>
+
+<h2 id="设计三大函数"><a href="#设计三大函数" class="headerlink" title="设计三大函数"></a>设计三大函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; **********ps: 这种带着指针的类一定要记住三大函数
+#ifndef __STRING__ &#x2F;&#x2F; __STRING__	自由取
+#define __STRING__ &#x2F;&#x2F; __STRING__	自由取
+
+class String &#123;
+public:
+  String(const char* cstr &#x3D; 0); &#x2F;&#x2F; 构造函数
+	String(const String&amp; str);  &#x2F;&#x2F; 拷贝构造
+  String&amp; operator&#x3D;(const String&amp; str); &#x2F;&#x2F; 拷贝赋值
+  ~String();  &#x2F;&#x2F; 析构函数
+private:
+  char* m_data;
+&#125;;
+
+#endif &#x2F;&#x2F; __STRING__</code></pre>
+
+<h2 id="设计其他函数"><a href="#设计其他函数" class="headerlink" title="设计其他函数"></a>设计其他函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">#ifndef __STRING__ &#x2F;&#x2F; __STRING__	自由取
+#define __STRING__ &#x2F;&#x2F; __STRING__	自由取
+
+class String &#123;
+public:
+  String(const char* cstr &#x3D; 0); &#x2F;&#x2F; 构造函数
+	String(const String&amp; str);  &#x2F;&#x2F; 拷贝构造
+  String&amp; operator&#x3D;(const String&amp; str); &#x2F;&#x2F; 拷贝赋值
+  ~String();  &#x2F;&#x2F; 析构函数
+  char* get_c_str() const &#123; return m_data; &#125;  &#x2F;&#x2F; 拿到私有的数据
+private:
+  char* m_data;
+&#125;;
+
+#endif &#x2F;&#x2F; __STRING__
+
+&#x2F;*
+	当我们设计一个函数的时候 一定要思考 要不要加const
+	到底要不要加 只需要看 这个参数会不会改变 如果不会 不能改变 则加const
+	结合此处代码考虑 取出和构造的拷贝的时候 都不会改变str 所以就加一个const
+*&#x2F;</code></pre>
+
+<h1 id="class-外"><a href="#class-外" class="headerlink" title="class 外"></a>class 外</h1><h2 id="ctor-amp-dtor"><a href="#ctor-amp-dtor" class="headerlink" title="ctor&amp;dtor"></a>ctor&amp;dtor</h2><pre class="language-c++" data-language="c++"><code class="language-c++">inline String::String(const char* cstr &#x3D; 0) &#123;
+  if (cstr) &#123;
+    m_data &#x3D; new char[strlen(cstr)+1];
+    strcpy(m_data, cstr);
+  &#125; else &#123;
+    m_data &#x3D; new char[1];
+    *m_data &#x3D; &#39;\0&#39;;
+  &#125;
+&#125;  &#x2F;&#x2F; c里面字符串是以 &#39;\0&#39; 为结束符号 这是构造函数
+
+inline String::~String() &#123;
+  delete[] m_data;
+&#125;  &#x2F;&#x2F; 析构函数 因为上述构造函数 为str分配了一个内存 所以要释放内存 要不然会内存泄漏
+
+&#x2F;&#x2F; class 有指针 多半要做动态分配 所以就要在析构函数 释放内存</code></pre>
 
 
 
-<h2 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拷贝构造没有返回值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">String::String</span><span class="params">(<span class="type">const</span> String&amp; str)</span> </span>&#123;</span><br><span class="line">  m_data = <span class="keyword">new</span> <span class="type">char</span>[ <span class="built_in">strlen</span>(str.m_data) + <span class="number">1</span> ];</span><br><span class="line">  <span class="built_in">strcpy</span>(m_data, str.m_data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 拷贝构造没有返回值
+inline String::String(const String&amp; str) &#123;
+  m_data &#x3D; new char[ strlen(str.m_data) + 1 ];
+  strcpy(m_data, str.m_data);
+&#125;</code></pre>
 
-<h2 id="拷贝赋值函数"><a href="#拷贝赋值函数" class="headerlink" title="拷贝赋值函数"></a>拷贝赋值函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> String&amp; String::<span class="keyword">operator</span>=(<span class="type">const</span> String&amp; str) &#123; <span class="comment">// 这一行与下一行的&amp;不一样 第一行是引用(reference) 第二行是取&quot;str&quot;地址</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;str) <span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">// 判断是不是自我赋值</span></span><br><span class="line">  <span class="keyword">delete</span>[] m_data;</span><br><span class="line">  m_data = <span class="keyword">new</span> <span class="type">char</span> [ <span class="built_in">strlen</span>(str.m_data) + <span class="number">1</span>];</span><br><span class="line">  <span class="built_in">strcpy</span>(m_data, str.m_data);</span><br><span class="line">  <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="拷贝赋值函数"><a href="#拷贝赋值函数" class="headerlink" title="拷贝赋值函数"></a>拷贝赋值函数</h2><pre class="language-c++" data-language="c++"><code class="language-c++">inline String&amp; String::operator&#x3D;(const String&amp; str) &#123; &#x2F;&#x2F; 这一行与下一行的&amp;不一样 第一行是引用(reference) 第二行是取&quot;str&quot;地址
+  if (this &#x3D;&#x3D; &amp;str) return *this; &#x2F;&#x2F; 判断是不是自我赋值
+  delete[] m_data;
+  m_data &#x3D; new char [ strlen(str.m_data) + 1];
+  strcpy(m_data, str.m_data);
+  return *this;
+&#125;</code></pre>
 
 
             </div>

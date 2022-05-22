@@ -156,15 +156,69 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="global的重载"><a href="#global的重载" class="headerlink" title="global的重载"></a>global的重载</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span>* <span class="title">myAlloc</span><span class="params">(<span class="type">size_t</span> size)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">malloc</span>(size); &#125;</span><br><span class="line"><span class="function"><span class="type">void</span>* <span class="title">myFree</span><span class="params">(<span class="type">void</span>* ptr)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">free</span>(ptr); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 他们不可以被声明于一个namespace中</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="type">size_t</span> size)</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;jjhou global new() \n&quot;</span>; <span class="keyword">return</span> <span class="built_in">myAlloc</span>(size); &#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">void</span>* <span class="keyword">operator</span> <span class="keyword">new</span>[](<span class="type">size_t</span> size) &#123; cout &lt;&lt; <span class="string">&quot;jjhou global new[]() \n&quot;</span>; <span class="keyword">return</span> <span class="built_in">myAlloc</span>(size); &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span>* <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span>* ptr)</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;jjhou global delete() \n&quot;</span>; <span class="keyword">return</span> <span class="built_in">myFree</span>(ptr); &#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">void</span>* <span class="keyword">operator</span> <span class="keyword">delete</span>[](<span class="type">void</span>* ptr) &#123; cout &lt;&lt; <span class="string">&quot;jjhou global delete[]() \n&quot;</span>; <span class="keyword">return</span> <span class="built_in">myFree</span>(ptr); &#125;</span><br></pre></td></tr></table></figure>
+                <h2 id="global的重载"><a href="#global的重载" class="headerlink" title="global的重载"></a>global的重载</h2><pre class="language-c++" data-language="c++"><code class="language-c++">void* myAlloc(size_t size) &#123; return malloc(size); &#125;
+void* myFree(void* ptr) &#123; return free(ptr); &#125;
 
-<h2 id="成员函数的重载"><a href="#成员函数的重载" class="headerlink" title="成员函数的重载"></a>成员函数的重载</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="type">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="type">size_t</span>)</span></span>;</span><br><span class="line">  <span class="type">void</span>* <span class="keyword">operator</span> <span class="keyword">new</span>[](<span class="type">size_t</span>);</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span>*, <span class="type">size_t</span>)</span></span>;</span><br><span class="line">  <span class="type">void</span> <span class="keyword">operator</span> <span class="keyword">delete</span>[](<span class="type">void</span>*, <span class="type">size_t</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 他们不可以被声明于一个namespace中
+inline void* operator new(size_t size) &#123; cout &lt;&lt; &quot;jjhou global new() \n&quot;; return myAlloc(size); &#125;
+inline void* operator new[](size_t size) &#123; cout &lt;&lt; &quot;jjhou global new[]() \n&quot;; return myAlloc(size); &#125;
+inline void* operator delete(void* ptr) &#123; cout &lt;&lt; &quot;jjhou global delete() \n&quot;; return myFree(ptr); &#125;
+inline void* operator delete[](void* ptr) &#123; cout &lt;&lt; &quot;jjhou global delete[]() \n&quot;; return myFree(ptr); &#125;</code></pre>
 
-<h2 id="重载new-delete"><a href="#重载new-delete" class="headerlink" title="重载new( ) delete( )"></a>重载new( ) delete( )</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们可以重载 class member operator new() 写出多个版本 前提是每一个版本的声明都必须有独特的参数列</span></span><br><span class="line"><span class="comment">	其中第一参数必须是size_t 其余参数以new所指定的placement arguments 为初值</span></span><br><span class="line"><span class="comment">	出现在new(...) 小括号内的便是所谓的placement arguments</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们也可以重载 class member operator delete() 写出多个版本</span></span><br><span class="line"><span class="comment">	但他们绝不会被delete调用 只有当new所调用的ctor抛出exception 才会调用这些重载版的operator delete()</span></span><br><span class="line"><span class="comment">	他只可能这样被调用</span></span><br><span class="line"><span class="comment">	主要处理还未能完全创建成功的object所占用的memory</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="成员函数的重载"><a href="#成员函数的重载" class="headerlink" title="成员函数的重载"></a>成员函数的重载</h2><pre class="language-c++" data-language="c++"><code class="language-c++">class Foo &#123;
+public:
+  void* operator new(size_t);
+  void* operator new[](size_t);
+  void operator delete(void*, size_t);
+  void operator delete[](void*, size_t);
+&#125;</code></pre>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// new()示例</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Foo</span>() &#123; cout &lt;&lt; <span class="string">&quot;Foo::Foo()&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">  <span class="built_in">Foo</span>(<span class="type">int</span>) &#123; cout &lt;&lt; <span class="string">&quot;Foo:Foo(int)&quot;</span> &lt;&lt; endl; <span class="keyword">throw</span> <span class="built_in">Bad</span>(); &#125; <span class="comment">// 故意在这抛出错误 测试delete</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 这就是一般的 operator new()</span></span><br><span class="line">  <span class="function"><span class="type">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="type">size_t</span> size)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">malloc</span>(size); &#125;</span><br><span class="line">  <span class="comment">// 这就是标准库已经提供的 placement new() 的重载 ( 这里简化 )</span></span><br><span class="line">  <span class="function"><span class="type">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="type">size_t</span> size, <span class="type">void</span>* start)</span> </span>&#123; <span class="keyword">return</span> start; &#125;</span><br><span class="line">  <span class="comment">// 这个才是崭新的 placement new</span></span><br><span class="line">  <span class="function"><span class="type">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="type">size_t</span> size, <span class="type">long</span> extra)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">mallc</span>(size+extra); &#125;</span><br><span class="line">  <span class="comment">// 这又是一个placement new</span></span><br><span class="line">  <span class="function"><span class="type">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="type">size_t</span> size, <span class="type">long</span> extra, <span class="type">char</span> init)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">malloc</span>(size_extra); &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="重载new-delete"><a href="#重载new-delete" class="headerlink" title="重载new( ) delete( )"></a>重载new( ) delete( )</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	我们可以重载 class member operator new() 写出多个版本 前提是每一个版本的声明都必须有独特的参数列
+	其中第一参数必须是size_t 其余参数以new所指定的placement arguments 为初值
+	出现在new(...) 小括号内的便是所谓的placement arguments
+*&#x2F;
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是搭配上述的new 的各个 placement delete</span></span><br><span class="line"><span class="comment">// 当ctor发出异常 这儿对应的opertor (placement) delete 就会被调用</span></span><br><span class="line"><span class="comment">// 用途就是释放对应的placement new 分配的memory</span></span><br><span class="line"><span class="comment">// 即使 operator delete(...)未能一一对应也不会出现任何报错 这样的意思是 放弃处理ctor所发出的异常</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个就是一般的opertor delete() 的重载</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span>*, <span class="type">size_t</span>)</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;operator delete(void*, size_t)&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line"><span class="comment">// 这个对应第二个</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span>*, <span class="type">void</span>*)</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;operator delete(void*, void*)&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line"><span class="comment">// 对应第三个</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span>*, <span class="type">long</span>)</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;operator delete(void*, long)&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line"><span class="comment">// 对应第四个</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span>*, <span class="type">long</span>, <span class="type">char</span>)</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;operator delete(void*, long, char)&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> m_i;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+&#x2F;*
+	我们也可以重载 class member operator delete() 写出多个版本
+	但他们绝不会被delete调用 只有当new所调用的ctor抛出exception 才会调用这些重载版的operator delete()
+	他只可能这样被调用
+	主要处理还未能完全创建成功的object所占用的memory
+*&#x2F;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; new()示例
+
+class Foo &#123;
+public:
+  Foo() &#123; cout &lt;&lt; &quot;Foo::Foo()&quot; &lt;&lt; endl; &#125;
+  Foo(int) &#123; cout &lt;&lt; &quot;Foo:Foo(int)&quot; &lt;&lt; endl; throw Bad(); &#125; &#x2F;&#x2F; 故意在这抛出错误 测试delete
+  
+  &#x2F;&#x2F; 这就是一般的 operator new()
+  void* operator new(size_t size) &#123; return malloc(size); &#125;
+  &#x2F;&#x2F; 这就是标准库已经提供的 placement new() 的重载 ( 这里简化 )
+  void* operator new(size_t size, void* start) &#123; return start; &#125;
+  &#x2F;&#x2F; 这个才是崭新的 placement new
+  void* operator new(size_t size, long extra) &#123; return mallc(size+extra); &#125;
+  &#x2F;&#x2F; 这又是一个placement new
+  void* operator new(size_t size, long extra, char init) &#123; return malloc(size_extra); &#125;</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 这是搭配上述的new 的各个 placement delete
+&#x2F;&#x2F; 当ctor发出异常 这儿对应的opertor (placement) delete 就会被调用
+&#x2F;&#x2F; 用途就是释放对应的placement new 分配的memory
+&#x2F;&#x2F; 即使 operator delete(...)未能一一对应也不会出现任何报错 这样的意思是 放弃处理ctor所发出的异常
+
+&#x2F;&#x2F; 这个就是一般的opertor delete() 的重载
+void operator delete(void*, size_t) &#123; cout &lt;&lt; &quot;operator delete(void*, size_t)&quot; &lt;&lt; endl; &#125;
+&#x2F;&#x2F; 这个对应第二个
+void operator delete(void*, void*) &#123; cout &lt;&lt; &quot;operator delete(void*, void*)&quot; &lt;&lt; endl; &#125;
+&#x2F;&#x2F; 对应第三个
+void operator delete(void*, long) &#123; cout &lt;&lt; &quot;operator delete(void*, long)&quot; &lt;&lt; endl; &#125;
+&#x2F;&#x2F; 对应第四个
+void operator delete(void*, long, char) &#123; cout &lt;&lt; &quot;operator delete(void*, long, char)&quot; &lt;&lt; endl; &#125;
+
+private:
+	int m_i;
+&#125;;</code></pre>
 
             </div>
 

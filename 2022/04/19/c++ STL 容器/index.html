@@ -156,39 +156,106 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 每个人写代码其实都有自己的习惯 在这里推荐一个小习惯</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们把一个单元的测试 都放在一个namespace 每个namespace上面都会有自己有关的头文件 就算有些头文件有重复了 也没有关系 因为我们有防卫式声明 木有事情</span></span><br><span class="line"><span class="comment">// 变量的声明 都会集中在函数的最前面 测试的话我们可以不要缩进散开来 但是还是根据自己的习惯来</span></span><br></pre></td></tr></table></figure>
+                <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 每个人写代码其实都有自己的习惯 在这里推荐一个小习惯
 
-<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	namespace jj01</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">	数组是固定大小的序列容器, 里面的元素是一段连续的内存地址</span></span><br><span class="line"><span class="comment">	通用格式 array&lt;类型名, 元素个数&gt;数组名;</span></span><br><span class="line"><span class="comment">		ps: 元素个数不能是变量 因为长度固定</span></span><br><span class="line"><span class="comment">	array并不支持(也就是不允许你指定)分配器的哦～</span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 我们把一个单元的测试 都放在一个namespace 每个namespace上面都会有自己有关的头文件 就算有些头文件有重复了 也没有关系 因为我们有防卫式声明 木有事情
+&#x2F;&#x2F; 变量的声明 都会集中在函数的最前面 测试的话我们可以不要缩进散开来 但是还是根据自己的习惯来</code></pre>
 
-<h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	namespace jj02</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">	vector 是只能往后扩展 如果空间不够 扩容规则是两倍增长的速度</span></span><br><span class="line"><span class="comment">	这个两倍增长其实是换了个内存地址 虽然将原来的元素一点一点移过去 所以这个过程相比是很缓慢的</span></span><br><span class="line"><span class="comment">	如果vector的元素类型是int，默认初始化为0</span></span><br><span class="line"><span class="comment">	如果vector元素类型为string，则默认初始化为空字符串</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><pre class="language-c" data-language="c"><code class="language-c">&#x2F;*
+	namespace jj01
+	
+	数组是固定大小的序列容器, 里面的元素是一段连续的内存地址
+	通用格式 array&lt;类型名, 元素个数&gt;数组名;
+		ps: 元素个数不能是变量 因为长度固定
+	array并不支持(也就是不允许你指定)分配器的哦～
+*&#x2F; </code></pre>
 
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  namespace jj03</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  扩容是不可能在原来的地方也就是内存地址扩容两倍 所以扩容后内存地址肯定会变 而且扩容的很缓慢 </span></span><br><span class="line"><span class="comment">  	但是list不一样 他是有指针的 相当于一个萝卜一个坑～ 每放一个元素进去 就会有指向这个元素的地址</span></span><br><span class="line"><span class="comment">  list 不可以用全局的 ::sort 方法 必须要用他自己类自带的sort算法 因为分配器的原因</span></span><br><span class="line"><span class="comment">*</span></span><br></pre></td></tr></table></figure>
+<h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	namespace jj02
+	
+	vector 是只能往后扩展 如果空间不够 扩容规则是两倍增长的速度
+	这个两倍增长其实是换了个内存地址 虽然将原来的元素一点一点移过去 所以这个过程相比是很缓慢的
+	如果vector的元素类型是int，默认初始化为0
+	如果vector元素类型为string，则默认初始化为空字符串
+*&#x2F;</code></pre>
 
-<h2 id="Forward-list"><a href="#Forward-list" class="headerlink" title="Forward_list"></a>Forward_list</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	单向链表 只有push_front 方法 只允许你从一端放入</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><pre class="language-c" data-language="c"><code class="language-c">&#x2F;*
+  namespace jj03
+  
+  扩容是不可能在原来的地方也就是内存地址扩容两倍 所以扩容后内存地址肯定会变 而且扩容的很缓慢 
+  	但是list不一样 他是有指针的 相当于一个萝卜一个坑～ 每放一个元素进去 就会有指向这个元素的地址
+  list 不可以用全局的 ::sort 方法 必须要用他自己类自带的sort算法 因为分配器的原因
+*</code></pre>
 
-<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Forward-list"><a href="#Forward-list" class="headerlink" title="Forward_list"></a>Forward_list</h2><pre class="language-c" data-language="c"><code class="language-c">&#x2F;*
+	单向链表 只有push_front 方法 只允许你从一端放入
+*&#x2F;</code></pre>
 
-<h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><pre class="language-c" data-language="c"><code class="language-c"></code></pre>
 
-<h2 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	可以有重复元素的有序集合</span></span><br><span class="line"><span class="comment">	底层是红黑树实现</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	在测试代码里面 我们用标准库的find和容器自己的find来对比查找元素的速度</span></span><br><span class="line"><span class="comment">	按道理其实容器自己的find速度快 因为针对这个容器做了特殊处理 而标准库是要泛用的</span></span><br><span class="line"><span class="comment">	测试证明 容器自己的find非常的快 因为multiset是关联式容器 直接用key找, 加上是由红黑树实现的</span></span><br><span class="line"><span class="comment">	但是事情不可能是完美的 查找特别快 但是插入元素就会比较慢</span></span><br><span class="line"><span class="comment">	multiset key 就是value value 就是ke y</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><pre class="language-c" data-language="c"><code class="language-c"></code></pre>
 
-<h2 id="multimap"><a href="#multimap" class="headerlink" title="multimap"></a>multimap</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	每个元素分开两个部分 key 和 value  key不可重复</span></span><br><span class="line"><span class="comment">	底层是红黑树实现</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	我们往multimap放一对值 得用标准库 &quot;pair&quot; 一对 来放值</span></span><br><span class="line"><span class="comment">		c.insert(pair&lt;long, string&gt;(key, value));</span></span><br><span class="line"><span class="comment">	取值的话 第一个值就是 first 第二个值就是second</span></span><br><span class="line"><span class="comment">		(*pItem).second</span></span><br><span class="line"><span class="comment">	有没有办法直接拿出key value呢</span></span><br><span class="line"><span class="comment">	这个就得靠操作符重载之类的自己写啦</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	可以有重复元素的有序集合
+	底层是红黑树实现
+*&#x2F;
 
-<h2 id="unordered-multiset"><a href="#unordered-multiset" class="headerlink" title="unordered_multiset"></a>unordered_multiset</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	这种的是由哈希表来实现的</span></span><br><span class="line"><span class="comment">	哈希表主要核心问题 有 取桶(取模法) 哈希冲突(开放寻址 拉链) 渐进式扩容</span></span><br><span class="line"><span class="comment">	可以观看golang方面的map介绍 因为golang的map底层就是哈希表</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+&#x2F;*
+	在测试代码里面 我们用标准库的find和容器自己的find来对比查找元素的速度
+	按道理其实容器自己的find速度快 因为针对这个容器做了特殊处理 而标准库是要泛用的
+	测试证明 容器自己的find非常的快 因为multiset是关联式容器 直接用key找, 加上是由红黑树实现的
+	但是事情不可能是完美的 查找特别快 但是插入元素就会比较慢
+	multiset key 就是value value 就是ke y
+*&#x2F;</code></pre>
 
-<h2 id="unordered-multimap"><a href="#unordered-multimap" class="headerlink" title="unordered_multimap"></a>unordered_multimap</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	底层也是由哈希表来实现</span></span><br><span class="line"><span class="comment">	哈希表主要核心问题 有 取桶(取模法) 哈希冲突(开放寻址 拉链) 渐进式扩容</span></span><br><span class="line"><span class="comment">	可以观看golang方面的map介绍 因为golang的map底层就是哈希表</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="multimap"><a href="#multimap" class="headerlink" title="multimap"></a>multimap</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	每个元素分开两个部分 key 和 value  key不可重复
+	底层是红黑树实现
+*&#x2F;
 
-<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	key就是value value就是key  key不可重复</span></span><br><span class="line"><span class="comment">	底层也是由红黑树实现</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+&#x2F;*
+	我们往multimap放一对值 得用标准库 &quot;pair&quot; 一对 来放值
+		c.insert(pair&lt;long, string&gt;(key, value));
+	取值的话 第一个值就是 first 第二个值就是second
+		(*pItem).second
+	有没有办法直接拿出key value呢
+	这个就得靠操作符重载之类的自己写啦
+*&#x2F;</code></pre>
 
-<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	元素由key value组成 是不可以重复的 但是因为key 不重复 value会重复  他们组合还是不会是一样的</span></span><br><span class="line"><span class="comment">	这个容器 可以把key 和 value 变成一个pair</span></span><br><span class="line"><span class="comment">	所以可以用[]放值</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="unordered-multiset"><a href="#unordered-multiset" class="headerlink" title="unordered_multiset"></a>unordered_multiset</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	这种的是由哈希表来实现的
+	哈希表主要核心问题 有 取桶(取模法) 哈希冲突(开放寻址 拉链) 渐进式扩容
+	可以观看golang方面的map介绍 因为golang的map底层就是哈希表
+*&#x2F;</code></pre>
 
-<h2 id="unordered-set"><a href="#unordered-set" class="headerlink" title="unordered_set"></a>unordered_set</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	哈希表实现的set</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="unordered-multimap"><a href="#unordered-multimap" class="headerlink" title="unordered_multimap"></a>unordered_multimap</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	底层也是由哈希表来实现
+	哈希表主要核心问题 有 取桶(取模法) 哈希冲突(开放寻址 拉链) 渐进式扩容
+	可以观看golang方面的map介绍 因为golang的map底层就是哈希表
+*&#x2F;</code></pre>
 
-<h2 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	哈希表实现的map</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	key就是value value就是key  key不可重复
+	底层也是由红黑树实现
+*&#x2F;</code></pre>
+
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	元素由key value组成 是不可以重复的 但是因为key 不重复 value会重复  他们组合还是不会是一样的
+	这个容器 可以把key 和 value 变成一个pair
+	所以可以用[]放值
+*&#x2F;</code></pre>
+
+<h2 id="unordered-set"><a href="#unordered-set" class="headerlink" title="unordered_set"></a>unordered_set</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	哈希表实现的set
+*&#x2F;</code></pre>
+
+<h2 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	哈希表实现的map
+*&#x2F;</code></pre>
 
 
 
-<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class="language-c" data-language="c"><code class="language-c"></code></pre>
 
 
             </div>

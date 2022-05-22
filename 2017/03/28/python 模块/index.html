@@ -156,15 +156,207 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="一、-模块-WHAT-WHY-HOW"><a href="#一、-模块-WHAT-WHY-HOW" class="headerlink" title="一、 模块(WHAT WHY HOW)"></a>一、 模块(WHAT WHY HOW)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>什么是模块</span><br><span class="line">	包含一系列功能的一个python文件</span><br><span class="line">	内置模块</span><br><span class="line">	第三方模块</span><br><span class="line">	自定义模块</span><br><span class="line"><span class="comment"># 模块有四种形式</span></span><br><span class="line">	I 使用python编写的.py文件 ******</span><br><span class="line"></span><br><span class="line">　　 II 已被编译为共享库或DLL的C或C++扩展</span><br><span class="line"></span><br><span class="line">　　 III 把一系列模块组织到一起的文件夹（注：文件夹下有一个__init__.py文件，该文件夹称之为包）*******</span><br><span class="line"></span><br><span class="line">　　 IV 使用C编写并链接到python解释器的内置模块</span><br><span class="line"><span class="number">2.</span>为什么要用模块</span><br><span class="line">	因为用模块后代码就不会冗余，而且代码结构清晰</span><br><span class="line"><span class="number">3.</span>怎么用模块</span><br><span class="line">        如果是内置模块或者是第三方模块直接 improt XXX 调用就好了</span><br><span class="line">        如果是自定义模块</span><br><span class="line">    <span class="keyword">import</span> roo</span><br><span class="line">    I. 引用</span><br><span class="line">    注意<span class="number">1</span>：指名道姓的去引用  例如</span><br><span class="line">    	<span class="built_in">print</span>(roo.变量名)</span><br><span class="line">        <span class="built_in">print</span>(roo.函数名)</span><br><span class="line">    注意<span class="number">2</span>：无论修改与增加，都只会对模块文件造成影响，与调用位置无关</span><br><span class="line">    </span><br><span class="line">    	</span><br><span class="line"><span class="number">4.</span>首次导用函数发生的三件事情</span><br><span class="line">	<span class="keyword">import</span> roo</span><br><span class="line">	I.会制造一个专属roo的名称空间，roo里面的都会在这个名称空间里</span><br><span class="line">    II. 执行 roo.py</span><br><span class="line">    III. 在当前文件创造roo名字，会直接指向模块roo的名称空间</span><br><span class="line"><span class="number">5.</span>如果要导入多个模块，可以以逗号分隔，但是不推荐这么做，推荐分行来导入，例如</span><br><span class="line">	<span class="keyword">import</span> time</span><br><span class="line">    <span class="keyword">import</span> 内置模块</span><br><span class="line">    <span class="keyword">import</span> 第三方   <span class="comment"># 分行导入如果同时有内置 第三方 自定义模块，则按内置 第三方 自定义来先后导入</span></span><br><span class="line">    <span class="keyword">import</span> 第三方</span><br><span class="line">    <span class="keyword">import</span> 自定义</span><br><span class="line">    <span class="keyword">import</span> 自定义</span><br></pre></td></tr></table></figure>
+                <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="一、-模块-WHAT-WHY-HOW"><a href="#一、-模块-WHAT-WHY-HOW" class="headerlink" title="一、 模块(WHAT WHY HOW)"></a>一、 模块(WHAT WHY HOW)</h2><pre class="language-python" data-language="python"><code class="language-python">1.什么是模块
+	包含一系列功能的一个python文件
+	内置模块
+	第三方模块
+	自定义模块
+# 模块有四种形式
+	I 使用python编写的.py文件 ******
 
-<h2 id="二、一个PYTHON文件的两种用途"><a href="#二、一个PYTHON文件的两种用途" class="headerlink" title="二、一个PYTHON文件的两种用途"></a>二、一个PYTHON文件的两种用途</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 当做文件来运行</span><br><span class="line"><span class="number">2.</span> 当做模块来运行</span><br><span class="line"><span class="comment"># 一定要注意名称空间的顺序</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个python文件有两种用途</span></span><br><span class="line">    <span class="comment"># 1.被当作程序运行</span></span><br><span class="line">    <span class="comment"># 2.被当作模块导入</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(__name__)  # __main__</span></span><br><span class="line"><span class="comment"># 1.当foo.py被运行时，__name__的值为&#x27;__main__&#x27;</span></span><br><span class="line"><span class="comment"># 2.当foo.py被当作模块导入时，__name__的值为&#x27;foo&#x27;</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文件被执行&#x27;</span>)</span><br><span class="line">    get()</span><br><span class="line">    change()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 被当作模块导入时做的事</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文件被导入&#x27;</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式：</span></span><br><span class="line"><span class="comment"># m1.py</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">f1</span>():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;xxxxxxxxxxxxxxxxx&#x27;</span>) </span><br><span class="line">    <span class="comment"># f1()</span></span><br><span class="line">    <span class="comment"># if __name__ == &quot;__main__&quot;:</span></span><br><span class="line">    <span class="comment">#     f1()</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># run.py</span></span><br><span class="line">    <span class="keyword">import</span> m1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start</span>():</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">        start()</span><br></pre></td></tr></table></figure>
+　　 II 已被编译为共享库或DLL的C或C++扩展
 
-<h2 id="三、FROM…-IMPORT…-的导入模块"><a href="#三、FROM…-IMPORT…-的导入模块" class="headerlink" title="三、FROM….IMPORT….的导入模块"></a>三、FROM….IMPORT….的导入模块</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 模式</span></span><br><span class="line">       <span class="comment"># 1.可以improt语句导入多个模块(推荐使用)</span></span><br><span class="line">       <span class="comment"># import a</span></span><br><span class="line">       <span class="comment"># import b</span></span><br><span class="line">       <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">       <span class="comment"># 2.在一行导入，用逗号分隔开不同的模块(不推荐)</span></span><br><span class="line">       <span class="comment"># import a,b,c,...</span></span><br><span class="line">   <span class="comment"># 规范（按以下顺序导入模块，虽然不按顺序也不会报错，但是算是自发的规定）</span></span><br><span class="line">       <span class="comment"># 1.内置模块</span></span><br><span class="line">       <span class="comment"># 2.第三方模块</span></span><br><span class="line">       <span class="comment"># 3.自定义模块</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 其他导入语法</span></span><br><span class="line">   <span class="comment"># import foo as f  # 注：这里as f后不要加冒号</span></span><br><span class="line">   <span class="comment"># # 这里相当于把foo换个名字，因为可能会遇到名字特别长的模块名，为了调用时方便，可这样操作</span></span><br><span class="line">   <span class="comment"># f.x  # 等价与foo.x</span></span><br><span class="line">   <span class="comment"># f.get()</span></span><br><span class="line">   <span class="comment"># f.change()</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 模块是第一类对象</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 自定义模块的命名应该采用纯小写+下划线的风格(python3中)</span></span><br><span class="line">   <span class="comment"># python2中是驼峰体的风格</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># from 模块 import 模块内的功能</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">from</span> foo <span class="keyword">import</span> x,get,change <span class="comment">#将模块foo中的x和get导入到当前名称空间</span></span><br><span class="line"></span><br><span class="line">   a=x <span class="comment">#直接使用模块foo中的x赋值给a</span></span><br><span class="line">   get() <span class="comment">#直接执行foo中的get函数</span></span><br><span class="line">   change() <span class="comment">#即便是当前有重名的x，修改的仍然是源文件中的x</span></span><br><span class="line">   <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">   无需加前缀的好处是使得我们的代码更加简洁，</span></span><br><span class="line"><span class="string">   坏处则是容易与当前名称空间中的名字冲突，</span></span><br><span class="line"><span class="string">   如果当前名称空间存在相同的名字，则后定义的名字会覆盖之前定义的名字。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   &#x27;&#x27;&#x27;</span></span><br><span class="line">   <span class="comment"># *:导入模块中的所有名字</span></span><br><span class="line">   <span class="comment"># from foo import *</span></span><br><span class="line">   <span class="comment"># print(x)</span></span><br><span class="line">   <span class="comment"># print(get)</span></span><br><span class="line">   <span class="comment"># print(change)</span></span><br><span class="line">   <span class="comment"># *也不推荐使用</span></span><br><span class="line">   <span class="comment"># name = &#x27;egon&#x27;</span></span><br><span class="line">   <span class="comment"># from foo import *</span></span><br><span class="line">   <span class="comment"># print(name) # 此时如果*里也有name，则会将egon覆盖掉，但是你只知道导入了所有模块，并不清楚有没有name模块</span></span><br></pre></td></tr></table></figure>
+　　 III 把一系列模块组织到一起的文件夹（注：文件夹下有一个__init__.py文件，该文件夹称之为包）*******
 
-<h2 id="四、互导-循环导入"><a href="#四、互导-循环导入" class="headerlink" title="四、互导(循环导入)"></a>四、互导(循环导入)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 现在有三个py文件 m1.py  m2.py  run.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># m1.py文件内容</span></span><br><span class="line">	<span class="keyword">import</span> m2 <span class="keyword">from</span> y</span><br><span class="line">    <span class="built_in">print</span>(y)</span><br><span class="line">    x = <span class="number">111</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># m2.py文件内容</span></span><br><span class="line">	<span class="keyword">import</span> m1 form x</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line">    y = <span class="number">222</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># run.py文件内容</span></span><br><span class="line">	<span class="keyword">import</span> m1</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"> 现在执行run.py</span></span><br><span class="line"><span class="string"> 1.首先 import m1 创建了m1的名称空间，执行m1.py，</span></span><br><span class="line"><span class="string"> 2.import m2 from y 注意这里先 import m2创建了m2的名称空间还未执行from y(调用m2中的y)</span></span><br><span class="line"><span class="string"> 3.创建m2的名称空间后，执行m2.py,import m1(已经创建过m1的名称空间)，执行from x 但是m1.py中只执行了import m2，根本</span></span><br><span class="line"><span class="string">	还没有定义x = 111,所以这里找不到x，报错</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 修改方案一：</span></span><br><span class="line">	<span class="comment"># 将x = 111，y = 222提到最上面，执行m1,m2两个py文件时，先将x,y定义好</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 修改方案二：</span></span><br><span class="line">	<span class="comment"># m1.py文件内容</span></span><br><span class="line">    	<span class="keyword">def</span> <span class="title function_">f1</span>():</span><br><span class="line">            <span class="keyword">import</span> m2 <span class="keyword">from</span> y</span><br><span class="line">            <span class="built_in">print</span>(y)</span><br><span class="line">        x = <span class="number">111</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># m2.py文件内容</span></span><br><span class="line">    	<span class="keyword">def</span> <span class="title function_">f2</span>():</span><br><span class="line">            <span class="keyword">import</span> m1 form x</span><br><span class="line">            <span class="built_in">print</span>(x)</span><br><span class="line">        y = <span class="number">222</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># run.py文件内容</span></span><br><span class="line">        <span class="keyword">import</span> m1</span><br><span class="line">        m1.f1()</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 运用函数定义阶段不执行代码的特点解决这个问题</span></span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+　　 IV 使用C编写并链接到python解释器的内置模块
+2.为什么要用模块
+	因为用模块后代码就不会冗余，而且代码结构清晰
+3.怎么用模块
+        如果是内置模块或者是第三方模块直接 improt XXX 调用就好了
+        如果是自定义模块
+    import roo
+    I. 引用
+    注意1：指名道姓的去引用  例如
+    	print(roo.变量名)
+        print(roo.函数名)
+    注意2：无论修改与增加，都只会对模块文件造成影响，与调用位置无关
+    
+    	
+4.首次导用函数发生的三件事情
+	import roo
+	I.会制造一个专属roo的名称空间，roo里面的都会在这个名称空间里
+    II. 执行 roo.py
+    III. 在当前文件创造roo名字，会直接指向模块roo的名称空间
+5.如果要导入多个模块，可以以逗号分隔，但是不推荐这么做，推荐分行来导入，例如
+	import time
+    import 内置模块
+    import 第三方   # 分行导入如果同时有内置 第三方 自定义模块，则按内置 第三方 自定义来先后导入
+    import 第三方
+    import 自定义
+    import 自定义</code></pre>
 
-<h2 id="五、模块搜索路径"><a href="#五、模块搜索路径" class="headerlink" title="五、模块搜索路径"></a>五、模块搜索路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 无论是import还是from...import...在导入模块时都涉及到查找问题</span></span><br><span class="line"><span class="comment"># 模块搜索路径,优先级从高到低</span></span><br><span class="line"><span class="comment"># 1、内存</span></span><br><span class="line"><span class="comment"># 2、内置</span></span><br><span class="line"><span class="comment"># 3、sys.path</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">print</span>(sys.path)</span><br><span class="line"><span class="comment"># 值为一个列表，存放了一系列的文件夹</span></span><br><span class="line"><span class="comment"># 其中第一个文件夹是当前执行文件所在的文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 例：</span></span><br><span class="line">    <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> spam <span class="comment"># 导入模块到内存</span></span><br><span class="line">    <span class="built_in">print</span>(spam.money)</span><br><span class="line">    </span><br><span class="line">    time.sleep(<span class="number">10</span>) <span class="comment"># 在这10秒内将spam.py文件删除</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">import</span> spam <span class="comment"># 10秒后，仍能调用，说明是从内存中找的</span></span><br><span class="line">    <span class="built_in">print</span>(spam.money)</span><br><span class="line">    <span class="comment"># 代码运行结束后可在运行一次，会发现报错找不到spam.py</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 不在同一个文件内，想调用另一个文件内的模块</span></span><br><span class="line">	<span class="comment"># 方法一：</span></span><br><span class="line">         <span class="keyword">import</span> sys</span><br><span class="line">         <span class="built_in">print</span>(sys.path)</span><br><span class="line">         sys.path.append(<span class="string">r&#x27;D:\py18期\day26\代码\aaa&#x27;</span>) <span class="comment"># 想调用文件的模块</span></span><br><span class="line">         <span class="keyword">import</span> spam</span><br><span class="line"> 	<span class="comment"># 方法二：</span></span><br><span class="line">		<span class="keyword">from</span> aaa.bbb.ccc <span class="keyword">import</span> spam  <span class="comment"># 导入语句中出现的点，代表路径分隔符</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># spam.money  # 使用语句中出现的点，代表问某一个名称空间要名字</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、一个PYTHON文件的两种用途"><a href="#二、一个PYTHON文件的两种用途" class="headerlink" title="二、一个PYTHON文件的两种用途"></a>二、一个PYTHON文件的两种用途</h2><pre class="language-python" data-language="python"><code class="language-python">1. 当做文件来运行
+2. 当做模块来运行
+# 一定要注意名称空间的顺序
+
+# 一个python文件有两种用途
+    # 1.被当作程序运行
+    # 2.被当作模块导入
+
+# print(__name__)  # __main__
+# 1.当foo.py被运行时，__name__的值为&#39;__main__&#39;
+# 2.当foo.py被当作模块导入时，__name__的值为&#39;foo&#39;
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+
+    print(&#39;文件被执行&#39;)
+    get()
+    change()
+else:
+    # 被当作模块导入时做的事
+    print(&#39;文件被导入&#39;)
+    pass
+
+# 格式：
+# m1.py
+    def f1():
+        print(&#39;xxxxxxxxxxxxxxxxx&#39;) 
+    # f1()
+    # if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
+    #     f1()
+    
+# run.py
+    import m1
+
+    def start():
+        pass
+
+    if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+        start()</code></pre>
+
+<h2 id="三、FROM…-IMPORT…-的导入模块"><a href="#三、FROM…-IMPORT…-的导入模块" class="headerlink" title="三、FROM….IMPORT….的导入模块"></a>三、FROM….IMPORT….的导入模块</h2><pre class="language-python" data-language="python"><code class="language-python"># 模式
+       # 1.可以improt语句导入多个模块(推荐使用)
+       # import a
+       # import b
+       # ...
+
+       # 2.在一行导入，用逗号分隔开不同的模块(不推荐)
+       # import a,b,c,...
+   # 规范（按以下顺序导入模块，虽然不按顺序也不会报错，但是算是自发的规定）
+       # 1.内置模块
+       # 2.第三方模块
+       # 3.自定义模块
+
+   # 其他导入语法
+   # import foo as f  # 注：这里as f后不要加冒号
+   # # 这里相当于把foo换个名字，因为可能会遇到名字特别长的模块名，为了调用时方便，可这样操作
+   # f.x  # 等价与foo.x
+   # f.get()
+   # f.change()
+
+   # 模块是第一类对象
+
+   # 自定义模块的命名应该采用纯小写+下划线的风格(python3中)
+   # python2中是驼峰体的风格
+
+   # from 模块 import 模块内的功能
+
+   from foo import x,get,change #将模块foo中的x和get导入到当前名称空间
+
+   a&#x3D;x #直接使用模块foo中的x赋值给a
+   get() #直接执行foo中的get函数
+   change() #即便是当前有重名的x，修改的仍然是源文件中的x
+   &#39;&#39;&#39;
+   无需加前缀的好处是使得我们的代码更加简洁，
+   坏处则是容易与当前名称空间中的名字冲突，
+   如果当前名称空间存在相同的名字，则后定义的名字会覆盖之前定义的名字。
+
+   &#39;&#39;&#39;
+   # *:导入模块中的所有名字
+   # from foo import *
+   # print(x)
+   # print(get)
+   # print(change)
+   # *也不推荐使用
+   # name &#x3D; &#39;egon&#39;
+   # from foo import *
+   # print(name) # 此时如果*里也有name，则会将egon覆盖掉，但是你只知道导入了所有模块，并不清楚有没有name模块</code></pre>
+
+<h2 id="四、互导-循环导入"><a href="#四、互导-循环导入" class="headerlink" title="四、互导(循环导入)"></a>四、互导(循环导入)</h2><pre class="language-python" data-language="python"><code class="language-python"># 现在有三个py文件 m1.py  m2.py  run.py
+
+# m1.py文件内容
+	import m2 from y
+    print(y)
+    x &#x3D; 111
+
+# m2.py文件内容
+	import m1 form x
+    print(x)
+    y &#x3D; 222
+    
+# run.py文件内容
+	import m1
+&quot;&quot;&quot;
+ 现在执行run.py
+ 1.首先 import m1 创建了m1的名称空间，执行m1.py，
+ 2.import m2 from y 注意这里先 import m2创建了m2的名称空间还未执行from y(调用m2中的y)
+ 3.创建m2的名称空间后，执行m2.py,import m1(已经创建过m1的名称空间)，执行from x 但是m1.py中只执行了import m2，根本
+	还没有定义x &#x3D; 111,所以这里找不到x，报错
+&quot;&quot;&quot;
+# 修改方案一：
+	# 将x &#x3D; 111，y &#x3D; 222提到最上面，执行m1,m2两个py文件时，先将x,y定义好
+    
+# 修改方案二：
+	# m1.py文件内容
+    	def f1():
+            import m2 from y
+            print(y)
+        x &#x3D; 111
+
+    # m2.py文件内容
+    	def f2():
+            import m1 form x
+            print(x)
+        y &#x3D; 222
+
+    # run.py文件内容
+        import m1
+        m1.f1()
+        
+    # 运用函数定义阶段不执行代码的特点解决这个问题
+	</code></pre>
+
+<h2 id="五、模块搜索路径"><a href="#五、模块搜索路径" class="headerlink" title="五、模块搜索路径"></a>五、模块搜索路径</h2><pre class="language-python" data-language="python"><code class="language-python"># 无论是import还是from...import...在导入模块时都涉及到查找问题
+# 模块搜索路径,优先级从高到低
+# 1、内存
+# 2、内置
+# 3、sys.path
+import sys
+print(sys.path)
+# 值为一个列表，存放了一系列的文件夹
+# 其中第一个文件夹是当前执行文件所在的文件夹
+
+# 例：
+    import time
+
+    import spam # 导入模块到内存
+    print(spam.money)
+    
+    time.sleep(10) # 在这10秒内将spam.py文件删除
+    
+    import spam # 10秒后，仍能调用，说明是从内存中找的
+    print(spam.money)
+    # 代码运行结束后可在运行一次，会发现报错找不到spam.py
+ 
+# 不在同一个文件内，想调用另一个文件内的模块
+	# 方法一：
+         import sys
+         print(sys.path)
+         sys.path.append(r&#39;D:\py18期\day26\代码\aaa&#39;) # 想调用文件的模块
+         import spam
+ 	# 方法二：
+		from aaa.bbb.ccc import spam  # 导入语句中出现的点，代表路径分隔符
+
+# spam.money  # 使用语句中出现的点，代表问某一个名称空间要名字</code></pre>
 
 <h2 id="TIME模块"><a href="#TIME模块" class="headerlink" title="TIME模块"></a>TIME模块</h2><h2 id="DATETIME模块"><a href="#DATETIME模块" class="headerlink" title="DATETIME模块"></a>DATETIME模块</h2><h2 id="RANDOM模块"><a href="#RANDOM模块" class="headerlink" title="RANDOM模块"></a>RANDOM模块</h2><h2 id="OS模块"><a href="#OS模块" class="headerlink" title="OS模块"></a>OS模块</h2><h2 id="SYS模块"><a href="#SYS模块" class="headerlink" title="SYS模块"></a>SYS模块</h2><h2 id="SHUTIL模块"><a href="#SHUTIL模块" class="headerlink" title="SHUTIL模块"></a>SHUTIL模块</h2><h2 id="STRUCT模块"><a href="#STRUCT模块" class="headerlink" title="STRUCT模块"></a>STRUCT模块</h2><h2 id="SOCKET模块"><a href="#SOCKET模块" class="headerlink" title="SOCKET模块"></a>SOCKET模块</h2><h2 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h2><h2 id="JSON的使用"><a href="#JSON的使用" class="headerlink" title="JSON的使用"></a>JSON的使用</h2><h2 id="猴子补丁"><a href="#猴子补丁" class="headerlink" title="猴子补丁"></a>猴子补丁</h2><h2 id="PICKLE的使用"><a href="#PICKLE的使用" class="headerlink" title="PICKLE的使用"></a>PICKLE的使用</h2>
             </div>

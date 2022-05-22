@@ -158,9 +158,18 @@
             <div class="typo" style="padding: 3rem;">
                 <p>今天把hexo自带的代码高亮插件换成了hexo-prism-plugin。</p>
 <p>三连后发现Json里的大括号都被转成数字’&amp;#123’ or ‘&amp;#135’(即使用npm直接安装的话版本为2.3.0均会存在这个问题)</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">node_modules/hexo-prism-plugin/src/index.js</span><br><span class="line"><span class="keyword">map</span>里未支持大括号，尝试补上<span class="string">&quot;**&amp;#123;**&quot;</span>与<span class="string">&quot;**&amp;#125;**&quot;</span>后发现有效，即在<span class="keyword">map</span>中加上对应字符即可:**</span><br></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">node_modules&#x2F;hexo-prism-plugin&#x2F;src&#x2F;index.js
+map里未支持大括号，尝试补上&quot;**&amp;#123;**&quot;与&quot;**&amp;#125;**&quot;后发现有效，即在map中加上对应字符即可:**</code></pre>
 
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">const map = <span class="punctuation">&#123;</span></span><br><span class="line">  &#x27;&amp;#<span class="number">39</span>;&#x27;<span class="punctuation">:</span> &#x27;\&#x27;&#x27;<span class="punctuation">,</span></span><br><span class="line">  &#x27;&amp;amp;&#x27;<span class="punctuation">:</span> &#x27;&amp;&#x27;<span class="punctuation">,</span></span><br><span class="line">  &#x27;&amp;gt;&#x27;<span class="punctuation">:</span> &#x27;&gt;&#x27;<span class="punctuation">,</span></span><br><span class="line">  &#x27;&amp;lt;&#x27;<span class="punctuation">:</span> &#x27;&lt;&#x27;<span class="punctuation">,</span></span><br><span class="line">  &#x27;&amp;quot;&#x27;<span class="punctuation">:</span> &#x27;<span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;&amp;#123;&#x27;: &#x27;&#123;&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;&amp;#125;&#x27;: &#x27;&#125;&#x27;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
+<pre class="language-json" data-language="json"><code class="language-json">const map &#x3D; &#123;
+  &#39;&#39;&#39;: &#39;\&#39;&#39;,
+  &#39;&amp;&#39;: &#39;&amp;&#39;,
+  &#39;&gt;&#39;: &#39;&gt;&#39;,
+  &#39;&lt;&#39;: &#39;&lt;&#39;,
+  &#39;&quot;&#39;: &#39;&quot;&#39;,
+  &#39;&amp;#123;&#39;: &#39;&#123;&#39;,
+  &#39;&amp;#125;&#39;: &#39;&#125;&#39;
+&#125;;</code></pre>
 
 
             </div>

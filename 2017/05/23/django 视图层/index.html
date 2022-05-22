@@ -156,17 +156,173 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、三板斧介绍"><a href="#一、三板斧介绍" class="headerlink" title="一、三板斧介绍"></a>一、三板斧介绍</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">HttpResponse</span></span><br><span class="line"><span class="string">	返回字符串类型的数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">render</span></span><br><span class="line"><span class="string">	返回html文件的   并且在返回给浏览器之前还可以给html文件传值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">redirect</span></span><br><span class="line"><span class="string">	重定向</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 视图函数必须要返回一个HttpResponse对象  正确   研究三者的源码即可得处结论</span></span><br><span class="line">The view app01.views.index didn<span class="string">&#x27;t return an HttpResponse object. It returned None instead.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># render简单内部原理</span></span><br><span class="line"><span class="string">	from django.template import Template,Context</span></span><br><span class="line"><span class="string">    res = Template(&#x27;</span>&lt;h1&gt;&#123;&#123; user &#125;&#125;&lt;/h1&gt;<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">    con = Context(&#123;&#x27;</span>use<span class="string">r&#x27;:&#123;&#x27;</span>username<span class="string">&#x27;:&#x27;</span>jason<span class="string">&#x27;,&#x27;</span>password<span class="string">&#x27;:123&#125;&#125;)</span></span><br><span class="line"><span class="string">    ret = res.render(con)</span></span><br><span class="line"><span class="string">    print(ret)</span></span><br><span class="line"><span class="string">    return HttpResponse(ret)</span></span><br></pre></td></tr></table></figure>
+                <h2 id="一、三板斧介绍"><a href="#一、三板斧介绍" class="headerlink" title="一、三板斧介绍"></a>一、三板斧介绍</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+HttpResponse
+	返回字符串类型的数据
 
-<h2 id="二、JSONRESPONSE对象"><a href="#二、JSONRESPONSE对象" class="headerlink" title="二、JSONRESPONSE对象"></a>二、JSONRESPONSE对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">json格式的数据有什么用？</span></span><br><span class="line"><span class="string">	前后端数据交互需要使用到json作为过渡 实现跨语言传输数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">前端序列化</span></span><br><span class="line"><span class="string">	JSON.stringify()					json.dumps()</span></span><br><span class="line"><span class="string">	JSON.parse()							json.loads()</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 代码演示</span><br><span class="line">    <span class="keyword">import</span> json</span><br><span class="line">    <span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ab_json</span>(<span class="params">request</span>):</span><br><span class="line">        user_dict = &#123;<span class="string">&#x27;username&#x27;</span>:<span class="string">&#x27;jason好帅哦,我好喜欢!&#x27;</span>,<span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123&#x27;</span>,<span class="string">&#x27;hobby&#x27;</span>:<span class="string">&#x27;girl&#x27;</span>&#125;</span><br><span class="line">        l = [<span class="number">111</span>,<span class="number">222</span>,<span class="number">333</span>,<span class="number">444</span>,<span class="number">555</span>]</span><br><span class="line">        <span class="comment"># 先转成json格式字符串</span></span><br><span class="line">        <span class="comment"># json_str = json.dumps(user_dict,ensure_ascii=False)</span></span><br><span class="line">        <span class="comment"># 将该字符串返回</span></span><br><span class="line">        <span class="comment"># return HttpResponse(json_str)</span></span><br><span class="line">        读源码掌握用法</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(user_dict,json_dumps_params=&#123;<span class="string">&#x27;ensure_ascii&#x27;</span>:<span class="literal">False</span>&#125;)</span><br><span class="line">   	    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">   	    序列化列表报错：In order to allow non-dict objects to be serialized set the safe parameter to False.</span></span><br><span class="line"><span class="string">        return JsonResponse(l,safe=False)  </span></span><br><span class="line"><span class="string">        默认只能序列化字典 序列化其他需要加safe参数	</span></span><br><span class="line"><span class="string">   	    &quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+render
+	返回html文件的   并且在返回给浏览器之前还可以给html文件传值
 
-<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> form上传文件需要注意的事项</span><br><span class="line">    <span class="number">1.1</span> method必须指定成post</span><br><span class="line">    <span class="number">1.2</span> enctype必须换成formdata</span><br><span class="line">    </span><br><span class="line"><span class="number">2.</span> 代码演示</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ab_file</span>(<span class="params">request</span>):</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">            <span class="comment"># print(request.POST)  # 只能获取普通的简直对数据 文件不行</span></span><br><span class="line">            <span class="built_in">print</span>(request.FILES)  <span class="comment"># 获取文件数据</span></span><br><span class="line">            <span class="comment"># &lt;MultiValueDict: &#123;&#x27;file&#x27;:[&lt;InMemoryUploadedFile:u=1288812541,1979816195&amp;fm=26&amp;gp=0.jpg(image/jpeg)&gt;]&#125;&gt;</span></span><br><span class="line">            file_obj = request.FILES.get(<span class="string">&#x27;file&#x27;</span>)  <span class="comment"># 文件对象</span></span><br><span class="line">            <span class="built_in">print</span>(file_obj.name)</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(file_obj.name,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                <span class="keyword">for</span> line <span class="keyword">in</span> file_obj.chunks():  <span class="comment"># 推荐加上chunks方法 其实跟不加是一样的都是一行行的读取</span></span><br><span class="line">                    f.write(line)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> render(request,<span class="string">&#x27;form.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
+redirect
+	重定向
+&quot;&quot;&quot;
+# 视图函数必须要返回一个HttpResponse对象  正确   研究三者的源码即可得处结论
+The view app01.views.index didn&#39;t return an HttpResponse object. It returned None instead.
 
-<h2 id="四、REQUEST对象方法补充"><a href="#四、REQUEST对象方法补充" class="headerlink" title="四、REQUEST对象方法补充"></a>四、REQUEST对象方法补充</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">request.method</span></span><br><span class="line"><span class="string">request.POST</span></span><br><span class="line"><span class="string">request.GET</span></span><br><span class="line"><span class="string">request.FILES</span></span><br><span class="line"><span class="string">request.body  # 原生的浏览器发过来的二进制数据  后面详细的讲</span></span><br><span class="line"><span class="string">request.path </span></span><br><span class="line"><span class="string">request.path_info</span></span><br><span class="line"><span class="string">request.get_full_path()  能过获取完整的url及问号后面的参数 </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(request.path)  <span class="comment"># /app01/ab_file/</span></span><br><span class="line">    <span class="built_in">print</span>(request.path_info)  <span class="comment"># /app01/ab_file/</span></span><br><span class="line">    <span class="built_in">print</span>(request.get_full_path())  <span class="comment"># /app01/ab_file/?username=jason</span></span><br></pre></td></tr></table></figure>
+# render简单内部原理
+	from django.template import Template,Context
+    res &#x3D; Template(&#39;&lt;h1&gt;&#123;&#123; user &#125;&#125;&lt;&#x2F;h1&gt;&#39;)
+    con &#x3D; Context(&#123;&#39;user&#39;:&#123;&#39;username&#39;:&#39;jason&#39;,&#39;password&#39;:123&#125;&#125;)
+    ret &#x3D; res.render(con)
+    print(ret)
+    return HttpResponse(ret)</code></pre>
 
-<h2 id="五、FBV-amp-CBV"><a href="#五、FBV-amp-CBV" class="headerlink" title="五、FBV&amp;CBV"></a>五、FBV&amp;CBV</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>视图函数既可以是函数也可以是类</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> FBV</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">      <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;index&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> CBV</span><br><span class="line">    <span class="comment"># CBV路由</span></span><br><span class="line">    url(<span class="string">r&#x27;^login/&#x27;</span>,views.MyLogin.as_view())</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">MyLogin</span>(<span class="title class_ inherited__">View</span>):</span><br><span class="line">    	<span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self,request</span>):</span><br><span class="line">        	<span class="keyword">return</span> render(request,<span class="string">&#x27;form.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    	<span class="keyword">def</span> <span class="title function_">post</span>(<span class="params">self,request</span>):</span><br><span class="line">        	<span class="keyword">return</span> HttpResponse(<span class="string">&#x27;post方法&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      </span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">FBV和CBV各有千秋</span></span><br><span class="line"><span class="string">CBV特点</span></span><br><span class="line"><span class="string">	能够直接根据请求方式的不同直接匹配到对应的方法执行</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	内部到底是怎么实现的？</span></span><br><span class="line"><span class="string">		CBV内部源码(******)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、JSONRESPONSE对象"><a href="#二、JSONRESPONSE对象" class="headerlink" title="二、JSONRESPONSE对象"></a>二、JSONRESPONSE对象</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+json格式的数据有什么用？
+	前后端数据交互需要使用到json作为过渡 实现跨语言传输数据
 
-<h2 id="六、CBV源码解析"><a href="#六、CBV源码解析" class="headerlink" title="六、CBV源码解析"></a>六、CBV源码解析</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;自己不要修改源码 除了bug很难找&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 突破口在urls.py</span></span><br><span class="line">url(<span class="string">r&#x27;^login/&#x27;</span>,views.MyLogin.as_view())</span><br><span class="line"><span class="comment"># url(r&#x27;^login/&#x27;,views.view)  FBV一模一样</span></span><br><span class="line"><span class="comment"># CBV与FBV在路由匹配上本质是一样的 都是路由 对应 函数内存地址</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">函数名/方法名 加括号执行优先级最高</span></span><br><span class="line"><span class="string">猜测</span></span><br><span class="line"><span class="string">    as_view()</span></span><br><span class="line"><span class="string">        要么是被@staicmethod修饰的静态方法</span></span><br><span class="line"><span class="string">        要么是被@classmethod修饰的类方法  正确</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    @classonlymethod</span></span><br><span class="line"><span class="string">    def as_view(cls, **initkwargs):</span></span><br><span class="line"><span class="string">        pass</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classonlymethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">as_view</span>(<span class="params">cls, **initkwargs</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        cls就是我们自己写的类   MyCBV</span></span><br><span class="line"><span class="string">        Main entry point for a request-response process.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">view</span>(<span class="params">request, *args, **kwargs</span>):</span><br><span class="line">            self = cls(**initkwargs)  <span class="comment"># cls是我们自己写的类</span></span><br><span class="line">            <span class="comment"># self = MyLogin(**initkwargs)  产生一个我们自己写的类的对象</span></span><br><span class="line">            <span class="keyword">return</span> self.dispatch(request, *args, **kwargs)</span><br><span class="line">            <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">            以后你们会经常需要看源码 但是在看python源码的时候 一定要时刻提醒自己面向对象属性方法查找顺序</span></span><br><span class="line"><span class="string">                先从对象自己找</span></span><br><span class="line"><span class="string">                再去产生对象的类里面找</span></span><br><span class="line"><span class="string">                之后再去父类找</span></span><br><span class="line"><span class="string">                ...</span></span><br><span class="line"><span class="string">            总结:看源码只要看到了self点一个东西 一定要问你自己当前这个self到底是谁</span></span><br><span class="line"><span class="string">            &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> view</span><br><span class="line">      </span><br><span class="line">		<span class="comment"># CBV的精髓</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dispatch</span>(<span class="params">self, request, *args, **kwargs</span>):</span><br><span class="line">        <span class="comment"># 获取当前请求的小写格式 然后比对当前请求方式是否合法</span></span><br><span class="line">        <span class="comment"># get请求为例</span></span><br><span class="line">        <span class="comment"># post请求</span></span><br><span class="line">        <span class="keyword">if</span> request.method.lower() <span class="keyword">in</span> self.http_method_names:</span><br><span class="line">            handler = <span class="built_in">getattr</span>(self, request.method.lower(), self.http_method_not_allowed)</span><br><span class="line">            <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">            反射:通过字符串来操作对象的属性或者方法</span></span><br><span class="line"><span class="string">                handler = getattr(自己写的类产生的对象,&#x27;get&#x27;,当找不到get属性或者方法的时候就会用第三个参数)</span></span><br><span class="line"><span class="string">                handler = 我们自己写的类里面的get方法</span></span><br><span class="line"><span class="string">            &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            handler = self.http_method_not_allowed</span><br><span class="line">        <span class="keyword">return</span> handler(request, *args, **kwargs)</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        自动调用get方法</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 要求掌握到不看源码也能够描述出CBV的内部执行流程(******)</span></span><br></pre></td></tr></table></figure>
+前端序列化
+	JSON.stringify()					json.dumps()
+	JSON.parse()							json.loads()
+&quot;&quot;&quot;
+
+1. 代码演示
+    import json
+    from django.http import JsonResponse
+    def ab_json(request):
+        user_dict &#x3D; &#123;&#39;username&#39;:&#39;jason好帅哦,我好喜欢!&#39;,&#39;password&#39;:&#39;123&#39;,&#39;hobby&#39;:&#39;girl&#39;&#125;
+        l &#x3D; [111,222,333,444,555]
+        # 先转成json格式字符串
+        # json_str &#x3D; json.dumps(user_dict,ensure_ascii&#x3D;False)
+        # 将该字符串返回
+        # return HttpResponse(json_str)
+        读源码掌握用法
+        return JsonResponse(user_dict,json_dumps_params&#x3D;&#123;&#39;ensure_ascii&#39;:False&#125;)
+   	    &quot;&quot;&quot;
+   	    序列化列表报错：In order to allow non-dict objects to be serialized set the safe parameter to False.
+        return JsonResponse(l,safe&#x3D;False)  
+        默认只能序列化字典 序列化其他需要加safe参数	
+   	    &quot;&quot;&quot;</code></pre>
+
+<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><pre class="language-python" data-language="python"><code class="language-python">1. form上传文件需要注意的事项
+    1.1 method必须指定成post
+    1.2 enctype必须换成formdata
+    
+2. 代码演示
+    def ab_file(request):
+        if request.method &#x3D;&#x3D; &#39;POST&#39;:
+            # print(request.POST)  # 只能获取普通的简直对数据 文件不行
+            print(request.FILES)  # 获取文件数据
+            # &lt;MultiValueDict: &#123;&#39;file&#39;:[&lt;InMemoryUploadedFile:u&#x3D;1288812541,1979816195&amp;fm&#x3D;26&amp;gp&#x3D;0.jpg(image&#x2F;jpeg)&gt;]&#125;&gt;
+            file_obj &#x3D; request.FILES.get(&#39;file&#39;)  # 文件对象
+            print(file_obj.name)
+            with open(file_obj.name,&#39;wb&#39;) as f:
+                for line in file_obj.chunks():  # 推荐加上chunks方法 其实跟不加是一样的都是一行行的读取
+                    f.write(line)
+
+        return render(request,&#39;form.html&#39;)</code></pre>
+
+<h2 id="四、REQUEST对象方法补充"><a href="#四、REQUEST对象方法补充" class="headerlink" title="四、REQUEST对象方法补充"></a>四、REQUEST对象方法补充</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;
+request.method
+request.POST
+request.GET
+request.FILES
+request.body  # 原生的浏览器发过来的二进制数据  后面详细的讲
+request.path 
+request.path_info
+request.get_full_path()  能过获取完整的url及问号后面的参数 
+&quot;&quot;&quot;
+    print(request.path)  # &#x2F;app01&#x2F;ab_file&#x2F;
+    print(request.path_info)  # &#x2F;app01&#x2F;ab_file&#x2F;
+    print(request.get_full_path())  # &#x2F;app01&#x2F;ab_file&#x2F;?username&#x3D;jason</code></pre>
+
+<h2 id="五、FBV-amp-CBV"><a href="#五、FBV-amp-CBV" class="headerlink" title="五、FBV&amp;CBV"></a>五、FBV&amp;CBV</h2><pre class="language-python" data-language="python"><code class="language-python">1.视图函数既可以是函数也可以是类
+
+2. FBV
+    def index(request):
+      return HttpResponse(&#39;index&#39;)
+
+3. CBV
+    # CBV路由
+    url(r&#39;^login&#x2F;&#39;,views.MyLogin.as_view())
+    
+	from django.views import View
+	class MyLogin(View):
+    	def get(self,request):
+        	return render(request,&#39;form.html&#39;)
+
+    	def post(self,request):
+        	return HttpResponse(&#39;post方法&#39;)
+
+
+      
+&quot;&quot;&quot;
+FBV和CBV各有千秋
+CBV特点
+	能够直接根据请求方式的不同直接匹配到对应的方法执行
+	
+	内部到底是怎么实现的？
+		CBV内部源码(******)
+&quot;&quot;&quot;</code></pre>
+
+<h2 id="六、CBV源码解析"><a href="#六、CBV源码解析" class="headerlink" title="六、CBV源码解析"></a>六、CBV源码解析</h2><pre class="language-python" data-language="python"><code class="language-python">&quot;&quot;&quot;自己不要修改源码 除了bug很难找&quot;&quot;&quot;
+
+# 突破口在urls.py
+url(r&#39;^login&#x2F;&#39;,views.MyLogin.as_view())
+# url(r&#39;^login&#x2F;&#39;,views.view)  FBV一模一样
+# CBV与FBV在路由匹配上本质是一样的 都是路由 对应 函数内存地址
+&quot;&quot;&quot;
+函数名&#x2F;方法名 加括号执行优先级最高
+猜测
+    as_view()
+        要么是被@staicmethod修饰的静态方法
+        要么是被@classmethod修饰的类方法  正确
+        
+    @classonlymethod
+    def as_view(cls, **initkwargs):
+        pass
+&quot;&quot;&quot;
+
+    @classonlymethod
+    def as_view(cls, **initkwargs):
+        &quot;&quot;&quot;
+        cls就是我们自己写的类   MyCBV
+        Main entry point for a request-response process.
+        &quot;&quot;&quot;
+        def view(request, *args, **kwargs):
+            self &#x3D; cls(**initkwargs)  # cls是我们自己写的类
+            # self &#x3D; MyLogin(**initkwargs)  产生一个我们自己写的类的对象
+            return self.dispatch(request, *args, **kwargs)
+            &quot;&quot;&quot;
+            以后你们会经常需要看源码 但是在看python源码的时候 一定要时刻提醒自己面向对象属性方法查找顺序
+                先从对象自己找
+                再去产生对象的类里面找
+                之后再去父类找
+                ...
+            总结:看源码只要看到了self点一个东西 一定要问你自己当前这个self到底是谁
+            &quot;&quot;&quot;
+        return view
+      
+		# CBV的精髓
+    def dispatch(self, request, *args, **kwargs):
+        # 获取当前请求的小写格式 然后比对当前请求方式是否合法
+        # get请求为例
+        # post请求
+        if request.method.lower() in self.http_method_names:
+            handler &#x3D; getattr(self, request.method.lower(), self.http_method_not_allowed)
+            &quot;&quot;&quot;
+            反射:通过字符串来操作对象的属性或者方法
+                handler &#x3D; getattr(自己写的类产生的对象,&#39;get&#39;,当找不到get属性或者方法的时候就会用第三个参数)
+                handler &#x3D; 我们自己写的类里面的get方法
+            &quot;&quot;&quot;
+        else:
+            handler &#x3D; self.http_method_not_allowed
+        return handler(request, *args, **kwargs)
+        &quot;&quot;&quot;
+        自动调用get方法
+        &quot;&quot;&quot;
+
+# 要求掌握到不看源码也能够描述出CBV的内部执行流程(******)</code></pre>
 
             </div>
 

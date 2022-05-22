@@ -156,21 +156,99 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="Composition-组合"><a href="#Composition-组合" class="headerlink" title="Composition 组合"></a>Composition 组合</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Sequence</span> = deque&lt;T&gt;&gt;</span><br><span class="line"><span class="keyword">class</span> queue &#123;</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  Sequence c;  <span class="comment">// 底层容器</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// 以下完全利用 c 的操作函数完成</span></span><br><span class="line">  <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> c.<span class="built_in">empty</span>(); &#125;</span><br><span class="line">  <span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="type">const</span> </span>&#123; retiurn c.<span class="built_in">size</span>(); &#125;</span><br><span class="line">  <span class="function">reference <span class="title">front</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> c.<span class="built_in">front</span>(); &#125;</span><br><span class="line">  <span class="comment">// deque 是两端可进出 queue 是先进先出</span></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">const</span> value_type &amp;x)</span> </span>&#123; c.<span class="built_in">push_back</span>(x); &#125;</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123; c.<span class="built_in">pop_front</span>(); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 组合其实就是一个类里面用了另一个类 并且可以用另一个类的方法</span></span><br></pre></td></tr></table></figure>
+                <h2 id="Composition-组合"><a href="#Composition-组合" class="headerlink" title="Composition 组合"></a>Composition 组合</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">template &lt;class T, class Sequence &#x3D; deque&lt;T&gt;&gt;
+class queue &#123;
+  ...
+protected:
+  Sequence c;  &#x2F;&#x2F; 底层容器
+public:
+  &#x2F;&#x2F; 以下完全利用 c 的操作函数完成
+  bool empty() const &#123; return c.empty(); &#125;
+  size_type size() const &#123; retiurn c.size(); &#125;
+  reference front() &#123; return c.front(); &#125;
+  &#x2F;&#x2F; deque 是两端可进出 queue 是先进先出
+  void push(const value_type &amp;x) &#123; c.push_back(x); &#125;
+  void pop() &#123; c.pop_front(); &#125;
+&#125;
 
-<h2 id="Composition-关系下的构造和析构"><a href="#Composition-关系下的构造和析构" class="headerlink" title="Composition 关系下的构造和析构"></a>Composition 关系下的构造和析构</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">比如 Container 类里面调用了 Component</span><br><span class="line"></span><br><span class="line">构造由内向外</span><br><span class="line">  Container的构造函数首先调用Component的<span class="keyword">default</span>构造函数然后才执行自己</span><br><span class="line">  Container::<span class="built_in">Container</span>(...): <span class="built_in">Component</span>() &#123; ... &#125;;  <span class="comment">//  Component()  是编译器帮我们加上去的</span></span><br><span class="line"></span><br><span class="line">析构由外向内</span><br><span class="line">  Container的析构函数首先执行自己 然后才调用Component的析构函数</span><br><span class="line"> 	Container::~<span class="built_in">Container</span>(...) &#123; ... ~<span class="built_in">Component</span>() &#125;;  <span class="comment">//  ~Component()  是编译器帮我们加上去的</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; 组合其实就是一个类里面用了另一个类 并且可以用另一个类的方法</code></pre>
 
-<h2 id="Delegation-委托"><a href="#Delegation-委托" class="headerlink" title="Delegation 委托"></a>Delegation 委托</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// file String.hpp</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">StringRep</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">String</span>();</span><br><span class="line">  <span class="built_in">String</span>(<span class="type">const</span> <span class="type">char</span>* s);</span><br><span class="line">  <span class="built_in">String</span>(<span class="type">const</span> <span class="type">const</span> String&amp; s);</span><br><span class="line">  String &amp;<span class="keyword">operator</span> = (<span class="type">const</span> String&amp; s);</span><br><span class="line">  ~<span class="built_in">String</span>();</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  StringRep* rep;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Composition-关系下的构造和析构"><a href="#Composition-关系下的构造和析构" class="headerlink" title="Composition 关系下的构造和析构"></a>Composition 关系下的构造和析构</h2><pre class="language-c++" data-language="c++"><code class="language-c++">比如 Container 类里面调用了 Component
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// file String.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;String.hpp&quot;</span></span></span><br><span class="line"><span class="keyword">namespace</span> &#123;</span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">StringRep</span> &#123;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">String</span>;</span><br><span class="line">    <span class="built_in">StringRep</span>(<span class="type">const</span> <span class="type">char</span>* s);</span><br><span class="line">    ~<span class="built_in">StringRep</span>();</span><br><span class="line">    <span class="type">int</span> count;</span><br><span class="line">    <span class="type">char</span>* rep;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String::<span class="built_in">String</span>() &#123; ... &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+构造由内向外
+  Container的构造函数首先调用Component的default构造函数然后才执行自己
+  Container::Container(...): Component() &#123; ... &#125;;  &#x2F;&#x2F;  Component()  是编译器帮我们加上去的
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 所以两个类以指针相连 就叫委托 其实Composition by reference 更好 就是以指针形式的组合</span></span><br><span class="line"><span class="comment">// 但是他们俩个类 生命可不一样哦～</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样的好处就是 hpp调用的方法 完全可以在cpp写 这样不会影响到hpp</span></span><br></pre></td></tr></table></figure>
+析构由外向内
+  Container的析构函数首先执行自己 然后才调用Component的析构函数
+ 	Container::~Container(...) &#123; ... ~Component() &#125;;  &#x2F;&#x2F;  ~Component()  是编译器帮我们加上去的</code></pre>
 
-<h2 id="Inheritance-继承"><a href="#Inheritance-继承" class="headerlink" title="Inheritance 继承"></a>Inheritance 继承</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">_List_node_base</span> &#123;</span><br><span class="line">  _List_node_base* _M_next;</span><br><span class="line">  _List_node_base* _M_prev;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">_List_node</span> : <span class="keyword">public</span> _List_node_base &#123;</span><br><span class="line">  _Tp _m_data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父类的数据 子类都可以继承下来</span></span><br></pre></td></tr></table></figure>
+<h2 id="Delegation-委托"><a href="#Delegation-委托" class="headerlink" title="Delegation 委托"></a>Delegation 委托</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; file String.hpp
+class StringRep;
+class String &#123;
+public:
+  String();
+  String(const char* s);
+  String(const const String&amp; s);
+  String &amp;operator &#x3D; (const String&amp; s);
+  ~String();
+  ...
+private:
+  StringRep* rep;
+&#125;</code></pre>
 
-<h2 id="Inheritance关系下的构造和析构"><a href="#Inheritance关系下的构造和析构" class="headerlink" title="Inheritance关系下的构造和析构"></a>Inheritance关系下的构造和析构</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Base : 父类</span><br><span class="line">Derived : 子类(派生类)</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 构造由内而外</span></span><br><span class="line">Derived 的构造函数首先调用Base的<span class="keyword">default</span>构造函数 然后才执行自己</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 析构由外而内</span></span><br><span class="line">Derived 的析构函数首先执行自己, 然后才调用Base的析构函数</span><br><span class="line">  </span><br><span class="line"><span class="comment">// ps: base class 的 dtor 必须是virtual 否则会出现 underfined behavior-</span></span><br></pre></td></tr></table></figure>
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; file String.cpp
+#include &quot;String.hpp&quot;
+namespace &#123;
+  class StringRep &#123;
+    friend class String;
+    StringRep(const char* s);
+    ~StringRep();
+    int count;
+    char* rep;
+  &#125;;
+&#125;
 
-<h2 id="组合-amp-继承关系下的构造和析构"><a href="#组合-amp-继承关系下的构造和析构" class="headerlink" title="组合&amp;继承关系下的构造和析构"></a>组合&amp;继承关系下的构造和析构</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 构造由内而外</span></span><br><span class="line">Derived 的构造函数 首先调用Base的<span class="keyword">default</span>构造函数</span><br><span class="line">然后调用Component的<span class="keyword">default</span>构造函数 </span><br><span class="line">然后才执行自己</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 析构由外而内</span></span><br><span class="line">Derived 的析构函数首先执行自己</span><br><span class="line">然后调用Component的析构函数</span><br><span class="line">然后调用Base的析构函数</span><br></pre></td></tr></table></figure>
+String::String() &#123; ... &#125;
+...</code></pre>
+
+<pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 所以两个类以指针相连 就叫委托 其实Composition by reference 更好 就是以指针形式的组合
+&#x2F;&#x2F; 但是他们俩个类 生命可不一样哦～
+
+&#x2F;&#x2F; 这样的好处就是 hpp调用的方法 完全可以在cpp写 这样不会影响到hpp</code></pre>
+
+<h2 id="Inheritance-继承"><a href="#Inheritance-继承" class="headerlink" title="Inheritance 继承"></a>Inheritance 继承</h2><pre class="language-c++" data-language="c++"><code class="language-c++">struct _List_node_base &#123;
+  _List_node_base* _M_next;
+  _List_node_base* _M_prev;
+&#125;;
+
+template&lt;typename _Tp&gt;
+struct _List_node : public _List_node_base &#123;
+  _Tp _m_data;
+&#125;;
+
+&#x2F;&#x2F; 父类的数据 子类都可以继承下来</code></pre>
+
+<h2 id="Inheritance关系下的构造和析构"><a href="#Inheritance关系下的构造和析构" class="headerlink" title="Inheritance关系下的构造和析构"></a>Inheritance关系下的构造和析构</h2><pre class="language-c++" data-language="c++"><code class="language-c++">Base : 父类
+Derived : 子类(派生类)
+  
+&#x2F;&#x2F; 构造由内而外
+Derived 的构造函数首先调用Base的default构造函数 然后才执行自己
+  
+&#x2F;&#x2F; 析构由外而内
+Derived 的析构函数首先执行自己, 然后才调用Base的析构函数
+  
+&#x2F;&#x2F; ps: base class 的 dtor 必须是virtual 否则会出现 underfined behavior-</code></pre>
+
+<h2 id="组合-amp-继承关系下的构造和析构"><a href="#组合-amp-继承关系下的构造和析构" class="headerlink" title="组合&amp;继承关系下的构造和析构"></a>组合&amp;继承关系下的构造和析构</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 构造由内而外
+Derived 的构造函数 首先调用Base的default构造函数
+然后调用Component的default构造函数 
+然后才执行自己
+  
+&#x2F;&#x2F; 析构由外而内
+Derived 的析构函数首先执行自己
+然后调用Component的析构函数
+然后调用Base的析构函数</code></pre>
 
 
             </div>
