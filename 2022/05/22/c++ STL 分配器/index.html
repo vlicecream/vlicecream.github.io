@@ -156,9 +156,73 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="分配器-allocators"><a href="#分配器-allocators" class="headerlink" title="分配器 allocators"></a>分配器 allocators</h2><pre class="language-c++" data-language="c++"><code class="language-c++"></code></pre>
+                <h2 id="malloc"><a href="#malloc" class="headerlink" title="malloc()"></a>malloc()</h2><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;*
+	我们通过operator new() 只要是这个 就会调用 malloc()
+	那么malloc()的角色就是分配内存
+	具体的我们会在内存管理里面讲 
+	
+	目前 需要知道的 melloc 分配的内存是要比你所要的大小大了不少 大在cookie 上下都有
+	所以你要的比例越大 附加的东西越小 反之附加的东西则越大
+*&#x2F;</code></pre>
 
+<h2 id="分配器allocators"><a href="#分配器allocators" class="headerlink" title="分配器allocators"></a>分配器allocators</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// VC6 对allocator的实现</span>
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">_Ty</span><span class="token operator">></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token keyword">typedef</span> _SIZE size_type<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> _PDFT difference_type<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> _Ty _FARQ <span class="token operator">*</span>pointer<span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> _Ty value_type<span class="token punctuation">;</span>
+  pointer <span class="token function">allocate</span><span class="token punctuation">(</span>size_type _N<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token function">_Allicate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>difference_type<span class="token punctuation">)</span>_N<span class="token punctuation">,</span> <span class="token punctuation">(</span>pointer<span class="token punctuation">)</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+  <span class="token keyword">void</span> <span class="token function">deallocate</span><span class="token punctuation">(</span>boid _FARQ <span class="token operator">*</span>_P<span class="token punctuation">,</span> size_type<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">operator</span> <span class="token keyword">delete</span><span class="token punctuation">(</span>_P<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
+<span class="token comment">// 其中_Allocate()定义如下</span>
+
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">_Ty</span><span class="token operator">></span> <span class="token keyword">inline</span> _Ty _FARQ <span class="token operator">*</span><span class="token function">_Allocate</span><span class="token punctuation">(</span>_PDFT _N<span class="token punctuation">,</span> _Ty _FARQ <span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>_N <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> _N <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>_Ty _FARQ <span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">operator</span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">(</span>_SIZT<span class="token punctuation">)</span>_N <span class="token operator">*</span> <span class="token keyword">sizeof</span> <span class="token punctuation">(</span>_Ty<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+	VC6+ 的 allocator只是以 ::operatpr new 和 ::operator delete 完成allocate() 和 deallocate()
+	没有特殊设计
+*/</span>
+
+<span class="token comment">// 分配 512 ints</span>
+<span class="token keyword">int</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token generic-function"><span class="token function">allocator</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">allocate</span><span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token generic-function"><span class="token function">allocator</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">deallocate</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+	这种直接() 就是临时变量 下一行代码就会死去
+	然后我们调用allocate 需要分配512 内存 ，第二个参数没有固定 就直接传0
+	最后我们调用deallocate 释放内存 同样也要把512输入进去 在我们开发的时候不会专门去记多少内存 只会去记指针
+	所以不推荐我们直接调用分配器 但是容器没有这个困扰
+	
+	而且有个大问题 分配的内存小 开销的比例大 就不可以接受 因为说到底还是 直接使用 c 的 melloc() 和 free()
+*/</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+	BC++ 的 allocator只是以 ::operatpr new 和 ::operator delete 完成allocate() 和 deallocate()
+	G2.9 的设计也是同样的 但是这三个的问题也都一样没有解决 都是直接使用 melloc() 和 free()
+	G2.9 不同的就是写了一个注释
+	精华就是 不要使用这个文件 这个头文件没有被任何的include 用的是另一个allocators
+*/</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// G2.9 STL 对allocator的使用</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">Alloc</span> <span class="token operator">=</span> alloc<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">vector</span> <span class="token punctuation">&#123;</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// vector list deque map set 用的默认分配器都是alloc</span>
+
+<span class="token comment">// alloc 的核心思想 就是减少 melloc 的使用 因为melloc()注定会带来额外的开销</span>
+
+<span class="token comment">// 但是在G4.9 其实默认分配器的换掉了alloc alloc还是存在的 改名为__pool_alloc 也可以用这个分配器</span>
+
+vector<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> __gnu_css<span class="token double-colon punctuation">::</span>__pool_alloc<span class="token operator">&lt;</span>string<span class="token operator">>></span> vec<span class="token punctuation">;</span></code></pre>
+
+<h2 id="更详细的会在内存管理这一个大知识模块中讲解"><a href="#更详细的会在内存管理这一个大知识模块中讲解" class="headerlink" title="更详细的会在内存管理这一个大知识模块中讲解"></a>更详细的会在内存管理这一个大知识模块中讲解</h2>
             </div>
 
             <!-- Post Comments -->
