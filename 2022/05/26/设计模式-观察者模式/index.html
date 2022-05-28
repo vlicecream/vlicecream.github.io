@@ -302,6 +302,17 @@
 	<span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528193556215.png" alt="image-20220528193556215"></p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">定义对象间的一种一对多<span class="token punctuation">(</span>变化<span class="token punctuation">)</span>的依赖关系 以便当一个对象的状态发生改变时，所有依赖于他的对象都得到通知并自动更新</code></pre>
+
+<h2 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">使用面向对象的抽象，Observer模式使得我们可以独立地改变目标与观察者，从而使二者之间的依赖关系达致松耦合。
+
+目标发送通知时，无需指定观察者，通知（可以携带通知信息作 为参数）会自动传播。
+
+观察者自己决定是否需要订阅通知，目标对象对此一无所知。
+
+Observer模式是基于事件的UI框架中非常常用的设计模式，也是MVC模式的一个重要组成部分。</code></pre>
+
 
             </div>
 
