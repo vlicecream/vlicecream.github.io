@@ -162,37 +162,145 @@
   
 <span class="token comment">// 使用面向对象技术, 可以将这种依赖关系弱化, 并形成一种稳定的依赖关系. 从而实现软件体系结构的松耦合</span></code></pre>
 
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 做一个文件分割器</span>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 做一个文件分割器 </span>
 <span class="token keyword">class</span> <span class="token class-name">MainForm</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Form</span></span> <span class="token punctuation">&#123;</span>  <span class="token comment">// 不要在意Form 它只是windows 窗口这种概念</span>
-  TextBox<span class="token operator">*</span> txtFilePath<span class="token punctuation">;</span>
-  TextBox<span class="token operator">*</span> txtFileNumber<span class="token punctuation">;</span>
-  
+	TextBox<span class="token operator">*</span> txtFilePath<span class="token punctuation">;</span>
+	TextBox<span class="token operator">*</span> txtFileNumber<span class="token punctuation">;</span>
+	ProgressBar<span class="token operator">*</span> progressBar<span class="token punctuation">;</span>
+
 <span class="token keyword">public</span><span class="token operator">:</span>
-  <span class="token keyword">void</span> <span class="token function">Button1_Click</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    string filePath <span class="token operator">=</span> txtFilePath<span class="token operator">-></span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>txtFileNumber<span class="token operator">-></span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">void</span> <span class="token function">Button1_Click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		string filePath <span class="token operator">=</span> txtFilePath<span class="token operator">-></span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    FileSplitter <span class="token function">solitter</span><span class="token punctuation">(</span>filePath<span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>txtFileNumber<span class="token operator">-></span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    splitter<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+		FileSplitter <span class="token function">splitter</span><span class="token punctuation">(</span>filePath<span class="token punctuation">,</span> number<span class="token punctuation">,</span> progressBar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+		splitter<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+</code></pre>
 
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">FileSplitter</span> <span class="token punctuation">&#123;</span>
-  string m_filePath<span class="token punctuation">;</span>
-  <span class="token keyword">int</span> m_fileNumber<span class="token punctuation">;</span>
+	string m_filePath<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> m_fileNumber<span class="token punctuation">;</span>
+	ProgressBar<span class="token operator">*</span> m_progressBar<span class="token punctuation">;</span>
+
 <span class="token keyword">public</span><span class="token operator">:</span>
-  <span class="token function">FileSplitter</span><span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> filePath<span class="token punctuation">,</span> <span class="token keyword">int</span> fileNumber<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">m_filePath</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_fileNumber</span><span class="token punctuation">(</span>fileNumber<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span>
-  <span class="token keyword">void</span> <span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 1.读取大文件</span>
-    <span class="token comment">// 2.分批向小文件写入</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m_fileNumber<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token comment">// ...</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+	<span class="token function">FileSplitter</span><span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> filePath<span class="token punctuation">,</span> <span class="token keyword">int</span> fileNumber<span class="token punctuation">,</span> ProgressBar<span class="token operator">*</span> progressBar<span class="token punctuation">)</span> <span class="token operator">:</span>
+		<span class="token function">m_filePath</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">,</span> 
+		<span class="token function">m_fileNumber</span><span class="token punctuation">(</span>fileNumber<span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">m_progressBar</span><span class="token punctuation">(</span>progressBar<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">void</span> <span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+		<span class="token comment">// 1.读取大文件</span>
+
+		<span class="token comment">// 2.分批向小文件写入</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m_fileNumber<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token comment">//...</span>
+			<span class="token keyword">float</span> progressValue <span class="token operator">=</span> m_fileNumber<span class="token punctuation">;</span>
+			progressValue <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> progressValue<span class="token punctuation">;</span>
+			m_progressBar<span class="token operator">-></span><span class="token function">setValue</span><span class="token punctuation">(</span>progressValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">MainForm</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Form</span><span class="token punctuation">,</span> <span class="token keyword">public</span> <span class="token class-name">IProgress</span></span> <span class="token punctuation">&#123;</span>
+	TextBox<span class="token operator">*</span> txtFilePath<span class="token punctuation">;</span>
+	TextBox<span class="token operator">*</span> txtFileNumber<span class="token punctuation">;</span>
+
+	ProgressBar<span class="token operator">*</span> progressBar<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">void</span> <span class="token function">Button1_Click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+		string filePath <span class="token operator">=</span> txtFilePath<span class="token operator">-></span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>txtFileNumber<span class="token operator">-></span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		ConsoleNotifier cn<span class="token punctuation">;</span>
+
+		FileSplitter <span class="token function">splitter</span><span class="token punctuation">(</span>filePath<span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		splitter<span class="token punctuation">.</span><span class="token function">addIProgress</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+		splitter<span class="token punctuation">.</span><span class="token function">addIProgress</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>cn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		splitter<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		splitter<span class="token punctuation">.</span><span class="token function">removeIProgress</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">DoProgress</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		progressBar<span class="token operator">-></span><span class="token function">setValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ConsoleNotifier</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">IProgress</span></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">DoProgress</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		cout <span class="token operator">&lt;&lt;</span> <span class="token string">"."</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">IProgress</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">DoProgress</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">virtual</span> <span class="token operator">~</span><span class="token function">IProgress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 
+<span class="token keyword">class</span> <span class="token class-name">FileSplitter</span>
+<span class="token punctuation">&#123;</span>
+	string m_filePath<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> m_fileNumber<span class="token punctuation">;</span>
+
+	List<span class="token operator">&lt;</span>IProgress<span class="token operator">*</span><span class="token operator">></span>  m_iprogressList<span class="token punctuation">;</span> <span class="token comment">// ����֪ͨ���ƣ�֧�ֶ���۲���</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token function">FileSplitter</span><span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> filePath<span class="token punctuation">,</span> <span class="token keyword">int</span> fileNumber<span class="token punctuation">)</span> <span class="token operator">:</span>
+		<span class="token function">m_filePath</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">,</span> 
+		<span class="token function">m_fileNumber</span><span class="token punctuation">(</span>fileNumber<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+	<span class="token punctuation">&#125;</span>
+
+
+	<span class="token keyword">void</span> <span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m_fileNumber<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token comment">//...</span>
+
+			<span class="token keyword">float</span> progressValue <span class="token operator">=</span> m_fileNumber<span class="token punctuation">;</span>
+			progressValue <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> progressValue<span class="token punctuation">;</span>
+			<span class="token function">onProgress</span><span class="token punctuation">(</span>progressValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+
+	<span class="token punctuation">&#125;</span>
+
+
+	<span class="token keyword">void</span> <span class="token function">addIProgress</span><span class="token punctuation">(</span>IProgress<span class="token operator">*</span> iprogress<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		m_iprogressList<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>iprogress<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">void</span> <span class="token function">removeIProgress</span><span class="token punctuation">(</span>IProgress<span class="token operator">*</span> iprogress<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		m_iprogressList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>iprogress<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">onProgress</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		List<span class="token operator">&lt;</span>IProgress<span class="token operator">*</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator itor<span class="token operator">=</span>m_iprogressList<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">while</span> <span class="token punctuation">(</span>itor <span class="token operator">!=</span> m_iprogressList<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+			<span class="token punctuation">(</span><span class="token operator">*</span>itor<span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">DoProgress</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			itor<span class="token operator">++</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
 
             </div>

@@ -169,6 +169,9 @@
 		对象模式处理对象间的动态关系
 	从封装变化角度对模式分类
 		组件协作
+			模版方法
+			策略模式
+			观察者模式
 		单一职责
 		对象创建
 		对象性能
@@ -203,8 +206,7 @@
 早绑定 <span class="token operator">-></span> 晚绑定
 继承 <span class="token operator">-></span> 组合
 编译时依赖 <span class="token operator">-></span> 运行时依赖
-紧耦合 <span class="token operator">-></span> 松耦合
-  </code></pre>
+紧耦合 <span class="token operator">-></span> 松耦合</code></pre>
 
 <h2 id="组件协作-模式"><a href="#组件协作-模式" class="headerlink" title="组件协作 模式"></a>组件协作 模式</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
 	现代软件专业分工之后的第一个结果是 "框架与应用程序的划分"
@@ -226,49 +228,51 @@
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 程序库开发人员</span>
 <span class="token keyword">class</span> <span class="token class-name">Library</span><span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
-  <span class="token keyword">void</span> <span class="token function">Step1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">void</span> <span class="token function">Step3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">void</span> <span class="token function">Step5</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-  <span class="token punctuation">&#125;</span>
+	<span class="token keyword">void</span> <span class="token function">Step1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+	<span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">Step3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">Step5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+    <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 <span class="token comment">/*
 	程序库开发人员 为了实现一个库 写了三个步骤
 */</span></code></pre>
 
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">&#123;</span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Application</span><span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
-  <span class="token keyword">bool</span> <span class="token function">Step2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token keyword">bool</span> <span class="token function">Step2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
   <span class="token punctuation">&#125;</span>
-  
-  <span class="token keyword">void</span> <span class="token function">Step4</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token keyword">void</span> <span class="token function">Step4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  Library <span class="token function">lib</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  Application <span class="token function">app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  
-  lib<span class="token punctuation">.</span><span class="token function">Step1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>app<span class="token punctuation">.</span><span class="token function">Step2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    lib<span class="token punctuation">.</span><span class="token function">Step3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span><span class="token number">4</span><span class="token punctuation">,</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    app<span class="token punctuation">.</span><span class="token function">Step4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  
-  lib<span class="token punctuation">.</span><span class="token function">Step5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+	Library <span class="token function">lib</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	Application <span class="token function">app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+	lib<span class="token punctuation">.</span><span class="token function">Step1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>app<span class="token punctuation">.</span><span class="token function">Step2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		lib<span class="token punctuation">.</span><span class="token function">Step3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		app<span class="token punctuation">.</span><span class="token function">Step4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	lib<span class="token punctuation">.</span><span class="token function">Step5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
 <span class="token comment">/*
 	app开发人员也要做步骤 并且还要写出一个步骤走的流程
 */</span> </code></pre>

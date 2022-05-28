@@ -152,7 +152,7 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/c++-iterator.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 迭代器设计原则&amp;Traits</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >c++ STL 迭代器&amp;Traits</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
@@ -212,6 +212,79 @@
 
 &#x2F;&#x2F; 在这里就不一一介绍了 大家可以看源码</code></pre>
 
+<h2 id="各种容器的iterators的iterator-category"><a href="#各种容器的iterators的iterator-category" class="headerlink" title="各种容器的iterators的iterator_category"></a>各种容器的iterators的iterator_category</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528153536322.png" alt="image-20220528153536322"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span>     <span class="token comment">// std::cout</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iterator></span>     <span class="token comment">// std::iterator_traits</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;typeinfo></span>     <span class="token comment">// typeid</span></span>
+<span class="token keyword">namespace</span> jj33
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">void</span> <span class="token function">_display_category</span><span class="token punctuation">(</span>random_access_iterator_tag<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"random_access_iterator"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token keyword">void</span> <span class="token function">_display_category</span><span class="token punctuation">(</span>bidirectional_iterator_tag<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"bidirectional_iterator"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token keyword">void</span> <span class="token function">_display_category</span><span class="token punctuation">(</span>forward_iterator_tag<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"forward_iterator"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token punctuation">&#125;</span>
+<span class="token keyword">void</span> <span class="token function">_display_category</span><span class="token punctuation">(</span>output_iterator_tag<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"output_iterator"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   <span class="token punctuation">&#125;</span>
+<span class="token keyword">void</span> <span class="token function">_display_category</span><span class="token punctuation">(</span>input_iterator_tag<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"input_iterator"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">I</span><span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">display_category</span><span class="token punctuation">(</span>I itr<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token keyword">typename</span> <span class="token class-name">iterator_traits</span><span class="token operator">&lt;</span>I<span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator_category cagy<span class="token punctuation">;</span>
+   <span class="token function">_display_category</span><span class="token punctuation">(</span>cagy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"typeid(itr).name()= "</span> <span class="token operator">&lt;&lt;</span> <span class="token keyword">typeid</span><span class="token punctuation">(</span>itr<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   
+       <span class="token comment">//The output depends on library implementation.</span>
+       <span class="token comment">//The particular representation pointed by the  </span>
+	   <span class="token comment">//returned valueis implementation-defined, </span>
+	   <span class="token comment">//and may or may not be different for different types.   </span>
+<span class="token punctuation">&#125;</span>
+	
+<span class="token keyword">void</span> <span class="token function">test_iterator_category</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\ntest_iterator_category().......... \n"</span><span class="token punctuation">;</span>
+  	
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">array</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">vector</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">list</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">forward_list</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">deque</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">set</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">map</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">multiset</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">multimap</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">unordered_set</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">unordered_map</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">unordered_multiset</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token class-name">unordered_multimap</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	  
+	    	
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">istream_iterator</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token function">display_category</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">ostream_iterator</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>cout<span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>															 
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="各种容器的iterators的iterator-category的typeid"><a href="#各种容器的iterators的iterator-category的typeid" class="headerlink" title="各种容器的iterators的iterator_category的typeid"></a>各种容器的iterators的iterator_category的typeid</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528153938016.png" alt="image-20220528153938016"></p>
+<h2 id="istream-iterator的iterator-category"><a href="#istream-iterator的iterator-category" class="headerlink" title="istream_iterator的iterator_category"></a>istream_iterator的iterator_category</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528154205389.png" alt="image-20220528154205389"></p>
+<h2 id="ostream-iterator的iterator-category"><a href="#ostream-iterator的iterator-category" class="headerlink" title="ostream_iterator的iterator_category"></a>ostream_iterator的iterator_category</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528154435206.png" alt="image-20220528154435206"></p>
+<h2 id="iterator-category-对算法的影响"><a href="#iterator-category-对算法的影响" class="headerlink" title="iterator_category 对算法的影响"></a>iterator_category 对算法的影响</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528163613945.png" alt="image-20220528163613945"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+	我们来看右边的代码
+	最下面 先是模板参数
+	然后是一个 traits处理
+	然后就是distance 参数两个指针 first last
+	再然后就是判断iterator_category应该调用哪一个函数
+	
+	中间的 interator_caegary 是一个连续内存空间的迭代器 所以直接 return last-first
+	但是最上面的不是连续的内存空间的 所以就很麻烦 需要进行循环 所以这就是迭代器分类对算法的影响
+*/</span></code></pre>
+
+<h2 id="Iterator-category和type-traits-对算法的影响"><a href="#Iterator-category和type-traits-对算法的影响" class="headerlink" title="Iterator_category和type traits 对算法的影响"></a>Iterator_category和type traits 对算法的影响</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528165906779.png" alt="image-20220528165906779"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"></code></pre>
+
+<h2 id="算法对迭代器的暗示"><a href="#算法对迭代器的暗示" class="headerlink" title="算法对迭代器的暗示"></a>算法对迭代器的暗示</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220528170914823.png" alt="image-20220528170914823"></p>
 
             </div>
 
