@@ -186,7 +186,6 @@ Bridge</code></pre>
 
 <span class="token keyword">class</span> <span class="token class-name">PCMessagerBase</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Messager</span></span><span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
-    
     <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">PlaySound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token comment">//**********</span>
     <span class="token punctuation">&#125;</span>
@@ -203,7 +202,6 @@ Bridge</code></pre>
 
 <span class="token keyword">class</span> <span class="token class-name">MobileMessagerBase</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Messager</span></span><span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
-    
     <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">PlaySound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token comment">//==========</span>
     <span class="token punctuation">&#125;</span>
@@ -218,10 +216,7 @@ Bridge</code></pre>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
-
-
 <span class="token comment">//业务抽象</span>
-
 <span class="token keyword">class</span> <span class="token class-name">PCMessagerLite</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">PCMessagerBase</span></span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
     
@@ -457,7 +452,8 @@ Bridge</code></pre>
 
 <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">将抽象部分<span class="token punctuation">(</span>业务功能<span class="token punctuation">)</span>与实现部分<span class="token punctuation">(</span>平台实现<span class="token punctuation">)</span>分离，使他们都可以独立的变化</code></pre>
 
-<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><h2 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">Bridge模式使用“对象间的组合关系”解耦了抽象和实现之间固有的绑定关系，使得抽象和实现可以沿着各自的维度来变化。所谓抽象和实现沿着各自纬度的变化，即“子类化”它们。
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220529155705292.png" alt="image-20220529155705292"></p>
+<h2 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">Bridge模式使用“对象间的组合关系”解耦了抽象和实现之间固有的绑定关系，使得抽象和实现可以沿着各自的维度来变化。所谓抽象和实现沿着各自纬度的变化，即“子类化”它们。
 
 Bridge模式有时候类似于多继承方案，但是多继承方案往往违背单一职责原则（即一个类只有一个变化的原因），复用性比较差。Bridge模式是比多继承方案更好的解决方法。
 
