@@ -216,19 +216,13 @@
   	npm install neovim
   	pip3 install neovim
     下载 ccls
-    	git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-			cd ccls
-			cmake . -DCMAKE_PREFIX_PATH=/usr/local/ -DCMAKE_CXX_COMPILER=/usr/local/gcc-7.2.0/bin/g++ -DCMAKE_CXX_LINK_FLAGS="-Wl,-rpath,/usr/local/gcc-7.2.0/lib64 -L/usr/local/gcc-7.2.0/lib" -DCMAKE_CXX_FLAGS="-static-libgcc -static-libstdc++"
-			make -j$(nproc)
-			sudo make install
-		如果cmake 版本过高
-			tar -zxvf cmake-3.17.0-rc2-Linux-x86_64.tar.gz
-			cd cmake-3.17.0-rc2-Linux-x86_64/bin
-		如果报错
-			sudo yum install glibc.i686
-			如果报错 保护多库版本
-				sudo yum install glibc.i686 --setopt=protected_multilib=false
-			
+    	sudo yum install epel-release
+			sudo yum install snapd
+			sudo systemctl enable --now snapd.socket
+			sudo ln -s /var/lib/snapd/snap /snap
+			sudo snap install ccls --classic
+			vim ~/.bash_profile
+				export PATH="$PATH:/snap/bin/"
     
   安装wget(如果没有wget)
   	yum -y install gcc make gcc-c++ openssl-devel wget
@@ -263,8 +257,41 @@
 
 <h2 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
 	mac 自带的python是 3.8 版本 可以跳过
+	
 	安装nvim
 		brew install neovim
+		
+	安装vim-plug
+		sh -c 'curl -fLo "$&#123;XDG_DATA_HOME:-$HOME/.local/share&#125;"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		如果 443 可以通过 /ect/hosts 解决 具体的可以百度
+	
+	创建初始化 neovim 配置文件
+    mkdir ~/.config/nvim/
+    nvim ~/.config/nvim/init.vim
+    
+  下载node.js
+  	brew install nodejs
+  	
+  coc插件 需要的步骤
+  	npm install neovim
+  	pip3 install neovim
+    brew install ccls
+  
+  下载插件 
+		nvim ~/.config/nvim/init.vim
+		:PlugInstall
+		
+	如果timeout请开启 vpn 并配置gitconfig
+		
+	检查健康
+		:checkhealth
+		
+	解决 checkhealth 错误后
+		nvim test.go
+		:GoInstallB...
+
+	然后如果不行就重新启动命令行 随后即可
 */</span></code></pre>
 
 <h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 未完待续</span></code></pre>
