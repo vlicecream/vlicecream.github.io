@@ -151,61 +151,87 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/cartoon-character-4.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >数组 双指针</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/算法-递归.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >递归</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	时间复杂度
-		select O(1)
-		append O(n)
-		removeO(n)
-*/</span></code></pre>
-
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	在有关数组的算法题目里面 双指针其实是很流行的一种解法
-	遇到数组的时候即可思考一下双指针是否可行
-*/</span>
-
+                <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">递归<span class="token operator">-</span>循环
+通过函数体来进行的循环
+  
 <span class="token comment">/*
-	双指针其实就是 利用两个指向数组元素的指针 来搞事情
-	所以双指针其实也是有很多种类型
-*/</span></code></pre>
-
-<h2 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	快慢指针其实就是一个指针走的快 一个指针走得慢  题外话 在链表成环 快慢指针非常好用 类似于龟兔赛跑
-	slow fast 两个指针 快指针走的要比慢指针快
-	话不多说 来见题目
+	听我来讲个故事
+		山里有座庙
+		庙里有老和尚和小和尚
+		老和尚跟小和尚说
+			山里有座庙
+			...
+	还有 盗梦空间 其实也是递归的一种体现
+	所以很多都是现实世界中就存在的东西
+	
+	我们就可以通过盗梦空间来总结下 递归 的特点
 */</span> 
 
-<span class="token comment">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化, 代码为 golang)</span>
-  slow <span class="token operator">:=</span> <span class="token number">0</span>
-  <span class="token keyword">for</span> fast <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> fast <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> fast<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据具体内容写相应代码</span>
+向下进入到不同的梦境中<span class="token punctuation">;</span> 向上又回到原来的一层
+通过声音同步回到上一层<span class="token punctuation">(</span>也就是通过函数 变量<span class="token punctuation">)</span>
+每一层的环境和周围的人都是一份拷贝<span class="token punctuation">,</span> 主角等几个人穿越不同的梦境<span class="token punctuation">(</span>发生和携带变化<span class="token punctuation">)</span></code></pre>
+
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># python</span>
+<span class="token keyword">def</span> <span class="token function">recursion</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> param1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token comment"># recursion terminator(递归终止条件)</span>
+  <span class="token keyword">if</span> level <span class="token operator">></span> MAX_LEVEL<span class="token punctuation">:</span>
+    process_result
+    <span class="token keyword">return</span>
+  
+  <span class="token comment"># process logic in current level(处理当前层逻辑)</span>
+  process<span class="token punctuation">(</span>level<span class="token punctuation">,</span> data<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+  
+  <span class="token comment"># drill down(下到下一层)</span>
+  self<span class="token punctuation">.</span>recursion<span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p1<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+  
+  <span class="token comment"># reverse the current level status if needed(可能要清理这一层)</span></code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// golang</span>
+<span class="token keyword">func</span> <span class="token function">recursion</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> param1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// recursion terminator(递归终止条件)</span>
+  <span class="token keyword">if</span> level <span class="token operator">></span> MAX_LEVEL <span class="token punctuation">&#123;</span>
+    process_result
+    <span class="token keyword">return</span>
   <span class="token punctuation">&#125;</span>
+  
+  <span class="token comment">// process logic in current level(处理当前层逻辑)</span>
+  <span class="token function">process</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> data<span class="token operator">...</span><span class="token punctuation">)</span>
+  
+  <span class="token comment">// drill down(下到下一层)</span>
+  <span class="token function">recursion</span><span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p1<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">)</span>
+  
+  <span class="token comment">// reverse the current level status if needed(可能要清理这一层)</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-<span class="token comment">/*
-	https://leetcode-cn.com/problems/move-zeroes/ 移动零
-	https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 删除有序数组的重复项
-*/</span></code></pre>
-
-<h2 id="区域指针"><a href="#区域指针" class="headerlink" title="区域指针"></a>区域指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	左右指针就是 两个指针一个在数组开始 一个在数组末端
-	一般用于寻找一个区域内的某个东西
-*/</span>
-
-<span class="token comment">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化, 代码为golang)</span>
-  left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-  <span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据具体内容写相应代码</span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// c++</span>
+<span class="token keyword">void</span> <span class="token function">recursion</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> param1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// recursion terminator(递归终止条件)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>level <span class="token operator">></span> MAX_LEVEL<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    process_result<span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
+  
+  <span class="token comment">// process logic in current level(处理当前层逻辑)</span>
+  <span class="token function">process</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> data<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  <span class="token comment">// drill down(下到下一层)</span>
+  <span class="token function">recursion</span><span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p1<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+	<span class="token comment">// reverse the current level status if needed(可能要清理这一层)</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-<span class="token comment">/*
-	https://leetcode-cn.com/problems/container-with-most-water/ 盛最多水的容器
-*/</span></code></pre>
+<h2 id="递归训练要点"><a href="#递归训练要点" class="headerlink" title="递归训练要点"></a>递归训练要点</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 不要人肉递归 刚开始学的时候可以在纸上 画一下递归的状态树 但是以后别画了</span>
 
+<span class="token comment">// 找到最近重复子问题 拆解成子问题</span>
 
+<span class="token comment">// 数学归纳法思维</span></code></pre>
+
+<h2 id="推荐题目"><a href="#推荐题目" class="headerlink" title="推荐题目"></a>推荐题目</h2><pre class="language-go" data-language="go"><code class="language-go"></code></pre>
 
 
             </div>
@@ -269,8 +295,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/04/15/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E6%95%B0%E7%BB%84--%E5%8F%8C%E6%8C%87%E9%92%88/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2022/04/15/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E6%95%B0%E7%BB%84--%E5%8F%8C%E6%8C%87%E9%92%88/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/06/15/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/06/15/%E7%AE%97%E6%B3%95%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
