@@ -151,110 +151,20 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/mysql-关键函数.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >mysql 关键字 聚合函数</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/mysql-arm.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >mysql arm 安装</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一、ROUND"><a href="#一、ROUND" class="headerlink" title="一、ROUND"></a>一、ROUND</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1.什么是round
-	ROUND(f,p) 返回 f 舍入到 p 位小数。
-	小数位数可能是负数，这将四舍五入到最接近的 10（当 p 为 -1）或 100（当 p 为 -2）或 1000（当 p 为 -3）等。
-	可以保留小数并四舍五入
-        round(1231.86,0)  # 1232
-        round(1231.86,1)  # 1231.9
-        round(1231.86,-3)  # 1000
-2.语句演示
-	select name, round(population&#x2F;1000,1) from xxx;</code></pre>
+                <h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">安装mysql：brew install mysql@<span class="token number">5.7</span>
+安装brew服务：brew tap homebrew<span class="token operator">/</span>services
+加载和启动MySQL服务：brew services start mysql@<span class="token number">5.7</span>
+检查mysql服务是否已加载：brew services list
+创建软链接<span class="token operator">:</span> ln <span class="token operator">-</span>s <span class="token operator">/</span>opt<span class="token operator">/</span>homebrew<span class="token operator">/</span>Cellar<span class="token operator">/</span>mysql@<span class="token number">5.7</span><span class="token operator">/</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">38</span><span class="token operator">/</span>bin<span class="token operator">/</span>mysql <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>bin<span class="token operator">/</span>mysql
+验证安装mysql是否成功： mysql <span class="token operator">-</span>v
+进入brew安装目录<span class="token operator">:</span> cd <span class="token operator">/</span>opt<span class="token operator">/</span>homebrew<span class="token operator">/</span>Cellar<span class="token operator">/</span>mysql@<span class="token number">5.7</span><span class="token operator">/</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">38</span><span class="token operator">/</span>bin
+初始化密码，更改你自己的密码： <span class="token punctuation">.</span><span class="token operator">/</span>mysqladmin <span class="token operator">-</span>u root password <span class="token char">'yourpassword'</span></code></pre>
 
-<h2 id="二、CASE"><a href="#二、CASE" class="headerlink" title="二、CASE"></a>二、CASE</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1.什么是case
-	CASE 允许您在不同条件下返回不同的值。
-	如果没有任何条件匹配（并且没有 ELSE），则返回 NULL。
-	
-2.语句演示
-	case when 条件1 then 值1
-		when 条件2 then 值2
-		else def_valve end
-		
-		
-	select name, population,
-	case when population&lt;1000000 then &#39;small&#39;
-         when population&lt;10000000 when &#39;medium&#39;
-         else &#39;large&#39; end
-    from world</code></pre>
-
-<h2 id="三、ORDER-BY"><a href="#三、ORDER-BY" class="headerlink" title="三、ORDER BY"></a>三、ORDER BY</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是order by
-	能对数据进行升序降序排队
-
-2. 语句演示
-	select name, continent from world where name in (&#39;Argentina&#39;, &#39;Australia&#39;) order by name asc;  # ASC 升序
-	select name, continent from world where name in (&#39;Argentina&#39;, &#39;Australia&#39;) order by name desc;  # DESC 降序</code></pre>
-
-<h2 id="四、CONCAT"><a href="#四、CONCAT" class="headerlink" title="四、CONCAT"></a>四、CONCAT</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是concat
-	可以拼接两个或者多个字符串
-	这个操作是串联
-
-2. 语句演示
-	select name, concat(population,&#39;%&#39;) from world;</code></pre>
-
-<h2 id="五、SUM"><a href="#五、SUM" class="headerlink" title="五、SUM"></a>五、SUM</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是sum
-	求和
-
-2. 代码演示
-	select sum(gdp) from world where continent &#x3D; &#39;Africa&#39;;</code></pre>
-
-<h2 id="六、-MAX-amp-MIN"><a href="#六、-MAX-amp-MIN" class="headerlink" title="六、 MAX&amp;MIN"></a>六、 MAX&amp;MIN</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是max&amp;min
-	比较最大&amp;比较最小
-
-2. 代码演示
- 	select post,max(salary) from emp group by post;
-
-	select post,min(salary) from emp group by post;</code></pre>
-
-<h2 id="七、DISTINCT"><a href="#七、DISTINCT" class="headerlink" title="七、DISTINCT"></a>七、DISTINCT</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是distinct
-	去重
-	一定要注意 必须是完全一样的数据才可以去重！！！
-	一定不要将逐渐忽视了 有逐渐存在的情况下 是不可能去重的
-
-2. 代码演示
-	select distinct id,age from emp;</code></pre>
-
-<h2 id="八、-COUNT"><a href="#八、-COUNT" class="headerlink" title="八、 COUNT"></a>八、 COUNT</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是count
-	可以总计次数
-
-2. 代码演示
-	select continent, count(name) from world group by continent</code></pre>
-
-<h2 id="九、GROUP-BY"><a href="#九、GROUP-BY" class="headerlink" title="九、GROUP BY"></a>九、GROUP BY</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是group by
-	可以进行分组
-	简单来说：1、与distinct类似，自带去重效果
-    配合聚合函数使用&#123;sum()、max()、min()、avg()、count()&#125;
-    配合HAVING
-
-2. 代码演示
-	select continent, name from world group by continent</code></pre>
-
-<h2 id="十、-HAVING"><a href="#十、-HAVING" class="headerlink" title="十、 HAVING"></a>十、 HAVING</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是having
-	&quot;&quot;&quot;
-    having的语法根where是一致的
-    只不过having是在分组之后进行的过滤操作
-    即having是可以直接使用聚合函数的
-    &quot;&quot;&quot;
-    
-2. 代码演示
-	select continent from world group by continent having sum(population)&gt;100000000;</code></pre>
-
-<h2 id="十一、JOIN"><a href="#十一、JOIN" class="headerlink" title="十一、JOIN"></a>十一、JOIN</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">1. 什么是join
-	合拼两个或多个表格
-	语句FROM 表示合拼两个表格game 和 goal的数据 ，语句 ON 表示如何找出 game中每一列应该配对goal中的哪一列
-2. 代码演示
-	select team1,team2,player from game join goal on (id&#x3D;matchid) where player like &#39;Mario%&#39;;
-3. 补充知识
-	上述代码又可以写成 
-		select team1,team2,player from game,goal where id&#x3D;matchid and player like &#39;Mario%&#39;;
-	如果是合拼三个表格
-		select name from movie,actor,casting where movie.id &#x3D; movieid and actor.id &#x3D; actorid and title &#x3D; &#39;Alien&#39;;
-	三个表格 jion 写法
-		select name from movie join casting on movieid &#x3D; movie.id join actor on actorid &#x3D; actor.id where title &#x3D; &#39;Alien&#39;；</code></pre>
 
             </div>
 
@@ -317,8 +227,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2017/05/07/mysql%20%E5%85%B3%E9%94%AE%E5%AD%97&amp;%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2017/05/07/mysql%20%E5%85%B3%E9%94%AE%E5%AD%97&amp;%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2022/06/15/mysql%20%E5%85%B3%E9%94%AE%E5%AD%97&amp;%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2022/06/15/mysql%20%E5%85%B3%E9%94%AE%E5%AD%97&amp;%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
