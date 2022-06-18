@@ -156,46 +156,60 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>​	What?</p>
-<p>​		栈就是先进后出</p>
-<p>​	Example</p>
-<p>​		一个箱子 你放4本书进去 拿书的时候只能从上面先拿 这就是先进后出</p>
-<p>​	time complexity</p>
-<p>​		select  O(n)</p>
-<p>​		insert  O(1)</p>
-<p>​		remove  O(1)</p>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>​	What?</p>
-<p>​		队列就是先进先出</p>
-<p>​	Example</p>
-<p>​		排队的时候先来的人就可以先出去 这就是先进先出</p>
-<p>​	time complexity</p>
-<p>​		select  O(n)</p>
-<p>​		insert  O(1)</p>
-<p>​		remove  O(1)</p>
-<h2 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h2><p>​	What?</p>
-<p>​		就是一个队列 可以理解为stack和queue的结合体</p>
-<p>​		可以往最前面添加元素 or 删除元素</p>
-<p>​		也可以往最后面添加元素 or 删除元素</p>
-<p>​	time complexity</p>
-<p>​		select  O(n)</p>
-<p>​		append  O(1)</p>
-<p>​		remove  O(1)</p>
-<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><p>​	what?</p>
-<p>​		元素具有优先级</p>
-<p>​	example</p>
-<p>​		好比你是vip 所以就可以优先获取资源</p>
-<p>​	time complexity</p>
-<p>​		插入操作 O(1)</p>
-<p>​		取出操作 O(logn)  ps: 按照元素的优先级取出</p>
-<p>​	优先队列的底层具体实现</p>
-<p>​		较为多样和复杂 可以用heap bst treap等</p>
+                <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// what?</span>
+	栈就是先进后出
+
+<span class="token comment">// Example</span>
+	一个箱子 你放<span class="token number">4</span>本书进去 拿书的时候只能从上面先拿 这就是先进后出
+
+<span class="token comment">// time complexity</span>
+  <span class="token keyword">select</span>  <span class="token function">O</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+  insert  <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  remove  <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// what?</span>
+	队列就是先进先出
+
+<span class="token comment">// Example</span>
+	排队的时候先来的人就可以先出去 这就是先进先出
+
+<span class="token comment">// time complexity</span>
+	<span class="token keyword">select</span>  <span class="token function">O</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+
+	insert  <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+	remove  <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+
+<h2 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// What?</span>
+	就是一个队列 可以理解为stack和queue的结合体
+	可以往最前面添加元素 or 删除元素
+	也可以往最后面添加元素 or 删除元素
+
+<span class="token comment">// time complexity</span>
+	<span class="token keyword">select</span>  <span class="token function">O</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+	<span class="token builtin">append</span>  <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+	remove  <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+
+<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// what?</span>
+	元素具有优先级
+
+<span class="token comment">// example</span>
+	好比你是vip 所以就可以优先获取资源
+
+<span class="token comment">// time complexity</span>
+	插入操作 <span class="token function">O</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+	取出操作 <span class="token function">O</span><span class="token punctuation">(</span>logn<span class="token punctuation">)</span>  ps<span class="token punctuation">:</span> 按照元素的优先级取出
+
+<span class="token comment">// 优先队列的底层具体实现</span>
+	较为多样和复杂 可以用heap bst treap等</code></pre>
+
 <h2 id="Leetcode题目推荐"><a href="#Leetcode题目推荐" class="headerlink" title="Leetcode题目推荐"></a>Leetcode题目推荐</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// tips: 兄弟们一定要记住题目一旦想了一会 想不出来就去看题解哦～多看别人怎么做的 题目也不要只刷一遍～贵在坚持</span></code></pre>
 
-<p>​	<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/min-stack/">https://leetcode-cn.com/problems/min-stack/</a>   最小栈</p>
-<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// tips: 这道题可以先不考虑O(1)时间复杂度  先去尝试O(n)  再O(1)  再考虑不使用额外空间的方法~</span></code></pre>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// https://leetcode-cn.com/problems/min-stack/   最小栈</span>
+<span class="token comment">// tips: 这道题可以先不考虑O(1)时间复杂度  先去尝试O(n)  再O(1)  再考虑不使用额外空间的方法~</span></code></pre>
 
-<p>​	<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-parentheses/">https://leetcode-cn.com/problems/valid-parentheses/</a>   有效地括号</p>
-<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// tips: 这道题用到混合数据结构~</span></code></pre>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// https://leetcode-cn.com/problems/valid-parentheses/   有效地括号</span>
+<span class="token comment">// tips: 这道题用到混合数据结构~</span></code></pre>
 
 
             </div>
