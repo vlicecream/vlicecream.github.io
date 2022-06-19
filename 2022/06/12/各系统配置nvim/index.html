@@ -410,6 +410,10 @@ Plug <span class="token char">'glepnir/dashboard-nvim'</span>
 " lualine
 Plug <span class="token char">'nvim-lualine/lualine.nvim'</span>
 
+" barbar
+Plug <span class="token char">'kyazdani42/nvim-web-devicons'</span>
+Plug <span class="token char">'romgrk/barbar.nvim'</span>
+
 " c<span class="token operator">++</span>snippets
 " Plug <span class="token char">'honza/vim-snippets'</span>
 
@@ -418,6 +422,117 @@ Plug <span class="token char">'nvim-lualine/lualine.nvim'</span>
 
 
 call plug#<span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+" <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span> barbar <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+" Move to previous<span class="token operator">/</span>next
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token punctuation">,</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferPrevious<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token punctuation">.</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferNext<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+" Re<span class="token operator">-</span>order to previous<span class="token operator">/</span>next
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token operator">&lt;</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferMovePrevious<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-></span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferMoveNext<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+" Goto buffer in position<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">1</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">1</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">2</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">2</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">3</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">3</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">4</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">4</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">5</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">6</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">6</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">7</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">7</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">8</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">8</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">9</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferGoto <span class="token number">9</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span><span class="token number">0</span><span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferLast<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+" Pin<span class="token operator">/</span>unpin buffer
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span>p<span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferPin<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+" Close buffer
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span>    <span class="token operator">&lt;</span>A<span class="token operator">-</span>c<span class="token operator">></span> <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferClose<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+" Wipeout buffer
+"                          <span class="token operator">:</span>BufferWipeout
+" Close commands
+"                          <span class="token operator">:</span>BufferCloseAllButCurrent
+"                          <span class="token operator">:</span>BufferCloseAllButPinned
+"                          <span class="token operator">:</span>BufferCloseAllButCurrentOrPinned
+"                          <span class="token operator">:</span>BufferCloseBuffersLeft
+"                          <span class="token operator">:</span>BufferCloseBuffersRight
+" Magic buffer<span class="token operator">-</span>picking mode
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C<span class="token operator">-</span>p<span class="token operator">></span>    <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferPick<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+" Sort automatically by<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Space<span class="token operator">></span>bb <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferOrderByBufferNumber<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Space<span class="token operator">></span>bd <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferOrderByDirectory<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Space<span class="token operator">></span>bl <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferOrderByLanguage<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Space<span class="token operator">></span>bw <span class="token operator">&lt;</span>Cmd<span class="token operator">></span>BufferOrderByWindowNumber<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+
+" Other<span class="token operator">:</span>
+" <span class="token operator">:</span>BarbarEnable <span class="token operator">-</span> enables <span class="token function">barbar</span> <span class="token punctuation">(</span>enabled by <span class="token keyword">default</span><span class="token punctuation">)</span>
+" <span class="token operator">:</span>BarbarDisable <span class="token operator">-</span> very bad command<span class="token punctuation">,</span> should never be used
+
+" NOTE<span class="token operator">:</span> If barbar<span class="token char">'s option dict isn'</span>t created yet<span class="token punctuation">,</span> create it
+let bufferline <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>g<span class="token operator">:</span><span class="token punctuation">,</span> <span class="token char">'bufferline'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+" Enable<span class="token operator">/</span>disable animations
+let bufferline<span class="token punctuation">.</span>animation <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">true</span>
+
+" Enable<span class="token operator">/</span>disable <span class="token keyword">auto</span><span class="token operator">-</span>hiding the tab bar when there is a single buffer
+let bufferline<span class="token punctuation">.</span>auto_hide <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">false</span>
+
+" Enable<span class="token operator">/</span>disable current<span class="token operator">/</span>total tabpages <span class="token function">indicator</span> <span class="token punctuation">(</span>top right corner<span class="token punctuation">)</span>
+let bufferline<span class="token punctuation">.</span>tabpages <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">true</span>
+
+" Enable<span class="token operator">/</span>disable close button
+let bufferline<span class="token punctuation">.</span>closable <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">true</span>
+
+" Enables<span class="token operator">/</span>disable clickable tabs
+"  <span class="token operator">-</span> left<span class="token operator">-</span>click<span class="token operator">:</span> go to buffer
+"  <span class="token operator">-</span> middle<span class="token operator">-</span>click<span class="token operator">:</span> <span class="token keyword">delete</span> buffer
+let bufferline<span class="token punctuation">.</span>clickable <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">true</span>
+
+" Excludes buffers from the tabline
+let bufferline<span class="token punctuation">.</span>exclude_ft <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token char">'javascript'</span><span class="token punctuation">]</span>
+let bufferline<span class="token punctuation">.</span>exclude_name <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token char">'package.json'</span><span class="token punctuation">]</span>
+
+" Enable<span class="token operator">/</span>disable icons
+" <span class="token keyword">if</span> set to <span class="token char">'buffer_number'</span><span class="token punctuation">,</span> will show buffer number in the tabline
+" <span class="token keyword">if</span> set to <span class="token char">'numbers'</span><span class="token punctuation">,</span> will show buffer index in the tabline
+" <span class="token keyword">if</span> set to <span class="token char">'both'</span><span class="token punctuation">,</span> will show buffer index <span class="token operator">and</span> icons in the tabline
+" <span class="token keyword">if</span> set to <span class="token char">'buffer_number_with_icon'</span><span class="token punctuation">,</span> will show buffer number <span class="token operator">and</span> icons in the tabline
+let bufferline<span class="token punctuation">.</span>icons <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">true</span>
+
+" Sets the icon<span class="token number">'</span>s highlight group<span class="token punctuation">.</span>
+" If <span class="token boolean">false</span><span class="token punctuation">,</span> will use nvim<span class="token operator">-</span>web<span class="token operator">-</span>devicons colors
+let bufferline<span class="token punctuation">.</span>icon_custom_colors <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">false</span>
+
+" Configure icons on the bufferline<span class="token punctuation">.</span>
+let bufferline<span class="token punctuation">.</span>icon_separator_active <span class="token operator">=</span> <span class="token char">'▎'</span>
+let bufferline<span class="token punctuation">.</span>icon_separator_inactive <span class="token operator">=</span> <span class="token char">'▎'</span>
+let bufferline<span class="token punctuation">.</span>icon_close_tab <span class="token operator">=</span> <span class="token char">''</span>
+let bufferline<span class="token punctuation">.</span>icon_close_tab_modified <span class="token operator">=</span> <span class="token char">'●'</span>
+let bufferline<span class="token punctuation">.</span>icon_pinned <span class="token operator">=</span> <span class="token char">'車'</span>
+
+" If <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token keyword">new</span> buffers will be inserted at the start<span class="token operator">/</span>end of the list<span class="token punctuation">.</span>
+" Default is to insert after current buffer<span class="token punctuation">.</span>
+let bufferline<span class="token punctuation">.</span>insert_at_start <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">false</span>
+let bufferline<span class="token punctuation">.</span>insert_at_end <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">false</span>
+
+" Sets the maximum padding width with which to surround each tab<span class="token punctuation">.</span>
+let bufferline<span class="token punctuation">.</span>maximum_padding <span class="token operator">=</span> <span class="token number">4</span>
+
+" Sets the maximum buffer name length<span class="token punctuation">.</span>
+let bufferline<span class="token punctuation">.</span>maximum_length <span class="token operator">=</span> <span class="token number">30</span>
+
+" If set<span class="token punctuation">,</span> the letters <span class="token keyword">for</span> each buffer in buffer<span class="token operator">-</span>pick mode will be
+" assigned based on their name<span class="token punctuation">.</span> Otherwise <span class="token operator">or</span> in <span class="token keyword">case</span> all letters are
+" already assigned<span class="token punctuation">,</span> the behavior is to assign letters in order of
+" <span class="token function">usability</span> <span class="token punctuation">(</span>see order below<span class="token punctuation">)</span>
+let bufferline<span class="token punctuation">.</span>semantic_letters <span class="token operator">=</span> v<span class="token operator">:</span><span class="token boolean">true</span>
+
+" New buffer letters are assigned in <span class="token keyword">this</span> order<span class="token punctuation">.</span> This order is
+" optimal <span class="token keyword">for</span> the qwerty keyboard layout but might need adjustement
+" <span class="token keyword">for</span> other layouts<span class="token punctuation">.</span>
+let bufferline<span class="token punctuation">.</span>letters <span class="token operator">=</span>
+  \ 'asdfjkl<span class="token punctuation">;</span>ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP<span class="token number">'</span>
+
+<span class="token string">" Sets the name of unnamed buffers. By default format is "</span><span class="token punctuation">[</span>Buffer X<span class="token punctuation">]</span>"
+" where X is the buffer number<span class="token punctuation">.</span> But only a <span class="token keyword">static</span> string is accepted here<span class="token punctuation">.</span>
+let bufferline<span class="token punctuation">.</span>no_name_title <span class="token operator">=</span> v<span class="token operator">:</span>null
 
 " <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span> lualine <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> 
 lua <span class="token operator">&lt;&lt;</span> END
@@ -811,25 +926,25 @@ let g<span class="token operator">:</span>indent_guides_start_level           <s
 let g<span class="token operator">:</span>NERDSpaceDelims <span class="token operator">=</span> <span class="token number">1</span>
 " python 自动的会多加一个空格
 au FileType python let g<span class="token operator">:</span>NERDSpaceDelims <span class="token operator">=</span> <span class="token number">0</span>
-
+ 
 " Use compact syntax <span class="token keyword">for</span> prettified multi<span class="token operator">-</span>line comments
 let g<span class="token operator">:</span>NERDCompactSexyComs <span class="token operator">=</span> <span class="token number">1</span>
-
+ 
 " Align line<span class="token operator">-</span>wise comment delimiters flush left instead of following code indentation
 let g<span class="token operator">:</span>NERDDefaultAlign <span class="token operator">=</span> <span class="token char">'left'</span>
-
+ 
 " Set a language to use its alternate delimiters by <span class="token keyword">default</span>
 let g<span class="token operator">:</span>NERDAltDelims_java <span class="token operator">=</span> <span class="token number">1</span>
-
+ 
 " Add your own custom formats <span class="token operator">or</span> <span class="token keyword">override</span> the defaults
 " let g<span class="token operator">:</span>NERDCustomDelimiters <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token char">'c'</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token char">'left'</span><span class="token operator">:</span> <span class="token char">'/**'</span><span class="token punctuation">,</span><span class="token char">'right'</span><span class="token operator">:</span> <span class="token char">'*/'</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span>
-
+ 
 " Allow commenting <span class="token operator">and</span> inverting empty <span class="token function">lines</span> <span class="token punctuation">(</span>useful when commenting a region<span class="token punctuation">)</span>
 let g<span class="token operator">:</span>NERDCommentEmptyLines <span class="token operator">=</span> <span class="token number">1</span>
-
+ 
 " Enable trimming of trailing whitespace when uncommenting
 let g<span class="token operator">:</span>NERDTrimTrailingWhitespace <span class="token operator">=</span> <span class="token number">1</span>
-
+ 
 " Enable NERDCommenterToggle to check all selected lines is commented <span class="token operator">or</span> <span class="token operator">not</span>
 let g<span class="token operator">:</span>NERDToggleCheckAllLines <span class="token operator">=</span> <span class="token number">1</span>
 
@@ -856,7 +971,8 @@ let g<span class="token operator">:</span>rainbow_conf <span class="token operat
 \       <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 \       <span class="token char">'css'</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
 \   <span class="token punctuation">&#125;</span>
-\<span class="token punctuation">&#125;</span></code></pre>
+\<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <h2 id="coc-settings-json"><a href="#coc-settings-json" class="headerlink" title="coc-settings.json"></a>coc-settings.json</h2><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
 	<span class="token property">"coc.preferences.semanticTokensHighlights"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
