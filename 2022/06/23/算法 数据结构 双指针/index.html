@@ -156,20 +156,32 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <pre class="language-go" data-language="go"><code class="language-go">在一次普通日子里 看到一篇写的很不错的 关于递归的讲解 我觉得很不错 自己也是一个正在努力刷算法的小青年
+                <pre class="language-go" data-language="go"><code class="language-go">在一次普通日子里 看到一篇写的很不错的 关于递归的讲解 我觉得很不错 自己也是一个正在努力刷算法的小青年 目前也才是<span class="token number">50</span><span class="token operator">+</span>的小垃圾
+所以也想去总结一下自己的对题目的理解 这个系列会长期更新 只要有新的理解 我就会过来更新
 
-所以也想去总结一下自己的对题目的理解 这个系列会长期更新 只要有新的理解 我就会过来更新</code></pre>
+在我们刚开始刷算法 不可能直接干树 递归 甚至动态规划这些 我们肯定是先从数组入手
 
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre class="language-go" data-language="go"><code class="language-go">在我们刚开始刷算法 不可能直接干树 递归 甚至动态规划这些 我们肯定是先从数组入手
+对于数组来说 <span class="token string">"双指针"</span> and <span class="token string">"特殊的双指针"</span> 其实是一个常用的解法 对于链表来说也是 
+双指针也是分很多种类的 在接下来会讲解
+使用双指针的好处在于和单指针相比，不用去连续遍历整个数组来找出答案，可以带来更好的时间或空间复杂度</code></pre>
 
-对于数组来说 双指针 其实是一个常用的解法 对于链表来说也是 
-双指针也是分很多种类的 在接下来会讲解</code></pre>
+<h2 id="数组-双指针"><a href="#数组-双指针" class="headerlink" title="数组 - 双指针"></a>数组 - 双指针</h2><pre class="language-go" data-language="go"><code class="language-go">双指针模式指使用两个一前一后的指针遍历数据结构，直到某个指针触发停止条件</code></pre>
 
-<h2 id="数组-双指针"><a href="#数组-双指针" class="headerlink" title="数组-双指针"></a>数组-双指针</h2><h2 id="数组-快慢指针"><a href="#数组-快慢指针" class="headerlink" title="数组-快慢指针"></a>数组-快慢指针</h2><h2 id="数组-左右指针"><a href="#数组-左右指针" class="headerlink" title="数组-左右指针"></a>数组-左右指针</h2><pre class="language-go" data-language="go"><code class="language-go">其实快慢指针 也有被说左右指针 但是本人认为这么说 其实是相当不合理 在此之上 我便有了一丝 <span class="token string">"咬文嚼字"</span> 的感觉
-但是我始终认为 你给一个方法取名 其实就是代表了 你对这个方法的理解
+<h2 id="数组-快慢指针"><a href="#数组-快慢指针" class="headerlink" title="数组 - 快慢指针"></a>数组 - 快慢指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token string">"快慢指针"</span> 为 两个指针 想想龟兔赛跑
+基本思想就是 两个速度不同的指针 比如 <span class="token string">"fast指针"</span> 跑两格 <span class="token string">"slow指针"</span> 跑一格</code></pre>
+
+<h2 id="数组-左右指针"><a href="#数组-左右指针" class="headerlink" title="数组 - 左右指针"></a>数组 - 左右指针</h2><pre class="language-go" data-language="go"><code class="language-go">其实 <span class="token string">"快慢指针"</span> 也有被说 <span class="token string">"左右指针"</span> 但是本人认为这么说 其实是相当不合理 在此之上 我便有了一丝 朱光潜老先生的 <span class="token string">"咬文嚼字"</span> 的感觉
+我始终认为 你给一个方法取名 其实就是代表了 你对这个方法的<span class="token string">"理解"</span>
+
+比如 了解什么是左右指针后 你把它叫做 <span class="token string">"对撞指针"</span> 也可以 这就是 <span class="token string">"1000个读者有1000个哈姆雷特"</span>
+ps<span class="token punctuation">:</span> 面试的时候 你得解释下 你对这些命名的理解哦～ 一定要强调自己的理解 这是一个亮点
+如果 技术面觉得你有自己的理解很 shabi 那直接走人吧 这个人多半也到头了
+
+<span class="token string">"左右指针"</span> 是 <span class="token string">"特殊"</span> 的 <span class="token string">"双指针"</span>
 
 所以我也很推荐你们能拥有自己的想法 不要在意别人的命名 就好比 leetcode 题解 就有把快慢指针说为左右指针
-你能说他错吗 其实快慢指针 也确实就是一个指针左 一个指针右 哈哈哈 但是这么说快慢指针为左右指针 非常肤浅</code></pre>
+你能说他错吗 其实快慢指针 也确实就是一个指针左 一个指针右 
+但是这么说快慢指针为左右指针 非常肤浅</code></pre>
 
 <pre class="language-go" data-language="go"><code class="language-go">left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -177,7 +189,7 @@
 <span class="token punctuation">&#125;</span>
 
 <span class="token comment">/*
-	此为 golang 的左右指针代码模板 在 for 循环里 回头 left++ or right-- 的代码出现来打破循环 "&lt;=" 也可能为 "&lt;"
+	此为 golang 的左右指针代码模板 在 for 循环里 需要 left++ or right-- 的代码出现来打破循环, "&lt;=" 也可能为 "&lt;"
 	具体如何得在实际的应用场景去实现
 */</span></code></pre>
 
@@ -187,7 +199,7 @@
 <span class="token punctuation">&#125;</span>
 
 <span class="token comment">/*
-	此为 c++ 的左右指针代码模板 在 while 循环里 回头 left++ or right-- 的代码出现来打破循环 "&lt;=" 也可能为 "&lt;"
+	此为 c++ 的左右指针代码模板 在 while 循环里 需要  left++ or right-- 的代码出现来打破循环, "&lt;=" 也可能为 "&lt;"
 	具体如何得在实际的应用场景去实现
 */</span></code></pre>
 
@@ -195,7 +207,11 @@
 
 所以左指针满足一定的条件 会往右移动 右指针满足一定的条件 会往左移动 直到 right <span class="token operator">&lt;</span> left 停止</code></pre>
 
-<h2 id="双指针的解题思路"><a href="#双指针的解题思路" class="headerlink" title="双指针的解题思路"></a>双指针的解题思路</h2><pre class="language-go" data-language="go"><code class="language-go"></code></pre>
+<h2 id="双指针的解题思路"><a href="#双指针的解题思路" class="headerlink" title="双指针的解题思路"></a>双指针的解题思路</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 思考 这道题是不是 一个数组的子集 需要满足某种限制 也就是双指针的使用场景
+
+<span class="token number">2.</span> 思考 用双指针具体哪一个种类 随后写出这道题的代码模板
+
+<span class="token number">3.</span> 思考 这道题的规律特点 随后写出具体逻辑代码</code></pre>
 
 <h2 id="双指针的应用场景"><a href="#双指针的应用场景" class="headerlink" title="双指针的应用场景"></a>双指针的应用场景</h2><pre class="language-go" data-language="go"><code class="language-go">双指针的应用场景也是在数组或者链表 中 找到一个元素的子集 该子集满足某种限制 甚至这个子集也是一个数组
 
@@ -203,9 +219,22 @@
 
 <span class="token comment">// 是不是有点看不懂? 我们来看看例题</span></code></pre>
 
-<h2 id="例题一"><a href="#例题一" class="headerlink" title="例题一"></a>例题一</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/move-zeroes">https://leetcode.cn/problems/move-zeroes</a> 移动0</p>
-<p>我们在看完这题后 先尝试用暴力求解 就是不要去考虑什么谈情说爱 啊呸  考虑什么时间复杂度 空间复杂度 做出来就行</p>
-<p>然后我们来看双指针 这个解法 先把答案贴在下面</p>
+<h2 id="例题1-移动零-双指针"><a href="#例题1-移动零-双指针" class="headerlink" title="例题1 - 移动零 - 双指针"></a>例题1 - 移动零 - 双指针</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/move-zeroes">https://leetcode.cn/problems/move-zeroes</a> </p>
+<pre class="language-go" data-language="go"><code class="language-go">思路讲解
+
+我们看到这道数组 他需要将一个数组 nums 里面元素为<span class="token number">0</span>的全部移到后面
+一个数组的子集 在这道题 子集其实也就是数组的本身 然后他需要满足<span class="token number">0</span>都要在最后的一个限制 所以这道题完美应用 双指针的应用场景
+
+然后我们就要思考 双指针的种类
+	<span class="token number">1.</span> 双指针
+	<span class="token number">2.</span> 快慢指针
+	<span class="token number">3.</span> 左右指针
+
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>在这里留一个坑 因为此时的我 刷题量其实还是比较少的 无法总结这些具体的应用场景 所以这道题直接用快慢指针
+
+然后我们想清楚用快慢指针 就得想到快慢指针的模板 随后 仔细的思考题目 找到题目的规律特点</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%A7%BB%E5%8A%A80.png" alt="移动0"></p>
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// c++</span>
 <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">public</span><span class="token operator">:</span>
@@ -222,7 +251,7 @@
 
 <pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// golang</span>
 <span class="token keyword">func</span> <span class="token function">moveZeroes</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>  <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 双指针 --- 快慢指针</span>
+    <span class="token comment">// 双指针</span>
     slow <span class="token operator">:=</span> <span class="token number">0</span>
     <span class="token keyword">for</span> fast <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> fast <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span> fast<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
         <span class="token comment">// 根据具体内容写相应代码 </span>
@@ -233,10 +262,97 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<pre class="language-go" data-language="go"><code class="language-go">思路讲解
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 其他例题</span>
+  https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>leetcode<span class="token punctuation">.</span>cn<span class="token operator">/</span>problems<span class="token operator">/</span>remove<span class="token operator">-</span>duplicates<span class="token operator">-</span>from<span class="token operator">-</span>sorted<span class="token operator">-</span>array<span class="token operator">/</span>
+  https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>leetcode<span class="token punctuation">.</span>cn<span class="token operator">/</span>problems<span class="token operator">/</span>merge<span class="token operator">-</span>sorted<span class="token operator">-</span>array<span class="token operator">/</span></code></pre>
 
-我们看到这道数组 他需要将一个数组 nums 里面元素为<span class="token number">0</span>的全部移到后面
-一个数组的子集 在这道题 子集其实也就是数组的本身 然后他需要满足<span class="token number">0</span>都要在最后的一个限制 所以这道题完美应用 双指针的应用场景</code></pre>
+<h2 id="例题2-盛最多水的容器-左右指针"><a href="#例题2-盛最多水的容器-左右指针" class="headerlink" title="例题2 - 盛最多水的容器 - 左右指针"></a>例题2 - 盛最多水的容器 - 左右指针</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/container-with-most-water/">https://leetcode.cn/problems/container-with-most-water/</a></p>
+<pre class="language-go" data-language="go"><code class="language-go">这道题是 <span class="token string">"求最优解"</span> 其实求最优解 是 <span class="token string">"贪心算法"</span> 和 <span class="token string">"动态规划"</span> 的场景 但是这里也可以用双指针
+
+首先 我们看看这个是不是双指针的应用场景 数组的子集 这里子集是数组本身 需要找到 <span class="token string">"两个索引"</span> 满足 <span class="token string">"最大面积"</span>
+
+随后 我们再来思考 是要运用哪一个双指针 的种类 这里是 <span class="token string">"左右指针"</span> 随后写出左右指针的模板
+
+左右指针肯定需要 <span class="token string">"left++"</span> or <span class="token string">"right--"</span> 来结束循环 所以 就得要找到这道题的规律特点 来实现具体的代码</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.png" alt="盛最多水的容器"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// c++</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">maxArea</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> height<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>height<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment">// 双指针 -- 左右指针</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> right <span class="token operator">=</span> height<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> area <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>right<span class="token operator">-</span>left<span class="token punctuation">)</span> <span class="token operator">></span> area<span class="token punctuation">)</span> area <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>right<span class="token operator">-</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>height<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>left<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token operator">--</span>right<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> area<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// golang</span>
+
+<span class="token keyword">func</span> <span class="token function">maxArea</span><span class="token punctuation">(</span>height <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+   left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> area <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span>
+   <span class="token keyword">for</span> left <span class="token operator">&lt;</span> right <span class="token punctuation">&#123;</span>
+      area <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>area<span class="token punctuation">,</span> <span class="token function">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>right<span class="token operator">-</span>left<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">if</span> height<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;</span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
+     	  left<span class="token operator">++</span>
+      <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+   	    right<span class="token operator">--</span>
+      <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span>
+   <span class="token keyword">return</span> area
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">max</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">if</span> x <span class="token operator">></span> y <span class="token punctuation">&#123;</span>
+   	 <span class="token keyword">return</span> x
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+   	 <span class="token keyword">return</span> y
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">if</span> x <span class="token operator">&lt;</span> y <span class="token punctuation">&#123;</span>
+   	 <span class="token keyword">return</span> x
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+   	 <span class="token keyword">return</span> y
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 其他例题</span>
+	https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>leetcode<span class="token punctuation">.</span>cn<span class="token operator">/</span>problems<span class="token operator">/</span>rotate<span class="token operator">-</span>array<span class="token operator">/</span></code></pre>
+
+<h2 id="例题3-成环链表-快慢指针"><a href="#例题3-成环链表-快慢指针" class="headerlink" title="例题3 - 成环链表 - 快慢指针"></a>例题3 - 成环链表 - 快慢指针</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/">https://leetcode.cn/problems/linked-list-cycle/</a></p>
+<pre class="language-go" data-language="go"><code class="language-go">这个地方就不要去想什么应用场景了 因为 成环链表 用 <span class="token string">"快慢指针"</span> 真的人人皆知 哈哈 
+所以也要留个心眼 学个其他的解法 面试的时候 也是个亮点哦～ 
+但是这里是 <span class="token string">"双指针专题"</span> 不讲其他解法</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// c++</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">bool</span> <span class="token function">hasCycle</span><span class="token punctuation">(</span>ListNode <span class="token operator">*</span>head<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">||</span> head<span class="token operator">-></span>next <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+        ListNode<span class="token operator">*</span> slow <span class="token operator">=</span> head<span class="token punctuation">,</span> <span class="token operator">*</span>fast <span class="token operator">=</span> head<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>slow <span class="token operator">!=</span> fast<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>fast <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">||</span> fast<span class="token operator">-></span>next <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+            slow <span class="token operator">=</span> slow<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            fast <span class="token operator">=</span> fast<span class="token operator">-></span>next<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 其他例题</span>
+	https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>leetcode<span class="token punctuation">.</span>cn<span class="token operator">/</span>problems<span class="token operator">/</span>linked<span class="token operator">-</span>list<span class="token operator">-</span>cycle<span class="token operator">-</span>ii</code></pre>
 
 
             </div>

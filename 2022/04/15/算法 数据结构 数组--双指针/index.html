@@ -163,53 +163,10 @@
 		removeO(n)
 */</span></code></pre>
 
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	在有关数组的算法题目里面 双指针其实是很流行的一种解法
-	遇到数组的时候即可思考一下双指针是否可行
-	当问题是从一个有序的数组或链表中，找到一个元素的子集，该子集需要满足某种限制 
-*/</span>
+<h2 id="数组的常见解题思路"><a href="#数组的常见解题思路" class="headerlink" title="数组的常见解题思路"></a>数组的常见解题思路</h2><pre class="language-go" data-language="go"><code class="language-go">双指针
+	请见 my_blog 的 <span class="token string">"算法&amp;数据结构"</span> 分类下的 双指针详解</code></pre>
 
-<span class="token comment">/*
-	双指针其实就是 利用两个指向数组元素的指针 来搞事情
-	所以双指针其实也是有很多种类型
-*/</span></code></pre>
 
-<h2 id="双指针的应用场景"><a href="#双指针的应用场景" class="headerlink" title="双指针的应用场景"></a>双指针的应用场景</h2><pre class="language-go" data-language="go"><code class="language-go">当问题是从一个有序的数组或链表中，找到一个元素的子集，该子集需要满足某种限制
-这个子集可能是某两个元素，某三个元素，甚至是一个子数组</code></pre>
-
-<h2 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	快慢指针其实就是一个指针走的快 一个指针走得慢  题外话 在链表成环 快慢指针非常好用 类似于龟兔赛跑
-	slow fast 两个指针 快指针走的要比慢指针快
-	话不多说 来见题目
-*/</span> 
-
-<span class="token comment">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化, 代码为 golang)</span>
-  slow <span class="token operator">:=</span> <span class="token number">0</span>
-  <span class="token keyword">for</span> fast <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> fast <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span> fast<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据具体内容写相应代码</span>
-  <span class="token punctuation">&#125;</span>
-
-<span class="token comment">/*
-	https://leetcode-cn.com/problems/move-zeroes/ 移动零
-	https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 删除有序数组的重复项
-*/</span></code></pre>
-
-<h2 id="区域指针"><a href="#区域指针" class="headerlink" title="区域指针"></a>区域指针</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
-	左右指针就是 两个指针一个在数组开始 一个在数组末端
-	一般用于寻找一个区域内的某个东西
-*/</span>
-
-<span class="token comment">// 通用格式(也只是参考而已，具体的还得看具体题目进行变化, 代码为golang)</span>
-  left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-  <span class="token keyword">for</span> left <span class="token operator">&lt;=</span> right <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据具体内容写相应代码</span>
-  <span class="token punctuation">&#125;</span>
-
-<span class="token comment">/*
-	https://leetcode-cn.com/problems/container-with-most-water/ 盛最多水的容器
-*/</span></code></pre>
-
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
             </div>
 
             <!-- Post Comments -->
