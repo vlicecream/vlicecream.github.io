@@ -233,6 +233,84 @@
   <span class="token comment"># reverse the current level status if needed(可能要清理这一层)</span></code></pre>
 
 <h2 id="例题1-括号生成-递归"><a href="#例题1-括号生成-递归" class="headerlink" title="例题1 - 括号生成 - 递归"></a>例题1 - 括号生成 - 递归</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses">https://leetcode.cn/problems/generate-parentheses</a></p>
+<pre class="language-go" data-language="go"><code class="language-go">我先用文字讲一下思路流程 代码贴在下面了
+
+准备流程
+	<span class="token number">1.</span> 我们先把要调用 recursion 的函数 写好 调用 recursion 的时候 参数可以先不用谢 随后 补好递归代码模板函数
+思考流程
+	<span class="token number">2.</span> 我们第一步要思考好 这个递归的 结束条件 其实这个时候就已经在思考这个题目的 规律特点了
+		这道题目是 生成有效的括号 括号肯定是<span class="token number">22</span>成对的 而且 n 决定了 有多少对括号 所以我们 可以先写
+		<span class="token string">"if (level == n*2) return;"</span>
+		各种细节 我们在思考的时候再去改
+	<span class="token number">3.</span> 有了思路 有了结束条件 这个时候就要去思考这一层 我们应该去做什么事
+		我们再来分析 这个题目 括号<span class="token number">22</span>成对 每当有一个左括号 其实就可以加一个右括号 比如<span class="token punctuation">:</span>
+		<span class="token string">"(())"</span>  <span class="token string">"()()()"</span> <span class="token string">"(()())"</span>
+
+		想到这里 ok 我们可以把传参改成 左括号和右括号 的个数
+		结束条件 改成
+		<span class="token string">"if (left_level == n &amp;&amp; right_level == n) return;"</span> 
+
+		随后这一层的思路 因为左括号和右括号思路上已经拆开看了 所以需要 s1 s2 来组合
+		所以我们初始化变量 s1 s2
+		随后写上 加 左右 括号的 <span class="token keyword">if</span> 条件
+		如果 左括号的个数少于n 那么就可以一直加左括号
+		如果 右括号少于左括号 那么就可以一直写右括号
+
+	<span class="token number">4.</span> 跳到下一层
+		我们写完 <span class="token keyword">if</span> 条件 就可以在这里直接调用自己了 传参注意好 </code></pre>
+
+
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// c++ </span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    vector<span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token function">generateParenthesis</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">recursion</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> v<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">recursion</span><span class="token punctuation">(</span><span class="token keyword">int</span> left_level<span class="token punctuation">,</span> <span class="token keyword">int</span> right_level<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// recursion terminator</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left_level <span class="token operator">==</span> n <span class="token operator">&amp;&amp;</span> right_level <span class="token operator">==</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            v<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// process logic in current level</span>
+        string s1<span class="token punctuation">;</span>
+        string s2<span class="token punctuation">;</span>
+	
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left_level <span class="token operator">&lt;=</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token comment">// drill down</span>
+          <span class="token function">recursion</span><span class="token punctuation">(</span>left_level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> right_level<span class="token punctuation">,</span> n<span class="token punctuation">,</span> s1 <span class="token operator">=</span> s <span class="token operator">+</span> <span class="token string">"("</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>right_level <span class="token operator">&lt;</span> left_level<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					<span class="token comment">// drill down</span>
+          <span class="token function">recursion</span><span class="token punctuation">(</span>left_level<span class="token punctuation">,</span> right_level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> s2 <span class="token operator">=</span> s <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    vector<span class="token operator">&lt;</span>string<span class="token operator">></span> v<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+其实可以这么写 但是为了思路清楚 就不省略 大括号了
+    void recursion(int left_level, int right_level, int n, string s) &#123;
+        // recursion terminator
+        if (left_level == n &amp;&amp; right_level == n) &#123;
+            v.push_back(s);
+        &#125;;
+
+        // process logic in current level
+        string s1;
+        string s2;
+
+        // drill down
+        if (left_level &lt;= n) recursion(left_level+1, right_level, n, s1 = s + "(");
+        if (right_level &lt; left_level) recursion(left_level, right_level+1, n, s2 = s + ")");
+    &#125;
+
+*/</span></code></pre>
+
 
             </div>
 
