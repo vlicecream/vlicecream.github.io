@@ -152,7 +152,7 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/算法-动态规划.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >动态规划</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >动态规划? 错 是动态递推</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
@@ -160,7 +160,7 @@
 
 <span class="token number">1.</span> simplifying a complicated problem by breaking it down into simpler sub<span class="token operator">-</span>problems
 	这个是 wiki百科 对动态规划的解释
-	动态规划 英文我个人觉得翻译最好的为 <span class="token string">"动态推导"</span>
+	动态规划 英文我个人觉得翻译最好的为 <span class="token string">"动态推导/动态递推"</span><span class="token punctuation">(</span>也是之前 双指针详解 的思想<span class="token punctuation">,</span> <span class="token string">"咬文嚼字"</span> 总归是好的<span class="token punctuation">)</span>
 	上述英文的意思为 <span class="token string">"把一个复杂的问题分解成更简单的子问题"</span>
 	其实就是分治的思想 但是 分治 跟 动态规划 只有小小的不一样 那就是 第二点
 
@@ -172,6 +172,67 @@
 	动态规划 和 递归 分治 没有根本上的区别 <span class="token punctuation">(</span>关键看有无最优子结构<span class="token punctuation">)</span>
   共性<span class="token punctuation">:</span> 找到重复子问题
   差异性<span class="token punctuation">:</span> 最优子结构、中途可以淘汰最优解</code></pre>
+
+<h2 id="例题1-斐波那契数列"><a href="#例题1-斐波那契数列" class="headerlink" title="例题1 - 斐波那契数列"></a>例题1 - 斐波那契数列</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220628222611743.png" alt="image-20220628222611743"></p>
+<pre class="language-go" data-language="go"><code class="language-go">斐波那契数列 我们都知道是可以用递归去解决
+	但是面试的时候 千万不要说用递归 啥递归的效率是极慢的 时间复杂度 为 指数级
+	如果是 上述的图的斐波那契数列 则是<span class="token function">O</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">^</span>n<span class="token punctuation">)</span>
+
+所以我们应该怎么优化呢
+	我们可以加一个缓存 可以用数组 这种叫做 <span class="token string">"记忆化搜索"</span>
+
+<span class="token comment">// golang 代码示范</span>
+<span class="token keyword">func</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> memo <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// resursion terminator(递归终止条件)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span>
+  <span class="token punctuation">&#125;</span> 
+  <span class="token comment">// </span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>memo<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    memo<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> memo<span class="token punctuation">[</span>n<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+	我们通过 增加 数组实现的	缓存
+	使得只要在数组出现的值就直接return 不参与遍历  把重复的节点直接砍掉
+	所以 O(2^n) 变成了 O(n)
+	其实这个也是分治的思想 只不过 加了个记忆化搜索
+*/</span> </code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// golang</span>
+a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">:=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+	我们可以利用这个循环 先把头两个元素定义好
+	随后直接for循环 最后a[i]
+	这种的思想 也就是 自底向上 的思想
+*/</span></code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go">我们当然也可以用 分治<span class="token operator">+</span>记忆化搜索 来实现 这个思想是自顶而下的思想
+但是 后来当我们面对更难得dp 包括那些高手 遇到dp题目 直接会用自底向上的思想</code></pre>
+
+<h2 id="例题2-路径计数"><a href="#例题2-路径计数" class="headerlink" title="例题2 - 路径计数"></a>例题2 - 路径计数</h2><pre class="language-none"><code class="language-none">像 例题1 是一维的 那么 dp题目 更难得也有 二维的 中间也有取舍最优子结构了</code></pre>
+
+<h2 id="状态转移方程-DP方程"><a href="#状态转移方程-DP方程" class="headerlink" title="状态转移方程(DP方程)"></a>状态转移方程(DP方程)</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 这个是根据 例题2 写的一个方程 opt[]</span>
+<span class="token keyword">if</span> a<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'空地'</span> <span class="token punctuation">&#123;</span>
+  opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+  opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="动态规划关键点"><a href="#动态规划关键点" class="headerlink" title="动态规划关键点"></a>动态规划关键点</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 最优子结构 opt<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">best_of</span><span class="token punctuation">(</span>opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token number">2.</span> 储存中间状态 opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+<span class="token number">3.</span> 递推公式<span class="token punctuation">(</span>状态转移方程<span class="token punctuation">(</span>DP方程<span class="token punctuation">)</span><span class="token punctuation">)</span>
+Fib<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+二维路径<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token comment">// 对于初学者 面试 来说 最重要其实第二步 但是 对于比较难的dp 来说 最重要是第三步 应该很难找到合适的公式</span></code></pre>
 
 
             </div>
