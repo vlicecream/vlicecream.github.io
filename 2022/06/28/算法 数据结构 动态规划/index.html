@@ -173,7 +173,9 @@
   共性<span class="token punctuation">:</span> 找到重复子问题
   差异性<span class="token punctuation">:</span> 最优子结构、中途可以淘汰最优解</code></pre>
 
-<h2 id="例题1-斐波那契数列"><a href="#例题1-斐波那契数列" class="headerlink" title="例题1 - 斐波那契数列"></a>例题1 - 斐波那契数列</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220628222611743.png" alt="image-20220628222611743"></p>
+<h2 id="例题1-爬楼梯-斐波那契数列"><a href="#例题1-爬楼梯-斐波那契数列" class="headerlink" title="例题1 - 爬楼梯 - 斐波那契数列"></a>例题1 - 爬楼梯 - 斐波那契数列</h2><pre class="language-go" data-language="go"><code class="language-go">别急 我们先来看看 斐波那契数列</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220628222611743.png" alt="image-20220628222611743"></p>
 <pre class="language-go" data-language="go"><code class="language-go">斐波那契数列 我们都知道是可以用递归去解决
 	但是面试的时候 千万不要说用递归 啥递归的效率是极慢的 时间复杂度 为 指数级
 	如果是 上述的图的斐波那契数列 则是<span class="token function">O</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">^</span>n<span class="token punctuation">)</span>
@@ -210,29 +212,110 @@ a<span class="token punctuation">[</span><span class="token number">1</span><spa
 
 <span class="token comment">/*
 	我们可以利用这个循环 先把头两个元素定义好
-	随后直接for循环 最后a[i]
+	随后直接for循环 最后a[n] 就是结果
+	
 	这种的思想 也就是 自底向上 的思想
 */</span></code></pre>
 
-<pre class="language-go" data-language="go"><code class="language-go">我们当然也可以用 分治<span class="token operator">+</span>记忆化搜索 来实现 这个思想是自顶而下的思想
-但是 后来当我们面对更难得dp 包括那些高手 遇到dp题目 直接会用自底向上的思想</code></pre>
+<pre class="language-go" data-language="go"><code class="language-go">我们当然也可以用 分治<span class="token operator">+</span>记忆化搜索 来实现 这个思想是 <span class="token string">"自顶向下"</span> 的思想
+但是 后来当我们面对更难得dp 包括那些高手 遇到dp题目 直接会用 <span class="token string">"自底向上"</span> 的思想
+<span class="token comment">// ***所以 我们只需要了解 自顶向下 即可 我们遇到dp题目 直接用 "自底向上"</span>
 
-<h2 id="例题2-路径计数"><a href="#例题2-路径计数" class="headerlink" title="例题2 - 路径计数"></a>例题2 - 路径计数</h2><pre class="language-none"><code class="language-none">像 例题1 是一维的 那么 dp题目 更难得也有 二维的 中间也有取舍最优子结构了</code></pre>
+我们来看看 真正的例题 帮我们去了解 自底向上 的思想</code></pre>
 
-<h2 id="状态转移方程-DP方程"><a href="#状态转移方程-DP方程" class="headerlink" title="状态转移方程(DP方程)"></a>状态转移方程(DP方程)</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 这个是根据 例题2 写的一个方程 opt[]</span>
-<span class="token keyword">if</span> a<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'空地'</span> <span class="token punctuation">&#123;</span>
-  opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-  opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/">https://leetcode.cn/problems/climbing-stairs/</a></p>
+<pre class="language-go" data-language="go"><code class="language-go">既然分析完 我们来试试例题
+这是一个 很经典的爬楼梯的问题
+大家先去看完题目</code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go">如果有两层楼梯 我们只能这么走
+<span class="token number">1.</span> 一层 <span class="token operator">-</span><span class="token operator">></span> 一层
+<span class="token number">2.</span> 二层
+
+如果有三层楼梯 我们只能这么走
+<span class="token number">1.</span> 一层 <span class="token operator">-</span><span class="token operator">></span> 一层 <span class="token operator">-</span><span class="token operator">></span> 一层
+<span class="token number">2.</span> 一层 <span class="token operator">-</span><span class="token operator">></span> 两层
+<span class="token number">3.</span> 两层 <span class="token operator">-</span><span class="token operator">></span> 一层
+
+我们其实发现 这个其实就是斐波那契数列</code></pre>
+
+<h2 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
+内存消耗：6 MB, 在所有 C++ 提交中击败了38.21%的用户
+通过测试用例：45 &#x2F; 45
+  
+class Solution &#123;
+public:
+    int climbStairs(int n) &#123;
+        &#x2F;&#x2F; 斐波那契额数列
+        vector&lt;int&gt; v(n+1);
+        v[0] &#x3D; 1;
+        v[1] &#x3D; 1;
+        for (int i &#x3D; 2; i &lt;&#x3D; n; ++i) &#123;
+            v[i] &#x3D; v[i-1] + v[i-2];    
+        &#125;
+        return v[n];
+    &#125;
+&#125;;</code></pre>
+
+
+
+<h2 id="例题2-路径计数-二维数组"><a href="#例题2-路径计数-二维数组" class="headerlink" title="例题2 - 路径计数 - 二维数组"></a>例题2 - 路径计数 - 二维数组</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">https://leetcode.cn/problems/unique-paths/</a></p>
+<pre class="language-go" data-language="go"><code class="language-go">像 例题<span class="token number">1</span> 是一维的 那么 dp题目 更难得也有 二维的 中间也有取舍最优子结构了 就比如这个题目
+
+<span class="token number">1.</span> 我们 直接 采用 <span class="token string">"自底向上"</span> 的编程思想	
+	所以我们 得用 一个 储存中间状态的数组 这里是二维数组 opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+
+<span class="token number">2.</span> 随后我们来观察题目 
+	由于我们每一步只能从向下或者向右移动一步
+	因此要想走到 <span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span>
+	如果向下走一步，那么会从 <span class="token punctuation">(</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">(</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">)</span> 走过来
+	如果向右走一步，那么会从 <span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j−<span class="token number">1</span><span class="token punctuation">)</span> 走过来
+	因此我们可以写出动态规划转移方程：dp<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j−<span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token number">3.</span> 如果 i <span class="token operator">=</span> <span class="token number">0</span> 相当于只有一行的路径所以 dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> 1dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+	如果 j <span class="token operator">=</span> <span class="token number">0</span> 相当于只有一列的路径所以 dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> 1dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="代码模板-1"><a href="#代码模板-1" class="headerlink" title="代码模板"></a>代码模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
+内存消耗：6.2 MB, 在所有 C++ 提交中击败了61.26%的用户
+  
+class Solution &#123;
+public:
+    int uniquePaths(int m, int n) &#123;
+        vector&lt;vector&lt;int&gt;&gt; v(m, vector&lt;int&gt;(n));
+        for (int i &#x3D; 0; i &lt; m; ++i) &#123;
+            v[i][0] &#x3D; 1;
+        &#125;
+        for (int i &#x3D; 0; i &lt; n; ++i) &#123;
+            v[0][i] &#x3D; 1;
+        &#125;
+        for (int i &#x3D; 1; i &lt; m; ++i) &#123;
+            for (int j &#x3D; 1; j &lt; n; ++j) &#123;
+                v[i][j] &#x3D; v[i-1][j] + v[i][j-1];
+            &#125;
+        &#125;
+        return v[m-1][n-1];
+    &#125;
+&#125;;</code></pre>
+
+<h2 id="状态转移方程-DP方程"><a href="#状态转移方程-DP方程" class="headerlink" title="状态转移方程(DP方程)"></a>状态转移方程(DP方程)</h2><pre class="language-go" data-language="go"><code class="language-go">讲了 两道例题 我们在分析一下
+
+两道例题 其实都有一个核心的关键方程 
+例题<span class="token number">1</span> 是 v<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> v<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> v<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+例题<span class="token number">2</span> 是 v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> v<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+这类方程 我们叫状态转移方程 也叫dp方程 但是又回到 咬文嚼字上 这其实就是一个递推方程</code></pre>
 
 <h2 id="动态规划关键点"><a href="#动态规划关键点" class="headerlink" title="动态规划关键点"></a>动态规划关键点</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 最优子结构 opt<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">best_of</span><span class="token punctuation">(</span>opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token number">2.</span> 储存中间状态 opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
 <span class="token number">3.</span> 递推公式<span class="token punctuation">(</span>状态转移方程<span class="token punctuation">(</span>DP方程<span class="token punctuation">)</span><span class="token punctuation">)</span>
 Fib<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
-二维路径<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
+二维路径<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
 
 <span class="token comment">// 对于初学者 面试 来说 最重要其实第二步 但是 对于比较难的dp 来说 最重要是第三步 应该很难找到合适的公式</span></code></pre>
+
+<h2 id="例题3-不同路径II-二维数组"><a href="#例题3-不同路径II-二维数组" class="headerlink" title="例题3 - 不同路径II - 二维数组"></a>例题3 - 不同路径II - 二维数组</h2><pre class="language-go" data-language="go"><code class="language-go">我们看了两道例题后 我们再来 锻炼锻炼
+
+先读题～</code></pre>
 
 
             </div>
