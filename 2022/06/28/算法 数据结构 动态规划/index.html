@@ -217,9 +217,28 @@ a<span class="token punctuation">[</span><span class="token number">1</span><spa
 	这种的思想 也就是 自底向上 的思想
 */</span></code></pre>
 
-<pre class="language-go" data-language="go"><code class="language-go">我们当然也可以用 分治<span class="token operator">+</span>记忆化搜索 来实现 这个思想是 <span class="token string">"自顶向下"</span> 的思想
-但是 后来当我们面对更难得dp 包括那些高手 遇到dp题目 直接会用 <span class="token string">"自底向上"</span> 的思想
-<span class="token comment">// ***所以 我们只需要了解 自顶向下 即可 我们遇到dp题目 直接用 "自底向上"</span>
+<h2 id="自顶向下"><a href="#自顶向下" class="headerlink" title="自顶向下"></a>自顶向下</h2><pre class="language-go" data-language="go"><code class="language-go">我们当然也可以用 分治<span class="token operator">+</span>记忆化搜索 来实现 这个思想是 <span class="token string">"自顶向下"</span> 的思想
+什么叫自顶向下呢 就是看上面图 我们一直从上面找到最下面的叶子结点
+比如<span class="token punctuation">:</span>
+	我要算fib<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> 
+		就得算fib<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> 和 fib<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span>
+	想算fib<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span>
+		就得算fib<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> 和 fib<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+	一直下去 中间算过的结果 我们可以用 记忆化搜索
+	符合人脑的习惯 也是分治的思想</code></pre>
+
+<h2 id="自底向上"><a href="#自底向上" class="headerlink" title="自底向上"></a>自底向上</h2><pre class="language-go" data-language="go"><code class="language-go">但是 后来当我们面对更难得dp 包括那些高手 遇到dp题目 直接会用 <span class="token string">"自底向上"</span> 的思想
+什么是自底向上呢
+比如<span class="token punctuation">:</span>
+	我们想算 fib<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span>
+		从fib<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> fib<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> 开始
+	然后一直用循环来递推
+
+<span class="token comment">/*
+***所以 我们只需要了解 自顶向下 即可 我们遇到dp题目 直接用 "自底向上" 当然其实还是无所谓 最好是 自底向上
+因为只要是专业的 绝对是自底向上
+所以动态递归 最好翻译成 动态递推
+*/</span>
 
 我们来看看 真正的例题 帮我们去了解 自底向上 的思想</code></pre>
 
@@ -239,25 +258,25 @@ a<span class="token punctuation">[</span><span class="token number">1</span><spa
 
 我们其实发现 这个其实就是斐波那契数列</code></pre>
 
-<h2 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
+<h2 id="例题1-题解"><a href="#例题1-题解" class="headerlink" title="例题1 - 题解"></a>例题1 - 题解</h2><pre class="language-c++" data-language="c++"><code class="language-c++">执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
 内存消耗：6 MB, 在所有 C++ 提交中击败了38.21%的用户
 通过测试用例：45 &#x2F; 45
   
 class Solution &#123;
 public:
     int climbStairs(int n) &#123;
-        &#x2F;&#x2F; 斐波那契额数列
-        vector&lt;int&gt; v(n+1);
-        v[0] &#x3D; 1;
-        v[1] &#x3D; 1;
-        for (int i &#x3D; 2; i &lt;&#x3D; n; ++i) &#123;
-            v[i] &#x3D; v[i-1] + v[i-2];    
+        &#x2F;* 定义dp数组 *&#x2F;
+        vector&lt;int&gt; dp(n+1);
+        &#x2F;* 初始化dp数组 *&#x2F;
+        dp[0] &#x3D; 1;
+        dp[1] &#x3D; 1;
+        &#x2F;* dp方程 自底向上 *&#x2F;
+        for (int i &#x3D; 2; i &lt; dp.size(); i++) &#123;
+            dp[i] &#x3D; dp[i-1] + dp[i-2];
         &#125;
-        return v[n];
+        return dp[n];
     &#125;
 &#125;;</code></pre>
-
-
 
 <h2 id="例题2-路径计数-二维数组"><a href="#例题2-路径计数-二维数组" class="headerlink" title="例题2 - 路径计数 - 二维数组"></a>例题2 - 路径计数 - 二维数组</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">https://leetcode.cn/problems/unique-paths/</a></p>
 <pre class="language-go" data-language="go"><code class="language-go">像 例题<span class="token number">1</span> 是一维的 那么 dp题目 更难得也有 二维的 中间也有取舍最优子结构了 就比如这个题目
@@ -270,34 +289,37 @@ public:
 	因此要想走到 <span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span>
 	如果向下走一步，那么会从 <span class="token punctuation">(</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">(</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">)</span> 走过来
 	如果向右走一步，那么会从 <span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j−<span class="token number">1</span><span class="token punctuation">)</span> 走过来
-	因此我们可以写出动态规划转移方程：dp<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j−<span class="token number">1</span><span class="token punctuation">]</span>
+	因此我们可以写出动态规划转移方程：dp<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">(</span>目前不知道啥叫转移方程 不要紧 先别管<span class="token punctuation">)</span>
 
-<span class="token number">3.</span> 如果 i <span class="token operator">=</span> <span class="token number">0</span> 相当于只有一行的路径所以 dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> 1dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-	如果 j <span class="token operator">=</span> <span class="token number">0</span> 相当于只有一列的路径所以 dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> 1dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<span class="token number">3.</span> 如果 i <span class="token operator">=</span> <span class="token number">0</span> 相当于只有一行的路径所以 dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	如果 j <span class="token operator">=</span> <span class="token number">0</span> 相当于只有一列的路径所以 dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
 
-<h2 id="代码模板-1"><a href="#代码模板-1" class="headerlink" title="代码模板"></a>代码模板</h2><pre class="language-c++" data-language="c++"><code class="language-c++">执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
+<h2 id="例题2-题解"><a href="#例题2-题解" class="headerlink" title="例题2 - 题解"></a>例题2 - 题解</h2><pre class="language-c++" data-language="c++"><code class="language-c++">执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
 内存消耗：6.2 MB, 在所有 C++ 提交中击败了61.26%的用户
   
 class Solution &#123;
 public:
     int uniquePaths(int m, int n) &#123;
-        vector&lt;vector&lt;int&gt;&gt; v(m, vector&lt;int&gt;(n));
-        for (int i &#x3D; 0; i &lt; m; ++i) &#123;
-            v[i][0] &#x3D; 1;
+        &#x2F;* 定义dp数组 *&#x2F;
+        vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n));
+        &#x2F;* 初始化dp数组 *&#x2F;
+        for (int i &#x3D; 0; i &lt; m; i++) dp[i][0] &#x3D; 1;
+        for (int i &#x3D; 0; i &lt; n; i++) dp[0][i] &#x3D; 1;
+        &#x2F;* dp方程 *&#x2F;
+        for (int i &#x3D; 1; i &lt; m; i++) &#123;
+            for (int j &#x3D; 1; j &lt; n; j++) dp[i][j] &#x3D; dp[i-1][j] + dp[i][j-1];
         &#125;
-        for (int i &#x3D; 0; i &lt; n; ++i) &#123;
-            v[0][i] &#x3D; 1;
-        &#125;
-        for (int i &#x3D; 1; i &lt; m; ++i) &#123;
-            for (int j &#x3D; 1; j &lt; n; ++j) &#123;
-                v[i][j] &#x3D; v[i-1][j] + v[i][j-1];
-            &#125;
-        &#125;
-        return v[m-1][n-1];
+        return dp[m-1][n-1];
     &#125;
 &#125;;
 
-&#x2F;&#x2F; 这个代码又可以优化 我们可以写出更简洁的代码</code></pre>
+&#x2F;*
+  时间复杂度 O(m*n)
+  空间复杂度 O(m*n)
+  但是，您可能已经注意到
+  每次我们更新时dp[i][j]，我们只需要dp[i - 1][j](在上一行)和dp[i][j - 1](在当前行)
+  所以我们可以将内存使用量减少到只有两行(O(n))
+*&#x2F; </code></pre>
 
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp">执行用时：<span class="token number">0</span> ms<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">100.00</span><span class="token operator">%</span>的用户
 内存消耗：<span class="token number">6.3</span> MB<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">56.35</span><span class="token operator">%</span>的用户
@@ -305,19 +327,37 @@ public:
 <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">uniquePaths</span><span class="token punctuation">(</span><span class="token keyword">int</span> m<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> <span class="token function">grid</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span><span class="token generic-function"><span class="token function">vector</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>n<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-                grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>grid<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">pre</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">cur</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cur<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> pre<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> cur<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>pre<span class="token punctuation">,</span> cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> pre<span class="token punctuation">[</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+  这个是二维数组 我们其实可以把这个降维 因为可以省内存空间
+  pre[j] 和 cur[j]在更新之前
+*/</span> </code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">执行用时：<span class="token number">0</span> ms<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">100.00</span><span class="token operator">%</span>的用户
+内存消耗：<span class="token number">6</span> MB<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">69.52</span><span class="token operator">%</span>的用户
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">uniquePaths</span><span class="token punctuation">(</span><span class="token keyword">int</span> m<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">cur</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cur<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+=</span> cur<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
             <span class="token punctuation">&#125;</span>
         <span class="token punctuation">&#125;</span>
-        
-        <span class="token keyword">return</span> grid<span class="token punctuation">[</span>m<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> cur<span class="token punctuation">[</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-
 
 <h2 id="状态转移方程-DP方程"><a href="#状态转移方程-DP方程" class="headerlink" title="状态转移方程(DP方程)"></a>状态转移方程(DP方程)</h2><pre class="language-go" data-language="go"><code class="language-go">讲了 两道例题 我们在分析一下
 
@@ -327,17 +367,56 @@ public:
 
 这类方程 我们叫状态转移方程 也叫dp方程 但是又回到 咬文嚼字上 这其实就是一个递推方程</code></pre>
 
-<h2 id="动态规划关键点"><a href="#动态规划关键点" class="headerlink" title="动态规划关键点"></a>动态规划关键点</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 最优子结构 opt<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">best_of</span><span class="token punctuation">(</span>opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token number">2.</span> 储存中间状态 opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-<span class="token number">3.</span> 递推公式<span class="token punctuation">(</span>状态转移方程<span class="token punctuation">(</span>DP方程<span class="token punctuation">)</span><span class="token punctuation">)</span>
-Fib<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
-二维路径<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+<h2 id="动态规划关键点-amp-思考步骤"><a href="#动态规划关键点-amp-思考步骤" class="headerlink" title="动态规划关键点&amp;思考步骤"></a>动态规划关键点&amp;思考步骤</h2><pre class="language-go" data-language="go"><code class="language-go">关键点<span class="token punctuation">:</span>
+  <span class="token number">1.</span> 最优子结构 opt<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">best_of</span><span class="token punctuation">(</span>opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token number">2.</span> 储存中间状态 opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+  <span class="token number">3.</span> 递推公式<span class="token punctuation">(</span>状态转移方程<span class="token punctuation">(</span>DP方程<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  Fib<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+  二维路径<span class="token punctuation">:</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> opt<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
 
-<span class="token comment">// 对于初学者 面试 来说 最重要其实第二步 但是 对于比较难的dp 来说 最重要是第三步 应该很难找到合适的公式</span></code></pre>
+	<span class="token comment">// 对于初学者 面试 来说 最重要其实第二步 但是 对于比较难的dp 来说 最重要是第三步 应该很难找到合适的公式</span>
+
+思考步骤<span class="token punctuation">:</span>
+	<span class="token number">1.</span> 化繁为简 将 复杂的问题 变成子问题 其实就是 找重复性
+	<span class="token number">2.</span> 定义好状态空间
+		<span class="token number">2.1</span> 定义 dp 数组
+		<span class="token number">2.2</span> 初始化<span class="token punctuation">(</span>也就是给数组初始化前两个值<span class="token punctuation">)</span>
+		<span class="token number">2.3</span> 注意这里 定义 和 初始化 长度容积 一定要注意 有时候会是 <span class="token string">">="</span> 或者其他的 如果定义错误 则会数组越界 或者 答案错误
+	<span class="token number">3.</span> 写好 dp方程</code></pre>
 
 <h2 id="例题3-不同路径II-二维数组"><a href="#例题3-不同路径II-二维数组" class="headerlink" title="例题3 - 不同路径II - 二维数组"></a>例题3 - 不同路径II - 二维数组</h2><pre class="language-go" data-language="go"><code class="language-go">我们看了两道例题后 我们再来 锻炼锻炼
 
-先读题～</code></pre>
+先读题～
+
+这道题其实 跟例二思路 是一样的 就是多了一个障碍物
+其实 这个障碍物 很好去解决 如果 obstacleGrid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span> 也就是碰到障碍区 直接跳过就是了</code></pre>
+
+<h2 id="例题3-题解"><a href="#例题3-题解" class="headerlink" title="例题3 - 题解"></a>例题3 - 题解</h2><pre class="language-go" data-language="go"><code class="language-go">执行用时：<span class="token number">0</span> ms<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">100.00</span><span class="token operator">%</span>的用户
+内存消耗：<span class="token number">7.6</span> MB<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">31.87</span><span class="token operator">%</span>的用户
+
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token punctuation">:</span>
+    <span class="token builtin">int</span> <span class="token function">uniquePathsWithObstacles</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token builtin">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> obstacleGrid<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">/* 计算数组长度 */</span>
+        <span class="token builtin">int</span> m <span class="token operator">=</span> obstacleGrid<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token builtin">int</span> n <span class="token operator">=</span> obstacleGrid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">/* 定义数组 */</span>
+        vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token builtin">int</span><span class="token operator">>></span> <span class="token function">dp</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token builtin">int</span><span class="token operator">></span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">/* 初始化数组 */</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m <span class="token operator">&amp;&amp;</span> obstacleGrid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">&amp;&amp;</span> obstacleGrid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">/* dp方程 注意有障碍的情况 */</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token builtin">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>obstacleGrid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> dp<span class="token punctuation">[</span>m<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="例题4-最长公共子序列-动态规划"><a href="#例题4-最长公共子序列-动态规划" class="headerlink" title="例题4 - 最长公共子序列 - 动态规划"></a>例题4 - 最长公共子序列 - 动态规划</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 我们根据思路</span></code></pre>
 
 
             </div>
