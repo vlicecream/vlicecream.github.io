@@ -377,11 +377,10 @@ public:
 	<span class="token comment">// 对于初学者 面试 来说 最重要其实第二步 但是 对于比较难的dp 来说 最重要是第三步 应该很难找到合适的公式</span>
 
 思考步骤<span class="token punctuation">:</span>
-	<span class="token number">1.</span> 化繁为简 将 复杂的问题 变成子问题 其实就是 找重复性
+	<span class="token number">1.</span> 化繁为简 将 复杂的问题 变成子问题 其实就是 找重复性<span class="token punctuation">(</span>分治思想<span class="token punctuation">)</span>
 	<span class="token number">2.</span> 定义好状态空间
-		<span class="token number">2.1</span> 定义 dp 数组
-		<span class="token number">2.2</span> 初始化<span class="token punctuation">(</span>也就是给数组初始化前两个值<span class="token punctuation">)</span>
-		<span class="token number">2.3</span> 注意这里 定义 和 初始化 长度容积 一定要注意 有时候会是 <span class="token string">">="</span> 或者其他的 如果定义错误 则会数组越界 或者 答案错误
+		<span class="token number">2.1</span> 定义 dp 数组 <span class="token operator">&amp;&amp;</span> 初始化 dp 数组
+		<span class="token number">2.2</span> 注意这里 定义 和 初始化 长度容积 一定要注意 有时候会是 <span class="token string">">="</span> 或者其他的 如果定义错误 则会数组越界 或者 答案错误
 	<span class="token number">3.</span> 写好 dp方程</code></pre>
 
 <h2 id="例题3-不同路径II-二维数组"><a href="#例题3-不同路径II-二维数组" class="headerlink" title="例题3 - 不同路径II - 二维数组"></a>例题3 - 不同路径II - 二维数组</h2><pre class="language-go" data-language="go"><code class="language-go">我们看了两道例题后 我们再来 锻炼锻炼
@@ -418,6 +417,29 @@ public<span class="token punctuation">:</span>
 
 <h2 id="例题4-最长公共子序列-动态规划"><a href="#例题4-最长公共子序列-动态规划" class="headerlink" title="例题4 - 最长公共子序列 - 动态规划"></a>例题4 - 最长公共子序列 - 动态规划</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 我们根据思路</span></code></pre>
 
+<h2 id="例题4-题解"><a href="#例题4-题解" class="headerlink" title="例题4 - 题解"></a>例题4 - 题解</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">执行用时：<span class="token number">20</span> ms<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">75.36</span><span class="token operator">%</span>的用户
+内存消耗：<span class="token number">12.7</span> MB<span class="token punctuation">,</span> 在所有 C<span class="token operator">++</span> 提交中击败了<span class="token number">69.98</span><span class="token operator">%</span>的用户
+  
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">longestCommonSubsequence</span><span class="token punctuation">(</span>string text1<span class="token punctuation">,</span> string text2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">/* 定义数组 */</span>
+        vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> <span class="token function">dp</span><span class="token punctuation">(</span>text1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token generic-function"><span class="token function">vector</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>text2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">/* dp方程 */</span> 
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> text1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> text2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>text1<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> text2<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> dp<span class="token punctuation">[</span>text1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>text2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
             </div>
 
