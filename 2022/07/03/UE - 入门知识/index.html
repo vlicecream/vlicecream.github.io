@@ -156,7 +156,15 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="UE4-v4-27-2-目录结构说明"><a href="#UE4-v4-27-2-目录结构说明" class="headerlink" title="UE4 v4.27.2 目录结构说明"></a>UE4 v4.27.2 目录结构说明</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token operator">-</span> config
+                <h2 id="UE4-bug"><a href="#UE4-bug" class="headerlink" title="UE4 bug"></a>UE4 bug</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">variable “LayerNames” set but <span class="token operator">not</span> used <span class="token punctuation">[</span><span class="token operator">-</span>Werror<span class="token punctuation">,</span><span class="token operator">-</span>Wunused<span class="token operator">-</span>but<span class="token operator">-</span>set<span class="token operator">-</span>variable<span class="token punctuation">]</span>
+  
+修改<span class="token punctuation">.</span>Target<span class="token punctuation">.</span>cs和Editor<span class="token punctuation">.</span>Target<span class="token punctuation">.</span>cs两个文件
+bOverrideBuildEnvironment <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+AdditionalCompilerArguments <span class="token operator">=</span> <span class="token string">"-Wno-unused-but-set-variable"</span><span class="token punctuation">;</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220705125541993.png" alt="image-20220705125541993"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220705125600499.png" alt="image-20220705125600499"></p>
+<h2 id="UE4-v4-27-2-目录结构说明"><a href="#UE4-v4-27-2-目录结构说明" class="headerlink" title="UE4 v4.27.2 目录结构说明"></a>UE4 v4.27.2 目录结构说明</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token operator">-</span> config
   里面都是 ini 配置文件夹 记录着我们的配置  <span class="token operator">!</span>不要动
   
 <span class="token operator">-</span> content
