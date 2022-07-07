@@ -158,27 +158,20 @@
             <div class="typo" style="padding: 3rem;">
                 <h2 id="创建自己的第一个UObject类"><a href="#创建自己的第一个UObject类" class="headerlink" title="创建自己的第一个UObject类"></a>创建自己的第一个UObject类</h2><pre class="language-go" data-language="go"><code class="language-go">打开 c<span class="token operator">++</span> classes 右键生成 class</code></pre>
 
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// h</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"UObject/NoExportTypes.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyFirstObject.generated.h"</span></span>
 
-<span class="token comment">/**
- * 
- */</span>
 <span class="token function">UCLASS</span><span class="token punctuation">(</span>Blueprintable<span class="token punctuation">)</span> <span class="token comment">// 里面加这么一句 就可以转化成蓝图类</span>
 <span class="token keyword">class</span> <span class="token class-name">DAY01_API</span> UMyFirstObject <span class="token operator">:</span> <span class="token keyword">public</span> UObject
 <span class="token punctuation">&#123;</span>
 	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
-</code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// cpp</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyFirstObject.h"</span></span></code></pre>
 
 <h2 id="创建UObject的蓝图类"><a href="#创建UObject的蓝图类" class="headerlink" title="创建UObject的蓝图类"></a>创建UObject的蓝图类</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
@@ -282,7 +275,6 @@
 	<span class="token number">2.3</span> 右键 uproject 点击 Generate开头的 <span class="token punctuation">(</span>看了下 mac没有 windows会有<span class="token punctuation">)</span>
 	<span class="token number">2.4</span> 直接打开 uproject 直接构建他</code></pre>
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
             </div>
 
             <!-- Post Comments -->
