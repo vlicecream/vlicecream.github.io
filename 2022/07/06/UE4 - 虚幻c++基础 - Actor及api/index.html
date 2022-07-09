@@ -156,500 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="创建自己的Actor类"><a href="#创建自己的Actor类" class="headerlink" title="创建自己的Actor类"></a>创建自己的Actor类</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
-
-<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">DAY01_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor <span class="token comment">// 这里继承的AActor类 已经写了Blueprintable</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Sets default values for this actor's properties - 为参与者的属性设置默认值 </span>
-	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-<span class="token keyword">protected</span><span class="token operator">:</span>
-	<span class="token comment">// Called when the game starts or when spawned - 当游戏开始或生成时调用</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span> 
-
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Called every frame - 调用 每一帧</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
-
-<span class="token comment">// Sets default values</span>
-<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
- 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
-  <span class="token comment">// 设置这个actor在每一帧调用Tick() 如果不需要，可以关闭此选项以提高性能 </span>
-	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called when the game starts or when spawned - 当游戏开始或生成时调用</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called every frame - 调用每一帧</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span></code></pre>
-
-<pre class="language-go" data-language="go"><code class="language-go">如果你的c<span class="token operator">++</span>类啥都不写
-是放置不了的
-但是转换为蓝图类后 ue会帮你自动加默认的配置</code></pre>
-
-<h2 id="组件简介"><a href="#组件简介" class="headerlink" title="组件简介"></a>组件简介</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">我们创建的c<span class="token operator">++</span>类转化为蓝图类 拥有一个根组件 可以利用根组件进行子组件的各种调试 也可以 实例化多个对象 统一或单一修改材质等</code></pre>
-
-<h2 id="在c-中创建静态网格组件"><a href="#在c-中创建静态网格组件" class="headerlink" title="在c++中创建静态网格组件"></a>在c++中创建静态网格组件</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
-
-<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">DAY01_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
-<span class="token punctuation">&#123;</span>
-	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Sets default values for this actor's properties</span>
-	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 创建静态网格组件</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Components"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
-    UStaticMeshComponent<span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>
-    
-<span class="token keyword">protected</span><span class="token operator">:</span>
-	<span class="token comment">// Called when the game starts or when spawned</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Called every frame</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
-
-<span class="token comment">// Sets default values</span>
-<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
- 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
-	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">/*
-        初始化 "StaticMesh"
-        "CreateDefaultSubobject" 里面的类型 就是 头文件 写的 "UStaticMeshComponent"
-        Text 其实没啥用 作用就是 报错会提示 说是 "Static Mesh" 出的问题
-    */</span>
-    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Static Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called when the game starts or when spawned</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called every frame</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<h2 id="使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍"><a href="#使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍" class="headerlink" title="使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍"></a>使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
-
-<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
-<span class="token punctuation">&#123;</span>
-	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Sets default values for this actor's properties</span>
-	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 创建静态网格 (UObject类)</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
-    UStaticMeshComponent<span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>
-    
-    
-<span class="token keyword">protected</span><span class="token operator">:</span>
-	<span class="token comment">// Called when the game starts or when spawned</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 坐标向量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
-    FVector InitLocation<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Called every frame</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
-
-<span class="token comment">// Sets default values</span>
-<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
- 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
-	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">/*
-        初始化 "StaticMesh"
-        "CreateDefaultSubobject" 里面的类型 就是 头文件 写的 "UStaticMeshComponent"
-        Text 其实没啥用 作用就是 报错会提示 说是 "Static Mesh" 出的问题
-    */</span>
-    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Static Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始化 向量坐标</span>
-    InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called when the game starts or when spawned</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 坐标向量</span>
-    <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called every frame</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// EditInstanceOnly</span>
-这个的意思 就是 只能把类 实例化 后 在面板操作 修改他的坐标向量 不能在 蓝图类 上面直接修改</code></pre>
-
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706211147367.png" alt="image-20220706211147367"></p>
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706211108886.png" alt="image-20220706211108886"></p>
-<h2 id="VisibleInstanceOnly"><a href="#VisibleInstanceOnly" class="headerlink" title="VisibleInstanceOnly"></a>VisibleInstanceOnly</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
-
-<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
-<span class="token punctuation">&#123;</span>
-	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Sets default values for this actor's properties</span>
-	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 创建静态网格 (UObject类)</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
-    UStaticMeshComponent<span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>
-    
-    
-<span class="token keyword">protected</span><span class="token operator">:</span>
-	<span class="token comment">// Called when the game starts or when spawned</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 坐标向量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
-    FVector InitLocation<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始坐标</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleInstanceOnly(只允许在实例上显示 不能编辑)  "|" 子分类</span>
-    FVector PlacedLocation<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Called every frame</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
-
-<span class="token comment">// Sets default values</span>
-<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
- 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
-	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">/*
-        初始化 "StaticMesh"
-        "CreateDefaultSubobject" 里面的类型 就是 头文件 写的 "UStaticMeshComponent"
-        Text 其实没啥用 作用就是 报错会提示 说是 "Static Mesh" 出的问题
-    */</span>
-    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Static Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始化 向量坐标</span>
-    InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始化 初始坐标</span>
-    PlacedLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called when the game starts or when spawned</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 获取坐标</span>
-    PlacedLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 坐标向量</span>
-    <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called every frame</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706212428369.png" alt="image-20220706212428369"></p>
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706212612214.png" alt="image-20220706212612214"></p>
-<h2 id="EditDefaultsOnly"><a href="#EditDefaultsOnly" class="headerlink" title="EditDefaultsOnly"></a>EditDefaultsOnly</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
-
-<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
-<span class="token punctuation">&#123;</span>
-	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Sets default values for this actor's properties</span>
-	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 创建静态网格 (UObject类)</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
-    UStaticMeshComponent<span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>
-    
-    
-<span class="token keyword">protected</span><span class="token operator">:</span>
-	<span class="token comment">// Called when the game starts or when spawned</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 坐标向量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
-    FVector InitLocation<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始坐标</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleInstanceOnly(只允许在实例上显示 不能编辑)  "|" 子分类</span>
-    FVector PlacedLocation<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 是否跳到到规定的坐标向量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditDefaultsOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditDefaultsOnly(不能实力上编辑 只允许在类上编辑)  "|" 子分类</span>
-    <span class="token keyword">bool</span> bGoToInitLocation<span class="token punctuation">;</span>  <span class="token comment">// "b"是命名规范 UE会帮你去掉</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Called every frame</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
-
-<span class="token comment">// Sets default values</span>
-<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
- 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
-	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">/*
-        初始化 "StaticMesh"
-        "CreateDefaultSubobject" 里面的类型 就是 头文件 写的 "UStaticMeshComponent"
-        Text 其实没啥用 作用就是 报错会提示 说是 "Static Mesh" 出的问题
-    */</span>
-    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Static Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始化 向量坐标</span>
-    InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始化 初始坐标</span>
-    PlacedLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始化 bool</span>
-    bGoToInitLocation <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called when the game starts or when spawned</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 获取坐标</span>
-    PlacedLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>bGoToInitLocation<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 坐标向量</span>
-        <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called every frame</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706214320443.png" alt="image-20220706214320443"></p>
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706214411204.png" alt="image-20220706214411204"></p>
-<h2 id="VisibleDefaultsOnly-amp-EditAnywhere"><a href="#VisibleDefaultsOnly-amp-EditAnywhere" class="headerlink" title="VisibleDefaultsOnly&amp;EditAnywhere"></a>VisibleDefaultsOnly&amp;EditAnywhere</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
-
-<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
-<span class="token punctuation">&#123;</span>
-	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-	
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Sets default values for this actor's properties</span>
-	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 创建静态网格 (UObject类)</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
-    UStaticMeshComponent<span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>
-    
-    
-<span class="token keyword">protected</span><span class="token operator">:</span>
-	<span class="token comment">// Called when the game starts or when spawned</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 坐标向量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
-    FVector InitLocation<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 初始坐标</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleInstanceOnly(只允许在实例上显示 不能编辑)  "|" 子分类</span>
-    FVector PlacedLocation<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 世界坐标</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleDefaultsOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleDefaultsOnly(只允许在类上显示 不能编辑)  "|" 子分类</span>
-    FVector WorldOrigin<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 每一帧位置偏移量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditAnyWhere(哪里都能编辑, 这个最常用)  "|" 子分类</span>
-    FVector TickLocationOffset<span class="token punctuation">;</span>
-    
-    <span class="token comment">// 是否跳到到规定的坐标向量</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditDefaultsOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditDefaultsOnly(不能实力上编辑 只允许在类上编辑)  "|" 子分类</span>
-    <span class="token keyword">bool</span> bGoToInitLocation<span class="token punctuation">;</span>  <span class="token comment">// "b"是命名规范 UE会帮你去掉</span>
-
-    <span class="token comment">// 是否移动</span>
-    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditAnyWhere(哪里都能编辑, 这个最常用)  "|" 子分类</span>
-    <span class="token keyword">bool</span> bShouldMove<span class="token punctuation">;</span>
-<span class="token keyword">public</span><span class="token operator">:</span>	
-	<span class="token comment">// Called every frame</span>
-	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
-
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
-
-<span class="token comment">// Sets default values</span>
-<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
- 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
-	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">/*
-        初始化 "StaticMesh"
-        "CreateDefaultSubobject" 里面的类型 就是 头文件 写的 "UStaticMeshComponent"
-        Text 其实没啥用 作用就是 报错会提示 说是 "Static Mesh" 出的问题
-    */</span>
-    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Static Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    PlacedLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    bGoToInitLocation <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    WorldOrigin <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    TickLocationOffset <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    bShouldMove <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called when the game starts or when spawned</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token comment">// 获取坐标</span>
-    PlacedLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>bGoToInitLocation<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 坐标向量</span>
-        <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// Called every frame</span>
-<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>bShouldMove<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>TickLocationOffset<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 只需传第一个参数 后面都有默认值 作用是每一次执行 应该挪动多少偏移量</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<h2 id="在编辑器中限制输入值的范围"><a href="#在编辑器中限制输入值的范围" class="headerlink" title="在编辑器中限制输入值的范围"></a>在编辑器中限制输入值的范围</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-		每一帧位置偏移量
-    EditAnyWhere(哪里都能编辑, 这个最常用)  "|" 子分类
-    meta 就是 给一个范围
-*/</span>
-	<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">,</span> meta<span class="token operator">=</span><span class="token punctuation">(</span>ClampMin<span class="token operator">=</span><span class="token operator">-</span><span class="token number">5.0f</span><span class="token punctuation">,</span> ClampMax<span class="token operator">=</span><span class="token number">5.0f</span><span class="token punctuation">,</span> UIMin <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">5.0f</span><span class="token punctuation">,</span> UIMax <span class="token operator">=</span> <span class="token number">5.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-  FVector TickLocationOffset<span class="token punctuation">;</span></code></pre>
-
-<h2 id="切记-不要将组件指针设为EditAnywhere"><a href="#切记-不要将组件指针设为EditAnywhere" class="headerlink" title="切记: 不要将组件指针设为EditAnywhere"></a>切记: 不要将组件指针设为EditAnywhere</h2><h2 id="简单碰撞与复杂碰撞"><a href="#简单碰撞与复杂碰撞" class="headerlink" title="简单碰撞与复杂碰撞"></a>简单碰撞与复杂碰撞</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706234305154.png" alt="image-20220706234305154"></p>
-<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706234409139.png" alt="image-20220706234409139"></p>
-<h2 id="模拟物理与重力"><a href="#模拟物理与重力" class="headerlink" title="模拟物理与重力"></a>模拟物理与重力</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706234634934.png" alt="image-20220706234634934"></p>
-<h2 id="通过代码增加力与力矩"><a href="#通过代码增加力与力矩" class="headerlink" title="通过代码增加力与力矩"></a>通过代码增加力与力矩</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+                <h2 id="此文章的全部功能代码演示"><a href="#此文章的全部功能代码演示" class="headerlink" title="此文章的全部功能代码演示"></a>此文章的全部功能代码演示</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
 
@@ -772,9 +279,294 @@
 <span class="token punctuation">&#123;</span>
 	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
     
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>bShouldMove<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      FHitResult HitResult<span class="token punctuation">;</span>
+      <span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>TickLocationOffset<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>HitResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">UE_LOG</span><span class="token punctuation">(</span>LogTemp<span class="token punctuation">,</span> Warning<span class="token punctuation">,</span> <span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"X: %f, Y: %f, Z: %f"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> HitResult<span class="token punctuation">.</span>Location<span class="token punctuation">.</span>X<span class="token punctuation">,</span> HitResult<span class="token punctuation">.</span>Location<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> HitResult<span class="token punctuation">.</span>Location<span class="token punctuation">.</span>Z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="Actor类-默认功能"><a href="#Actor类-默认功能" class="headerlink" title="Actor类 默认功能"></a>Actor类 默认功能</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.generated.h"</span></span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY01_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor <span class="token comment">// 这里继承的AActor类 已经写了Blueprintable</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Sets default values for this actor's properties - 为参与者的属性设置默认值 </span>
+	<span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned - 当游戏开始或生成时调用</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span> 
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame - 调用 每一帧</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyActor.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+  <span class="token comment">// 设置这个actor在每一帧调用Tick() 如果不需要，可以关闭此选项以提高性能 </span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned - 当游戏开始或生成时调用</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame - 调用每一帧</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go">如果你的c<span class="token operator">++</span>类啥都不写
+是放置不了的
+但是转换为蓝图类后 ue会帮你自动加默认的配置</code></pre>
+
+<h2 id="组件简介"><a href="#组件简介" class="headerlink" title="组件简介"></a>组件简介</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">我们创建的c<span class="token operator">++</span>类转化为蓝图类 拥有一个根组件 可以利用根组件进行子组件的各种调试 也可以 实例化多个对象 统一或单一修改材质等</code></pre>
+
+<h2 id="在c-中创建静态网格组件"><a href="#在c-中创建静态网格组件" class="headerlink" title="在c++中创建静态网格组件"></a>在c++中创建静态网格组件</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 创建静态网格组件</span>
+<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Components"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+UStaticMeshComponent<span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+    初始化 "StaticMesh"
+    "CreateDefaultSubobject" 里面的类型 就是 头文件 写的 "UStaticMeshComponent"
+    Text 其实没啥用 作用就是 报错会提示 说是 "Static Mesh" 出的问题
+*/</span>
+StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Static Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍"><a href="#使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍" class="headerlink" title="使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍"></a>使用SetActorLoction控制位置与宏参数EditInstanceOnly介绍</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 坐标向量</span>
+<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+FVector InitLocation<span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 初始化 向量坐标</span>
+InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 坐标向量</span>
+<span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// EditInstanceOnly</span>
+这个的意思 就是 只能把类 实例化 后 在面板操作 修改他的坐标向量 不能在 蓝图类 上面直接修改</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706211147367.png" alt="image-20220706211147367"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706211108886.png" alt="image-20220706211108886"></p>
+<h2 id="VisibleInstanceOnly"><a href="#VisibleInstanceOnly" class="headerlink" title="VisibleInstanceOnly"></a>VisibleInstanceOnly</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+  
+<span class="token keyword">protected</span><span class="token operator">:</span>    
+    <span class="token comment">// 坐标向量</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+    FVector InitLocation<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始坐标</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleInstanceOnly(只允许在实例上显示 不能编辑)  "|" 子分类</span>
+    FVector PlacedLocation<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">// 初始化 向量坐标</span>
+  InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 初始化 初始坐标</span>
+  PlacedLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获取坐标</span>
+    PlacedLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 坐标向量</span>
+    <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706212428369.png" alt="image-20220706212428369"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706212612214.png" alt="image-20220706212612214"></p>
+<h2 id="EditDefaultsOnly"><a href="#EditDefaultsOnly" class="headerlink" title="EditDefaultsOnly"></a>EditDefaultsOnly</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">protected</span><span class="token operator">:</span>
+    <span class="token comment">// 坐标向量</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+    FVector InitLocation<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始坐标</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleInstanceOnly(只允许在实例上显示 不能编辑)  "|" 子分类</span>
+    FVector PlacedLocation<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 是否跳到到规定的坐标向量</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditDefaultsOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditDefaultsOnly(不能实力上编辑 只允许在类上编辑)  "|" 子分类</span>
+    <span class="token keyword">bool</span> bGoToInitLocation<span class="token punctuation">;</span>  <span class="token comment">// "b"是命名规范 UE会帮你去掉</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   
+    <span class="token comment">// 初始化 向量坐标</span>
+    InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 初始坐标</span>
+    PlacedLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 bool</span>
+    bGoToInitLocation <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获取坐标</span>
+    PlacedLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>bGoToInitLocation<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 坐标向量</span>
+        <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706214320443.png" alt="image-20220706214320443"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706214411204.png" alt="image-20220706214411204"></p>
+<h2 id="VisibleDefaultsOnly-amp-EditAnywhere"><a href="#VisibleDefaultsOnly-amp-EditAnywhere" class="headerlink" title="VisibleDefaultsOnly&amp;EditAnywhere"></a>VisibleDefaultsOnly&amp;EditAnywhere</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>   
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 坐标向量</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+    FVector InitLocation<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始坐标</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleInstanceOnly(只允许在实例上显示 不能编辑)  "|" 子分类</span>
+    FVector PlacedLocation<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 世界坐标</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleDefaultsOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleDefaultsOnly(只允许在类上显示 不能编辑)  "|" 子分类</span>
+    FVector WorldOrigin<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 每一帧位置偏移量</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditAnyWhere(哪里都能编辑, 这个最常用)  "|" 子分类</span>
+    FVector TickLocationOffset<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 是否跳到到规定的坐标向量</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditDefaultsOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditDefaultsOnly(不能实力上编辑 只允许在类上编辑)  "|" 子分类</span>
+    <span class="token keyword">bool</span> bGoToInitLocation<span class="token punctuation">;</span>  <span class="token comment">// "b"是命名规范 UE会帮你去掉</span>
+
+    <span class="token comment">// 是否移动</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">)</span>  <span class="token comment">// EditAnyWhere(哪里都能编辑, 这个最常用)  "|" 子分类</span>
+    <span class="token keyword">bool</span> bShouldMove<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   
+    InitLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlacedLocation <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bGoToInitLocation <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    WorldOrigin <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TickLocationOffset <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bShouldMove <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获取坐标</span>
+    PlacedLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>bGoToInitLocation<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 坐标向量</span>
+        <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>InitLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
     <span class="token keyword">if</span> <span class="token punctuation">(</span>bShouldMove<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>TickLocationOffset<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 只需传第一个参数 后面都有默认值 作用是每一次执行 应该挪动多少偏移量</span>
     <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="在编辑器中限制输入值的范围"><a href="#在编辑器中限制输入值的范围" class="headerlink" title="在编辑器中限制输入值的范围"></a>在编辑器中限制输入值的范围</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+		每一帧位置偏移量
+    EditAnyWhere(哪里都能编辑, 这个最常用)  "|" 子分类
+    meta 就是 给一个范围
+*/</span>
+	<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Vector"</span><span class="token punctuation">,</span> meta<span class="token operator">=</span><span class="token punctuation">(</span>ClampMin<span class="token operator">=</span><span class="token operator">-</span><span class="token number">5.0f</span><span class="token punctuation">,</span> ClampMax<span class="token operator">=</span><span class="token number">5.0f</span><span class="token punctuation">,</span> UIMin <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">5.0f</span><span class="token punctuation">,</span> UIMax <span class="token operator">=</span> <span class="token number">5.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  FVector TickLocationOffset<span class="token punctuation">;</span></code></pre>
+
+<h2 id="切记-不要将组件指针设为EditAnywhere"><a href="#切记-不要将组件指针设为EditAnywhere" class="headerlink" title="切记: 不要将组件指针设为EditAnywhere"></a>切记: 不要将组件指针设为EditAnywhere</h2><h2 id="简单碰撞与复杂碰撞"><a href="#简单碰撞与复杂碰撞" class="headerlink" title="简单碰撞与复杂碰撞"></a>简单碰撞与复杂碰撞</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706234305154.png" alt="image-20220706234305154"></p>
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706234409139.png" alt="image-20220706234409139"></p>
+<h2 id="模拟物理与重力"><a href="#模拟物理与重力" class="headerlink" title="模拟物理与重力"></a>模拟物理与重力</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220706234634934.png" alt="image-20220706234634934"></p>
+<h2 id="通过代码增加力与力矩"><a href="#通过代码增加力与力矩" class="headerlink" title="通过代码增加力与力矩"></a>通过代码增加力与力矩</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY02_API</span> AMyActor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>	
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+    <span class="token comment">// 初始力</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Physics"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+    FVector InitForce<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始力矩</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Physics"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+    FVector InitTorque<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 是否施加一个加速度</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditInstanceOnly<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Actor Properties | Physics"</span><span class="token punctuation">)</span>  <span class="token comment">// EditInstanceOnly(只允许在实例上编辑)  "|" 子分类</span>
+    <span class="token keyword">bool</span> bAccelChange<span class="token punctuation">;</span>
+    
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">AMyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    InitForce <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    InitTorque <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bAccelChange <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyActor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>   
+    StaticMesh<span class="token operator">-></span><span class="token function">AddForce</span><span class="token punctuation">(</span>InitForce<span class="token punctuation">,</span> <span class="token string">"NAME_None"</span><span class="token punctuation">,</span> bAccelChange<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 第一个参数 是要加多少力 第二个 是什么骨骼 第三个为 是否是加速度 不看质量</span>
+    StaticMesh<span class="token operator">-></span><span class="token function">AddTorque</span><span class="token punctuation">(</span>InitTorque<span class="token punctuation">,</span> <span class="token string">"NAME_None"</span><span class="token punctuation">,</span> bAccelChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
 <h2 id="使用Sweep在不开启模拟物理的情况下进行碰撞"><a href="#使用Sweep在不开启模拟物理的情况下进行碰撞" class="headerlink" title="使用Sweep在不开启模拟物理的情况下进行碰撞"></a>使用Sweep在不开启模拟物理的情况下进行碰撞</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">我们开启 物理 与 重力 然后 放一个墙挡住球的行进路线 这个球就会对墙摩擦 并且会脱离墙 其实这很真实
@@ -797,7 +589,7 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
             </div>
 
             <!-- Post Comments -->

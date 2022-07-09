@@ -446,6 +446,347 @@
     
 <span class="token punctuation">&#125;</span></code></pre>
 
+<h2 id="使用tick的移动"><a href="#使用tick的移动" class="headerlink" title="使用tick的移动"></a>使用tick的移动</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Pawn.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyPawn.generated.h"</span></span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY03_API</span> AMyPawn <span class="token operator">:</span> <span class="token keyword">public</span> APawn
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token comment">// Sets default values for this pawn's properties</span>
+	<span class="token function">AMyPawn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建静态网格 (UObject类)</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>  <span class="token comment">// 我们可以在这个前面加一个 “class” 让编辑器直接把这个 当作一个类去处理 为了防止ide智障了</span>
+    
+    <span class="token comment">// 创建一个相机组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UCameraComponent</span><span class="token operator">*</span> MyCamera<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Movement"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">float</span> MaxSpeed<span class="token punctuation">;</span>
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Called to bind functionality to input</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span><span class="token keyword">class</span> <span class="token class-name">UInputComponent</span><span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token comment">// 写上轴处理函数 因为不需要让别人的东西来用 所以写在private</span>
+    <span class="token keyword">void</span> <span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    FVector Velocity<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyPawn.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/StaticMeshComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Camera/CameraComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/InputComponent.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">AMyPawn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建根组件</span>
+    RootComponent <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>USceneComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"RootComponent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建静态组件 并附加到根组件上</span>
+    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"StaticMesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    StaticMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建相机组件并附加到根组件上</span>
+    MyCamera <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UCameraComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Camera"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MyCamera<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 设置相机的初始位置</span>
+    MyCamera<span class="token operator">-></span><span class="token function">SetRelativeLocation</span><span class="token punctuation">(</span><span class="token function">FVector</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">300.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">300.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MyCamera<span class="token operator">-></span><span class="token function">SetRelativeRotation</span><span class="token punctuation">(</span><span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    AutoPossessPlayer <span class="token operator">=</span> EAutoReceiveInput<span class="token double-colon punctuation">::</span>Player0<span class="token punctuation">;</span>
+    
+    MaxSpeed <span class="token operator">=</span> <span class="token number">100.0f</span><span class="token punctuation">;</span>
+    Velocity <span class="token operator">=</span> FVector<span class="token double-colon punctuation">::</span>ZeroVector<span class="token punctuation">;</span> <span class="token comment">// 会返回 0, 0, 0</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>Velocity<span class="token operator">*</span>DeltaTime<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called to bind functionality to input</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>UInputComponent<span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>PlayerInputComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 函数绑定功能 第一个参数: 起一个名字 第二个参数: 绑定到哪一个类 第三个参数: 传递到哪一个函数</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"MoveForward"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMyPawn<span class="token double-colon punctuation">::</span>MoveForward<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"MoveRight"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMyPawn<span class="token double-colon punctuation">::</span>MoveRight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    Velocity<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> MaxSpeed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    Velocity<span class="token punctuation">.</span>Y <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> MaxSpeed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="用Deltatime的好处-忽略帧率带来的影响"><a href="#用Deltatime的好处-忽略帧率带来的影响" class="headerlink" title="用Deltatime的好处(忽略帧率带来的影响)"></a>用Deltatime的好处(忽略帧率带来的影响)</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220708220136789.png" alt="image-20220708220136789"></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">Tick每帧调用DeltaTime为两帧之间的距离</code></pre>
+
+<h2 id="添加SpringArm组件"><a href="#添加SpringArm组件" class="headerlink" title="添加SpringArm组件"></a>添加SpringArm组件</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// 作用是可以摄像头灵活变动 就算有障碍物挡住视角 也可以自动调整视角看得到</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Pawn.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyPawn.generated.h"</span></span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">DAY03_API</span> AMyPawn <span class="token operator">:</span> <span class="token keyword">public</span> APawn
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token comment">// Sets default values for this pawn's properties</span>
+	<span class="token function">AMyPawn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建静态网格 (UObject类)</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> StaticMesh<span class="token punctuation">;</span>  <span class="token comment">// 我们可以在这个前面加一个 “class” 让编辑器直接把这个 当作一个类去处理 为了防止ide智障了</span>
+    
+    <span class="token comment">// 创建一个相机组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Compoents"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UCameraComponent</span><span class="token operator">*</span> MyCamera<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Components"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">class</span> <span class="token class-name">USpringArmComponent</span><span class="token operator">*</span> MySpringArm<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"My Pawn Movement"</span><span class="token punctuation">)</span>  <span class="token comment">// VisibleAnyWhere(哪里都能看到)</span>
+    <span class="token keyword">float</span> MaxSpeed<span class="token punctuation">;</span>
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Called to bind functionality to input</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span><span class="token keyword">class</span> <span class="token class-name">UInputComponent</span><span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token comment">// 写上轴处理函数 因为不需要让别人的东西来用 所以写在private</span>
+    <span class="token keyword">void</span> <span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    FVector Velocity<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MyPawn.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/StaticMeshComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Camera/CameraComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/InputComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/SpringArmComponent.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">AMyPawn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建根组件</span>
+    RootComponent <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>USceneComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"RootComponent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建静态组件 并附加到根组件上</span>
+    StaticMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"StaticMesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    StaticMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    MySpringArm <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>USpringArmComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"MySpringArm"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MySpringArm<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span>StaticMesh<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MySpringArm<span class="token operator">-></span>RelativeRotation <span class="token operator">=</span> <span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MySpringArm<span class="token operator">-></span>TargetArmLength <span class="token operator">=</span> <span class="token number">400.0f</span><span class="token punctuation">;</span>
+    MySpringArm<span class="token operator">-></span>bEnableCameraLag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    MySpringArm<span class="token operator">-></span>CameraLagSpeed <span class="token operator">=</span> <span class="token number">3.0f</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建相机组件并附加到根组件上</span>
+    MyCamera <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UCameraComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Camera"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MyCamera<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span>MySpringArm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 设置相机的初始位置</span>
+    MyCamera<span class="token operator">-></span><span class="token function">SetRelativeLocation</span><span class="token punctuation">(</span><span class="token function">FVector</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">300.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">300.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MyCamera<span class="token operator">-></span><span class="token function">SetRelativeRotation</span><span class="token punctuation">(</span><span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    AutoPossessPlayer <span class="token operator">=</span> EAutoReceiveInput<span class="token double-colon punctuation">::</span>Player0<span class="token punctuation">;</span>
+    
+    MaxSpeed <span class="token operator">=</span> <span class="token number">100.0f</span><span class="token punctuation">;</span>
+    Velocity <span class="token operator">=</span> FVector<span class="token double-colon punctuation">::</span>ZeroVector<span class="token punctuation">;</span> <span class="token comment">// 会返回 0, 0, 0</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>Velocity<span class="token operator">*</span>DeltaTime<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called to bind functionality to input</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>UInputComponent<span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>PlayerInputComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 函数绑定功能 第一个参数: 起一个名字 第二个参数: 绑定到哪一个类 第三个参数: 传递到哪一个函数</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"MoveForward"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMyPawn<span class="token double-colon punctuation">::</span>MoveForward<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"MoveRight"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMyPawn<span class="token double-colon punctuation">::</span>MoveRight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    Velocity<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> MaxSpeed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    Velocity<span class="token punctuation">.</span>Y <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> MaxSpeed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="使用C-代码设置模型与材质的默认值"><a href="#使用C-代码设置模型与材质的默认值" class="headerlink" title="使用C++代码设置模型与材质的默认值"></a>使用C++代码设置模型与材质的默认值</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">FORCEINLINE UStaticMeshComponent<span class="token operator">*</span> <span class="token function">GetStaticMeshComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> MyStaticMesh<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span> 
+FORCEINLINE USpringArmComponent<span class="token operator">*</span> <span class="token function">GetSpringArmComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> MySpringArm<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token comment">// FORCEINLINE 虚幻封装的inline宏</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">MySpringArm<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetStaticMeshComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> ConstructorHelpers<span class="token double-colon punctuation">::</span>FObjectFinder<span class="token operator">&lt;</span>UStaticMesh<span class="token operator">></span> <span class="token function">StaticMeshAsset</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">static</span> ConstructorHelpers<span class="token double-colon punctuation">::</span>FObjectFinder<span class="token operator">&lt;</span>UMaterialInterface<span class="token operator">></span> <span class="token function">MaterialAsset</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Material'/Game/StarterContent/Materials/M_Metal_Burnished_Steel.M_Metal_Burnished_Steel'"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>StaticMeshAsset<span class="token punctuation">.</span><span class="token function">Succeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> MaterialAsset<span class="token punctuation">.</span><span class="token function">Succeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  MyStaticMesh<span class="token operator">-></span><span class="token function">SetStaticMesh</span><span class="token punctuation">(</span>StaticMeshAsset<span class="token punctuation">.</span>Object<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  MyStaticMesh<span class="token operator">-></span><span class="token function">SetMaterial</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> MaterialAsset<span class="token punctuation">.</span>Object<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  MyStaticMesh<span class="token operator">-></span><span class="token function">SetWorldScale3D</span><span class="token punctuation">(</span><span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.5f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="Sweep仅对根组件生效"><a href="#Sweep仅对根组件生效" class="headerlink" title="Sweep仅对根组件生效"></a>Sweep仅对根组件生效</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// cpp	有碰撞效果 并且碰撞的预设改为pawn</span>
+RootComponent <span class="token operator">=</span> MyStaticMesh<span class="token punctuation">;</span>
+MyStaticMesh<span class="token operator">-></span><span class="token function">SetCollisionProfileName</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Pawn"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="控制视野上下查看"><a href="#控制视野上下查看" class="headerlink" title="控制视野上下查看"></a>控制视野上下查看</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">1.</span> 首先在按键映射 设置好视野上下的快捷键
+  这里要注意 抬头最多<span class="token number">90</span>度 不可能纯抬头<span class="token number">360</span>度</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">LookUp</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">LookRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+FVector2D MouseInput<span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>Velocity <span class="token operator">*</span> DeltaTime<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">//X,Y,Z</span>
+	<span class="token comment">//Row,Pitch,Yaw</span>
+	FRotator NewSpringArmRotation <span class="token operator">=</span> MySpringArm<span class="token operator">-></span><span class="token function">GetComponentRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	NewSpringArmRotation<span class="token punctuation">.</span>Pitch <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>NewSpringArmRotation<span class="token punctuation">.</span>Pitch <span class="token operator">+=</span> MouseInput<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">80.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	MySpringArm<span class="token operator">-></span><span class="token function">SetWorldRotation</span><span class="token punctuation">(</span>NewSpringArmRotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called to bind functionality to input</span>
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>UInputComponent<span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>PlayerInputComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"LookUp"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMyPawn<span class="token double-colon punctuation">::</span>LookUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"LookRight"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMyPawn<span class="token double-colon punctuation">::</span>LookRight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	Velocity<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> MaxSpeed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	Velocity<span class="token punctuation">.</span>Y <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> MaxSpeed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">LookUp</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	MouseInput<span class="token punctuation">.</span>Y <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">LookRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	MouseInput<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Value<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<h2 id="使用Controller控制视野左右旋转"><a href="#使用Controller控制视野左右旋转" class="headerlink" title="使用Controller控制视野左右旋转"></a>使用Controller控制视野左右旋转</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">AMyPawn</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">AddActorLocalOffset</span><span class="token punctuation">(</span>Velocity <span class="token operator">*</span> DeltaTime<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">AddControllerYawInput</span><span class="token punctuation">(</span>MouseInput<span class="token punctuation">.</span>X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+	<span class="token comment">//X,Y,Z</span>
+	<span class="token comment">//Row,Pitch,Yaw</span>
+	FRotator NewSpringArmRotation <span class="token operator">=</span> MySpringArm<span class="token operator">-></span><span class="token function">GetComponentRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	NewSpringArmRotation<span class="token punctuation">.</span>Pitch <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>NewSpringArmRotation<span class="token punctuation">.</span>Pitch <span class="token operator">+=</span> MouseInput<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">80.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	MySpringArm<span class="token operator">-></span><span class="token function">SetWorldRotation</span><span class="token punctuation">(</span>NewSpringArmRotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 还得在 构造函数 开启 bUseControllerRotationYaw = true;</span></code></pre>
+
 
             </div>
 
