@@ -152,17 +152,18 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/算法-树树树.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >教你学会树</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >一起探索树吧～</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h2 id="今日小感想"><a href="#今日小感想" class="headerlink" title="今日小感想"></a>今日小感想</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">刷算法是真滴难啊 感觉链表 <span class="token operator">&amp;</span> 树 真的克我啊 直接给我来了个魔法暴击
   只不过我是不行的男人<span class="token operator">?</span> 干他<span class="token operator">!</span></code></pre>
 
-<h2 id="什么叫树"><a href="#什么叫树" class="headerlink" title="什么叫树"></a>什么叫树</h2><pre class="language-go" data-language="go"><code class="language-go">这个可以直接看我另一个讲树的基本的东西
-这个blog主攻 树的思路解法</code></pre>
+<h2 id="Morris遍历一些小知识"><a href="#Morris遍历一些小知识" class="headerlink" title="Morris遍历一些小知识"></a>Morris遍历一些小知识</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 前驱节点，如果按照中序遍历访问树，访问的结果为ABC，则称A为B的前驱节点，B为C的前驱节点
+	前驱节点pre是curr左子树的最右子树<span class="token punctuation">(</span>按照中序遍历走一遍就知道了<span class="token punctuation">)</span>
+  由此可知，前驱节点的右子节点一定为空</code></pre>
 
-<h2 id="遍历二叉树"><a href="#遍历二叉树" class="headerlink" title="遍历二叉树"></a>遍历二叉树</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+<h2 id="二叉树-前序遍历"><a href="#二叉树-前序遍历" class="headerlink" title="二叉树 - 前序遍历"></a>二叉树 - 前序遍历</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
 	递归的思路 - 前序遍历
 		我们可以 preorder(root) 表示遍历到哪一个节点
 		拿出当前节点的val 随后 "->left" &amp; "->right" 进入 左子树 &amp; 右子树
@@ -260,27 +261,101 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
-<h2 id="Morris一些小知识"><a href="#Morris一些小知识" class="headerlink" title="Morris一些小知识"></a>Morris一些小知识</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 前驱节点，如果按照中序遍历访问树，访问的结果为ABC，则称A为B的前驱节点，B为C的前驱节点
-	前驱节点pre是curr左子树的最右子树<span class="token punctuation">(</span>按照中序遍历走一遍就知道了<span class="token punctuation">)</span>
-  由此可知，前驱节点的右子节点一定为空
+<h2 id="二叉树-中序遍历"><a href="#二叉树-中序遍历" class="headerlink" title="二叉树 - 中序遍历"></a>二叉树 - 中序遍历</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">```
 
-<span class="token number">2.</span> 主要思想：
-  树的链接是单向的，从根节点出发，只有通往子节点的单向路程
-  中序遍历迭代法的难点就在于，需要先访问当前节点的左子树，才能访问当前节点。
-  但是只有通往左子树的单向路程，而没有回程路，因此无法进行下去，除非用额外的数据结构记录下回程的路。
-  在这里可以利用当前节点的前驱节点，建立回程的路，也不需要消耗额外的空间。
-  根据前置知识的分析，当前节点的前驱节点的右子节点是为空的，因此可以用其保存回程的路。
-  但是要注意，这是建立在破坏了树的结构的基础上的，因此我们最后还有一步“消除链接”’的步骤，将树的结构还原。
-  重点过程： 当遍历到当前节点curr时，使用cuur的前驱节点pre
-  标记当前节点是否访问过
-  记录回溯到curr的路径（访问完pre以后，就应该访问curr了）
-  以下为我们访问curr节点需要做的事儿：
-  访问curr的节点时候，先找其前驱节点pre
-  找到前驱节点pre以后，我们根据其右指针的值，来判断curr的访问状态：
-  pre的右子节点为空，说明curr第一次访问，其左子树还没有访问，此时我们应该将其指向curr，并访问curr的左子树
-  pre的右子节点指向curr，那么说明这是第二次访问curr了，也就是说其左子树已经访问完了，此时将curr<span class="token punctuation">.</span>val加入结果集中</code></pre>
+## 二叉树 <span class="token operator">-</span> 后序遍历
 
+```cpp</code></pre>
 
+<h2 id="例题1-二叉树的最大深度"><a href="#例题1-二叉树的最大深度" class="headerlink" title="例题1 - 二叉树的最大深度"></a>例题1 - 二叉树的最大深度</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">https://leetcode.cn/problems/maximum-depth-of-binary-tree/</a></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+	这道题其实很简单
+	我们又可以用深度优先搜索 也可以用广度优先搜索
+*/</span>
+
+<span class="token comment">/*
+	我们先来看 深度优先搜索
+		我们先假想我们知道了左子树和右子树的 随后最大深度 就是 max(leftDepth, rightDepth) + 1
+		随后就是解决 leftDepth &amp; rightDepth 的问题了
+		左子树与右子树的计算方式其实是一样的 
+			
+		具体而言，在计算当前二叉树的最大深度时，可以先递归计算出其左子树和右子树的最大深度
+		然后在 O(1)O(1) 时间内计算出当前二叉树的最大深度。递归在访问到空节点时退出
+		
+		时间复杂度 O(n) 空间复杂度(height) 这里的 height 指的是 二叉树的深度
+*/</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">maxDepth</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">好了 我们其实已经解决掉这个题目了
+但是算法这个玩意 终究是 坚持下来的活～ 量变引起质变
+所以我们不能只只限于写出来 所以 我们要去想想 怎么用广度优先搜索去写出来 并看看 大佬的写法
+  
+<span class="token comment">/*
+	首先 广度优先搜索 都是用 queue 去实现的
+		这里 我们需要当前层 node 去放入 queue 
+		随后对 queue 所有的 node 去做扩展
+		拿出 ans 去维护 深度
+*/</span>
+  
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>root<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        queue<span class="token operator">&lt;</span>TreeNode<span class="token operator">*</span><span class="token operator">></span> q<span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>len <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                TreeNode<span class="token operator">*</span> node <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                len<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            ans<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="例题2-验证二叉搜索树"><a href="#例题2-验证二叉搜索树" class="headerlink" title="例题2 - 验证二叉搜索树"></a>例题2 - 验证二叉搜索树</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+	这道题是验证 这个树 是不是二叉搜索树
+		看我的另一篇讲 树 的理论基本知识的 盆友 绝对记得 中序遍历的一个性质
+		那就是 只要是二叉搜索树 中序遍历下来 绝对是升序！
+		
+		so？
+*/</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">bool</span> <span class="token function">isValidBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> res<span class="token punctuation">;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">size</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> res<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">inorder</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> res<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>root<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>root<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+这个代码其实还可以更简洁<span class="token punctuation">,</span> 交给你们了
+  随后 这里还可以用递归哦<span class="token operator">~</span></code></pre>
+
+<h2 id="例题3"><a href="#例题3" class="headerlink" title="例题3 -"></a>例题3 -</h2>
             </div>
 
             <!-- Post Comments -->
