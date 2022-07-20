@@ -156,29 +156,442 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="创建机关门的类与其蓝图"><a href="#创建机关门的类与其蓝图" class="headerlink" title="创建机关门的类与其蓝图"></a>创建机关门的类与其蓝图</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 定义门网格组件 .h</span>
-<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"My Static Mesh"</span><span class="token punctuation">)</span>
-  <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> DoorMesh<span class="token punctuation">;</span>
+                <h2 id="机关门"><a href="#机关门" class="headerlink" title="机关门"></a>机关门</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">机关门 需要跟 蓝图的 timeline 一起去实现</code></pre>
 
-<span class="token comment">// 定义触发器网格组件</span>
-<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"My Static Mesh"</span><span class="token punctuation">)</span>
-  <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> TriggerMesh<span class="token punctuation">;</span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notiUBoxComponentce in the Description page of Project Settings.</span>
 
-<span class="token comment">// 定义触发器组件</span>
-<span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"My Static Mesh"</span><span class="token punctuation">)</span>
-  <span class="token keyword">class</span> <span class="token class-name">UBoxComponent</span><span class="token operator">*</span> TriggerBox<span class="token punctuation">;</span></code></pre>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
 
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 初始化 门 &amp; 触发 &amp; 触发器组件(并设置为根组件)</span>
-TriggerBox <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UBoxComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Box Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-RootComponent <span class="token operator">=</span> TriggerBox<span class="token punctuation">;</span>
-DoorMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Door Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-DoorMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TriggerMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Trigger Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TriggerMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"TriggerableDoor.generated.h"</span></span>
 
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">接下来 创建蓝图 然后添加材质等 这里自由度很高 不做说明</code></pre>
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> ATriggerableDoor <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Sets default values for this actor's properties</span>
+	<span class="token function">ATriggerableDoor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 定义门网格组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"My Static Mesh"</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> DoorMesh<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 定义触发器网格组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"My Static Mesh"</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> TriggerMesh<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 定义触发器组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"My Static Mesh"</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UBoxComponent</span><span class="token operator">*</span> TriggerBox<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 定义 机关 &amp; 门 的初始值位置</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Trigger Properties"</span><span class="token punctuation">)</span>
+    FVector InitTriggerLocation<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Door Properties"</span><span class="token punctuation">)</span>
+    FVector InitDoorLocation<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 定义 定时器句柄 与 门延迟时间</span>
+    FTimerHandle CloseDoorTimerHandle<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Door Properties"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> DelayTime<span class="token punctuation">;</span>
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
 
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">	</code></pre>
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 触碰机关处理函数</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 离开机关处理函数</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 机关下降的事件 BlueprintImplementableevent 的意思就是 蓝图中可实现事件 所以这个不再是函数 是事件 所以 也不需要在 cpp 中写</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintImplementableevent<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Trigger Switch"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">RaiseTrigger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 机关复原的事件 BlueprintImplementableevent 的意思就是 蓝图中可实现事件 所以这个不再是函数 是事件 所以 也不需要在 cpp 中写</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintImplementableevent<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Trigger Switch"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">LowerTrigger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 打开门事件 BlueprintImplementableevent 的意思就是 蓝图中可实现事件 所以这个不再是函数 是事件 所以 也不需要在 cpp 中写</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintImplementableevent<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Door Switch"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">OpenDoor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 关闭门事件 BlueprintImplementableevent 的意思就是 蓝图中可实现事件 所以这个不再是函数 是事件 所以 也不需要在 cpp 中写</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintImplementableevent<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Door Switch"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">CloseDoor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 更新 机关状态(位置) 函数</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintCallable<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Trigger Switch"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">UpdateTriggerLocation</span><span class="token punctuation">(</span>FVector Offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 更新 门状态(位置) 函数</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintCallable<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Triggerable Door|Door Switch"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">UpdateDoorLocation</span><span class="token punctuation">(</span>FVector Offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/TriggerableDoor.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/StaticMeshComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/BoxComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MainPlayer.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"TimerManager.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">ATriggerableDoor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化触发器组件(并设置为根组件)</span>
+    TriggerBox <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UBoxComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Box Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RootComponent <span class="token operator">=</span> TriggerBox<span class="token punctuation">;</span>
+    <span class="token comment">/*
+        对触发器进行
+            1. 大小的设置
+            2. 设置体积的状态为仅查询 (状态例如 是否碰撞 查询)
+            3. 指定 TriggerBox 自己的类型为世界静态
+            4. 让他对所有的频道忽略
+            5. 让他只响应 "pawn"频道 的overlap
+    */</span>
+    TriggerBox<span class="token operator">-></span><span class="token function">SetBoxExtent</span><span class="token punctuation">(</span><span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">60.0f</span><span class="token punctuation">,</span> <span class="token number">60.0f</span><span class="token punctuation">,</span> <span class="token number">30.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerBox<span class="token operator">-></span><span class="token function">SetCollisionEnabled</span><span class="token punctuation">(</span>ECollisionEnabled<span class="token double-colon punctuation">::</span>QueryOnly<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerBox<span class="token operator">-></span><span class="token function">SetCollisionObjectType</span><span class="token punctuation">(</span>ECollisionChannel<span class="token double-colon punctuation">::</span>ECC_WorldStatic<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerBox<span class="token operator">-></span><span class="token function">SetCollisionResponseToAllChannels</span><span class="token punctuation">(</span>ECollisionResponse<span class="token double-colon punctuation">::</span>ECR_Ignore<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerBox<span class="token operator">-></span><span class="token function">SetCollisionResponseToChannel</span><span class="token punctuation">(</span>ECollisionChannel<span class="token double-colon punctuation">::</span>ECC_Pawn<span class="token punctuation">,</span> ECollisionResponse<span class="token double-colon punctuation">::</span>ECR_Overlap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 门 &amp; 触发机关(附加到根组件上)</span>
+    DoorMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Door Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    DoorMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Trigger Mesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 门延迟时间</span>
+    DelayTime <span class="token operator">=</span> <span class="token number">1.5f</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 去设置 踩到机关 &amp; 松开机关的 触发事件</span>
+    TriggerBox<span class="token operator">-></span>OnComponentBeginOverlap<span class="token punctuation">.</span><span class="token function">AddDynamic</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>ATriggerableDoor<span class="token double-colon punctuation">::</span>OnOverlapBegin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerBox<span class="token operator">-></span>OnComponentEndOverlap<span class="token punctuation">.</span><span class="token function">AddDynamic</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>ATriggerableDoor<span class="token double-colon punctuation">::</span>OnOverlapEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    
+    <span class="token comment">// 在开始的时候 直接获取到 机关 &amp; 门 位置</span>
+    InitTriggerLocation <span class="token operator">=</span> TriggerMesh<span class="token operator">-></span><span class="token function">GetComponentLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    InitDoorLocation <span class="token operator">=</span> DoorMesh<span class="token operator">-></span><span class="token function">GetComponentLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// AActor* 这个参数 会把踩到机关的对象直接传输给我们</span>
+    <span class="token comment">// 验证踩到机关的是不是 mainplayer (这里用的 cast 转换方法验证)</span>
+    AMainPlayer<span class="token operator">*</span> MainPlayer <span class="token operator">=</span> <span class="token generic-function"><span class="token function">Cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>AMainPlayer<span class="token operator">></span></span></span><span class="token punctuation">(</span>OtherActor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>MainPlayer<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 踩上去就关闭计时器</span>
+        <span class="token function">GetWorldTimerManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ClearTimer</span><span class="token punctuation">(</span>CloseDoorTimerHandle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token function">LowerTrigger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">OpenDoor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// AActor* 这个参数 会把离开机关的对象直接传输给我们</span>
+    <span class="token comment">// 验证离开机关的是不是 mainplayer (这里用的 cast 转换方法验证)</span>
+    AMainPlayer<span class="token operator">*</span> MainPlayer <span class="token operator">=</span> <span class="token generic-function"><span class="token function">Cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>AMainPlayer<span class="token operator">></span></span></span><span class="token punctuation">(</span>OtherActor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>MainPlayer<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        
+        <span class="token function">RaiseTrigger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 获得当前时间的管理者</span>
+        <span class="token comment">// 这是 用 匿名函数 写的格式   GetWorldTimerManager().SetTimer(CloseDoorTimerHandle, FTimerDelegate::CreateLambda(匿名函数name), DelayTime, false);</span>
+        <span class="token function">GetWorldTimerManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SetTimer</span><span class="token punctuation">(</span>CloseDoorTimerHandle<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>ATriggerableDoor<span class="token double-colon punctuation">::</span>CloseDoor<span class="token punctuation">,</span> DelayTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">UpdateTriggerLocation</span><span class="token punctuation">(</span>FVector Offset<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 在机关移动的时候 会有偏移量 然后直接拿新的位置 改动原本位置</span>
+    FVector NewLocation <span class="token operator">=</span> InitTriggerLocation <span class="token operator">+</span> Offset<span class="token punctuation">;</span>
+    TriggerMesh<span class="token operator">-></span><span class="token function">SetWorldLocation</span><span class="token punctuation">(</span>NewLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">ATriggerableDoor</span><span class="token double-colon punctuation">::</span><span class="token function">UpdateDoorLocation</span><span class="token punctuation">(</span>FVector Offset<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 在门移动的时候 会有偏移量 然后直接拿新的位置 改动原本位置</span>
+    FVector NewLocation <span class="token operator">=</span> InitDoorLocation <span class="token operator">+</span> Offset<span class="token punctuation">;</span>
+    DoorMesh<span class="token operator">-></span><span class="token function">SetWorldLocation</span><span class="token punctuation">(</span>NewLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220715233201345.png" alt="image-20220715233201345"></p>
+<h2 id="物体的随机生成"><a href="#物体的随机生成" class="headerlink" title="物体的随机生成"></a>物体的随机生成</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token comment">// #include "CoreMinimal.h"</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"SpawnVolume.generated.h"</span></span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> ASpawnVolume <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Sets default values for this actor's properties</span>
+	<span class="token function">ASpawnVolume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 定义 box</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UBoxComponent</span><span class="token operator">*</span> SpawnBox<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 在这一块区域 生成的 模型所属类 (只要是所属这个类的 都可以随机生成出来)</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Spawn Volume"</span><span class="token punctuation">)</span>
+    TArray<span class="token operator">&lt;</span>TSubclassOf<span class="token operator">&lt;</span>AActor<span class="token operator">>></span> SpawnActorClassesArray<span class="token punctuation">;</span>
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 获得区域点 "BlueprintPure" 是 纯净 函数  可以 理解成 你问一个问题 他就给你返回答案</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintPure<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Spawn Volume"</span><span class="token punctuation">)</span>
+    FVector <span class="token function">GetSpawnPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获得 TSubclassOf&lt;AActor> "BlueprintPure" 是 纯净 函数  可以 理解成 你问一个问题 他就给你返回答案</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintPure<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Spawn Volume"</span><span class="token punctuation">)</span>
+    TSubclassOf<span class="token operator">&lt;</span>AActor<span class="token operator">></span> <span class="token function">GetSpawnActorClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">/*
+        "BlueprintNativeEvent" 一般 与 "BlueprintCallable" 一块使用
+        这里需要定义两个函数 一个 蓝图使用 一个 c++ 使用
+        多出来的c++函数名 比如这个 就要定义 “SpawnActor_Implementation”
+    */</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintNativeEvent<span class="token punctuation">,</span> BlueprintCallable<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Spawn Volume"</span><span class="token punctuation">)</span>
+    <span class="token comment">// void SpawnActor(UClass* SpawnClass, FVector SpawnLocation);</span>
+    <span class="token keyword">void</span> <span class="token function">SpawnActor</span><span class="token punctuation">(</span>UClass<span class="token operator">*</span> SpawnClass<span class="token punctuation">,</span> FVector SpawnLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">SpawnActor_Implementation</span><span class="token punctuation">(</span>UClass<span class="token operator">*</span> SpawnClass<span class="token punctuation">,</span> FVector SpawnLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/SpawnVolume.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/BoxComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Kismet/KismetMathLibrary.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">ASpawnVolume</span><span class="token double-colon punctuation">::</span><span class="token function">ASpawnVolume</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 初始化 box 并设置为 根组件</span>
+    SpawnBox <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UBoxComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"SpawnBox"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RootComponent <span class="token operator">=</span> SpawnBox<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">ASpawnVolume</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">ASpawnVolume</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+FVector <span class="token class-name">ASpawnVolume</span><span class="token double-colon punctuation">::</span><span class="token function">GetSpawnPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 获取 box 的位置信息 &amp; 缩放过后的 边界信息</span>
+    <span class="token keyword">const</span> FVector Origin <span class="token operator">=</span> SpawnBox<span class="token operator">-></span><span class="token function">GetComponentLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> FVector Extent <span class="token operator">=</span> SpawnBox<span class="token operator">-></span><span class="token function">GetScaledBoxExtent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 能够在范围 产生随机的点</span>
+    <span class="token keyword">return</span> <span class="token class-name">UKismetMathLibrary</span><span class="token double-colon punctuation">::</span><span class="token function">RandomPointInBoundingBox</span><span class="token punctuation">(</span>Origin<span class="token punctuation">,</span> Extent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+TSubclassOf<span class="token operator">&lt;</span>AActor<span class="token operator">></span> <span class="token class-name">ASpawnVolume</span><span class="token double-colon punctuation">::</span><span class="token function">GetSpawnActorClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 在数组中 随机的弄出模板</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>SpawnActorClassesArray<span class="token punctuation">.</span><span class="token function">Num</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">const</span> <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">RandRange</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> SpawnActorClassesArray<span class="token punctuation">.</span><span class="token function">Num</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> SpawnActorClassesArray<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">ASpawnVolume</span><span class="token double-colon punctuation">::</span><span class="token function">SpawnActor_Implementation</span><span class="token punctuation">(</span>UClass<span class="token operator">*</span> SpawnClass<span class="token punctuation">,</span> FVector SpawnLocation<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>SpawnClass<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">GetWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token generic-function"><span class="token function">SpawnActor</span><span class="token generic class-name"><span class="token operator">&lt;</span>AActor<span class="token operator">></span></span></span><span class="token punctuation">(</span>SpawnClass<span class="token punctuation">,</span> SpawnLocation<span class="token punctuation">,</span> <span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220716093233388.png" alt="image-20220716093233388"></p>
+<h2 id="浮动平台"><a href="#浮动平台" class="headerlink" title="浮动平台"></a>浮动平台</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"FloatingPaltform.generated.h"</span></span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> AFloatingPaltform <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Sets default values for this actor's properties</span>
+	<span class="token function">AFloatingPaltform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// StaticMesh 组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> PlatformMesh<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 起点</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Floating Platform"</span><span class="token punctuation">)</span>
+    FVector StartPoint<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 终点  MakeEditWidget 这个的作用就是 可以在模型中 单独拖动 然后调节到你想要的 EndPoint 但是移动后 是相对距离的哦～ 相对模型初始位置</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Floating Platform"</span><span class="token punctuation">,</span> meta<span class="token operator">=</span><span class="token punctuation">(</span>MakeEditWidget <span class="token operator">=</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    FVector EndPoint<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 平台移动的速度</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Floating Platform"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> InterpSpeed<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 平台 移动到目标位置 延迟时间</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnyWhere<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Floating Platform"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> DelayTime<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 是否正在移动中</span>
+    <span class="token keyword">bool</span> bInterping<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 计时器句柄</span>
+    FTimerHandle InterpTimerHandle<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 距离</span>
+    <span class="token keyword">float</span> Distance<span class="token punctuation">;</span>
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/FloatingPaltform.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/StaticMeshComponent.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">AFloatingPaltform</span><span class="token double-colon punctuation">::</span><span class="token function">AFloatingPaltform</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// StaticMesh 组件</span>
+    PlatformMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"PlatformMesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RootComponent <span class="token operator">=</span> PlatformMesh<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 起点 &amp; 终点 &amp; 移动速度</span>
+    StartPoint <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    EndPoint <span class="token operator">=</span> <span class="token function">FVector</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    InterpSpeed <span class="token operator">=</span> <span class="token number">200.0f</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 延迟 &amp; 移动状态</span>
+    DelayTime <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+    bInterping <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AFloatingPaltform</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+    <span class="token comment">// 获取开始的时候位置</span>
+    StartPoint <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 这里因为 "EndPoint" 是局部坐标 演示一下 怎么换回 世界坐标</span>
+    EndPoint <span class="token operator">+=</span> StartPoint<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获得 起始 结束 之间的距离</span>
+    Distance <span class="token operator">=</span> <span class="token punctuation">(</span>EndPoint <span class="token operator">-</span> StartPoint<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AFloatingPaltform</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 如果正在移动状态</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>bInterping<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取到 actor 的位置</span>
+        <span class="token keyword">const</span> FVector CurrentLocation <span class="token operator">=</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 进行 数学的 位置加法 "VInterpTo" 这个是 移动会很快 最后会很慢</span>
+        <span class="token comment">// const FVector NewLocation = FMath::VInterpTo(CurrentLocation, EndPoint, DeltaTime, InterpSpeed);</span>
+        <span class="token comment">// "VInterpConstantTo" 则是匀速</span>
+        <span class="token keyword">const</span> FVector NewLocation <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">VInterpConstantTo</span><span class="token punctuation">(</span>CurrentLocation<span class="token punctuation">,</span> EndPoint<span class="token punctuation">,</span> DeltaTime<span class="token punctuation">,</span> InterpSpeed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 改变坐标</span>
+        <span class="token function">SetActorLocation</span><span class="token punctuation">(</span>NewLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 到了最终位置 获取当前 与 起始的距离</span>
+        <span class="token keyword">float</span> NowDistance <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> StartPoint<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Distance <span class="token operator">-</span> NowDistance <span class="token operator">&lt;=</span> <span class="token number">0.1f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// lambda 表达式</span>
+            <span class="token keyword">auto</span> ToggleInterpState <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                bInterping <span class="token operator">=</span> <span class="token operator">!</span>bInterping<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+            <span class="token function">ToggleInterpState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">// 开启计时器</span>
+            <span class="token function">GetWorldTimerManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SetTimer</span><span class="token punctuation">(</span>InterpTimerHandle<span class="token punctuation">,</span> <span class="token class-name">FTimerDelegate</span><span class="token double-colon punctuation">::</span><span class="token function">CreateLambda</span><span class="token punctuation">(</span>ToggleInterpState<span class="token punctuation">)</span><span class="token punctuation">,</span> DelayTime<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">// 移动并开启计时器完毕 将起始位置和最终位置进行 交换</span>
+            FVector TempVec <span class="token operator">=</span> StartPoint<span class="token punctuation">;</span>
+            StartPoint <span class="token operator">=</span> EndPoint<span class="token punctuation">;</span>
+            EndPoint <span class="token operator">=</span> TempVec<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
 
             </div>
