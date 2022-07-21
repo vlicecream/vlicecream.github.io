@@ -216,7 +216,7 @@
 <span class="token keyword">public</span><span class="token operator">:</span>
     <span class="token comment">// 主UI生成</span>
     <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"UI Widget"</span><span class="token punctuation">)</span>
-    TSubclassOf<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">UUserWidget</span><span class="token operator">></span><span class="token punctuation">;</span>
+    TSubclassOf<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">UUserWidget</span><span class="token operator">></span> MainUIClass<span class="token punctuation">;</span>
     
     <span class="token comment">// 把对象放在指针 方便我们去读取</span>
     <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"UI Widget"</span><span class="token punctuation">)</span>
