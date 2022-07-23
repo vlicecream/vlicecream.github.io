@@ -156,7 +156,294 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                
+                <h2 id="可交互物体的基类功能"><a href="#可交互物体的基类功能" class="headerlink" title="可交互物体的基类功能"></a>可交互物体的基类功能</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Actor.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"InteractableItem.generated.h"</span></span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> AInteractableItem <span class="token operator">:</span> <span class="token keyword">public</span> AActor
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Sets default values for this actor's properties</span>
+	<span class="token function">AInteractableItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 球状触发组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">USphereComponent</span><span class="token operator">*</span> TriggerVolume<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 外观 也就是静态网格组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UStaticMeshComponent</span><span class="token operator">*</span> DisPlayMesh<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 给一个粒子系统(1. 粒子系统组件(放置在地上展示的粒子效果) 2. 粒子系统(结束后 比如爆炸完后 展示的粒子效果))</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UParticleSystemComponent</span><span class="token operator">*</span> IdleParticleComponent<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"Interactable Item|Particles"</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">UParticleSystem</span><span class="token operator">*</span> OverlapParticle<span class="token punctuation">;</span>  <span class="token comment">// "UParticleSystem"不带Component的可以视作 "资源" 可以附加到组件 也可以单独去播放 ue会去管理他</span>
+    
+    <span class="token comment">// 声音资源 可以交给声音蓝图去管理</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"Interactable Item|Sounds"</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">USoundCue</span><span class="token operator">*</span> OverlapSound<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 可交互物体是否一直在旋转</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"Interactable Item|Item Properties"</span><span class="token punctuation">)</span>
+    <span class="token keyword">bool</span> bNeedRotate<span class="token punctuation">;</span>
+    <span class="token comment">// 可交互物体旋转的速度</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category <span class="token operator">=</span> <span class="token string">"Interactable Item|Item Properties"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> RotationRate<span class="token punctuation">;</span>
+     
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 绑定好的事件 让子类重写</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/InteractableItem.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/SphereComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/StaticMeshComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Particles/ParticleSystemComponent.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">AInteractableItem</span><span class="token double-colon punctuation">::</span><span class="token function">AInteractableItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 经典的初始化组件 设置根组件 附加到根组件</span>
+    TriggerVolume <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>USphereComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"TriggerVolume"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RootComponent <span class="token operator">=</span> TriggerVolume<span class="token punctuation">;</span>
+    DisPlayMesh <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UStaticMeshComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"DisPlayMesh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    DisPlayMesh<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    IdleParticleComponent <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UParticleSystemComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"IdleParticleComponent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    IdleParticleComponent<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化物体状态</span>
+    bNeedRotate <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    RotationRate <span class="token operator">=</span> <span class="token number">45.0f</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AInteractableItem</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+    <span class="token comment">// 绑定监听</span>
+    TriggerVolume<span class="token operator">-></span>OnComponentBeginOverlap<span class="token punctuation">.</span><span class="token function">AddDynamic</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AInteractableItem<span class="token double-colon punctuation">::</span>OnOverlapBegin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TriggerVolume<span class="token operator">-></span>OnComponentEndOverlap<span class="token punctuation">.</span><span class="token function">AddDynamic</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AInteractableItem<span class="token double-colon punctuation">::</span>OnOverlapEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AInteractableItem</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 每帧去旋转</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>bNeedRotate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        FRotator NewRotation <span class="token operator">=</span> <span class="token function">GetActorRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        NewRotation<span class="token punctuation">.</span>Yaw <span class="token operator">+=</span> RotationRate <span class="token operator">*</span> DeltaTime<span class="token punctuation">;</span>
+        <span class="token function">SetActorRotation</span><span class="token punctuation">(</span>NewRotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AInteractableItem</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AInteractableItem</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<h2 id="爆炸物实现"><a href="#爆炸物实现" class="headerlink" title="爆炸物实现"></a>爆炸物实现</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/InteractableItem.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"ExplosiveItem.generated.h"</span></span>
+
+<span class="token comment">/**
+ * 
+ */</span>
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> AExplosiveItem <span class="token operator">:</span> <span class="token keyword">public</span> AInteractableItem
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">AExplosiveItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 爆炸物的伤害数值</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Damage"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> Damage<span class="token punctuation">;</span>
+    
+    <span class="token comment">// UE的伤害机制</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Damage"</span><span class="token punctuation">)</span>
+    TSubclassOf<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">UDamageType</span><span class="token operator">></span> DamageTypeClass<span class="token punctuation">;</span>
+    
+<span class="token keyword">public</span><span class="token operator">:</span>
+    
+    <span class="token comment">// 重写</span>
+    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/ExplosiveItem.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MainPlayer.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Kismet/GameplayStatics.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Sound/SoundCue.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/SphereComponent.h"</span></span>
+
+<span class="token class-name">AExplosiveItem</span><span class="token double-colon punctuation">::</span><span class="token function">AExplosiveItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 硬编码爆炸物根组件大小</span>
+    TriggerVolume<span class="token operator">-></span><span class="token function">SetSphereRadius</span><span class="token punctuation">(</span><span class="token number">50.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 伤害</span>
+    Damage <span class="token operator">=</span> <span class="token number">20.0f</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AExplosiveItem</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>OverlappedComponent<span class="token punctuation">,</span> OtherActor<span class="token punctuation">,</span> OtherComp<span class="token punctuation">,</span> OtherBodyIndex<span class="token punctuation">,</span> bFromSweep<span class="token punctuation">,</span> SweepResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">const</span> AMainPlayer<span class="token operator">*</span> MainPlayer <span class="token operator">=</span> <span class="token generic-function"><span class="token function">Cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>AMainPlayer<span class="token operator">></span></span></span><span class="token punctuation">(</span>OtherActor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>OtherActor<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>OverlapParticle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">UGameplayStatics</span><span class="token double-colon punctuation">::</span><span class="token function">SpawnEmitterAtLocation</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> OverlapParticle<span class="token punctuation">,</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>OverlapSound<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">UGameplayStatics</span><span class="token double-colon punctuation">::</span><span class="token function">PlaySound2D</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> OverlapSound<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token comment">// 发出伤害</span>
+        <span class="token class-name">UGameplayStatics</span><span class="token double-colon punctuation">::</span><span class="token function">ApplyDamage</span><span class="token punctuation">(</span>OtherActor<span class="token punctuation">,</span> Damage<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> DamageTypeClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token function">Destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AExplosiveItem</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>OverlappedComponent<span class="token punctuation">,</span> OtherActor<span class="token punctuation">,</span> OtherComp<span class="token punctuation">,</span> OtherBodyIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">爆炸物的伤害机制实现后 还得去 MainPlayer 感受这个伤害
+  
+<span class="token comment">// 受伤处理函数</span>
+<span class="token keyword">virtual</span> <span class="token keyword">float</span> <span class="token function">TakeDamage</span><span class="token punctuation">(</span><span class="token keyword">float</span> Damage<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">FDamageEvent</span> <span class="token keyword">const</span><span class="token operator">&amp;</span> DamageEvent<span class="token punctuation">,</span> AController<span class="token operator">*</span> EventInstigator<span class="token punctuation">,</span> AActor<span class="token operator">*</span> DamageCauser<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">float</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">TakeDamage</span><span class="token punctuation">(</span><span class="token keyword">float</span> Damage<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">FDamageEvent</span> <span class="token keyword">const</span><span class="token operator">&amp;</span> DamageEvent<span class="token punctuation">,</span> AController<span class="token operator">*</span> EventInstigator<span class="token punctuation">,</span> AActor<span class="token operator">*</span> DamageCauser<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Health <span class="token operator">-</span> Damage <span class="token operator">&lt;=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Health <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Health <span class="token operator">-</span> Damage<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> MaxHealth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        Health <span class="token operator">-=</span> Damage<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> Health<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="可拾取道具的基类"><a href="#可拾取道具的基类" class="headerlink" title="可拾取道具的基类"></a>可拾取道具的基类</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/InteractableItem.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"PickupItem.generated.h"</span></span>
+
+<span class="token comment">/**
+ * 
+ */</span>
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> APickupItem <span class="token operator">:</span> <span class="token keyword">public</span> AInteractableItem
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">APickupItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 拾取事件 BlueprintImplementableevent 的意思就是 蓝图中可实现事件 所以这个不再是函数 是事件 所以 也不需要在 cpp 中写</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintImplementableEvent<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"pickup"</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">OnPickup</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">class</span> <span class="token class-name">AMainPlayer</span><span class="token operator">*</span> MainPlayer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GamePlay/PickupItem.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MainPlayer.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Kismet/GameplayStatics.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Sound/SoundCue.h"</span></span>
+
+<span class="token class-name">APickupItem</span><span class="token double-colon punctuation">::</span><span class="token function">APickupItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">APickupItem</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">,</span> <span class="token keyword">bool</span> bFromSweep<span class="token punctuation">,</span> <span class="token keyword">const</span> FHitResult<span class="token operator">&amp;</span> SweepResult<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapBegin</span><span class="token punctuation">(</span>OverlappedComponent<span class="token punctuation">,</span> OtherActor<span class="token punctuation">,</span> OtherComp<span class="token punctuation">,</span> OtherBodyIndex<span class="token punctuation">,</span> bFromSweep<span class="token punctuation">,</span> SweepResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">const</span> AMainPlayer<span class="token operator">*</span> MainPlayer <span class="token operator">=</span> <span class="token generic-function"><span class="token function">Cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>AMainPlayer<span class="token operator">></span></span></span><span class="token punctuation">(</span>OtherActor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>OtherActor<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>OverlapParticle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">UGameplayStatics</span><span class="token double-colon punctuation">::</span><span class="token function">SpawnEmitterAtLocation</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> OverlapParticle<span class="token punctuation">,</span> <span class="token function">GetActorLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>OverlapSound<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">UGameplayStatics</span><span class="token double-colon punctuation">::</span><span class="token function">PlaySound2D</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> OverlapSound<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token comment">// 触发拾取事件</span>
+        <span class="token function">OnPickup</span><span class="token punctuation">(</span>MainPlayer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token function">Destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">APickupItem</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>UPrimitiveComponent<span class="token operator">*</span> OverlappedComponent<span class="token punctuation">,</span> AActor<span class="token operator">*</span> OtherActor<span class="token punctuation">,</span> UPrimitiveComponent<span class="token operator">*</span> OtherComp<span class="token punctuation">,</span> int32 OtherBodyIndex<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">OnOverlapEnd</span><span class="token punctuation">(</span>OverlappedComponent<span class="token punctuation">,</span> OtherActor<span class="token punctuation">,</span> OtherComp<span class="token punctuation">,</span> OtherBodyIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<h2 id="血瓶之类的拾取都在蓝图实现"><a href="#血瓶之类的拾取都在蓝图实现" class="headerlink" title="血瓶之类的拾取都在蓝图实现"></a>血瓶之类的拾取都在蓝图实现</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">材质选择 粒子特效 在此就不详解</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220723150813427.png" alt="image-20220723150813427"></p>
+
             </div>
 
             <!-- Post Comments -->
