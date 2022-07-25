@@ -194,6 +194,258 @@
 	抽象: 由于不能掌握全部的复杂对象 我们选择忽视他的非本质问题 而去处理泛化和理想化了的对象模型
 */</span></code></pre>
 
+<h2 id="分解思想代码"><a href="#分解思想代码" class="headerlink" title="分解思想代码"></a>分解思想代码</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// .h</span>
+<span class="token keyword">class</span> <span class="token class-name">Point</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">int</span> x<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Line</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	Point start<span class="token punctuation">;</span>
+    Point end<span class="token punctuation">;</span>
+
+	<span class="token function">Line</span><span class="token punctuation">(</span><span class="token keyword">const</span> Point<span class="token operator">&amp;</span> start<span class="token punctuation">,</span> <span class="token keyword">const</span> Point<span class="token operator">&amp;</span> end<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token operator">-></span>start <span class="token operator">=</span> start<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">-></span>end <span class="token operator">=</span> end<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Rect</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	Point leftUp<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> width<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> height<span class="token punctuation">;</span>
+
+	<span class="token function">Rect</span><span class="token punctuation">(</span><span class="token keyword">const</span> Point<span class="token operator">&amp;</span> leftUp<span class="token punctuation">,</span> <span class="token keyword">int</span> width<span class="token punctuation">,</span> <span class="token keyword">int</span> height<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token operator">-></span>leftUp <span class="token operator">=</span> leftUp<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">-></span>width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token operator">-></span>height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Circle</span><span class="token punctuation">&#123;</span>
+
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// cpp</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MainForm</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Form</span></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+	Point p1<span class="token punctuation">;</span>
+	Point p2<span class="token punctuation">;</span>
+
+	vector<span class="token operator">&lt;</span>Line<span class="token operator">></span> lineVector<span class="token punctuation">;</span>
+	vector<span class="token operator">&lt;</span>Rect<span class="token operator">></span> rectVector<span class="token punctuation">;</span>
+	<span class="token comment">//</span>
+	vector<span class="token operator">&lt;</span>Circle<span class="token operator">></span> circleVector<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token function">MainForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token keyword">protected</span><span class="token operator">:</span>
+
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnMouseDown</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnMouseUp</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnPaint</span><span class="token punctuation">(</span><span class="token keyword">const</span> PaintEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token class-name">MainForm</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseDown</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	p1<span class="token punctuation">.</span>x <span class="token operator">=</span> e<span class="token punctuation">.</span>X<span class="token punctuation">;</span>
+	p1<span class="token punctuation">.</span>y <span class="token operator">=</span> e<span class="token punctuation">.</span>Y<span class="token punctuation">;</span>
+
+	<span class="token comment">//...</span>
+	<span class="token class-name">Form</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseDown</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">MainForm</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseUp</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	p2<span class="token punctuation">.</span>x <span class="token operator">=</span> e<span class="token punctuation">.</span>X<span class="token punctuation">;</span>
+	p2<span class="token punctuation">.</span>y <span class="token operator">=</span> e<span class="token punctuation">.</span>Y<span class="token punctuation">;</span>
+
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>rdoLine<span class="token punctuation">.</span>Checked<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		Line <span class="token function">line</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span> p2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		lineVector<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>rdoRect<span class="token punctuation">.</span>Checked<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> width <span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span>x <span class="token operator">-</span> p1<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> height <span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span>y <span class="token operator">-</span> p1<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		Rect <span class="token function">rect</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		rectVector<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>rect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">//</span>
+	<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+		circleVector<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>circle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">//...</span>
+	<span class="token keyword">this</span><span class="token operator">-></span><span class="token function">Refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token class-name">Form</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseUp</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">MainForm</span><span class="token double-colon punctuation">::</span><span class="token function">OnPaint</span><span class="token punctuation">(</span><span class="token keyword">const</span> PaintEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+	<span class="token comment">//</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> lineVector<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		e<span class="token punctuation">.</span>Graphics<span class="token punctuation">.</span><span class="token function">DrawLine</span><span class="token punctuation">(</span>Pens<span class="token punctuation">.</span>Red<span class="token punctuation">,</span>
+			lineVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">.</span>x<span class="token punctuation">,</span> 
+			lineVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">.</span>y<span class="token punctuation">,</span>
+			lineVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>end<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+			lineVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>end<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">//</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> rectVector<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		e<span class="token punctuation">.</span>Graphics<span class="token punctuation">.</span><span class="token function">DrawRectangle</span><span class="token punctuation">(</span>Pens<span class="token punctuation">.</span>Red<span class="token punctuation">,</span>
+			rectVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>leftUp<span class="token punctuation">,</span>
+			rectVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>width<span class="token punctuation">,</span>
+			rectVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">//</span>
+	<span class="token comment">//</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> circleVector<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		e<span class="token punctuation">.</span>Graphics<span class="token punctuation">.</span><span class="token function">DrawCircle</span><span class="token punctuation">(</span>Pens<span class="token punctuation">.</span>Red<span class="token punctuation">,</span>
+			circleVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">//</span>
+	<span class="token class-name">Form</span><span class="token double-colon punctuation">::</span><span class="token function">OnPaint</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="抽象思想代码"><a href="#抽象思想代码" class="headerlink" title="抽象思想代码"></a>抽象思想代码</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Shape</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Draw</span><span class="token punctuation">(</span><span class="token keyword">const</span> Graphics<span class="token operator">&amp;</span> g<span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">virtual</span> <span class="token operator">~</span><span class="token function">Shape</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Point</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">int</span> x<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Line</span><span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Shape</span></span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	Point start<span class="token punctuation">;</span>
+	Point end<span class="token punctuation">;</span>
+
+	<span class="token function">Line</span><span class="token punctuation">(</span><span class="token keyword">const</span> Point<span class="token operator">&amp;</span> start<span class="token punctuation">,</span> <span class="token keyword">const</span> Point<span class="token operator">&amp;</span> end<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token operator">-></span>start <span class="token operator">=</span> start<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token operator">-></span>end <span class="token operator">=</span> end<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">// µœ÷◊‘º∫µƒDraw£¨∏∫‘ª≠◊‘º∫</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Draw</span><span class="token punctuation">(</span><span class="token keyword">const</span> Graphics<span class="token operator">&amp;</span> g<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		g<span class="token punctuation">.</span><span class="token function">DrawLine</span><span class="token punctuation">(</span>Pens<span class="token punctuation">.</span>Red<span class="token punctuation">,</span> 
+			start<span class="token punctuation">.</span>x<span class="token punctuation">,</span> start<span class="token punctuation">.</span>y<span class="token punctuation">,</span>end<span class="token punctuation">.</span>x<span class="token punctuation">,</span> end<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Rect</span><span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Shape</span></span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	Point leftUp<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> width<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> height<span class="token punctuation">;</span>
+
+	<span class="token function">Rect</span><span class="token punctuation">(</span><span class="token keyword">const</span> Point<span class="token operator">&amp;</span> leftUp<span class="token punctuation">,</span> <span class="token keyword">int</span> width<span class="token punctuation">,</span> <span class="token keyword">int</span> height<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token operator">-></span>leftUp <span class="token operator">=</span> leftUp<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token operator">-></span>width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token operator">-></span>height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">// µœ÷◊‘º∫µƒDraw£¨∏∫‘ª≠◊‘º∫</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Draw</span><span class="token punctuation">(</span><span class="token keyword">const</span> Graphics<span class="token operator">&amp;</span> g<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		g<span class="token punctuation">.</span><span class="token function">DrawRectangle</span><span class="token punctuation">(</span>Pens<span class="token punctuation">.</span>Red<span class="token punctuation">,</span>
+			leftUp<span class="token punctuation">,</span>width<span class="token punctuation">,</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">//‘ˆº”</span>
+<span class="token keyword">class</span> <span class="token class-name">Circle</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Shape</span></span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token comment">// µœ÷◊‘º∫µƒDraw£¨∏∫‘ª≠◊‘º∫</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Draw</span><span class="token punctuation">(</span><span class="token keyword">const</span> Graphics<span class="token operator">&amp;</span> g<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		g<span class="token punctuation">.</span><span class="token function">DrawCircle</span><span class="token punctuation">(</span>Pens<span class="token punctuation">.</span>Red<span class="token punctuation">,</span>
+			<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">MainForm</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Form</span></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+	Point p1<span class="token punctuation">;</span>
+	Point p2<span class="token punctuation">;</span>
+
+	<span class="token comment">//’Î∂‘À˘”––Œ◊¥</span>
+	vector<span class="token operator">&lt;</span>Shape<span class="token operator">*</span><span class="token operator">></span> shapeVector<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token function">MainForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token keyword">protected</span><span class="token operator">:</span>
+
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnMouseDown</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnMouseUp</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">OnPaint</span><span class="token punctuation">(</span><span class="token keyword">const</span> PaintEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token class-name">MainForm</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseDown</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	p1<span class="token punctuation">.</span>x <span class="token operator">=</span> e<span class="token punctuation">.</span>X<span class="token punctuation">;</span>
+	p1<span class="token punctuation">.</span>y <span class="token operator">=</span> e<span class="token punctuation">.</span>Y<span class="token punctuation">;</span>
+
+	<span class="token comment">//...</span>
+	<span class="token class-name">Form</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseDown</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">MainForm</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseUp</span><span class="token punctuation">(</span><span class="token keyword">const</span> MouseEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	p2<span class="token punctuation">.</span>x <span class="token operator">=</span> e<span class="token punctuation">.</span>X<span class="token punctuation">;</span>
+	p2<span class="token punctuation">.</span>y <span class="token operator">=</span> e<span class="token punctuation">.</span>Y<span class="token punctuation">;</span>
+
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>rdoLine<span class="token punctuation">.</span>Checked<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		shapeVector<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Line</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span>p2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>rdoRect<span class="token punctuation">.</span>Checked<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> width <span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span>x <span class="token operator">-</span> p1<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> height <span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span>y <span class="token operator">-</span> p1<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		shapeVector<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Rect</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">//∏ƒ±‰</span>
+	<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token comment">//...</span>
+		shapeVector<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>circle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">//...</span>
+	<span class="token keyword">this</span><span class="token operator">-></span><span class="token function">Refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token class-name">Form</span><span class="token double-colon punctuation">::</span><span class="token function">OnMouseUp</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">MainForm</span><span class="token double-colon punctuation">::</span><span class="token function">OnPaint</span><span class="token punctuation">(</span><span class="token keyword">const</span> PaintEventArgs<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+	<span class="token comment">//’Î∂‘À˘”––Œ◊¥</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> shapeVector<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+		shapeVector<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-></span><span class="token function">Draw</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Graphics<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//∂‡Ã¨µ˜”√£¨∏˜∏∫∆‰‘</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">//...</span>
+	<span class="token class-name">Form</span><span class="token double-colon punctuation">::</span><span class="token function">OnPaint</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 
             </div>
 

@@ -423,6 +423,23 @@ PlayerInputComponent<span class="token operator">-></span><span class="token fun
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220713000728003.png" alt="image-20220713000728003"></p>
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimagesimage-20220713002414609.png" alt="image-20220713002414609"></p>
 <p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220713000754986.png" alt="image-20220713000754986"></p>
+<h2 id="受伤处理"><a href="#受伤处理" class="headerlink" title="受伤处理"></a>受伤处理</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 受伤处理函数</span>
+<span class="token keyword">virtual</span> <span class="token keyword">float</span> <span class="token function">TakeDamage</span><span class="token punctuation">(</span><span class="token keyword">float</span> Damage<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">FDamageEvent</span> <span class="token keyword">const</span><span class="token operator">&amp;</span> DamageEvent<span class="token punctuation">,</span> AController<span class="token operator">*</span> EventInstigator<span class="token punctuation">,</span> AActor<span class="token operator">*</span> DamageCauser<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">float</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">TakeDamage</span><span class="token punctuation">(</span><span class="token keyword">float</span> Damage<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">FDamageEvent</span> <span class="token keyword">const</span><span class="token operator">&amp;</span> DamageEvent<span class="token punctuation">,</span> AController<span class="token operator">*</span> EventInstigator<span class="token punctuation">,</span> AActor<span class="token operator">*</span> DamageCauser<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Health <span class="token operator">-</span> Damage <span class="token operator">&lt;=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Health <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Health <span class="token operator">-</span> Damage<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> MaxHealth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        Health <span class="token operator">-=</span> Damage<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> Health<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="冲刺"><a href="#冲刺" class="headerlink" title="冲刺"></a>冲刺</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"></code></pre>
+
+
+
 
             </div>
 
