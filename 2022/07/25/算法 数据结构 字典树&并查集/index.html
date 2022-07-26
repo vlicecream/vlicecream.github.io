@@ -230,6 +230,54 @@ startsWith
 	因为既然能匹配到最后一个字符，那后面一定有单词是以它为前缀的
 */</span></code></pre>
 
+<h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">1.</span> 什么叫并查集
+  不相交集是一种描述不相交集合的数据结构，若一个问题涉及多个元素，可划归不同集合
+  同属一个集合内的元素等价（即可用任意一个元素作为代表），不同集合内的元素不等价
+  
+  当我们问某些元素是否等价时，例如亲戚问题中问两人否互为亲戚关系时，就可以用不相交集来解决</code></pre>
+
+<h2 id="并查集的基本操作"><a href="#并查集的基本操作" class="headerlink" title="并查集的基本操作"></a>并查集的基本操作</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">makeSet</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token operator">:</span> 建立一个新的并查集<span class="token punctuation">,</span>其中包含s个单元素集合
+
+<span class="token function">unionSet</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token operator">:</span> 把元素x和元素y所在的集合合并<span class="token punctuation">,</span>要求x和y所在的集合不相交<span class="token punctuation">,</span>如果相交则不合并
+  
+<span class="token function">find</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">:</span> 找到元素x所在的集合的代表<span class="token punctuation">,</span>该操作也可以用于判断两个元素是否在同一集合<span class="token punctuation">,</span>只要将它们各自的代表比较一下就可以了</code></pre>
+
+<h2 id="c-并查集的实现"><a href="#c-并查集的实现" class="headerlink" title="c++ 并查集的实现"></a>c++ 并查集的实现</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">Find</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> parent<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>parent<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">!=</span> index<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            parent<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">Find</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> parent<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> parent<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> parent<span class="token punctuation">,</span> <span class="token keyword">int</span> index1<span class="token punctuation">,</span> <span class="token keyword">int</span> index2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        parent<span class="token punctuation">[</span><span class="token function">Find</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> index1<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">Find</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> index2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">int</span> <span class="token function">findCircleNum</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> isConnected<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> cities <span class="token operator">=</span> isConnected<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">parent</span><span class="token punctuation">(</span>cities<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cities<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            parent<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cities<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> cities<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>isConnected<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token function">Union</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">int</span> provinces <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cities<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>parent<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                provinces<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> provinces<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
 
             </div>
 

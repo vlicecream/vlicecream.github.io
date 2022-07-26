@@ -436,9 +436,329 @@ PlayerInputComponent<span class="token operator">-></span><span class="token fun
     <span class="token keyword">return</span> Health<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h2 id="冲刺"><a href="#冲刺" class="headerlink" title="冲刺"></a>冲刺</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"></code></pre>
+<h2 id="冲刺"><a href="#冲刺" class="headerlink" title="冲刺"></a>冲刺</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">```
+
+## 代码总结
+
+```cpp
+<span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"CoreMinimal.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/Character.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MainPlayer.generated.h"</span></span>
+
+<span class="token comment">// 角色移动状态</span>
+<span class="token function">UENUM</span><span class="token punctuation">(</span>BlueprintType<span class="token punctuation">)</span>
+<span class="token keyword">enum</span> <span class="token keyword">class</span> <span class="token class-name">EPlayerMovementStatus</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token class-name">uint8</span></span>
+<span class="token punctuation">&#123;</span>
+    EPMS_Normal <span class="token function">UMETA</span><span class="token punctuation">(</span>DisplayName <span class="token operator">=</span> <span class="token string">"Normal"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    EPMS_Sprinting <span class="token function">UMETA</span><span class="token punctuation">(</span>DisplayName <span class="token operator">=</span> <span class="token string">"Sprinting"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    EPMS_Dead <span class="token function">UMETA</span><span class="token punctuation">(</span>DisplayName <span class="token operator">=</span> <span class="token string">"Dead"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 角色耐力状态</span>
+<span class="token function">UENUM</span><span class="token punctuation">(</span>BlueprintType<span class="token punctuation">)</span>
+<span class="token keyword">enum</span> <span class="token keyword">class</span> <span class="token class-name">EPlayerStaminaStatus</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token class-name">uint8</span></span>
+<span class="token punctuation">&#123;</span>
+    EPSS_Normal <span class="token function">UMETA</span><span class="token punctuation">(</span>DisplayName <span class="token operator">=</span> <span class="token string">"Normal"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    EPSS_Exhausted <span class="token function">UMETA</span><span class="token punctuation">(</span>DisplayName <span class="token operator">=</span> <span class="token string">"Exhausted"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">// 精疲力竭的</span>
+    EPSS_ExhausedRecovering <span class="token function">UMETA</span><span class="token punctuation">(</span>DisplayName <span class="token operator">=</span> <span class="token string">"ExhausedRecovering"</span><span class="token punctuation">)</span>  <span class="token comment">// 精疲力竭的恢复状态</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token function">UCLASS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GETSTARTED_API</span> AMainPlayer <span class="token operator">:</span> <span class="token keyword">public</span> ACharacter
+<span class="token punctuation">&#123;</span>
+	<span class="token function">GENERATED_BODY</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token comment">// Sets default values for this character's properties</span>
+	<span class="token function">AMainPlayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    
+    <span class="token comment">// 创建 悬臂 &amp; 相机 组件</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"SpringArmComponent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">class</span> <span class="token class-name">USpringArmComponent</span><span class="token operator">*</span> SpringArm<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"CameraComponent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">class</span> <span class="token class-name">UCameraComponent</span><span class="token operator">*</span> FollowCamera<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 转向速率</span>
+    <span class="token keyword">float</span> BaseTurnRate<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> BaseLookUpRate<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 人物的 血条 &amp; 耐力值 &amp; 金币</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditDefaultsOnly<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">float</span> MaxHealth<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> Health<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditDefaultsOnly<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">float</span> MaxStamina<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> Stamina<span class="token punctuation">;</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    <span class="token keyword">int</span> Coins<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 人物冲刺相关(1. 冲刺速度 2. 3. 耐力下降速度 4. 耐力疲劳区 5. 耐力状态 6. 移动状态 7. 是否按下冲刺键 8. )</span>
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> RunningSpeed<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadOnly<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> SprintingSpeed<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> StaminaConsumeRate<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>EditAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">,</span> meta<span class="token operator">=</span><span class="token punctuation">(</span>ClampMin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> ClampMax <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> UIMin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> UIMax <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">float</span> ExhaustedStaminaRatio<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    EPlayerStaminaStatus StaminaStatus<span class="token punctuation">;</span>
+    
+    <span class="token function">UPROPERTY</span><span class="token punctuation">(</span>VisibleAnywhere<span class="token punctuation">,</span> BlueprintReadWrite<span class="token punctuation">,</span> Category<span class="token operator">=</span><span class="token string">"Player Status"</span><span class="token punctuation">)</span>
+    EPlayerMovementStatus MovementStatus<span class="token punctuation">;</span>
+    
+    <span class="token keyword">bool</span> bLeftShiftKeyDown<span class="token punctuation">;</span>
+    
+    
+<span class="token keyword">protected</span><span class="token operator">:</span>
+	<span class="token comment">// Called when the game starts or when spawned</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>	
+	<span class="token comment">// Called every frame</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Called to bind functionality to input</span>
+	<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span><span class="token keyword">class</span> <span class="token class-name">UInputComponent</span><span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// jump函数可以继承父类的jump();</span>
+    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Jump</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 绑定按键映射函数</span>
+    <span class="token keyword">void</span> <span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 鼠标映射函数</span>
+    <span class="token keyword">void</span> <span class="token function">Turn</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">LookUp</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 键盘 手柄 up down left right 映射函数</span>
+    <span class="token keyword">void</span> <span class="token function">TurnAtRate</span><span class="token punctuation">(</span><span class="token keyword">float</span> Rate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">LookUpAtRate</span><span class="token punctuation">(</span><span class="token keyword">float</span> Rate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 增加血量(拾取血瓶)</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintCallable<span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">IncreaseHealth</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 增加耐力(拾取蓝瓶)</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintCallable<span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">IncreaseStamina</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 增加金币(拾取金币)</span>
+    <span class="token function">UFUNCTION</span><span class="token punctuation">(</span>BlueprintCallable<span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">IncreaseCoin</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 受伤处理函数</span>
+    <span class="token keyword">virtual</span> <span class="token keyword">float</span> <span class="token function">TakeDamage</span><span class="token punctuation">(</span><span class="token keyword">float</span> Damage<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">FDamageEvent</span> <span class="token keyword">const</span><span class="token operator">&amp;</span> DamageEvent<span class="token punctuation">,</span> AController<span class="token operator">*</span> EventInstigator<span class="token punctuation">,</span> AActor<span class="token operator">*</span> DamageCauser<span class="token punctuation">)</span> <span class="token keyword">override</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 按下(抬起)冲刺键位 改变键位状态</span>
+    FORCEINLINE <span class="token keyword">void</span> <span class="token function">LeftShiftKeyDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> bLeftShiftKeyDown <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    FORCEINLINE <span class="token keyword">void</span> <span class="token function">LeftShiftKeyUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> bLeftShiftKeyDown <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</code></pre>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// Fill out your copyright notice in the Description page of Project Settings.</span>
 
 
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MainPlayer.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/SpringArmComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Camera/CameraComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/CapsuleComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Components/InputComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/PlayerController.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"GameFramework/CharacterMovementComponent.h"</span></span>
+
+<span class="token comment">// Sets default values</span>
+<span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">AMainPlayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+ 	<span class="token comment">// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.</span>
+	PrimaryActorTick<span class="token punctuation">.</span>bCanEverTick <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 悬臂(附加到根组件, 硬编码600) &amp; 相机(附加到悬臂组件) 组件</span>
+    SpringArm <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>USpringArmComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"SpringArm"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    SpringArm<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span><span class="token function">GetRootComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    SpringArm<span class="token operator">-></span>TargetArmLength <span class="token operator">=</span> <span class="token number">600.0f</span><span class="token punctuation">;</span>
+    FollowCamera <span class="token operator">=</span> <span class="token generic-function"><span class="token function">CreateDefaultSubobject</span><span class="token generic class-name"><span class="token operator">&lt;</span>UCameraComponent<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"FollowCamera"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    FollowCamera<span class="token operator">-></span><span class="token function">SetupAttachment</span><span class="token punctuation">(</span>SpringArm<span class="token punctuation">,</span> USpringArmComponent<span class="token double-colon punctuation">::</span>SocketName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 让 悬臂可以旋转视角</span>
+    SpringArm<span class="token operator">-></span>bUsePawnControlRotation <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 给人物胶囊体 硬编码(默认值)</span>
+    <span class="token function">GetCapsuleComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">SetCapsuleSize</span><span class="token punctuation">(</span><span class="token number">35.0f</span><span class="token punctuation">,</span> <span class="token number">100.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    bUseControllerRotationPitch <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    bUseControllerRotationRoll <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    bUseControllerRotationYaw <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 添加 视角转移然后移动 人物转向的动作 &amp; 设置转向速度</span>
+    <span class="token function">GetCharacterMovement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span>bOrientRotationToMovement <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token function">GetCharacterMovement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span>RotationRate <span class="token operator">=</span> <span class="token function">FRotator</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">500.0f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置 跳跃高度(z轴的速率) &amp; 跳跃过程可控制越大(比如 空中移动)</span>
+    <span class="token function">GetCharacterMovement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span>JumpZVelocity <span class="token operator">=</span> <span class="token number">500.0f</span><span class="token punctuation">;</span>
+    <span class="token function">GetCharacterMovement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span>AirControl <span class="token operator">=</span> <span class="token number">0.15f</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 转向速率初始化</span>
+    BaseTurnRate <span class="token operator">=</span> <span class="token number">65.0f</span><span class="token punctuation">;</span>
+    BaseLookUpRate <span class="token operator">=</span> <span class="token number">65.0f</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 初始化 血条 &amp; 耐力值 &amp; 金币</span>
+    MaxHealth <span class="token operator">=</span> <span class="token number">100.0f</span><span class="token punctuation">;</span>
+    Health <span class="token operator">=</span> MaxHealth<span class="token punctuation">;</span>
+    MaxStamina <span class="token operator">=</span> <span class="token number">150.0f</span><span class="token punctuation">;</span>
+    Stamina <span class="token operator">=</span> MaxStamina<span class="token punctuation">;</span>
+    Coins <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 冲刺相关初始化</span>
+    StaminaConsumeRate <span class="token operator">=</span> <span class="token number">20.0f</span><span class="token punctuation">;</span>
+    ExhaustedStaminaRatio <span class="token operator">=</span> <span class="token number">0.167f</span><span class="token punctuation">;</span>
+    RunningSpeed <span class="token operator">=</span> <span class="token number">600.0f</span><span class="token punctuation">;</span>
+    SprintingSpeed <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
+    StaminaStatus <span class="token operator">=</span> EPlayerStaminaStatus<span class="token double-colon punctuation">::</span>EPSS_Normal<span class="token punctuation">;</span>
+    MovementStatus <span class="token operator">=</span> EPlayerMovementStatus<span class="token double-colon punctuation">::</span>EPMS_Normal<span class="token punctuation">;</span>
+    bLeftShiftKeyDown <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called when the game starts or when spawned</span>
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">BeginPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called every frame</span>
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span><span class="token keyword">float</span> DeltaTime<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Tick</span><span class="token punctuation">(</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// Called to bind functionality to input</span>
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>UInputComponent<span class="token operator">*</span> PlayerInputComponent<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">SetupPlayerInputComponent</span><span class="token punctuation">(</span>PlayerInputComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">check</span><span class="token punctuation">(</span>PlayerInputComponent<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// check 是检查是否有效的宏</span>
+    
+    <span class="token comment">// action绑定 分为 按下 和 抬起 两个事件 所以 跳跃也需要绑定两个</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAction</span><span class="token punctuation">(</span><span class="token string">"Jump"</span><span class="token punctuation">,</span> IE_Pressed<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>Jump<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAction</span><span class="token punctuation">(</span><span class="token string">"Jump"</span><span class="token punctuation">,</span> IE_Released<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>ACharacter<span class="token double-colon punctuation">::</span>StopJumping<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 冲刺键位绑定</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAction</span><span class="token punctuation">(</span><span class="token string">"Sprint"</span><span class="token punctuation">,</span> IE_Pressed<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>LeftShiftKeyDown<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAction</span><span class="token punctuation">(</span><span class="token string">"Sprint"</span><span class="token punctuation">,</span> IE_Released<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>LeftShiftKeyUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 绑定轴事件 (左右移动, 视角左右上下移动)</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token string">"MoveForward"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>MoveForward<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token string">"MoveRight"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>MoveRight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token string">"Turn"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>Turn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token string">"LookUp"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>LookUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token string">"TurnAtRate"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>TurnAtRate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PlayerInputComponent<span class="token operator">-></span><span class="token function">BindAxis</span><span class="token punctuation">(</span><span class="token string">"LookUpAtRate"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>AMainPlayer<span class="token double-colon punctuation">::</span>LookUpAtRate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">Jump</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 简单的跳跃直接用父类的即可</span>
+    <span class="token class-name">Super</span><span class="token double-colon punctuation">::</span><span class="token function">Jump</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">MoveForward</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 做一个 性能优化 及 安全检测(空指针)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Controller <span class="token operator">!=</span> <span class="token keyword">nullptr</span> <span class="token operator">&amp;&amp;</span> Value <span class="token operator">!=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        FRotator Rotation <span class="token operator">=</span> Controller<span class="token operator">-></span><span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FRotator <span class="token function">YawRotation</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">,</span> Rotation<span class="token punctuation">.</span>Yaw<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FVector Direction <span class="token operator">=</span> <span class="token function">FRotationMatrix</span><span class="token punctuation">(</span>YawRotation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetUnitAxis</span><span class="token punctuation">(</span>EAxis<span class="token double-colon punctuation">::</span>X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">AddMovementInput</span><span class="token punctuation">(</span>Direction<span class="token punctuation">,</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">MoveRight</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Controller <span class="token operator">!=</span> <span class="token keyword">nullptr</span> <span class="token operator">&amp;&amp;</span> Value <span class="token operator">!=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        FRotator Rotation <span class="token operator">=</span> Controller<span class="token operator">-></span><span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FRotator <span class="token function">YawRotation</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">,</span> Rotation<span class="token punctuation">.</span>Yaw<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FVector Direction <span class="token operator">=</span> <span class="token function">FRotationMatrix</span><span class="token punctuation">(</span>YawRotation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetUnitAxis</span><span class="token punctuation">(</span>EAxis<span class="token double-colon punctuation">::</span>Y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">AddMovementInput</span><span class="token punctuation">(</span>Direction<span class="token punctuation">,</span> Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">Turn</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Value <span class="token operator">!=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">AddControllerYawInput</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">LookUp</span><span class="token punctuation">(</span><span class="token keyword">float</span> Value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">&lt;</span> <span class="token number">270.0f</span> <span class="token operator">&amp;&amp;</span> <span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">></span> <span class="token number">180.0f</span> <span class="token operator">&amp;&amp;</span> Value <span class="token operator">></span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">&lt;</span> <span class="token number">180.0f</span> <span class="token operator">&amp;&amp;</span> <span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">></span> <span class="token number">45</span> <span class="token operator">&amp;&amp;</span> Value <span class="token operator">&lt;</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">AddControllerPitchInput</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">TurnAtRate</span><span class="token punctuation">(</span><span class="token keyword">float</span> Rate<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 因为Rate要么是1，0，-1 不可能说靠这个转动 太慢了 所以得要 * 一个基数 而且要注意帧率平衡</span>
+    <span class="token keyword">float</span> Value <span class="token operator">=</span> Rate <span class="token operator">*</span> BaseTurnRate <span class="token operator">*</span> <span class="token function">GetWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">GetDeltaSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Value <span class="token operator">!=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">AddControllerYawInput</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">LookUpAtRate</span><span class="token punctuation">(</span><span class="token keyword">float</span> Rate<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 因为Rate要么是1，0，-1 不可能说靠这个转动 太慢了 所以得要 * 一个基数 而且要注意帧率平衡</span>
+    <span class="token keyword">float</span> Value <span class="token operator">=</span> Rate <span class="token operator">*</span> BaseLookUpRate <span class="token operator">*</span> <span class="token function">GetWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">GetDeltaSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">&lt;</span> <span class="token number">270.0f</span> <span class="token operator">&amp;&amp;</span> <span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">></span> <span class="token number">180.0f</span> <span class="token operator">&amp;&amp;</span> Value <span class="token operator">></span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">&lt;</span> <span class="token number">180.0f</span> <span class="token operator">&amp;&amp;</span> <span class="token function">GetControlRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Pitch <span class="token operator">></span> <span class="token number">45</span> <span class="token operator">&amp;&amp;</span> Value <span class="token operator">&lt;</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">AddControllerPitchInput</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">IncreaseHealth</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 因为血是有限制的 所以要用到夹值</span>
+    Health <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Health <span class="token operator">+</span> value<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> MaxHealth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">IncreaseStamina</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 因为耐力是有限制的 所以要用到夹值</span>
+    Stamina <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Stamina <span class="token operator">+</span> value<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> MaxStamina<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">IncreaseCoin</span><span class="token punctuation">(</span><span class="token keyword">float</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    Coins <span class="token operator">+=</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">float</span> <span class="token class-name">AMainPlayer</span><span class="token double-colon punctuation">::</span><span class="token function">TakeDamage</span><span class="token punctuation">(</span><span class="token keyword">float</span> Damage<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">FDamageEvent</span> <span class="token keyword">const</span><span class="token operator">&amp;</span> DamageEvent<span class="token punctuation">,</span> AController<span class="token operator">*</span> EventInstigator<span class="token punctuation">,</span> AActor<span class="token operator">*</span> DamageCauser<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Health <span class="token operator">-</span> Damage <span class="token operator">&lt;=</span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Health <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Clamp</span><span class="token punctuation">(</span>Health <span class="token operator">-</span> Damage<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> MaxHealth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        Health <span class="token operator">-=</span> Damage<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> Health<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
 
             </div>
