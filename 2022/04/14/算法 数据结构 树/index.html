@@ -169,8 +169,33 @@
 	树就是特殊化的图 没有环的图就是树
 */</span></code></pre>
 
-<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><pre class="language-go" data-language="go"><code class="language-go"></code></pre>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><pre class="language-go" data-language="go"><code class="language-go">二叉树 则是每个节点都只有两个子结点 当然也会有多叉树 比如三叉树的存在</code></pre>
 
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E4%BA%8C%E5%8F%89%E6%A0%911.jpg" alt="二叉树"></p>
+<h2 id="树跟链表的区别"><a href="#树跟链表的区别" class="headerlink" title="树跟链表的区别"></a>树跟链表的区别</h2><pre class="language-go" data-language="go"><code class="language-go">其实 链表就是树 树就是链表  当链表有两个next指针的时候 其实就是树了
+就是 算法的升维思想 从一维变成了二维 从而引出了二叉搜索树的概念
+
+在链表他的查询是<span class="token function">O</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>  <span class="token string">"n"</span><span class="token punctuation">:</span> 就是链表的node个数
+在二叉搜索树中 查询就变成了<span class="token function">O</span><span class="token punctuation">(</span>log2n<span class="token punctuation">)</span> 影响时间复杂度的因素为 树的深度</code></pre>
+
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp">二叉搜索树 
+  左子树所有节点都小于根节点
+  右子树所有结点都大于根节点
+  以此类推<span class="token operator">:</span> 左右子树也分别满足这个性质
+	
+二叉搜索树的中序遍历 得到的一定是升序的
+    
+二叉搜索树查询 <span class="token string">"32"</span>
+  	判断 <span class="token number">32</span> <span class="token operator">></span> <span class="token number">27</span>
+  	往右子树找 在判断 <span class="token number">32</span> <span class="token operator">&lt;</span> <span class="token number">35</span>
+  	左子树找
+  	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    
+极端情况 
+    二叉搜索树 当插入值 没有进行特殊处理 会变成类似棍子
+    相对左右子树有一个子树极深 也就是链表形式  这样时间复杂度就大打折扣</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg" alt="未命名文件"></p>
 <h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># python</span>
 <span class="token keyword">class</span> <span class="token class-name">TreeNode</span><span class="token punctuation">:</span>
 	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -303,8 +328,6 @@ public<span class="token operator">:</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
 
-
-
 <h2 id="题目推荐"><a href="#题目推荐" class="headerlink" title="题目推荐"></a>题目推荐</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">/*
 	https://leetcode-cn.com/problems/binary-tree-preorder-traversal/submissions/  二叉树的前序遍历
 	https://leetcode-cn.com/problems/binary-tree-inorder-traversal/submissions/  二叉树的中序遍历
@@ -316,7 +339,46 @@ public<span class="token operator">:</span>
 	https://leetcode-cn.com/problems/invert-binary-tree/submissions/   翻转二叉树
 */</span></code></pre>
 
+<h2 id="平衡二叉搜索树"><a href="#平衡二叉搜索树" class="headerlink" title="平衡二叉搜索树"></a>平衡二叉搜索树</h2><pre class="language-go" data-language="go"><code class="language-go">平衡二叉搜索树 就是 没有过深的左右子树 相对来说他们是平衡的
+	但是平衡效果不是当他已经成 类似链表的时候 才去进行平衡操作
+	我们进行插入的时候 就把它变成平衡的状态
 
+平衡二叉搜索树的种类
+	avl树 红黑树 <span class="token number">2</span><span class="token operator">-</span><span class="token number">3</span>树 b树 b<span class="token operator">+</span>树  <span class="token operator">...</span></code></pre>
+
+<h2 id="avl树"><a href="#avl树" class="headerlink" title="avl树"></a>avl树</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 名字的由来 
+	作者名字
+
+<span class="token number">2.</span> 平衡因子 balance factor
+	是他的左子树高度减去右子树的高度 <span class="token punctuation">(</span>相反亦此<span class="token punctuation">)</span>
+	balance factor <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">&#125;</span>
+
+<span class="token number">3.</span> 通过旋转平衡来进行平衡
+	左旋转 右旋转 左右旋转 右左旋转
+
+<span class="token number">4.</span> avl不足
+	每个结点需要存储额外信息 且调整次数频繁</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220727222109863.png" alt="image-20220727222109863"></p>
+<h2 id="avl-四种旋转"><a href="#avl-四种旋转" class="headerlink" title="avl 四种旋转"></a>avl 四种旋转</h2><p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesavl%20%E5%9B%9B%E7%A7%8D%E6%97%8B%E8%BD%AC.jpg" alt="avl 四种旋转"></p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><pre class="language-go" data-language="go"><code class="language-go"><span class="token number">1.</span> 红黑树是一种近似平衡的二叉树
+	他的特点是保证任何一个节点的左右子树的高度差小于两倍
+
+<span class="token number">2.</span> 红黑树满足以下几点
+	<span class="token number">2.1</span> 每个结点要么是红色 要么是黑色
+	<span class="token number">2.2</span> 根节点是黑色
+	<span class="token number">2.3</span> 每个叶结点<span class="token punctuation">(</span><span class="token boolean">nil</span>结点<span class="token punctuation">,</span> 空结点<span class="token punctuation">)</span>是黑色
+	<span class="token number">2.4</span> 不能有相邻的两个红色节点
+	<span class="token number">2.5</span> 从任意结点到其每个叶结点的所有路径都包含相同数目的黑色结点
+
+<span class="token comment">/*
+	重点在于 2.4 2.5 保证了 任何一个节点的左右子树的高度差小于两倍
+*/</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%BA%A2%E9%BB%91%E6%A0%91.jpg" alt="红黑树"></p>
+<h2 id="红黑树与avl树的优劣"><a href="#红黑树与avl树的优劣" class="headerlink" title="红黑树与avl树的优劣"></a>红黑树与avl树的优劣</h2><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">1.</span> avl树更适合查询 因为他更平衡 红黑树只是近似平衡
+  
+<span class="token number">2.</span> 红黑树更适合插入 因为他插入的时候 不需要像avl那样时刻保持平衡 他只需要满足两倍差即可</code></pre>
 
 
             </div>
