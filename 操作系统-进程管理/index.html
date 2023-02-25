@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>进程管理 - Ame林汀</title><meta name="Description" content="操作系统的进程线程相关知识"><meta property="og:title" content="进程管理" />
+<meta property="og:description" content="操作系统的进程线程相关知识" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-20T21:40:32+08:00" />
+<meta property="article:modified_time" content="2022-07-20T21:40:32+08:00" /><meta property="og:site_name" content="Ame林汀" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
+
+<meta name="twitter:title" content="进程管理"/>
+<meta name="twitter:description" content="操作系统的进程线程相关知识"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/" /><link rel="next" href="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "进程管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  4012 ,
+        "url": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2022-07-20T21:40:32+08:00","dateModified": "2022-07-20T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/vlicecream.github.io\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Ame林汀"
+            },"description": "操作系统的进程线程相关知识"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame林汀"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame林汀"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">进程管理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4012 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="进程管理">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#进程的概念"><em><strong>进程的概念</strong></em></a></li>
+    <li><a href="#线程的概念"><em><strong>线程的概念</strong></em></a></li>
+    <li><a href="#进程与线程的区别"><em><strong>进程与线程的区别</strong></em></a></li>
+    <li><a href="#线程资源"><em><strong>线程资源</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#五种基本状态"><em><strong>五种基本状态</strong></em></a></li>
+    <li><a href="#进程控制"><strong>进程控制</strong></a></li>
+    <li><a href="#进程是怎么运行的"><em><strong>进程是怎么运行的</strong></em></a></li>
+    <li><a href="#处理机"><em><strong>处理机</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#先来先服务"><em><strong>先来先服务</strong></em></a></li>
+    <li><a href="#短作业优先"><em><strong>短作业优先</strong></em></a></li>
+    <li><a href="#高响应比优先调度"><em><strong>高响应比优先调度</strong></em></a></li>
+    <li><a href="#优先级调度"><em><strong>优先级调度</strong></em></a></li>
+    <li><a href="#时间片轮转调度"><em><strong>时间片轮转调度</strong></em></a></li>
+    <li><a href="#多级反馈队列调度"><em><strong>多级反馈队列调度</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#共享内存"><em><strong>共享内存</strong></em></a></li>
+    <li><a href="#管道通信"><em><strong>管道通信</strong></em></a></li>
+    <li><a href="#消息队列"><em><strong>消息队列</strong></em></a></li>
+    <li><a href="#信号量"><em><strong>信号量</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="进程与线程"><em><strong>进程与线程</strong></em></h1>
+<h2 id="进程的概念"><em><strong>进程的概念</strong></em></h2>
+<ol>
+<li><strong>进程的概念</strong>
+<ul>
+<li><em>指一个应用程序运行了起来, 进程是操作系统分配资源的一个最小单位</em></li>
+</ul>
+</li>
+<li><strong>进程的结构</strong>
+<ul>
+<li>***控制块（PCB）：*<em>存放着进程的唯一ID，如果运行了多个微信进程，他们的ID也都是不一样的</em></li>
+<li>***数据块：*<em>存放着进程的原始数据和中间数据</em></li>
+<li>***程序块：*<em>多个进程共享 存放在文本区域 这个的多个进程是指如果开启了多个微信程序 则多个微信程序共享程序块</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="线程的概念"><em><strong>线程的概念</strong></em></h2>
+<ol>
+<li><em><strong>线程的概念</strong></em>
+<ul>
+<li><em>操作系统最小调度单位, 不能独立运行 被包含于进程, 一个进程可以有一个或多个进程</em></li>
+<li><em>也被叫做轻量级进程 但是轻量级进程多用于内核级进程 而用户级线程成为线程</em></li>
+</ul>
+</li>
+<li><em><strong>内核级线程</strong></em>
+<ul>
+<li><em>线程的控制块在操作系统的内核空间里 被称为内核级线程 但是线程的数据块和程序块还依然在用户控件</em></li>
+<li><em><strong>实现了真正意义上的线程并行</strong></em></li>
+<li><em><strong>不需要运行时系统的参与</strong></em></li>
+<li><em><strong>正因为数据块和程序块在用户空间，所以频繁的切换会导致内核开销大</strong></em></li>
+</ul>
+</li>
+<li><em><strong>用户级线程</strong></em>
+<ul>
+<li><em>线程的控制快在操作系统的用户控件里 被称为用户级线程 不依赖于操作系统 调度依赖于用户程序 在操作系统的视角里其实感觉不到用户级线程的存在</em></li>
+<li><em><strong>线程位于用户控件（不需要模式切换）</strong></em></li>
+<li><em><strong>独立于操作系统（线程可以在不支持他们的操作系统上运行）</strong></em></li>
+<li><em><strong>运行时系统可以切换用户控件中的本地阻塞线程（eg：等待另一个线程完成）</strong></em></li>
+<li><em><strong>系统调用中，对一个线程的阻塞将会导致整个进程的阻塞</strong></em></li>
+<li><em><strong>非真正意义的线程并行（一个进程安排在单个cpu上）</strong></em></li>
+<li><em><strong>不存在时钟中断</strong></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="进程与线程的区别"><em><strong>进程与线程的区别</strong></em></h2>
+<ol>
+<li><em>进程是操作系统分配资源的最小单位 / 线程是操作系统最小调度单位</em></li>
+<li><em>一个线程只属于一个进程 / 一个进程可以包括多个线程</em></li>
+<li><em>线程没有独立的内存地址 它包括在进程的地址空间里</em></li>
+<li><em>线程的开销比进程更好</em></li>
+</ol>
+<h2 id="线程资源"><em><strong>线程资源</strong></em></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">线程共享的资源</th>
+<th style="text-align:center">线程私有的资源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">地址空间</td>
+<td style="text-align:center">寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">全局变量(数据区)</td>
+<td style="text-align:center">栈</td>
+</tr>
+<tr>
+<td style="text-align:center">打开的文件</td>
+<td style="text-align:center">程序计数器</td>
+</tr>
+<tr>
+<td style="text-align:center">堆区</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="进程运行"><em><strong>进程运行</strong></em></h1>
+<h2 id="五种基本状态"><em><strong>五种基本状态</strong></em></h2>
+<ul>
+<li><em><strong>创建</strong></em>： <em>创建好一个进程</em></li>
+<li><em><strong>就绪</strong></em>：<em>进程做好了执行的准备 就差分配处理机</em></li>
+<li><em><strong>运行</strong></em>：<em>该进程正在执行</em></li>
+<li><em><strong>阻塞</strong></em>：<em>等待某事件发生才能执行，如等待I/O完成</em></li>
+<li><em><strong>终止</strong></em>：<em>进程被关闭</em></li>
+<li></li>
+</ul>
+<h2 id="进程控制"><strong>进程控制</strong></h2>
+<ol>
+<li><em><strong>什么是进程控制</strong></em>
+<ul>
+<li><em>即os对进程实现有效的管理 比如进程的创建、进程切换等动作</em></li>
+<li><em>os 通过 <em><strong>原语</strong></em> 操作来实现进程控制</em></li>
+</ul>
+</li>
+<li><em><strong>什么是原语</strong></em>
+<ul>
+<li><em>由若干条指令组成 具有<strong>原子性</strong></em></li>
+</ul>
+</li>
+<li><em><strong>原语的特点</strong></em>
+<ul>
+<li><em>原子操作 要么全部执行 要么全部失败 执行过程不会被终止</em></li>
+<li><em>在管态/系统态/内核态下执行，常驻内存</em></li>
+<li><em>是内核三大支撑功能之一(中断机制，时钟管理，原语操作)</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="进程是怎么运行的"><em><strong>进程是怎么运行的</strong></em></h2>
+<ul>
+<li>
+<p><em><strong>创建原语</strong></em>：<em>create</em></p>
+</li>
+<li>
+<p><em><strong>阻塞原语</strong></em>：block</p>
+</li>
+<li>
+<p><em><strong>唤醒原语</strong></em>：wakeup</p>
+</li>
+<li>
+<p><em><strong>撤销原语</strong></em>：destroy</p>
+</li>
+<li>
+<p><em><strong>挂起原语</strong></em>：suspend</p>
+</li>
+<li>
+<p><em><strong>激活原语</strong></em>：active</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png"
+        title="image-20230214210003110" /></p>
+</li>
+</ul>
+<h2 id="处理机"><em><strong>处理机</strong></em></h2>
+<ol>
+<li><strong>什么是处理机</strong>
+<ul>
+<li><em>根据一定的算法和原则将处理机资源进行重新分配的过程</em></li>
+<li><em>前提：作业/进程数目一定远远大于处理机数目</em></li>
+<li><em>目的：提高资源利用率 减少处理机空闲时间</em></li>
+</ul>
+</li>
+<li><strong>处理机调度：调度的层次</strong>
+<ul>
+<li><strong>高级调度/作业调度</strong>
+<ul>
+<li><em>把后备作业调入内存</em></li>
+<li><em>只调入一次 调出一次</em></li>
+</ul>
+</li>
+<li><strong>中级调度/内存调度</strong>
+<ul>
+<li><em>将进程调至外存 条件合适再调入内存</em></li>
+<li><em>在内存 外存对换区进行进程对换</em></li>
+</ul>
+</li>
+<li><strong>低级调度/进程调度</strong>
+<ul>
+<li><em>从就绪队列选取进程分配给处理机</em></li>
+<li><em>最基本的调度 频率非常高（相当于一个时间片完成）</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="调度算法"><em><strong>调度算法</strong></em></h1>
+<h2 id="先来先服务"><em><strong>先来先服务</strong></em></h2>
+<ol>
+<li><em><strong>算法内容：调度作业/就绪队列中最先入队者，等待操作完成和阻塞</strong></em></li>
+<li><em><strong>算法原则：按作业/进程到达顺序服务</strong></em></li>
+<li><em><strong>调度方式：非抢占调度</strong></em></li>
+<li><em><strong>适用场景：作业/进程调度</strong></em></li>
+<li><strong>优缺点</strong>
+<ul>
+<li><em>有利于CPU繁忙型作业 充分利用CPU资源</em></li>
+<li><em>不利于I/O繁忙型作业 操作耗时 其他饥饿</em></li>
+</ul>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png"
+        title="image-20230214220326750" /></p>
+<h2 id="短作业优先"><em><strong>短作业优先</strong></em></h2>
+<ol>
+<li><em><strong>算法内容：所需服务时间最短的作业/进程优先服务</strong></em></li>
+<li><em><strong>算法原则：追求最小的平均周转时间</strong></em></li>
+<li><em><strong>调度方式：非抢占式服务（除了服务时间最短 还有另一种方式-最短剩余时间优先）</strong></em></li>
+<li><em><strong>适用场景：作业/进程调度</strong></em></li>
+<li><strong>优缺点</strong>
+<ul>
+<li><em>平均等待/调度时间最少</em></li>
+<li><em>长作业会增加或者饥饿</em></li>
+<li><em>估计时间不准确 不能保证紧急任务及时处理</em></li>
+</ul>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png"
+        title="image-20230214220301917" />image-20230214220301917</p>
+<h2 id="高响应比优先调度"><em><strong>高响应比优先调度</strong></em></h2>
+<ol>
+<li><em><strong>算法内容：结合先来先服务&amp;短作业优先，综合考虑等待时间和服务时间计算响应比 高的响应比优先调度</strong></em></li>
+<li><em><strong>算法原则：综合考虑作业/进程的等待时间和服务时间</strong></em></li>
+<li><em><strong>调度方式：非抢占调度</strong></em></li>
+<li><em><strong>适用场景：作业/进程调度</strong></em></li>
+<li><strong>响应比计算</strong>
+<ul>
+<li><em>(等待时间 + 服务时间) / 服务时间</em></li>
+<li>当前进程完成或者阻塞时重新计算所有的进程响应比</li>
+</ul>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png"
+        title="image-20230214220227753" />image-20230214220227753</p>
+<h2 id="优先级调度"><em><strong>优先级调度</strong></em></h2>
+<ol>
+<li><em><strong>算法内容：又叫优先权调度，按作业/进程的优先级（紧迫程度）进行调度</strong></em></li>
+<li><em><strong>算法原则：优先级最高的作业/进程先调度</strong></em></li>
+<li><em><strong>调度方式：抢占（高优先级立即执行）/非抢占（高优先级等待当前进程让出后执行）</strong></em></li>
+<li><em><strong>适用场景：作业/进程调度</strong></em></li>
+<li><strong>优先级设置原则</strong>
+<ul>
+<li><em>静态/动态优先级</em></li>
+<li><em>系统 &gt; 用户 / 交互型 &gt; 非交互型 / I/O型 &gt; 计算型</em></li>
+<li><em>低优先级进程可能会饥饿</em></li>
+</ul>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png"
+        title="image-20230214220153440" />image-20230214220153440</p>
+<h2 id="时间片轮转调度"><em><strong>时间片轮转调度</strong></em></h2>
+<ol>
+<li><em><strong>算法内容：按进程到达就绪队列的顺序，轮流分配一个时间片去执行，时间用完则剥夺</strong></em></li>
+<li><em><strong>算法原则：公平、轮流为每个进程服务，进程在一定时间内都能得到响应</strong></em></li>
+<li><em><strong>调度方式：抢占式 由时钟中断确定时间</strong></em></li>
+<li><em><strong>适用场景：进程调度</strong></em></li>
+<li><strong>优缺点</strong>
+<ul>
+<li><em>公平，响应快，适用于分时系统</em></li>
+<li><em>时间片决定因素：系统响应时间、就绪队列进程数量、系统处理能力</em></li>
+<li><em>时间片太大，相当于 先来先服务 / 太小 处理机切换频繁 开销增大</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="多级反馈队列调度"><em><strong>多级反馈队列调度</strong></em></h2>
+<ol>
+<li><strong>算法内容</strong>
+<ul>
+<li><em>设置多个按优先级排序的就绪队列</em></li>
+<li><em>优先级从高到低 时间片从小到大</em></li>
+<li><em>新进程采用队列降级法 （1. 进入第一级队列 按先来后到分时间片 2. 没有执行完，移动到第二级）</em></li>
+<li><em>前面队列不为空 不执行后续队列进程</em></li>
+</ul>
+</li>
+<li><em><strong>算法原则：集中前几种算法的优点</strong></em></li>
+<li><em><strong>调度方式：抢占式</strong></em></li>
+<li><em><strong>适用场景：进程调度</strong></em></li>
+<li><strong>优缺点</strong>
+<ul>
+<li><em>对各类型相对公平 可以快速响应</em></li>
+<li><em>也实现了短作业优先</em></li>
+<li><em>周转时间短</em></li>
+<li>在前几个队列部分执行</li>
+</ul>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png"
+        title="image-20230214223443426" />image-20230214223443426</p>
+<h1 id="进程通信"><em><strong>进程通信</strong></em></h1>
+<h2 id="共享内存"><em><strong>共享内存</strong></em></h2>
+<ol>
+<li><em><strong>共享内存，指两个或多个进程共享一个给定的存储区</strong></em></li>
+<li><em><strong>共享内存是最快的一种进程通信方式，因为进程是直接对内存进行存取</strong></em></li>
+<li><em><strong>因为多个进程可以同时操作 所以需要进行同步</strong></em></li>
+<li><em><strong>信号量 + 共享内存通常结合在一起使用</strong></em></li>
+</ol>
+<h2 id="管道通信"><em><strong>管道通信</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>无名管道</strong></em></p>
+<ul>
+<li>
+<p><em><strong>半双工</strong> 具有固定的写端以及读端</em></p>
+</li>
+<li>
+<p><em>管道就是一个 <strong>队列</strong> 是先进先出</em></p>
+</li>
+<li>
+<p><em>无名管道只能用于具有<strong>亲属关系</strong>的进程之间的通信</em></p>
+</li>
+<li>
+<p><em>管道其实可以看成一个特殊的文件, 对于他的读写也可以使用 <strong>read()/write()</strong> 但是管道不属于文件系统，他是用于内存中</em></p>
+</li>
+<li>
+<p><em>当一个管道建立时，会创建两个文件文件描述符，要关闭管道只需将这两 个文件描述符关闭即可</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Int pipe(int fd[2]);
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>有名管道（fifo）</strong></em></p>
+<ul>
+<li>
+<p><em>有名管道可以用于无关的进程之间通信</em></p>
+</li>
+<li>
+<p><em>有名管道有路径名与之相关联，她以一种特殊设备文件形式存在于文件系统中</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Int mkfifo(const char* pathname, mode_t mode);
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<h2 id="消息队列"><em><strong>消息队列</strong></em></h2>
+<h2 id="信号量"><em><strong>信号量</strong></em></h2>
+<ol>
+<li><strong>什么是信号量</strong>
+<ul>
+<li><em><strong>信号的数量</strong></em></li>
+<li>***举例：*<em>好比一个停车场，里面很多的停车位，停车位是任何车都可以停的，所以可以看成共享资源，那停车位满了，外面肯定就要排队</em></li>
+</ul>
+</li>
+<li><strong>P/V 操作</strong>
+<ul>
+<li>***P操作：*<em>wait原语，进程等待</em></li>
+<li>***V操作：*<em>signal原语，唤醒等待进程</em></li>
+</ul>
+</li>
+<li><strong>信号量的工作机制</strong>
+<ul>
+<li><em>由一个 <strong>剩余资源数量</strong> &amp; <strong>进程等待队列</strong> 实现的结构体</em></li>
+<li><em>如果有一个进程在执行 则剩余资源数量-1</em></li>
+<li><em>如果剩余资源数量为负数，则让当前申请资源的进程进入等待队列并处于阻塞状态</em></li>
+<li><em>如果一个进程执行完毕，则剩余资源数量+1，并且从等待队列唤醒一个进程</em></li>
+</ul>
+</li>
+</ol>
+<h1 id="进程同步"><em><strong>进程同步</strong></em></h1>
+<ol>
+<li><strong>什么是进程同步</strong>
+<ul>
+<li><em>协调进程间的 <strong>相互制约关系</strong>, 使他们按照预期的方式执行的过程</em></li>
+</ul>
+</li>
+<li><strong>两种相互制约形式</strong>
+<ul>
+<li><em><strong>互斥：</strong> 进程排他性访问共享资源</em></li>
+<li>***同步：*<em>进程间的合作，比如管道通信</em></li>
+</ul>
+</li>
+<li><strong>互斥的实现</strong>
+<ul>
+<li>***临界区：*<em>比如打印机、音频设备等 通过对多个进程进程串行化来访问公共资源或一段代码 在任意时刻只允许一个进程访问 一个进程成功访问后就会加锁 直到释放锁 也唤醒其他的阻塞进程</em></li>
+<li>***互斥对象：*<em>互斥对象和临界区很像，采用互斥对象机制，只有拥有互斥对象的进程才有访问公共资源的权限。因为互斥对象只有一个，所以能保证公共资源不会同时被多个进程同时访 问。当前拥有互斥对象的进程处理完任务后必须将进程交出，以便其他进程访问该资源</em></li>
+</ul>
+</li>
+<li><strong>同步的实现</strong>
+<ul>
+<li>***信号量：*<em>上面已经介绍，在此不多赘述</em></li>
+<li>***事件对象：*<em>通过通知操作的方式来保持进程的同步，还可以方便实现对多个进程的优先级 比较的操作</em></li>
+</ul>
+</li>
+</ol>
+<h1 id="死锁"><em><strong>死锁</strong></em></h1>
+<ol>
+<li>***什么是死锁：*<em>多个进程由于竞争资源而造成的阻塞现象，若无外力干预，这些进程都无法前进</em></li>
+<li><em><strong>死锁产生的原因</strong></em>
+<ul>
+<li><em>系统资源的竞争</em></li>
+<li><em>进程推近顺序非法</em></li>
+</ul>
+</li>
+<li><em><strong>死锁产生的必要条件</strong></em>
+<ul>
+<li>***互斥条件：*<em>共享资源的排他性访问</em></li>
+<li>***不剥夺条件：*<em>访问时该共享资源不会被剥夺</em></li>
+<li>***请求并保持：*<em>保持当前资源请求另一个资源</em></li>
+<li>***循环等待条件：*<em>存在共享资源循环等待链</em></li>
+</ul>
+</li>
+<li><em><strong>处理死锁的四大方法</strong></em>
+<ul>
+<li>***预防死锁：*<em>破坏死锁的四大必要条件</em></li>
+<li>***避免死锁：*<em>在资源的动态分配过程中，用某种方法去防止系统进入不安全状态，从而避免死锁的发生</em></li>
+<li>***检测死锁：*<em>允许系统在运行过程中发生死锁，但可设置检测机构及时检测死锁的发生，并采取适当措施加以清除</em></li>
+<li>***解除死锁：*<em>当检测出死锁后，便采取适当措施将进程从死锁状态中解脱出来</em></li>
+<li><strong>预防死锁 与 避免死锁 的区别</strong>
+<ul>
+<li><em>预防死锁是破坏死锁的四个必要条件，严格的防止死锁的出现</em></li>
+<li><em>避免死锁是不破坏死锁的四个必要条件，因为就算4个必要条件也可能不会出现死锁，他的角度是从系统运行中注意避免死锁的产生</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>死锁的预防</strong></em>
+<ul>
+<li><strong>破坏互斥条件</strong>
+<ul>
+<li><em>将只能互斥访问的资源改为同时共享访问（可以在中间加一个缓冲队列）</em></li>
+<li><em>将独占锁改为共享锁</em></li>
+<li><em>不是所有资源都能改成可共享的</em></li>
+</ul>
+</li>
+<li><strong>破坏不剥夺/不可抢占条件</strong>
+<ul>
+<li><em>请求新资源无法满足时必须释放已有资源</em></li>
+<li><em>由OS协助强制剥夺某进程持有的资源</em></li>
+<li><em>实现复杂，代价高</em></li>
+<li><em>此操作过多导致原进程任务无法推进</em></li>
+</ul>
+</li>
+<li><strong>破坏请求并保持条件</strong>
+<ul>
+<li><em>进程开始时一次性申请所需资源</em></li>
+<li><em>阶段性请求和释放资源</em></li>
+</ul>
+</li>
+<li><strong>破坏循环等待条件</strong>
+<ul>
+<li><em>对所有资源进行排序</em></li>
+<li><em>对资源的编号应相对稳定，限制了新设备增加</em></li>
+<li><em>进程使用资源的顺序可能与系统编号顺序不同</em></li>
+<li><em>限制了用户编程</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>死锁的避免</strong></em>
+<ul>
+<li><em><strong>银行家算法</strong></em>
+<ul>
+<li><em>系统预判进程请求是否导致不安全状态</em></li>
+<li>是则拒绝请求，否则答应请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>死锁的检测</strong></em>
+<ul>
+<li><em>需要一种数据结构，保存有关资源的请求和分配信息</em></li>
+<li><em>提供一种算法，利用这些信息监测是否形成了死锁</em></li>
+</ul>
+</li>
+<li><em><strong>死锁的解除</strong></em>
+<ul>
+<li>***资源剥夺：*<em>挂起某些死锁进程，并抢占它的资源，将这些资源分配给其他的死锁进程。但应防止被挂起的进程长时间得不到资源，而处于资源匮乏的状态</em></li>
+<li>***撤销进程：*<em>强制撤销部分、甚至全部死锁进程并剥夺这些进程的资源。撤销的原则可以按进程优先级和撤销进程代价的高低进行</em></li>
+<li>***进程回退：*<em>让一（多）个进程回退到足以回避死锁的地步，进程回退时自愿释放资源而不是被剥夺。要求系统保持进程的历史信息，设置还原点。</em></li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-07-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" data-title="进程管理" data-hashtags="进程,线程,调度方法,死锁"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" data-hashtag="进程"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" data-title="进程管理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" data-title="进程管理"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" data-title="进程管理" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%BF%9B%E7%A8%8B/">进程</a>,&nbsp;<a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>,&nbsp;<a href="/tags/%E8%B0%83%E5%BA%A6%E6%96%B9%E6%B3%95/">调度方法</a>,&nbsp;<a href="/tags/%E6%AD%BB%E9%94%81/">死锁</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/" class="prev" rel="prev" title="概念"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>概念</a>
+            <a href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" class="next" rel="next" title="IO模型">IO模型<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame林汀</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
