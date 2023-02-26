@@ -106,46 +106,48 @@
 
 ## class外
 
-## 构造函数和析构函数
+1. ***构造函数和析构函数***
 
-```cpp
-inline String::String(const char* cstr = 0) {
-  if (cstr) {
-    m_data = new char[strlen(cstr)+1];
-    strcpy(m_data, cstr);
-  } else {
-    m_data = new char[1];
-    *m_data = '\0';
-  }
-}  // c里面字符串是以 '\0' 为结束符号 这是构造函数
+   - ```cpp
+     inline String::String(const char* cstr = 0) {
+       if (cstr) {
+         m_data = new char[strlen(cstr)+1];
+         strcpy(m_data, cstr);
+       } else {
+         m_data = new char[1];
+         *m_data = '\0';
+       }
+     }  // c里面字符串是以 '\0' 为结束符号 这是构造函数
+     
+     inline String::~String() {
+       delete[] m_data;
+     }  // 析构函数 因为上述构造函数 为str分配了一个内存 所以要释放内存 要不然会内存泄漏
+     
+     // class 有指针 多半要做动态分配 所以就要在析构函数 释放内存
+     ```
 
-inline String::~String() {
-  delete[] m_data;
-}  // 析构函数 因为上述构造函数 为str分配了一个内存 所以要释放内存 要不然会内存泄漏
+2. ***拷贝构造函数***
 
-// class 有指针 多半要做动态分配 所以就要在析构函数 释放内存
-```
+   - ```cpp
+     // 拷贝构造没有返回值
+     inline String::String(const String& str) {
+       m_data = new char[ strlen(str.m_data) + 1 ];
+       strcpy(m_data, str.m_data);
+     }
+     ```
 
-## 拷贝构造函数
+3. ***拷贝赋值函数***
 
-```cpp
-// 拷贝构造没有返回值
-inline String::String(const String& str) {
-  m_data = new char[ strlen(str.m_data) + 1 ];
-  strcpy(m_data, str.m_data);
-}
-```
+   - ```cpp
+     inline String& String::operator=(const String& str) { // 这一行与下一行的&不一样 第一行是引用(reference) 第二行是取"str"地址
+       if (this == &str) return *this; // 判断是不是自我赋值
+       delete[] m_data;
+       m_data = new char [ strlen(str.m_data) + 1];
+       strcpy(m_data, str.m_data);
+       return *this;
+     }
+     ```
 
-## 拷贝赋值函数
-
-```cpp
-inline String& String::operator=(const String& str) { // 这一行与下一行的&不一样 第一行是引用(reference) 第二行是取"str"地址
-  if (this == &str) return *this; // 判断是不是自我赋值
-  delete[] m_data;
-  m_data = new char [ strlen(str.m_data) + 1];
-  strcpy(m_data, str.m_data);
-  return *this;
-}
-```
+     
 
 
