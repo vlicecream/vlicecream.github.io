@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "TCP, UDP","wordcount":  4494 ,
+                        }],"genre": "posts","keywords": "TCP, UDP","wordcount":  4488 ,
         "url": "https:\/\/vlicecream.github.io\/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp\/","datePublished": "2023-01-03T10:40:32+08:00","dateModified": "2023-02-26T07:59:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TCP/UDP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>网络原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-03">2023-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4494 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-03">2023-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4488 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp/" class="leancloud_visitors" data-flag-title="TCP/UDP">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -206,26 +206,21 @@
 </li>
 <li>
 <p><strong>关于两者详细的解释</strong></p>
-</li>
-</ul>
-</li>
-</ol>
 <ul>
-<li><code>RTT(Round Trip Time)</code>: <em>一个连接的往返时间，即数据发送时刻到接收到确认的时刻的差值</em>
-<ul>
+<li><code>RTT(Round Trip Time)</code>: <em>一个连接的往返时间，即数据发送时刻到接收到确认的时刻的差值</em></li>
 <li><code>RTO(Retransmission Time Out)</code>: <em>重传超时时间，即从数据发送时刻算起，超过这个时间便执行重传</em></li>
 </ul>
 </li>
 </ul>
-<ol start="2">
+</li>
 <li>
 <p><em><strong>RTT的测量</strong></em></p>
 <ul>
 <li><em><strong>每发送一个分组 TCP就会对其采样，这个采样只会对同一时间的数据段进行采样, 随后用这个采样记录当作RTT</strong></em></li>
 <li><strong>采样方法一般有两种</strong>
 <ul>
-<li><em><strong>采用时间戳：</strong></em> 发送一个数据段时在TCP选项中记录下时间 收到数据段再记录下时间 随后计算出差值 就把这个差值作为RTT 但是需要发送端和接收端都需要支持这个选项</li>
-<li>***重传队列中数据包的TCP控制块：***每个数据包第一次发送出去后都会放到重传队列中，数据包中的TCP控制块包含着一个变量，tcp_skb_cb-&gt;when，记录了该数据包的第一次发送时间。如果没有时间戳选项，那么RTT就等于当前时间和when的差值</li>
+<li><em><strong>采用时间戳：</strong></em> <em>发送一个数据段时在TCP选项中记录下时间 收到数据段再记录下时间 随后计算出差值 就把这个差值作为RTT 但是需要发送端和接收端都需要支持这个选项</em></li>
+<li><em><strong>重传队列中数据包的TCP控制块：</strong></em> <em>每个数据包第一次发送出去后都会放到重传队列中，数据包中的TCP控制块包含着一个变量，tcp_skb_cb-&gt;when，记录了该数据包的第一次发送时间。如果没有时间戳选项，那么RTT就等于当前时间和when的差值</em></li>
 </ul>
 </li>
 </ul>
@@ -241,7 +236,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">SRTT</span> <span class="p">=</span> <span class="nf">x</span><span class="p">(</span><span class="nx">SRTT</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span><span class="nx">RTT</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">SRTT</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">SRTT</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="n">RTT</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// x被称为平滑因子，一般建议设置在[0.8, 0.9]，意思是SRTT值百分之八十来自于之前的值，百分之二十来自于当前值。
 </span></span></span></code></pre></td></tr></table>
 </div>
