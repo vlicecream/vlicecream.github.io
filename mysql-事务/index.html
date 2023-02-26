@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "事务, MVCC","wordcount":  1421 ,
+                        }],"genre": "posts","keywords": "事务, MVCC","wordcount":  1361 ,
         "url": "https:\/\/vlicecream.github.io\/mysql-%E4%BA%8B%E5%8A%A1\/","datePublished": "2023-02-01T21:40:32+08:00","dateModified": "2023-02-01T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">事务</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>mysql</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1421 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1361 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/mysql-%E4%BA%8B%E5%8A%A1/" class="leancloud_visitors" data-flag-title="事务">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -149,27 +149,27 @@
 <li>
 <p><strong>事务的ACID</strong></p>
 <ul>
-<li>***原子性：*<em>保证全部完成 要么全部失败 没有中间状态 他是靠 <code>undo日志</code>来实现的</em></li>
-<li>***持久性：*<em>事务修改后的数据会一直存在 他是靠 <code>redo日志</code>来实现的</em></li>
-<li>***隔离性：*<em>多个事务之间不会互相影响，他是靠<code>MVCC</code>也就是<code>undo log</code>来实现的</em></li>
-<li>***一致性：*<em>多个事务修改数据后 数据都是一致的</em></li>
+<li><em><code>原子性</code>保证全部完成 要么全部失败 没有中间状态 他是靠 <code>undo日志</code>来实现的</em></li>
+<li><em><code>持久性</code>事务修改后的数据会一直存在 他是靠 <code>redo日志</code>来实现的</em></li>
+<li><em><code>隔离性</code>多个事务之间不会互相影响，他是靠<code>MVCC</code>也就是<code>undo log</code>来实现的</em></li>
+<li><em><code>一致性</code>多个事务修改数据后 数据都是一致的</em></li>
 </ul>
 </li>
 <li>
 <p><strong>事务的隔离级别（InnoDB引擎中, 定义了四种隔离级别供我们使用 级别越高性能越低 而隔离性是由mysql的各种锁和MVCC机制来实现的）</strong></p>
 <ul>
-<li>***读未提交：*<em>我们可以去读事务未提交的数据，会带来 脏读，不可重复读，幻读的问题</em></li>
-<li>***读已提交：*<em>我们只可以去读事务已经提交的数据，会带来不可重复读，幻读的问题</em></li>
-<li>***可重复读：*<em>一个事务不管读取多少次，读的都是以第一次读的快照为标准，会带来幻读的问题</em></li>
-<li>***串行化：*<em>直接串行，一个事务一个事务来，这样效率就会及其低下</em></li>
+<li><em><code>读未提交</code>我们可以去读事务未提交的数据，会带来 脏读，不可重复读，幻读的问题</em></li>
+<li><em><code>读已提交</code>我们只可以去读事务已经提交的数据，会带来不可重复读，幻读的问题</em></li>
+<li><em><code>可重复读</code>一个事务不管读取多少次，读的都是以第一次读的快照为标准，会带来幻读的问题</em></li>
+<li><em><code>串行化</code>直接串行，一个事务一个事务来，这样效率就会及其低下</em></li>
 </ul>
 </li>
 <li>
 <p><strong>事务当中存在的可能问题</strong></p>
 <ul>
-<li>***脏读：*<em>事务A正在修改数据，事务B去读了，随后A发生了问题callback，B读取的数据就会无效</em></li>
-<li>***不可重复读：*<em>事务A正在更新数据，事务B去读数据了，随后事务A更新完毕，事务B再去读取，发现前后数据不一致</em></li>
-<li>***幻读：*<em>事务A正在插入数据，事务B读取全部数据，在事务A插入前后读取数据不一致 发现数据多了一行</em></li>
+<li><em><code>脏读</code>事务A正在修改数据，事务B去读了，随后A发生了问题callback，B读取的数据就会无效</em></li>
+<li><em><code>不可重复读</code>事务A正在更新数据，事务B去读数据了，随后事务A更新完毕，事务B再去读取，发现前后数据不一致</em></li>
+<li><em><code>幻读</code>事务A正在插入数据，事务B读取全部数据，在事务A插入前后读取数据不一致 发现数据多了一行</em></li>
 </ul>
 </li>
 <li>
@@ -194,7 +194,10 @@
 </ul>
 </li>
 <li>
-<p>***可重复读 &amp; 读已提交：*<em>他们俩是靠MVCC机制来实现的</em></p>
+<p><em><strong>可重复读 &amp; 读已提交</strong></em></p>
+<ul>
+<li><em>他们俩是靠MVCC机制来实现的</em></li>
+</ul>
 </li>
 </ul>
 </li>

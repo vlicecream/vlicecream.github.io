@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "索引, b\u002b tree","wordcount":  2332 ,
+                        }],"genre": "posts","keywords": "索引, b\u002b tree","wordcount":  2277 ,
         "url": "https:\/\/vlicecream.github.io\/mysql-%E7%B4%A2%E5%BC%95\/","datePublished": "2023-02-02T21:40:32+08:00","dateModified": "2023-02-02T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">索引</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>mysql</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-02">2023-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2332 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-02">2023-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2277 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/mysql-%E7%B4%A2%E5%BC%95/" class="leancloud_visitors" data-flag-title="索引">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -147,15 +147,15 @@
 <ol>
 <li><strong>Innodb</strong>
 <ul>
-<li>***主键索引：*<em>在建立主键的时候就会自动帮你创建一个主键索引，在Innodb引擎下主键索引是聚簇索引，可以不唯一</em></li>
-<li>***普通索引：*<em>除主键外，任意一列创建的索引就叫做普通索引 普通索引可以有多个</em></li>
-<li>***唯一索引：*<em>跟主键索引唯一的区别就是 该索引是唯一的，可以为null</em></li>
-<li>***联合索引：*<em>一个索引包含多个列</em></li>
+<li><em><code>主键索引</code>在建立主键的时候就会自动帮你创建一个主键索引，在Innodb引擎下主键索引是聚簇索引，可以不唯一</em></li>
+<li><em><code>普通索引</code>除主键外，任意一列创建的索引就叫做普通索引 普通索引可以有多个</em></li>
+<li><em><code>唯一索引</code>跟主键索引唯一的区别就是 该索引是唯一的，可以为null</em></li>
+<li><em><code>联合索引</code>一个索引包含多个列</em></li>
 </ul>
 </li>
 <li><strong>MyISAM</strong>
 <ul>
-<li>***全文索引：*<em>全文索引类型为 FULLTEXT, 在定义索引的列上支持值的全文查找, 允许在这些索引列中插入重复值和空值 可以在 char varchar text类型列上创建</em></li>
+<li><em><code>全文索引</code>全文索引类型为 FULLTEXT, 在定义索引的列上支持值的全文查找, 允许在这些索引列中插入重复值和空值 可以在 char varchar text类型列上创建</em></li>
 </ul>
 </li>
 </ol>
@@ -176,7 +176,7 @@
 </ol>
 <h2 id="最左匹配原则">最左匹配原则</h2>
 <ol>
-<li>***当我们用了联合索引的情况下 就会有这么一个经典的面试题啦：*<em>现在有一个索引包含了 name age bir 三个列</em>
+<li><em><strong>现在有一个联合索引包含了 name age bir 三个列</strong></em>
 <ul>
 <li><em>name bir age 能否利用索引 - yes</em></li>
 <li><em>name age bir 能否利用索引 - yes</em></li>
