@@ -37,5 +37,5 @@
 
 
 
-![OSI七层模型](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302141344412.png)OSI七层模型
+![OSI七层模型](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302141344412.png)
 

@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://vlicecream.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-21T21:40:32+08:00" />
-<meta property="article:modified_time" content="2022-07-21T21:40:32+08:00" /><meta property="og:site_name" content="Ame林汀" />
+<meta property="article:modified_time" content="2023-02-26T07:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
@@ -35,8 +35,8 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "IO模型","wordcount":  4759 ,
-        "url": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B\/","datePublished": "2022-07-21T21:40:32+08:00","dateModified": "2022-07-21T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "IO模型","wordcount":  4749 ,
+        "url": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B\/","datePublished": "2022-07-21T21:40:32+08:00","dateModified": "2023-02-26T07:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IO模型</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-21">2022-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4759 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-21">2022-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4749 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" class="leancloud_visitors" data-flag-title="IO模型">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -195,7 +195,7 @@
         data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg 2x"
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg"
-        title="IO复用模型" />IO复用模型</p>
+        title="IO复用模型" /></p>
 <p><em>正如上图，IO复用模型的思路就是系统提供了一种函数可以同时监控多个fd的操作，这个函数就是我们常说到的select、poll、epoll函数，有了这个函数后，应用线程通过调用select函数就可以同时监控多个fd，select函数监控的fd中只要有任何一个数据状态准备就绪了，select函数就会返回可读状态，这时询问线程再去通知处理数据的线程，对应线程此时再发起recvfrom请求去读取数据</em></p>
 <p><em>进程将一个fd或者多个fd传递给 select，阻塞在select操作上，select帮我们侦测多个fd是否准备就绪，当有fd准备就绪时，select返回数据可读状态，应用程序再调用recvfrom读取数据</em></p>
 <p><em><strong>复用IO的基本思路就是通过select或poll、epoll 来监控多fd ，来达到不必为每个fd创建一个对应的监控线程，从而减少线程资源创建的目的</strong></em></p>
@@ -276,7 +276,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">struct pollfd {  int fd;  short events;  short revents;};
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">pollfd</span> <span class="p">{</span>  <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>  <span class="kt">short</span> <span class="n">events</span><span class="p">;</span>  <span class="kt">short</span> <span class="n">revents</span><span class="p">;};</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>管理多个描述符也是进行轮询，根据描述符的状态进行处理，<strong>但是poll无最大文件描述符数量的限制</strong></em></p>
@@ -303,9 +303,11 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 事件参数描述链接到文件描述符fd的对象struct epoll_event {  __u32 events;  __u64 data;} EPOLL_PACKED;
+<pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="c1">// 事件参数描述链接到文件描述符fd的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">epoll_event</span> <span class="p">{</span>  <span class="n">__u32</span> <span class="n">events</span><span class="p">;</span>  <span class="n">__u64</span> <span class="n">data</span><span class="p">;}</span> <span class="n">EPOLL_PACKED</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="epoll触发模式">epoll触发模式</h3>
@@ -330,7 +332,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2022-07-21</span>
+                <span>更新于 2023-02-26</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

@@ -8,8 +8,8 @@
 <meta property="og:description" content="TCP/UDP的细节" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://vlicecream.github.io/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-01-01T21:40:32+08:00" />
-<meta property="article:modified_time" content="2023-01-01T21:40:32+08:00" /><meta property="og:site_name" content="Ame林汀" />
+<meta property="article:published_time" content="2023-01-03T10:40:32+08:00" />
+<meta property="article:modified_time" content="2023-02-26T07:59:32+08:00" /><meta property="og:site_name" content="Ame林汀" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
@@ -19,7 +19,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp/" /><link rel="prev" href="https://vlicecream.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-lru-catch/" /><link rel="next" href="https://vlicecream.github.io/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-osi/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp/" /><link rel="prev" href="https://vlicecream.github.io/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-ip/" /><link rel="next" href="https://vlicecream.github.io/mysql-%E4%BA%8B%E5%8A%A1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,8 +35,8 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "TCP, UDP","wordcount":  4659 ,
-        "url": "https:\/\/vlicecream.github.io\/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp\/","datePublished": "2023-01-01T21:40:32+08:00","dateModified": "2023-01-01T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "TCP, UDP","wordcount":  4536 ,
+        "url": "https:\/\/vlicecream.github.io\/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp\/","datePublished": "2023-01-03T10:40:32+08:00","dateModified": "2023-02-26T07:59:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TCP/UDP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>网络原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-01">2023-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4659 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-03">2023-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4536 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp/" class="leancloud_visitors" data-flag-title="TCP/UDP">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -130,10 +130,6 @@
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#前言">前言</a></li>
-  </ul>
-
   <ul>
     <li><a href="#传输层的定义"><em><strong>传输层的定义</strong></em></a></li>
   </ul>
@@ -157,16 +153,7 @@
     <li><a href="#udp-首部格式"><em><strong>UDP 首部格式</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="前言">前言</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">以往在准备面试的途中 也许是准备面试的压力过大 竟然忘了 这可以自己写博客?哈哈哈~所以就在这里开个专题总结一下吧 这里都是我自己的理解 不会去copy写完还是会去求证一下的 毕竟也写了博客 哈哈但是希望大家在理解的基础上去背 要不然背真的是一个很烦的事情
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="传输层"><em><strong>传输层</strong></em></h1>
+            </div><div class="content" id="content"><h1 id="传输层"><em><strong>传输层</strong></em></h1>
 <h2 id="传输层的定义"><em><strong>传输层的定义</strong></em></h2>
 <ul>
 <li><em>传输层是第一次在端对端也就是主机对主机的一层 专门负责处理上层的数据 负责可靠不可靠的传输</em></li>
@@ -387,7 +374,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-01-01</span>
+                <span>更新于 2023-02-26</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -406,8 +393,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-lru-catch/" class="prev" rel="prev" title="LRU Catch"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LRU Catch</a>
-            <a href="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-osi/" class="next" rel="next" title="OSI">OSI<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-ip/" class="prev" rel="prev" title="IP及其相关协议"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>IP及其相关协议</a>
+            <a href="/mysql-%E4%BA%8B%E5%8A%A1/" class="next" rel="next" title="事务">事务<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

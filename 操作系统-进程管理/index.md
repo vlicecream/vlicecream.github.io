@@ -58,13 +58,12 @@
 - ***运行***：*该进程正在执行*
 - ***阻塞***：*等待某事件发生才能执行，如等待I/O完成*
 - ***终止***：*进程被关闭*
-- 
 
 ## **进程控制**
 
 1. ***什么是进程控制***
    - *即os对进程实现有效的管理 比如进程的创建、进程切换等动作*
-   - *os 通过 ***原语*** 操作来实现进程控制*
+   - *os 通过 **原语*** 操作来实现进程控制*
 2. ***什么是原语***
    - *由若干条指令组成 具有**原子性***
 3. ***原语的特点***
@@ -86,7 +85,7 @@
 
 - ***激活原语***：active
 
-  ![image-20230214210003110](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png)
+  ![进程运行状态图](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142100791.png)
 
 ## ***处理机***
 
@@ -117,7 +116,7 @@
    - *有利于CPU繁忙型作业 充分利用CPU资源*
    - *不利于I/O繁忙型作业 操作耗时 其他饥饿*
 
-![image-20230214220326750](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png)
+![先来先服务](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203577.png)
 
 ## ***短作业优先***
 
@@ -130,11 +129,7 @@
    - *长作业会增加或者饥饿*
    - *估计时间不准确 不能保证紧急任务及时处理*
 
-
-
-![image-20230214220301917](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png)image-20230214220301917
-
-
+![短作业优先](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142203217.png)
 
 ## ***高响应比优先调度***
 
@@ -146,11 +141,7 @@
    - *(等待时间 + 服务时间) / 服务时间*
    - 当前进程完成或者阻塞时重新计算所有的进程响应比
 
-
-
-![image-20230214220227753](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png)image-20230214220227753
-
-
+![高响应比优先调度](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142202148.png)
 
 ## ***优先级调度***
 
@@ -163,11 +154,7 @@
    - *系统 > 用户 / 交互型 > 非交互型 / I/O型 > 计算型*
    - *低优先级进程可能会饥饿*
 
-
-
-![image-20230214220153440](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png)image-20230214220153440
-
-
+![优先级调度](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142201048.png)
 
 ## ***时间片轮转调度***
 
@@ -196,11 +183,7 @@
    - *周转时间短*
    - 在前几个队列部分执行
 
-
-
-![image-20230214223443426](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png)image-20230214223443426
-
-
+![多级反馈队列调度](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302142234912.png)
 
 # ***进程通信***
 
@@ -225,7 +208,7 @@
 
    - *当一个管道建立时，会创建两个文件文件描述符，要关闭管道只需将这两 个文件描述符关闭即可*
 
-     ```
+     ```cpp
      Int pipe(int fd[2]);
      ```
 
@@ -235,7 +218,7 @@
 
    - *有名管道有路径名与之相关联，她以一种特殊设备文件形式存在于文件系统中*
 
-     ```
+     ```cpp
      Int mkfifo(const char* pathname, mode_t mode);
      ```
 

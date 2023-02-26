@@ -45,11 +45,7 @@
 
 *有人就提出了一个思路，能不能提供一种方式，可以由一个线程监控多个网络请求（**我们后面将称为fd文件描述符，linux系统把所有网络请求以一个fd来标识**），这样就可以只需要一个或几个线程就可以完成数据状态询问的操作，当有数据准备就绪之后再分配对应的线程去读取数据，这么做就可以节省出大量的线程资源出来，这个就是IO复用模型的思路*
 
-
-
-![IO复用模型](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg)IO复用模型
-
-
+![IO复用模型](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg)
 
 *正如上图，IO复用模型的思路就是系统提供了一种函数可以同时监控多个fd的操作，这个函数就是我们常说到的select、poll、epoll函数，有了这个函数后，应用线程通过调用select函数就可以同时监控多个fd，select函数监控的fd中只要有任何一个数据状态准备就绪了，select函数就会返回可读状态，这时询问线程再去通知处理数据的线程，对应线程此时再发起recvfrom请求去读取数据*
 
@@ -123,7 +119,7 @@
 
 ***和select类似，只是描述fd集合的方式不同，poll使用 pollfd 结构而非select的 fd_set 结构***
 
-```
+```cpp
 struct pollfd {  int fd;  short events;  short revents;};
 ```
 
@@ -150,8 +146,9 @@ struct pollfd {  int fd;  short events;  short revents;};
 
 *可理解为**event poll**，epoll会把哪个流发生哪种I/O事件通知我们。所以epoll是事件驱动（每个事件关联fd），此时我们对这些流的操作都是有意义的。复杂度也降到O(1)*
 
-```
-// 事件参数描述链接到文件描述符fd的对象struct epoll_event {  __u32 events;  __u64 data;} EPOLL_PACKED;
+```CPP
+// 事件参数描述链接到文件描述符fd的对象
+struct epoll_event {  __u32 events;  __u64 data;} EPOLL_PACKED;
 ```
 
 ### epoll触发模式
