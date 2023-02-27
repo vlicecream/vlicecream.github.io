@@ -140,7 +140,7 @@ struct pollfd {  int fd;  short events;  short revents;};
 
 ***所以又有了 epoll***
 
-## epoll
+## ***epoll***
 
 *epoll模型修改主动轮询为被动通知，当有事件发生时，被动接收通知。所以epoll模型注册套接字后，主程序可做其他事情，当事件发生时，接收到通知后再去处理*
 
@@ -151,7 +151,7 @@ struct pollfd {  int fd;  short events;  short revents;};
 struct epoll_event {  __u32 events;  __u64 data;} EPOLL_PACKED;
 ```
 
-### epoll触发模式
+### ***epoll触发模式***
 
 - ***LT，默认的模式（水平触发）只要该fd还有数据可读，每次`epoll_wait` 都会返回他的事件，提醒用户程序去操作***
 - ***ET，边缘触发***
@@ -160,11 +160,11 @@ struct epoll_event {  __u32 events;  __u64 data;} EPOLL_PACKED;
 
 *epoll使用“事件”就绪通知方式，通过`epoll_ctl`注册fd，一旦该fd就绪，内核就会采用类似回调机制激活该fd，`epoll_wait`便可收到通知*
 
-### ET的意义
+### ***ET的意义***
 
 *若用`LT`，系统中一旦有大量无需读写的就绪文件描述符，它们每次调用`epoll_wait`都会返回，这大大降低处理程序检索自己关心的就绪文件描述符的效率。 而采用`ET`，当被监控的文件描述符上有可读写事件发生时，`epoll_wait`会通知处理程序去读写。若这次没有把数据全部读写完(如读写缓冲区太小)，则下次调用`epoll_wait`时，它不会通知你，即只会通知你一次，直到该文件描述符上出现第二次可读写事件才通知你。这比水平触发效率高，系统不会充斥大量你不关心的就绪文件描述符*
 
-### epoll的优点
+### ***epoll的优点***
 
 - *无最大并发连接的限制，能打开的FD上限远大于1024（1G内存能监听约10万个端口）*
 - *效率提升，不是轮询，不会随FD数目增加而效率下降。只有活跃可用的FD才会调用callback函数 即Epoll最大优点在于它只关心“活跃”连接，而跟连接总数无关，因此实际网络环境中，Epoll效率远高于select、poll*
@@ -174,4 +174,40 @@ struct epoll_event {  __u32 events;  __u64 data;} EPOLL_PACKED;
 *表面上看epoll的性能最好，但在连接数少且都十分活跃情况下，select/poll性能可能比epoll好，毕竟epoll通知机制需要很多函数回调*
 
 *epoll跟select都能提供多路I/O复用。在现在的Linux内核里有都能够支持，epoll是Linux所特有，而select则是POSIX所规定，一般os均有实现*
+
+### ***epoll提供的函数***
+
+1. ***epoll_create***
+
+   - *创建一个句柄*
+
+2. ***epoll_ctl***
+
+   - *注册要监听的事件类型*
+
+   - *对于第一个缺点，epoll的解决方案在epoll_ctl.c，每次注册新事件到epoll句柄中时（在epoll_ctl中指定EPOLL_CTL_ADD），会把所有fd拷贝进内核，而非在epoll_wait时重复拷贝。epoll保证每个fd在整个过程中**只会拷贝一次**！*
+
+   - ```cpp
+     EPOLL_CTL_ADD：在文件描述符epfd所引用的epoll实例上注册目标文件描述符fd，并将事件事件与内部文件链接到fd
+     EPOLL_CTL_MOD：更改与目标文件描述符fd相关联的事件
+     EPOLL_CTL_DEL：从epfd引用的epoll实例中删除目标文件描述符fd。该事件将被忽略，并且可以为NULL
+     ```
+
+3. ***epoll_wait***
+
+   - *等待事件的产生*
+
+   - *对于第二个缺点，epoll解决方案不像select/poll每次都把current流加入fd对应的设备等待队列，而只在epoll_ctl时把current挂一遍（这一遍必不可少），并为每个fd指定一个回调函数*
+
+     *当设备就绪，唤醒等待队列上的等待者时，就会调用该回调函数，而回调函数会把就绪fd加入一个就绪链表。*
+
+     *epoll_wait实际上就是在该就绪链表中查看有无就绪fd（利用schedule_timeout()实现睡一会，判断一会的效果，和select实现中的第7步类似）。*
+
+4. ***对于第三个缺点，epoll无此限制，其支持FD上限是最大可以打开文件的数目，一般远大于2048。1GB内存机器大约10万左右，具体数目可查看 cat /proc/sys/fs/file-max，这数目和系统内存关系很大***
+
+## ***总结***
+
+1. *select，poll，epoll都是I/O多路复用机制，即能监视多个fd，一旦某fd就绪（读或写就绪），能够通知程序进行相应读写操作。 但select，poll，epoll本质都是**同步I/O**，因为他们都需在读写事件就绪后，自己负责进行读写，即该读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O实现会负责把数据从内核拷贝到用户空间*
+2. *select，poll需自己主动不断轮询所有fd集合，直到设备就绪，期间可能要睡眠和唤醒多次交替。而epoll其实也需调用epoll_wait不断轮询就绪链表，期间也可能多次睡眠和唤醒交替，但它是设备就绪时，调用回调函数，把就绪fd放入就绪链表，并唤醒在epoll_wait中进入睡眠的进程。虽然都要睡眠和交替，但select和poll在“醒着”时要遍历整个fd集合，而epoll在“醒着”的时候只需判断就绪链表是否为空，节省大量CPU时间，这就是回调机制带来的性能提升*
+3. *select，poll每次调用都要把fd集合从用户态往内核态拷贝一次，且要把current往设备等待队列中挂一次，而epoll只要一次拷贝，且把current往等待队列上挂也只挂一次（在epoll_wait开始，注意这里的等待队列并不是设备等待队列，只是一个epoll内部定义的等待队列）。这也能节省不少开销。*
 
