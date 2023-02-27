@@ -4,39 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>指针与引用 - Ame林汀</title><meta name="Description" content="c&#43;&#43; 指针与引用相关知识点"><meta property="og:title" content="指针与引用" />
-<meta property="og:description" content="c&#43;&#43; 指针与引用相关知识点" />
+        <title>static - Ame林汀</title><meta name="Description" content="c&#43;&#43; 关键字 static"><meta property="og:title" content="static" />
+<meta property="og:description" content="c&#43;&#43; 关键字 static" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-03-17T00:00:00+08:00" />
+<meta property="og:url" content="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-21T00:00:00+08:00" />
 <meta property="article:modified_time" content="2023-02-27T00:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
 
-<meta name="twitter:title" content="指针与引用"/>
-<meta name="twitter:description" content="c&#43;&#43; 指针与引用相关知识点"/>
+<meta name="twitter:title" content="static"/>
+<meta name="twitter:description" content="c&#43;&#43; 关键字 static"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" /><link rel="prev" href="https://vlicecream.github.io/c-%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD/" /><link rel="next" href="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" /><link rel="prev" href="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF/" /><link rel="next" href="https://vlicecream.github.io/c-%E8%99%9A%E5%87%BD%E6%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "指针与引用",
+        "headline": "static",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/vlicecream.github.io\/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8\/"
+            "@id": "https:\/\/vlicecream.github.io\/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC\/"
         },"image": [{
                             "@type": "ImageObject",
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "指针, 引用, 参数传递","wordcount":  1420 ,
-        "url": "https:\/\/vlicecream.github.io\/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8\/","datePublished": "2022-03-17T00:00:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "static","wordcount":  671 ,
+        "url": "https:\/\/vlicecream.github.io\/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC\/","datePublished": "2022-03-21T00:00:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -46,7 +46,7 @@
                 }},"author": {
                 "@type": "Person",
                 "name": "Ame林汀"
-            },"description": "c++ 指针与引用相关知识点"
+            },"description": "c++ 关键字 static"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -72,7 +72,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -106,7 +106,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -118,10 +118,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">指针与引用</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">static</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1420 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" class="leancloud_visitors" data-flag-title="指针与引用">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-21">2022-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 671 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" class="leancloud_visitors" data-flag-title="static">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -131,74 +131,45 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#引用">引用</a></li>
-    <li><a href="#签名">签名</a></li>
-    <li><a href="#指针和引用的区别">指针和引用的区别</a></li>
-    <li><a href="#参数传递">参数传递</a></li>
+    <li><a href="#static">static</a></li>
+    <li><a href="#static的修饰">static的修饰</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="引用">引用</h2>
+            </div><div class="content" id="content"><h2 id="static">static</h2>
 <ol>
 <li>
-<p><em><strong>什么是引用</strong></em></p>
-<ul>
-<li><em>reference 其实就是一个漂亮的 pointer</em></li>
-</ul>
-</li>
-<li>
-<p><em><strong>引用的代码</strong></em></p>
+<p><em><strong>什么是static</strong></em></p>
 <ul>
 <li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span> <span class="c1">// p is a pointer to x
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// r is a reference to x
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">x2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c1</span><span class="p">.</span><span class="n">real</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c2</span><span class="p">.</span><span class="n">real</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 上述代码其实要是看透本质等于下面代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">complex</span><span class="o">::</span><span class="n">real</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">complex</span><span class="o">::</span><span class="n">real</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">x2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">&amp;</span> <span class="n">r2</span><span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="err">括号里面传的就是</span> <span class="k">this</span> <span class="n">piont</span>
+</span></span><span class="line"><span class="cl"><span class="err">当不是静态方法的时候</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3调用同一个函数</span> <span class="err">那么就是靠</span><span class="k">this</span> <span class="n">point区分到底是c1</span> <span class="err">还是</span> <span class="n">c2</span> <span class="err">的</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
-<p><em><code>int*</code>是 pointer to int，<code>int&amp;</code>是 reference to int，比如 <code>int* p = &amp;x;</code> 我们会说指针p指向了x，而<code>int&amp; r = x;</code>我们会说 r 代表了 x，其实r里面有一个指针指向了x ，r 只要代表了 x 就不可以代表别的变量，pointer不同，pointer还可以指向别的变量</em></p>
-</li>
-</ul>
-</li>
-<li>
-<p><em><strong>假象</strong></em></p>
-<ul>
-<li><em>我们观察上面的 x 和 r的地址和大小，就发现 <code>sizeof(r) = sizeof(x)</code> <code>&amp;x == &amp;r</code> object 和其 reference的大小相同，地址也相同（但是都是假象）</em></li>
-</ul>
-</li>
-<li>
-<p><em><strong>reference的常见用途</strong></em></p>
-<ul>
-<li>
-<p><em><strong>reference一般不用在声明变量，而用在参数类型和返回类型的描述</strong></em></p>
 <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func1</span><span class="p">(</span><span class="n">Cls</span><span class="o">*</span> <span class="n">pobj</span><span class="p">)</span> <span class="p">{</span> <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">xxx</span><span class="p">();</span> <span class="p">}</span> <span class="c1">// pass by pointer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">func2</span><span class="p">(</span><span class="n">Cls</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="n">obj</span><span class="p">.</span><span class="n">xxx</span><span class="p">();</span> <span class="p">}</span> <span class="c1">// pass by value
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">func3</span><span class="p">(</span><span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="n">obj</span><span class="p">.</span><span class="n">xxx</span><span class="p">();</span> <span class="p">}</span> <span class="c1">// pass by reference
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -206,86 +177,55 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Cls</span> <span class="n">obj</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">func1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">obj</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">func2</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">func</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><em>我们能发现 pass by pointer 跟其他的都不一样，而&quot;value&quot; &ldquo;reference&quot;被调用端的写法相同，调用端接口也相同</em></p>
-<p><em><strong>所以最好用 reference 不行的情况下 比如返回临时对象的情况下，用value</strong></em></p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="签名">签名</h2>
-<ol>
-<li>
-<p><em><strong>什么是签名</strong></em></p>
-<ul>
-<li>
-<p><em>不含return type的函数部分叫做签名</em></p>
-</li>
-<li>
-<p><em>如下述代码 他们的签名都是 <code>image(const double im)</code> 所以他们两者不能同时存在</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">image</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span><span class="o">&amp;</span> <span class="n">im</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">image</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">im</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 那么什么是静态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">静态就是</span> <span class="err">不带这个</span><span class="k">this</span> <span class="n">piont</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 静态用在哪
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">存储静态的数据</span> <span class="err">不会变动的</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p><em><strong>const 也算函数签名</strong></em></p>
+</ul>
+<h2 id="static的修饰">static的修饰</h2>
+<ol>
+<li><em><strong>static 修饰局部变量</strong></em>
+<ul>
+<li><em>存放原本从栈区变成了静态存储区</em></li>
+<li><em>生命周期原本从包含语句模块结束变成了延续到整个程序结束</em></li>
+<li><em>作用域不发生变化</em></li>
+</ul>
 </li>
+<li><em><strong>static 修饰全局变量</strong></em>
+<ul>
+<li><em>static全局变量会存在静态存储区</em></li>
+<li><em>生命周期会延续到整个程序结束</em></li>
+<li><em>作用域从原本的全文件共享，变成了定义文件共享</em></li>
+</ul>
+</li>
+<li><em><strong>static 修饰函数</strong></em>
+<ul>
+<li><em>作用域发生了改变</em></li>
+</ul>
+</li>
+<li><em><strong>static 修饰成员变量</strong></em>
+<ul>
+<li><em>静态成员变量是在类内进行声明，在类外进行定义和初始化，在类外进行定义和初始化的时候不要出现 static 关键字和 private、public、protected 访问规则</em></li>
+<li><em>静态成员变量相当于类域中的全局变量，被类的所有对象所共享，包括派生类的对象，且只能该变量只能被初始化一次，不能在类的构造函数中对静态成员变量进行初始化</em></li>
+<li><em>静态成员变量可以作为成员函数的参数，而普通成员变量不可以</em></li>
+<li><em>静态数据成员的类型可以是所属类的类型，而普通数据成员的类型只能是该类类型的指针或引用</em></li>
+</ul>
+</li>
+<li><em><strong>static 修饰成员函数</strong></em>
+<ul>
+<li><em>静态成员函数不能调用非静态成员变量或者非静态成员函数，因为静态成员函数没有 <code>this</code> 指针。静态成员函数做为类作用域的全局函数</em></li>
+<li><em>静态成员函数不能声明成虚函数（<code>virtual</code>）、<code>const</code> 函数和 <code>volatile</code> 函数</em></li>
+</ul>
+</li>
+<li><em><strong>static 对象</strong></em>
+<ul>
+<li><em>静态对象的生存周期为整个程序的生命周期，而非静态对象的生命周期只存在于某个循环中</em></li>
 </ul>
 </li>
 </ol>
-<h2 id="指针和引用的区别">指针和引用的区别</h2>
-<ol>
-<li><em>指针和引用都是内存地址的一个概念，区别就是指针是一个实体，引用是一个别名</em></li>
-<li><em>指针他指向一个内存，在编译的时候会以 &ldquo;指针名 - 指向的内存地址&rdquo; 存入符号表，所以说 指针包含的内容是可以改变的，并且是可以 <code>const</code>修饰的，允许拷贝和赋值，甚至可以为空，<code>sizeof</code>得到的就是指针类型的大小</em></li>
-<li><em>引用则就是相当于一个内存的别名，在添加到符号表的时候，是以 &ldquo;引用变量名 - 引用对象的地址&quot;添加到符号表中，符号表一经完成不能改变，所以引用必须而且只能在定义时被绑 定到一块内存上，后续不能更改，也不能为空，也没有 const 和非 const 区别</em></li>
-<li><em><strong>sizeof</strong></em>
-<ul>
-<li><em>sizeof 引用得到代表对象的大小</em></li>
-<li><em>sizeof 指针得到的是指针本身的大小</em></li>
-</ul>
-</li>
-<li><em><strong>参数传递</strong></em>
-<ul>
-<li><em>传指针的实质是传值，传递的值是指针的地址。指针需要被解引用后才可以对对象进行操作</em></li>
-<li><em>传引用的实质是传地址，传递的是参数的地址。直接对引用进行的修改会直接作用到引用对象上</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="参数传递">参数传递</h2>
-<ol>
-<li><em><strong>pass by value</strong></em>
-<ul>
-<li><em><code>complex (double r = 0, double i = 0): re (r), im (r) { } </code></em></li>
-<li><em><strong>指针参数本质上就是一个值传递，他所传递的是一个地址值</strong></em></li>
-<li><em>值传递过程中，被调函数的形式参数作为被调函数的局部变量处理，会在栈中开辟内存空间以存放由主调函数传递进来的实参 值，从而形成了实参的一个副本(替身)</em></li>
-<li><em>值传递的特点就是被调函数对形式参数的任何操作都是作为局部变量进行的，不会影响主调函数的实参变量的值(形参指针变了，实参指针不会变)</em></li>
-</ul>
-</li>
-<li><em><strong>pass by reference</strong></em>
-<ul>
-<li><em><code>Complex&amp; operator += { const complex&amp; } </code></em></li>
-<li><em>被调函数的形式参数也作为局部变量在栈中开辟了内存空间，但是这时 存放的是由主调函数放进来的实参变量的地址</em></li>
-<li><em>被调函数对形参(本体)的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变􏰀(根据别名找到主调函数中的 本体)</em></li>
-<li><em><strong>因此，被调函数对形参的任何操作都会影响主调函数中的实参变量</strong></em></li>
-</ul>
-</li>
-<li><em><strong>引用传递和指针传递是不同的</strong></em>
-<ul>
-<li><em>虽然他们都是被调函数栈空间上的一个局部变量，但是任何对于引用参数的处理都会通过一个间接寻址的方式操作到主调函数中的相关变量，而对于指针传递的参数，如果改变被调函数中的指针地址，他将应用不到主调函数的相关变量。</em></li>
-<li><em>如果想通过指针参数传递来改变主调函数中的相关变量(地址)，那就得使用指向指针的指针或者指针引用</em></li>
-</ul>
 </li>
 </ol>
 </div><div class="post-footer" id="post-footer">
@@ -296,23 +236,23 @@
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" data-title="指针与引用" data-hashtags="指针,引用,参数传递"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" data-hashtag="指针"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" data-title="指针与引用"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" data-title="指针与引用"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" data-title="指针与引用"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" data-title="static" data-hashtags="static"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" data-hashtag="static"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" data-title="static"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" data-title="static"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/c-%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%89%AF%E6%9C%AC/" data-title="static"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%8C%87%E9%92%88/">指针</a>,&nbsp;<a href="/tags/%E5%BC%95%E7%94%A8/">引用</a>,&nbsp;<a href="/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/">参数传递</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/static/">static</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/c-%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="prev" rel="prev" title="操作符重载"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>操作符重载</a>
-            <a href="/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="next" rel="next" title="构造函数">构造函数<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/c-%E6%A8%A1%E6%9D%BF/" class="prev" rel="prev" title="模版"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>模版</a>
+            <a href="/c-%E8%99%9A%E5%87%BD%E6%95%B0/" class="next" rel="next" title="虚函数">虚函数<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

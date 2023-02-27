@@ -1,6 +1,66 @@
 # 指针与引用
 
 
+## 引用
+
+1. ***什么是引用***	
+
+   - *reference 其实就是一个漂亮的 pointer*
+
+2. ***引用的代码***
+
+   - ```cpp
+     int x = 0;
+     int* p = &x; // p is a pointer to x
+     int& p = x; // r is a reference to x
+     int x2 = 5;
+     
+     r = x2;
+     int& r2= r;
+     ```
+
+   - *`int*`是 pointer to int，`int&`是 reference to int，比如 `int* p = &x;` 我们会说指针p指向了x，而`int& r = x;`我们会说 r 代表了 x，其实r里面有一个指针指向了x ，r 只要代表了 x 就不可以代表别的变量，pointer不同，pointer还可以指向别的变量*
+
+3. ***假象***
+
+   - *我们观察上面的 x 和 r的地址和大小，就发现 `sizeof(r) = sizeof(x)` `&x == &r` object 和其 reference的大小相同，地址也相同（但是都是假象）*
+
+4. ***reference的常见用途***
+
+   - ***reference一般不用在声明变量，而用在参数类型和返回类型的描述***
+
+     ```cpp
+     void func1(Cls* pobj) { pobj->xxx(); } // pass by pointer
+     void func2(Cls obj) { obj.xxx(); } // pass by value
+     void func3(Cls& obj) { obj.xxx(); } // pass by reference
+     ```
+
+     ```cpp
+     Cls obj;
+     func1(&obj);
+     func2(obj);
+     func(obj);
+     ```
+
+     *我们能发现 pass by pointer 跟其他的都不一样，而"value" "reference"被调用端的写法相同，调用端接口也相同*
+
+     ***所以最好用 reference 不行的情况下 比如返回临时对象的情况下，用value***
+
+## 签名
+
+1. ***什么是签名***
+
+   - *不含return type的函数部分叫做签名*
+
+   - *如下述代码 他们的签名都是 `image(const double im)` 所以他们两者不能同时存在*
+
+     ```cpp
+     double image(const double& im) { ... }
+     double image(const double im) { ... }
+     ```
+
+   - ***const 也算函数签名***
+
 ## 指针和引用的区别
 
 1. *指针和引用都是内存地址的一个概念，区别就是指针是一个实体，引用是一个别名*
@@ -11,7 +71,7 @@
    - *sizeof 指针得到的是指针本身的大小*
 5. ***参数传递***
    - *传指针的实质是传值，传递的值是指针的地址。指针需要被解引用后才可以对对象进行操作*
-   - *传引用的实质是传地址，传递的是变量的地址。直接对引用进行的修改会直接作用到引用对象上*
+   - *传引用的实质是传地址，传递的是参数的地址。直接对引用进行的修改会直接作用到引用对象上*
 
 ## 参数传递
 
