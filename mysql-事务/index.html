@@ -131,17 +131,17 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#事务">事务</a></li>
-    <li><a href="#copy-on-write">Copy On Write</a></li>
-    <li><a href="#mvcc">MVCC</a></li>
-    <li><a href="#小谈阿里面试题---查询操作方法需要使用事务吗">小谈阿里面试题 - 查询操作方法需要使用事务吗</a></li>
-    <li><a href="#mysql执行过程与bufferpool缓存机制">MySQL执行过程与BufferPool缓存机制</a></li>
+    <li><a href="#事务"><em><strong>事务</strong></em></a></li>
+    <li><a href="#copy-on-write"><em><strong>Copy On Write</strong></em></a></li>
+    <li><a href="#mvcc"><em><strong>MVCC</strong></em></a></li>
+    <li><a href="#小谈阿里面试题---查询操作方法需要使用事务吗"><em><strong>小谈阿里面试题 - 查询操作方法需要使用事务吗</strong></em></a></li>
+    <li><a href="#mysql执行过程与bufferpool缓存机制"><em><strong>MySQL执行过程与BufferPool缓存机制</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="事务">事务</h2>
+            </div><div class="content" id="content"><h2 id="事务"><em><strong>事务</strong></em></h2>
 <ol>
 <li>
-<p><strong>事务是什么</strong></p>
+<p><em><strong>事务是什么</strong></em></p>
 <ul>
 <li><em>事务就是要么全部完成 要么全部失败 目的是为了保证数据的一致性</em></li>
 </ul>
@@ -202,18 +202,18 @@
 </ul>
 </li>
 </ol>
-<h2 id="copy-on-write">Copy On Write</h2>
+<h2 id="copy-on-write"><em><strong>Copy On Write</strong></em></h2>
 <ol>
-<li>什么是COW
+<li><em><strong>什么是COW</strong></em>
 <ul>
 <li><em><code>写入时复制</code> 当有写入操作时 将原表copy一份 专门供来修改 如果此时有查询操作 则就查询原表，等新表写入完成在替换原表</em></li>
 <li><em>经常用于 <strong>读多写少</strong> 高并发的场景下，但是不单单只用于该场景</em></li>
 </ul>
 </li>
 </ol>
-<h2 id="mvcc">MVCC</h2>
+<h2 id="mvcc"><em><strong>MVCC</strong></em></h2>
 <ol>
-<li><strong>什么是MVCC</strong>
+<li><em><strong>什么是MVCC</strong></em>
 <ul>
 <li><em>多版本控制链</em></li>
 <li><em>他跟COW还是很像的，都是在并发下保证数据安全 并且提高效率</em></li>
@@ -226,11 +226,11 @@
 </ul>
 </li>
 </ol>
-<h2 id="小谈阿里面试题---查询操作方法需要使用事务吗">小谈阿里面试题 - 查询操作方法需要使用事务吗</h2>
+<h2 id="小谈阿里面试题---查询操作方法需要使用事务吗"><em><strong>小谈阿里面试题 - 查询操作方法需要使用事务吗</strong></em></h2>
 <p><em><strong>这种题其实大部分都要视情况而定, 如果你在查询的时候只有一条sql语句 那肯定是没必要开启事务的 但是如果你在导出的场景下 而且隔离级别是可重复读的情况下 导出的数据肯定是需要同一个时间维度的数据 所以这时候需要开启事务，否则就会导致导出的数据中 数据其实不是同一个时间维度的数据</strong></em></p>
-<h2 id="mysql执行过程与bufferpool缓存机制">MySQL执行过程与BufferPool缓存机制</h2>
+<h2 id="mysql执行过程与bufferpool缓存机制"><em><strong>MySQL执行过程与BufferPool缓存机制</strong></em></h2>
 <ol>
-<li><strong>mysql为何要如此设计</strong>
+<li><em><strong>mysql为何要如此设计</strong></em>
 <ul>
 <li><em>因为mysql要为其性能考虑，kafka为何吞吐量这么高，因为他的写入数据是顺序写，顺序写的性能是相当高</em></li>
 <li><em>mysql写入 <code>redo-log</code>的时候就是顺序写，但是通过IO线程写入ibd确实随机写，虽然可以优化，但是性能肯定是比不过顺序写</em></li>

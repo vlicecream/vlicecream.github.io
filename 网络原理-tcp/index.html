@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "TCP, UDP","wordcount":  4488 ,
+                        }],"genre": "posts","keywords": "TCP, UDP","wordcount":  4492 ,
         "url": "https:\/\/vlicecream.github.io\/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp\/","datePublished": "2023-01-03T10:40:32+08:00","dateModified": "2023-02-26T07:59:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TCP/UDP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>网络原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-03">2023-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4488 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-03">2023-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4492 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcp/" class="leancloud_visitors" data-flag-title="TCP/UDP">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -139,7 +139,7 @@
     <li><a href="#tcp-序列号--应答机制"><em><strong>TCP 序列号 &amp; 应答机制</strong></em></a></li>
     <li><a href="#tcp-重发超时"><em><strong>TCP 重发超时</strong></em></a></li>
     <li><a href="#tcp-三次握手"><em><strong>TCP 三次握手</strong></em></a></li>
-    <li><a href="#tcp-四次挥手">TCP 四次挥手</a></li>
+    <li><a href="#tcp-四次挥手"><em><strong>TCP 四次挥手</strong></em></a></li>
     <li><a href="#为什么需要3次握手-挥手需要4次"><em><strong>为什么需要3次握手 挥手需要4次</strong></em></a></li>
     <li><a href="#tcp-以段为单位发送数据"><em><strong>TCP 以段为单位发送数据</strong></em></a></li>
     <li><a href="#tcp-窗口控制"><em><strong>TCP 窗口控制</strong></em></a></li>
@@ -272,9 +272,13 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">srtt</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">g</span><span class="p">)</span><span class="nx">srtt</span> <span class="o">+</span> <span class="nf">g</span><span class="p">(</span><span class="nx">M</span><span class="p">);</span><span class="nx">rttval</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">h</span><span class="p">)</span><span class="nx">rttval</span> <span class="o">+</span> <span class="nf">h</span><span class="p">(|</span><span class="nx">M</span> <span class="o">-</span> <span class="nx">rttval</span><span class="p">|);</span><span class="nx">RTO</span> <span class="p">=</span> <span class="nx">srtt</span> <span class="o">+</span> <span class="mi">4</span><span class="p">(</span><span class="nx">rttval</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">srtt</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">g</span><span class="p">)</span><span class="nx">srtt</span> <span class="o">+</span> <span class="nf">g</span><span class="p">(</span><span class="nx">M</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">rttval</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">h</span><span class="p">)</span><span class="nx">rttval</span> <span class="o">+</span> <span class="nf">h</span><span class="p">(|</span><span class="nx">M</span> <span class="o">-</span> <span class="nx">rttval</span><span class="p">|);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">RTO</span> <span class="p">=</span> <span class="nx">srtt</span> <span class="o">+</span> <span class="mi">4</span><span class="p">(</span><span class="nx">rttval</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="cm">/*	
 </span></span></span><span class="line"><span class="cl"><span class="cm">	其中`g`设置为1/8，`h`设置为`1/4`
 </span></span></span><span class="line"><span class="cl"><span class="cm">	对srtt而言，它有1/8取决于当前值，7/8取决于现有值	当RTT变化时，偏差增量越大，RTO的增量也越大
@@ -307,7 +311,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="tcp-四次挥手">TCP 四次挥手</h2>
+<h2 id="tcp-四次挥手"><em><strong>TCP 四次挥手</strong></em></h2>
 <ol>
 <li><em><strong>第一次挥手</strong></em>
 <ul>

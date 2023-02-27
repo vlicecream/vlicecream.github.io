@@ -38,7 +38,7 @@ private:
 };
 ```
 
-## 构造函数和析构函数
+## ***构造函数和析构函数***
 
 ```cpp
 inline String::String(const char* cstr = 0) {
@@ -58,7 +58,7 @@ inline String::~String() {
 // class 有指针 多半要做动态分配 所以就要在析构函数 释放内存
 ```
 
-## 深拷贝与浅拷贝
+## ***深拷贝与浅拷贝***
 
 ```cpp
 String a("Hello"); // 这个时候 a 的 data 指向了 'Hello\0' 的地址
@@ -66,7 +66,7 @@ String b("World"); // 这个时候 b 的 data 指向了 ‘World\0’ 的地址
 b = a; // 这个时候 b 就会指向 'Hello\0' 的地址 a&b都指向了同一个地址 可是 'World\0' 还在  造成内存泄漏 而且你改a b就会受到影响 所以这种 'b = a' 叫做浅拷贝
 ```
 
-## 拷贝构造函数
+## ***拷贝构造函数***
 
 ```cpp
 inline String::String(const String &str) { // 为什么叫构造 因为这是一个构造函数 为什么叫拷贝 因为传参是自己
@@ -75,7 +75,7 @@ inline String::String(const String &str) { // 为什么叫构造 因为这是一
 }   // 这也是深拷贝
 ```
 
-## 拷贝赋值函数
+## ***拷贝赋值函数***
 
 ```cpp
 // 这个函数就是 如果 有 1 a&b 先把 a 清销毁, 2 在new一个内存空间 , 3 在把 b 拷贝到 a 里面来

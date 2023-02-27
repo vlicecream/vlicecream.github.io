@@ -131,21 +131,21 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#索引的基本种类">索引的基本种类</a></li>
-    <li><a href="#索引的优点缺点">索引的优点缺点</a></li>
-    <li><a href="#最左匹配原则">最左匹配原则</a></li>
-    <li><a href="#索引的妙用">索引的妙用</a></li>
-    <li><a href="#b-tree">B+ Tree</a></li>
-    <li><a href="#b-tree-与-b-tree的区别">B Tree 与 B+ Tree的区别</a></li>
-    <li><a href="#聚簇索引--非聚簇索引">聚簇索引 &amp; 非聚簇索引</a></li>
-    <li><a href="#在不同引擎下的索引">在不同引擎下的索引</a></li>
-    <li><a href="#使用聚簇索引的优势">使用聚簇索引的优势</a></li>
-    <li><a href="#mysql的主键类型">mysql的主键类型</a></li>
+    <li><a href="#索引的基本种类"><em><strong>索引的基本种类</strong></em></a></li>
+    <li><a href="#索引的优点缺点"><em><strong>索引的优点缺点</strong></em></a></li>
+    <li><a href="#最左匹配原则"><em><strong>最左匹配原则</strong></em></a></li>
+    <li><a href="#索引的妙用"><em><strong>索引的妙用</strong></em></a></li>
+    <li><a href="#b-tree"><em><strong>B+ Tree</strong></em></a></li>
+    <li><a href="#b-tree-与-b-tree的区别"><em><strong>B Tree 与 B+ Tree的区别</strong></em></a></li>
+    <li><a href="#聚簇索引--非聚簇索引"><em><strong>聚簇索引 &amp; 非聚簇索引</strong></em></a></li>
+    <li><a href="#在不同引擎下的索引"><em><strong>在不同引擎下的索引</strong></em></a></li>
+    <li><a href="#使用聚簇索引的优势"><em><strong>使用聚簇索引的优势</strong></em></a></li>
+    <li><a href="#mysql的主键类型"><em><strong>mysql的主键类型</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="索引的基本种类">索引的基本种类</h2>
+            </div><div class="content" id="content"><h2 id="索引的基本种类"><em><strong>索引的基本种类</strong></em></h2>
 <ol>
-<li><strong>Innodb</strong>
+<li><em><strong>Innodb</strong></em>
 <ul>
 <li><em><code>主键索引</code>在建立主键的时候就会自动帮你创建一个主键索引，在Innodb引擎下主键索引是聚簇索引，可以不唯一</em></li>
 <li><em><code>普通索引</code>除主键外，任意一列创建的索引就叫做普通索引 普通索引可以有多个</em></li>
@@ -159,9 +159,9 @@
 </ul>
 </li>
 </ol>
-<h2 id="索引的优点缺点">索引的优点缺点</h2>
+<h2 id="索引的优点缺点"><em><strong>索引的优点缺点</strong></em></h2>
 <ol>
-<li><strong>优点</strong>
+<li><em><strong>优点</strong></em>
 <ul>
 <li><em>能够大大加快索引的查询速度</em></li>
 </ul>
@@ -174,7 +174,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="最左匹配原则">最左匹配原则</h2>
+<h2 id="最左匹配原则"><em><strong>最左匹配原则</strong></em></h2>
 <ol>
 <li><em><strong>现在有一个联合索引包含了 name age bir 三个列</strong></em>
 <ul>
@@ -197,7 +197,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="索引的妙用">索引的妙用</h2>
+<h2 id="索引的妙用"><em><strong>索引的妙用</strong></em></h2>
 <ol>
 <li><em><strong>SELECT</strong></em>
 <ul>
@@ -228,7 +228,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="b-tree">B+ Tree</h2>
+<h2 id="b-tree"><em><strong>B+ Tree</strong></em></h2>
 <ol>
 <li><em><strong>B+ Tree导出过程</strong></em>
 <ul>
@@ -245,14 +245,14 @@
 </ul>
 </li>
 </ol>
-<h2 id="b-tree-与-b-tree的区别">B Tree 与 B+ Tree的区别</h2>
+<h2 id="b-tree-与-b-tree的区别"><em><strong>B Tree 与 B+ Tree的区别</strong></em></h2>
 <ol>
 <li><em><strong>B Tree  非叶子结点也会存储数据 这样会导致 树的高度比 b+ tree 高 查询磁盘io次数也会比 b+ tree高  这样会影响查询效率</strong></em></li>
 <li><em><strong>B+ Tree	只有叶子节点会存储数据 非叶子节点只存储键值信息 注意 不是键值对哦~	所有叶子节点之间都有一个键指针</strong></em></li>
 </ol>
-<h2 id="聚簇索引--非聚簇索引">聚簇索引 &amp; 非聚簇索引</h2>
+<h2 id="聚簇索引--非聚簇索引"><em><strong>聚簇索引 &amp; 非聚簇索引</strong></em></h2>
 <ol>
-<li><strong>聚簇索引</strong>
+<li><em><strong>聚簇索引</strong></em>
 <ul>
 <li><em>将数据与索引存放在一块 索引结构的叶子节点保存了行数据</em></li>
 </ul>
@@ -270,7 +270,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="在不同引擎下的索引">在不同引擎下的索引</h2>
+<h2 id="在不同引擎下的索引"><em><strong>在不同引擎下的索引</strong></em></h2>
 <ol>
 <li><em><strong>Innodb</strong></em>
 <ul>
@@ -296,7 +296,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="使用聚簇索引的优势">使用聚簇索引的优势</h2>
+<h2 id="使用聚簇索引的优势"><em><strong>使用聚簇索引的优势</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -306,7 +306,7 @@
 <li><em><strong>由于行数据和聚簇索引的叶子节点存储在一起, 同一页会有多条数据, 访问同一数据页不同行记录时, 已经将页加载到了buffer</strong></em></li>
 <li><em><strong>辅助索引的叶子节点, 存储主键值, 而不是数据的存放地址. 好处是当行数据发生变化时, 索引树的节点也需要变化	或者是我们需要查找的数据, 在上一次io读写的缓存中没有, 需要发生一次新的io操作时, 可以比避免对辅助索引的维护工作， 只需要维护聚簇索引树就好了	还有一个因为辅助索引存放的主键值 还少了辅助索引占用的存储空间大小</strong></em></li>
 </ol>
-<h2 id="mysql的主键类型">mysql的主键类型</h2>
+<h2 id="mysql的主键类型"><em><strong>mysql的主键类型</strong></em></h2>
 <ol>
 <li><em><strong>mysql不推荐uuid为主键</strong></em>
 <ul>

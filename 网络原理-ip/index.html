@@ -131,47 +131,47 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#网络层">网络层</a></li>
+    <li><a href="#网络层"><em><strong>网络层</strong></em></a></li>
   </ul>
 
   <ul>
-    <li><a href="#ip地址的定义">IP地址的定义</a></li>
-    <li><a href="#ip地址由网络和主机两部分标识组成">IP地址由网络和主机两部分标识组成</a></li>
-    <li><a href="#ip地址的分类">IP地址的分类</a></li>
-    <li><a href="#广播地址">广播地址</a></li>
-    <li><a href="#多播">多播</a></li>
-    <li><a href="#子网掩码">子网掩码</a></li>
-    <li><a href="#cidrvlsm">CIDR/VLSM</a></li>
-    <li><a href="#全局地址与私有地址">全局地址与私有地址</a></li>
+    <li><a href="#ip地址的定义"><em><strong>IP地址的定义</strong></em></a></li>
+    <li><a href="#ip地址由网络和主机两部分标识组成"><em><strong>IP地址由网络和主机两部分标识组成</strong></em></a></li>
+    <li><a href="#ip地址的分类"><em><strong>IP地址的分类</strong></em></a></li>
+    <li><a href="#广播地址"><em><strong>广播地址</strong></em></a></li>
+    <li><a href="#多播"><em><strong>多播</strong></em></a></li>
+    <li><a href="#子网掩码"><em><strong>子网掩码</strong></em></a></li>
+    <li><a href="#cidrvlsm"><em><strong>CIDR/VLSM</strong></em></a></li>
+    <li><a href="#全局地址与私有地址"><em><strong>全局地址与私有地址</strong></em></a></li>
   </ul>
 
   <ul>
-    <li><a href="#路由控制表">路由控制表</a></li>
-    <li><a href="#ip地址与路由控制">IP地址与路由控制</a></li>
-    <li><a href="#默认路由">默认路由</a></li>
-    <li><a href="#主机路由">主机路由</a></li>
-    <li><a href="#环回地址">环回地址</a></li>
-    <li><a href="#路由控制表的聚合">路由控制表的聚合</a></li>
+    <li><a href="#路由控制表"><em><strong>路由控制表</strong></em></a></li>
+    <li><a href="#ip地址与路由控制"><em><strong>IP地址与路由控制</strong></em></a></li>
+    <li><a href="#默认路由"><em><strong>默认路由</strong></em></a></li>
+    <li><a href="#主机路由"><em><strong>主机路由</strong></em></a></li>
+    <li><a href="#环回地址"><em><strong>环回地址</strong></em></a></li>
+    <li><a href="#路由控制表的聚合"><em><strong>路由控制表的聚合</strong></em></a></li>
   </ul>
 
   <ul>
-    <li><a href="#数据链路不同-mtu则相异">数据链路不同 MTU则相异</a></li>
-    <li><a href="#ip报文的分片与重组">IP报文的分片与重组</a></li>
-    <li><a href="#路径mtu发现">路径MTU发现</a></li>
+    <li><a href="#数据链路不同-mtu则相异"><em><strong>数据链路不同 MTU则相异</strong></em></a></li>
+    <li><a href="#ip报文的分片与重组"><em><strong>IP报文的分片与重组</strong></em></a></li>
+    <li><a href="#路径mtu发现"><em><strong>路径MTU发现</strong></em></a></li>
   </ul>
 
   <ul>
-    <li><a href="#ipv4首部-1">IPv4首部</a></li>
+    <li><a href="#ipv4首部-1"><em><strong>IPv4首部</strong></em></a></li>
   </ul>
 
   <ul>
-    <li><a href="#icmp是个啥玩意">ICMP是个啥玩意</a></li>
-    <li><a href="#主要的icmp消息">主要的ICMP消息</a></li>
-    <li><a href="#其他的icmp信息">其他的ICMP信息</a></li>
-    <li><a href="#icmpv6">ICMPv6</a></li>
+    <li><a href="#icmp是个啥玩意"><em><strong>ICMP是个啥玩意</strong></em></a></li>
+    <li><a href="#主要的icmp消息"><em><strong>主要的ICMP消息</strong></em></a></li>
+    <li><a href="#其他的icmp信息"><em><strong>其他的ICMP信息</strong></em></a></li>
+    <li><a href="#icmpv6"><em><strong>ICMPv6</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="网络层">网络层</h2>
+            </div><div class="content" id="content"><h2 id="网络层"><em><strong>网络层</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>网络层介绍</strong></em></p>
@@ -182,19 +182,19 @@
 <p><em>实现点对点通信</em> <em>在第二层 数据链路层中 我们知道了在同一链路中 是通过&quot;mac地址&quot;来确定目标主机 进行包传递</em> <em>那在不同的链路中 就是通过第三层的&quot;IP地址&quot;来实现包传递</em></p>
 </li>
 </ol>
-<h1 id="ip基础知识">IP基础知识</h1>
+<h1 id="ip基础知识"><em><strong>IP基础知识</strong></em></h1>
 <p><em><strong>IP总共分为三大作用模块 分别是 “寻址” “路由” “分片与组包”</strong></em></p>
-<h2 id="ip地址的定义">IP地址的定义</h2>
+<h2 id="ip地址的定义"><em><strong>IP地址的定义</strong></em></h2>
 <ol>
 <li><em>ipv4由32位正整数来表示</em></li>
 <li><em>TCP/IP要求将IP地址分配给每一个通讯的主机IP地址在计算机内部由二进制表示 但是人类社会并不习惯二进制 所以每8位分开 隔一个&quot;.&quot; 将每组数以十进制来表示每一台主机上的每一张网卡都需要设置IP地址 所以IP地址越来越不够用</em></li>
 </ol>
-<h2 id="ip地址由网络和主机两部分标识组成">IP地址由网络和主机两部分标识组成</h2>
+<h2 id="ip地址由网络和主机两部分标识组成"><em><strong>IP地址由网络和主机两部分标识组成</strong></em></h2>
 <ol>
 <li><em>IP地址是由<strong>网络地址</strong>和<strong>主机地址</strong>两部分组成</em></li>
 <li><em>实现了唯一性，网络地址在不同的数据链路中也是不相同的，如果网络地址相同则说明在同一个网段中，接下来就是通过主机地址来区分不同的主机</em></li>
 </ol>
-<h2 id="ip地址的分类">IP地址的分类</h2>
+<h2 id="ip地址的分类"><em><strong>IP地址的分类</strong></em></h2>
 <p><em><strong>IP地址分为4类 分别为 A类 B类 C类 D类 它根据IP地址中从第1位到第4位的比特对其网络标识和主机标识进行区分</strong></em></p>
 <ol>
 <li><em><strong>A类地址</strong></em>
@@ -229,7 +229,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="广播地址">广播地址</h2>
+<h2 id="广播地址"><em><strong>广播地址</strong></em></h2>
 <ol>
 <li><em><strong>什么是广播地址</strong></em>
 <ul>
@@ -261,7 +261,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="多播">多播</h2>
+<h2 id="多播"><em><strong>多播</strong></em></h2>
 <ol>
 <li><em><strong>什么是多播</strong></em>
 <ul>
@@ -282,7 +282,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="子网掩码">子网掩码</h2>
+<h2 id="子网掩码"><em><strong>子网掩码</strong></em></h2>
 <ol>
 <li><em><strong>为什么需要子网掩码</strong></em>
 <ul>
@@ -296,14 +296,14 @@
 </ul>
 </li>
 </ol>
-<h2 id="cidrvlsm">CIDR/VLSM</h2>
+<h2 id="cidrvlsm"><em><strong>CIDR/VLSM</strong></em></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"></code></pre></td></tr></table>
 </div>
-</div><h2 id="全局地址与私有地址">全局地址与私有地址</h2>
+</div><h2 id="全局地址与私有地址"><em><strong>全局地址与私有地址</strong></em></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
@@ -311,7 +311,7 @@
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"></code></pre></td></tr></table>
 </div>
 </div><h1 id="路由控制">路由控制</h1>
-<h2 id="路由控制表">路由控制表</h2>
+<h2 id="路由控制表"><em><strong>路由控制表</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -331,9 +331,9 @@
 </ul>
 </li>
 </ol>
-<h2 id="ip地址与路由控制">IP地址与路由控制</h2>
+<h2 id="ip地址与路由控制"><em><strong>IP地址与路由控制</strong></em></h2>
 <p><em>在发送IP包的时候 首先要确定IP包首部的目标地址 然后在路由控制表中找到相同网络地址的记录 然后转发至下一个路由如果有多个相同 则找一个最相同的 随后转发至下一个路由</em></p>
-<h2 id="默认路由">默认路由</h2>
+<h2 id="默认路由"><em><strong>默认路由</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -349,14 +349,14 @@
 </ul>
 </li>
 </ol>
-<h2 id="主机路由">主机路由</h2>
+<h2 id="主机路由"><em><strong>主机路由</strong></em></h2>
 <p><em>&ldquo;IP地址/32&rdquo; 也被称为 主机路由，他的意思是整个IP地址的所有位都将参与路由主机路由，多用于不希望通过网络地址路由的情况</em></p>
-<h2 id="环回地址">环回地址</h2>
+<h2 id="环回地址"><em><strong>环回地址</strong></em></h2>
 <p><em>这个就是老朋友了 127.0.0.1 或者是 localhost，环回地址是在同一台计算机上的程序之间进行网络通信时所使用的一个默认地址，数据包不会流向网络</em></p>
-<h2 id="路由控制表的聚合">路由控制表的聚合</h2>
+<h2 id="路由控制表的聚合"><em><strong>路由控制表的聚合</strong></em></h2>
 <p><em>利用网络地址的比特分布可以有效的进行分层配置对内，即使有多个子网掩码，对外呈现出的也是同一个网络地址，所以通过路由信息的聚合可以有效的减少路由表的数目 提升效率</em></p>
 <h1 id="ip分割处理与再构成处理">IP分割处理与再构成处理</h1>
-<h2 id="数据链路不同-mtu则相异">数据链路不同 MTU则相异</h2>
+<h2 id="数据链路不同-mtu则相异"><em><strong>数据链路不同 MTU则相异</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -365,7 +365,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="ip报文的分片与重组">IP报文的分片与重组</h2>
+<h2 id="ip报文的分片与重组"><em><strong>IP报文的分片与重组</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -383,7 +383,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="路径mtu发现">路径MTU发现</h2>
+<h2 id="路径mtu发现"><em><strong>路径MTU发现</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -405,7 +405,7 @@
 </li>
 </ol>
 <h1 id="ipv4首部">IPv4首部</h1>
-<h2 id="ipv4首部-1">IPv4首部</h2>
+<h2 id="ipv4首部-1"><em><strong>IPv4首部</strong></em></h2>
 <p><em><strong>教你如何通过理解去背诵</strong></em></p>
 <p><em><strong><code>首先肯定要记录发送端主机和目标段主机IP地址</code></strong></em></p>
 <ol>
@@ -517,7 +517,7 @@
 </li>
 </ol>
 <h1 id="icmp">ICMP</h1>
-<h2 id="icmp是个啥玩意">ICMP是个啥玩意</h2>
+<h2 id="icmp是个啥玩意"><em><strong>ICMP是个啥玩意</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>
@@ -539,7 +539,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="主要的icmp消息">主要的ICMP消息</h2>
+<h2 id="主要的icmp消息"><em><strong>主要的ICMP消息</strong></em></h2>
 <ol>
 <li><em><strong>ICMP目标不可达消息</strong></em>
 <ul>
@@ -562,7 +562,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="其他的icmp信息">其他的ICMP信息</h2>
+<h2 id="其他的icmp信息"><em><strong>其他的ICMP信息</strong></em></h2>
 <ol>
 <li><em><strong>ICMP原点抑制消息</strong></em>
 <ul>
@@ -580,7 +580,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="icmpv6">ICMPv6</h2>
+<h2 id="icmpv6"><em><strong>ICMPv6</strong></em></h2>
 <ol>
 <li><em><strong>引出</strong></em>
 <ul>

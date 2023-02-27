@@ -1,7 +1,7 @@
 # 编写头文件的思路流程(value)
 
 
-## class内
+## ***class内***
 
 1. ***编写防卫式声明***
 
@@ -131,9 +131,9 @@
       ```
 
 
-## class外
+## ***class外***
 
-1. **接口部分**
+1. ***接口部分***
 
    - ```cpp
      inline complex& complex::operator += (const complex& r)
