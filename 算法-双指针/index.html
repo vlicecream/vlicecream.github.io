@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "算法, 双指针","wordcount":  2439 ,
+                        }],"genre": "posts","keywords": "算法, 双指针","wordcount":  1716 ,
         "url": "https:\/\/vlicecream.github.io\/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88\/","datePublished": "2022-09-01T00:00:00+08:00","dateModified": "2023-02-28T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">双指针</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AE%97%E6%B3%95/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>算法</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-01">2022-09-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2439 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="双指针">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-01">2022-09-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1716 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="双指针">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -136,7 +136,7 @@
     <li><a href="#快慢指针">快慢指针</a></li>
     <li><a href="#左右指针">左右指针</a></li>
     <li><a href="#滑动窗口">滑动窗口</a></li>
-    <li><a href="#双指针的解题思路">双指针的解题思路</a></li>
+    <li><a href="#双指针的应用场景">双指针的应用场景</a></li>
     <li><a href="#例题1---数组---移动零---快慢指针">例题1 - 数组 - 移动零 - 快慢指针</a></li>
     <li><a href="#例题2---数组---盛最多水的容器---左右指针">例题2 - 数组 - 盛最多水的容器 - 左右指针</a></li>
     <li><a href="#例题3---链表----成环链表---快慢指针">例题3 - 链表 -  成环链表 - 快慢指针</a></li>
@@ -171,182 +171,102 @@
 </ol>
 <h2 id="左右指针">左右指针</h2>
 <ol>
-<li><em><strong>来讲一讲题外话</strong></em>
+<li>
+<p><em><strong>来讲一讲题外话</strong></em></p>
 <ul>
-<li><em>其实 快慢指针 也有被说成 左右指针，但是本人</em></li>
+<li><em>其实 快慢指针 也有被说成 左右指针，但是本人认为这么说，其实是相当不合理，在此之上，我便有了一丝 朱光潜老先生的 &ldquo;咬文嚼字&rdquo; 的感觉，我始终认为 你给一个方法取名 其实就是代表了 你对这个方法的理解</em></li>
+<li><em>比如了解什么是左右指针后 你把它叫做 &ldquo;对撞指针&rdquo; 也可以 这就是 &ldquo;1000个读者有1000个哈姆雷特&rdquo;</em></li>
+<li>*所以我也很推荐你们能拥有自己的想法 不要在意别人的命名 就好比 leetcode 题解 就有把快慢指针说为左右指针，你能说他错吗 其实快慢指针 也确实就是一个指针左 一个指针右 *</li>
+</ul>
+</li>
+<li>
+<p><em><strong>什么是左右指针</strong></em></p>
+<ul>
+<li><em>其实就是一个left指针从最左边向右跑，一个right指针从最右边向左跑</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>左右指针的代码模板</strong></em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">vector</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="p">...</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">其实</span> <span class="s">&#34;快慢指针&#34;</span> <span class="nx">也有被说</span> <span class="s">&#34;左右指针&#34;</span> <span class="nx">但是本人认为这么说</span> <span class="nx">其实是相当不合理</span> <span class="nx">在此之上</span> <span class="nx">我便有了一丝</span> <span class="nx">朱光潜老先生的</span> <span class="s">&#34;咬文嚼字&#34;</span> <span class="nx">的感觉</span>
-</span></span><span class="line"><span class="cl"><span class="nx">我始终认为</span> <span class="nx">你给一个方法取名</span> <span class="nx">其实就是代表了</span> <span class="nx">你对这个方法的</span><span class="s">&#34;理解&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">比如</span> <span class="nx">了解什么是左右指针后</span> <span class="nx">你把它叫做</span> <span class="s">&#34;对撞指针&#34;</span> <span class="nx">也可以</span> <span class="nx">这就是</span> <span class="s">&#34;1000个读者有1000个哈姆雷特&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ps</span><span class="p">:</span> <span class="nx">面试的时候</span> <span class="nx">你得解释下</span> <span class="nx">你对这些命名的理解哦</span><span class="err">～</span> <span class="nx">一定要强调自己的理解</span> <span class="nx">这是一个亮点</span>
-</span></span><span class="line"><span class="cl"><span class="nx">如果</span> <span class="nx">技术面觉得你有自己的理解很</span> <span class="nx">shabi</span> <span class="nx">那直接走人吧</span> <span class="nx">这个人多半也到头了</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="s">&#34;左右指针&#34;</span> <span class="nx">是</span> <span class="s">&#34;特殊&#34;</span> <span class="nx">的</span> <span class="s">&#34;双指针&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">所以我也很推荐你们能拥有自己的想法</span> <span class="nx">不要在意别人的命名</span> <span class="nx">就好比</span> <span class="nx">leetcode</span> <span class="nx">题解</span> <span class="nx">就有把快慢指针说为左右指针</span>
-</span></span><span class="line"><span class="cl"><span class="nx">你能说他错吗</span> <span class="nx">其实快慢指针</span> <span class="nx">也确实就是一个指针左</span> <span class="nx">一个指针右</span> 
-</span></span><span class="line"><span class="cl"><span class="nx">但是这么说快慢指针为左右指针</span> <span class="nx">非常肤浅</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="o">...</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cm">/*
-</span></span></span><span class="line"><span class="cl"><span class="cm">	此为 golang 的左右指针代码模板 在 for 循环里 需要 left++ or right-- 的代码出现来打破循环, &#34;&lt;=&#34; 也可能为 &#34;&lt;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="cm">	具体如何得在实际的应用场景去实现
-</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">vector</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cm">/*
-</span></span></span><span class="line"><span class="cl"><span class="cm">	此为 c++ 的左右指针代码模板 在 while 循环里 需要  left++ or right-- 的代码出现来打破循环, &#34;&lt;=&#34; 也可能为 &#34;&lt;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="cm">	具体如何得在实际的应用场景去实现
-</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">从代码和图里</span> <span class="nx">我们也能看到</span> <span class="nx">左右指针</span> <span class="nx">本人对他的理解</span> <span class="nx">则是</span> <span class="nx">左指针为数组或者链表的开头</span> <span class="nx">右指针则为数组的最后一个索引的元素或链表的tail</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">所以左指针满足一定的条件</span> <span class="nx">会往右移动</span> <span class="nx">右指针满足一定的条件</span> <span class="nx">会往左移动</span> <span class="nx">直到</span> <span class="nx">right</span> <span class="p">&lt;</span> <span class="nx">left</span> <span class="nx">停止</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="滑动窗口">滑动窗口</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">什么是滑动窗口</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">滑动窗口是一种基于双指针的一种思想</span><span class="err">，</span><span class="nx">两个指针指向的元素之间形成一个窗口</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">其实可以把它当成一个队列</span> <span class="nx">如果</span> <span class="nx">窗口要向后滑动</span> <span class="nx">直接把开头去掉即可</span><span class="err">~</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">滑动窗口的应用场景</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">滑动窗口可解决一系列字符串匹配问题</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="双指针的解题思路">双指针的解题思路</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="nx">这道题是不是我们常用的双指针的场景</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">涉及</span> <span class="nx">数组或链表</span><span class="err">，</span><span class="nx">成对元素的集合</span><span class="err">、</span><span class="nx">甚至是子数组</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">一个数组的子集</span> <span class="nx">需要满足某种限制</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">匹配一个</span><span class="err">「</span><span class="nx">目标</span><span class="err">」</span><span class="nx">值或是去除重复</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="nx">思考</span> <span class="nx">用双指针具体哪一个种类</span> <span class="nx">随后写出这道题的代码模板</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="nx">思考</span> <span class="nx">这道题的规律特点</span> <span class="nx">随后写出具体逻辑代码</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="例题1---数组---移动零---快慢指针">例题1 - 数组 - 移动零 - 快慢指针</h2>
-<p><a href="https://leetcode.cn/problems/move-zeroes" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/move-zeroes</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">思路讲解</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">我们看到这道数组</span> <span class="nx">他需要将一个数组</span> <span class="nx">nums</span> <span class="nx">里面元素为0的全部移到后面</span>
-</span></span><span class="line"><span class="cl"><span class="nx">一个数组的子集</span> <span class="nx">在这道题</span> <span class="nx">子集其实也就是数组的本身</span> <span class="nx">然后他需要满足0都要在最后的一个限制</span> <span class="nx">所以这道题完美应用</span> <span class="nx">双指针的应用场景</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">然后我们就要思考</span> <span class="nx">双指针的种类</span>
-</span></span><span class="line"><span class="cl">	<span class="mf">1.</span> <span class="nx">双指针</span>
-</span></span><span class="line"><span class="cl">	<span class="mf">2.</span> <span class="nx">快慢指针</span>
-</span></span><span class="line"><span class="cl">	<span class="mf">3.</span> <span class="nx">左右指针</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">最后</span> <span class="nx">仔细的思考题目</span> <span class="nx">找到题目的规律特点</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img
+<h2 id="滑动窗口">滑动窗口</h2>
+<ol>
+<li><em><strong>什么是滑动窗口</strong></em>
+<ul>
+<li><em>滑动窗口是一种基于双指针的一种思想，两个指针指向的元素之间形成一个窗口</em></li>
+<li><em>其实可以把它当成一个队列 如果 窗口要向后滑动 直接把开头去掉即可~ 这只是其中一个实现思想</em></li>
+</ul>
+</li>
+<li><em><strong>滑动窗口的应用场景</strong></em>
+<ul>
+<li><em>滑动窗口可解决一系列字符串匹配问题</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="双指针的应用场景">双指针的应用场景</h2>
+<ol>
+<li><em><strong>涉及 数组或链表，成对元素的集合、甚至是子数组</strong></em></li>
+<li><em><strong>匹配一个「目标」值或是去除重复</strong></em></li>
+</ol>
+<h2 id="例题1---数组---移动零---快慢指针">例题1 - 数组 - 移动零 - 快慢指针</h2>
+<ol>
+<li>
+<p><em><strong>题目url</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/move-zeroes" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/move-zeroes</a></em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>思路图示</strong></em></p>
+<ul>
+<li><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%A7%BB%E5%8A%A80.png"
         data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%A7%BB%E5%8A%A80.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%A7%BB%E5%8A%A80.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%A7%BB%E5%8A%A80.png 2x"
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%A7%BB%E5%8A%A80.png"
-        title="移动0" /></p>
+        title="移动0" /></li>
+</ul>
+</li>
+<li>
+<p><em><strong>代码</strong></em></p>
+<ul>
+<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -361,11 +281,9 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// c++
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">moveZeroes</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">slow</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -379,7 +297,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -392,11 +312,9 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// golang
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span>  <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span>  <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 双指针
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">slow</span> <span class="o">:=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">fast</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">fast</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span> <span class="nx">fast</span><span class="o">++</span> <span class="p">{</span>
@@ -409,48 +327,48 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 其他例题
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">https</span><span class="p">:</span><span class="c1">//leetcode.cn/problems/remove-duplicates-from-sorted-array/
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">https</span><span class="p">:</span><span class="c1">//leetcode.cn/problems/merge-sorted-array/
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="例题2---数组---盛最多水的容器---左右指针">例题2 - 数组 - 盛最多水的容器 - 左右指针</h2>
-<p><a href="https://leetcode.cn/problems/container-with-most-water/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/container-with-most-water/</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">这道题是</span> <span class="s">&#34;求最优解&#34;</span> <span class="nx">其实求最优解</span> <span class="nx">是</span> <span class="s">&#34;贪心算法&#34;</span> <span class="nx">和</span> <span class="s">&#34;动态规划&#34;</span> <span class="nx">的场景</span> <span class="nx">但是这里也可以用双指针</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">首先</span> <span class="nx">我们看看这个是不是双指针的应用场景</span> <span class="nx">数组的子集</span> <span class="nx">这里子集是数组本身</span> <span class="nx">需要找到</span> <span class="s">&#34;两个索引&#34;</span> <span class="nx">满足</span> <span class="s">&#34;最大面积&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">随后</span> <span class="nx">我们再来思考</span> <span class="nx">是要运用哪一个双指针</span> <span class="nx">的种类</span> <span class="nx">这里是</span> <span class="s">&#34;左右指针&#34;</span> <span class="nx">随后写出左右指针的模板</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">左右指针肯定需要</span> <span class="s">&#34;left++&#34;</span> <span class="nx">or</span> <span class="s">&#34;right--&#34;</span> <span class="nx">来结束循环</span> <span class="nx">所以</span> <span class="nx">就得要找到这道题的规律特点</span> <span class="nx">来实现具体的代码</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>其他例题</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/remove-duplicates-from-sorted-array/</a></em></li>
+<li><em><a href="https://leetcode.cn/problems/merge-sorted-array/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/merge-sorted-array/</a></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="例题2---数组---盛最多水的容器---左右指针">例题2 - 数组 - 盛最多水的容器 - 左右指针</h2>
+<ol>
+<li>
+<p><em><strong>题目url</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/container-with-most-water/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/container-with-most-water/</a></em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>解题思路</strong></em></p>
+<ul>
+<li><em>这道题是 &ldquo;求最优解&rdquo; 其实求最优解 是 &ldquo;贪心算法&rdquo; 和 &ldquo;动态规划&rdquo; 的场景 但是这里也可以用双指针</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>思维图示</strong></em></p>
+<ul>
+<li><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.png"
         data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.png 2x"
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.png"
-        title="盛最多水的容器" /></p>
+        title="盛最多水的容器" /></li>
+</ul>
+</li>
+<li>
+<p><em><strong>题解代码</strong></em></p>
+<ul>
+<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -467,13 +385,9 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// c++
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxArea</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -489,7 +403,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -519,13 +435,9 @@
 </span><span class="lnt">26
 </span><span class="lnt">27
 </span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// golang
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">maxArea</span><span class="p">(</span><span class="nx">height</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">maxArea</span><span class="p">(</span><span class="nx">height</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">,</span> <span class="nx">area</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">height</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="nx">left</span> <span class="p">&lt;</span> <span class="nx">right</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">area</span> <span class="p">=</span> <span class="nf">max</span><span class="p">(</span><span class="nx">area</span><span class="p">,</span> <span class="nf">min</span><span class="p">(</span><span class="nx">height</span><span class="p">[</span><span class="nx">left</span><span class="p">],</span> <span class="nx">height</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="nx">right</span><span class="o">-</span><span class="nx">left</span><span class="p">))</span>
@@ -555,38 +467,48 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 其他例题
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">https</span><span class="p">:</span><span class="c1">//leetcode.cn/problems/rotate-array/
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="例题3---链表----成环链表---快慢指针">例题3 - 链表 -  成环链表 - 快慢指针</h2>
-<p><a href="https://leetcode.cn/problems/linked-list-cycle/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/linked-list-cycle/</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">成环链表</span> <span class="nx">用</span> <span class="s">&#34;快慢指针&#34;</span> <span class="nx">真的人人皆知</span> <span class="nx">哈哈</span> 
-</span></span><span class="line"><span class="cl"><span class="nx">所以也要留个心眼</span> <span class="nx">学个其他的解法</span> <span class="nx">面试的时候</span> <span class="nx">也是个亮点哦</span><span class="err">～</span> 
-</span></span><span class="line"><span class="cl"><span class="nx">但是这里是</span> <span class="s">&#34;双指针专题&#34;</span> <span class="nx">不讲其他解法</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>其他例题</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/rotate-array/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/rotate-array/</a></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="例题3---链表----成环链表---快慢指针">例题3 - 链表 -  成环链表 - 快慢指针</h2>
+<ol>
+<li>
+<p><em><strong>题目url</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/linked-list-cycle/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/linked-list-cycle/</a></em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>解题思路</strong></em></p>
+<ul>
+<li><em>成环链表 用 &ldquo;快慢指针&rdquo; 真的人人皆知</em></li>
+<li><em>所以也要留个心眼 学个其他的解法 面试的时候 也是个亮点哦</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>思维图示</strong></em></p>
+<ul>
+<li><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png"
         data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png 2x"
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png"
-        title="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/images%E6%88%90%E7%8E%AF%E9%93%BE%E8%A1%A8.png" /></p>
+        title="成环链表" /></li>
+</ul>
+</li>
+<li>
+<p><em><strong>题解代码</strong></em></p>
+<ul>
+<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -604,13 +526,9 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// c++
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">hasCycle</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -627,7 +545,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -653,7 +573,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nx">slow</span><span class="p">,</span> <span class="nx">fast</span> <span class="o">:=</span> <span class="nx">head</span><span class="p">,</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">slow</span> <span class="o">!=</span> <span class="nx">fast</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">fast</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">Next</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span>
@@ -665,41 +585,36 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 其他例题
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">https</span><span class="p">:</span><span class="c1">//leetcode.cn/problems/linked-list-cycle-ii
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="例题4---链表----反转链表---双指针">例题4 - 链表 -  反转链表 - 双指针</h2>
-<p><a href="https://leetcode.cn/problems/reverse-linked-list/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/reverse-linked-list/</a></p>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>其他例题</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/linked-list-cycle-ii" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/linked-list-cycle-ii</a></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="例题4---链表----反转链表---双指针">例题4 - 链表 -  反转链表 - 双指针</h2>
+<ol>
+<li>
+<p><em><strong>题目url</strong></em></p>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/reverse-linked-list/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/reverse-linked-list/</a></em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>解题思路</strong></em></p>
+<ul>
+<li><em>这道题我们可以这么看 <strong>1 -&gt; 2 -&gt; null</strong> 然后变成 <strong>null &lt;- 2 &lt;- 1</strong></em></li>
+<li><em>在遍历链表时，将当前节点的 next 指针改为指向前一个节点，由于节点没有引用其前一个节点，因此必须事先存储其前一个节点，在更改引用之前，还需要存储后一个节点。最后返回新的头引用</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>题解代码</strong></em></p>
+<ul>
+<li>
 <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">这道题</span> <span class="nx">我们可以这么看</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="o">-</span><span class="p">&gt;</span> <span class="mi">2</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">null</span>
-</span></span><span class="line"><span class="cl"><span class="nx">null</span> <span class="o">&lt;-</span> <span class="mi">1</span> <span class="o">&lt;-</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">在遍历链表时</span><span class="err">，</span><span class="nx">将当前节点的</span> <span class="nx">next</span> <span class="nx">指针改为指向前一个节点</span>
-</span></span><span class="line"><span class="cl"><span class="nx">由于节点没有引用其前一个节点</span><span class="err">，</span><span class="nx">因此必须事先存储其前一个节点</span>
-</span></span><span class="line"><span class="cl"><span class="nx">在更改引用之前</span><span class="err">，</span><span class="nx">还需要存储后一个节点</span><span class="err">。</span><span class="nx">最后返回新的头引用</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -716,22 +631,24 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">prev</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">,</span> <span class="o">*</span><span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">curr</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ListNode</span><span class="o">*</span> <span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">curr</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="n">ListNode</span><span class="o">*</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="n">ListNode</span><span class="o">*</span> <span class="n">prev</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">,</span> <span class="o">*</span><span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="k">while</span> <span class="p">(</span><span class="n">curr</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">             <span class="n">ListNode</span><span class="o">*</span> <span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">             <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">             <span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">             <span class="n">curr</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">         <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -746,21 +663,31 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">prev</span> <span class="o">*</span><span class="nx">ListNode</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">curr</span> <span class="o">:=</span> <span class="nx">head</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">curr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">next</span> <span class="o">:=</span> <span class="nx">curr</span><span class="p">.</span><span class="nx">Next</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">curr</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">prev</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">prev</span> <span class="p">=</span> <span class="nx">curr</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">curr</span> <span class="p">=</span> <span class="nx">next</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">prev</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"> <span class="kd">func</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="kd">var</span> <span class="nx">prev</span> <span class="o">*</span><span class="nx">ListNode</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">curr</span> <span class="o">:=</span> <span class="nx">head</span>
+</span></span><span class="line"><span class="cl">     <span class="k">for</span> <span class="nx">curr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">next</span> <span class="o">:=</span> <span class="nx">curr</span><span class="p">.</span><span class="nx">Next</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">curr</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">prev</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">prev</span> <span class="p">=</span> <span class="nx">curr</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">curr</span> <span class="p">=</span> <span class="nx">next</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="nx">prev</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="例题5---字符串---无重复字符的最长字串">例题5 - 字符串 - 无重复字符的最长字串</h2>
-<p><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/longest-substring-without-repeating-characters/</a></p>
+</div></li>
+</ul>
+</li>
+</ol>
+<h2 id="例题5---字符串---无重复字符的最长字串">例题5 - 字符串 - 无重复字符的最长字串</h2>
+<ol>
+<li><em><strong>题目url</strong></em>
+<ul>
+<li><em><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/longest-substring-without-repeating-characters/</a></em></li>
+</ul>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
