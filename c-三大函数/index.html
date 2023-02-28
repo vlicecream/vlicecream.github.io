@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>三大函数 - Ame林汀</title><meta name="Description" content="c&#43;&#43; 的三大函数"><meta property="og:title" content="三大函数" />
+        <title>构造析构/拷贝构造/拷贝赋值 - Ame林汀</title><meta name="Description" content="c&#43;&#43; 的三大函数"><meta property="og:title" content="构造析构/拷贝构造/拷贝赋值" />
 <meta property="og:description" content="c&#43;&#43; 的三大函数" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
 
-<meta name="twitter:title" content="三大函数"/>
+<meta name="twitter:title" content="构造析构/拷贝构造/拷贝赋值"/>
 <meta name="twitter:description" content="c&#43;&#43; 的三大函数"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -25,7 +25,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "三大函数",
+        "headline": "构造析构/拷贝构造/拷贝赋值",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "构造函数, 析构函数, 拷贝构造函数","wordcount":  1249 ,
+                        }],"genre": "posts","keywords": "构造函数, 析构函数, 拷贝构造函数","wordcount":  1519 ,
         "url": "https:\/\/vlicecream.github.io\/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0\/","datePublished": "2022-03-18T00:00:00+08:00","dateModified": "2023-02-26T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -118,10 +118,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">三大函数</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">构造析构/拷贝构造/拷贝赋值</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-18">2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1249 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="三大函数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-18">2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1519 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="构造析构/拷贝构造/拷贝赋值">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -168,11 +168,6 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="三个特殊函数">三个特殊函数</h2>
-<ol>
-<li><em><strong>构造函数与析构函数</strong></em></li>
-<li><em><strong>拷贝构造函数</strong></em></li>
-<li><em><strong>拷贝赋值函数</strong></em></li>
-</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -202,6 +197,11 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="构造函数和析构函数"><em><strong>构造函数和析构函数</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>代码演示</strong></em></p>
+<ul>
+<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -238,7 +238,24 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// class 有指针 多半要做动态分配 所以就要在析构函数 释放内存
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="深拷贝与浅拷贝"><em><strong>深拷贝与浅拷贝</strong></em></h2>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>构造函数析构函数里能不能抛出异常</strong></em></p>
+<ul>
+<li>
+<p><em>C++只会析构已经完成的对象，对象只有其构造函数执行完毕才算是完成，在构造函数中发生异常，控制权转交给析构函数之外。因此，在对象b的构造函数中发生异常，并不会调用对象b的析构函数，所以会造成内存泄漏</em></p>
+<p><em>用 auto_ptr 对象来取代指针类成员，便对构造函数做了强化，免除了抛出异常时发生资源泄 漏的危机，不再需要在析构函数中手动释放资源</em></p>
+<p><em>如果控制权基于异常的因素离开析构函数，而此时正有另一个异常处于作用状态，C++ 会调 用 terminate 函数让程序结束</em></p>
+</li>
+<li>
+<p><em>如果异常从析构函数抛出，而且没有在当地进行捕捉，那个析构函数便是执行不全的。如果析构函数执行不全，就是没有完全他应该做的每一件事</em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="深拷贝与浅拷贝"><em><strong>深拷贝与浅拷贝</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>什么是浅拷贝</strong></em></p>
@@ -352,7 +369,7 @@
                             <a class="link-to-markdown" href="/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="三大函数" data-hashtags="构造函数,析构函数,拷贝构造函数"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-hashtag="构造函数"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="三大函数"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="三大函数"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="三大函数"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="构造析构/拷贝构造/拷贝赋值" data-hashtags="构造函数,析构函数,拷贝构造函数"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-hashtag="构造函数"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="构造析构/拷贝构造/拷贝赋值"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="构造析构/拷贝构造/拷贝赋值"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" data-title="构造析构/拷贝构造/拷贝赋值"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
