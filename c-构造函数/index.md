@@ -153,7 +153,103 @@ double real () const { return re; }
    - *就是有参数的构造函数*
 3. ***拷贝构造函数***
    - *拷⻉构造函数的函数参数为对象本身的引用，用于根据一个已存在的对象复制 出一个新的该类的对象，一般在函数中会将已存在的对象的数据成员的值一一复制到新创建的 对象中。如果没有显示的写拷⻉构造函数，则系统会默认创建一个拷⻉构造函数，但当类中有 指针成员时，最好不要使用编译器提供的默认的拷⻉构造函数，最好自己定义并且在函数中执 行深拷⻉*
-4. ***类型转换构造函数***
+4. ***转换构造函数***
    - *根据一个指定类型的对象创建一个本类的对象，也可以算是一般构造函数 的一种*
    - *这里提出来，是想说有的时候不允许默认转换的话，要记得将其声明为 explict 的，来阻止一些隐式转换的发生*
+
+## 转换构造函数
+
+1. ***什么是转换函数***
+
+   - *`operator double ()`这就是转换函数*
+
+     ```cpp
+     class Fraction {
+     public:
+       Fraction(int num, int den=1):m_numerator(num), m_denominator(den) { }
+       operator double() const {
+         return (double)(m_numerator / m_denominator);
+       }  // 因为转换完就是 double，所以不需要写 typename，然后因为不会改变这个元素，所以也加了const
+     private:
+       int m_numerator; // 分子
+       int m_denominator; // 分母
+     }
+     ```
+
+2. ***什么是转换构造函数***
+
+   - *只有一个实参的构造函数就是转换构造函数*
+
+     ```cpp
+     class Fraction {
+     public:
+       Fraction(int num, int den=1):m_numerator(num), m_denominator(den) { } // 转换构造函数 
+     private:
+       int m_numerator;
+       int m_denominator;
+     };
+     ```
+
+     
+
+3. ***没有`explicit`的转换构造函数***
+
+   - *我们先不谈`explicit`是啥，看来瞧瞧下述代码*
+
+     ```cpp
+     class Fraction {
+     public:
+       Fraction(int num, int den=1):m_numerator(num), m_denominator(den) { } // 转换构造函数 
+       Fraction operator + (const Fraction &f) {
+         return Fraction(...);
+       }
+     private:
+       int m_numerator;
+       int m_denominator;
+     };
+     ```
+
+   - ***那么转换构造函数他的应用场景是啥***
+
+     ```cpp
+     Fraction f(3, 5);
+     Fraction d2=f+4; 
+     ```
+
+     *来看看这一段代码，首先我们实例化了一个"f"，然后执行下一行代码，肯定会先去找 "+" 这个操作符，找到之后就作用于左手边，f 就是 Fraction，他找到了*
+
+     *但是 "+" 的设计理念 座边是Fraction，所以他就会想能不能把4也转换成 Fraction 类型*
+
+     *那这个时候就是转换构造函数的发挥之地了，4 同时 也是4分之1 正好den默认值为1 所以就会自动转换为4分之1*
+
+4. ***有`explicit`的转换构造函数***
+
+   - *我们来看看没有`explicit`的转换构造函数有没有问题，所以来看下述代码*
+
+     ```cpp
+     class Fraction {
+     public:
+       Fraction(int num, int den=1):m_numerator(num), m_denominator(den) { }
+       
+       operator double() const {
+         return (double)(m_numerator/m_denominator);
+       }
+       
+       Fraction operator + (const Fraction &f) {
+         return Fraction(...);
+       }
+     private:
+       int m_numerator;
+       int m_denominator;
+     };
+     
+     Fraction f(3, 5);
+     Fraction d2=f+4; 
+     ```
+
+     *我们在之前的代码的基础上，加了一个 `operator double ()`的操作符重载，但是还是一样的调用，现在就会失败，因为编译器发现，double的走法也一样可以，这样就会有两种不同的走法*
+
+     所以`explicit`出现了
+
+   - *在C++中，`explicit`关键字用来修饰类的构造函数，被修饰的构造函数的类，不能发生相应的隐式类型转换，只能以显示的方式进行类型转换，换一种说法就是 告诉编译器 不要隐式转换 既然是构造函数 就真的要用到构造函数的时候在用到*
 

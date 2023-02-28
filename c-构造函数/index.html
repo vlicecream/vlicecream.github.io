@@ -19,7 +19,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" /><link rel="prev" href="https://vlicecream.github.io/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" /><link rel="next" href="https://vlicecream.github.io/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" /><link rel="prev" href="https://vlicecream.github.io/c-%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD/" /><link rel="next" href="https://vlicecream.github.io/c-%E5%80%BC%E4%B8%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "构造函数, 友元","wordcount":  1351 ,
+                        }],"genre": "posts","keywords": "构造函数, 友元, 重载, 转换构造函数","wordcount":  2120 ,
         "url": "https:\/\/vlicecream.github.io\/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0\/","datePublished": "2022-03-17T00:00:00+08:00","dateModified": "2023-02-26T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">构造函数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1351 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="构造函数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2120 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="构造函数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -137,6 +137,7 @@
     <li><a href="#const常量构造函数"><em><strong>Const（常量构造函数）</strong></em></a></li>
     <li><a href="#友元"><em><strong>友元</strong></em></a></li>
     <li><a href="#所有的构造函数">所有的构造函数</a></li>
+    <li><a href="#转换构造函数">转换构造函数</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p><em><strong>!!!本文基于这个一个 <code>complex</code>的类去讲解 操作符重载</strong></em></p>
@@ -405,10 +406,180 @@
 <li><em>拷⻉构造函数的函数参数为对象本身的引用，用于根据一个已存在的对象复制 出一个新的该类的对象，一般在函数中会将已存在的对象的数据成员的值一一复制到新创建的 对象中。如果没有显示的写拷⻉构造函数，则系统会默认创建一个拷⻉构造函数，但当类中有 指针成员时，最好不要使用编译器提供的默认的拷⻉构造函数，最好自己定义并且在函数中执 行深拷⻉</em></li>
 </ul>
 </li>
-<li><em><strong>类型转换构造函数</strong></em>
+<li><em><strong>转换构造函数</strong></em>
 <ul>
 <li><em>根据一个指定类型的对象创建一个本类的对象，也可以算是一般构造函数 的一种</em></li>
 <li><em>这里提出来，是想说有的时候不允许默认转换的话，要记得将其声明为 explict 的，来阻止一些隐式转换的发生</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="转换构造函数">转换构造函数</h2>
+<ol>
+<li>
+<p><em><strong>什么是转换函数</strong></em></p>
+<ul>
+<li>
+<p><em><code>operator double ()</code>这就是转换函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Fraction</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">den</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="n">m_numerator</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">m_denominator</span><span class="p">(</span><span class="n">den</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">operator</span> <span class="nf">double</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">m_numerator</span> <span class="o">/</span> <span class="n">m_denominator</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>  <span class="c1">// 因为转换完就是 double，所以不需要写 typename，然后因为不会改变这个元素，所以也加了const
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_numerator</span><span class="p">;</span> <span class="c1">// 分子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">m_denominator</span><span class="p">;</span> <span class="c1">// 分母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>什么是转换构造函数</strong></em></p>
+<ul>
+<li>
+<p><em>只有一个实参的构造函数就是转换构造函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Fraction</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">den</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="n">m_numerator</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">m_denominator</span><span class="p">(</span><span class="n">den</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">// 转换构造函数 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_numerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_denominator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>没有<code>explicit</code>的转换构造函数</strong></em></p>
+<ul>
+<li>
+<p><em>我们先不谈<code>explicit</code>是啥，看来瞧瞧下述代码</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Fraction</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">den</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="n">m_numerator</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">m_denominator</span><span class="p">(</span><span class="n">den</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">// 转换构造函数 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Fraction</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">Fraction</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">Fraction</span><span class="p">(...);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_numerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_denominator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><strong>那么转换构造函数他的应用场景是啥</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Fraction</span> <span class="nf">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fraction</span> <span class="n">d2</span><span class="o">=</span><span class="n">f</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>来看看这一段代码，首先我们实例化了一个&quot;f&quot;，然后执行下一行代码，肯定会先去找 &ldquo;+&rdquo; 这个操作符，找到之后就作用于左手边，f 就是 Fraction，他找到了</em></p>
+<p><em>但是 &ldquo;+&rdquo; 的设计理念 座边是Fraction，所以他就会想能不能把4也转换成 Fraction 类型</em></p>
+<p><em>那这个时候就是转换构造函数的发挥之地了，4 同时 也是4分之1 正好den默认值为1 所以就会自动转换为4分之1</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>有<code>explicit</code>的转换构造函数</strong></em></p>
+<ul>
+<li>
+<p><em>我们来看看没有<code>explicit</code>的转换构造函数有没有问题，所以来看下述代码</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Fraction</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">den</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="n">m_numerator</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">m_denominator</span><span class="p">(</span><span class="n">den</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">operator</span> <span class="nf">double</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">m_numerator</span><span class="o">/</span><span class="n">m_denominator</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Fraction</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">Fraction</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">Fraction</span><span class="p">(...);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_numerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_denominator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Fraction</span> <span class="nf">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fraction</span> <span class="n">d2</span><span class="o">=</span><span class="n">f</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>我们在之前的代码的基础上，加了一个 <code>operator double ()</code>的操作符重载，但是还是一样的调用，现在就会失败，因为编译器发现，double的走法也一样可以，这样就会有两种不同的走法</em></p>
+<p>所以<code>explicit</code>出现了</p>
+</li>
+<li>
+<p><em>在C++中，<code>explicit</code>关键字用来修饰类的构造函数，被修饰的构造函数的类，不能发生相应的隐式类型转换，只能以显示的方式进行类型转换，换一种说法就是 告诉编译器 不要隐式转换 既然是构造函数 就真的要用到构造函数的时候在用到</em></p>
+</li>
 </ul>
 </li>
 </ol>
@@ -423,20 +594,20 @@
                             <a class="link-to-markdown" href="/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数" data-hashtags="构造函数,友元"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-hashtag="构造函数"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数" data-hashtags="构造函数,友元,重载,转换构造函数"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-hashtag="构造函数"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/c-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-title="构造函数"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">构造函数</a>,&nbsp;<a href="/tags/%E5%8F%8B%E5%85%83/">友元</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">构造函数</a>,&nbsp;<a href="/tags/%E5%8F%8B%E5%85%83/">友元</a>,&nbsp;<a href="/tags/%E9%87%8D%E8%BD%BD/">重载</a>,&nbsp;<a href="/tags/%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">转换构造函数</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/c-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" class="prev" rel="prev" title="指针与引用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>指针与引用</a>
-            <a href="/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" class="next" rel="next" title="三大函数">三大函数<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/c-%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="prev" rel="prev" title="操作符重载"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>操作符重载</a>
+            <a href="/c-%E5%80%BC%E4%B8%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" class="next" rel="next" title="value &amp; poionter &amp; reference">value & poionter & reference<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
