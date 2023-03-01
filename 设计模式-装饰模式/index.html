@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "装饰模式, 单一职责","wordcount":  2346 ,
+                        }],"genre": "posts","keywords": "装饰模式, 单一职责","wordcount":  2241 ,
         "url": "https:\/\/vlicecream.github.io\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F\/","datePublished": "2022-06-29T00:00:00+08:00","dateModified": "2022-06-29T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">装饰模式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>设计模式</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2346 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2241 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/" class="leancloud_visitors" data-flag-title="装饰模式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -321,22 +321,6 @@
 </span><span class="lnt">145
 </span><span class="lnt">146
 </span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
-</span><span class="lnt">154
-</span><span class="lnt">155
-</span><span class="lnt">156
-</span><span class="lnt">157
-</span><span class="lnt">158
-</span><span class="lnt">159
-</span><span class="lnt">160
-</span><span class="lnt">161
-</span><span class="lnt">162
-</span><span class="lnt">163
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//业务操作
@@ -361,7 +345,6 @@
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">char</span> <span class="n">data</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//写文件流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">NetworkStream</span> <span class="o">:</span><span class="k">public</span> <span class="n">Stream</span><span class="p">{</span>
@@ -375,7 +358,6 @@
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">char</span> <span class="n">data</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//写网络流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MemoryStream</span> <span class="o">:</span><span class="k">public</span> <span class="n">Stream</span><span class="p">{</span>
@@ -389,18 +371,15 @@
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">char</span> <span class="n">data</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//写内存流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//扩展操作
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">CryptoFileStream</span> <span class="o">:</span><span class="k">public</span> <span class="n">FileStream</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">char</span> <span class="n">Read</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Read</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="c1">//读文件流
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Seek</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span><span class="c1">//定位文件流
@@ -416,7 +395,6 @@
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CryptoNetworkStream</span> <span class="o">:</span> <span class="o">:</span><span class="k">public</span> <span class="n">NetworkStream</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">char</span> <span class="n">Read</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">NetworkStream</span><span class="o">::</span><span class="n">Read</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="c1">//读网络流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
@@ -463,44 +441,34 @@
 </span></span><span class="line"><span class="cl">    <span class="c1">//...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CryptoBufferedFileStream</span> <span class="o">:</span><span class="k">public</span> <span class="n">FileStream</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">char</span> <span class="n">Read</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的缓冲操作...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Read</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="c1">//读文件流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Read</span><span class="p">(</span><span class="n">number</span><span class="p">);</span> <span class="c1">//读文件流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Seek</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的缓冲操作...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span><span class="c1">//定位文件流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span> <span class="c1">//定位文件流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的缓冲操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="n">byte</span> <span class="n">data</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的缓冲操作...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="c1">//写文件流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileStream</span><span class="o">::</span><span class="n">Write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">//写文件流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//额外的缓冲操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Process</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">//编译时装配
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CryptoFileStream</span> <span class="o">*</span><span class="n">fs1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CryptoFileStream</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">BufferedFileStream</span> <span class="o">*</span><span class="n">fs2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedFileStream</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">CryptoBufferedFileStream</span> <span class="o">*</span><span class="n">fs3</span> <span class="o">=</span><span class="k">new</span> <span class="n">CryptoBufferedFileStream</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -634,25 +602,11 @@
 </span><span class="lnt">103
 </span><span class="lnt">104
 </span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//业务操作
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Stream</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">char</span> <span class="n">Read</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Seek</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">char</span> <span class="n">data</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -672,7 +626,6 @@
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">char</span> <span class="n">data</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//写文件流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">NetworkStream</span> <span class="o">:</span><span class="k">public</span> <span class="n">Stream</span><span class="p">{</span>
@@ -700,12 +653,11 @@
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">char</span> <span class="n">data</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//写内存流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//扩展操作
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nl">DecoratorStream</span><span class="p">:</span> <span class="k">public</span> <span class="n">Stream</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DecoratorStream</span><span class="o">:</span> <span class="k">public</span> <span class="n">Stream</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">*</span> <span class="n">stream</span><span class="p">;</span><span class="c1">//...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
@@ -716,16 +668,13 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CryptoStream</span><span class="o">:</span> <span class="k">public</span> <span class="n">DecoratorStream</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Stream</span><span class="o">*</span> <span class="n">stream</span><span class="p">;</span><span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">CryptoStream</span><span class="p">(</span><span class="n">Stream</span><span class="o">*</span> <span class="n">stm</span><span class="p">)</span><span class="o">:</span><span class="n">DecoratorStream</span><span class="p">(</span><span class="n">stm</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">char</span> <span class="nf">Read</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">//额外的加密操作...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">stream</span><span class="o">-&gt;</span><span class="n">Read</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="c1">//读文件流
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
@@ -744,7 +693,6 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BufferedStream</span> <span class="o">:</span> <span class="k">public</span> <span class="n">DecoratorStream</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">*</span> <span class="n">stream</span><span class="p">;</span><span class="c1">//...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
@@ -754,17 +702,11 @@
 </span></span><span class="line"><span class="cl">    <span class="c1">//...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Process</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//运行时装配
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">FileStream</span><span class="o">*</span> <span class="n">s1</span><span class="o">=</span><span class="k">new</span> <span class="n">FileStream</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">CryptoStream</span><span class="o">*</span> <span class="n">s2</span><span class="o">=</span><span class="k">new</span> <span class="n">CryptoStream</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">BufferedStream</span><span class="o">*</span> <span class="n">s3</span><span class="o">=</span><span class="k">new</span> <span class="n">BufferedStream</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">BufferedStream</span><span class="o">*</span> <span class="n">s4</span><span class="o">=</span><span class="k">new</span> <span class="n">BufferedStream</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>

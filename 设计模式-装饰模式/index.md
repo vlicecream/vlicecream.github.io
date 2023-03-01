@@ -43,7 +43,6 @@
          virtual void Write(char data){
              //写文件流
          }
-     
      };
      
      class NetworkStream :public Stream{
@@ -57,7 +56,6 @@
          virtual void Write(char data){
              //写网络流
          }
-         
      };
      
      class MemoryStream :public Stream{
@@ -71,17 +69,14 @@
          virtual void Write(char data){
              //写内存流
          }
-         
      };
      
      //扩展操作
      class CryptoFileStream :public FileStream{
      public:
          virtual char Read(int number){
-            
              //额外的加密操作...
              FileStream::Read(number);//读文件流
-             
          }
          virtual void Seek(int position){
              //额外的加密操作...
@@ -98,7 +93,6 @@
      class CryptoNetworkStream : :public NetworkStream{
      public:
          virtual char Read(int number){
-             
              //额外的加密操作...
              NetworkStream::Read(number);//读网络流
          }
@@ -145,44 +139,34 @@
          //...
      }
      
-     
-     
-     
      class CryptoBufferedFileStream :public FileStream{
      public:
          virtual char Read(int number){
-             
              //额外的加密操作...
              //额外的缓冲操作...
-             FileStream::Read(number);//读文件流
+             FileStream::Read(number); //读文件流
          }
          virtual void Seek(int position){
              //额外的加密操作...
              //额外的缓冲操作...
-             FileStream::Seek(position);//定位文件流
+             FileStream::Seek(position); //定位文件流
              //额外的加密操作...
              //额外的缓冲操作...
          }
          virtual void Write(byte data){
              //额外的加密操作...
              //额外的缓冲操作...
-             FileStream::Write(data);//写文件流
+             FileStream::Write(data); //写文件流
              //额外的加密操作...
              //额外的缓冲操作...
          }
      };
      
-     
-     
      void Process(){
-     
          //编译时装配
          CryptoFileStream *fs1 = new CryptoFileStream();
-     
          BufferedFileStream *fs2 = new BufferedFileStream();
-     
          CryptoBufferedFileStream *fs3 =new CryptoBufferedFileStream();
-     
      }
      ```
 
@@ -197,8 +181,7 @@
    - ```cpp
      //业务操作
      class Stream{
-     
-     public：
+     public:
          virtual char Read(int number)=0;
          virtual void Seek(int position)=0;
          virtual void Write(char data)=0;
@@ -218,7 +201,6 @@
          virtual void Write(char data){
              //写文件流
          }
-     
      };
      
      class NetworkStream :public Stream{
@@ -246,12 +228,11 @@
          virtual void Write(char data){
              //写内存流
          }
-         
      };
      
      //扩展操作
      
-     DecoratorStream: public Stream{
+     class DecoratorStream: public Stream{
      protected:
          Stream* stream;//...
          
@@ -262,16 +243,13 @@
      };
      
      class CryptoStream: public DecoratorStream {
-      
-     
+     		Stream* stream;//...
      public:
          CryptoStream(Stream* stm):DecoratorStream(stm){
          
          }
          
-         
          virtual char Read(int number){
-            
              //额外的加密操作...
              stream->Read(number);//读文件流
          }
@@ -290,7 +268,6 @@
      
      
      class BufferedStream : public DecoratorStream{
-         
          Stream* stream;//...
          
      public:
@@ -300,17 +277,11 @@
          //...
      };
      
-     
-     
-     
      void Process(){
          //运行时装配
          FileStream* s1=new FileStream();
-         
          CryptoStream* s2=new CryptoStream(s1);
-         
          BufferedStream* s3=new BufferedStream(s1);
-         
          BufferedStream* s4=new BufferedStream(s2);
      }
      ```
