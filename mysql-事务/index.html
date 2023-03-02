@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "事务, MVCC","wordcount":  1361 ,
+                        }],"genre": "posts","keywords": "事务, MVCC","wordcount":  1360 ,
         "url": "https:\/\/vlicecream.github.io\/mysql-%E4%BA%8B%E5%8A%A1\/","datePublished": "2023-02-01T21:40:32+08:00","dateModified": "2023-02-01T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">事务</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>mysql</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1361 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1360 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/mysql-%E4%BA%8B%E5%8A%A1/" class="leancloud_visitors" data-flag-title="事务">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -222,12 +222,12 @@
 <li><strong>MVCC如何实现的</strong>
 <ul>
 <li><em>在我们的undo-log记录的数据表中 其实是有两个字段 一个是记录着事务的<strong>唯一ID</strong>，一个是<strong>回滚指针</strong>指向上一个事务</em></li>
-<li>*比如我们现在update一个数据 那么这个更新后的数据的回滚指针就会指向之前的数据，后面也是一样的道理 所以就形成了一个多版本控制链</li>
+<li><em>比如我们现在update一个数据 那么这个更新后的数据的回滚指针就会指向之前的数据，后面也是一样的道理 所以就形成了一个多版本控制链</em></li>
 </ul>
 </li>
 </ol>
 <h2 id="小谈阿里面试题---查询操作方法需要使用事务吗"><em><strong>小谈阿里面试题 - 查询操作方法需要使用事务吗</strong></em></h2>
-<p><em><strong>这种题其实大部分都要视情况而定, 如果你在查询的时候只有一条sql语句 那肯定是没必要开启事务的 但是如果你在导出的场景下 而且隔离级别是可重复读的情况下 导出的数据肯定是需要同一个时间维度的数据 所以这时候需要开启事务，否则就会导致导出的数据中 数据其实不是同一个时间维度的数据</strong></em></p>
+<p><em>这种题其实大部分都要视情况而定, 如果你在查询的时候只有一条sql语句 那肯定是没必要开启事务的 但是如果你在导出的场景下 而且隔离级别是可重复读的情况下 导出的数据肯定是需要同一个时间维度的数据 所以这时候需要开启事务，否则就会导致导出的数据中 数据其实不是同一个时间维度的数据</em></p>
 <h2 id="mysql执行过程与bufferpool缓存机制"><em><strong>MySQL执行过程与BufferPool缓存机制</strong></em></h2>
 <ol>
 <li><em><strong>mysql为何要如此设计</strong></em>

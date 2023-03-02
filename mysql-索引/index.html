@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "索引, b\u002b tree","wordcount":  2277 ,
+                        }],"genre": "posts","keywords": "索引, b\u002b tree","wordcount":  3455 ,
         "url": "https:\/\/vlicecream.github.io\/mysql-%E7%B4%A2%E5%BC%95\/","datePublished": "2023-02-02T21:40:32+08:00","dateModified": "2023-02-02T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">索引</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>mysql</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-02">2023-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2277 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/mysql-%E7%B4%A2%E5%BC%95/" class="leancloud_visitors" data-flag-title="索引">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-02">2023-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3455 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/mysql-%E7%B4%A2%E5%BC%95/" class="leancloud_visitors" data-flag-title="索引">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -136,11 +136,21 @@
     <li><a href="#最左匹配原则"><em><strong>最左匹配原则</strong></em></a></li>
     <li><a href="#索引的妙用"><em><strong>索引的妙用</strong></em></a></li>
     <li><a href="#b-tree"><em><strong>B+ Tree</strong></em></a></li>
+    <li><a href="#b-tree-和-跳表的区别"><em><strong>B+ Tree 和 跳表的区别</strong></em></a></li>
     <li><a href="#b-tree-与-b-tree的区别"><em><strong>B Tree 与 B+ Tree的区别</strong></em></a></li>
     <li><a href="#聚簇索引--非聚簇索引"><em><strong>聚簇索引 &amp; 非聚簇索引</strong></em></a></li>
     <li><a href="#在不同引擎下的索引"><em><strong>在不同引擎下的索引</strong></em></a></li>
     <li><a href="#使用聚簇索引的优势"><em><strong>使用聚簇索引的优势</strong></em></a></li>
     <li><a href="#mysql的主键类型"><em><strong>mysql的主键类型</strong></em></a></li>
+    <li><a href="#参考资料"><em><strong>参考资料</strong></em></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#参考资料-1">参考资料</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="索引的基本种类"><em><strong>索引的基本种类</strong></em></h2>
@@ -230,25 +240,75 @@
 </ol>
 <h2 id="b-tree"><em><strong>B+ Tree</strong></em></h2>
 <ol>
-<li><em><strong>B+ Tree导出过程</strong></em>
+<li>
+<p><em><strong>B+ Tree导出过程</strong></em></p>
 <ul>
-<li><em>举个例子 现在有几条数据 在底层存储是这么存储的绿色: 主键 / 红色: 数据 / 蓝色: 指针 下一个数据(node)</em></li>
-<li><img
+<li>
+<p><em>举个例子 现在有几条数据 在底层存储是这么存储的绿色: 主键 / 红色: 数据 / 蓝色: 指针 下一个数据(node)</em></p>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png"
         data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png 2x"
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png"
-        title="b&#43;树 - 链表形态" /></li>
-<li><em>但是这样随后问题就来了 数据量少就算了 如果有1000条数据 链表时间复杂度为O(n) 所以mysql采用了 分页的思路每一个数据都会存放着自己的那一页的第一条数据的逐渐 随后指针p指向自己的分页的下一级数据</em></li>
+        title="b&#43;树 - 链表形态" /></p>
+</li>
+<li>
+<p>*但是这样随后问题就来了 数据量少就算了 如果有1000条数据 链表时间复杂度为O(n) 所以mysql采用了 **分页（升维）*<em>的思路每一个数据都会存放着自己的那一页的第一条数据的逐渐 随后指针p指向自己的分页的下一级数据</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png"
+        title="b&#43;tree 升维后的跳表" /></p>
+</li>
+<li>
+<p><em>然后我们把第一层的页目录再次提取一层，最终用了三层的结构</em></p>
+<p>![b+树 终极形态](/Users/ting/Library/Application Support/typora-user-images/image-20230302174409156.png)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>b+ tree总结</strong></em></p>
+<ul>
+<li><em>B+树本质上是一种多叉平衡二叉树，是由多个页组成的多层级结构，每个页16Kb，对于主键索引来说，最末级的叶子结点放行数据，非叶子结点放的则是索引信息(主键id和页号)，用于加速查询</em></li>
+<li><em>B+树利用了空间换时间、升维的方式(构造了一批非叶子结点用于存放索引信息)，将查询时间复杂度从O(n)优化为O(lg(n))</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="b-tree-和-跳表的区别"><em><strong>B+ Tree 和 跳表的区别</strong></em></h2>
+<ol>
+<li><em><strong>查询</strong></em>
+<ul>
+<li><em>B+树是多叉树结构，每个结点都是一个16k的数据页，能存放较多索引信息，所以扇出很高。三层左右就可以存储2kw左右的数据 / 跳表是链表结构，一条数据一个结点，如果最底层要存放2kw数据，且每次查询都要能达到二分查找的效果，2kw大概在2的24次方左右，所以，跳表大概高度在24层左右，所以得出结论 <strong>b+Tree的查询效率要比跳表高得多</strong></em></li>
+</ul>
+</li>
+<li><em><strong>写</strong></em>
+<ul>
+<li><em>B+树需要拆分合并索引数据页，跳表则独立插入，并根据随机函数确定层数，没有旋转和维持平衡的开销，因此跳表的写入性能会比B+树要好</em></li>
+</ul>
+</li>
+<li><em>其实，mysql的存储引擎是可以换的，以前是myisam，后来才有的innodb，它们底层索引用的都是B+树。也就是说，你完全可以造一个索引为跳表的存储引擎装到mysql里。事实上，facebook造了个rocksDB的存储引擎，里面就用了跳表。直接说结论，它的写入性能确实是比innodb要好，但读性能确实比innodb要差不少</em></li>
+<li><em><strong>redis为什么使用跳表而不使用B+树或二叉树呢?</strong></em>
+<ul>
+<li><em>大家知道，redis 是纯纯的内存数据库。进行读写数据都是操作内存，跟磁盘没啥关系，因此也不存在磁盘IO了，所以层高就不再是跳表的劣势了。并且前面也提到B+树是有一系列合并拆分操作的，换成红黑树或者其他AVL树的话也是各种旋转，目的也是为了保持树的平衡。而跳表插入数据时，只需要随机一下，就知道自己要不要往上加索引，根本不用考虑前后结点的感受，也就少了旋转平衡的开销。因此，redis选了跳表，而不是B+树</em></li>
+</ul>
+</li>
+<li><em><strong>总结</strong></em>
+<ul>
+<li><em>B+树是多叉平衡搜索树，扇出高，只需要3层左右就能存放2kw左右的数据，同样情况下跳表则需要24层左右，假设层高对应磁盘IO，那么B+树的读性能会比跳表要好，因此mysql选了B+树做索引</em></li>
+<li><em>redis的读写全在内存里进行操作，不涉及磁盘IO，同时跳表实现简单，相比B+树、AVL树、少了旋转树结构的开销，因此redis使用跳表来实现ZSET，而不是树结构</em></li>
+<li><em>存储引擎RocksDB内部使用了跳表，对比使用B+树的innodb，虽然写性能更好，但读性能属实差了些。在读多写少的场景下，B+树依旧YYDS</em></li>
 </ul>
 </li>
 </ol>
 <h2 id="b-tree-与-b-tree的区别"><em><strong>B Tree 与 B+ Tree的区别</strong></em></h2>
 <ol>
-<li><em><strong>B Tree  非叶子结点也会存储数据 这样会导致 树的高度比 b+ tree 高 查询磁盘io次数也会比 b+ tree高  这样会影响查询效率</strong></em></li>
-<li><em><strong>B+ Tree	只有叶子节点会存储数据 非叶子节点只存储键值信息 注意 不是键值对哦~	所有叶子节点之间都有一个键指针</strong></em></li>
+<li><em>B Tree  非叶子结点也会存储数据 这样会导致 树的高度比 b+ tree 高 查询磁盘io次数也会比 b+ tree高  这样会影响查询效率</em></li>
+<li><em>B+ Tree	只有叶子节点会存储数据 非叶子节点只存储键值信息 注意 不是键值对哦~	所有叶子节点之间都有一个键指针</em></li>
 </ol>
 <h2 id="聚簇索引--非聚簇索引"><em><strong>聚簇索引 &amp; 非聚簇索引</strong></em></h2>
 <ol>
@@ -303,8 +363,8 @@
 <li><em>每次使用辅助索引都要经过两次 b+树查找, 看上去聚簇索引的效率明显要低于非聚簇索引, 所以使用聚簇索引优势在哪</em></li>
 </ul>
 </li>
-<li><em><strong>由于行数据和聚簇索引的叶子节点存储在一起, 同一页会有多条数据, 访问同一数据页不同行记录时, 已经将页加载到了buffer</strong></em></li>
-<li><em><strong>辅助索引的叶子节点, 存储主键值, 而不是数据的存放地址. 好处是当行数据发生变化时, 索引树的节点也需要变化	或者是我们需要查找的数据, 在上一次io读写的缓存中没有, 需要发生一次新的io操作时, 可以比避免对辅助索引的维护工作， 只需要维护聚簇索引树就好了	还有一个因为辅助索引存放的主键值 还少了辅助索引占用的存储空间大小</strong></em></li>
+<li><em>由于行数据和聚簇索引的叶子节点存储在一起, 同一页会有多条数据, 访问同一数据页不同行记录时, 已经将页加载到了buffer</em></li>
+<li><em>辅助索引的叶子节点, 存储主键值, 而不是数据的存放地址. 好处是当行数据发生变化时, 索引树的节点也需要变化	或者是我们需要查找的数据, 在上一次io读写的缓存中没有, 需要发生一次新的io操作时, 可以比避免对辅助索引的维护工作， 只需要维护聚簇索引树就好了	还有一个因为辅助索引存放的主键值 还少了辅助索引占用的存储空间大小</em></li>
 </ol>
 <h2 id="mysql的主键类型"><em><strong>mysql的主键类型</strong></em></h2>
 <ol>
@@ -315,6 +375,14 @@
 </ul>
 </li>
 </ol>
+<h2 id="参考资料"><em><strong>参考资料</strong></em></h2>
+<h4 id="参考资料-1">参考资料</h4>
+<ul>
+<li><em>《MYSQL内核：INNODB存储引擎 卷1》</em></li>
+<li><em>《RocksDB和Innodb引擎性能PK胜负难料?》</em></li>
+<li><em><a href="https://cloud.tencent.com/developer/article/1813695" target="_blank" rel="noopener noreffer ">https://cloud.tencent.com/developer/article/1813695</a></em></li>
+<li><em><a href="https://www.51cto.com/article/706701.html" target="_blank" rel="noopener noreffer ">https://www.51cto.com/article/706701.html</a></em></li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
