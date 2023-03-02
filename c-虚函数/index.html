@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "虚函数, 虚指针, 虚表","wordcount":  1534 ,
+                        }],"genre": "posts","keywords": "虚函数, 虚指针, 虚表","wordcount":  1531 ,
         "url": "https:\/\/vlicecream.github.io\/c-%E8%99%9A%E5%87%BD%E6%95%B0\/","datePublished": "2022-03-22T00:00:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">虚函数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-22">2022-03-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1534 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-22">2022-03-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1531 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/c-%E8%99%9A%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="虚函数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -212,8 +212,8 @@
 </span></span><span class="line"><span class="cl"><span class="nl">pubilc</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">vfunc1</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">vfunc2</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  				<span class="kt">void</span> <span class="nf">func1</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  				<span class="kt">void</span> <span class="nf">func2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">func1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">func2</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_data1</span><span class="p">,</span> <span class="n">m_data2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
@@ -221,7 +221,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="nl">pubilc</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">vfunc1</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  				<span class="kt">void</span> <span class="nf">func2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">func2</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_data3</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
@@ -229,7 +229,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="k">public</span> <span class="n">B</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="nl">pubilc</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">vfunc1</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  				<span class="kt">void</span> <span class="nf">func2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">func2</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">m_data1</span><span class="p">,</span> <span class="n">m_data4</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
@@ -256,7 +256,7 @@
 <li><em>通过指针来调用</em></li>
 <li><em>指针满足向上转型</em></li>
 <li><em>调用的是虚函数</em></li>
-<li><em>只要满足这三个条件 就会变成 (</em>(p-&gt;vptr)[n])(p); 或者 (* p-&gt;vptr[n] )(p);*</li>
+<li><em>只要满足这三个条件 就会变成 <code>(*(p-&gt;vptr)[n])(p);</code> 或者 <code>(*p-&gt;vptr[n] )(p);</code></em></li>
 <li><em>为什么叫动态绑定，因为要看&quot;p&quot;是什么</em></li>
 </ul>
 </li>
@@ -292,7 +292,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong>构造函数一般不写成虚函数</strong></em></p>
+<p><em><strong>构造函数不写成虚函数</strong></em></p>
 <ul>
 <li><em>我们创建一个对象，是需要知道对象的完整信息的。特别是要知道对象的具体类型，而虚函数只需要知道函数接口，而不需要知道具体类型，所以构造函数不应该被定义为虚函数</em></li>
 <li><em>从目前编译器实现虚函数进行多态的方式来看，虚函数的调用是通过实例化之后对象 的虚函数表指针来找到虚函数的地址进行调用的，如果说构造函数是虚的，那么虚函数表 指针则是不存在的，无法找到对应的虚函数表来调用虚函数，那么这个调用实际上也是违 反了先实例化后调用的准则</em></li>
