@@ -71,7 +71,7 @@
 
 ## ***系统调用跟函数调用的区别***
 
-![image-20230302182649948](/Users/ting/Library/Application Support/typora-user-images/image-20230302182649948.png)
+![系统调用跟函数调用的区别](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303022118832.png)
 
 # ***原语***
 
