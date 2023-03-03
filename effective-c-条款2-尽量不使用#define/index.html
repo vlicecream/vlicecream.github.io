@@ -4,39 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>2023-02-28 - Ame林汀</title><meta name="Description" content="This is an art space"><meta property="og:title" content="2023-02-28" />
-<meta property="og:description" content="今天是在苏州中心 工作的最后一天，主动裸辞～，在此记录下来 感觉现在大环境依旧很困难啊，其实应该苟住的，但是无奈年龄还小 在这年龄，正应该是爱做梦" />
+        <title>条款2-尽量不使用#define - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="条款2-尽量不使用#define" />
+<meta property="og:description" content="Effective C&#43;&#43;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-02-28T00:00:00+08:00" />
-<meta property="article:modified_time" content="2023-02-28T00:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
+<meta property="og:url" content="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-03T17:21:00+08:00" />
+<meta property="article:modified_time" content="2023-02-27T00:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
 
-<meta name="twitter:title" content="2023-02-28"/>
-<meta name="twitter:description" content="今天是在苏州中心 工作的最后一天，主动裸辞～，在此记录下来 感觉现在大环境依旧很困难啊，其实应该苟住的，但是无奈年龄还小 在这年龄，正应该是爱做梦"/>
+<meta name="twitter:title" content="条款2-尽量不使用#define"/>
+<meta name="twitter:description" content="Effective C&#43;&#43;"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/" /><link rel="prev" href="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-25/" /><link rel="next" href="https://vlicecream.github.io/c-inline%E7%9A%84%E5%89%AF%E6%9C%AC/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" /><link rel="prev" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE1-%E8%A7%86c-%E4%B8%BA%E4%B8%80%E4%B8%AA%E8%AF%AD%E8%A8%80%E8%81%94%E9%82%A6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "2023-02-28",
+        "headline": "条款2-尽量不使用#define",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/vlicecream.github.io\/%E7%94%9F%E6%B4%BB-2023-02-28\/"
+            "@id": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define\/"
         },"image": [{
                             "@type": "ImageObject",
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  178 ,
-        "url": "https:\/\/vlicecream.github.io\/%E7%94%9F%E6%B4%BB-2023-02-28\/","datePublished": "2023-02-28T00:00:00+08:00","dateModified": "2023-02-28T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","wordcount":  401 ,
+        "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define\/","datePublished": "2023-03-03T17:21:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -46,7 +46,7 @@
                 }},"author": {
                 "@type": "Person",
                 "name": "Ame林汀"
-            },"description": ""
+            },"description": "Effective C++"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -72,7 +72,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E7%94%9F%E6%B4%BB-2023-02-28/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -106,7 +106,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/%E7%94%9F%E6%B4%BB-2023-02-28/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -117,11 +117,11 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2023-02-28</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/my_life/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>my_life</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-28">2023-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 178 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/%E7%94%9F%E6%B4%BB-2023-02-28/" class="leancloud_visitors" data-flag-title="2023-02-28">
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款2-尽量不使用#define</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-03">2023-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 401 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" class="leancloud_visitors" data-flag-title="条款2-尽量不使用#define">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -129,41 +129,112 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p><em><strong>今天是在苏州中心 工作的最后一天，主动裸辞～，在此记录下来</strong></em></p>
-<p><em><strong>感觉现在大环境依旧很困难啊，其实应该苟住的，但是无奈年龄还小</strong></em></p>
-<p><em><strong>在这年龄，正应该是爱做梦，义无反顾，一无所有，不撞南墙不回头的时候，不应该只想着苟的</strong></em></p>
-<p><em><strong>而且谁又能说苟到明年，那明年的环境一定比今年好呢</strong></em></p>
-<p><em><strong>话说也正是在这种时代下，像我这样会做梦 并且去追逐梦的人也是挺可怜的</strong></em></p>
-<p><em><strong>为何我的眼里含着泪水，因为此地有着我的回忆</strong></em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302281554097.png"
-        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302281554097.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302281554097.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302281554097.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302281554097.png"
-        title="星悦汇4楼" /></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302282101615.png"
-        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302282101615.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302282101615.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302282101615.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302282101615.png"
-        title="楼下" /></p>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#define定义常量"><em><strong><code>#define</code>定义常量</strong></em></a></li>
+    <li><a href="#define定义宏"><em><strong><code>#define</code>定义宏</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="define定义常量"><em><strong><code>#define</code>定义常量</strong></em></h2>
+<ol>
+<li>
+<p><em><strong><code>#define</code>定义常量的缺点</strong></em></p>
+<ul>
+<li><em><code>#define ASPECT_RATIO 1.653</code>，<code>#define</code>是不会添加到符号表的，所以当跟ASPECT_RATIO有关报错的时候，不会提示ASPECT_RATIO出了问题，不利于报错排查</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>替换手段</strong></em></p>
+<ul>
+<li>
+<p><em>可以拿<code>const double AspectRatio = 1.653;</code>来进行替换<code>#define</code></em></p>
+</li>
+<li>
+<p><em>在类中也可以拿static来定义&quot;常量&quot;</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GamePlayer</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">NumTurns</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">scores</span><span class="p">[</span><span class="n">NumTurns</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>但是要注意 在编译的时候这个是通过的，但是如果你在后面对他有取地址之类的操作，链接就会报错，因为这里只是声明，并没有给他分配内存空间，所以还需要在cpp处理一下即可</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">GamePlayer</span><span class="o">::</span><span class="n">NumTurns</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<h2 id="define定义宏"><em><strong><code>#define</code>定义宏</strong></em></h2>
+<ol>
+<li>
+<p><em><strong><code>#define</code>定义宏的缺点</strong></em></p>
+<ul>
+<li>
+<p><em>其实在inline专题有提到，<code>#define</code>定义宏，太麻烦了，只因他是直接替换的效果，最经典就是计算平方问题</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define CALL_WITH_MAX(a, b) f((a) &gt; (b) ? (a) : (b))
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>替换手段</strong></em></p>
+<ul>
+<li>
+<p><em>可以拿<code>inline</code>函数去进行替换</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="n">callWithMax</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">f</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-02-28</span>
+                <span>更新于 2023-02-27</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/%E7%94%9F%E6%B4%BB-2023-02-28/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/" data-title="2023-02-28"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/" data-title="2023-02-28"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/" data-title="2023-02-28"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-2023-02-28/" data-title="2023-02-28"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" data-title="条款2-尽量不使用#define"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" data-title="条款2-尽量不使用#define"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" data-title="条款2-尽量不使用#define"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E4%BD%BF%E7%94%A8#define/" data-title="条款2-尽量不使用#define"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -175,8 +246,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/%E7%94%9F%E6%B4%BB-2023-02-25/" class="prev" rel="prev" title="2023-02-25"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>2023-02-25</a>
-            <a href="/c-inline%E7%9A%84%E5%89%AF%E6%9C%AC/" class="next" rel="next" title="inline">inline<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/effective-c-%E6%9D%A1%E6%AC%BE1-%E8%A7%86c-%E4%B8%BA%E4%B8%80%E4%B8%AA%E8%AF%AD%E8%A8%80%E8%81%94%E9%82%A6/" class="prev" rel="prev" title="条款1-视c&#43;&#43;为一个语言联邦"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>条款1-视c++为一个语言联邦</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
