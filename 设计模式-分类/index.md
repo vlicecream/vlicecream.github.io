@@ -45,8 +45,7 @@
 7. ***数据结构***
    - *Composite*
    - *Iterator*
-   - *Chain of*
-   - *Resposibility*
+   - *Chain of Resposibility*
 8. ***行为变化***
    - *Command*
    - *Visitor*
