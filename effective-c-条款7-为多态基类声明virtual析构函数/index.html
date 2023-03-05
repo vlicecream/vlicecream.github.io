@@ -4,39 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>条款6-不想要的特种成员函数，明确禁止编译器自动生成 - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="条款6-不想要的特种成员函数，明确禁止编译器自动生成" />
+        <title>条款7-为多态基类声明virtual析构函数 - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="条款7-为多态基类声明virtual析构函数" />
 <meta property="og:description" content="Effective C&#43;&#43;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-03-05T11:53:00+08:00" />
+<meta property="og:url" content="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-05T23:40:00+08:00" />
 <meta property="article:modified_time" content="2023-03-05T00:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
 
-<meta name="twitter:title" content="条款6-不想要的特种成员函数，明确禁止编译器自动生成"/>
+<meta name="twitter:title" content="条款7-为多态基类声明virtual析构函数"/>
 <meta name="twitter:description" content="Effective C&#43;&#43;"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" /><link rel="prev" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-%E4%BA%86%E8%A7%A3c-%E9%BB%98%E8%AE%A4%E7%94%9F%E6%88%90%E7%9A%84%E5%87%BD%E6%95%B0/" /><link rel="next" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" /><link rel="prev" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "条款6-不想要的特种成员函数，明确禁止编译器自动生成",
+        "headline": "条款7-为多态基类声明virtual析构函数",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90\/"
+            "@id": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0\/"
         },"image": [{
                             "@type": "ImageObject",
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  167 ,
-        "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90\/","datePublished": "2023-03-05T11:53:00+08:00","dateModified": "2023-03-05T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","wordcount":  301 ,
+        "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0\/","datePublished": "2023-03-05T23:40:00+08:00","dateModified": "2023-03-05T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -72,7 +72,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -106,7 +106,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -118,10 +118,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款6-不想要的特种成员函数，明确禁止编译器自动生成</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款7-为多态基类声明virtual析构函数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-05">2023-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 167 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" class="leancloud_visitors" data-flag-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-05">2023-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 301 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="条款7-为多态基类声明virtual析构函数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -131,41 +131,15 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#前言"><em><strong>前言</strong></em></a></li>
-    <li><a href="#c11"><em><strong>c++11</strong></em></a></li>
-    <li><a href="#c98">c++98</a></li>
+    <li><a href="#为多态基类声明virtual析构函数"><em><strong>为多态基类声明virtual析构函数</strong></em></a></li>
+    <li><a href="#不是为了多态特性不要随意声明virtual析构函数"><em><strong>不是为了多态特性，不要随意声明virtual析构函数</strong></em></a></li>
+    <li><a href="#类继承时小心父类析构函数不具有多态特性"><em><strong>类继承时小心父类析构函数不具有多态特性</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="前言"><em><strong>前言</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="为多态基类声明virtual析构函数"><em><strong>为多态基类声明virtual析构函数</strong></em></h2>
 <ol>
-<li><em>该条款解决方法 分为两种，一个为&quot;c++11&quot;以后的解决方法，一个为&quot;c++98&quot;</em></li>
-</ol>
-<h2 id="c11"><em><strong>c++11</strong></em></h2>
-<ul>
 <li>
-<p><em>直接在不想要的特种成员函数 后面 加上 <code>= delete</code> 即可</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HomeForSale</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">HomeForSale</span><span class="p">(</span><span class="k">const</span> <span class="n">HomeForSale</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="n">HomeForSale</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">HomeForSale</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<h2 id="c98">c++98</h2>
-<ul>
-<li>
-<p><em>可以通过私有化 并且 只声明，而不去定义，具体如下述代码</em></p>
+<p><em>如果不为多态基类声明<code>virtual</code>析构函数，那么在实例化派生类的时候，则会只调用基类的析构函数，就会造成内存泄漏</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -182,22 +156,27 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Uncopyable</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">Uncopyable</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">Uncopyable</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">Uncopyable</span><span class="p">(</span><span class="k">const</span> <span class="n">Uncopyable</span><span class="o">&amp;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">Uncopyable</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Uncopyable</span><span class="o">&amp;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TimeKeeper</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">TimeKeeper</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">TimeKeeper</span><span class="p">();</span> <span class="c1">// non-virtual
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HomeForSale</span> <span class="o">:</span> <span class="k">private</span> <span class="n">Uncopyable</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AtomicClock</span> <span class="o">:</span> <span class="k">public</span> <span class="n">TimeKeeper</span> <span class="p">{</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// getTimeKeeper(); 工厂函数，有可能实例化了AtomicClock，所以这时候一个父类的指针指向了子类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">TimeKeeper</span><span class="o">*</span> <span class="n">ptk</span> <span class="o">=</span> <span class="n">getTimeKeeper</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span> <span class="c1">// use it
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">delete</span> <span class="n">ptk</span><span class="p">;</span> <span class="c1">// 这个就会出现问题，因为TimeKeeper的析构函数不是虚函数，所以只会用了TimeKeeper基类的析构函数
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
+</ol>
+<h2 id="不是为了多态特性不要随意声明virtual析构函数"><em><strong>不是为了多态特性，不要随意声明virtual析构函数</strong></em></h2>
+<ol>
+<li><em>如果不需要多态特性，还会析构函数声明了<code>virtual</code>，那么析构函数会变大，多了虚指针和虚表</em></li>
+</ol>
+<h2 id="类继承时小心父类析构函数不具有多态特性"><em><strong>类继承时小心父类析构函数不具有多态特性</strong></em></h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -206,10 +185,10 @@
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" data-title="条款7-为多态基类声明virtual析构函数"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" data-title="条款7-为多态基类声明virtual析构函数"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" data-title="条款7-为多态基类声明virtual析构函数"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" data-title="条款7-为多态基类声明virtual析构函数"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -221,8 +200,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/effective-c-%E6%9D%A1%E6%AC%BE5-%E4%BA%86%E8%A7%A3c-%E9%BB%98%E8%AE%A4%E7%94%9F%E6%88%90%E7%9A%84%E5%87%BD%E6%95%B0/" class="prev" rel="prev" title="条款5-了解c&#43;&#43;默认生成的函数"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>条款5-了解c++默认生成的函数</a>
-            <a href="/effective-c-%E6%9D%A1%E6%AC%BE7-%E4%B8%BA%E5%A4%9A%E6%80%81%E5%9F%BA%E7%B1%BB%E5%A3%B0%E6%98%8Evirtual%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" class="next" rel="next" title="条款7-为多态基类声明virtual析构函数">条款7-为多态基类声明virtual析构函数<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" class="prev" rel="prev" title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>条款6-不想要的特种成员函数，明确禁止编译器自动生成</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
