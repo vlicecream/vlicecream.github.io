@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>条款5-不想要的特种成员函数，明确禁止编译器自动生成 - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="条款5-不想要的特种成员函数，明确禁止编译器自动生成" />
+        <title>条款6-不想要的特种成员函数，明确禁止编译器自动生成 - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="条款6-不想要的特种成员函数，明确禁止编译器自动生成" />
 <meta property="og:description" content="Effective C&#43;&#43;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
 
-<meta name="twitter:title" content="条款5-不想要的特种成员函数，明确禁止编译器自动生成"/>
+<meta name="twitter:title" content="条款6-不想要的特种成员函数，明确禁止编译器自动生成"/>
 <meta name="twitter:description" content="Effective C&#43;&#43;"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -25,7 +25,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "条款5-不想要的特种成员函数，明确禁止编译器自动生成",
+        "headline": "条款6-不想要的特种成员函数，明确禁止编译器自动生成",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  166 ,
+                        }],"genre": "posts","wordcount":  167 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90\/","datePublished": "2023-03-05T11:53:00+08:00","dateModified": "2023-03-05T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -118,10 +118,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款5-不想要的特种成员函数，明确禁止编译器自动生成</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款6-不想要的特种成员函数，明确禁止编译器自动生成</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-05">2023-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 166 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" class="leancloud_visitors" data-flag-title="条款5-不想要的特种成员函数，明确禁止编译器自动生成">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-05">2023-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 167 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" class="leancloud_visitors" data-flag-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -192,8 +192,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HomeForSale</span> <span class="o">:</span> <span class="k">private</span> <span class="n">Uncopyable</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -209,7 +209,7 @@
                             <a class="link-to-markdown" href="/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款5-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款5-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款5-不想要的特种成员函数，明确禁止编译器自动生成"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款5-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE6-%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E7%89%B9%E7%A7%8D%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%98%8E%E7%A1%AE%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" data-title="条款6-不想要的特种成员函数，明确禁止编译器自动生成"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
