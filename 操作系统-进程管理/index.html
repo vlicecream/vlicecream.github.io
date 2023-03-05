@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  3920 ,
+                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  6212 ,
         "url": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2022-07-20T21:40:32+08:00","dateModified": "2023-02-26T06:54:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">进程管理</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3920 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="进程管理">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6212 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="进程管理">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -135,6 +135,11 @@
     <li><a href="#线程的概念"><em><strong>线程的概念</strong></em></a></li>
     <li><a href="#进程与线程的区别"><em><strong>进程与线程的区别</strong></em></a></li>
     <li><a href="#线程资源"><em><strong>线程资源</strong></em></a></li>
+    <li><a href="#说一下-forkwaitexec-函数"><em><strong>说一下 fork，wait，exec 函数</strong></em></a></li>
+    <li><a href="#孤儿进程-vs-僵尸进程"><em><strong>孤儿进程 V.S 僵尸进程</strong></em></a></li>
+    <li><a href="#守护进程">守护进程</a></li>
+    <li><a href="#进程的创建过程需要哪些函数需要哪些数据结构"><em><strong>进程的创建过程，需要哪些函数，需要哪些数据结构</strong></em></a></li>
+    <li><a href="#进程创建子进程fork-详解"><em><strong>进程创建子进程，fork 详解</strong></em></a></li>
   </ul>
 
   <ul>
@@ -215,9 +220,13 @@
 <h2 id="进程与线程的区别"><em><strong>进程与线程的区别</strong></em></h2>
 <ol>
 <li><em>进程是操作系统分配资源的最小单位 / 线程是操作系统最小调度单位</em></li>
-<li><em>一个线程只属于一个进程 / 一个进程可以包括多个线程</em></li>
-<li><em>线程没有独立的内存地址 它包括在进程的地址空间里</em></li>
-<li><em>线程的开销比进程更好</em></li>
+<li><em>一个线程只属于一个进程 / 一个进程可以包括多个线程但最少有一个主线程</em></li>
+<li><em>进程在执行过程中拥有独立的内存单元 / 而多个线程共享进程的内存</em></li>
+<li><em>进程编程调试简单可靠性高，但是创建销毁开销大 / 线程正相反，开销小，切换速度快，但是编程调试相对复杂</em></li>
+<li><em>进程间不会相互影响 / 线程一个线程挂掉将导致整个进程挂掉</em></li>
+<li><em>进程适应于多核、多机分布 / 线程适用于多核</em></li>
+<li><em>由于在创建或撤消进程时，系统都要为之分配或回收资源，如内存空间、IO设备等。因此，操作系统所付出的开销将显著地大于在创建或撤消线程时的开销 / 而线程切换只须保存和设置少量寄存器的内容，并不涉及存储器管理方面的操作 / <strong>所以进程切换的开销也远大于线程切换的开销</strong></em></li>
+<li><em>由于同一进程中的多个线程具有相同的地址空间，致使它们之间的同步和通信的实现，也变得比较容易。<strong>进程间通信IPC，线程间可以直接读写进程数据段（如全局变量）来进行通信——需要进程同步和互斥手段的辅助，以保证数据的一致性</strong>。在有的系统中，线程的切换、同步和通信都无须操作系统内核的干预</em></li>
 </ol>
 <h2 id="线程资源"><em><strong>线程资源</strong></em></h2>
 <table>
@@ -254,6 +263,161 @@
 </tr>
 </tbody>
 </table>
+<h2 id="说一下-forkwaitexec-函数"><em><strong>说一下 fork，wait，exec 函数</strong></em></h2>
+<ol>
+<li>
+<p><em>父进程产生子进程使用<code>fork</code>拷贝出一个父进程的副本，此时只拷贝了父进程的页表，两个进程都读一块内存的</em></p>
+</li>
+<li>
+<p><em>当有进程写的时候使用写时拷贝机制分配内存，<code>exec</code>函数可以加载一个<code>elf</code>文件去替换父进程，从此父进程和子进程就可以运行不同的程序了</em></p>
+</li>
+<li>
+<p><em>fork 从父进程返回子进程的 pid，从子进程返回 0，调用了 <code>wait</code> 的父进程将会发生阻塞，直到 有子进程状态改变，执行成功返回 0，错误返回 -1</em></p>
+</li>
+<li>
+<p><em><code>exec</code> 执行成功则子进程从新的程序开始运行，无返回值，执行失败返回 -1</em></p>
+</li>
+<li>
+<p><em><strong><code>fork()</code>函数</strong></em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#Fork:创建一个和当前进程映像一样的进程可以通过 fork() 系统调用: #include &lt;sys/types.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">pid_t</span> <span class="nf">fork</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>成功调用 fork() 会创建一个新的进程，它几乎与调用 <code>fork()</code> 的进程一模一样，这两个进程都会 继续运行</em></p>
+</li>
+<li>
+<p><em>在子进程中，成功的 <code>fork()</code>调用会返回0。在父进程中 fork() 返回子进程的 pid，如果出现错误，<code>fork()</code> 返回一个负值</em></p>
+</li>
+<li>
+<p><em>最常⻅的 fork() 用法是创建一个新的进程，然后使用 <code>exec()</code> 载入二进制映像，替换当前进程的 映像。这种情况下，派生(fork)了新的进程，而这个子进程会执行一个新的二进制可执行文 件的映像。这种“派生加执行”的方式是很常⻅的</em></p>
+</li>
+<li>
+<p><em>在早期的 Unix 系统中，创建进程比较原始。当调用 fork 时，内核会把所有的内部数据结构复 制一份，复制进程的⻚表项，然后把父进程的地址空间中的内容逐⻚的复制到子进程的地址空 间中。但从内核⻆度来说，逐⻚的复制方式是十分耗时的。现代的 Unix 系统采取了更多的优 化，例如 Linux，采用了写时复制的方法，而不是对父进程空间进程整体复制</em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="孤儿进程-vs-僵尸进程"><em><strong>孤儿进程 V.S 僵尸进程</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>什么是孤儿进程</strong></em></p>
+<ul>
+<li>
+<p><em>一般情况下，子进程是由父进程创建，而子进程和父进程的推出顺序是无序的，两者之间都不知道谁先退出。</em></p>
+<p><em>正常情况下，父进程会先结束调用<code>wait()</code>或者<code>waitpid()</code>函数等到子进程完成后再退出，而一旦父进程不等待直接退出，则剩下的子进程会被<code>init(pid=1)</code>进程接收，成了孤儿进程（进程树中除了init都会有父进程）</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>什么是僵尸进程</strong></em></p>
+<ul>
+<li><em>如果子进程先退出了，父进程还未结束并且没有调用 wait 或者 waitpid 函数获取子进程的 状态信息，则子进程残留的状态信息( task_struct 结构和少资源信息)会变成僵尸进程</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>怎么处理僵尸进程</strong></em></p>
+<ul>
+<li><em>子进程退出时向父进程发送SIGCHILD信号，父进程处理SIGCHILD信号。在信号处理函数中 调用wait进行处理僵尸进程</em></li>
+<li><em>原理是将子进程成为孤儿进程，从而其的父进程变为init进程，通过init进程可以处理僵尸进程</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="守护进程">守护进程</h2>
+<ol>
+<li><em><strong>什么是守护进程</strong></em>
+<ul>
+<li><em>守护进程(Daemon)是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。</em></li>
+<li><em>守护进程是一种很有用的进程</em></li>
+</ul>
+</li>
+<li><em><strong>守护进程特点</strong></em>
+<ul>
+<li><em>守护进程最重要的特性是后台运行</em></li>
+<li><em>守护进程必须与其运行前的环境隔离开来。这些环境包括未关闭的文件描述符，控制终端，会话和进程组，工作目录以及文件创建掩模等。这些环境通常是守护进程从执行它的父进 程(特别是shell)中继承下来的</em></li>
+<li><em>守护进程的启动方式有其特殊之处。它可以在Linux系统启动时从启动脚本/etc/rc.d中启 动，可以由作业规划进程crond启动，还可以由用户终端(shell)执行</em></li>
+</ul>
+</li>
+<li><em><strong>实现一个守护进程</strong></em>
+<ul>
+<li><em>在父进程中执行<code>fork</code>并<code>exit</code>推出</em></li>
+<li><em>在子进程中调用<code>setsid</code>函数创建新的会话</em></li>
+<li><em>在子进程中调用<code>chdir</code>函数，让根目录 ”/” 成为子进程的工作目录</em></li>
+<li><em>在子进程中调用<code>umask</code>函数，设置进程的umask为0</em></li>
+<li><em>在子进程中关闭任何不需要的文件描述符</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="进程的创建过程需要哪些函数需要哪些数据结构"><em><strong>进程的创建过程，需要哪些函数，需要哪些数据结构</strong></em></h2>
+<ol>
+<li><em><code>fork</code>函数创造的子进程是父进程的完整副本，复制了父进程的资源，包括内存的内容<code>task_struct</code>内容</em></li>
+<li><em><code>vfork</code>创建的子进程与父进程共享数据段，而且由<code>vfork</code>创建的子进程将先于父进程运行</em></li>
+<li><em>linux 上创建线程一般使用的就是<code>pthead</code>库，实际上linux也给我们提供了创建线程的系统调用，也就是clone</em></li>
+</ol>
+<h2 id="进程创建子进程fork-详解"><em><strong>进程创建子进程，fork 详解</strong></em></h2>
+<ol>
+<li>
+<p><em>函数原型 <code>pid_t fork(void)</code></em></p>
+</li>
+<li>
+<p><em>除了0号进程(系统创建的)之外，linux系统中都是由其他进程创建的。创建新进程的进 程，即调用fork函数的进程为父进程，新建的进程为子进程</em></p>
+</li>
+<li>
+<p><em>fork函数不需要任何参数，对于返回值有三种情况</em></p>
+<ul>
+<li>
+<p><em>对于父进程，fork函数返回新建子进程的pid;</em></p>
+</li>
+<li>
+<p><em>对于子进程，fork函数返回 0;</em></p>
+</li>
+<li>
+<p><em>如果出错， fork 函数返回 -1</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//失败，一般是该用户的进程数达到限制或者内存被用光了 ........
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//子进程执行的代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//父进程执行的代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.........</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
 <h1 id="进程运行"><em><strong>进程运行</strong></em></h1>
 <h2 id="五种基本状态"><em><strong>五种基本状态</strong></em></h2>
 <ul>
@@ -535,6 +699,12 @@
 </li>
 </ol>
 <h2 id="消息队列"><em><strong>消息队列</strong></em></h2>
+<ol>
+<li><em>消息队列，是消息的连接表，存放在内核中。<strong>一个消息队列有一个标识符来标识</strong></em></li>
+<li><em>消息队列是面向记录的，其中的消息具有特定的格式以及特定的优先级</em></li>
+<li><em>消息队列独立于发送与接收进程。<strong>进程终止时，消息队列及其内容不会被删除</strong></em></li>
+<li><em>消息队列可以实现消息的随机查询</em></li>
+</ol>
 <h2 id="信号量"><em><strong>信号量</strong></em></h2>
 <ol>
 <li><strong>什么是信号量</strong>
