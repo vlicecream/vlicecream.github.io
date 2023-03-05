@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  6212 ,
+                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  6234 ,
         "url": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2022-07-20T21:40:32+08:00","dateModified": "2023-02-26T06:54:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">进程管理</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6212 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6234 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="进程管理">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -137,7 +137,7 @@
     <li><a href="#线程资源"><em><strong>线程资源</strong></em></a></li>
     <li><a href="#说一下-forkwaitexec-函数"><em><strong>说一下 fork，wait，exec 函数</strong></em></a></li>
     <li><a href="#孤儿进程-vs-僵尸进程"><em><strong>孤儿进程 V.S 僵尸进程</strong></em></a></li>
-    <li><a href="#守护进程">守护进程</a></li>
+    <li><a href="#守护进程"><em><strong>守护进程</strong></em></a></li>
     <li><a href="#进程的创建过程需要哪些函数需要哪些数据结构"><em><strong>进程的创建过程，需要哪些函数，需要哪些数据结构</strong></em></a></li>
     <li><a href="#进程创建子进程fork-详解"><em><strong>进程创建子进程，fork 详解</strong></em></a></li>
   </ul>
@@ -238,23 +238,23 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">地址空间</td>
+<td style="text-align:center">堆区</td>
 <td style="text-align:center">寄存器</td>
 </tr>
 <tr>
-<td style="text-align:center">全局变量(数据区)</td>
-<td style="text-align:center">栈</td>
+<td style="text-align:center">打开的文件</td>
+<td style="text-align:center">栈区</td>
 </tr>
 <tr>
-<td style="text-align:center">打开的文件</td>
+<td style="text-align:center">数据区（全局变量和static）</td>
 <td style="text-align:center">程序计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">堆区</td>
-<td style="text-align:center"></td>
+<td style="text-align:center">代码区（每一个函数）</td>
+<td style="text-align:center">栈指针</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
+<td style="text-align:center">动态链接库</td>
 <td style="text-align:center"></td>
 </tr>
 <tr>
@@ -334,7 +334,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="守护进程">守护进程</h2>
+<h2 id="守护进程"><em><strong>守护进程</strong></em></h2>
 <ol>
 <li><em><strong>什么是守护进程</strong></em>
 <ul>

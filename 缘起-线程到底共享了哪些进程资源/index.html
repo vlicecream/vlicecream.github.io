@@ -132,13 +132,13 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#引言"><em><strong>引言</strong></em></a></li>
-    <li><a href="#线程私有资源">线程私有资源</a></li>
-    <li><a href="#代码区">代码区</a></li>
+    <li><a href="#线程私有资源"><em><strong>线程私有资源</strong></em></a></li>
+    <li><a href="#代码区"><em><strong>代码区</strong></em></a></li>
     <li><a href="#数据区"><em><strong>数据区</strong></em></a></li>
     <li><a href="#堆区"><em><strong>堆区</strong></em></a></li>
     <li><a href="#栈区"><em><strong>栈区</strong></em></a></li>
-    <li><a href="#动态链接库">动态链接库</a></li>
-    <li><a href="#文件">文件</a></li>
+    <li><a href="#动态链接库"><em><strong>动态链接库</strong></em></a></li>
+    <li><a href="#文件"><em><strong>文件</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="引言"><em><strong>引言</strong></em></h2>
@@ -146,7 +146,7 @@
 <li><em>鲁迅经常说这样一句话：“反过来想，总是反过来想”，如果你对线程之间共享了哪些进程资源这个问题想不清楚的话那么也可以反过来思考，那就是<strong>有哪些资源是线程私有的</strong></em></li>
 <li><em>鲁迅：我真的说过这一句话吗?</em></li>
 </ol>
-<h2 id="线程私有资源">线程私有资源</h2>
+<h2 id="线程私有资源"><em><strong>线程私有资源</strong></em></h2>
 <p><em>线程运行的本质其实就是函数的执行，函数的执行总会有一个源头，这个源头就是所谓的入口函数，CPU从入口函数开始执行从而形成一个执行流，只不过我们人为的给执行流起一个名字，这个名字就叫线程</em></p>
 <p><em>既然线程运行的本质就是函数的执行，那么函数执行都有哪些信息呢？</em></p>
 <p><em>在《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" target="_blank" rel="noopener noreffer ">函数运行时在内存中是什么样子</a>》这篇文章中我们说过，函数运行时的信息保存在栈帧中，栈帧中保存了函数的返回值、调用其它函数的参数、该函数使用的局部变量以及该函数使用的寄存器信息</em></p>
@@ -174,7 +174,7 @@
 <p><em>以上这些信息有一个统一的名字，就是<strong>线程上下文</strong>(thread context)</em></p>
 <p><em>我们也说过操作系统调度线程需要随时中断线程的运行并且需要线程被暂停后可以继续运行，操作系统之所以能实现这一点，依靠的就是线程上下文信息</em></p>
 <p><em>除此之外，剩下的都是线程间共享资源，我们来看一下剩下的资源</em></p>
-<h2 id="代码区">代码区</h2>
+<h2 id="代码区"><em><strong>代码区</strong></em></h2>
 <p><em>进程地址空间中的代码区，这里保存的是什么呢？从名字中有的同学可能已经猜到了，没错，这里保存的就是我们写的代码，<strong>更准确的是编译后的可执行机器指令</strong></em></p>
 <p><em>那么这些机器指令又是从哪里来的呢？答案是从可执行文件中加载到内存的，可执行程序中的代码区就是用来初始化进程地址空间中的代码区的</em></p>
 <p><img
@@ -297,7 +297,7 @@
         title="img" /></p>
 <p><em>现在你应该看明白了吧，尽管栈区是线程的私有数据，但由于栈区没有添加任何保护机制，一个线程的栈区对其它线程是可以见的，也就是说我们可以修改属于任何一个线程的栈区</em></p>
 <p><em>就像我们上文说得到的，这给程序员带来了极大便利的同时也带来了无尽的麻烦，试想上面这段代码，如果确实是项目需要那么这样写代码无可厚非，但如果上述新创建线程是因bug修改了属于其它线程的私有数据的话，那么产生问题就很难定位了，<strong>因为bug可能距离问题暴露的这行代码已经很远了</strong>，这样的问题通常难以排查</em></p>
-<h2 id="动态链接库">动态链接库</h2>
+<h2 id="动态链接库"><em><strong>动态链接库</strong></em></h2>
 <p><em>进程地址空间中除了以上讨论的这些实际上还有其它内容，还有什么呢？</em></p>
 <p><em>这就要从可执行程序说起了。</em></p>
 <p><em>什么是可执行程序呢？在Windows中就是我们熟悉的exe文件，在Linux世界中就是ELF文件，这些可以被操作系统直接运行的程序就是我们所说的可执行程序。</em></p>
@@ -330,7 +330,7 @@
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007106.png"
         title="img" /></p>
 <p>也就是说进程中的所有线程都可以使用动态链接库中的代码</p>
-<h2 id="文件">文件</h2>
+<h2 id="文件"><em><strong>文件</strong></em></h2>
 <p><em>最后，如果程序在运行过程中打开了一些文件，那么进程地址空间中还保存有打开的文件信息，进程打开的文件也可以被所有的线程使用，这也属于线程间的共享资源</em></p>
 <p><img
         class="lazyload"
