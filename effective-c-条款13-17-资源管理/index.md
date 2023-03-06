@@ -3,7 +3,7 @@
 
 ## ***知识点 RAII对象***
 
-1. ***在本博客《[什么是RAII](https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88/)》中有详解***
+1. *在本博客《[什么是RAII](https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88/)》中有详解*
 
 ## ***条款13 以对象管理资源***
 
