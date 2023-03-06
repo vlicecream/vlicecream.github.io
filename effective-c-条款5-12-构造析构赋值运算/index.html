@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>second 构造/析构/赋值运算 条款5～12 - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="second 构造/析构/赋值运算 条款5～12" />
+        <title>条款5～12 构造/析构/赋值运算 - Ame林汀</title><meta name="Description" content="Effective C&#43;&#43;"><meta property="og:title" content="条款5～12 构造/析构/赋值运算" />
 <meta property="og:description" content="Effective C&#43;&#43;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
@@ -14,18 +14,18 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
 
-<meta name="twitter:title" content="second 构造/析构/赋值运算 条款5～12"/>
+<meta name="twitter:title" content="条款5～12 构造/析构/赋值运算"/>
 <meta name="twitter:description" content="Effective C&#43;&#43;"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" /><link rel="prev" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE1-4-%E4%B9%A0%E6%83%AFc-/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" /><link rel="prev" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE1-4-%E4%B9%A0%E6%83%AFc-/" /><link rel="next" href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "second 构造/析构/赋值运算 条款5～12",
+        "headline": "条款5～12 构造/析构/赋值运算",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -118,10 +118,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">second 构造/析构/赋值运算 条款5～12</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款5～12 构造/析构/赋值运算</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-05">2023-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3292 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" class="leancloud_visitors" data-flag-title="second 构造/析构/赋值运算 条款5～12">
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" class="leancloud_visitors" data-flag-title="条款5～12 构造/析构/赋值运算">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -914,7 +914,7 @@
                             <a class="link-to-markdown" href="/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="second 构造/析构/赋值运算 条款5～12"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="second 构造/析构/赋值运算 条款5～12"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="second 构造/析构/赋值运算 条款5～12"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="second 构造/析构/赋值运算 条款5～12"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="条款5～12 构造/析构/赋值运算"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="条款5～12 构造/析构/赋值运算"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="条款5～12 构造/析构/赋值运算"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" data-title="条款5～12 构造/析构/赋值运算"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -926,7 +926,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/effective-c-%E6%9D%A1%E6%AC%BE1-4-%E4%B9%A0%E6%83%AFc-/" class="prev" rel="prev" title="first 让自己习惯c&#43;&#43; 条款1～4"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>first 让自己习惯c++ 条款1～4</a></div>
+    <div class="post-nav"><a href="/effective-c-%E6%9D%A1%E6%AC%BE1-4-%E4%B9%A0%E6%83%AFc-/" class="prev" rel="prev" title="条款1～4 让自己习惯c&#43;&#43;"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>条款1～4 让自己习惯c++</a>
+            <a href="/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="next" rel="next" title="条款13～17 资源管理">条款13～17 资源管理<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
