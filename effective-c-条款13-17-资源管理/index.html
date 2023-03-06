@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "RAII对象","wordcount":  2417 ,
+                        }],"genre": "posts","keywords": "RAII对象","wordcount":  256 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86\/","datePublished": "2023-03-06T22:37:00+08:00","dateModified": "2023-03-06T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款13～17 资源管理</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2417 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="条款13～17 资源管理">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 256 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="条款13～17 资源管理">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -131,21 +131,21 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></a></li>
     <li><a href="#条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></a>
       <ul>
         <li><a href="#前言"><em><strong>前言</strong></em></a></li>
         <li><a href="#总结"><em><strong>总结</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></a>
-      <ul>
-        <li><a href="#什么是raii"><em><strong>什么是RAII</strong></em></a></li>
-        <li><a href="#什么是资源获取就是初始化"><em><strong>什么是资源获取就是初始化</strong></em></a></li>
-      </ul>
-    </li>
+    <li><a href="#条款14">条款14</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></h2>
+<ol>
+<li><em><strong>在本博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88/" target="_blank" rel="noopener noreffer ">什么是RAII</a>》中有详解</strong></em></li>
+</ol>
+<h2 id="条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></h2>
 <h3 id="前言"><em><strong>前言</strong></em></h3>
 <ul>
 <li><em>其实在本文中的<code>auto_ptr</code>已经被弃用了，建议去看&quot;Effective Modern c++&quot; 条款 18 19 20 21</em></li>
@@ -156,146 +156,7 @@
 <li><em>在构造中获得资源并在异构函数中释放资源</em></li>
 <li><em>两个常用的自动管理资源的类是shared_ptr和auto_ptr，其中auto_ptr的复制动作，会导致复制对象变为null，容易造成意外的错误，一般推荐使用shared_ptr，其使用引用计数的原理实现对象共享的目的，并且在计数为0时自动释放对象</em></li>
 </ul>
-<h2 id="知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></h2>
-<h3 id="什么是raii"><em><strong>什么是RAII</strong></em></h3>
-<ol>
-<li><em>RAII是指C++语言中的一个惯用法（idiom），它是“Resource Acquisition Is Initialization”的首字母缩写。中文可将其翻译为“资源获取就是初始化”</em></li>
-<li><em>虽然从某种程度上说这个名称并没有体现出该惯性法的本质精神，但是作为标准C++资源管理的关键技术，RAII早已在C++社群中深入人心</em></li>
-</ol>
-<h3 id="什么是资源获取就是初始化"><em><strong>什么是资源获取就是初始化</strong></em></h3>
-<ol>
-<li><em>使用局部对象管理资源的技术通常被称为&quot;资源获取就是初始化&quot;</em></li>
-<li><em>这种技术依赖于构造函数和析构函数的性质以及他们与异常处理的交互作用</em></li>
-</ol>
-<p><em>首先让我们来明确资源的概念，在计算机系统中，资源是数量有限且对系统正常运转具有一定作用的元素。比如，内存，文件句柄，网络套接字（network sockets），互斥锁（mutex locks）等等，它们都属于系统资源。由于资源的数量不是无限的，有的资源甚至在整个系统中仅有一份，因此我们在使用资源时必须严格遵循的步骤是</em></p>
-<ol>
-<li><em>获取资源</em></li>
-<li><em>使用资源</em></li>
-<li><em>释放资源</em></li>
-</ol>
-<p><em>调用<code>fopen()</code>打开文件就是获取文件句柄资源，操作完成之后，调用<code>fclose()</code>关闭文件就是释放该资源。资源的释放工作至关重要，如果只获取而不释放，那么资源最终会被耗尽。上面的代码是否能够保证在任何情况下都调用<code>fclose</code>函数呢？请考虑如下情况</em></p>
-<ul>
-<li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">UseFile</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">fn</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">FILE</span><span class="o">*</span> <span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>        <span class="c1">// 获取资源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 使用资源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">g</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>                <span class="c1">// 如果操作g失败！
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">h</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>                <span class="c1">// 如果操作h失败！
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>                       <span class="c1">// 释放资源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<p><em>很明显，这里忘记了一个重要的步骤：在操作g或h失败之后，UseFile函数必须首先调用fclose()关闭文件，然后才能返回其调用者，否则会造成资源泄漏</em></p>
-<p><em>所以不难看出资源管理技术的关键在于：<strong>要保证资源的释放顺序与获取顺序严格相反</strong>。这自然使是我们联想到局部对象的创建和销毁过程。在c++上，定义在栈空间上的局部对象称为自动存储对象。管理局部对象的任务非常简单，因为他们的创建和销毁工作是由系统自动完成的。我们只需在某个作用域中定义局部对象，然后就可以放心的使用</em></p>
-<p><em>读者可能会说：如果系统中的资源也具有如同局部对象一样的特性，自动获取，自动释放，那该有多么美妙啊！。事实上，您的想法已经与RAII不谋而合了</em></p>
-<p><em><strong>既然类是c++中的主要抽象工具，那么就将资源抽象为类，用局部对象来表示资源，把管理资源的任务转化为管理局部对象的任务。这就是RAII的真谛</strong></em></p>
-<p><em>可以毫不夸张地说，RAII有效地实现了C++资源管理的自动化。例如，我们可以将文件句柄FILE抽象为FileHandle类</em></p>
-<ul>
-<li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FileHandle</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">FileHandle</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">p</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">FileHandle</span><span class="p">()</span> <span class="p">{</span> <span class="n">fclose</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 禁止拷贝操作 也可以写成 &#39;= delete&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">FileHandle</span><span class="p">(</span><span class="n">FileHandle</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">FileHandle</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span> <span class="p">(</span><span class="n">FileHandle</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">FILE</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p><em>FileHandle类的构造函数调用<code>fopen()</code>获取资源；FileHandle类的析构函数调用<code>fclose()</code>释放资源。请注意，考虑到FileHandle对象代表一种资源，它并不具有拷贝语义，因此我们将拷贝构造函数和赋值运算符声明为私有成员。如果利用FileHandle类的局部对象表示文件句柄资源，那么前面的UseFile函数便可简化为</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">UseFile</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">fn</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">FileHandle</span> <span class="n">file</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1">// 在此处使用文件句柄f...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 超出此作用域时，系统会自动调用file的析构函数，从而释放资源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<p><em>现在我们就不必担心隐藏在代码之中的return语句了；不管函数是正常结束，还是提前返回，系统都必须“乖乖地”调用f的析构函数，资源一定能被释放。Bjarne所谓“使用局部对象管理资源的技术……依赖于构造函数和析构函数的性质”，说的正是这种情形</em></p>
-<p><em>RAII惯用法同样适用于需要管理多个资源的复杂对象。例如，Widget类的构造函数要获取两个资源：文件myFile和互斥锁myLock。每个资源的获取都有可能失败并且抛出异常。为了正常使用Widget对象，这里我们必须维护一个不变式（invariant）：当调用构造函数时，要么两个资源全都获得，对象创建成功；要么两个资源都没得到，对象创建失败。获取了文件而没有得到互斥锁的情况永远不能出现，也就是说，不允许建立Widget对象的“半成品”。如果将RAII惯用法应用于成员对象，那么我们就可以实现这个不变式</em></p>
-<ul>
-<li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">myFile</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">myLock</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">file_</span><span class="p">(</span><span class="n">myFile</span><span class="p">),</span>     <span class="c1">// 获取文件myFile
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">lock_</span><span class="p">(</span><span class="n">myLock</span><span class="p">)</span>      <span class="c1">// 获取互斥锁myLock
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">FileHandle</span> <span class="n">file_</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">LockHandle</span> <span class="n">lock_</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<p><em>FileHandle和LockHandle类的对象作为Widget类的数据成员，分别表示需要获取的文件和互斥锁。资源的获取过程就是两个成员对象的初始化过程。在此系统会自动地为我们进行资源管理，程序员不必显式地添加任何异常处理代码。例如，当已经创建完file，但尚未创建完lock时，有一个异常被抛出，则系统会调用file的析构函数，而不会调用lock的析构函数。Bjarne所谓构造函数和析构函数“与异常处理的交互作用”，说的就是这种情形</em></p>
-<p><em>综上所述，RAII的本质内容是用对象代表资源，把管理资源的任务转化为管理对象的任务，将资源的获取和释放与对象的构造和析构对应起来，从而确保在对象的生存期内资源始终有效，对象销毁时资源必被释放。换句话说，拥有对象就等于拥有资源，对象存在则资源必定存在。由此可见，RAII惯用法是进行资源管理的有力武器。C++程序员依靠RAII写出的代码不仅简洁优雅，而且做到了异常安全。难怪微软的MSDN杂志在最近的一篇文章中承认：“若论资源管理，谁也比不过标准C++”</em></p>
+<h2 id="条款14">条款14</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
