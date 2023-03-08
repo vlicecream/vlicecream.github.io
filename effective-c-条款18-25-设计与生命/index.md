@@ -225,4 +225,158 @@ namespace WebBrowserStuff{
 
 ## ***条款25 考虑写出一个不抛异常的 swap 函数***
 
+*我们标准库里面的`swap`函数是这么写的，无非就是一个中间值过渡，只要T支持copying(通过copy构造函数和assignment操作符完成)，默认的swap会实现代码就会将类型为T的对象进行置换*
+
+```cpp
+namespace std {
+  template<typename T>
+  void swap(T& a, T& b)
+  {
+    T temp(a);
+    a = b;
+    b = temp;
+  }
+}
+```
+
+*这种方法对于内置类型没任何问题，内置类型上的赋值绝对不会抛出异常，并且效率很高。但是如果a,b不是内置类型，就会调用类的copy构造函数和assign函数，并且必须是深拷贝。这样如果类的成员较多就会造成交换的效率很低，特别是针对pimpl实现方法，即成员中包含指针（即资源）时。更好的做法就是直接交换指针就可以了，相当于交换了两个int(指针都是4字节的)，这就比拷贝这个指针指向的资源要快得多*
+
+*关于pimpl可以查看本博客《[C++ Pimpl](https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/)》*
+
+*如何实现呢？我们先用pimpl手法将Widget的数据成员封装到WidgetImpl中*
+
+```cpp
+class WidgetImpl {// class for Widget data;
+public:// details are unimportant...
+private:
+    int a, b, c;// possibly lots of data —
+    std::vector<double> v;// expensive to copy!...
+};
+
+class Widget {// class using the pimpl idiom
+public:
+    Widget(const Widget& rhs);
+    Widget& operator=(const Widget& rhs)// to copy a Widget, copy its
+    {        // WidgetImpl object. For
+        ...// details on implementing
+        *pImpl = *(rhs.pImpl);// operator= in general,
+        ...// see Items 10, 11, and 12.
+    }
+    ...
+private:
+    WidgetImpl *pImpl;// ptr to object with this 
+};// Widget’s data
+```
+
+***设计问题***
+
+- *置换两个Widget对象过于复杂，浪费空间和效率(对于置换Widget对象值，我们只需要做的是置换impl指针，但默认的swap要交换Widget类更需要交换WidgetImpl)*
+- *可以直接交换指针的地址，改变指针指向的内存*
+
+*我们可以置换其impl指针*
+
+```cpp
+namespace std{
+    template<>
+    void swap<Widget>(Widget& a,Widget& b)//std::swap的全特化版本只能对
+           //<Widget>表示这一特例化版本只是针对指针交换而设计
+    {
+        swap(a.pImpl,b.pImpl);    
+    }
+}
+```
+
+*这个有个问题 pImpl是属于Widget的private成员因此此函数肯定是无法编译通过的，我们可以将其声明为friend函数但其封装性较弱，可以将swap声明为member函数如下*
+
+```cpp
+class Widget {
+// same as above, except for the
+public:// addition of the swap mem func
+...
+    void swap( Widget& other){
+        using std::swap;// the need for this declaration
+                    // is explained later in this Item
+        swap(pImpl, other.pImpl);// to swap Widgets, swap their
+        }
+        // pImpl pointers
+        ...
+};
+namespace std {
+template<>// revised specialization of
+void swap<Widget>(Widget& a,// std::swap
+                        Widget& b)
+{
+    a.swap(b);// to swap Widgets, call their
+}// swap member function
+}
+```
+
+*这一段代码能够通过编译，并且具有STL容器的一致性，以为std::swap也提供了有pulic swap成员函数的和std::swap的特化版本*
+
+*但是对于Widget class templates而非classes 将数据类型加以参数化*
+
+```cpp
+template<typename T>
+class WidgetImpl { ... };
+template<typename T>
+class Widget { ... };
+namespace std {
+template<typename T>
+void swap<Widget<T> >(Widget<T>& a,// error! illegal code!
+        Widget<T>& b)
+{
+     a.swap(b); 
+}
+}
+
+// 企图偏特化一个function template(std::swap)，但C++只能对class templates偏特化
+// 在function templates身上时不能偏特化的。因此无法编译
+```
+
+*所以我们得偏特化 function template*
+
+```cpp
+namespace std {template<typename T>// an overloading of std::swap 
+void swap(Widget<T>& a,// (note the lack of “<...>” after
+                Widget<T>& b)// “swap”), but see below for
+{ 
+    a.swap(b); 
+}// why this isn’t valid code}
+```
+
+*这时候还是有个问题，重载function templates是没问题的，但std是一个特殊的命名空间*
+
+- *可以全特化std内的templates*
+- *不可以添加新的templates(class或function)到std里面*
+
+ ***所以真正高效正确的做法就是 non member swap & member swap相结合***
+
+```cpp
+namespace WidgetStuff {
+...// templatized WidgetImpl, etc.
+template<typename T>// as before, including the swapclass 
+Widget { ... };// member function
+...
+template<typename T>// non-member swap function;
+void swap(Widget<T>& a,// not part of the std namespace
+                    Widget<T>& b)
+{
+        a.swap(b);
+}
+}
+```
+
+*swap实现效率不足的解决(class或template运用了pimpl手法)*
+
+1. *提供一个public的swap函数，让它高效地置换你的类型的两个对象值，而其不能抛出异常*
+2. *在你的class或template所在的命名空间提供一个non-member swap，并令他调用上述swap成员函数*
+3. *如果编写一个**class(而非class template)**，为你的class特化一个std::swap，并令他调用你的swap的成员函数*
+4. *必须使用using std::swap,以便其能够在函数类曝光可见，然后报价namspace修饰符*
+
+***总结***
+
+1. *当std::swap对你的类型无效时，提供一个swap成员函数。确保交换不会抛出异常*
+2. *如果你提供了一个成员交换，也要提供一个调用成员的非成员交换。对于类(不是模板)，也要专门化std::swap*
+3. *当调用swap时，对std::swap使用using声明，然后不带命名空间限定的调用swap*
+4. *完全专门化用户定义类型的std模板是可以的，但永远不要尝试向std添加全新的东西*
 
