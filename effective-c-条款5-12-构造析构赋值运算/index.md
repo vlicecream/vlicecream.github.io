@@ -287,7 +287,7 @@ public:
 
 ### ***copy and swap技术***
 
-*这个技术需要保证swap函数是异常安全的，具体后面的条款会解释，这里只做了解*
+*这个技术需要保证swap函数是异常安全的，具体《[条款25](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE18-25-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%94%9F%E5%91%BD/)》会解释，这里只做了解*
 
 - ```cpp
   Widget& Widget::operator=(const Widget& rhs) {
