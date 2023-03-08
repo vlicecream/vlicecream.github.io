@@ -355,5 +355,151 @@ std::unique_ptr<T> make_unique(Ts&&... params) {
 
 *我们经常用名为Pimpl的方法来实现接口与实现分离，进而大大降低程序构建的时间。Pimpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针*
 
-*具体关于Pimpl是什么，可以查看我这个博客《Pimpl》*
+*具体关于Pimpl是什么，可以查看我这个博客《[Pimpl](https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/)》*
+
+*举一个例子*
+
+```cpp
+class Widget {
+public:
+    Widget();
+    ...
+private:
+    std::string name;
+    std::vector<double> data;
+    Gadget g1, g2, g3;        // Gadget is some user-defined type
+};
+```
+
+*`Widget`的数据成员的类型为`std::string`、`std::vector<double>`、`Gadget`，这样就至少要include三个头文件，这也意味着每个需要include了这个包含`Widget`定义的头文件的地方，都被动引入了三个头文件。如果有一天我们修改了`Widget`的实现，比如增加或删除了一个成员，即使它们都是private的，即使接口完全没有变化，所有include它的用户文件都要重新编译。我们不想污染用户文件，也不想用户文件因为我们的实现修改而重新编译，我们就可以用Pimpl*
+
+```cpp
+class Widget {
+public:
+    Widget();
+    ~Widget();
+    ...
+private:
+    struct Impl;
+    Impl* pImpl;
+};
+```
+
+*注意这里出现的`Impl`类型只是声明，没有定义，称为“不完整类型”，这样的类型只支持很少的操作，其中包括了我们需要的：声明一个不完整类型的指针*
+
+*对应的实现文件内容为*
+
+```cpp
+struct Widget::Impl {
+    std::string name;
+    std::vector<double> data;
+    Gadget g1, g2, g3;
+};
+
+Widget::Widget() : pImpl(new Impl) {}
+
+Widget::~Widget()
+{
+    delete pImpl;
+}
+```
+
+*有了智能指针后，我们觉得直接`new`和`delete`不好，需要用`std::unique_ptr`*
+
+```cpp
+class Widget {
+public:
+    Widget();
+    ...
+private:
+    struct Impl
+    std::unique_ptr<Impl> pImpl;
+};
+```
+
+*因为不需要手动的`delete`，我们没有自己实现`Widget`的析构函数*
+
+*看起来都很美好，编译也没问题，但在用户要用时，出事了*
+
+```cpp
+Widget w; // error!!!
+```
+
+*究其原因，是因为我们没有给`Widget`实现自定义的析构函数，因此编译器为`Widget`准备了一个。这个析构函数会被放到`Widget`的定义体内，默认是内联的，因此会有一份实现在用户文件中。`~Widget`中只做一件事：析构`pImpl`，即析构一个`std::unique_ptr<Impl>`。注意，我们隐藏了`Impl`的实现，在析构`std::unique_ptr<Impl>`时编译器发现`Impl`还是个不完整类型，此时对它调用`delete`是危险的，因此编译器用`static_cast`禁止了这种行为*
+
+*解决方案很简单：自己实现`Widget`的析构函数*
+
+```cpp
+// widget.h
+class Widget {
+public:
+    Widget();
+    ~Widget();
+    ...
+private:
+    struct Impl
+    std::unique_ptr<Impl> pImpl;
+};
+// widget.cpp
+...
+Widget::Widget() : pImpl(std::make_unique<Impl>()) {}
+
+Widget::~Widget() {}
+```
+
+*参考条款17，更好的方法是将析构函数定义为`= default`*
+
+```cpp
+Widget::~Widget() = default;
+```
+
+*根据条款17，自定义的析构函数会阻止编译器生成移动构造函数和移动赋值函数，因此如果你想要`Widget`有移动的能力，就要自己实现*
+
+```cpp
+class Widget {
+public:
+    Widget();
+    ~Widget();
+    Widget(Widget&& rhs) = default; // right idea, wrong code!
+    Widget& operator=(Widget&& rhs) = default;
+    ...
+};
+```
+
+*注意不要在这些特殊成员函数的声明后面加`= default`，这样会重复上面析构函数的问题：会被内联，因此在用户代码中有一份实现，遇到不完整类型，game over。我们要做的就是在.cpp中将它们的实现定义为`= default`*
+
+*接下来就是复制构造函数和复制赋值函数了。我们用`std::unique_ptr`是为了更好的实现Pimpl方法，这也导致了`Widget`无法自动生成复制函数（`std::unique_ptr`不支持），但这并不意味着`Widget`就不能支持复制了，我们还可以自己定义两个复制函数*
+
+```cpp
+// widget.h
+class Widget {
+public:
+    ...
+    Widget(const Widget& rhs);
+    Widget& operator=(const Widget& rhs);
+    ...
+};
+// widget.cpp
+Widget::Widget(const Widget& rhs)
+    : pImpl(nullptr) {
+    if (rhs.pImpl) {
+        pImpl = std::make_unique<Impl>(*rhs.pImpl);
+    }
+}
+Widget& Widget::operator=(const Widget& rhs) {
+    if (!rhs.pImpl) {
+        pImpl.reset();
+    } else if (!pImpl) {
+        pImpl = std::make_unique<Impl>(*rhs.pImpl);
+    } else {
+        *pImpl = *rhs.pImpl;
+    }
+}
+```
+
+*有意思的是，如果你把`pImpl`的类型改为`std::shared_ptr<Impl>`，你会发现上面所有这些注意事项，都不见了。你不需要手动实现析构函数、移动函数、构造函数，程序编译仍然是好的。*
+
+*这种差异来自于`std::unique_ptr`和`std::shared_ptr`对自定义销毁器的支持方式不同。`std::unique_ptr`的目标是从体积到性能上尽可能与裸指针相同，因此它将销毁器类型作为模板参数的一部分，这样实现起来更高效，代价是各种特殊函数在编译时就要知道元素的完整类型。而`std::shared_ptr`没有这种性能上的要求，因此它的销毁器不是模板参数的一部分，性能会有一点点影响，但好处是不需要在编译特殊函数时知道元素的完整类型*
+
+> `std::shared_ptr`在构造时就把销毁器保存在了控制块中，之后即使传递到了不知道元素完整类型的地方，它仍然能调用正确的销毁器来销毁元素指针。而`std::unique_ptr`是依靠模板参数提供的类型信息来进行销毁，因此必须要知道元素的完整类型
 
