@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "构造函数, 析构函数, 拷贝构造函数","wordcount":  1519 ,
+                        }],"genre": "posts","keywords": "构造函数, 析构函数, 拷贝构造函数","wordcount":  1485 ,
         "url": "https:\/\/vlicecream.github.io\/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0\/","datePublished": "2022-03-18T00:00:00+08:00","dateModified": "2023-02-26T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">构造析构/拷贝构造/拷贝赋值</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-18">2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1519 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="构造析构/拷贝构造/拷贝赋值">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-18">2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1485 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-%E4%B8%89%E5%A4%A7%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="构造析构/拷贝构造/拷贝赋值">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -136,38 +136,10 @@
     <li><a href="#深拷贝与浅拷贝"><em><strong>深拷贝与浅拷贝</strong></em></a></li>
     <li><a href="#拷贝构造函数"><em><strong>拷贝构造函数</strong></em></a></li>
     <li><a href="#拷贝赋值函数"><em><strong>拷贝赋值函数</strong></em></a></li>
+    <li><a href="#effective-c-item"><em><strong>Effective c++ item</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><em><strong>!!!本文基于这个一个 <code>complex</code>的类去讲解 操作符重载</strong></em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">complex</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">re</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">im</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">  <span class="n">complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">complex</span><span class="o">&amp;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">double</span> <span class="nf">real</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">re</span><span class="p">;</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">double</span> <span class="nf">imag</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">im</span><span class="p">;</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">double</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">friend</span> <span class="n">complex</span><span class="o">&amp;</span> <span class="n">__doapl</span><span class="p">(</span><span class="n">complex</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="n">complex</span> <span class="o">&amp;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="三个特殊函数">三个特殊函数</h2>
+            </div><div class="content" id="content"><h2 id="三个特殊函数">三个特殊函数</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -358,7 +330,11 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// 一定要检测自我赋值 要不然 a&amp;b 同时指向一个内存地址 然后杀掉之后 a&amp;b就指定不到值
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="effective-c-item"><em><strong>Effective c++ item</strong></em></h2>
+<ol>
+<li><em>对于更多的三个特殊函数一些规范及其知识点，请看《<a href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/" target="_blank" rel="noopener noreffer ">Effective c++ item5~item12</a>》</em></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
