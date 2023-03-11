@@ -70,3 +70,7 @@
 
    - *非常量对象可以调用类中的 const 成员函数，也可以调用非 const 成员函数。*
 
+## ***Effective c++ Item***
+
+1. *对于更多的const的相关知识，可以查看《[Effective c++ Item3 - 尽量使用const](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE1-4-%E4%B9%A0%E6%83%AFc-/)》*
+
