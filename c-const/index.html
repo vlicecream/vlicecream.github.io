@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "const","wordcount":  1431 ,
+                        }],"genre": "posts","keywords": "const","wordcount":  1398 ,
         "url": "https:\/\/vlicecream.github.io\/c-const\/","datePublished": "2022-03-27T00:00:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">const</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1431 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1398 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-const/" class="leancloud_visitors" data-flag-title="const">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -132,7 +132,7 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#object-与-member-func-的关系"><em><strong>object 与 member func 的关系</strong></em></a></li>
-    <li><a href="#const修饰">const修饰</a></li>
+    <li><a href="#const修饰"><em><strong>const修饰</strong></em></a></li>
     <li><a href="#effective-c-item"><em><strong>Effective c++ Item</strong></em></a></li>
   </ul>
 </nav></div>
@@ -195,7 +195,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="const修饰">const修饰</h2>
+<h2 id="const修饰"><em><strong>const修饰</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>const 修饰基本数据类型</strong></em></p>
@@ -238,7 +238,7 @@
 <p><em><strong>const 在类中的用法</strong></em></p>
 <ul>
 <li><em><strong>const成员变量：</strong></em> <em>只在某个对象生命周期内是常量，而对于整个类而言 是可以改变的。因为类可以创建多个对象，不同的对象其 const 数据成员值可以不同。所以不 能在类的声明中初始化 const 数据成员，因为类的对象在没有创建时候，编译器不知道 const 数据成员的值是什么。const 数据成员的初始化只能在类的构造函数的初始化列表中进行</em></li>
-<li><em><strong>const成员函数：</strong></em> <em>只在某个对象生命周期内是常量，而对于整个类而言 是可以改变的。因为类可以创建多个对象，不同的对象其 const 数据成员值可以不同。所以不 能在类的声明中初始化 const 数据成员，因为类的对象在没有创建时候，编译器不知道 const 数据成员的值是什么。const 数据成员的初始化只能在类的构造函数的初始化列表中进行</em></li>
+<li><em><strong>const成员函数：</strong></em> <em>const 成员函数的主要目的是防止成员函数修改对象的内容。要注意，const 关键字和 static 关键字对于成员函数来说是不能同时使用的，因为 static 关键字修饰静态成员 函数不含有 this 指针，即不能实例化，const 成员函数又必须具体到某一个函数</em></li>
 </ul>
 </li>
 <li>
