@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  3305 ,
+                        }],"genre": "posts","wordcount":  3302 ,
         "url": "https:\/\/vlicecream.github.io\/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88\/","datePublished": "2023-03-06T23:58:00+08:00","dateModified": "2023-03-06T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">啥是RAII?</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%98%E8%B5%B7-%E5%9C%A8%E4%BA%BA%E7%BE%A4%E4%B8%AD-%E6%88%91%E7%9C%8B%E8%A7%81%E4%BD%A0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>缘起 在人群中 我看见你</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3305 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3302 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88/" class="leancloud_visitors" data-flag-title="啥是RAII?">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -145,7 +145,7 @@
 <h2 id="思路推导"><em><strong>思路推导</strong></em></h2>
 <p><em>如果你有写过C++或者RUST，你也许听过Resource Acquisition Is Initialisation (RAII), 但是并不了解这名字的含义是什么，或者不知道这个机制有什么用处。在这篇文章中，笔者将详细阐述RAII的原理以及它在资源管理方面巨大的威力</em></p>
 <p><em>RAII是一种使用在面向对象语言中的资源（内存，互斥锁，或者文件描述符）管理机制，使用RAII的语言中，最出名的当属c++ and rust，正是因为强制RAII机制使得rust拥有了绝对的内存安全</em></p>
-<p><em>Resource Acquisition Is Initialisation, 顾名思义，意味着任何资源的获取都应该发生在类的构造函数中，但我个人认为这个名字不太完备，有另一半的意思没有解释到，那就是资源的释放应发生在析构函数中，这意味着所有资源的life cycle都与一个 object紧紧绑定在一起</em></p>
+<p><em>Resource Acquisition Is Initialisation, 顾名思义，意味着任何资源的获取都应该发生在类的构造函数中，但我个人认为这个名字不太完备，有另一半的意思没有解释到，那就是资源的释放应发生在析构函数中，这意味着所有资源的 life cycle都与一个 object紧紧绑定在一起</em></p>
 <p><em>我将用几段代码来具体阐述RAII的应用场景</em></p>
 <ul>
 <li>

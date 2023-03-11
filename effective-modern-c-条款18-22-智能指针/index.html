@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  9639 ,
+                        }],"genre": "posts","wordcount":  9698 ,
         "url": "https:\/\/vlicecream.github.io\/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88\/","datePublished": "2023-03-08T18:01:00+08:00","dateModified": "2023-03-08T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款18~22 智能指针</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-modern-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective Modern C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-08">2023-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9639 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-08">2023-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9698 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 20 分钟&nbsp;<span id="/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="条款18~22 智能指针">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -132,22 +132,24 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#前言"><em><strong>前言</strong></em></a></li>
-    <li><a href="#条款18-对于占有性资源使用stdunique_ptr"><em><strong>条款18 对于占有性资源使用<code>std::unique_ptr</code></strong></em></a></li>
-    <li><a href="#条款19-需要共享所有权的资源管理用stdshared_ptr"><em><strong>条款19 需要共享所有权的资源管理，用<code>std::shared_ptr</code></strong></em></a>
+    <li><a href="#条款18-对于占有性资源使用unique_ptr"><em><strong>条款18 对于占有性资源使用<code>unique_ptr</code></strong></em></a>
       <ul>
-        <li><a href="#总结"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#条款20-在需要共享语义且可能空悬的地方用stdweak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>std::weak_ptr</code></strong></em></a>
+    <li><a href="#条款19-需要共享所有权的资源管理用shared_ptr"><em><strong>条款19 需要共享所有权的资源管理，用<code>shared_ptr</code></strong></em></a>
       <ul>
-        <li><a href="#总结-1"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-1"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#条款21-优先用stdmake_unique和stdmake_shared而不是直接new"><em><strong>条款21 优先用<code>std::make_unique</code>和<code>std::make_shared</code>而不是直接<code>new</code></strong></em></a>
+    <li><a href="#条款20-在需要共享语义且可能空悬的地方用weak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>weak_ptr</code></strong></em></a>
       <ul>
-        <li><a href="#前言-1"><em><strong>前言</strong></em></a></li>
-        <li><a href="#优先用这两个make的好处"><em><strong>优先用这两个make的好处</strong></em></a></li>
-        <li><a href="#总结-2"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-2"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款21-优先用make_unique和make_shared而不是直接new"><em><strong>条款21 优先用<code>make_unique</code>和<code>make_shared</code>而不是直接<code>new</code></strong></em></a>
+      <ul>
+        <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#条款22-在用到pimpl惯用法时在实现文件中定义特殊成员函数"><em><strong>条款22 在用到Pimpl惯用法时，在实现文件中定义特殊成员函数</strong></em></a></li>
@@ -155,7 +157,7 @@
 </nav></div>
             </div><div class="content" id="content"><h2 id="前言"><em><strong>前言</strong></em></h2>
 <ol>
-<li><em>其实在《Effective C++》中有些条款有点过时，尤其是智能指针方面，所以我们可以在《Effective Modern c++》条款中去理解智能指针</em></li>
+<li><em>其实《Effective C++ Item13》`已经过时了，所以我们可以在《Effective Modern c++ Item18~Item22》条款中去理解智能指针</em></li>
 <li><em>我们不爱裸指针的原因</em>
 <ul>
 <li><em>裸指针的声明没办法告诉我们它指向的是单个对象还是数组</em></li>
@@ -168,14 +170,22 @@
 </li>
 <li><em>智能指针的作用</em>
 <ul>
-<li><em>智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱。C++11中有4种智能指针：<code>std::auto_ptr</code>、<code>std::unique_ptr</code>、<code>std::shared_ptr</code>、<code>std::weak_ptr</code>。其中<code>std::auto_ptr</code>已经过时了，C++11中可以被<code>std::unique_ptr</code>取代了</em></li>
+<li><em>智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱</em></li>
+<li><em>C++11中有4种智能指针：<code>std::auto_ptr</code>、<code>std::unique_ptr</code>、<code>std::shared_ptr</code>、<code>std::weak_ptr</code></em></li>
+<li><em>其中<code>std::auto_ptr</code>已经过时了，C++11中可以被<code>std::unique_ptr</code>取代了</em></li>
+</ul>
+</li>
+<li><em>正是看本博客之前，需要去弄懂&quot;PImpl&quot;</em>
+<ul>
+<li><em>具体关于Pimpl是什么，可以查看我这个博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/" target="_blank" rel="noopener noreffer ">Pimpl</a>》</em></li>
+<li><em>还有如果前言都没好好看，导致Item22不知道PImpl是啥，这时候你是不是应该要质疑一下自己，学习是不是太浮躁了?</em></li>
 </ul>
 </li>
 </ol>
-<h2 id="条款18-对于占有性资源使用stdunique_ptr"><em><strong>条款18 对于占有性资源使用<code>std::unique_ptr</code></strong></em></h2>
+<h2 id="条款18-对于占有性资源使用unique_ptr"><em><strong>条款18 对于占有性资源使用<code>unique_ptr</code></strong></em></h2>
 <ol>
 <li>
-<p><em><strong><code>std::unique_ptr</code>的特点</strong></em></p>
+<p><em><code>std::unique_ptr</code>的特点</em></p>
 <ul>
 <li>
 <p><em>首先要知道：默认情况下，<code>std::unique_ptr</code>与裸指针一样大，且对于绝大多数操作来说（包括解引用），他们编译后的指令都是完全一样的，所有裸指针的空间和性能开销能满足要求的场景，<code>std::unique_ptr</code>一样能满足</em></p>
@@ -217,7 +227,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong><code>std::unique_ptr可以穿入自定义的销毁器</code></strong></em></p>
+<p><em><code>std::unique_ptr</code>可以传入自定义的销毁器</em></p>
 <ul>
 <li>
 <p><em>在构造<code>std::unique_ptr</code>时，我们还可以传入一个自定义的销毁器，它会在<code>std::unique_ptr</code>析构时被调用，来销毁对应的资源</em></p>
@@ -348,29 +358,27 @@
 </li>
 </ul>
 </li>
-<li>
-<p><em><strong>总结</strong></em></p>
-<ul>
+</ol>
+<h3 id="summary"><em><strong>Summary</strong></em></h3>
+<ol>
 <li><em><code>std::unique_ptr</code>是一个具有开销小，速度快，move-only特定的智能指针，使用独占拥有方式来管理资源</em></li>
 <li><em>默认情况下，释放资源由<code>delete</code>来完成，也可以指定自定义的析构函数来替代，但是具有丰富状态的deleters和以函数指针作为deleters增大了<code>std::unique_ptr</code>的存储开销</em></li>
 <li><em>很容易将一个<code>std::unique_ptr</code>转化为<code>std::shared_ptr</code></em></li>
-</ul>
-</li>
 </ol>
-<h2 id="条款19-需要共享所有权的资源管理用stdshared_ptr"><em><strong>条款19 需要共享所有权的资源管理，用<code>std::shared_ptr</code></strong></em></h2>
+<h2 id="条款19-需要共享所有权的资源管理用shared_ptr"><em><strong>条款19 需要共享所有权的资源管理，用<code>shared_ptr</code></strong></em></h2>
 <ol>
-<li><em><strong>什么是<code>std::shared_ptr</code></strong></em>
+<li><em>什么是<code>std::shared_ptr</code></em>
 <ul>
 <li><em>使用<code>std::shared_ptr</code>管理的对象的所有权是共享的，没有哪个<code>std::shared_ptr</code>特别拥有这个对象，而是最后一个<code>std::shared_ptr</code>析构时，销毁这个对象</em></li>
 <li><em>与垃圾回收类似，调用者不需要手动管理<code>std::shared_ptr</code>管理的对象；与析构函数类似，对象的析构时间是确定的</em></li>
 </ul>
 </li>
-<li><em><strong><code>std::shared_ptr</code>的特点</strong></em>
+<li><em><code>std::shared_ptr</code>的特点</em>
 <ul>
 <li><em><code>std::shared_ptr</code>内部有引用计数，被复制时，引用计数+1，有<code>std::shared_ptr</code>析构时，引用计数-1，当引用计数为0时，析构持有的对象</em></li>
 </ul>
 </li>
-<li><em><strong>引用计数的存在有以下性能影响</strong></em>
+<li><em>引用计数的存在有以下性能影响</em>
 <ul>
 <li><code>*std::shared_ptr</code>的大小是裸指针的两倍：一个指针指向持有的对象，一个指针指向引用计数。*</li>
 <li><em>引用计数使用的内存必须动态分配，原因是<code>std::shared_ptr</code>的引用计数是非侵入式的，必须要独立在对象外面。用<code>std::make_shared</code>能避免这次单独的内存分配</em></li>
@@ -430,7 +438,7 @@
 <p><em>控制块会带来哪些开销呢？一个控制块通常只有几个word大，但其中会用到继承，甚至还有虚函数。这也意味着使用<code>std::shared_ptr</code>也会有调用虚函数的开销</em></p>
 <p><em>但通常来说<code>std::shared_ptr</code>的额外开销是很小的。对于<code>std::make_shared</code>创建的<code>std::shared_ptr</code>，它的控制块只有3个word大，且内存分配上无额外成本。解引用一个<code>std::shared_ptr</code>也不会比解引用一个裸指针开销大。操作引用计数会带来一两次原子操作的开销，但通常也不大</em></p>
 <p><em><code>std::shared_ptr</code>的一个缺点是它不支持数组，但在C++11已经提供了<code>std::array</code>、<code>std::vector</code>、<code>std::string</code>这些容器类的前提下，还要用<code>std::shared_ptr</code>去管理一个数组，本身就是不好设计的信号</em></p>
-<h3 id="总结"><em><strong>总结</strong></em></h3>
+<h3 id="summary-1"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em><code>std::shared_ptr</code>为了管理任意资源的共享式内存管理，提供了自动垃圾回收的便利</em></li>
 <li><em><code>std::shared_ptr</code>是原生指针的两倍大小，因为他们内部除了包含一个原生指针以外，还包含了一个引用计数</em></li>
@@ -440,7 +448,7 @@
 <li><em>引用计数的递增和递减必须是原子操作</em></li>
 <li><em>资源的默认析构一般通过delete来进行，但是自定义的deleter也是支持的。deleter的类型对于 <code>std::shared_ptr</code> 的类型不会产生影响</em></li>
 </ol>
-<h2 id="条款20-在需要共享语义且可能空悬的地方用stdweak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>std::weak_ptr</code></strong></em></h2>
+<h2 id="条款20-在需要共享语义且可能空悬的地方用weak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>weak_ptr</code></strong></em></h2>
 <p><em>有时候我们需要一种类似<code>std::shared_ptr</code>，但又不参与这个共享对象的所有权的智能指针。这样它就需要能知道共享对象是否已经销毁了。这就是<code>std::weak_ptr</code>。<code>std::weak_ptr</code>不是单独存在的，它不能解引用，也不能检测是否为空，它就是配合<code>std::shared_ptr</code>使用的</em></p>
 <p><em>通常<code>std::weak_ptr</code>都是通过<code>std::shared_ptr</code>构造的，但它不会影响<code>std::shared_ptr</code>的引用计数</em></p>
 <div class="highlight"><div class="chroma">
@@ -534,13 +542,17 @@
 </ul>
 <p><em>但要注意的是，用<code>std::weak_ptr</code>来解<code>std::shared_ptr</code>可能造成的循环依赖，这种特性本身并没有价值。设计良好的数据结构，比如树，父节点控制子节点的生命期，但子节点也需要持有父节点的指针，这里最好的方案是父节点用<code>std::unique_ptr</code>来持有子节点，而子节点直接持有父节点的裸指针。即，严格层次结构，明确生命期的场景，不需要使用<code>std::weak_ptr</code>。<code>std::weak_ptr</code>的价值在于：在生命期不明确的场景，可以知道对象是否还有效</em></p>
 <p><em>在效率方面，<code>std::weak_ptr</code>的大小与<code>std::shared_ptr</code>是相同的，它们使用相同的控制块，区别在于<code>std::weak_ptr</code>不会影响控制块中的引用计数，只会影响其中的弱引用计数</em></p>
-<h3 id="总结-1"><em><strong>总结</strong></em></h3>
+<h3 id="summary-2"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em><code>std::weak_ptr</code> 用来模仿类似<code>std::shared_ptr</code>的可悬挂指针</em></li>
 <li><em>潜在的使用 <code>std::weak_ptr</code>的场景包括缓存，观察者列表，以及阻止 <code>std::shared_ptr</code> 形成的环</em></li>
 </ol>
-<h2 id="条款21-优先用stdmake_unique和stdmake_shared而不是直接new"><em><strong>条款21 优先用<code>std::make_unique</code>和<code>std::make_shared</code>而不是直接<code>new</code></strong></em></h2>
-<h3 id="前言-1"><em><strong>前言</strong></em></h3>
+<h2 id="条款21-优先用make_unique和make_shared而不是直接new"><em><strong>条款21 优先用<code>make_unique</code>和<code>make_shared</code>而不是直接<code>new</code></strong></em></h2>
+<ol>
+<li>
+<p><em>前言</em>*</p>
+<ul>
+<li>
 <p><em>先做一下介绍，<code>std::make_shared</code>是在C++11中增加的，但<code>std::make_unique</code>却是在C++14中增加的。如果你想在C++11中就用上<code>std::make_unique</code>，自己写一个简单版的也不难</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -557,8 +569,12 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>这个版本不支持数组，不支持自定义的销毁器，但这些都不重要，它足够用了。但要记住的是，不要把它放到<code>namespace std</code>下面</em></p>
-<h3 id="优先用这两个make的好处"><em><strong>优先用这两个make的好处</strong></em></h3>
-<ol>
+</li>
+</ul>
+</li>
+<li>
+<p><em>优先用这两个make的好处</em></p>
+<ul>
 <li>
 <p><em>这两个make函数的功能就不解释了，和它们类似的还有一个<code>std::allocate_shared</code></em></p>
 <div class="highlight"><div class="chroma">
@@ -623,8 +639,12 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
+</ul>
+</li>
 <li>
 <p><em>更高效</em></p>
+<ul>
+<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -633,20 +653,22 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="nl">std</span><span class="p">:</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>这行代码中，我们以为只有一次内存分配，实际发生了两次，第二次是在分配<code>std::shared_ptr</code>控制块。如果用<code>std::make_shared</code>，它会把<code>Widget</code>对象和控制块合并为一次内存分配。</em></p>
+</div><p><em>这行代码中，我们以为只有一次内存分配，实际发生了两次，第二次是在分配<code>std::shared_ptr</code>控制块。如果用<code>std::make_shared</code>，它会把<code>Widget</code>对象和控制块合并为一次内存分配</em></p>
 <p><em>但是make函数也有一些缺点。</em></p>
-<p><em>第一个缺点：无法传入自定义的销毁器。</em></p>
-<p><em>第二个缺点：make函数初始化时使用了括号初始化，而不是花括号初始化，比如<code>std::make_unique&lt;std::vector&lt;int&gt;&gt;(10, 20)</code>创建了一个有着20个值为10的元素的<code>vector</code>，而不是创建了<code>{10, 20}</code>这么两个元素的<code>vector</code>(参见<a href="https://fuzhe1989.github.io/2017/05/22/effective-modern-cpp-chapter3-iterm7-10/" target="_blank" rel="noopener noreffer ">Item7</a>)。</em></p>
-<p><em>第三个缺点：对象和控制块分配在一块内存上，减少了内存分配的次数，但也导致对象和控制块占用的内存也要一次回收掉。即，如果还有<code>std::weak_ptr</code>存在，控制块就要在，对象占用的内存也没办法回收。如果对象比较大，且<code>std::weak_ptr</code>在对象析构后还可能长期存在，那么这种开销是不可忽视的。</em></p>
-<p><em>如果我们因为前面这三个缺点而不能使用<code>std::make_shared</code>，那么我们要保证，智能指针的构造一定要单独一个语句。回到之前<code>processWidget</code>的例子中，假设我们有个自定义的销毁器<code>void cusDel(Widget* ptr);</code>，因此不能使用<code>std::make_shared</code>，那么我们要这么写来保证异常安全性：</em></p>
+<ul>
+<li>第一个缺点：无法传入自定义的销毁器。</li>
+<li>第二个缺点：make函数初始化时使用了括号初始化，而不是花括号初始化，比如<code>std::make_unique&lt;std::vector&lt;int&gt;&gt;(10, 20)</code>创建了一个有着20个值为10的元素的<code>vector</code>，而不是创建了<code>{10, 20}</code>这么两个元素的<code>vector</code>(参见<a href="https://fuzhe1989.github.io/2017/05/22/effective-modern-cpp-chapter3-iterm7-10/" target="_blank" rel="noopener noreffer ">Item7</a>)。</li>
+<li>第三个缺点：对象和控制块分配在一块内存上，减少了内存分配的次数，但也导致对象和控制块占用的内存也要一次回收掉。即，如果还有<code>std::weak_ptr</code>存在，控制块就要在，对象占用的内存也没办法回收。如果对象比较大，且<code>std::weak_ptr</code>在对象析构后还可能长期存在，那么这种开销是不可忽视的。</li>
+</ul>
+<p>如果我们因为前面这三个缺点而不能使用<code>std::make_shared</code>，那么我们要保证，智能指针的构造一定要单独一个语句。回到之前<code>processWidget</code>的例子中，假设我们有个自定义的销毁器<code>void cusDel(Widget* ptr);</code>，因此不能使用<code>std::make_shared</code>，那么我们要这么写来保证异常安全性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">,</span> <span class="n">cusDel</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">processWidget</span><span class="p">(</span><span class="n">spw</span><span class="p">,</span> <span class="n">computePriority</span><span class="p">());</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">std::shared_ptr&lt;Widget&gt; spw(new Widget, cusDel);
+</span></span><span class="line"><span class="cl">processWidget(spw, computePriority());
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>但这么写还不够高效，这里我们明确知道<code>spw</code>就是给<code>processWidget</code>用的，那么可以使用<code>std::move</code>，将其转为右值，来避免对引用计数的修改：</em></p>
@@ -661,8 +683,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
+</ul>
+</li>
 </ol>
-<h3 id="总结-2"><em><strong>总结</strong></em></h3>
+<h3 id="summary-3"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>和直接使用new相比，使用make函数减少了代码的重复量，提升了异常安全度，并且，对于<code>std::make_shared</code>以及<code>std::allocate_shared</code>来说，产生的代码更加简洁快速</em></li>
 <li><em>也会存在使用make函数不合适的场景：包含指定自定义的deleter,以及传递大括号initializer的需要</em></li>
@@ -675,7 +699,6 @@
 </ol>
 <h2 id="条款22-在用到pimpl惯用法时在实现文件中定义特殊成员函数"><em><strong>条款22 在用到Pimpl惯用法时，在实现文件中定义特殊成员函数</strong></em></h2>
 <p><em>我们经常用名为Pimpl的方法来实现接口与实现分离，进而大大降低程序构建的时间。Pimpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针</em></p>
-<p><em>具体关于Pimpl是什么，可以查看我这个博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/" target="_blank" rel="noopener noreffer ">Pimpl</a>》</em></p>
 <p><em>举一个例子</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

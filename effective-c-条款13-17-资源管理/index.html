@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  2480 ,
+                        }],"genre": "posts","wordcount":  2588 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86\/","datePublished": "2023-03-06T22:37:00+08:00","dateModified": "2023-03-07T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款13～17 资源管理</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2480 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="条款13～17 资源管理">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2588 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE13-17-%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="条款13～17 资源管理">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -134,20 +134,24 @@
     <li><a href="#知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></a></li>
     <li><a href="#条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></a>
       <ul>
-        <li><a href="#前言"><em><strong>前言</strong></em></a></li>
-        <li><a href="#思路点"><em><strong>思路点</strong></em></a></li>
+        <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#条款14-在资源管理类中小心copying行为"><em><strong>条款14 在资源管理类中小心copying行为</strong></em></a>
       <ul>
-        <li><a href="#引言"><em><strong>引言</strong></em></a></li>
-        <li><a href="#copying行为"><em><strong>copying行为</strong></em></a></li>
-        <li><a href="#禁止复制"><em><strong>禁止复制</strong></em></a></li>
-        <li><a href="#总结"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-1"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#条款15-资源管理类中提供对原始资源的访问"><em><strong>条款15 资源管理类中提供对原始资源的访问</strong></em></a></li>
-    <li><a href="#条款16-new和delete-要使用相同形式"><em><strong>条款16 new和delete 要使用相同形式</strong></em></a></li>
+    <li><a href="#条款15-资源管理类中提供对原始资源的访问"><em><strong>条款15 资源管理类中提供对原始资源的访问</strong></em></a>
+      <ul>
+        <li><a href="#summary-2"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款16-new和delete-要使用相同形式"><em><strong>条款16 new和delete 要使用相同形式</strong></em></a>
+      <ul>
+        <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
     <li><a href="#条款17-以独立语句将newed对象置入智能指针"><em><strong>条款17 以独立语句将newed对象置入智能指针</strong></em></a></li>
   </ul>
 </nav></div>
@@ -156,18 +160,39 @@
 <li><em>本大章节-资源管理，需要弄懂什么是RAII，在本博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88/" target="_blank" rel="noopener noreffer ">什么是RAII</a>》中有详解</em></li>
 </ol>
 <h2 id="条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></h2>
-<h3 id="前言"><em><strong>前言</strong></em></h3>
+<ol>
+<li>
+<p><em>前言</em></p>
 <ul>
-<li><em>其实在本文中的<code>auto_ptr</code>已经被弃用了，建议去看&quot;Effective Modern c++&quot; 条款 18 19 20 21</em></li>
-<li><em>但是在这里还是说一下该条款的一些思路点</em></li>
+<li>
+<p><em>其实在本文中的<code>auto_ptr</code>已经被弃用了，建议去看《<a href="https://vlicecream.github.io/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" target="_blank" rel="noopener noreffer ">Effective Modern c++ Item18 ~ Item22</a>》</em></p>
+</li>
+<li>
+<p><em>但是在这里还是说一下该条款的一些思路点</em></p>
+</li>
 </ul>
-<h3 id="思路点"><em><strong>思路点</strong></em></h3>
+</li>
+<li>
+<p><em>思路点</em></p>
 <ul>
-<li><em>在构造中获得资源并在析构函数中释放资源</em></li>
-<li><em>两个常用的自动管理资源的类是shared_ptr和auto_ptr，其中auto_ptr的复制动作，会导致复制对象变为null，容易造成意外的错误，一般推荐使用shared_ptr，其使用引用计数的原理实现对象共享的目的，并且在计数为0时自动释放对象</em></li>
+<li>
+<p><em>在构造中获得资源并在析构函数中释放资源</em></p>
+</li>
+<li>
+<p><em>两个常用的自动管理资源的类是shared_ptr和auto_ptr，其中auto_ptr的复制动作，会导致复制对象变为null，容易造成意外的错误，一般推荐使用shared_ptr，其使用引用计数的原理实现对象共享的目的，并且在计数为0时自动释放对象</em></p>
+</li>
 </ul>
+</li>
+</ol>
+<h3 id="summary"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>已过时，建议去看《<a href="https://vlicecream.github.io/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" target="_blank" rel="noopener noreffer ">Effective Modern c++ Item18 ~ Item22</a>》</em></li>
+<li><em>思路点其实就是RAII原则</em></li>
+</ol>
 <h2 id="条款14-在资源管理类中小心copying行为"><em><strong>条款14 在资源管理类中小心copying行为</strong></em></h2>
-<h3 id="引言"><em><strong>引言</strong></em></h3>
+<ol>
+<li>
+<p><em>引言</em></p>
 <ul>
 <li>
 <p><em>上节是对资源的管理说明。有时候我们不能依赖于shared_ptr或者auto_ptr,所以我们须要自己建立一个资源管理类来管理自己的资源</em></p>
@@ -215,7 +240,9 @@
 </div>
 </div></li>
 </ul>
-<h3 id="copying行为"><em><strong>copying行为</strong></em></h3>
+</li>
+<li>
+<p><em>copying行为</em></p>
 <ul>
 <li>
 <p><em>上述例子写的这很不错，但是如果此时<code>Lock</code>对象被复制，会发生什么？</em></p>
@@ -233,11 +260,15 @@
 <p><em>其实，这不是说一个特定例子，一般的情况是：当一个<code>RAII</code>对象被复制时，应该如何选择，有以下两种做法</em></p>
 </li>
 </ul>
-<h3 id="禁止复制"><em><strong>禁止复制</strong></em></h3>
+</li>
+<li>
+<p><em>禁止复制</em></p>
 <ul>
 <li><em>如条款06所言：将<code>copying</code>操作声明为<code>private</code>，或者利用c++11新特性 <code>= delete</code></em></li>
 </ul>
-<p><em><strong>引用计数</strong></em></p>
+</li>
+<li>
+<p><em>引用计数</em></p>
 <ul>
 <li>
 <p><em>对底层资源使用”reference-count“</em></p>
@@ -273,7 +304,9 @@
 </div>
 </div></li>
 </ul>
-<h3 id="总结"><em><strong>总结</strong></em></h3>
+</li>
+</ol>
+<h3 id="summary-1"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>复制<code>RAII</code>对象必须一并复制它所管理的资源，所以资源的<code>copying</code>行为决定<code>RAII</code>对象的<code>copying</code>行为</em></li>
 <li><em>普遍常见的RAII class copying 行为是：禁止复制、施行引用计数法</em></li>
@@ -282,7 +315,7 @@
 <p><em>这里想要将<code>RAII</code>class对象进行转换为其内含之原始资源，有两种转换</em></p>
 <ol>
 <li>
-<p><em><strong>示例代码</strong></em></p>
+<p><em>示例代码</em></p>
 <ul>
 <li>
 <div class="highlight"><div class="chroma">
@@ -335,31 +368,34 @@
 </ul>
 </li>
 <li>
-<p><em><strong>显示转换</strong></em></p>
+<p><em>显示转换</em></p>
 <ul>
 <li><em>提供<code>get()</code>函数得到原始指针</em></li>
 <li><em>显示调用 很不错 没有啥问题</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>隐式转换</strong></em></p>
+<p><em>隐式转换</em></p>
 <ul>
 <li><em>允许隐式转换，但是会有问题，在客户<code>FontHanle f2 = f1;</code>的时候，并不知道这还有一层隐式转换的逻辑，所以会增加错误率</em></li>
 </ul>
 </li>
-<li>
-<p><em><strong>注意</strong></em></p>
-<ul>
+</ol>
+<h3 id="summary-2"><em><strong>Summary</strong></em></h3>
+<ol>
 <li><em>APIs往往要求访问原始资源，所以每一个RAII class应该提供一个”取得其所管理之资源“的方法</em></li>
-<li><em>对原始资源的方法可能会经由显式转换或隐式转换，相对而言显式转换比较安全，但是频繁<code>get()</code>很烦人；但隐式转换对用户比较方便</em></li>
-<li><em>个人觉得是显示调用要好，频繁调用<code>get()</code>又不会死，隐式调用用户如果不告诉他，或者他自己发现，也不会察觉到有一次隐式调用，会增加报错的几率</em></li>
+<li><em>对原始资源的方法可能会经由显式转换或隐式转换</em>
+<ul>
+<li><em>相对而言显式转换比较安全，但是频繁<code>get()</code>很烦人</em></li>
+<li><em>但隐式转换对用户比较方便</em></li>
 </ul>
 </li>
+<li><em>个人觉得是显示调用要好，频繁调用<code>get()</code>又不会死，隐式调用用户如果不告诉他，或者他自己发现，也不会察觉到有一次隐式调用，会增加报错的几率</em></li>
 </ol>
 <h2 id="条款16-new和delete-要使用相同形式"><em><strong>条款16 new和delete 要使用相同形式</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>在使用<code>new</code> <code>delete</code>需要使用一致的形势使用，否则会导致内存泄漏</strong></em></p>
+<p><em>在使用<code>new</code> <code>delete</code>需要使用一致的形势使用，否则会导致内存泄漏</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -378,7 +414,7 @@
 </div>
 </div></li>
 <li>
-<p><em><strong>要注意<code>typedef</code>自定义格式</strong></em></p>
+<p><em>要注意<code>typedef</code>自定义类型</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -398,6 +434,11 @@
 </div><p><em>这个规则对于使用<code>typedef</code>的程序员来说十分重要，因为它意味着<code>typedef</code>的作者必须说清楚：当程序员以<code>new</code>创建该种<code>typedef</code>类型对象是，该以哪一种<code>delete</code>形式删除之，考虑一下这个<code>typedef</code>:</em></p>
 <p><em>为避免诸如此类错误，尽量不是对数组形式使用<code>typedef</code>操作。这容易达成，因为C++标准程序库含有<code>string</code> <code>vector</code>等templates,可以将数组的需求下降到0</em></p>
 </li>
+</ol>
+<h3 id="summary-3"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>在使用<code>new</code> <code>delete</code>需要使用一致的形势使用，否则会导致内存泄漏</em></li>
+<li><em>在<code>typedef</code>自定义类型的时候，一定要注释写着哪一种delete形式删除</em></li>
 </ol>
 <h2 id="条款17-以独立语句将newed对象置入智能指针"><em><strong>条款17 以独立语句将newed对象置入智能指针</strong></em></h2>
 <ol>
