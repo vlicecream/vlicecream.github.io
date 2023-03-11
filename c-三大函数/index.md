@@ -1,7 +1,7 @@
 # 构造析构/拷贝构造/拷贝赋值
 
 
-## 三个特殊函数
+## ***三个特殊函数***
 
 ```cpp
 class String {
@@ -107,7 +107,7 @@ inline String& String::operator = (const String& str) {
 // 一定要检测自我赋值 要不然 a&b 同时指向一个内存地址 然后杀掉之后 a&b就指定不到值
 ```
 
-## ***Effective c++ item***
+## ***Effective c++ Item***
 
-1. *对于更多的三个特殊函数一些规范及其知识点，请看《[Effective c++ item5~item12](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/)》*
+1. *对于更多的三个特殊函数一些规范及其知识点，请看《[Effective c++ Item5~Item12](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/)》*
 

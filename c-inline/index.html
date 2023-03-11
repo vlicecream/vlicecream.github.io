@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "inline","wordcount":  3649 ,
+                        }],"genre": "posts","keywords": "inline","wordcount":  3705 ,
         "url": "https:\/\/vlicecream.github.io\/c-inline\/","datePublished": "2023-03-02T00:00:00+08:00","dateModified": "2023-03-02T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">inline</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-02">2023-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3649 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-02">2023-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3705 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/c-inline/" class="leancloud_visitors" data-flag-title="inline">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -138,12 +138,13 @@
     <li><a href="#inline的使用场景"><em><strong>inline的使用场景</strong></em></a></li>
     <li><a href="#c内联函数也可以用来代替宏"><em><strong>c++内联函数也可以用来代替宏</strong></em></a></li>
     <li><a href="#inline的规范"><em><strong>inline的规范</strong></em></a></li>
+    <li><a href="#effective-c-item"><em><strong>Effective c++ Item</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="什么是内联函数-inline"><em><strong>什么是内联函数-inline</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>引出</strong></em></p>
+<p><em>引出</em></p>
 <ul>
 <li><em>函数是一个可以重复使用的代码块，CPU 会一条一条地挨着执行其中的代码。CPU 在执行主调函数代码时如果遇到了被调函数，主调函数就会暂停，CPU 转而执行被调函数的代码；被调函数执行完毕后再返回到主调函数，主调函数根据刚才的状态继续往下执行</em></li>
 <li><em>一个 C/C++程序的执行过程可以认为是多个函数之间的相互调用过程，它们形成了一个或简单或复杂的调用链条，这个链条的起点是 main()，终点也是 main()。当 main() 调用完了所有的函数，它会返回一个值（例如<code>return 0;</code>）来结束自己的生命，从而结束整个程序</em></li>
@@ -153,7 +154,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong>怎么定义内联函数</strong></em></p>
+<p><em>怎么定义内联函数</em></p>
 <ul>
 <li>
 <div class="highlight"><div class="chroma">
@@ -200,14 +201,14 @@
 </ul>
 </li>
 <li>
-<p><em><strong>内联函数要注意的点</strong></em></p>
+<p><em>内联函数要注意的点</em></p>
 <ul>
 <li><em>要在函数定义处添加 inline 关键字，在函数声明处添加 inline 关键字虽然没有错，但这种做法是无效的，编译器会忽略函数声明处的 inline 关键字</em></li>
 <li><em>对函数作 inline 声明只是程序员对编译器提出的一个建议，而不是强制性的，并非一经指定为 inline 编译器就必须这样做。编译器有自己的判断能力，它会根据具体情况决定是否这样做</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>内联函数的坑</strong></em></p>
+<p><em>内联函数的坑</em></p>
 <ul>
 <li><em>使用内联函数的缺点也是非常明显的，编译后的程序会存在多份相同的函数拷贝，如果被声明为内联函数的函数体非常大，那么编译后的程序体积也将会变得很大，所以再次强调，一般只将那些短小的、频繁调用的函数声明为内联函数</em></li>
 </ul>
@@ -247,7 +248,7 @@
 <h2 id="c内联函数也可以用来代替宏"><em><strong>c++内联函数也可以用来代替宏</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>先来讲讲宏</strong></em></p>
+<p><em>先来讲讲宏</em></p>
 <ul>
 <li>
 <p><em>使用宏的一个经典例子是求一个数的平方，如下所示：</em></p>
@@ -386,7 +387,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong>如果在 1 的基础上将宏替换成 inline函数呢</strong></em></p>
+<p><em>如果在 1 的基础上将宏替换成 inline函数呢</em></p>
 <ul>
 <li>
 <div class="highlight"><div class="chroma">
@@ -444,7 +445,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong>使用inline函数替换宏的优点</strong></em></p>
+<p><em>使用inline函数替换宏的优点</em></p>
 <ul>
 <li><em>和宏一样，内联函数可以定义在头文件中（不用加 static 关键字），并且头文件被多次<code>#include</code> 后也不会引发重复定义错误。这一点和非内联函数不同，非内联函数是禁止定义在头文件中的，它所在的头文件被多次<code>#include</code> 后会引发重复定义错误</em></li>
 <li><em>内联函数在编译时会将函数调用处用函数体替换，编译完成后函数就不存在了，所以在链接时不会引发重复定义错误。这一点和宏很像，宏在预处理时被展开，编译时就不存在了。从这个角度讲，内联函数更像是编译期间的宏</em></li>
@@ -454,14 +455,14 @@
 <h2 id="inline的规范"><em><strong>inline的规范</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>inline 是一种“用于实现的关键字”，而不是一种“用于声明的关键字”</strong></em></p>
+<p><em>inline 是一种&quot;用于实现的关键字&quot;，而不是一种&quot;用于声明的关键字&quot;</em></p>
 <ul>
 <li><em>inline 关键字可以只在函数定义处添加，也可以只在函数声明处添加，也可以同时添加；但是在函数声明处添加 inline 关键字是无效的，编译器会忽略函数声明处的 inline 关键字</em></li>
 <li><em>更为严格地说，内联函数不应该有声明，应该将函数定义放在本应该出现函数声明的地方，这是一种良好的编程风格</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>将内联函数的声明和定义分散到不同的文件中会出错</strong></em></p>
+<p><em>将内联函数的声明和定义分散到不同的文件中会出错</em></p>
 <ul>
 <li>
 <p><em>在多文件编程中，我们通常将函数的定义放在源文件中，将函数的声明放在头文件中，希望调用函数时，引入对应的头文件即可，我们鼓励这种将函数定义和函数声明分开的做法。但这种做法不适用于内联函数，将内联函数的声明和定义分散到不同的文件中会出错，请看下面的例子</em></p>
@@ -518,18 +519,22 @@
 </ul>
 </li>
 <li>
-<p><em><strong>内联函数虽然叫做函数，在定义和声明的语法上也和普通函数一样，但它已经失去了函数的本质</strong></em></p>
+<p><em>内联函数虽然叫做函数，在定义和声明的语法上也和普通函数一样，但它已经失去了函数的本质</em></p>
 <ul>
 <li><em>函数是一段可以重复使用的代码，它位于虚拟地址空间中的代码区，也占用可执行文件的体积，而内联函数的代码在编译后就被消除了，不存在于虚拟地址空间中，没法重复使用</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>规范小结</strong></em></p>
+<p><em>规范小结</em></p>
 <ul>
 <li><em>内联函数看起来简单，但是有很多细节需要注意，从代码重复利用的角度讲，内联函数已经不再是函数了。我认为将内联函数作为带参宏的替代方案更为靠谱，而不是真的当做函数使用</em></li>
 <li><em>在多文件编程时，我建议将内联函数的定义直接放在头文件中，并且禁用内联函数的声明（声明是多此一举）</em></li>
 </ul>
 </li>
+</ol>
+<h2 id="effective-c-item"><em><strong>Effective c++ Item</strong></em></h2>
+<ol>
+<li><em>对于更多的inline知识请看《<a href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE26-31-%E5%AE%9E%E7%8E%B0/" target="_blank" rel="noopener noreffer ">Effective c++ Item30</a>》</em></li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

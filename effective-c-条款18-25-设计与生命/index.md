@@ -3,62 +3,63 @@
 
 ## ***条款18 让接口容易被正确使用，不易被误用***
 
-### ***对class的参数类型进行抽象***
+1. *对class的参数类型进行抽象*
 
-*我们普通的定义一个接口会有啥问题，如下述代码*
+   *我们普通的定义一个接口会有啥问题，如下述代码*
 
-- ```cpp
-  class Date{
-  public:
-      Date(int month, int day, int year);
-      ...
-  };
-  Date d(2, 30, 2021);  // 传参容易出错
-  ```
+   ```cpp
+   class Date{
+   public:
+       Date(int month, int day, int year);
+       ...
+   };
+   Date d(2, 30, 2021);  // 传参容易出错
+   ```
 
-*所以我们可以对class的参数类型进行抽象，如下述代码*
+   *所以我们可以对class的参数类型进行抽象，如下述代码*
 
-- ```cpp
-  struct Day{
-      int val;
-      explicit Day(int d) : val(d) {}
-  };
-  ...
-  class Date{
-  public:
-      Date(const Month& m, const Day& d, const Year& y);
-      ...
-  };
-  Date d(Month(3), Day(31), Year(2021));  // 传参可靠
-  ```
+   ```cpp
+   struct Day{
+       int val;
+       explicit Day(int d) : val(d) {}
+   };
+   ...
+   class Date{
+   public:
+       Date(const Month& m, const Day& d, const Year& y);
+       ...
+   };
+   Date d(Month(3), Day(31), Year(2021));  // 传参可靠
+   ```
 
-### ***尽量让自定义type行为与内置type一致***
+2. *尽量让自定义type行为与内置type一致*
 
-*这边如果a和b是自定义类型，这边编译器就不会报错，如果a和b是内置类型，那么a*b是临时对象-右值，所以编译器就会报错*
+   *这边如果a和b是自定义类型，这边编译器就不会报错，如果a和b是内置类型，那么a*b是临时对象-右值，所以编译器就会报错*
 
-*所以我们这边需要统一，行为与内置type一致，在前面的条款3也说了，直接加const即可*
+   *所以我们这边需要统一，行为与内置type一致，在前面的条款3也说了，直接加const即可*
 
-```cpp
-if (a * b = c) 
-```
+   ```cpp
+   if (a * b = c) 
+   ```
 
-### ***factory 函数返回智能指针***
+3. *factory 函数返回智能指针**
 
-*了解设计模式的童鞋们就会知道有一个设计模式叫工厂模式，在这里推荐工厂函数返回一个智能指针，因为用裸指针就会增加用户的心智开销，避免忘记delete*
+   *了解设计模式的童鞋们就会知道有一个设计模式叫工厂模式，在这里推荐工厂函数返回一个智能指针，因为用裸指针就会增加用户的心智开销，避免忘记delete*
 
-```cpp
-Investment* createInvestment(); -> std::shared_ptr<Investment> createInvestment();
+   ```cpp
+   Investment* createInvestment(); -> std::shared_ptr<Investment> createInvestment();
+   
+   shared_ptr<Investment> createInvestment(){
+       shared_ptr<Investment> retVal(
+           static_cast<Investment*>(0),   // 初始化一个null shared_ptr指针，
+           getRidOfInvestment);           // 指定getRidOfInvestment函数为删除器，
+       retVal = ...;                      // 令retVal指向正确的对象
+       return retVal;
+   }
+   ```
 
-shared_ptr<Investment> createInvestment(){
-    shared_ptr<Investment> retVal(
-        static_cast<Investment*>(0),   // 初始化一个null shared_ptr指针，
-        getRidOfInvestment);           // 指定getRidOfInvestment函数为删除器，
-    retVal = ...;                      // 令retVal指向正确的对象
-    return retVal;
-}
-```
 
-***总结***
+### ***Summary***
 
 1. *好的接口容易被正确使用，不容易被误用*
 2. *“促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容*
@@ -66,6 +67,8 @@ shared_ptr<Investment> createInvestment(){
 4. *shared_ptr 支持定制型删除器。可防范 DLL 问题，可被用来自动解除互斥锁（mutex）等*
 
 ## ***条款19 设计class犹如设计type***
+
+### ***Summary***
 
 *这个条款有12问帮你设计好一个class，当然class由于需求是会多变的，但是这个12问能够起到很好的辅助作用*
 
@@ -118,7 +121,14 @@ shared_ptr<Investment> createInvestment(){
 
 2. *pass-by-value 经常适用于内置类型、STL迭代器和函数对象*
 
+### ***Summary***
+
+1. *pass-by-reference-to-const 作为函数参数，效率高（没有构造和析构函数被调用），还能避免slicing（对象切割）问题*
+2. *pass-by-value 经常适用于内置类型、STL迭代器和函数对象*
+
 ## ***条款21 不要错误的返回对象的引用***
+
+### ***Summary***
 
 1. *不要返回一个临时对象的引用*
 2. *不要返回在堆上分配的对象的引用，因为这违背了new和delete成对出现的原则，这样的方式是很不合理的，稍加不注意就会导致内存泄漏问题*
@@ -126,6 +136,8 @@ shared_ptr<Investment> createInvestment(){
 4. ***所以对于这种问题，最好的解决方法就是不返回引用就OK了***
 
 ## ***条款22 将成员变量声明为private***
+
+### ***Summary***
 
 1. *其实声明为private 带来的最大的好处就是 - 成员变量有更精细的访问控制*
 2. *考虑一个 public 成员变量变更或消失时对用户代码的影响*
@@ -173,6 +185,11 @@ namespace WebBrowserStuff{
     ...                     // 与cookie相关的便利函数
 }
 ```
+
+### ***Summary***
+
+1. *封装使我们能够改变事物而只影响有限客户*
+2. *导致较大封装性的是 non-member、non-friend 函数（因为不增加“能够访问 class 内 private 成分”的函数数量）*
 
 ## ***条款24 若所有参数皆需类型转换，请为此采用 non-member 函数***
 
@@ -222,6 +239,10 @@ namespace WebBrowserStuff{
    result = oneHalf * 2;    // 正确，operator*(oneHalf, 2 /* 隐式转换 */);
    result = 2 * oneHalf;    // 正确，operator*(2, oneHalf);
    ```
+
+### ***Summary***
+
+1. *若所有参数皆需类型转换，请为此采用 non-member 函数*
 
 ## ***条款25 考虑写出一个不抛异常的 swap 函数***
 
@@ -373,7 +394,7 @@ void swap(Widget<T>& a,// not part of the std namespace
 3. *如果编写一个**class(而非class template)**，为你的class特化一个std::swap，并令他调用你的swap的成员函数*
 4. *必须使用using std::swap,以便其能够在函数类曝光可见，然后报价namspace修饰符*
 
-***总结***
+### ***Summary***
 
 1. *当std::swap对你的类型无效时，提供一个swap成员函数。确保交换不会抛出异常*
 2. *如果你提供了一个成员交换，也要提供一个调用成员的非成员交换。对于类(不是模板)，也要专门化std::swap*

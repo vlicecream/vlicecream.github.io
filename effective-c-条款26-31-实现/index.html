@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  4225 ,
+                        }],"genre": "posts","wordcount":  4228 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE26-31-%E5%AE%9E%E7%8E%B0\/","datePublished": "2023-03-08T14:46:00+08:00","dateModified": "2023-03-10T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款26～31 实现</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-08">2023-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4225 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-08">2023-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4228 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE26-31-%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="条款26～31 实现">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -133,28 +133,28 @@
   <ul>
     <li><a href="#条款26-尽可能延后变量定义得时间"><em><strong>条款26 尽可能延后变量定义得时间</strong></em></a>
       <ul>
-        <li><a href="#总结"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#条款27-正确使用类型转换"><em><strong>条款27 正确使用类型转换</strong></em></a>
       <ul>
-        <li><a href="#总结-1"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-1"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#条款28-避免返回一个指针引用或者迭代器指向类内的成员"><em><strong>条款28 避免返回一个指针、引用或者迭代器指向类内的成员</strong></em></a></li>
     <li><a href="#条款29-努力写一个异常安全的代码"><em><strong>条款29 努力写一个异常安全的代码</strong></em></a>
       <ul>
-        <li><a href="#总结-2"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-2"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#条款30-理解inline-function"><em><strong>条款30 理解inline function</strong></em></a>
       <ul>
-        <li><a href="#总结-3"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#条款31-最小化文件依赖"><em><strong>条款31 最小化文件依赖</strong></em></a>
       <ul>
-        <li><a href="#总结-4"><em><strong>总结</strong></em></a></li>
+        <li><a href="#summary-4"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -239,12 +239,12 @@
 </div>
 </div></li>
 <li>
-<p><em><strong>如果n较大，那么应该选择方法A / 如果n较小，可以选择方法B</strong></em></p>
+<p><em>如果n较大，那么应该选择方法A / 如果n较小，可以选择方法B</em></p>
 </li>
 </ul>
 </li>
 </ol>
-<h3 id="总结"><em><strong>总结</strong></em></h3>
+<h3 id="summary"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>尽可能延后变量定义得时间，只有真正使用这个变量的时候才定义它</em></li>
 <li><em>直接调用copy construction函数对变量直接进行初始化，而不是先定义，再赋值</em></li>
@@ -426,7 +426,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="总结-1"><em><strong>总结</strong></em></h3>
+<h3 id="summary-1"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>最好使用C++4个新式的类型转换函数，因为这很容易辨识，代码可读性提高</em></li>
 <li><em>尽量避免使用<code>dynamic_cast</code>，因为这种转换效率很低，一般用虚函数的方式来避免转型</em></li>
@@ -628,7 +628,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="总结-2"><em><strong>总结</strong></em></h3>
+<h3 id="summary-2"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>发生异常时的处理主要分一下几类：资源不泄漏、数据不丢失、不抛出异常。反正就是考虑程序的各种可能的情况，如果异常了要尽可能保证你的程序某些功能或数据不丢失</em></li>
 <li><em>实现异常安全可以依靠下述办法，但不仅依靠下述办法</em>
@@ -798,7 +798,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="总结-3"><em><strong>总结</strong></em></h3>
+<h3 id="summary-3"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>inline function 会在符号表中以&quot;weak&quot;中存在</em></li>
 <li><em>c++11之后inline可以修饰命名空间</em></li>
@@ -931,11 +931,11 @@
 </ul>
 </li>
 </ol>
-<h3 id="总结-4"><em><strong>总结</strong></em></h3>
+<h3 id="summary-4"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>我们可以通过&quot;PImpl&quot;来最小化文件依赖</em>
 <ul>
-<li><em>要注意析构函数</em></li>
+<li><em>要注意析构函数必须显示的写出来</em></li>
 </ul>
 </li>
 <li><em>我们还可以用 抽象类接口 最小化文件依赖</em></li>

@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  4123 ,
+                        }],"genre": "posts","wordcount":  4289 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE18-25-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%94%9F%E5%91%BD\/","datePublished": "2023-03-07T16:36:00+08:00","dateModified": "2023-03-07T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款18～25 设计与生命</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-07">2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4123 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-07">2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4289 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE18-25-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%94%9F%E5%91%BD/" class="leancloud_visitors" data-flag-title="条款18～25 设计与生命">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -133,25 +133,51 @@
   <ul>
     <li><a href="#条款18-让接口容易被正确使用不易被误用"><em><strong>条款18 让接口容易被正确使用，不易被误用</strong></em></a>
       <ul>
-        <li><a href="#对class的参数类型进行抽象"><em><strong>对class的参数类型进行抽象</strong></em></a></li>
-        <li><a href="#尽量让自定义type行为与内置type一致"><em><strong>尽量让自定义type行为与内置type一致</strong></em></a></li>
-        <li><a href="#factory-函数返回智能指针"><em><strong>factory 函数返回智能指针</strong></em></a></li>
+        <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#条款19-设计class犹如设计type"><em><strong>条款19 设计class犹如设计type</strong></em></a></li>
-    <li><a href="#条款20-以-pass-by-reference-to-const-替换-pass-by-value"><em><strong>条款20 以 pass by reference to const 替换 pass by value</strong></em></a></li>
-    <li><a href="#条款21-不要错误的返回对象的引用"><em><strong>条款21 不要错误的返回对象的引用</strong></em></a></li>
-    <li><a href="#条款22-将成员变量声明为private"><em><strong>条款22 将成员变量声明为private</strong></em></a></li>
-    <li><a href="#条款23-将non-member--non-friend-替换-member-func"><em><strong>条款23 将non member &amp; non friend 替换 member func</strong></em></a></li>
-    <li><a href="#条款24-若所有参数皆需类型转换请为此采用-non-member-函数"><em><strong>条款24 若所有参数皆需类型转换，请为此采用 non-member 函数</strong></em></a></li>
-    <li><a href="#条款25-考虑写出一个不抛异常的-swap-函数"><em><strong>条款25 考虑写出一个不抛异常的 swap 函数</strong></em></a></li>
+    <li><a href="#条款19-设计class犹如设计type"><em><strong>条款19 设计class犹如设计type</strong></em></a>
+      <ul>
+        <li><a href="#summary-1"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款20-以-pass-by-reference-to-const-替换-pass-by-value"><em><strong>条款20 以 pass by reference to const 替换 pass by value</strong></em></a>
+      <ul>
+        <li><a href="#summary-2"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款21-不要错误的返回对象的引用"><em><strong>条款21 不要错误的返回对象的引用</strong></em></a>
+      <ul>
+        <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款22-将成员变量声明为private"><em><strong>条款22 将成员变量声明为private</strong></em></a>
+      <ul>
+        <li><a href="#summary-4"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款23-将non-member--non-friend-替换-member-func"><em><strong>条款23 将non member &amp; non friend 替换 member func</strong></em></a>
+      <ul>
+        <li><a href="#summary-5"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款24-若所有参数皆需类型转换请为此采用-non-member-函数"><em><strong>条款24 若所有参数皆需类型转换，请为此采用 non-member 函数</strong></em></a>
+      <ul>
+        <li><a href="#summary-6"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款25-考虑写出一个不抛异常的-swap-函数"><em><strong>条款25 考虑写出一个不抛异常的 swap 函数</strong></em></a>
+      <ul>
+        <li><a href="#summary-7"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="条款18-让接口容易被正确使用不易被误用"><em><strong>条款18 让接口容易被正确使用，不易被误用</strong></em></h2>
-<h3 id="对class的参数类型进行抽象"><em><strong>对class的参数类型进行抽象</strong></em></h3>
-<p><em>我们普通的定义一个接口会有啥问题，如下述代码</em></p>
-<ul>
+<ol>
 <li>
+<p><em>对class的参数类型进行抽象</em></p>
+<p><em>我们普通的定义一个接口会有啥问题，如下述代码</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -170,11 +196,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">Date</span> <span class="nf">d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">2021</span><span class="p">);</span>  <span class="c1">// 传参容易出错
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-<p><em>所以我们可以对class的参数类型进行抽象，如下述代码</em></p>
-<ul>
-<li>
+</div><p><em>所以我们可以对class的参数类型进行抽象，如下述代码</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -204,8 +226,8 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-<h3 id="尽量让自定义type行为与内置type一致"><em><strong>尽量让自定义type行为与内置type一致</strong></em></h3>
+<li>
+<p><em>尽量让自定义type行为与内置type一致</em></p>
 <p><em>这边如果a和b是自定义类型，这边编译器就不会报错，如果a和b是内置类型，那么a</em>b是临时对象-右值，所以编译器就会报错*</p>
 <p><em>所以我们这边需要统一，行为与内置type一致，在前面的条款3也说了，直接加const即可</em></p>
 <div class="highlight"><div class="chroma">
@@ -216,7 +238,9 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="p">)</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="factory-函数返回智能指针"><em><strong>factory 函数返回智能指针</strong></em></h3>
+</div></li>
+<li>
+<p><em>factory 函数返回智能指针</em>*</p>
 <p><em>了解设计模式的童鞋们就会知道有一个设计模式叫工厂模式，在这里推荐工厂函数返回一个智能指针，因为用裸指针就会增加用户的心智开销，避免忘记delete</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -242,7 +266,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em><strong>总结</strong></em></p>
+</div></li>
+</ol>
+<h3 id="summary"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>好的接口容易被正确使用，不容易被误用</em></li>
 <li><em>“促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容</em></li>
@@ -250,6 +276,7 @@
 <li><em>shared_ptr 支持定制型删除器。可防范 DLL 问题，可被用来自动解除互斥锁（mutex）等</em></li>
 </ol>
 <h2 id="条款19-设计class犹如设计type"><em><strong>条款19 设计class犹如设计type</strong></em></h2>
+<h3 id="summary-1"><em><strong>Summary</strong></em></h3>
 <p><em>这个条款有12问帮你设计好一个class，当然class由于需求是会多变的，但是这个12问能够起到很好的辅助作用</em></p>
 <ol>
 <li><em>自定义 type 的对象应该如何被创建和销毁</em>
@@ -337,7 +364,13 @@
 <p><em>pass-by-value 经常适用于内置类型、STL迭代器和函数对象</em></p>
 </li>
 </ol>
+<h3 id="summary-2"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>pass-by-reference-to-const 作为函数参数，效率高（没有构造和析构函数被调用），还能避免slicing（对象切割）问题</em></li>
+<li><em>pass-by-value 经常适用于内置类型、STL迭代器和函数对象</em></li>
+</ol>
 <h2 id="条款21-不要错误的返回对象的引用"><em><strong>条款21 不要错误的返回对象的引用</strong></em></h2>
+<h3 id="summary-3"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>不要返回一个临时对象的引用</em></li>
 <li><em>不要返回在堆上分配的对象的引用，因为这违背了new和delete成对出现的原则，这样的方式是很不合理的，稍加不注意就会导致内存泄漏问题</em></li>
@@ -345,6 +378,7 @@
 <li><em><strong>所以对于这种问题，最好的解决方法就是不返回引用就OK了</strong></em></li>
 </ol>
 <h2 id="条款22-将成员变量声明为private"><em><strong>条款22 将成员变量声明为private</strong></em></h2>
+<h3 id="summary-4"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>其实声明为private 带来的最大的好处就是 - 成员变量有更精细的访问控制</em></li>
 <li><em>考虑一个 public 成员变量变更或消失时对用户代码的影响</em></li>
@@ -428,7 +462,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="条款24-若所有参数皆需类型转换请为此采用-non-member-函数"><em><strong>条款24 若所有参数皆需类型转换，请为此采用 non-member 函数</strong></em></h2>
+</div><h3 id="summary-5"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>封装使我们能够改变事物而只影响有限客户</em></li>
+<li><em>导致较大封装性的是 non-member、non-friend 函数（因为不增加“能够访问 class 内 private 成分”的函数数量）</em></li>
+</ol>
+<h2 id="条款24-若所有参数皆需类型转换请为此采用-non-member-函数"><em><strong>条款24 若所有参数皆需类型转换，请为此采用 non-member 函数</strong></em></h2>
 <ol>
 <li>
 <p><em>隐式转换与 member 函数</em></p>
@@ -522,6 +561,10 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
+</ol>
+<h3 id="summary-6"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>若所有参数皆需类型转换，请为此采用 non-member 函数</em></li>
 </ol>
 <h2 id="条款25-考虑写出一个不抛异常的-swap-函数"><em><strong>条款25 考虑写出一个不抛异常的 swap 函数</strong></em></h2>
 <p><em>我们标准库里面的<code>swap</code>函数是这么写的，无非就是一个中间值过渡，只要T支持copying(通过copy构造函数和assignment操作符完成)，默认的swap会实现代码就会将类型为T的对象进行置换</em></p>
@@ -773,7 +816,7 @@
 <li><em>如果编写一个<strong>class(而非class template)</strong>，为你的class特化一个std::swap，并令他调用你的swap的成员函数</em></li>
 <li><em>必须使用using std::swap,以便其能够在函数类曝光可见，然后报价namspace修饰符</em></li>
 </ol>
-<p><em><strong>总结</strong></em></p>
+<h3 id="summary-7"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>当std::swap对你的类型无效时，提供一个swap成员函数。确保交换不会抛出异常</em></li>
 <li><em>如果你提供了一个成员交换，也要提供一个调用成员的非成员交换。对于类(不是模板)，也要专门化std::swap</em></li>

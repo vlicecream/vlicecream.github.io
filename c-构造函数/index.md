@@ -249,7 +249,7 @@ double real () const { return re; }
 
    - *在C++中，`explicit`关键字用来修饰类的构造函数，被修饰的构造函数的类，不能发生相应的隐式类型转换，只能以显示的方式进行类型转换，换一种说法就是 告诉编译器 不要隐式转换 既然是构造函数 就真的要用到构造函数的时候在用到*
 
-## ***Effective c++ item***
+## ***Effective c++ Item***
 
-1. *对于更多的构造函数一些规范及其知识点，请看《[Effective c++ item5~item12](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/)》*
+1. *对于更多的构造函数一些规范及其知识点，请看《[Effective c++ Item5~Item12](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE5-12-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97/)》*
 
