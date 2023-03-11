@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  4685 ,
+                        }],"genre": "posts","wordcount":  5286 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE32-40-%E7%BB%A7%E6%89%BF%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1\/","datePublished": "2023-03-11T18:22:00+08:00","dateModified": "2023-03-11T18:22:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款32~40 继承与面向对象设计</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-11">2023-03-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4685 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE32-40-%E7%BB%A7%E6%89%BF%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1/" class="leancloud_visitors" data-flag-title="条款32~40 继承与面向对象设计">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-11">2023-03-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5286 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE32-40-%E7%BB%A7%E6%89%BF%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1/" class="leancloud_visitors" data-flag-title="条款32~40 继承与面向对象设计">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -914,6 +914,122 @@
 <li><em>题外话，是不是光看这个条款还是不懂接口继承和实现继承到底是啥，对吧</em></li>
 </ol>
 <h2 id="条款35-考虑virtual函数以外的选择"><em><strong>条款35 考虑virtual函数以外的选择</strong></em></h2>
+<ol>
+<li>
+<p><em>一般做法</em></p>
+<ul>
+<li>
+<p><em>我们都玩过游戏，在砍杀游戏中，我们假定使用成员函数<code>healthValue</code>，它会返回一个整数，表示人物的健康程度。将其设置为<code>virtual</code>似乎是再明白不过的做法</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GameCharacter</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">healthValue</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><code>Non-Virtual Interface</code>手法 实现 <code>Template Method</code>模式</em></p>
+<ul>
+<li>
+<p><em>这里是不是不懂<code>Teamplate Method</code>模式，这可不是c++的 template 哦，不懂就去看《<a href="https://vlicecream.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener noreffer ">设计模式-模板方法</a>》</em></p>
+</li>
+<li>
+<p><em>有一种流派，它主张<code>virtual</code>函数应该几乎总是<code>private</code>。这个流派的拥护者建议，较好的设计是保留<code>healthValue</code>为<code>public</code>成员函数，但让它成为<code>non-virtual</code>，并调用一个<code>private virtual</code>函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GameCharacter</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">healthValue</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">retValue</span> <span class="o">=</span> <span class="n">doHealthValue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">retValue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">doHealthValue</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="c1">// derived classes 可重新定义它
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>  <span class="c1">// 缺省算法，计算健康指数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><code>Function Pointers</code>实现 <code>Strategy</code> 模式</em></p>
+<ul>
+<li>
+<p><em>这里是不是不懂<code>Strategy</code>模式，不懂就去看《<a href="https://vlicecream.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener noreffer ">设计模式-策略模式</a>》</em></p>
+</li>
+<li>
+<p><em>另一种流派设计主张”人物健康指数的计算与人物类型无关“，这样计算完全不需要”人物“这个成分</em></p>
+<p><em>例如我们可能会要求每个人物的构造函数接受一个指针，指向一个健康计算函数，而我们可以调用该函数进行实际计算</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Gamecharacter</span><span class="p">;</span> <span class="c1">// 前置声明
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 以下函数就是计算健康指数的缺省算法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">defaultHealthCalc</span><span class="p">(</span><span class="k">const</span> <span class="n">GameCharacter</span><span class="o">&amp;</span> <span class="n">gc</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GameCharacter</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">typedef</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">HealthCalcFunc</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="n">GameCharacter</span><span class="o">&amp;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">explicit</span> <span class="nf">GameCharacter</span><span class="p">(</span><span class="n">HealthCalcFunc</span> <span class="n">hcf</span> <span class="o">=</span> <span class="n">defaultHealthCalc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">healthFunc</span><span class="p">(</span><span class="n">hcf</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">healthValue</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">healthFunc</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">HealthCalcFunc</span> <span class="n">healthFunc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>相比于之前做法，该<code>Strategy</code>设计模式的简单应用，它提供了某些有趣弹性</em></p>
+</li>
+</ul>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

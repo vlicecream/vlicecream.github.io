@@ -458,4 +458,64 @@
 
 ## ***条款35 考虑virtual函数以外的选择***
 
+1. *一般做法*
+
+   - *我们都玩过游戏，在砍杀游戏中，我们假定使用成员函数`healthValue`，它会返回一个整数，表示人物的健康程度。将其设置为`virtual`似乎是再明白不过的做法*
+
+     ```cpp
+     class GameCharacter {
+     public:
+       virtual int healthValue() const;
+       ...
+     }
+     ```
+
+2. *`Non-Virtual Interface`手法 实现 `Template Method`模式*
+
+   - *这里是不是不懂`Teamplate Method`模式，这可不是c++的 template 哦，不懂就去看《[设计模式-模板方法](https://vlicecream.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/)》*
+
+   - *有一种流派，它主张`virtual`函数应该几乎总是`private`。这个流派的拥护者建议，较好的设计是保留`healthValue`为`public`成员函数，但让它成为`non-virtual`，并调用一个`private virtual`函数*
+
+     ```cpp
+     class GameCharacter {
+     public:
+       int healthValue() const {
+         ...
+         int retValue = doHealthValue;
+         ...
+         return retValue;
+       }
+       ...
+     private:
+       virtual int doHealthValue() const { // derived classes 可重新定义它
+         ...  // 缺省算法，计算健康指数
+       }
+     }
+     ```
+
+3. *`Function Pointers`实现 `Strategy` 模式*
+
+   - *这里是不是不懂`Strategy`模式，不懂就去看《[设计模式-策略模式](https://vlicecream.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/)》*
+
+   - *另一种流派设计主张”人物健康指数的计算与人物类型无关“，这样计算完全不需要”人物“这个成分*
+
+     *例如我们可能会要求每个人物的构造函数接受一个指针，指向一个健康计算函数，而我们可以调用该函数进行实际计算*
+
+     ```cpp
+     class Gamecharacter; // 前置声明
+     // 以下函数就是计算健康指数的缺省算法
+     int defaultHealthCalc(const GameCharacter& gc);
+     class GameCharacter {
+     public:
+       typedef int (*HealthCalcFunc) (const GameCharacter&);
+       explicit GameCharacter(HealthCalcFunc hcf = defaultHealthCalc)
+         : healthFunc(hcf) { }
+       int healthValue() const { return healthFunc(*this); }
+       ...
+     private:
+       HealthCalcFunc healthFunc;
+     }
+     ```
+
+     *相比于之前做法，该`Strategy`设计模式的简单应用，它提供了某些有趣弹性*
 
