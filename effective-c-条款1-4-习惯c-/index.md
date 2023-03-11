@@ -1,7 +1,7 @@
 # 条款1～4 让自己习惯c++
 
 
-## ***条款1 - 视c++为一个语言联邦***
+## ***条款1-视c++为一个语言联邦***
 
 1. *视c++为一个语言联邦*
 
@@ -13,6 +13,10 @@
 
    - *The STL*
 
+
+### ***Summary***
+
+1. *我们想要学习c++，一定就得学这4个，分别是c，c++的面向对象等特性，c++模板编程/泛型编程，STL*
 
 ## ***条款2-尽量不使用#define***
 
@@ -64,8 +68,12 @@
          }
          ```
 
-         
 
+### ***Summary***
+
+1. *`#define`由于各个的因素，比如安全性，使用性，不太咋滴，所以尽量不使用`#define`*
+   - *常量可以由`const`或者`static`替换*
+   - *复杂的宏计算表达式就用`inline`替换*
 
 
 ## ***条款3-尽量使用const***
@@ -234,29 +242,45 @@
 
      *第二次通过const_cast去掉const版本的opsrator[]返回的const char&的const特性以与函数的返回类型相匹配*
 
-   - *对于const_cast的行为之前存在一些误解,对于以下代码*
+7. *对于const_cast的行为之前存在一些误解,对于以下代码*
 
-     ```cpp
-     #include<iostream>
-     using std::cout;
-     using std::endl;
-     int main(){
-         const int a = 5;
-         int& rta = const_cast < int&>(a) ;
-         rta = 6;
-         cout << "a: " << a << "    rtr: " << rta << endl;
-         cout << "&a: " << &a << "     &rta: " << &rta;
-         system("pause");
-         return 0;
-     }
-     ```
+  ```cpp
+  #include<iostream>
+  using std::cout;
+  using std::endl;
+  int main(){
+      const int a = 5;
+      int& rta = const_cast < int&>(a) ;
+      rta = 6;
+      cout << "a: " << a << "    rtr: " << rta << endl;
+      cout << "&a: " << &a << "     &rta: " << &rta;
+      system("pause");
+      return 0;
+  }
+  ```
 
-     *输出结果如下*
+  *输出结果如下*
 
-     ![img](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303032116653.png)
+  ![img](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303032116653.png)
 
-     *可见虽然const_cast表面上改变了变量的const性质,但a的值实际上还是没有改变(编译器仍然背着我们干了不少事),所以const_cast的实际用途并不是改变const对象的值,而是"暂时"去除对象的const属性使其可以作为参数传入非const函数,企图通过const_cast改变const对象的值可能会导致未预料的结果.因此个人认为5中的第二段代码(出自Effective C++ “条款3  尽可能用const”)存在一些错误,如有错误欢迎批评指正！*
+  *可见虽然const_cast表面上改变了变量的const性质,但a的值实际上还是没有改变(编译器仍然背着我们干了不少事),所以const_cast的实际用途并不是改变const对象的值,而是"暂时"去除对象的const属性使其可以作为参数传入非const函数,企图通过const_cast改变const对象的值可能会导致未预料的结果.因此个人认为5中的第二段代码(出自Effective C++ “条款3  尽可能用const”)存在一些错误,如有错误欢迎批评指正！*
 
+### ***Summary***
+
+1. *const可以修饰指针，要注意区分修饰指针*
+   - *`const int* i = 1;` non-const-pointer / const-data*
+   - *`int* const i = 1;` const pointer / non-const-data*
+   - *`const int* const i = 1;` const pointer / const-data*
+2. *const可以用来修饰STL中的iterator*
+   - *一定要知道红黑树下的map，set的key不可修改就是因为 const iterator*
+3. *const安全性比某些东西更高*
+   - *没错 某些东西说的就是`#define`*
+4. *bitwise constness && logical constness*
+   - *关于这个你只需要记住程序员编写程序时应该使用logical constness（概念上的常量性，逻辑上的常量性）*
+   - *即一个const成员函数可以处理它所修改的对象的某些bits,但只有在客户端侦测不出的情况下才得如此*
+   - *说简单点，就是在客户的角度上看，不需要修改其任何值，我们就必须使用const进行标注，但是在内部其实是修改了值的*
+5. *如果参数是引用,可以基于参数是否为const实现函数重载(也可以基于指针是否为const实现函数重载),特殊的,对于成员函数,因为它存在一个隐含的this指针参数,因而可以基于函数是否为const实现重载*
+6. *实现const重载时，我们可以利用`static_cast` `const_cast`来去除冗余代码*
 
 ## ***条款4-对象使用前应该被初始化***
 
@@ -323,12 +347,6 @@
 
 
    - *我们也是很明显的发现 使用初始化列 明显性能要高于 不使用初始化列，不使用初始化列要先两次构造函数了，然后一步调用拷贝赋值，而使用初始化列只做了一个构造函数和一次拷贝构造函数*
-
-
-   - ***总结：***
-     - ***构造函数对成员进行初始化的动作发生在初始化列表中而不是函数体内，在函数体内进行的"初始化"实际上是赋值***
-     - ***对于类类型,降低了程序效率，对于内置类型在初始化列表还是在函数体内初始化对于效率没有影响***
-     - ***在某些特殊情况(例如const变量和引用)必须在初始化列表进行初始化***
 
 3. *非局部变量的初始化顺序替换为函数运用结合*
 
@@ -413,4 +431,14 @@
         ```
 
         *这样解决就不存在之前说的初始化的问题*
+
+### ***Summery***
+
+1. *类的成员变量的初始化顺序不是取决于初始化列表的顺序，而是声明的顺序*
+2. *我们要尽量使用构造函数的初始化列表*
+   - *因为这里才是真正的初始化，在函数体中那叫赋值*
+   - *对于类类型,降低了程序效率，对于内置类型在初始化列表还是在函数体内初始化对于效率没有影响*
+   - *在某些特殊情况(例如const变量和引用)必须在初始化列表进行初始化*
+3. *非局部变量，比如全局变量，他会存在cmake的文件顺序来决定初始化顺序*
+   - *所以使用函数来解决此问题*
 
