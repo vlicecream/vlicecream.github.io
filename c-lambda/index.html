@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "lambda","wordcount":  925 ,
+                        }],"genre": "posts","keywords": "lambda","wordcount":  1449 ,
         "url": "https:\/\/vlicecream.github.io\/c-lambda\/","datePublished": "2023-03-03T00:00:00+08:00","dateModified": "2023-03-02T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">lambda</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-03">2023-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 925 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/c-lambda/" class="leancloud_visitors" data-flag-title="lambda">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-03">2023-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1449 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-lambda/" class="leancloud_visitors" data-flag-title="lambda">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -131,21 +131,15 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#引言"><em><strong>引言</strong></em></a></li>
-    <li><a href="#lambdas"><em><strong>lambdas</strong></em></a></li>
-    <li><a href="#通过代码来看lambda">通过代码来看lambda</a></li>
+    <li><a href="#lambda"><em><strong>lambda</strong></em></a></li>
+    <li><a href="#lambda-的本质"><em><strong>lambda 的本质</strong></em></a></li>
+    <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="引言"><em><strong>引言</strong></em></h2>
-<ol>
-<li><em>c++ 11引入了<code>lambdas</code>，允许定义内联函数，可以作为参数或局部对象使用</em></li>
-<li><em>Lambdas改变了c++标准库的使用方式</em></li>
-<li><em><code>lambda</code>是可以在语句和表达式中定义的功能定义。因此，您可以将lambda用作内联函数。最小lambd函数没有参数，只是简单地做一些事情</em></li>
-</ol>
-<h2 id="lambdas"><em><strong>lambdas</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="lambda"><em><strong>lambda</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>怎么去定义一个<code>lambdas</code></strong></em></p>
+<p><em>怎么去定义一个<code>lambda</code></em></p>
 <ul>
 <li>
 <div class="highlight"><div class="chroma">
@@ -195,19 +189,28 @@
 </ul>
 </li>
 <li>
-<p><em><strong><code>lambdas</code>的模板</strong></em></p>
+<p><em><code>lambdas</code>的模板</em></p>
 <ul>
 <li>
-<p><em><code>[capture list] (parameter list) mutable throwSpec -&gt; returnType {...}</code></em></p>
-</li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="p">[</span> <span class="n">capture</span><span class="o">-</span><span class="n">list</span> <span class="p">]</span> <span class="p">(</span> <span class="n">params</span> <span class="p">)</span> <span class="k">mutable</span><span class="p">(</span><span class="n">optional</span><span class="p">)</span> <span class="k">constexpr</span><span class="p">(</span><span class="n">optional</span><span class="p">)(</span><span class="n">c</span><span class="o">++</span><span class="mi">17</span><span class="p">)</span> <span class="n">exception</span> <span class="n">attribute</span> <span class="o">-&gt;</span> <span class="n">ret</span> <span class="p">{</span> <span class="n">body</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 可选的简化语法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span> <span class="n">capture</span><span class="o">-</span><span class="n">list</span> <span class="p">]</span> <span class="p">(</span> <span class="n">params</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ret</span> <span class="p">{</span> <span class="n">body</span> <span class="p">}</span> <span class="p">[</span> <span class="n">capture</span><span class="o">-</span><span class="n">list</span> <span class="p">]</span> <span class="p">(</span> <span class="n">params</span> <span class="p">)</span> <span class="p">{</span> <span class="n">body</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">capture</span><span class="o">-</span><span class="n">list</span> <span class="p">]</span> <span class="p">{</span> <span class="n">body</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
-<p><em><code>mutable</code> <code>throwSpec</code>  <code>retType</code> 都是可选项，但是只要有其中一个，就必须带前面的<code>()</code></em></p>
-</li>
-<li>
-<p><em><code>mutable</code>是可变的，如果你想修改传入的值，就必须带一个<code>mutable</code></em></p>
-</li>
-<li>
-<p><em><code>capture list</code> 捕获列表，指<code>lambda</code>所在函数中定义的局部变量的列表，定义在与 <code>lambda</code> 函数相同作用域的参数引用也可以被使用，一般被称作 <code>closure</code>（闭包），以下为闭包的常见用法</em></p>
+<p><em>capture-list: 捕捉列表，这个不用多说，前面已经讲过，它不能省略</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -228,112 +231,40 @@
 </div>
 </div></li>
 <li>
-<p><em><code>return type</code> 返回值类型</em></p>
+<p><em>params:参数列表，可以省略(但是后面必须紧跟函数体)</em></p>
 </li>
 <li>
-<p><em><code>parameter list</code> 参数列表</em></p>
+<p><em>mutable:可选，将 lambda 表达式标记为 mutable 后，函数体就可以修改传值方式捕获的变量</em></p>
 </li>
 <li>
-<p><em><code>returnType</code> 返回参数</em></p>
+<p><em>constexpr:可选</em></p>
+</li>
+<li>
+<p><em>exception:可选，指定</em></p>
+</li>
+<li>
+<p><em>attribute:可选，指定</em></p>
+</li>
+<li>
+<p><em>ret:可选，返回值类型</em></p>
+</li>
+<li>
+<p><em>body:函数执行体</em></p>
 </li>
 </ul>
 </li>
 </ol>
-<h2 id="通过代码来看lambda">通过代码来看lambda</h2>
+<h2 id="lambda-的本质"><em><strong>lambda 的本质</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>pass by value &amp;&amp; pass by reference</strong></em></p>
+<p><em>最前边的 <strong>[]</strong> 是 lambda 表达式的一个很重要的功能，就是 <strong>闭包</strong></em></p>
+<p><em>先说明一下 lambda 表达式的大致原理</em></p>
 <ul>
-<li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="p">()</span> <span class="k">mutable</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">++</span><span class="n">id</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">id</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 输出
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">0</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="mi">42</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">id</span><span class="p">]</span> <span class="p">(</span><span class="kt">int</span> <span class="n">param</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">++</span><span class="n">id</span><span class="p">;</span> <span class="o">++</span><span class="n">param</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">id</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 输出
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">42</span>
-</span></span><span class="line"><span class="cl"><span class="mi">43</span>
-</span></span><span class="line"><span class="cl"><span class="mi">44</span>
-</span></span><span class="line"><span class="cl"><span class="mi">45</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
+<li>每当你定义一个 lambda 表达式后，编译器会自动生成一个匿名类，这个类当然重载载了<code>()</code>运算符，我们称为闭包类型*</li>
 </ul>
-</li>
-<li>
-<p><em><strong>mutable才能修改</strong></em></p>
-<ul>
-<li>
+<p><em>那么在运行时，这个 lambda 表达式就会返回一个匿名的闭包实例，其实是一个右值</em></p>
+<p><em>所以，我们上面的 lambda 表达式的结果就是一个个闭包实例</em></p>
+<p><em>闭包的一个强大之处是其可以通过传值或者引用的方式捕捉其封装作用域内的变量，前面的方括号就是用来定义捕捉模式以及变量，我们又将其称为 lambda 捕捉块。例子如下</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -341,18 +272,51 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">++</span><span class="n">id</span><span class="p">;</span> <span class="c1">// error: increment of read-only variable &#39;id&#39;;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">auto</span> <span class="n">add_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span> <span class="p">};</span> <span class="c1">// 复制捕捉x,lambda 表达式无法修改此变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">auto</span> <span class="n">multiply_x</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">x</span><span class="p">](</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span> <span class="p">};</span> <span class="c1">// 引用捕捉x，lambda 表达式可以修改此变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add_x</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">multiply_x</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 输出:20 100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
+<li>
+<p><em>而 lambda 表达式一个更重要的应用是其可以用于函数的参数，通过这种方式可以实现回调函数</em></p>
+<p><em>其实，最常用的是在STL算法中，比如你要统计一个数组中满足特定条件的元素数量， 通过 lambda 表达式给出条件，传递给 count_if 函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">beigin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="n">val</span><span class="p">](</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// v中大于3的元素数􏰁
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="summary"><em><strong>Summary</strong></em></h2>
+<ol>
+<li><em>c++ 11引入了<code>lambda</code>，允许定义内联函数，可以作为参数或局部对象使用</em></li>
+<li><em>从本质上来讲，表达式只是一种语法糖，因为所有其能完成的工作都可以用其它稍微复杂的代码来实现，但是它简便的语法却给 C++ 带来了深远的影响</em></li>
+<li><em>从广义上说， 表达式产生的是函数对象。</em>
+<ul>
+<li><em>在类中，可以重载函数调用运算符<code>()</code>，此时类的对象可以将具有类似函数的行为，我们称这些对象为函数对象或者仿函数</em></li>
+<li><em>相比 lambda表达式，函数对象有自己独特的优势</em></li>
 </ul>
 </li>
+<li><em><code>lambda</code>是可以在语句和表达式中定义的功能定义。因此，您可以将<code>lambda</code>用作内联函数。最小<code>lambda</code>函数没有参数，只是简单地做一些事情</em></li>
+<li><em>要弄清楚lambda的模板并且分清楚&quot;<i class="far fa-square fa-fw" aria-hidden="true"></i> &ldquo;的传值使用，想要修改值就pass by reference + mutable</em></li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -1,15 +1,9 @@
 # lambda
 
 
-## ***引言***
+## ***lambda***
 
-1. *c++ 11引入了`lambdas`，允许定义内联函数，可以作为参数或局部对象使用*
-2. *Lambdas改变了c++标准库的使用方式*
-3. *`lambda`是可以在语句和表达式中定义的功能定义。因此，您可以将lambda用作内联函数。最小lambd函数没有参数，只是简单地做一些事情*
-
-## ***lambdas***
-
-1. ***怎么去定义一个`lambdas`***
+1. *怎么去定义一个`lambda`*
 
    - ```cpp
      [] {
@@ -37,15 +31,17 @@
 
      *`lambda`是可以在语句和表达式中定义的功能定义。因此，您可以将lambda用作内联函数。最小lambd函数没有参数，只是简单地做一些事情，所以跟上述的不太一样，lambda是可以不用取名字，直接在语句或者表达式中定义，用完就直接不管的*
 
-2. ***`lambdas`的模板***
+2. *`lambdas`的模板*
 
-   - *`[capture list] (parameter list) mutable throwSpec -> returnType {...}`*
+   - ```cpp
+     [ capture-list ] ( params ) mutable(optional) constexpr(optional)(c++17) exception attribute -> ret { body }
+     
+     // 可选的简化语法
+     [ capture-list ] ( params ) -> ret { body } [ capture-list ] ( params ) { body }
+     [ capture-list ] { body }
+     ```
 
-   - *`mutable` `throwSpec`  `retType` 都是可选项，但是只要有其中一个，就必须带前面的`()`*
-
-   - *`mutable`是可变的，如果你想修改传入的值，就必须带一个`mutable`*
-
-   - *`capture list` 捕获列表，指`lambda`所在函数中定义的局部变量的列表，定义在与 `lambda` 函数相同作用域的参数引用也可以被使用，一般被称作 `closure`（闭包），以下为闭包的常见用法*
+   - *capture-list: 捕捉列表，这个不用多说，前面已经讲过，它不能省略*
 
      ```cpp
      []      // 没有定义任何变量。使用未定义变量会引发错误。
@@ -56,63 +52,63 @@
      [=, &z] // z显式地以引用方式加以引用。其余变量以传值方式加以引用。
      ```
 
-   - *`return type` 返回值类型*
+   - *params:参数列表，可以省略(但是后面必须紧跟函数体)*
 
-   - *`parameter list` 参数列表*
+   - *mutable:可选，将 lambda 表达式标记为 mutable 后，函数体就可以修改传值方式捕获的变量*
 
-   - *`returnType` 返回参数*
+   - *constexpr:可选*
 
-## 通过代码来看lambda
+   - *exception:可选，指定*
 
-1. ***pass by value && pass by reference***
+   - *attribute:可选，指定* 
 
-   - ```cpp
-     int id = 0;
-     auto f = [id] () mutable {
-       std::cout << id << std::endl;
-       ++id;
-     };
-     
-     id = 42;
-     f();
-     f();
-     f();
-     std::cout << id << std::endl;
-     
-     // 输出
-     0
-     1
-     2
-     42
-     ```
+   - *ret:可选，返回值类型* 
 
-   - ```cpp
-     int id = 0;
-     auto f = [&id] (int param) {
-       std::cout << id << std::endl;
-       ++id; ++param;
-     };
-     
-     id = 42;
-     f(7);
-     f(7);
-     f(7);
-     std::cout << id << std::endl;
-     
-     // 输出
-     42
-     43
-     44
-     45
-     ```
+   - *body:函数执行体*
 
-2. ***mutable才能修改***
 
-   - ```cpp
-     int id = 0;
-     auto f = [id] () {
-       std::cout << id << std::endl;
-       ++id; // error: increment of read-only variable 'id';
-     };
-     ```
+## ***lambda 的本质***
+
+1. *最前边的 **[]** 是 lambda 表达式的一个很重要的功能，就是 **闭包***
+
+   *先说明一下 lambda 表达式的大致原理*
+
+   * 每当你定义一个 lambda 表达式后，编译器会自动生成一个匿名类，这个类当然重载载了`()`运算符，我们称为闭包类型*
+
+   *那么在运行时，这个 lambda 表达式就会返回一个匿名的闭包实例，其实是一个右值*
+
+   *所以，我们上面的 lambda 表达式的结果就是一个个闭包实例*
+
+   *闭包的一个强大之处是其可以通过传值或者引用的方式捕捉其封装作用域内的变量，前面的方括号就是用来定义捕捉模式以及变量，我们又将其称为 lambda 捕捉块。例子如下*
+
+   ```cpp
+   int main() {
+     int x = 10;
+     auto add_x = [x](int a) { return a + x; }; // 复制捕捉x,lambda 表达式无法修改此变量
+     auto multiply_x = [&x](int a) { return a * x; }; // 引用捕捉x，lambda 表达式可以修改此变量
+     cout << add_x(10) << " " << multiply_x(10) << endl; // 输出:20 100
+     return 0;
+   }
+   ```
+
+2. *而 lambda 表达式一个更重要的应用是其可以用于函数的参数，通过这种方式可以实现回调函数*
+
+   *其实，最常用的是在STL算法中，比如你要统计一个数组中满足特定条件的元素数量， 通过 lambda 表达式给出条件，传递给 count_if 函数*
+
+   ```cpp
+   int val = 3;
+   vector<int> v {1, 8, 5, 3, 6, 10};
+   int count = std::count_if(v.beigin(), v.end(), [val](int x) { return x > val; });
+   // v中大于3的元素数􏰁
+   ```
+
+## ***Summary***
+
+1. *c++ 11引入了`lambda`，允许定义内联函数，可以作为参数或局部对象使用*
+2. *从本质上来讲，表达式只是一种语法糖，因为所有其能完成的工作都可以用其它稍微复杂的代码来实现，但是它简便的语法却给 C++ 带来了深远的影响*
+3. *从广义上说， 表达式产生的是函数对象。*
+   - *在类中，可以重载函数调用运算符`()`，此时类的对象可以将具有类似函数的行为，我们称这些对象为函数对象或者仿函数*
+   - *相比 lambda表达式，函数对象有自己独特的优势*
+4. *`lambda`是可以在语句和表达式中定义的功能定义。因此，您可以将`lambda`用作内联函数。最小`lambda`函数没有参数，只是简单地做一些事情*
+5. *要弄清楚lambda的模板并且分清楚"[ ]"的传值使用，想要修改值就pass by reference + mutable*
 
