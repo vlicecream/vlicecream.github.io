@@ -131,55 +131,45 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#条款1---视c为一个语言联邦"><em><strong>条款1 - 视c++为一个语言联邦</strong></em></a>
-      <ul>
-        <li><a href="#视c为一个语言联邦"><em><strong>视c++为一个语言联邦</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#条款2-尽量不使用define"><em><strong>条款2-尽量不使用#define</strong></em></a>
-      <ul>
-        <li><a href="#define定义常量"><em><strong><code>#define</code>定义常量</strong></em></a></li>
-        <li><a href="#define定义宏"><em><strong><code>#define</code>定义宏</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#条款3-尽量使用const"><em><strong>条款3-尽量使用const</strong></em></a>
-      <ul>
-        <li><a href="#修饰指针"><em><strong>修饰指针</strong></em></a></li>
-        <li><a href="#修饰-stl-iterator"><em><strong>修饰 STL-iterator</strong></em></a></li>
-        <li><a href="#将某些东西声明为const可以帮助编译器侦测出错误用法"><em><strong>将某些东西声明为const可以帮助编译器侦测出错误用法</strong></em></a></li>
-        <li><a href="#bitwise-constness--logical-constness"><em><strong>bitwise constness &amp;&amp; logical constness</strong></em></a></li>
-        <li><a href="#函数重载"><em><strong>函数重载</strong></em></a></li>
-        <li><a href="#避免const和非const成员函数中的重复"><em><strong>避免const和非const成员函数中的重复</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#条款4-对象使用前应该被初始化"><em><strong>条款4-对象使用前应该被初始化</strong></em></a>
-      <ul>
-        <li><a href="#class的成员变量总是以其声明的次序被初始化"><em><strong>class的成员变量总是以其声明的次序被初始化</strong></em></a></li>
-        <li><a href="#构造函数成员初始化列表优于函数体赋值"><em><strong>构造函数成员初始化列表优于函数体赋值</strong></em></a></li>
-        <li><a href="#非局部变量的初始化顺序替换为函数运用结合"><em><strong>非局部变量的初始化顺序替换为函数运用结合</strong></em></a></li>
-      </ul>
-    </li>
+    <li><a href="#条款1---视c为一个语言联邦"><em><strong>条款1 - 视c++为一个语言联邦</strong></em></a></li>
+    <li><a href="#条款2-尽量不使用define"><em><strong>条款2-尽量不使用#define</strong></em></a></li>
+    <li><a href="#条款3-尽量使用const"><em><strong>条款3-尽量使用const</strong></em></a></li>
+    <li><a href="#条款4-对象使用前应该被初始化"><em><strong>条款4-对象使用前应该被初始化</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="条款1---视c为一个语言联邦"><em><strong>条款1 - 视c++为一个语言联邦</strong></em></h2>
-<h3 id="视c为一个语言联邦"><em><strong>视c++为一个语言联邦</strong></em></h3>
-<ol>
-<li><em>C</em></li>
-<li><em>Object-Oriented C++</em></li>
-<li><em>Template C++</em></li>
-<li><em>The STL</em></li>
-</ol>
-<h2 id="条款2-尽量不使用define"><em><strong>条款2-尽量不使用#define</strong></em></h2>
-<h3 id="define定义常量"><em><strong><code>#define</code>定义常量</strong></em></h3>
 <ol>
 <li>
-<p><em><strong><code>#define</code>定义常量的缺点</strong></em></p>
+<p><em>视c++为一个语言联邦</em></p>
+<ul>
+<li>
+<p><em>C</em></p>
+</li>
+<li>
+<p><em>Object-Oriented C++</em></p>
+</li>
+<li>
+<p><em>Template C++</em></p>
+</li>
+<li>
+<p><em>The STL</em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="条款2-尽量不使用define"><em><strong>条款2-尽量不使用#define</strong></em></h2>
+<ol>
+<li>
+<p><em><code>#define</code>定义常量</em></p>
+<ul>
+<li>
+<p><em><code>#define</code>定义常量的缺点</em></p>
 <ul>
 <li><em><code>#define ASPECT_RATIO 1.653</code>，<code>#define</code>是不会添加到符号表的，所以当跟ASPECT_RATIO有关报错的时候，不会提示ASPECT_RATIO出了问题，不利于报错排查</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>替换手段</strong></em></p>
+<p><em>替换手段</em></p>
 <ul>
 <li>
 <p><em>可以拿<code>const double AspectRatio = 1.653;</code>来进行替换<code>#define</code></em></p>
@@ -214,11 +204,13 @@
 </div></li>
 </ul>
 </li>
-</ol>
-<h3 id="define定义宏"><em><strong><code>#define</code>定义宏</strong></em></h3>
+</ul>
+</li>
+<li>
+<p><em><code>#define</code>定义宏</em></p>
 <ol>
 <li>
-<p><em><strong><code>#define</code>定义宏的缺点</strong></em></p>
+<p><em><code>#define</code>定义宏的缺点</em></p>
 <ul>
 <li>
 <p><em>其实在inline专题有提到，<code>#define</code>定义宏，太麻烦了，只因他是直接替换的效果，最经典就是计算平方问题</em></p>
@@ -234,7 +226,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong>替换手段</strong></em></p>
+<p><em>替换手段</em></p>
 <ul>
 <li>
 <p><em>可以拿<code>inline</code>函数去进行替换</em></p>
@@ -258,8 +250,12 @@
 </ul>
 </li>
 </ol>
+</li>
+</ol>
 <h2 id="条款3-尽量使用const"><em><strong>条款3-尽量使用const</strong></em></h2>
-<h3 id="修饰指针"><em><strong>修饰指针</strong></em></h3>
+<ol>
+<li>
+<p><em>修饰指针</em></p>
 <ul>
 <li>
 <p><em>修饰指针一定要区分好，const pointer and const data</em></p>
@@ -287,7 +283,9 @@
 </div>
 </div></li>
 </ul>
-<h3 id="修饰-stl-iterator"><em><strong>修饰 STL-iterator</strong></em></h3>
+</li>
+<li>
+<p><em>修饰 STL-iterator</em></p>
 <ul>
 <li>
 <p><em>修饰STL-iterator所带来的好处就是可以控制 iterator指向的值或者iterator本身是否被修改，同时这也是红黑树，map，set控制修改iterator指向的值的秘诀</em></p>
@@ -317,7 +315,9 @@
 </div>
 </div></li>
 </ul>
-<h3 id="将某些东西声明为const可以帮助编译器侦测出错误用法"><em><strong>将某些东西声明为const可以帮助编译器侦测出错误用法</strong></em></h3>
+</li>
+<li>
+<p><em>将某些东西声明为const可以帮助编译器侦测出错误用法</em></p>
 <ul>
 <li>
 <p><em>在函数返回值修饰的好处就是可以保证一些低级的错误，如下述代码</em></p>
@@ -345,7 +345,9 @@
 <p><em>将<code>#define</code>定义常量 修改为<code>const</code>也是可以帮助编译器侦测出错误类型</em></p>
 </li>
 </ul>
-<h3 id="bitwise-constness--logical-constness"><em><strong>bitwise constness &amp;&amp; logical constness</strong></em></h3>
+</li>
+<li>
+<p><em>bitwise constness &amp;&amp; logical constness</em></p>
 <ul>
 <li>
 <p><em>编译器强制实行bitwise constness(又称physical constness,物理上的常量性,即成员函数不更改对象的任何一个bit时才可以说是const),例如</em></p>
@@ -434,7 +436,9 @@
 </div>
 </div></li>
 </ul>
-<h3 id="函数重载"><em><strong>函数重载</strong></em></h3>
+</li>
+<li>
+<p><em>函数重载</em></p>
 <ul>
 <li>
 <p><em>如果参数是引用,可以基于参数是否为const实现函数重载(也可以基于指针是否为const实现函数重载),特殊的,对于成员函数,因为它存在一个隐含的this指针参数,因而可以基于函数是否为const实现重载</em></p>
@@ -470,7 +474,9 @@
 </div>
 </div></li>
 </ul>
-<h3 id="避免const和非const成员函数中的重复"><em><strong>避免const和非const成员函数中的重复</strong></em></h3>
+</li>
+<li>
+<p><em>避免const和非const成员函数中的重复</em></p>
 <ul>
 <li>
 <div class="highlight"><div class="chroma">
@@ -545,7 +551,7 @@
 <p><em>第二次通过const_cast去掉const版本的opsrator[]返回的const char&amp;的const特性以与函数的返回类型相匹配</em></p>
 </li>
 <li>
-<p><em><strong>对于const_cast的行为之前存在一些误解,对于以下代码</strong></em></p>
+<p><em>对于const_cast的行为之前存在一些误解,对于以下代码</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -588,8 +594,12 @@
 <p><em>可见虽然const_cast表面上改变了变量的const性质,但a的值实际上还是没有改变(编译器仍然背着我们干了不少事),所以const_cast的实际用途并不是改变const对象的值,而是&quot;暂时&quot;去除对象的const属性使其可以作为参数传入非const函数,企图通过const_cast改变const对象的值可能会导致未预料的结果.因此个人认为5中的第二段代码(出自Effective C++ “条款3  尽可能用const”)存在一些错误,如有错误欢迎批评指正！</em></p>
 </li>
 </ul>
+</li>
+</ol>
 <h2 id="条款4-对象使用前应该被初始化"><em><strong>条款4-对象使用前应该被初始化</strong></em></h2>
-<h3 id="class的成员变量总是以其声明的次序被初始化"><em><strong>class的成员变量总是以其声明的次序被初始化</strong></em></h3>
+<ol>
+<li>
+<p><em>class的成员变量总是以其声明的次序被初始化</em></p>
 <ul>
 <li>
 <p><em>在下述代码中，我们虽然在构造函数的初始化列表中先初始化了<code>b_</code>，再是<code>a_</code>，但是实际上是以声明的次序被初始化，也就是先初始化 <code>a_</code>，在初始化<code>b_</code></em></p>
@@ -618,7 +628,9 @@
 <p><em>类类型的构造函数对于成员按:<strong>基类成员→派生类类类型成员(按声明顺序)→派生类内置类型成员(按声明顺序)的顺序进行初始化</strong>.</em></p>
 </li>
 </ul>
-<h3 id="构造函数成员初始化列表优于函数体赋值"><em><strong>构造函数成员初始化列表优于函数体赋值</strong></em></h3>
+</li>
+<li>
+<p><em>构造函数成员初始化列表优于函数体赋值</em></p>
 <ul>
 <li>
 <p><em>Foo函数如下</em></p>
@@ -718,10 +730,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="非局部变量的初始化顺序替换为函数运用结合"><em><strong>非局部变量的初始化顺序替换为函数运用结合</strong></em></h3>
-<ol>
+</li>
 <li>
-<p><em><strong>既然被替换了，那么肯定被替换者有什么问题，那我们来好好瞧瞧</strong></em></p>
+<p><em>非局部变量的初始化顺序替换为函数运用结合</em></p>
+<ul>
+<li>
+<p><em>既然被替换了，那么肯定被替换者有什么问题，那我们来好好瞧瞧</em></p>
 <ul>
 <li>
 <p><em>接下来场景为多文件场景，有两个文件，分别是 &ldquo;init_before_user.cpp&rdquo;, &ldquo;init_before_user1.cpp&rdquo;</em></p>
@@ -876,6 +890,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>这样解决就不存在之前说的初始化的问题</em></p>
+</li>
+</ul>
 </li>
 </ul>
 </li>
