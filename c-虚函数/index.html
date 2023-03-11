@@ -140,7 +140,7 @@
             </div><div class="content" id="content"><h2 id="虚函数"><em><strong>虚函数</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>虚函数的种类</strong></em></p>
+<p><em>虚函数的种类</em></p>
 <ul>
 <li>
 <p><em>non-virtual： 你不希望派生类重新定义</em></p>
@@ -175,10 +175,10 @@
 <h2 id="虚函数的实现原理"><em><strong>虚函数的实现原理</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>虚表与虚指针</strong></em></p>
+<p><em>虚表与虚指针</em></p>
 <ul>
 <li>
-<p><em>我们先把下述代码扫一遍，并且来看看图，我们可以看到最左边的表 上面记录着 <strong>继承的父类</strong>和 <strong>自己的数据</strong>，但是除了这些之外，是不是还有一个记录着内存地址的，这个就是<strong>虚指针（vtpr）<strong>这个虚指针指向着一张</strong>虚表（vtbl）</strong></em></p>
+<p><em>我们先把下述代码扫一遍，并且来看看图，我们可以看到最左边的表 上面记录着 继承的父类和 自己的数据，但是除了这些之外，是不是还有一个记录着内存地址的，这个就是<strong>虚指针（vtpr）<strong>这个虚指针指向着一张</strong>虚表（vtbl）</strong></em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -247,7 +247,7 @@
 </ul>
 </li>
 <li>
-<p><em><strong>c++对一个虚函数进行调用的过程</strong></em></p>
+<p><em>c++对一个虚函数进行调用的过程</em></p>
 <ul>
 <li><em>他首先会考虑是<strong>静态绑定</strong>还是<strong>动态绑定</strong></em></li>
 <li><em>静态绑定 就是 call xxx  call(汇编语言的一个动作) xxx(addr)</em></li>
@@ -266,7 +266,7 @@
 <h2 id="虚函数的妙用"><em><strong>虚函数的妙用</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>通过虚指针我们可以实现多态</strong></em></p>
+<p><em>通过虚指针我们可以实现多态</em></p>
 <ul>
 <li>
 <p><em>比如 一个list 需要放多个不同大小的 比如 矩形 圆形 长方形 各种的 就可以直接放父类A 的指针 指向不同大小的 具体图形 因为对于指针来说 都是4个byte</em></p>

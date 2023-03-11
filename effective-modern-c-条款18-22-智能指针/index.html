@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  9697 ,
+                        }],"genre": "posts","wordcount":  10060 ,
         "url": "https:\/\/vlicecream.github.io\/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88\/","datePublished": "2023-03-08T18:01:00+08:00","dateModified": "2023-03-08T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款18~22 智能指针</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-modern-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective Modern C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-08">2023-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9697 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 20 分钟&nbsp;<span id="/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="条款18~22 智能指针">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-08">2023-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 10060 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 21 分钟&nbsp;<span id="/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="条款18~22 智能指针">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -188,10 +188,28 @@
 <p><em><code>std::unique_ptr</code>的特点</em></p>
 <ul>
 <li>
-<p><em>首先要知道：默认情况下，<code>std::unique_ptr</code>与裸指针一样大，且对于绝大多数操作来说（包括解引用），他们编译后的指令都是完全一样的，所有裸指针的空间和性能开销能满足要求的场景，<code>std::unique_ptr</code>一样能满足</em></p>
+<p><em>默认情况下，<code>std::unique_ptr</code>与裸指针一样大，且对于绝大多数操作来说（包括解引用），他们编译后的指令都是完全一样的，所有裸指针的空间和性能开销能满足要求的场景，<code>std::unique_ptr</code>一样能满足</em></p>
 </li>
 <li>
-<p><em><code>std::unique_ptr</code>体现了显式所有权的语义，非空的<code>std::unique_ptr</code>总是拥有他指向的对象，移动一个<code>std::unique_ptr</code>会将源指针持有的所有权移交给目标指针；<strong>不允许复制<code>std::unique_ptr</code></strong>；非空的<code>std::unique_ptr</code>总是销毁他持有的资源，默认是通过<code>delete</code></em></p>
+<p><em><code>std::unique_ptr</code>体现了显式所有权的语义</em></p>
+</li>
+<li>
+<p><em>非空的<code>std::unique_ptr</code>总是拥有他指向的对象</em></p>
+</li>
+<li>
+<p><em>移动一个<code>std::unique_ptr</code>，所有权会从源指针转移到目的指针（之后源指针会设置为空指针）</em></p>
+</li>
+<li>
+<p><em>拷贝<code>std::unique_ptr</code>是不允许的，因为如果你可以拷贝它，那么就有两个<code>std::unique_ptr</code>指向相同的资源，每一个都认为它拥有（和负责销毁）那份资源</em></p>
+<ul>
+<li><em>因此<code>std::unique_ptr</code>是只可移动类型</em></li>
+</ul>
+</li>
+<li>
+<p><em>当销毁的时候，一个非空的<code>std::unique_ptr</code>会销毁它的资源</em></p>
+<ul>
+<li><em>默认情况下，资源销毁是通过对<code>std::unique_ptr</code>内的原生指针使用<strong>delete</strong>来完成的</em></li>
+</ul>
 </li>
 <li>
 <p><em>一个例子是工厂函数。假设有一个基类和三个派生类，通过一个工厂函数来返回某个派生类的<code>std::unique_ptr</code>，这样调用方就不需要费心什么时候销毁返回的对象了：<code>std::unique_ptr</code>会负责这件事。</em></p>
@@ -358,10 +376,24 @@
 </li>
 </ul>
 </li>
+<li>
+<p><em>在C++11中，<code>std::unique_ptr</code>是表达独占所有权的方式，但它最吸引人的一个特性是它能即简单又高效地转化为<code>std::shared_ptr</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="o">&gt;</span> <span class="n">sp</span> <span class="o">=</span>    <span class="c1">// 把 std::unique_ptr转换为
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">makeInvestment</span><span class="p">(</span><span class="n">argument</span><span class="p">);</span>         <span class="c1">// std::shared_ptr
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这是为什么<code>std::unique_ptr</code>如此适合做工厂函数的关键原因，工厂函数不会知道：独占所有权语义和共享所有权语义哪个更适合调用者。通过返回一个<code>std::unique_ptr</code>，工厂提供给调用者的是最高效的智能指针，但它不妨碍调用者用<code>std::shared_ptr</code>来替换它</em></p>
+</li>
 </ol>
 <h3 id="summary"><em><strong>Summary</strong></em></h3>
 <ol>
-<li><em><code>std::unique_ptr</code>是一个具有开销小，速度快，move-only特定的智能指针，使用独占拥有方式来管理资源</em></li>
+<li><em><code>std::unique_ptr</code>是一个具有开销小，速度快，只可移动的智能指针，使用独占所有权语义管理资源</em></li>
 <li><em>默认情况下，释放资源由<code>delete</code>来完成，也可以指定自定义的析构函数来替代，但是具有丰富状态的deleters和以函数指针作为deleters增大了<code>std::unique_ptr</code>的存储开销</em></li>
 <li><em>很容易将一个<code>std::unique_ptr</code>转化为<code>std::shared_ptr</code></em></li>
 </ol>
@@ -370,7 +402,8 @@
 <li><em>什么是<code>std::shared_ptr</code></em>
 <ul>
 <li><em>使用<code>std::shared_ptr</code>管理的对象的所有权是共享的，没有哪个<code>std::shared_ptr</code>特别拥有这个对象，而是最后一个<code>std::shared_ptr</code>析构时，销毁这个对象</em></li>
-<li><em>与垃圾回收类似，调用者不需要手动管理<code>std::shared_ptr</code>管理的对象；与析构函数类似，对象的析构时间是确定的</em></li>
+<li><em>与垃圾回收类似，调用者不需要手动管理<code>std::shared_ptr</code>管理的对象</em></li>
+<li><em>与析构函数类似，对象的析构时间是确定的</em></li>
 </ul>
 </li>
 <li><em><code>std::shared_ptr</code>的特点</em>
@@ -387,7 +420,8 @@
 </ul>
 </li>
 </ol>
-<p><em>与<code>std::unique_ptr</code>类似，<code>std::shared_ptr</code>的默认销毁动作也是<code>delete</code>，且也可以接受自定义的销毁器。但与<code>std::unique_ptr</code>不同的是，<code>std::shared_ptr</code>的销毁器类型不必作为它的模板参数之一</em></p>
+<p><em>与<code>std::unique_ptr</code>类似，<code>std::shared_ptr</code>的默认销毁动作也是<code>delete</code>，且也可以接受自定义的销毁器</em></p>
+<p><em>但与<code>std::unique_ptr</code>不同的是，<code>std::shared_ptr</code>的销毁器类型不必作为它的模板参数之一</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -449,7 +483,8 @@
 <li><em>资源的默认析构一般通过delete来进行，但是自定义的deleter也是支持的。deleter的类型对于 <code>std::shared_ptr</code> 的类型不会产生影响</em></li>
 </ol>
 <h2 id="条款20-在需要共享语义且可能空悬的地方用weak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>weak_ptr</code></strong></em></h2>
-<p><em>有时候我们需要一种类似<code>std::shared_ptr</code>，但又不参与这个共享对象的所有权的智能指针。这样它就需要能知道共享对象是否已经销毁了。这就是<code>std::weak_ptr</code>。<code>std::weak_ptr</code>不是单独存在的，它不能解引用，也不能检测是否为空，它就是配合<code>std::shared_ptr</code>使用的</em></p>
+<p><em>有时候我们需要一种类似<code>std::shared_ptr</code>，但又不参与这个共享对象的所有权的智能指针。这样它就需要能知道共享对象是否已经销毁了。这就是`std::weak_ptr``</em></p>
+<p><em>``std::weak_ptr<code>不是单独存在的，它不能解引用，也不能检测是否为空，它就是配合</code>std::shared_ptr`使用的</em></p>
 <p><em>通常<code>std::weak_ptr</code>都是通过<code>std::shared_ptr</code>构造的，但它不会影响<code>std::shared_ptr</code>的引用计数</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -550,7 +585,7 @@
 <h2 id="条款21-优先用make_unique和make_shared而不是直接new"><em><strong>条款21 优先用<code>make_unique</code>和<code>make_shared</code>而不是直接<code>new</code></strong></em></h2>
 <ol>
 <li>
-<p><em>前言</em>*</p>
+<p><em>前言</em></p>
 <ul>
 <li>
 <p><em>先做一下介绍，<code>std::make_shared</code>是在C++11中增加的，但<code>std::make_unique</code>却是在C++14中增加的。如果你想在C++11中就用上<code>std::make_unique</code>，自己写一个简单版的也不难</em></p>
@@ -698,7 +733,8 @@
 </li>
 </ol>
 <h2 id="条款22-在用到pimpl惯用法时在实现文件中定义特殊成员函数"><em><strong>条款22 在用到PImpl惯用法时，在实现文件中定义特殊成员函数</strong></em></h2>
-<p><em>我们经常用名为PImpl的方法来实现接口与实现分离，进而大大降低程序构建的时间。PImpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针</em></p>
+<p><em>我们经常用名为PImpl的方法来实现接口与实现分离，进而大大降低程序构建的时间</em></p>
+<p><em>PImpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针</em></p>
 <p><em>举一个例子</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

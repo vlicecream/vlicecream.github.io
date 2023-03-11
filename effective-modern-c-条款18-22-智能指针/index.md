@@ -24,9 +24,21 @@
 
 1. *`std::unique_ptr`的特点*
 
-   - *首先要知道：默认情况下，`std::unique_ptr`与裸指针一样大，且对于绝大多数操作来说（包括解引用），他们编译后的指令都是完全一样的，所有裸指针的空间和性能开销能满足要求的场景，`std::unique_ptr`一样能满足*
+   - *默认情况下，`std::unique_ptr`与裸指针一样大，且对于绝大多数操作来说（包括解引用），他们编译后的指令都是完全一样的，所有裸指针的空间和性能开销能满足要求的场景，`std::unique_ptr`一样能满足*
 
-   - *`std::unique_ptr`体现了显式所有权的语义，非空的`std::unique_ptr`总是拥有他指向的对象，移动一个`std::unique_ptr`会将源指针持有的所有权移交给目标指针；**不允许复制`std::unique_ptr`**；非空的`std::unique_ptr`总是销毁他持有的资源，默认是通过`delete`*
+   - *`std::unique_ptr`体现了显式所有权的语义*
+
+   - *非空的`std::unique_ptr`总是拥有他指向的对象*
+
+   - *移动一个`std::unique_ptr`，所有权会从源指针转移到目的指针（之后源指针会设置为空指针）*
+
+   - *拷贝`std::unique_ptr`是不允许的，因为如果你可以拷贝它，那么就有两个`std::unique_ptr`指向相同的资源，每一个都认为它拥有（和负责销毁）那份资源*
+
+     - *因此`std::unique_ptr`是只可移动类型*
+
+   - *当销毁的时候，一个非空的`std::unique_ptr`会销毁它的资源*
+
+     - *默认情况下，资源销毁是通过对`std::unique_ptr`内的原生指针使用**delete**来完成的*
 
    - *一个例子是工厂函数。假设有一个基类和三个派生类，通过一个工厂函数来返回某个派生类的`std::unique_ptr`，这样调用方就不需要费心什么时候销毁返回的对象了：`std::unique_ptr`会负责这件事。*
 
@@ -116,9 +128,18 @@
 
    - *`std::unique_ptr`另一个吸引人的地方在于，它可以作为`std::shared_ptr`的构造参数，因此上面的工厂函数返回`std::unique_ptr`就再正确不过了：调用者可以根据自己对所有权的需求来决定用`std::unique_ptr`还是`std::shared_ptr`，反正都支持*
 
+3. *在C++11中，`std::unique_ptr`是表达独占所有权的方式，但它最吸引人的一个特性是它能即简单又高效地转化为`std::shared_ptr`*
+
+   ```cpp
+   std::shared_ptr<Investment> sp =    // 把 std::unique_ptr转换为
+       makeInvestment(argument);         // std::shared_ptr
+   ```
+
+   *这是为什么`std::unique_ptr`如此适合做工厂函数的关键原因，工厂函数不会知道：独占所有权语义和共享所有权语义哪个更适合调用者。通过返回一个`std::unique_ptr`，工厂提供给调用者的是最高效的智能指针，但它不妨碍调用者用`std::shared_ptr`来替换它*
+
 ### ***Summary***
 
-1. *`std::unique_ptr`是一个具有开销小，速度快，move-only特定的智能指针，使用独占拥有方式来管理资源*
+1. *`std::unique_ptr`是一个具有开销小，速度快，只可移动的智能指针，使用独占所有权语义管理资源*
 2. *默认情况下，释放资源由`delete`来完成，也可以指定自定义的析构函数来替代，但是具有丰富状态的deleters和以函数指针作为deleters增大了`std::unique_ptr`的存储开销*
 3. *很容易将一个`std::unique_ptr`转化为`std::shared_ptr`*
 
@@ -126,7 +147,8 @@
 
 1. *什么是`std::shared_ptr`*
    - *使用`std::shared_ptr`管理的对象的所有权是共享的，没有哪个`std::shared_ptr`特别拥有这个对象，而是最后一个`std::shared_ptr`析构时，销毁这个对象*
-   - *与垃圾回收类似，调用者不需要手动管理`std::shared_ptr`管理的对象；与析构函数类似，对象的析构时间是确定的*
+   - *与垃圾回收类似，调用者不需要手动管理`std::shared_ptr`管理的对象*
+   - *与析构函数类似，对象的析构时间是确定的*
 2. *`std::shared_ptr`的特点*
    - *`std::shared_ptr`内部有引用计数，被复制时，引用计数+1，有`std::shared_ptr`析构时，引用计数-1，当引用计数为0时，析构持有的对象*
 3. *引用计数的存在有以下性能影响*
@@ -135,7 +157,9 @@
    - *引用计数的加减必须是原子的，因此你必须假设读写引用计数是有成本的*
    - *注意，不是所有`std::shared_ptr`的构造都会增加引用计数，移动构造就不会。因此移动构造一个`std::shared_ptr`要比复制一个更快*
 
-*与`std::unique_ptr`类似，`std::shared_ptr`的默认销毁动作也是`delete`，且也可以接受自定义的销毁器。但与`std::unique_ptr`不同的是，`std::shared_ptr`的销毁器类型不必作为它的模板参数之一*
+*与`std::unique_ptr`类似，`std::shared_ptr`的默认销毁动作也是`delete`，且也可以接受自定义的销毁器*
+
+*但与`std::unique_ptr`不同的是，`std::shared_ptr`的销毁器类型不必作为它的模板参数之一*
 
 ```cpp
 auto loggingDel = [](Widget* pw) {
@@ -190,7 +214,9 @@ std::shared_ptr<Widget> spw(new Widget, loggingDel);
 
 ## ***条款20 在需要共享语义且可能空悬的地方用`weak_ptr`***
 
-*有时候我们需要一种类似`std::shared_ptr`，但又不参与这个共享对象的所有权的智能指针。这样它就需要能知道共享对象是否已经销毁了。这就是`std::weak_ptr`。`std::weak_ptr`不是单独存在的，它不能解引用，也不能检测是否为空，它就是配合`std::shared_ptr`使用的*
+*有时候我们需要一种类似`std::shared_ptr`，但又不参与这个共享对象的所有权的智能指针。这样它就需要能知道共享对象是否已经销毁了。这就是`std::weak_ptr``*
+
+*``std::weak_ptr`不是单独存在的，它不能解引用，也不能检测是否为空，它就是配合`std::shared_ptr`使用的*
 
 *通常`std::weak_ptr`都是通过`std::shared_ptr`构造的，但它不会影响`std::shared_ptr`的引用计数*
 
@@ -259,7 +285,7 @@ std::shared_ptr<Widget> spw(wpw);
 
 ## ***条款21 优先用`make_unique`和`make_shared`而不是直接`new`***
 
-1. *前言**
+1. *前言*
 
    - *先做一下介绍，`std::make_shared`是在C++11中增加的，但`std::make_unique`却是在C++14中增加的。如果你想在C++11中就用上`std::make_unique`，自己写一个简单版的也不难*
 
@@ -358,7 +384,9 @@ std::shared_ptr<Widget> spw(wpw);
 
 ## ***条款22 在用到PImpl惯用法时，在实现文件中定义特殊成员函数***
 
-*我们经常用名为PImpl的方法来实现接口与实现分离，进而大大降低程序构建的时间。PImpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针*
+*我们经常用名为PImpl的方法来实现接口与实现分离，进而大大降低程序构建的时间*
+
+*PImpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针*
 
 *举一个例子*
 
