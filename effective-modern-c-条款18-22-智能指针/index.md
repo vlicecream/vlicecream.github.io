@@ -15,8 +15,8 @@
    - *智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱*
    - *C++11中有4种智能指针：`std::auto_ptr`、`std::unique_ptr`、`std::shared_ptr`、`std::weak_ptr`*
    - *其中`std::auto_ptr`已经过时了，C++11中可以被`std::unique_ptr`取代了*
-4. *正是看本博客之前，需要去弄懂"PImpl"*
-   - *具体关于Pimpl是什么，可以查看我这个博客《[Pimpl](https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/)》*
+4. *正式看本博客之前，需要去弄懂"PImpl"*
+   - *具体关于PImpl是什么，可以查看我这个博客《[PImpl](https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/)》*
    - *还有如果前言都没好好看，导致Item22不知道PImpl是啥，这时候你是不是应该要质疑一下自己，学习是不是太浮躁了?*
 
 
@@ -356,9 +356,9 @@ std::shared_ptr<Widget> spw(wpw);
    - *带有自定义内存管理的class*
    - *内存非常紧俏的系统，非常大的对象以及比对应的`std::shared_ptr`活的还要长的`std::weak_ptr`*
 
-## ***条款22 在用到Pimpl惯用法时，在实现文件中定义特殊成员函数***
+## ***条款22 在用到PImpl惯用法时，在实现文件中定义特殊成员函数***
 
-*我们经常用名为Pimpl的方法来实现接口与实现分离，进而大大降低程序构建的时间。Pimpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针*
+*我们经常用名为PImpl的方法来实现接口与实现分离，进而大大降低程序构建的时间。PImpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针*
 
 *举一个例子*
 
@@ -374,7 +374,7 @@ private:
 };
 ```
 
-*`Widget`的数据成员的类型为`std::string`、`std::vector<double>`、`Gadget`，这样就至少要include三个头文件，这也意味着每个需要include了这个包含`Widget`定义的头文件的地方，都被动引入了三个头文件。如果有一天我们修改了`Widget`的实现，比如增加或删除了一个成员，即使它们都是private的，即使接口完全没有变化，所有include它的用户文件都要重新编译。我们不想污染用户文件，也不想用户文件因为我们的实现修改而重新编译，我们就可以用Pimpl*
+*`Widget`的数据成员的类型为`std::string`、`std::vector<double>`、`Gadget`，这样就至少要include三个头文件，这也意味着每个需要include了这个包含`Widget`定义的头文件的地方，都被动引入了三个头文件。如果有一天我们修改了`Widget`的实现，比如增加或删除了一个成员，即使它们都是private的，即使接口完全没有变化，所有include它的用户文件都要重新编译。我们不想污染用户文件，也不想用户文件因为我们的实现修改而重新编译，我们就可以用PImpl*
 
 ```cpp
 class Widget {
@@ -471,7 +471,7 @@ public:
 
 *注意不要在这些特殊成员函数的声明后面加`= default`，这样会重复上面析构函数的问题：会被内联，因此在用户代码中有一份实现，遇到不完整类型，game over。我们要做的就是在.cpp中将它们的实现定义为`= default`*
 
-*接下来就是复制构造函数和复制赋值函数了。我们用`std::unique_ptr`是为了更好的实现Pimpl方法，这也导致了`Widget`无法自动生成复制函数（`std::unique_ptr`不支持），但这并不意味着`Widget`就不能支持复制了，我们还可以自己定义两个复制函数*
+*接下来就是复制构造函数和复制赋值函数了。我们用`std::unique_ptr`是为了更好的实现PImpl方法，这也导致了`Widget`无法自动生成复制函数（`std::unique_ptr`不支持），但这并不意味着`Widget`就不能支持复制了，我们还可以自己定义两个复制函数*
 
 ```cpp
 // widget.h
