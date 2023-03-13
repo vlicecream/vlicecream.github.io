@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "构造函数, 析构函数, 拷贝构造函数","wordcount":  3302 ,
+                        }],"genre": "posts","keywords": "构造函数, 析构函数, 拷贝构造函数","wordcount":  3301 ,
         "url": "https:\/\/vlicecream.github.io\/c-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E6%8B%B7%E8%B4%9D%E8%B5%8B%E5%80%BC\/","datePublished": "2022-03-18T00:00:00+08:00","dateModified": "2023-02-26T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">构造函数/析构函数/拷贝构造/拷贝赋值</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-18">2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3302 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-18">2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3301 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/c-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E6%8B%B7%E8%B4%9D%E8%B5%8B%E5%80%BC/" class="leancloud_visitors" data-flag-title="构造函数/析构函数/拷贝构造/拷贝赋值">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -187,8 +187,6 @@
 </div><ol>
 <li>
 <p><em><strong>引出</strong></em></p>
-<ul>
-<li>
 <p><em>如果你想要创建一个对象，有一个函数会自动调用起来，这个就是构造函数</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -207,8 +205,6 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p><em><strong>构造函数要注意点</strong></em></p>
 <ul>
@@ -249,8 +245,6 @@
 <ol>
 <li>
 <p><em><strong>构造函数是可以有多个的</strong></em></p>
-<ul>
-<li>
 <p><em>如果你在 class body 里定义了</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -298,12 +292,10 @@
 </div>
 </div><p><em>这个时候他就会分不清到底要调用哪一个 complex 所以就会报错，所以切记</em></p>
 </li>
-</ul>
-</li>
 </ol>
 <h3 id="当构造函数在private里"><em><strong>当构造函数在private里</strong></em></h3>
 <p><em>构造函数在private里面我们无法通过正常的模式构造对象，所以一般我们是不会把构造函数放在私有区域</em></p>
-<p><em><strong>但是有一个设计模式 - 单例模式，他会把构造函数放在私有区域里</strong></em></p>
+<p><em>但是有一个设计模式 - 单例模式，他会把构造函数放在私有区域里</em></p>
 <h3 id="const常量构造函数"><em><strong>Const（常量构造函数）</strong></em></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -403,22 +395,20 @@
 </ol>
 <h3 id="所有的构造函数"><em><strong>所有的构造函数</strong></em></h3>
 <ol>
-<li><em><strong>无参构造函数</strong></em>
-<ul>
-<li><em>即默认构造函数，如果没有明确写出无参数构造函数，编译器会自动生成默认的无参数构造函数，函数为空，什么也不做，如果不想使用自动生成的无参构造函数，必需要自己显示写出一个无参构造函数</em></li>
-</ul>
+<li>
+<p><em><strong>无参构造函数</strong></em></p>
+<p><em>即默认构造函数，如果没有明确写出无参数构造函数，编译器会自动生成默认的无参数构造函数，函数为空，什么也不做，如果不想使用自动生成的无参构造函数，必需要自己显示写出一个无参构造函数</em></p>
 </li>
-<li><em><strong>有参构造函数</strong></em>
-<ul>
-<li><em>就是有参数的构造函数</em></li>
-</ul>
+<li>
+<p><em><strong>有参构造函数</strong></em></p>
+<p><em>就是有参数的构造函数</em></p>
 </li>
-<li><em><strong>拷贝构造函数</strong></em>
-<ul>
-<li><em>拷⻉构造函数的函数参数为对象本身的引用，用于根据一个已存在的对象复制出一个新的该类的对象，一般在函数中会将已存在的对象的数据成员的值一一复制到新创建的对象中。如果没有显示的写拷⻉构造函数，则系统会默认创建一个拷⻉构造函数，但当类中有指针成员时，最好不要使用编译器提供的默认的拷⻉构造函数，最好自己定义并且在函数中执行深拷⻉</em></li>
-</ul>
+<li>
+<p><em><strong>拷贝构造函数</strong></em></p>
+<p><em>拷⻉构造函数的函数参数为对象本身的引用，用于根据一个已存在的对象复制出一个新的该类的对象，一般在函数中会将已存在的对象的数据成员的值一一复制到新创建的对象中。如果没有显示的写拷⻉构造函数，则系统会默认创建一个拷⻉构造函数，但当类中有指针成员时，最好不要使用编译器提供的默认的拷⻉构造函数，最好自己定义并且在函数中执行深拷⻉</em></p>
 </li>
-<li><em><strong>转换构造函数</strong></em>
+<li>
+<p><em><strong>转换构造函数</strong></em></p>
 <ul>
 <li><em>根据一个指定类型的对象创建一个本类的对象，也可以算是一般构造函数 的一种</em></li>
 <li><em>这里提出来，是想说有的时候不允许默认转换的话，要记得将其声明为 explict 的，来阻止一些隐式转换的发生</em></li>
@@ -429,8 +419,6 @@
 <ol>
 <li>
 <p><em><strong>什么是转换函数</strong></em></p>
-<ul>
-<li>
 <p><em><code>operator double ()</code>这就是转换函数</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -459,12 +447,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p><em><strong>什么是转换构造函数</strong></em></p>
-<ul>
-<li>
 <p><em>只有一个实参的构造函数就是转换构造函数</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -487,12 +471,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p><em><strong>没有<code>explicit</code>的转换构造函数</strong></em></p>
-<ul>
-<li>
 <p><em>我们先不谈<code>explicit</code>是啥，看来瞧瞧下述代码</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -520,9 +500,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p><em><strong>那么转换构造函数他的应用场景是啥</strong></em></p>
+</div><p><em><strong>那么转换构造函数他的应用场景是啥</strong></em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -537,12 +515,8 @@
 <p><em>但是 &ldquo;+&rdquo; 的设计理念 左边是Fraction，所以他就会想能不能把4也转换成 Fraction 类型</em></p>
 <p><em>那这个时候就是转换构造函数的发挥之地了，4 同时 也是4分之1 正好den默认值为1 所以就会自动转换为4分之1</em></p>
 </li>
-</ul>
-</li>
 <li>
 <p><em><strong>有<code>explicit</code>的转换构造函数</strong></em></p>
-<ul>
-<li>
 <p><em>我们来看看没有<code>explicit</code>的转换构造函数有没有问题，所以来看下述代码</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -588,11 +562,7 @@
 </div>
 </div><p><em>我们在之前的代码的基础上，加了一个 <code>operator double ()</code>的操作符重载，但是还是一样的调用，现在就会失败，因为编译器发现，double的走法也一样可以，这样就会有两种不同的走法</em></p>
 <p>所以<code>explicit</code>出现了</p>
-</li>
-<li>
 <p><em>在C++中，<code>explicit</code>关键字用来修饰类的构造函数，被修饰的构造函数的类，不能发生相应的隐式类型转换，只能以显示的方式进行类型转换，换一种说法就是 告诉编译器 不要隐式转换 既然是构造函数 就真的要用到构造函数的时候在用到</em></p>
-</li>
-</ul>
 </li>
 </ol>
 <h2 id="四个特殊函数"><em><strong>四个特殊函数</strong></em></h2>
@@ -628,8 +598,6 @@
 <ol>
 <li>
 <p><em>代码演示</em></p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -667,15 +635,11 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 </ol>
 <h3 id="深拷贝与浅拷贝"><em><strong>深拷贝与浅拷贝</strong></em></h3>
 <ol>
 <li>
 <p><em>什么是浅拷贝</em></p>
-<ul>
-<li>
 <p><em>拷贝后，两个对象指向同一个内存地址，如果修改了其一个，另一个也会受到影响</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -689,17 +653,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 这个时候 b 就会指向 &#39;Hello\0&#39; 的地址 a&amp;b都指向了同一个地址 可是 &#39;World\0&#39; 还在  造成内存泄漏 而且你改a b就会受到影响 所以这种 &#39;b = a&#39; 叫做浅拷贝
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p><em>出现类的等号赋值时，会调用拷⻉函数，在未定义显示拷⻉构造函数的情况下， 系统会调 用默认的拷⻉函数-即浅拷⻉，它能够完成成员的一一复制。当数据成员中没有指针时，浅拷⻉是可行的，但当数据成员中有指针时，如果采用简单的浅拷⻉，则两类中的两个指针指向同一个地址，当对象快要结束时，会调用两次析构函数，而导致野指针的问题</em></p>
-</li>
-</ul>
+</div><p><em>出现类的等号赋值时，会调用拷⻉函数，在未定义显示拷⻉构造函数的情况下， 系统会调 用默认的拷⻉函数-即浅拷⻉，它能够完成成员的一一复制。当数据成员中没有指针时，浅拷⻉是可行的，但当数据成员中有指针时，如果采用简单的浅拷⻉，则两类中的两个指针指向同一个地址，当对象快要结束时，会调用两次析构函数，而导致野指针的问题</em></p>
 </li>
 <li>
 <p><em>什么是深拷贝</em></p>
-<ul>
-<li><em>拷贝后，两个对象的值相同，但是不是同一个内存地址</em></li>
-</ul>
+<p><em>拷贝后，两个对象的值相同，但是不是同一个内存地址</em></p>
 </li>
 <li>
 <p><em>简而言之，当数据成员中有指针时，必需要用深拷⻉更加安全</em></p>
@@ -709,8 +667,6 @@
 <ol>
 <li>
 <p><em>什么是拷贝构造函数及实现</em></p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -726,8 +682,6 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p><em>什么情况会调用拷贝构造函数</em></p>
 <ul>
@@ -739,8 +693,10 @@
 <li>
 <p><em>为什么拷贝构造函数必须是pass by reference，不能是 pass by value</em></p>
 <ul>
-<li><em>是为了防止死递归</em></li>
-<li><em>当一个对象需要以值方式进行传递时，编译器会生成代码调用它的拷⻉构造函数生成一个副本，如果类 A 的拷⻉构造函数的参数不是引用传递，而是采用值传递，那么就又需要为了创建传递给拷⻉构造函数的参数的临时对象，而又一次调用类 A的拷⻉构造函数，这就是一个死递归</em></li>
+<li>
+<p><em>为了防止死递归</em></p>
+<p><em>当一个对象需要以值方式进行传递时，编译器会生成代码调用它的拷⻉构造函数生成一个副本，如果类 A 的拷⻉构造函数的参数不是引用传递，而是采用值传递，那么就又需要为了创建传递给拷⻉构造函数的参数的临时对象，而又一次调用类 A的拷⻉构造函数，这就是一个死递归</em></p>
+</li>
 </ul>
 </li>
 </ol>
