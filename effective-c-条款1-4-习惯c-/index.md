@@ -123,124 +123,124 @@
      ```
 
      *我们一般会把这个`(a * b) = c;` 加个 `if`判断，变成`if (a * b == c) {...}`，但是如果我们手抖，写成了`if (a * b = c)` 这个就是赋值了，但是编译器不会报错，但是我们在返回参数加了一个 const，就能够报错*
-
-
-   - *将`#define`定义常量 修改为`const`也是可以帮助编译器侦测出错误类型*
+   
+   
+      - *将`#define`定义常量 修改为`const`也是可以帮助编译器侦测出错误类型*
+   
 
 4. *bitwise constness && logical constness*
 
-   - *编译器强制实行bitwise constness(又称physical constness,物理上的常量性,即成员函数不更改对象的任何一个bit时才可以说是const),例如*
+   *编译器强制实行bitwise constness(又称physical constness,物理上的常量性,即成员函数不更改对象的任何一个bit时才可以说是const),例如*
 
-     ```cpp
-     class TextBlock{
-     public:
-         ...
-         char& operator [](std::size_t position) const{
-             return pText[position];
-         }
-     private:
-         char* pText;
-     }
-     ```
-
-     *编译器认定它是bitwise constness的,但是它却允许以下代码的存在*
-
-     ```cpp
-     const TextBlock cctb("Hello");
-     char* pc=&cctb[0];
-     *pc='J';
-     ```
-
-     *这是由于只有pText是cctb的一部分,其指向的内存并不属于cctb*
-
-     ***程序员编写程序时应该使用conceptual constness(概念上的常量性或logical constness,逻辑上的常量性,即一个const成员函数可以处理它所修改的对象的某些bits,但只有在客户端侦测不出的情况下才得如此)***
-
-     *例如对于某些特殊类,其中的某些成员的值注定是要改变的,因此可以用mutable关键字修饰,从而实现即使对象被设定为const,其特定成员的值仍然可以改变的效果.此时该类符合conceptual constness而不符合bitwise constness.*
-
-     *下述代码即就是上一句话的代码解释，在客户端的角度来说，他这个值是不修改的*
-
-     ```cpp
-     class CTextBlock {
-     public:
-       std::size_t length() const;
-     private:
-       char* pText;
-       mutable std::size_t textLength;
-       mutable bool lengthThisVaild;
-     };
-     
-     std::size_t CTextBlock::length() const
-     {
-       if (!lengthThisVaild)
-       {
-         textLength = std::strlen(pText);
-         lengthThisVaild = true;
+   ```cpp
+   class TextBlock{
+   public:
+       ...
+       char& operator [](std::size_t position) const{
+           return pText[position];
        }
-       return textLength;
+   private:
+       char* pText;
+   }
+   ```
+
+   *编译器认定它是bitwise constness的,但是它却允许以下代码的存在*
+
+   ```cpp
+   const TextBlock cctb("Hello");
+   char* pc=&cctb[0];
+   *pc='J';
+   ```
+
+   *这是由于只有pText是cctb的一部分,其指向的内存并不属于cctb*
+
+   ***程序员编写程序时应该使用conceptual constness(概念上的常量性或logical constness,逻辑上的常量性,即一个const成员函数可以处理它所修改的对象的某些bits,但只有在客户端侦测不出的情况下才得如此)***
+
+   *例如对于某些特殊类,其中的某些成员的值注定是要改变的,因此可以用mutable关键字修饰,从而实现即使对象被设定为const,其特定成员的值仍然可以改变的效果.此时该类符合conceptual constness而不符合bitwise constness.*
+
+   *下述代码即就是上一句话的代码解释，在客户端的角度来说，他这个值是不修改的*
+
+   ```cpp
+   class CTextBlock {
+   public:
+     std::size_t length() const;
+   private:
+     char* pText;
+     mutable std::size_t textLength;
+     mutable bool lengthThisVaild;
+   };
+   
+   std::size_t CTextBlock::length() const
+   {
+     if (!lengthThisVaild)
+     {
+       textLength = std::strlen(pText);
+       lengthThisVaild = true;
      }
-     ```
+     return textLength;
+   }
+   ```
 
 5. *函数重载*
 
-   - *如果参数是引用,可以基于参数是否为const实现函数重载(也可以基于指针是否为const实现函数重载),特殊的,对于成员函数,因为它存在一个隐含的this指针参数,因而可以基于函数是否为const实现重载*
+   *如果参数是引用,可以基于参数是否为const实现函数重载(也可以基于指针是否为const实现函数重载),特殊的,对于成员函数,因为它存在一个隐含的this指针参数,因而可以基于函数是否为const实现重载*
 
-     ```cpp
-     class TextBlock {
-     public:
-       const char& operator[](std::size_t position) const { return text[position]; }
-       char& operator[](std::size_t position) { return text[position]; }
-     private:
-       std::string text;
-     }
-     
-     TextBlock tb("hello");
-     std:cout << tb[0]; // calls non-const TextBlock::operator[]
-     const TextBlock ctb("hello");
-     std:cout << ctb[0]; // calls const TextBlock::operator[]
-     ```
+   ```cpp
+   class TextBlock {
+   public:
+     const char& operator[](std::size_t position) const { return text[position]; }
+     char& operator[](std::size_t position) { return text[position]; }
+   private:
+     std::string text;
+   }
+   
+   TextBlock tb("hello");
+   std:cout << tb[0]; // calls non-const TextBlock::operator[]
+   const TextBlock ctb("hello");
+   std:cout << ctb[0]; // calls const TextBlock::operator[]
+   ```
 
 6. *避免const和非const成员函数中的重复*
 
-   - ```cpp
-     class TextBlock {
-     public:
-       const char& operator[](std::size_t position) const {
-         ... // 检查
-         ... // 打印日志
-         return text[position];
-       }
-       
-       char& operator[](std::size_t position) {
-         ... // 检查
-         ... // 打印日志
-         return text[position];
-       }
+   ```cpp
+   class TextBlock {
+   public:
+     const char& operator[](std::size_t position) const {
+       ... // 检查
+       ... // 打印日志
+       return text[position];
      }
-     ```
+     
+     char& operator[](std::size_t position) {
+       ... // 检查
+       ... // 打印日志
+       return text[position];
+     }
+   }
+   ```
 
-     *看上述代码 很明显 他们有重复代码，所以我们要抽出来，因为这样更好维护，代码如下*
+   *看上述代码 很明显 他们有重复代码，所以我们要抽出来，因为这样更好维护，代码如下*
 
-     ```cpp
-     class TextBlock{
-     public:
+   ```cpp
+   class TextBlock{
+   public:
+       ...
+       const char& operator[](std::size_t position) const{
          ...
-         const char& operator[](std::size_t position) const{
-           ...
-           return text[position];
-         }
-         char operator[](std::size_t position){
-         	return const_cast<char&>(
-           	static_cast<const TextBlock&>(*this)[position]);
-         }
-         ...
-     };
-     ```
+         return text[position];
+       }
+       char operator[](std::size_t position){
+       	return const_cast<char&>(static_cast<const TextBlock&>(*this)[position]);
+       }
+       ...
+   };
+   ```
 
-     *可以看出,经过了两次类型转换*
+   *可以看出,经过了两次类型转换*
 
-     *第一次通过`static_cast`将`*this`转为`const TextBlock&`，以确保调用的是`operator[]`的const版本，否则会调用非const版本导致递归调用造成栈溢出*
+   *第一次通过`static_cast`将`*this`转为`const TextBlock&`，以确保调用的是`operator[]`的const版本，否则会调用非const版本导致递归调用造成栈溢出*
 
-     *第二次通过const_cast去掉const版本的opsrator[]返回的const char&的const特性以与函数的返回类型相匹配*
+   *第二次通过const_cast去掉const版本的opsrator[]返回的const char&的const特性以与函数的返回类型相匹配*
 
 7. *对于const_cast的行为之前存在一些误解,对于以下代码*
 
