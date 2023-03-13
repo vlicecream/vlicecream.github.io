@@ -624,6 +624,207 @@ template<typename T>
 
 ## ***条款47 请使用traits classes表现类型信息***
 
+1. *STL迭代器分类*
+
+   - *input迭代器*
+
+     - *只能一次一步向前移动,客户只可读取(不能涂写)且只能读取一次它们所指的东西,模仿指向输入文件的阅读指针.例如istream_iterators*
+
+   - *output迭代器*
+
+     - *与input迭代器类似,但"一切只为输出",只能一次一步向前移动,客户只可涂写(不能读取)且只能涂写一次它们所指向的东西,模仿指向输出文件的涂写指针.例如ostream_iterators*
+
+   - *forward迭代器*
+
+     - *具有input迭代器和output迭代器的所有功能:只能一次一步向前移动,可以读或写其所指物一次以上.STL并未提供单向linked list,但某些程序库有(通常名为slist),这种容器的迭代器就是forward迭代器*
+
+   - *bidirectional迭代器*
+
+     - *它除了可以向前移动,还可以向后移动,一步只能一次,并可以读或写所指物一次以上.STL的list,set,multiset,map和multimap的迭代器就属于这一类*
+
+   - *random迭代器*
+
+     - *除了bidirectional迭代器的所有功能以外,还可以执行"迭代器算数",即在常量时间内向前或向后移动任意距离.例如vector,deque和string的迭代器*
+
+   - *针对这五种分类,C++标准库分别提供专属的 struct 加以区分*
+
+     ```cpp
+     struct input_iterator_tag {};
+     struct output_iterator_tag {};
+     struct forward_iterator_tag : public input_iterator_tag {};
+     struct bidirectional_iterator_tag : public forward_iterator_tag {};
+     struct random_access_iterator_tag : public bidirectional_iterator_tag {};
+     ```
+
+2. *traits*
+
+   - *STL主要由"用以表现容器,迭代器和算法"的templates组成,单也覆盖若干工具性templates,例如用于将迭代器移动到某个给定距离的advance函数模板.正如1所言,不同迭代器具有不同接口,因而advance需要根据不同迭代器所能进行的操作确定不同实现,例如对于random迭代器,advance可以直接进行+=操作,而对于其他迭代器,则可能反复使用++或--,因此advance的实现可能像这样*
+
+     ```cpp
+     template<typename IterT,typename DisT>
+     void advance(Iter& iter,Dist d){
+         if(iter is a random access iterator) //伪代码
+             iter+=d;
+         else
+             if(d>=0)
+                 while(d--)
+                     ++iter;
+             else
+                 while(d++)
+                     --iter;
+     }
+     ```
+
+     *这种做法必须首先判断iter是否为random迭代器,因此需要取得类型的有关信息,traits技术就是用来使STL的某些泛型算法能够在编译期取得某些类型信息.*
+
+   - *"Traits并不是C++关键字或一个预先定义好的构件;它们是一种技术,也是一个C++程序员共同遵守的协议.""这个技术的要求之一是,它对内置类型和用户自定义类型的表现必须一样好"*
+
+     *"Traits能够施行于内置类型"意味着通过在类型内嵌套信息实现类型判断不可行,因此类型的traits信息必须位于类型自身之外.标准技术是把它置入一个template及一个或多个特化版本中."这样的templates在标准程序库中有若干个,其中针对迭代器的被被命名为iterator_traits"*
+
+     ```cpp
+     template<typename IterT>
+     struct iterator_traits;
+     ```
+
+     *iterator_traits的运作方式是:针对每一个类型IterT,在struct iterator_traits<IterT>内一定声明某个typedef名为iterator_catagory,这个typedef用于确定Iter的迭代器分类:*
+
+     *对于自定义类型,它要求每一个用户"自定义的iterator类型"必须嵌套一个typedef,名为iterator_catagory(实际上,要使自定义的iterator支持更多的STL泛型算法,还需要其他typedef,见第3条),这个typedef用来确认Iter的分类 ,因此针对一个的确迭代器设计的class可能回想这样*
+
+     ```cpp
+     template<...>
+     class deque{
+     public:
+         class iterator{
+         public:
+             typedef random_access_iterator_tag iterator_category;
+             ...
+         };
+         ...
+     }
+     ```
+
+      *list的迭代器可能像这样:*
+
+     ```cpp
+     template<...>
+     class list{
+     public:
+         class Iterator{
+         public:
+              typedef bidirectional_iterator_tag iterator_category;
+             ...
+         };
+         ...
+     };
+     ```
+
+     *至于iterator_traits,只是用来表现iterator class的嵌套式typedef*
+
+     ```cpp
+     template<typename IterT>
+     struct iterator_traits{
+         typedef typename IterT::iterator_category iterator_category;
+         ...
+     };  
+     ```
+
+     *对于指针迭代器,由于指针不可能嵌套typedef,iterator_traits特别针对指针类型提供一个偏特化版本:*
+
+     ```cpp
+     template<typename Iter>
+     struct iterator_traits<IterT*>{
+         typedef random_access_iterator_tag iterator_category;
+         ...
+     };
+     ```
+
+     *由以上实例,trait classes的设计与实现过程大体如下:*
+
+     ​	*1). 确认若干想取得的类型相关信息.(对于迭代器,包括其category)*
+
+     ​	*2). 为该信息选择一个名称(对于迭代器的category,名称为iterator_category)*
+
+     ​	*3). 提供一个template和一组特化版本(例如iterator_traits),内含希望支持的类型信息.*
+
+     *因此,最开始的伪代码可以实行*
+
+     ```cpp
+     template<typename IterT,typename DisT>
+     void advance(Iter& iter,Dist d){
+         if(typeid(typename::std::iterator_traits<IterT>::iterator_category
+            ==typeid(typename::std::random_access_iterator_tag))
+         ...
+     }
+     ```
+
+     *此时还未结束,因为以上代码会存在编译问题:假设对advance作以下调用*
+
+     ```cpp
+     std::list<int>::iterator iter;
+     advance(iter,10);
+     ```
+
+     *那么advance将被特化为以下形式:*
+
+     ```cpp
+     void advance(std::list<int>::iterator iter,int d){
+     if(typeid(typename::std::iterator_traits<std::list<int>::iterator>:iterator_category==typeid(typename::std::random_access_iterator_tag))
+             iter+=d;  //错误,编译时不通过!
+         else
+             if(d>=0)
+                 while(d--)
+                     ++iter;
+             else
+                 while(d++)
+                     --iter;
+     }
+     ```
+
+     尽管测试typeid的那一行总会因为list<int>::iterator而失败,因而iter+=d永远不会执行,但在此之前编译器必须确保所有的源码有效,纵使是不会执行的代码!
+
+       此外,由于iterator_traits<IterT>::category在编译期即可确定,但if语句的判断却要在运行期核定,这不仅浪费时间,也会造成可执行文件膨胀.
+
+       实际上,C++提供了完成在编译期进行核定的方法:函数重载.合成两种重载函数,但接受不同的iterator_category对象,由它们完成advance的实际功能,因此advance的最终实现版本如下:
+
+     ```cpp
+     template<typename IterT,typename DistT>
+     void doAdvance(IterT& iter,Dist d,std::random_access_iterator_tag){
+         iter+=d;
+     }
+     template<typename IterT,typename DistT>
+     void doAdvance(IterT& iter,Dist d,std::bidirectional_iterator_tag){
+         if(d>=0)
+             while(d--)
+                 ++iter;
+         else
+             while(d++)
+                 --iter;
+     }
+     template<typename IterT,typename DistT>
+     void doAdvance(IterT& iter,Dist d,std::input_iterator_tag){
+         if(d<0)
+             throw out_of_range("Negative distance");
+         while(d--)
+             ++iter;
+     }
+     template<typename IterT,typename DistT>
+     void doAdvance(Iter& iter,Dist d){
+         doAdvance(iter,d,typename std::iterator_traits<IterT>::iterator_category());
+     }
+     ```
+
+     其中,由于之前iterator卷标结构的继承关系,doAdvance的input_iterator版本也可以被forward iterator调用.
+
+       由以上实例,trait classes的使用过程如下:
+
+       1). 建立一组重载函数(身份像劳工)或函数模板(例如doAdvance),彼此之间的差异仅在于各自的traits参数.令每个函数实现码与其接受之traits相应和.
+
+       2). 建立一个控制函数(身份像工头)或函数模板(例如advance),它调用上述"劳工函数并传递traits classes所提供的信息".
+
+3. traits 广泛应用于标准库,包括上述iterator_traits,除了iterator_category,iterator_traits还供应四分迭代器相关信息(value_type指明迭代器所指对象类型,difference_type指明迭代器距离类型,pointer指明对象的原生指针类型,reference指明对象的引用类型,参照http://www.cnblogs.com/tracylee/archive/2012/10/26/2741907.html)此外还有char_traits用于保存字符类型的相关信息,numeric_limits用于保存数值类型相关信息等等.
+
+     TR1导入许多新的traits classes用以提供类型信息,包括is_fundamental<T>(判断T是否为内置类型),is_array<T>(判断T是否为数组类型),is_base_of<T1,T2>(判断T1,T2是否相同,抑或T1是T2的base classes).总计TR1一共为C++添加了50个以上的trait classes.
+
 ## ***条款48 模板元编程***
 
 ### ***Summary***

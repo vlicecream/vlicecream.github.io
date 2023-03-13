@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  8704 ,
+                        }],"genre": "posts","wordcount":  11730 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE40-48-%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B\/","datePublished": "2023-03-13T14:22:00+08:00","dateModified": "2023-03-13T14:22:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款40~48 模板与泛型编程</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-13">2023-03-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 8704 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 18 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE40-48-%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="条款40~48 模板与泛型编程">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-13">2023-03-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11730 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE40-48-%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="条款40~48 模板与泛型编程">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -1156,6 +1156,332 @@
 <li><em>当编写一个class template时，它所提供之“与此template相关的”函数支持“全部參数之隐式类型转换”时，请将那些函数定义为class template内部的friend函数</em></li>
 </ol>
 <h2 id="条款47-请使用traits-classes表现类型信息"><em><strong>条款47 请使用traits classes表现类型信息</strong></em></h2>
+<ol>
+<li>
+<p><em>STL迭代器分类</em></p>
+<ul>
+<li>
+<p><em>input迭代器</em></p>
+<ul>
+<li><em>只能一次一步向前移动,客户只可读取(不能涂写)且只能读取一次它们所指的东西,模仿指向输入文件的阅读指针.例如istream_iterators</em></li>
+</ul>
+</li>
+<li>
+<p><em>output迭代器</em></p>
+<ul>
+<li><em>与input迭代器类似,但&quot;一切只为输出&quot;,只能一次一步向前移动,客户只可涂写(不能读取)且只能涂写一次它们所指向的东西,模仿指向输出文件的涂写指针.例如ostream_iterators</em></li>
+</ul>
+</li>
+<li>
+<p><em>forward迭代器</em></p>
+<ul>
+<li><em>具有input迭代器和output迭代器的所有功能:只能一次一步向前移动,可以读或写其所指物一次以上.STL并未提供单向linked list,但某些程序库有(通常名为slist),这种容器的迭代器就是forward迭代器</em></li>
+</ul>
+</li>
+<li>
+<p><em>bidirectional迭代器</em></p>
+<ul>
+<li><em>它除了可以向前移动,还可以向后移动,一步只能一次,并可以读或写所指物一次以上.STL的list,set,multiset,map和multimap的迭代器就属于这一类</em></li>
+</ul>
+</li>
+<li>
+<p><em>random迭代器</em></p>
+<ul>
+<li><em>除了bidirectional迭代器的所有功能以外,还可以执行&quot;迭代器算数&quot;,即在常量时间内向前或向后移动任意距离.例如vector,deque和string的迭代器</em></li>
+</ul>
+</li>
+<li>
+<p><em>针对这五种分类,C++标准库分别提供专属的 struct 加以区分</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">input_iterator_tag</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">output_iterator_tag</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">forward_iterator_tag</span> <span class="o">:</span> <span class="k">public</span> <span class="n">input_iterator_tag</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">bidirectional_iterator_tag</span> <span class="o">:</span> <span class="k">public</span> <span class="n">forward_iterator_tag</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">random_access_iterator_tag</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bidirectional_iterator_tag</span> <span class="p">{};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em>traits</em></p>
+<ul>
+<li>
+<p><em>STL主要由&quot;用以表现容器,迭代器和算法&quot;的templates组成,单也覆盖若干工具性templates,例如用于将迭代器移动到某个给定距离的advance函数模板.正如1所言,不同迭代器具有不同接口,因而advance需要根据不同迭代器所能进行的操作确定不同实现,例如对于random迭代器,advance可以直接进行+=操作,而对于其他迭代器,则可能反复使用++或&ndash;,因此advance的实现可能像这样</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span><span class="k">typename</span> <span class="n">DisT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">advance</span><span class="p">(</span><span class="n">Iter</span><span class="o">&amp;</span> <span class="n">iter</span><span class="p">,</span><span class="n">Dist</span> <span class="n">d</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">iter</span> <span class="n">is</span> <span class="n">a</span> <span class="n">random</span> <span class="n">access</span> <span class="n">iterator</span><span class="p">)</span> <span class="c1">//伪代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">iter</span><span class="o">+=</span><span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">if</span><span class="p">(</span><span class="n">d</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(</span><span class="n">d</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">++</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">while</span><span class="p">(</span><span class="n">d</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">--</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这种做法必须首先判断iter是否为random迭代器,因此需要取得类型的有关信息,traits技术就是用来使STL的某些泛型算法能够在编译期取得某些类型信息.</em></p>
+</li>
+<li>
+<p><em>&ldquo;Traits并不是C++关键字或一个预先定义好的构件;它们是一种技术,也是一个C++程序员共同遵守的协议.&ldquo;&ldquo;这个技术的要求之一是,它对内置类型和用户自定义类型的表现必须一样好&rdquo;</em></p>
+<p><em>&ldquo;Traits能够施行于内置类型&quot;意味着通过在类型内嵌套信息实现类型判断不可行,因此类型的traits信息必须位于类型自身之外.标准技术是把它置入一个template及一个或多个特化版本中.&ldquo;这样的templates在标准程序库中有若干个,其中针对迭代器的被被命名为iterator_traits&rdquo;</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">iterator_traits</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>iterator_traits的运作方式是:针对每一个类型IterT,在struct iterator_traits<IterT>内一定声明某个typedef名为iterator_catagory,这个typedef用于确定Iter的迭代器分类:</em></p>
+<p><em>对于自定义类型,它要求每一个用户&quot;自定义的iterator类型&quot;必须嵌套一个typedef,名为iterator_catagory(实际上,要使自定义的iterator支持更多的STL泛型算法,还需要其他typedef,见第3条),这个typedef用来确认Iter的分类 ,因此针对一个的确迭代器设计的class可能回想这样</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">deque</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">iterator</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">typedef</span> <span class="n">random_access_iterator_tag</span> <span class="n">iterator_category</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>list的迭代器可能像这样:</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">list</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Iterator</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">         <span class="k">typedef</span> <span class="n">bidirectional_iterator_tag</span> <span class="n">iterator_category</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>至于iterator_traits,只是用来表现iterator class的嵌套式typedef</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">iterator_traits</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">IterT</span><span class="o">::</span><span class="n">iterator_category</span> <span class="n">iterator_category</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>对于指针迭代器,由于指针不可能嵌套typedef,iterator_traits特别针对指针类型提供一个偏特化版本:</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Iter</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">iterator_traits</span><span class="o">&lt;</span><span class="n">IterT</span><span class="o">*&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">typedef</span> <span class="n">random_access_iterator_tag</span> <span class="n">iterator_category</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>由以上实例,trait classes的设计与实现过程大体如下:</em></p>
+<p>​	<em>1). 确认若干想取得的类型相关信息.(对于迭代器,包括其category)</em></p>
+<p>​	<em>2). 为该信息选择一个名称(对于迭代器的category,名称为iterator_category)</em></p>
+<p>​	<em>3). 提供一个template和一组特化版本(例如iterator_traits),内含希望支持的类型信息.</em></p>
+<p><em>因此,最开始的伪代码可以实行</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span><span class="k">typename</span> <span class="n">DisT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">advance</span><span class="p">(</span><span class="n">Iter</span><span class="o">&amp;</span> <span class="n">iter</span><span class="p">,</span><span class="n">Dist</span> <span class="n">d</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="k">typename</span><span class="o">::</span><span class="n">std</span><span class="o">::</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">IterT</span><span class="o">&gt;::</span><span class="n">iterator_category</span>
+</span></span><span class="line"><span class="cl">       <span class="o">==</span><span class="k">typeid</span><span class="p">(</span><span class="k">typename</span><span class="o">::</span><span class="n">std</span><span class="o">::</span><span class="n">random_access_iterator_tag</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>此时还未结束,因为以上代码会存在编译问题:假设对advance作以下调用</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">advance</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>那么advance将被特化为以下形式:</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">advance</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">iter</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="k">typename</span><span class="o">::</span><span class="n">std</span><span class="o">::</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="o">&gt;:</span><span class="n">iterator_category</span><span class="o">==</span><span class="k">typeid</span><span class="p">(</span><span class="k">typename</span><span class="o">::</span><span class="n">std</span><span class="o">::</span><span class="n">random_access_iterator_tag</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">iter</span><span class="o">+=</span><span class="n">d</span><span class="p">;</span>  <span class="c1">//错误,编译时不通过!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(</span><span class="n">d</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">++</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(</span><span class="n">d</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">--</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>尽管测试typeid的那一行总会因为list<int>::iterator而失败,因而iter+=d永远不会执行,但在此之前编译器必须确保所有的源码有效,纵使是不会执行的代码!</p>
+<p>此外,由于iterator_traits<IterT>::category在编译期即可确定,但if语句的判断却要在运行期核定,这不仅浪费时间,也会造成可执行文件膨胀.</p>
+<p>实际上,C++提供了完成在编译期进行核定的方法:函数重载.合成两种重载函数,但接受不同的iterator_category对象,由它们完成advance的实际功能,因此advance的最终实现版本如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span><span class="k">typename</span> <span class="n">DistT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">doAdvance</span><span class="p">(</span><span class="n">IterT</span><span class="o">&amp;</span> <span class="n">iter</span><span class="p">,</span><span class="n">Dist</span> <span class="n">d</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">random_access_iterator_tag</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iter</span><span class="o">+=</span><span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span><span class="k">typename</span> <span class="n">DistT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">doAdvance</span><span class="p">(</span><span class="n">IterT</span><span class="o">&amp;</span> <span class="n">iter</span><span class="p">,</span><span class="n">Dist</span> <span class="n">d</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">bidirectional_iterator_tag</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">d</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">while</span><span class="p">(</span><span class="n">d</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">--</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span><span class="k">typename</span> <span class="n">DistT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">doAdvance</span><span class="p">(</span><span class="n">IterT</span><span class="o">&amp;</span> <span class="n">iter</span><span class="p">,</span><span class="n">Dist</span> <span class="n">d</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">input_iterator_tag</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">out_of_range</span><span class="p">(</span><span class="s">&#34;Negative distance&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">d</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span><span class="k">typename</span> <span class="n">DistT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">doAdvance</span><span class="p">(</span><span class="n">Iter</span><span class="o">&amp;</span> <span class="n">iter</span><span class="p">,</span><span class="n">Dist</span> <span class="n">d</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">doAdvance</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">IterT</span><span class="o">&gt;::</span><span class="n">iterator_category</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中,由于之前iterator卷标结构的继承关系,doAdvance的input_iterator版本也可以被forward iterator调用.</p>
+<p>由以上实例,trait classes的使用过程如下:</p>
+<p>1). 建立一组重载函数(身份像劳工)或函数模板(例如doAdvance),彼此之间的差异仅在于各自的traits参数.令每个函数实现码与其接受之traits相应和.</p>
+<p>2). 建立一个控制函数(身份像工头)或函数模板(例如advance),它调用上述&quot;劳工函数并传递traits classes所提供的信息&rdquo;.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>traits 广泛应用于标准库,包括上述iterator_traits,除了iterator_category,iterator_traits还供应四分迭代器相关信息(value_type指明迭代器所指对象类型,difference_type指明迭代器距离类型,pointer指明对象的原生指针类型,reference指明对象的引用类型,参照http://www.cnblogs.com/tracylee/archive/2012/10/26/2741907.html)此外还有char_traits用于保存字符类型的相关信息,numeric_limits用于保存数值类型相关信息等等.</p>
+<p>TR1导入许多新的traits classes用以提供类型信息,包括is_fundamental<T>(判断T是否为内置类型),is_array<T>(判断T是否为数组类型),is_base_of&lt;T1,T2&gt;(判断T1,T2是否相同,抑或T1是T2的base classes).总计TR1一共为C++添加了50个以上的trait classes.</p>
+</li>
+</ol>
 <h2 id="条款48-模板元编程"><em><strong>条款48 模板元编程</strong></em></h2>
 <h3 id="summary-6"><em><strong>Summary</strong></em></h3>
 <ol>
