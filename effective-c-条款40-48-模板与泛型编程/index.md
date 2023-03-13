@@ -409,4 +409,260 @@ private:
 
 ## ***条款45 运用成员函数模板接受全部兼容类型***
 
+1. *隐式转化（前言）*
+
+   *该条款作者阐述自己的观点是通过智能指针的样例*
+
+   *所以我们复习一下隐式转化的问题，例如以下代码*
+
+   ```cpp
+   #include<iostream>
+   using namespace std;
+   class A {
+   public:
+       explicit A(int i) : a(i) {};
+       A(const A& obj) : a(obj.a) {}
+   private:
+       int a;
+   };
+   
+   
+   int main()
+   {
+       int value =0;
+       A a = value;  // 编译不通过。由于构造函数中有explicit限定符
+       return 0;
+   }
+   ```
+
+   *我们知道由于explicit限定符的存在编译不通过*
+
+2. *问题抛出*
+
+   *既然复习完了，我们来看看书上另一段代码*
+
+   ```cpp
+   template<typename T>
+   class SmartPtr {
+   public:
+     explicit SmartPtr(T* realPtr);
+     ...
+   };
+   
+   SmartPtr<Top> pt1 = SmartPtr<Middle>(new Middle);
+   SmartPrt<Top> pt2 = SmartPrt<Bottom>(new Bottom);
+   SmartPrt<const Top> pt2=pt1;
+   ```
+
+   *我们能够知道，由于`SmartPtr<Top>`类型和`SmartPtr<Middle>`类型不同，再加上`explicit SmartPtr<Middle>`中的explicit限定符，`SmartPtr<Top> pt1=SmartPtr<Middle>(new Middle);`这句代码编译不通过。*
+
+   *并且编译器并不觉得`SmartPtr<Top>`类型和`SmartPtr<Middle>`类型存在继承关系*
+
+   *为了能够实现相互转化。能够加入本节的主旨技术去解决上面出现的问题*
+
+3. *解决方法*
+
+   ```cpp
+   template<typaname T>
+   class SmartPtr{
+   public:
+     template<typename U>
+     SmartPrt(const SmartPrt<U>& other) : heldPrt(other.get()) { };
+     T* get() const{ return heldPrt; }
+     ……
+   private:
+     T* heldPrt;
+   };
+   
+   SmartPtr<Top> pt1 = SmartPtr<Middle>(new Middle);
+   SmartPrt<Top> pt2 = SmartPrt<Bottom>(new Bottom);
+   SmartPrt<const Top> pct2 = pt1;
+   ```
+
+   *我们加入了一个member function template函数。由于typename T和typename U 是两种类型，并且构造函数中没有explicit关键字，不会阻止`heldPrt(other.get())的隐式转换`*
+
+   *所以，以上代码能够通过编译*
+
+4. *TR1规范中关于`tr1::shared_ptr`的一份摘录*
+
+   ```cpp
+   template<class T>
+   class shared_ptr{
+   public:
+     template<class Y>
+       explicit shared_ptr(Y* p);
+     template<class Y> 
+       shared_ptr(shared_ptr<Y> const& r);
+     template<class Y>
+       explicit shared_ptr(weak_ptr<Y> const& r);
+     template<class Y>
+       explicit shared_ptr(auto_ptr<Y> const& r);
+     template<class Y>
+       shared_ptr& operator=(shared_ptr<Y> const& r);
+     template<class Y>
+       shared_ptr& operator=(auto_ptr<Y> const& r);
+      ……
+   };
+   ```
+
+   *我们能够发现上面仅仅有泛化copy构造函数不是explicit，表示shared_ptr 的隐式转化被同意，而其它的智能指针转化不被同意*
+
+   *这里另一个须要注意的地方，在class类声明泛化copy构造函数（member template）。并不会阻止编译器生成它们自己的copy构造函数（non-template），换言之。假设程序中仅仅写了泛化的copy构造函数，那么编译器还是会自己主动生成一个非泛化的版本号出来，假设不想要这个缺省版本号，那一定不能偷懒。要两个版本号的copy构造函数都要写*
+
+   ```cpp
+   template<typaname T>
+   class SmartPtr{
+   public:
+     template<typename U>
+     SmartPrt(const SmartPrt<U>& other) : heldPrt(other.get()) {};
+     SmartPtr() {}  // 假设不写自己的非泛化构造函数，编译器会自己主动生成自己的默认非泛化构造函数。
+     T* get() const{ return heldPrt; }
+     ……
+   private:
+     T* heldPrt;
+   };
+   ```
+
+### ***Summary***
+
+1. *请使用member function templates（成员函数模板）生成“可接受全部兼容类型”的函数*
+2. *假设你声明member templates用于“泛化copy构造”或“泛化assignment操作”，你还是须要声明正常的copy构造函数和copy assignment操作符*
+
+## ***条款46 需要类型转换时请为模板定义非成员函数***
+
+*这个条款是在《[Item24](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE18-25-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%94%9F%E5%91%BD/)》的基础上，讲述有关非成员函数在模板类中的作用，所以忘了的要去复习下*
+
+*想要在template实现Item24的功能，还得考虑其他问题*
+
+```cpp
+template<typename T>
+class Rational{
+public:
+  Rational(const T& numerator=0,const T& denominator=1);
+  const T numerator() const;
+  const T denominator() const;
+  ……
+};
+template<typename T>
+const Rational<T> operator*(const Rational<T>& lhs,const Rational<T>& rhs) { …… };
+Rational<int> oneHalf(1,2);
+Rational<int> result = oneHalf*2;  // 错误 无法通过编译
+```
+
+*大家思考一下为什么`oneHalf*2`这句话不能通过编译*
+
+*事实上，operator模板函数中參数有两个，所以它会分别对这两个参数进行匹配来确定函数模板类型，试想一下，函数模板在没有实例化之前是不存在的，不存在的函数怎么会实现參数的隐式转换？我们来判断一般模板函数的运行过程。首先，模板函数通过自身參数实例化，实例化之后才会被调用运行。然而。对于本例来说，两个參数的类型一个是`Rational<int>`，还有一个是`2`，在编译期间前者能够被判断出来类型是int的rational，后者却判断不出来。由于在template实參推导过程中从不将隐式类型转换考虑在内*
+
+*为了能让编译通过，我们能够进行例如以下改变*
+
+```cpp
+template<typename T>
+class Rational
+{
+    public:
+        ……
+        friend const Rational operator*(const Rational& lhs,const Rational& rhs);
+        {
+            return Rational（lhs.numerator()*rhs.numerator(),lhs.denominator()*rhs.denominator());
+        }
+
+};
+```
+
+*将operator变成Rational类的友元函数。这样在定义一个`Rational<int>`对象的时候，operator模板函数事实上已经被实例化了，这时候再调用`oneHalf*2`这句话的时候，就是直接调用已经实例化的operator*函数了，所以，此时，它支持隐式转换。将2转换为`Rational<int>`对象*
+
+*值得一提的是以上代码也可写成例如以下形式*
+
+```cpp
+template<typename T>
+class Rational
+{
+    public:
+        ……
+        friend const Rational<T> operator*(const Rational<T>& lhs,const Rational<T>& rhs);
+        {
+            return Rational<T>（lhs.numerator()*rhs.numerator(),lhs.denominator()*rhs.denominator());
+        }
+
+    };
+```
+
+*也就是说`Rational<T>`和`Rational`的形式是一个意思，为了简化，我们能够用`Rational`的形式*
+
+*由于这样将友元函数定义在Rational类中，也就默认是内联函数inline了，为了避免复杂的friend函数影响代码体积，我们利用另外的一种形式实现**
+
+**例如以下代码*
+
+```cpp
+ template<typename T> class Rational;//forward decelarion
+    template<typename T>
+    const Rational<T> doMultiply(const Rational<T>& lhs,const Rational<T>& rhs);
+    template<typename T>
+    class Rational{
+    public:
+        ……
+        friend const Rational operator*(const Rational& lhs,const Rational& rhs);//声明+定义
+        {
+            return doMultiply(lhs,rhs);
+        }
+
+    };
+
+template<typename T>
+    const Rational<T> doMultiply(const Rational<T>& lhs,const Rational<T>& rhs)
+    {
+        return Rational<T>（lhs.numerator()*rhs.numerator(),lhs.denominator()*rhs.denominator());
+    }
+
+```
+
+*我们又又一次定义了一个非类成员函数non-member，将此函数的声明和定义都放在类的外部，这样就能避免代码膨胀问题*
+
+### ***Summary***
+
+1. *当编写一个class template时，它所提供之“与此template相关的”函数支持“全部參数之隐式类型转换”时，请将那些函数定义为class template内部的friend函数*
+
+## ***条款47 请使用traits classes表现类型信息***
+
+## ***条款48 模板元编程***
+
+### ***Summary***
+
+1. *什么是模板元编程*
+
+   - *模板元编程(template mataprogramming,TMP)是编写C++程序并执行于编译期的过程,"所谓template mataprogram(模板元程序),是以C++写成,执行于C++编译器内的程序.一旦TMP程序结束执行,其输出,也就是从templates具现出来的若干C++源码,便会一如往常地被编译*
+
+2. *模板元编程的优点*
+
+   - *它让某些事情变得更容易*
+
+   - *template program执行于C++编译期的特性使得工作可以从编译期转移至执行期,这使得错误可以被提前检测,并产出具有较小可执行文件,较短运行期,较少内存需求的文件,代价就是编译时间变长了.*
+
+   -  *Item47中的traits解法就是TMP，因为traits引发编译期发生于类型身上的if...else运算：用编译期的重载模板函数参数匹配行为代替执行期发生的if...else运算功能*
+
+   - *TMP已经被证明是"图灵完全"的,使用TMP可以声明变量,执行循环,编写及调用函数......针对TMP设计的程序库(例如Boost's MPL)提供更高层次的语法."但这般构件相对于正常的C++对应物看起来很是不同,例如Item47展示的TMP if-else条件句是藉由templates及其特化体表现出来",另外一个例子是循环,TMP是的循环是藉由递归完成*
+
+     *用TMP实现一个计算阶乘的函如下*
+
+     ```cpp
+     template<unsigned n>
+     struct Factorial{
+         enum{value=n*Factiroal<n-1>::value;};
+     }
+     template<>
+     struct Factorial<0>{
+         enum{ value=1};
+     }
+     ```
+
+3. *TMP的重要应用*
+
+   - *确保量度单位正确*
+   - *优化矩阵运算*
+   - *生成客户定制之设计模式实现品(如Strategy，Observer，Visitor等)*
+
+4. *TMP的缺点*
+
+   - 语法不直观
+   - 编译时间长
 
