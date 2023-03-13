@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "值, 指针, 引用, 参数传递","wordcount":  1566 ,
+                        }],"genre": "posts","keywords": "值, 指针, 引用, 参数传递","wordcount":  1544 ,
         "url": "https:\/\/vlicecream.github.io\/c-%E5%80%BC%E4%B8%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8\/","datePublished": "2022-03-17T00:00:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">value & poionter & reference</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1566 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1544 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/c-%E5%80%BC%E4%B8%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" class="leancloud_visitors" data-flag-title="value &amp; poionter &amp; reference">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -131,15 +131,15 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#引用">引用</a></li>
-    <li><a href="#签名">签名</a></li>
-    <li><a href="#指针和引用的区别">指针和引用的区别</a></li>
-    <li><a href="#参数传递">参数传递</a></li>
-    <li><a href="#野指针">野指针</a></li>
-    <li><a href="#悬空指针">悬空指针</a></li>
+    <li><a href="#引用"><em><strong>引用</strong></em></a></li>
+    <li><a href="#签名"><em><strong>签名</strong></em></a></li>
+    <li><a href="#指针和引用的区别"><em><strong>指针和引用的区别</strong></em></a></li>
+    <li><a href="#参数传递"><em><strong>参数传递</strong></em></a></li>
+    <li><a href="#野指针"><em><strong>野指针</strong></em></a></li>
+    <li><a href="#悬空指针"><em><strong>悬空指针</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="引用">引用</h2>
+            </div><div class="content" id="content"><h2 id="引用"><em><strong>引用</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>什么是引用</strong></em></p>
@@ -220,7 +220,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="签名">签名</h2>
+<h2 id="签名"><em><strong>签名</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>什么是签名</strong></em></p>
@@ -247,75 +247,77 @@
 </ul>
 </li>
 </ol>
-<h2 id="指针和引用的区别">指针和引用的区别</h2>
+<h2 id="指针和引用的区别"><em><strong>指针和引用的区别</strong></em></h2>
 <ol>
 <li><em>指针和引用都是内存地址的一个概念，区别就是指针是一个实体，引用是一个别名</em></li>
 <li><em>指针他指向一个内存，在编译的时候会以 &ldquo;指针名 - 指向的内存地址&rdquo; 存入符号表，所以说 指针包含的内容是可以改变的，并且是可以 <code>const</code>修饰的，允许拷贝和赋值，甚至可以为空，<code>sizeof</code>得到的就是指针类型的大小</em></li>
 <li><em>引用则就是相当于一个内存的别名，在添加到符号表的时候，是以 &ldquo;引用变量名 - 引用对象的地址&quot;添加到符号表中，符号表一经完成不能改变，所以引用必须而且只能在定义时被绑 定到一块内存上，后续不能更改，也不能为空，也没有 const 和非 const 区别</em></li>
-<li><em><strong>sizeof</strong></em>
+<li><em>sizeof</em>
 <ul>
 <li><em>sizeof 引用得到代表对象的大小</em></li>
 <li><em>sizeof 指针得到的是指针本身的大小</em></li>
 </ul>
 </li>
-<li><em><strong>参数传递</strong></em>
+<li><em>参数传递</em>
 <ul>
 <li><em>传指针的实质是传值，传递的值是指针的地址。指针需要被解引用后才可以对对象进行操作</em></li>
 <li><em>传引用的实质是传地址，传递的是参数的地址。直接对引用进行的修改会直接作用到引用对象上</em></li>
 </ul>
 </li>
 </ol>
-<h2 id="参数传递">参数传递</h2>
+<h2 id="参数传递"><em><strong>参数传递</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>pass by value</strong></em></p>
+<p><em>pass by value</em></p>
 <ul>
-<li><em><code>complex (double r = 0, double i = 0): re (r), im (r) { } </code></em></li>
 <li><em>形参是实参的拷⻉，函数内部对形参的操作并不会影响到外部的实参</em></li>
 <li><em>值传递过程中，被调函数的形式参数作为被调函数的局部变量处理，会在栈中开辟内存空间以存放由主调函数传递进来的实参 值，从而形成了实参的一个副本(替身)</em></li>
 <li><em>值传递的特点就是被调函数对形式参数的任何操作都是作为局部变量进行的，不会影响主调函数的实参变量的值(形参指针变了，实参指针不会变)</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>pass by pointer</strong></em></p>
+<p><em>pass by pointer</em></p>
 <ul>
 <li><em>指针参数本质上就是一个值传递，他所传递的是一个地址值</em></li>
 <li><em>当对地址值的指向操作时，就相当于对实参本身进行操作</em></li>
 </ul>
 </li>
 <li>
-<p><em><strong>pass by reference</strong></em></p>
+<p><em>pass by reference</em></p>
 <ul>
-<li><em><code>Complex&amp; operator += { const complex&amp; } </code></em></li>
-<li><em>被调函数的形式参数也作为局部变量在栈中开辟了内存空间，但是这时 存放的是由主调函数放进来的实参变量的地址</em></li>
-<li><em>被调函数对形参(本体)的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量(根据别名找到主调函数中的 本体)</em></li>
-<li><em><strong>因此，被调函数对形参的任何操作都会影响主调函数中的实参变量</strong></em></li>
+<li>
+<p><em>被调函数的形式参数也作为局部变量在栈中开辟了内存空间，但是这时 存放的是由主调函数放进来的实参变量的地址</em></p>
+</li>
+<li>
+<p><em>被调函数对形参(本体)的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量(根据别名找到主调函数中的 本体)</em></p>
+<p><em><strong>因此，被调函数对形参的任何操作都会影响主调函数中的实参变量</strong></em></p>
+</li>
 </ul>
 </li>
 <li>
-<p><em><strong>引用传递和指针传递是不同的</strong></em></p>
+<p><em>引用传递和指针传递是不同的</em></p>
 <ul>
 <li><em>虽然他们都是被调函数栈空间上的一个局部变量，但是任何对于引用参数的处理都会通过一个间接寻址的方式操作到主调函数中的相关变量，而对于指针传递的参数，如果改变被调函数中的指针地址，他将应用不到主调函数的相关变量。</em></li>
 <li><em>如果想通过指针参数传递来改变主调函数中的相关变量(地址)，那就得使用指向指针的指针或者指针引用</em></li>
 </ul>
 </li>
 </ol>
-<h2 id="野指针">野指针</h2>
+<h2 id="野指针"><em><strong>野指针</strong></em></h2>
 <ol>
-<li><em><strong>什么是野指针</strong></em>
+<li><em>什么是野指针</em>
 <ul>
 <li><em>就是没有被初始化过的指针</em></li>
 </ul>
 </li>
-<li><em><strong>如何避免野指针</strong></em>
+<li><em>如何避免野指针</em>
 <ul>
 <li><em>在平时的编码中，养成定义指针后初始化或者使用智能指针的习惯</em></li>
 </ul>
 </li>
 </ol>
-<h2 id="悬空指针">悬空指针</h2>
+<h2 id="悬空指针"><em><strong>悬空指针</strong></em></h2>
 <ol>
-<li><em><strong>什么是悬空指针</strong></em>
+<li><em>什么是悬空指针</em>
 <ul>
 <li><em>是指针最初指向的内存已经被释放的一种指针</em></li>
 </ul>
