@@ -53,95 +53,45 @@ private:
 
 ### ***重载***
 
-1. ***构造函数是可以有多个的***
+*构造函数是可以有多个的*
 
-   *如果你在 class body 里定义了*
+*如果你在 class body 里定义了*
 
-   ```cpp
-   double real() const {return re;}
-   ```
+```cpp
+double real() const {return re;}
+```
 
-   *又在外部定义了*
+*又在外部定义了*
 
-   ```cpp
-   void real(double r) { re = r; }
-   ```
+```cpp
+void real(double r) { re = r; }
+```
 
-   *这两者是 **不冲突的，因为编译器会把他们换成不一样的名字***
+*这两者是 **不冲突的，因为编译器会把他们换成不一样的名字***
 
-   *但是也有一些例子如下代码 我们要注意*
+*但是也有一些例子如下代码 我们要注意*
 
-   ```cpp
-   complex(double r = 0, double i = 0) : re (r), im (i) { }
-   complex(): re(0), im(0) { }
-   ```
+```cpp
+complex(double r = 0, double i = 0) : re (r), im (i) { }
+complex(): re(0), im(0) { }
+```
 
-   *上述两个不是不行，但是如果我们这么调用*
+*上述两个不是不行，但是如果我们这么调用*
 
-   ```cpp
-   {
-     complex c1;
-     complex c2();
-   }
-   ```
+```cpp
+{
+  complex c1;
+  complex c2();
+}
+```
 
-   *这个时候他就会分不清到底要调用哪一个 complex 所以就会报错，所以切记*
+*这个时候他就会分不清到底要调用哪一个 complex 所以就会报错，所以切记*
 
 ### ***当构造函数在private里***
 
 *构造函数在private里面我们无法通过正常的模式构造对象，所以一般我们是不会把构造函数放在私有区域*
 
 *但是有一个设计模式 - 单例模式，他会把构造函数放在私有区域里*
-
-### ***Const（常量构造函数）***
-
-```cpp
-double real () const { return re; }
-// 代表数据内容 不可改变
-```
-
-### ***友元***
-
-1. ***什么是友元***
-
-   - *Friend 的意义在于打开封装的大门，可以直接从私有区域拿取数据*
-
-   - *好比借钱，陌生人不可能借钱给他，但是朋友是可以的，但是朋友太多借太多钱也不太好，所以你自己选择，如果不设置friend，绕个弯从函数拿，也是可以的*
-
-     ```cpp
-     private:
-     	double re, im;
-     	friend complex& __dopal (conplex*, const complex&)
-         
-     inline complex& __doapl (complex* ths, const complex& r) {
-       ths->re += r.re;
-       ths->im += r.im;
-       return *ths
-     }
-     ```
-
-2. ***相同class的各个obj互为friend***
-
-   - *在下述代码中，我们竟然可以通过`func`直接获取到private中的值，我们也没有设置friend，这是因为相同class的各个obj互为friend*
-
-   - ```cpp
-     class complex {
-     public:
-       complex(double r = 0, double i = 0) : re(r), im(i) {}
-       
-       int func(const complex& param) { return param.re + param.im; }
-     
-     private:
-       double re, im;
-     };
-     
-     {
-       complex c1(2, 1);
-       complex c2;
-       
-       c2.func(c1);
-     }
-     ```
 
 ### ***所有的构造函数***
 
@@ -306,7 +256,9 @@ private:
    b = a; // 这个时候 b 就会指向 'Hello\0' 的地址 a&b都指向了同一个地址 可是 'World\0' 还在  造成内存泄漏 而且你改a b就会受到影响 所以这种 'b = a' 叫做浅拷贝
    ```
 
-   *出现类的等号赋值时，会调用拷⻉函数，在未定义显示拷⻉构造函数的情况下， 系统会调 用默认的拷⻉函数-即浅拷⻉，它能够完成成员的一一复制。当数据成员中没有指针时，浅拷⻉是可行的，但当数据成员中有指针时，如果采用简单的浅拷⻉，则两类中的两个指针指向同一个地址，当对象快要结束时，会调用两次析构函数，而导致野指针的问题*
+   *在需要调用拷⻉函数的时候，而且在未定义显示拷⻉构造函数的情况下， 系统会调用默认的拷⻉函数-即浅拷⻉，它能够完成成员的一一复制*
+
+   *当数据成员中没有指针时，浅拷⻉是可行的，但当数据成员中有指针时，如果采用简单的浅拷⻉，则两类中的两个指针指向同一个地址，当对象a快要结束时，会调用1次析构函数，再当对象b结束时，又将这块已经被释放过的内存再释放一次，对同一块内存空间释放了两次，会导致程序崩溃*
 
 2. *什么是深拷贝*
 
