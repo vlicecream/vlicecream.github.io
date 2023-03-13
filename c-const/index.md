@@ -1,7 +1,10 @@
 # const
 
 
-![const](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png)
+|                                  | const object | non-const object |
+| :------------------------------: | :----------: | :--------------: |
+|   ***const member functions***   |      ✅       |        ✅         |
+| ***non-const member functions*** |      ❌       |        ✅         |
 
 ## ***object 与 member func 的关系***
 

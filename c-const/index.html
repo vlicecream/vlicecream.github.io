@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "const","wordcount":  1398 ,
+                        }],"genre": "posts","keywords": "const","wordcount":  1412 ,
         "url": "https:\/\/vlicecream.github.io\/c-const\/","datePublished": "2022-03-27T00:00:00+08:00","dateModified": "2023-02-27T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">const</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1398 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1412 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/c-const/" class="leancloud_visitors" data-flag-title="const">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -136,14 +136,27 @@
     <li><a href="#effective-c-item"><em><strong>Effective c++ Item</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png"
-        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/imagesimage-20220521220322042.png"
-        title="const" /></p>
+            </div><div class="content" id="content"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">const object</th>
+<th style="text-align:center">non-const object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em><strong>const member functions</strong></em></td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+</tr>
+<tr>
+<td style="text-align:center"><em><strong>non-const member functions</strong></em></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">✅</td>
+</tr>
+</tbody>
+</table>
 <h2 id="object-与-member-func-的关系"><em><strong>object 与 member func 的关系</strong></em></h2>
 <ol>
 <li>
