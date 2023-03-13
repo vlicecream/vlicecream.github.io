@@ -244,26 +244,27 @@
 
 7. *对于const_cast的行为之前存在一些误解,对于以下代码*
 
-  ```cpp
-  #include<iostream>
-  using std::cout;
-  using std::endl;
-  int main(){
-      const int a = 5;
-      int& rta = const_cast < int&>(a) ;
-      rta = 6;
-      cout << "a: " << a << "    rtr: " << rta << endl;
-      cout << "&a: " << &a << "     &rta: " << &rta;
-      system("pause");
-      return 0;
-  }
-  ```
+   ```cpp
+   #include<iostream>
+   using std::cout;
+   using std::endl;
+   int main(){
+       const int a = 5;
+       int& rta = const_cast < int&>(a) ;
+       rta = 6;
+       cout << "a: " << a << "    rtr: " << rta << endl;
+       cout << "&a: " << &a << "     &rta: " << &rta;
+       system("pause");
+       return 0;
+   }
+   ```
 
-  *输出结果如下*
+   *输出结果如下*
 
-  ![img](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303032116653.png)
+   ![img](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303032116653.png)
 
-  *可见虽然const_cast表面上改变了变量的const性质,但a的值实际上还是没有改变(编译器仍然背着我们干了不少事),所以const_cast的实际用途并不是改变const对象的值,而是"暂时"去除对象的const属性使其可以作为参数传入非const函数,企图通过const_cast改变const对象的值可能会导致未预料的结果.因此个人认为5中的第二段代码(出自Effective C++ “条款3  尽可能用const”)存在一些错误,如有错误欢迎批评指正！*
+   *可见虽然const_cast表面上改变了变量的const性质,但a的值实际上还是没有改变(编译器仍然背着我们干了不少事),所以const_cast的实际用途并不是改变const对象的值,而是"暂时"去除对象的const属性使其可以作为参数传入非const函数,企图通过const_cast改变const对象的值可能会导致未预料的结果.因此个人认为5中的第二段代码(出自Effective C++ “条款3  尽可能用const”)存在一些错误,如有错误欢迎批评指正！*
+
 
 ### ***Summary***
 

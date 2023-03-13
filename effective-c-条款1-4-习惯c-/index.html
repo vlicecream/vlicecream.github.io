@@ -583,8 +583,6 @@
 </li>
 <li>
 <p><em>对于const_cast的行为之前存在一些误解,对于以下代码</em></p>
-</li>
-</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -625,6 +623,8 @@
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303032116653.png"
         title="img" /></p>
 <p><em>可见虽然const_cast表面上改变了变量的const性质,但a的值实际上还是没有改变(编译器仍然背着我们干了不少事),所以const_cast的实际用途并不是改变const对象的值,而是&quot;暂时&quot;去除对象的const属性使其可以作为参数传入非const函数,企图通过const_cast改变const对象的值可能会导致未预料的结果.因此个人认为5中的第二段代码(出自Effective C++ “条款3  尽可能用const”)存在一些错误,如有错误欢迎批评指正！</em></p>
+</li>
+</ol>
 <h3 id="summary-2"><em><strong>Summary</strong></em></h3>
 <ol>
 <li><em>const可以修饰指针，要注意区分修饰指针</em>
