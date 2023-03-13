@@ -10,29 +10,29 @@
 
 1. ***我们根据上述表格来看看例子***
 
-   - *我们创建了一个常量 str 并且调用`print`方法，但是如果当初设计 `string::print()` 时候没有指明const 那么会直接报错， 因为 "const obj" 调用 non-const 成员函数的时候 是不允许的～～*
+   *我们创建了一个常量 str 并且调用`print`方法，但是如果当初设计 `string::print()` 时候没有指明const 那么会直接报错， 因为 "const obj" 调用 non-const 成员函数的时候 是不允许的～～*
 
-     ```cpp
-     const String str("hello world");
-     str.print();
-     ```
+   ```cpp
+   const String str("hello world");
+   str.print();
+   ```
 
 2. ***我们再来看一个标准库 string 的例子 `class template std::basic_string<...>` 有如下两个 成员函数***
 
-   - ```cpp
-     chatT operator[] (size_type pos) const { ... } // 不必考虑COW
-     reference operator[] (size_type pos) { ... } // 必须考虑COW
-     ```
+   ```cpp
+   chatT operator[] (size_type pos) const { ... }  // 不必考虑copy on write
+   reference operator[] (size_type pos) { ... }  // 必须考虑copy on write
+   ```
 
-   - *在设计字符串的时候 因为字符串是共享的 可能a拷贝一份 b拷贝一份 就有多份 最致命的是 如果a修改了 b的字符串也随之修改了，所以我们必须要考虑这个共享的问题*
+   *在设计字符串的时候 因为字符串是共享的 可能a拷贝一份 b拷贝一份 就有多份 最致命的是 如果a修改了 b的字符串也随之修改了，所以我们必须要考虑这个共享的问题*
 
-   - *所以这个就考虑到了 const 下面没有const，那么可能就会修改字符串，上面的有 const 那么就不允许修改*
+   *所以这个就考虑到了 const 下面没有const，那么可能就会修改字符串，上面的有 const 那么就不允许修改*
 
-   - *下面也是可行的 因为 non-const member func 是可以创建 non-const obj 的*
+   *下面也是可行的 因为 non-const member func 是可以创建 non-const obj 的*
 
-   - *但是上面的 const member func 又可以创建 const obj 又可以创建 non-const obj，那么编译器怎么调用呢*
+   *但是上面的 const member func 又可以创建 const obj 又可以创建 non-const obj，那么编译器怎么调用呢*
 
-     *当成员函数的 “const" 和 "non-const" 版本同时存在 const obj 只能调用const 版本 “non-const obj” 只能调用"non-const"版本*
+   *当成员函数的 “const" 和 "non-const" 版本同时存在 const obj 只能调用const 版本 “non-const obj” 只能调用"non-const"版本*
 
 ## ***const修饰***
 
@@ -42,11 +42,11 @@
 
 2. ***const 修饰指针变量和引用变量***
 
-   - ```cpp
-     const int* p1; //指向整形常量的指针，它指向的值不能修改
-     int* const p2; //指向整形的常量指针 ，它不能在指向别的变量，但指向(变量)的值可以修改。
-     const int* const p3; //指向整形常量的常量指针 。它既不能再指向别的常量，指向的值也不能修改。
-     ```
+   ```cpp
+   const int* p1; //指向整形常量的指针，它指向的值不能修改
+   int* const p2; //指向整形的常量指针 ，它不能在指向别的变量，但指向(变量)的值可以修改。
+   const int* const p3; //指向整形常量的常量指针 。它既不能再指向别的常量，指向的值也不能修改。
+   ```
 
 3. ***const 应用到函数中***
 
@@ -58,8 +58,14 @@
 
 4. ***const 在类中的用法***
 
-   - ***const成员变量：*** *只在某个对象生命周期内是常量，而对于整个类而言 是可以改变的。因为类可以创建多个对象，不同的对象其 const 数据成员值可以不同。所以不 能在类的声明中初始化 const 数据成员，因为类的对象在没有创建时候，编译器不知道 const 数据成员的值是什么。const 数据成员的初始化只能在类的构造函数的初始化列表中进行*
-   - ***const成员函数：*** *const 成员函数的主要目的是防止成员函数修改对象的内容。要注意，const 关键字和 static 关键字对于成员函数来说是不能同时使用的，因为 static 关键字修饰静态成员 函数不含有 this 指针，即不能实例化，const 成员函数又必须具体到某一个函数*
+   - ***const成员变量*** 
+     - *只在某个对象生命周期内是常量，而对于整个类而言 是可以改变的*
+     - *const 数据成员的初始化只能在类的构造函数的初始化列表中进行*
+       - *因为类可以创建多个对象，不同的对象其 const 数据成员值可以不同。所以不能在类的声明中初始化 const 数据成员，因为类的对象在没有创建时候，编译器不知道 const 数据成员的值是什么*
+   - ***const成员函数***
+     -  *const 成员函数的主要目的是防止成员函数修改对象的内容*
+     - *要注意，const 关键字和 static 关键字对于成员函数来说是不能同时使用的*
+       - *因为 static 关键字修饰静态成员 函数不含有 this 指针，即不能实例化，const 成员函数又必须具体到某一个函数*
 
 5. ***const 修饰类对象，定义常量对象***
 
