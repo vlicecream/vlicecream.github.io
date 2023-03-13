@@ -14,38 +14,38 @@
 
 1. *前言*
 
-   - *该条款解决方法 分为两种，一个为"c++11"以后的解决方法，一个为"c++98"*
+   *该条款解决方法 分为两种，一个为"c++11"以后的解决方法，一个为"c++98"*
 
 2. *c++11*
 
-   - *直接在不想要的特种成员函数 后面 加上 `= delete` 即可*
+   *直接在不想要的特种成员函数 后面 加上 `= delete` 即可*
 
-     ```cpp
-     class HomeForSale {
-     public:
-       HomeForSale(const HomeForSale&) = delete;
-       HomeForSale& operator=(const HomeForSale&) = delete;
-     }
-     ```
+   ```cpp
+   class HomeForSale {
+   public:
+     HomeForSale(const HomeForSale&) = delete;
+     HomeForSale& operator=(const HomeForSale&) = delete;
+   }
+   ```
 
 3. *c++98*
 
-   - *可以通过私有化 并且 只声明，而不去定义，具体如下述代码*
+   *可以通过私有化 并且 只声明，而不去定义，具体如下述代码*
 
-     ```cpp
-     class Uncopyable {
-     protected:
-       Uncopyable() { };
-       ~Uncopyable() { };
-     private:
-       Uncopyable(const Uncopyable&);
-       Uncopyable& operator=(const Uncopyable&);
-     }
-     
-     class HomeForSale : private Uncopyable {
-       ...
-     };
-     ```
+   ```cpp
+   class Uncopyable {
+   protected:
+     Uncopyable() { };
+     ~Uncopyable() { };
+   private:
+     Uncopyable(const Uncopyable&);
+     Uncopyable& operator=(const Uncopyable&);
+   }
+   
+   class HomeForSale : private Uncopyable {
+     ...
+   };
+   ```
 
 
 ### ***Summary***
@@ -58,26 +58,26 @@
 
 1. *为多态基类声明virtual析构函数*
 
-   - *如果不为多态基类声明`virtual`析构函数，那么在实例化派生类的时候，则会只调用基类的析构函数，就会造成内存泄漏*
+   *如果不为多态基类声明`virtual`析构函数，那么在实例化派生类的时候，则会只调用基类的析构函数，就会造成内存泄漏*
 
-      ```cpp
-      class TimeKeeper {
-      public:
-        TimeKeeper();
-        ~TimeKeeper(); // non-virtual
-      };
-      
-      class AtomicClock : public TimeKeeper { };
-      
-      // getTimeKeeper(); 工厂函数，有可能实例化了AtomicClock，所以这时候一个父类的指针指向了子类
-      TimeKeeper* ptk = getTimeKeeper();
-      ... // use it
-      delete ptk; // 这个就会出现问题，因为TimeKeeper的析构函数不是虚函数，所以只会用了TimeKeeper基类的析构函数
-      ```
+   ```cpp
+   class TimeKeeper {
+   public:
+     TimeKeeper();
+     ~TimeKeeper(); // non-virtual
+   };
+   
+   class AtomicClock : public TimeKeeper { };
+   
+   // getTimeKeeper(); 工厂函数，有可能实例化了AtomicClock，所以这时候一个父类的指针指向了子类
+   TimeKeeper* ptk = getTimeKeeper();
+   ... // use it
+   delete ptk; // 这个就会出现问题，因为TimeKeeper的析构函数不是虚函数，所以只会用了TimeKeeper基类的析构函数
+   ```
 
 2. *不是为了多态特性，不要随意声明virtual析构函数*
 
-   - *如果不需要多态特性，还会析构函数声明了`virtual`，那么析构函数会变大，多了虚指针和虚表*
+   *如果不需要多态特性，还会析构函数声明了`virtual`，那么析构函数会变大，多了虚指针和虚表*
 
 3. *类继承时小心父类析构函数不具有多态特性*
 
@@ -91,7 +91,7 @@
 
 1. *析构函数不要抛出异常*
 
-   - *析构函数抛出异常就代表这个析构函数并没有执行完，可能会造成内存泄漏*
+   *析构函数抛出异常就代表这个析构函数并没有执行完，可能会造成内存泄漏*
 
 2. *避免异常从析构函数抛出的方法*
 
@@ -115,55 +115,53 @@
    }
    ```
 
-   - *发生异常直接终止程序（程序：你清高）*
+   *发生异常直接终止程序（程序：你清高）*
 
-      ```cpp
-      DBConn::~DBConn()
-      {
-        try { db.Close(); }
-        catch (...) {
-          // 打印日志
-          std::abort(); //终止程序
-        }
-      }
-      ```
-
-
-   - *或者就是不终止程序了，直接把错误吞掉，打印好日志*
-
-      ```cpp
-      DBConn::~DBConn()
-      {
-        try { db.Close(); }
-        catch (...) {
-          // 打印日志
-        }
-      }
-      ```
-
-
-   - *前两者都无法对"抛出异常"做出什么反应,另一个方法是避免异常函数在析构函数内执行,由客户来调用func函数,为避免客户忘记执行,需设立flag标记客户是否调用,如果客户没有调用,在析构函数内调用该函数*
-
-     ```cpp
-     class DBConn {
-     public:
-       void close() {
-         db.close();
-         closed = true; // 如果成功close 就设一个标识符
-       }
-       ~DBConn() {
-         if (!closed) {
-           try { db.close(); }
-           catch (...) {
-             // make log
-           }
+   ```cpp
+   DBConn::~DBConn()
+   {
+     try { db.Close(); }
+     catch (...) {
+       // 打印日志
+       std::abort(); //终止程序
+     }
+   }
+   ```
+   
+   *或者就是不终止程序了，直接把错误吞掉，打印好日志*
+   
+   ```cpp
+   DBConn::~DBConn()
+   {
+     try { db.Close(); }
+     catch (...) {
+       // 打印日志
+     }
+   }
+   ```
+   
+   *前两者都无法对"抛出异常"做出什么反应,另一个方法是避免异常函数在析构函数内执行,由客户来调用func函数,为避免客户忘记执行,需设立flag标记客户是否调用,如果客户没有调用,在析构函数内调用该函数*
+   
+   ```cpp
+   class DBConn {
+   public:
+     void close() {
+       db.close();
+       closed = true; // 如果成功close 就设一个标识符
+     }
+     ~DBConn() {
+       if (!closed) {
+         try { db.close(); }
+         catch (...) {
+           // make log
          }
        }
-     private:
-       DBConnection db;
-       
      }
-     ```
+   private:
+     DBConnection db;
+     
+   }
+   ```
 
 ### ***Summary***
 
@@ -178,41 +176,41 @@
 
 1. *不要再构造和析构函数中调用virtual函数*
 
-   - *如果在构造函数中调用了virtual函数，在实例化了派生类的时候，构造函数的执行顺序是从内到外，所以他会先调用父类的构造函数，但是父类的构造函数又调用了virtual函数，这时候派生类还没有初始化，所以调用的也只是父类的virtual函数*
+   *如果在构造函数中调用了virtual函数，在实例化了派生类的时候，构造函数的执行顺序是从内到外，所以他会先调用父类的构造函数，但是父类的构造函数又调用了virtual函数，这时候派生类还没有初始化，所以调用的也只是父类的virtual函数*
 
-      *如果在析构函数中调用了virtual函数，在销毁派生类的时候，析构函数的执行顺序是从外到内的，所以他会先销毁子类，再是父类，但是父类的析构函数又调用了virtual函数，这时候派生类已经被干掉了，所以调用的也只是父类的virtual函数*
+   *如果在析构函数中调用了virtual函数，在销毁派生类的时候，析构函数的执行顺序是从外到内的，所以他会先销毁子类，再是父类，但是父类的析构函数又调用了virtual函数，这时候派生类已经被干掉了，所以调用的也只是父类的virtual函数*
 
-      ```cpp
-      class Base{
-      public:
-        Base() { sayHello(); }
-        virtual void sayHello() {
-          std::cout << "Hello Base!" << std::endl;
-        }
-        virtual void sayBye() {
-          std::cout << "Bye Base!" << std::endl;
-        }
-        virtual ~Base() {
-          sayBye();
-        }
-      }
-      
-      class Derived : public Base {
-        Derived() { }
-        void sayHello() override {
-          std::cout << "Hello Derived" << std::endl;
-        }
-        void sayBye() override {
-          std::cout << "Bye Derived" << std::endl;
-        }
-      }
-      
-      Derived derived; // 实例化派生类
-      
-      // 结果
-      Hello Base!
-      Bye Base!
-      ```
+   ```cpp
+   class Base{
+   public:
+     Base() { sayHello(); }
+     virtual void sayHello() {
+       std::cout << "Hello Base!" << std::endl;
+     }
+     virtual void sayBye() {
+       std::cout << "Bye Base!" << std::endl;
+     }
+     virtual ~Base() {
+       sayBye();
+     }
+   }
+   
+   class Derived : public Base {
+     Derived() { }
+     void sayHello() override {
+       std::cout << "Hello Derived" << std::endl;
+     }
+     void sayBye() override {
+       std::cout << "Bye Derived" << std::endl;
+     }
+   }
+   
+   Derived derived; // 实例化派生类
+   
+   // 结果
+   Hello Base!
+   Bye Base!
+   ```
 
 
 ### ***Summary***
@@ -257,61 +255,61 @@ public:
 
 1. *潜在的自我赋值**
 
-   - **自我赋值一个bug：如果类里面有动态内存分配，那么在赋值的时候，需要先delete掉原来的，再new一个新的，最后赋值。但如果是自我赋值，那么在delete掉原来的内存的同时，需要赋的值也被delete了（因为都是同一块内存）*
+   *自我赋值一个bug：如果类里面有动态内存分配，那么在赋值的时候，需要先delete掉原来的，再new一个新的，最后赋值。但如果是自我赋值，那么在delete掉原来的内存的同时，需要赋的值也被delete了（因为都是同一块内存）*
 
-   - *下面是个例子，假设我们有一个Bitmap类，一个Widget类。其中Widget有一个Bitmap的指针*
+   *下面是个例子，假设我们有一个Bitmap类，一个Widget类。其中Widget有一个Bitmap的指针*
 
-     ```cpp
-     class Bitmap{};
-     class Widget {
-     public:
-         Widget& operator=(const Widget& rhs);
-     private:
-         Bitmap* pb;
-     };
-     
-     // 防止自我赋值的
-     Widget& Widget::operator=(const Widget& rhs){
-         delete pb;
-         pb = new Bitmap(*rhs.pb);
-         return *this
-     }
-     ```
-     
-     *解决这个问题的方法就是在前面加个判断*
-     
-     ```cpp
-     class Bitmap{};
-     class Widget {
-     public:
-         Widget& operator=(const Widget& rhs);
-     private:
-         Bitmap* pb;
-     };
-     
-     // 防止自我赋值的
-     Widget& Widget::operator=(const Widget& rhs){
-         if (this == *rhs) return *this;
-         delete pb;
-         pb = new Bitmap(*rhs.pb);
-         return *this
-     }
-     ```
-     
-     *除此之外还有个问题。如果赋值的时候，new一块新的空间失败了，那么pb会指向一块被delete掉的空间。这样的指针是有害的*
-     
-     ```cpp
-     Widget& Widget::operator=(const Widget& rhs) {
-         Bitmap *tmp = pb;
-         pb = new Bitmap(*rhs.pb);
-         delete tmp;
-         return *this;
-     }
-     ```
-     
-     首先上面这个版本申请了一个临时变量保存原始的对象。然后new一个Bitmap并赋值。如果这里出错了，还没到delete，其他的所有东西都保持原样。如果没有出错，则再将原始的空间，通过这个临时变量delete。这就解决了上面的问题*
-     
-     *然后它还取消了自我赋值的检测。但是他依然可以处理自我检测问题，假如两个指针指向同一个对象，它也会先创建一个新的副本，赋值以后再删除原来的版本*
+   ```cpp
+   class Bitmap{};
+   class Widget {
+   public:
+       Widget& operator=(const Widget& rhs);
+   private:
+       Bitmap* pb;
+   };
+   
+   // 防止自我赋值的
+   Widget& Widget::operator=(const Widget& rhs){
+       delete pb;
+       pb = new Bitmap(*rhs.pb);
+       return *this
+   }
+   ```
+   
+   *解决这个问题的方法就是在前面加个判断*
+   
+   ```cpp
+   class Bitmap{};
+   class Widget {
+   public:
+       Widget& operator=(const Widget& rhs);
+   private:
+       Bitmap* pb;
+   };
+   
+   // 防止自我赋值的
+   Widget& Widget::operator=(const Widget& rhs){
+       if (this == *rhs) return *this;
+       delete pb;
+       pb = new Bitmap(*rhs.pb);
+       return *this
+   }
+   ```
+   
+   *除此之外还有个问题。如果赋值的时候，new一块新的空间失败了，那么pb会指向一块被delete掉的空间。这样的指针是有害的*
+   
+   ```cpp
+   Widget& Widget::operator=(const Widget& rhs) {
+       Bitmap *tmp = pb;
+       pb = new Bitmap(*rhs.pb);
+       delete tmp;
+       return *this;
+   }
+   ```
+   
+   首先上面这个版本申请了一个临时变量保存原始的对象。然后new一个Bitmap并赋值。如果这里出错了，还没到delete，其他的所有东西都保持原样。如果没有出错，则再将原始的空间，通过这个临时变量delete。这就解决了上面的问题*
+   
+   *然后它还取消了自我赋值的检测。但是他依然可以处理自我检测问题，假如两个指针指向同一个对象，它也会先创建一个新的副本，赋值以后再删除原来的版本*
 
 2. *copy and swap技术*
 
