@@ -314,54 +314,54 @@ public:
 
 *先来学习一个名词：共性与变性分析（commonality and variability analysis）。*
 
-*比較easy理解。比如，你在编写几个函数，会用到同样作用的代码。这时候你往往将同样代码搬到一个新函数中。给其它几个函数调用。同理，假设编写某个class。当中某些部分和另外几个class同样，这时候你不会反复编写这些同样部分，仅仅需把共同部分搬到新class中去就可以，去使用继承或复合（**条款**32,38,39），让原先的classes取用这些共同特性，原classes的互异部分（变异部分）仍然留在原位置不动。*
+*还是比较容易理解的。比如，你在编写几个函数，会用到同样作用的代码。这时候你往往将同样代码搬到一个新函数中。给其它几个函数调用。同理，假设编写某个class。当中某些部分和另外几个class同样，这时候你不会反复编写这些同样部分，仅仅需把共同部分搬到新class中去就可以，去使用继承或复合（[Item32 Item38 Item39](https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE32-40-%E7%BB%A7%E6%89%BF%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1/)），让原先的classes取用这些共同特性，原classes的互异部分（变异部分）仍然留在原位置不动。*
 
 *编写templates时，也要做同样分析，避免反复。non-template代码中反复十分明白：你能够看到两个函数或classes之间有所反复。可是在template代码中，反复是隐晦的。由于仅仅有一份template源代码。*
 
 *比如。你打算在为尺寸固定的正方矩阵编写一个template，该矩阵有个支持逆矩阵运算的函数*
 
 ```cpp
-template<typename T, std::size_t n>//T为数据类型。n为矩阵大小
+template<typename T, std::size_t n>  // T为数据类型。n为矩阵大小
 class SquareMatrix{
-  public:
+public:
   ……
-    void invert();//求逆运算
+  void invert();// 求逆运算
 };
+
 SquareMatrix<double,5> sm1;
-sm1.invert();//调用SquareMatrix<double,5>::invert
+sm1.invert();  // 调用SquareMatrix<double,5>::invert
 SquareMatrix<double,10> sm2;
-sm2.invert();//调用SquareMatrix<double,10>::invert
+sm2.invert();  // 调用SquareMatrix<double,10>::invert
 ```
 
 *上面会详细化两份invert。*
 
-*这两份函数差点儿全然同样（除了一个操作5*5矩阵。一个操作10*10）。这就是代码膨胀的一个典型样例。*
+*这两份函数差点儿全然同样（除了一个操作55矩阵。一个操作1010）。这就是代码膨胀的一个典型样例。*
 
 *上面两个函数除了操作矩阵大小不同外。其它同样。这时能够为其建立一个带数值的函数，而不是反复代码。于是有了对SquareMatrix的第一份改动*
 
 ```cpp
 template<typename T>
 class SquareMatrixBase{
-  protected:
+protected:
   void invert(std::size_t matrixSize);
   ……
 };
 template<typename T, std::size_t n>
 class SquareMatrix : private SquareMatrixBase<T>{
 private:
-  using SquareMatrixBase<T>::invert();//编码遮掩base中的invert，**条款**33
+  using SquareMatrixBase<T>::invert();  // 编码遮掩base中的invert，条款33有说到
 public:
   ……
-  void invert()//求逆运算
-  {
-    this->invsert(n);//稍后解释为什么用this
+  void invert() {  // 求逆运算
+    this->invsert(n);  // 稍后解释为什么用this
   }
 };
 ```
 
-*SquareMatrixBase::invert仅仅是企图避免derived classes代码反复，所以它以protected替换public。这个函数使用this->，由于模板化基类内的函数名称会被derived classes掩盖（条款43）*
+*`SquareMatrixBase::invert`仅仅是企图避免derived classes代码反复，所以它以protected替换public。这个函数使用`this->`，由于模板化基类内的函数名称会被derived classes掩盖（条款43）*
 
-*注意，SquareMatrixBase和SquareMatrix之间继承关系是private。这说明base class是为了帮助derived classes实现，两者不是**is-a关系。*
+*注意，SquareMatrixBase和SquareMatrix之间继承关系是private。这说明base class是为了帮助derived classes实现，两者不是is-a关系*
 
 *如今另一个问题，SquareMatrixBase::invert操作的数据在哪？它在參数中直到矩阵大小，可是矩阵数据derived class才知道。derived class和base class怎样联络？一个做法是能够为SquareMatrixBase::invert加入一个參数（比如一个指针）。*
 
@@ -371,19 +371,17 @@ public:
 template<typename T>
 class SquareMatrixBase{
 protected:
-  SquareMatirxBase(std::size_t n,T* pMem)
-    :size(n), pData(pMem){}
-  void setDataPtr(T* ptr) {pData=ptr;}
+  SquareMatirxBase(std::size_t n, T* pMem) : size(n), pData(pMem) { }
+  void setDataPtr(T* ptr) { pData=ptr; }
   ……
 private:
   std::size_t size;
   T* pData;
 };
 template<typename T, std::size_t n>
-class SquareMatrix:private SquareMatrixBase<T>{
+class SquareMatrix : private SquareMatrixBase<T>{
 public:
-  SquareMatrix()
-    :SquareMatrixBase<T>(n, data){}
+  SquareMatrix() : SquareMatrixBase<T>(n, data) { }
   ……
 private:
   T data[n*n];
@@ -394,12 +392,9 @@ private:
 
 ```cpp
 template<typename T, std::size_t n>
-class SquareMatrix:private SquareMatrixBase<T>{
+class SquareMatrix : private SquareMatrixBase<T>{
 public:
-  SquareMatrix()
-    :SquareMatrixBase<T>(n, 0),
-  pData(new T[n*n])
-  {this->setDataPtr(pData.get());}
+  SquareMatrix() : SquareMatrixBase<T> (n, 0), pData(new T[n*n]) { this->setDataPtr(pData.get()); }
   ……
 private:
   boost::scoped_array<T> pData;
@@ -412,5 +407,6 @@ private:
 
 1. *原因是模板会根据具体类型具象化不同的代码，如果将与模板无关的代码也放入模板函数或者类中，那么就会生成重复的代码，就会导致代码膨胀的问题，函数模板中与参数无关的代码可以包装成单独的函数。类模板中与参数无关的模板可以放到父类中*
 
-## ***条款45 ***
+## ***条款45 运用成员函数模板接受全部兼容类型***
+
 

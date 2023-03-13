@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","wordcount":  5533 ,
+                        }],"genre": "posts","wordcount":  5452 ,
         "url": "https:\/\/vlicecream.github.io\/effective-c-%E6%9D%A1%E6%AC%BE40-48-%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B\/","datePublished": "2023-03-13T14:22:00+08:00","dateModified": "2023-03-13T14:22:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款40~48 模板与泛型编程</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++-%E6%9D%A1%E6%AC%BE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++ 条款</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-13">2023-03-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5533 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE40-48-%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="条款40~48 模板与泛型编程">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-13">2023-03-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5452 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE40-48-%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="条款40~48 模板与泛型编程">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -151,7 +151,7 @@
         <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#条款45-">***条款45 ***</a></li>
+    <li><a href="#条款45-运用成员函数模板接受全部兼容类型"><em><strong>条款45 运用成员函数模板接受全部兼容类型</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="条款41-隐式接口和编译器多态"><em><strong>条款41 隐式接口和编译器多态</strong></em></h2>
@@ -649,7 +649,7 @@
 <p><em>Templates能够节省时间和避免代码反复。对于相似的classes或functions。能够写一个class template或function template，让编译器来做剩余的事。这样做，有时候会导致代码膨胀（code bloat）：其二进制码带着反复（或差点儿反复）的代码、数据。或者两者。</em></p>
 <p><em>但这时候源代码看起来可能非常整齐。</em></p>
 <p><em>先来学习一个名词：共性与变性分析（commonality and variability analysis）。</em></p>
-<p><em>比較easy理解。比如，你在编写几个函数，会用到同样作用的代码。这时候你往往将同样代码搬到一个新函数中。给其它几个函数调用。同理，假设编写某个class。当中某些部分和另外几个class同样，这时候你不会反复编写这些同样部分，仅仅需把共同部分搬到新class中去就可以，去使用继承或复合（<strong>条款</strong>32,38,39），让原先的classes取用这些共同特性，原classes的互异部分（变异部分）仍然留在原位置不动。</em></p>
+<p><em>还是比较容易理解的。比如，你在编写几个函数，会用到同样作用的代码。这时候你往往将同样代码搬到一个新函数中。给其它几个函数调用。同理，假设编写某个class。当中某些部分和另外几个class同样，这时候你不会反复编写这些同样部分，仅仅需把共同部分搬到新class中去就可以，去使用继承或复合（<a href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE32-40-%E7%BB%A7%E6%89%BF%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1/" target="_blank" rel="noopener noreffer ">Item32 Item38 Item39</a>），让原先的classes取用这些共同特性，原classes的互异部分（变异部分）仍然留在原位置不动。</em></p>
 <p><em>编写templates时，也要做同样分析，避免反复。non-template代码中反复十分明白：你能够看到两个函数或classes之间有所反复。可是在template代码中，反复是隐晦的。由于仅仅有一份template源代码。</em></p>
 <p><em>比如。你打算在为尺寸固定的正方矩阵编写一个template，该矩阵有个支持逆矩阵运算的函数</em></p>
 <div class="highlight"><div class="chroma">
@@ -664,22 +664,24 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="o">&gt;</span><span class="c1">//T为数据类型。n为矩阵大小
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="o">&gt;</span>  <span class="c1">// T为数据类型。n为矩阵大小
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">SquareMatrix</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="err">……</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">invert</span><span class="p">();</span><span class="c1">//求逆运算
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">invert</span><span class="p">();</span><span class="c1">// 求逆运算
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">SquareMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="mi">5</span><span class="o">&gt;</span> <span class="n">sm1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">sm1</span><span class="p">.</span><span class="n">invert</span><span class="p">();</span><span class="c1">//调用SquareMatrix&lt;double,5&gt;::invert
+</span></span><span class="line"><span class="cl"><span class="n">sm1</span><span class="p">.</span><span class="n">invert</span><span class="p">();</span>  <span class="c1">// 调用SquareMatrix&lt;double,5&gt;::invert
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SquareMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="mi">10</span><span class="o">&gt;</span> <span class="n">sm2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">sm2</span><span class="p">.</span><span class="n">invert</span><span class="p">();</span><span class="c1">//调用SquareMatrix&lt;double,10&gt;::invert
+</span></span><span class="line"><span class="cl"><span class="n">sm2</span><span class="p">.</span><span class="n">invert</span><span class="p">();</span>  <span class="c1">// 调用SquareMatrix&lt;double,10&gt;::invert
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>上面会详细化两份invert。</em></p>
-<p><em>这两份函数差点儿全然同样（除了一个操作5</em>5矩阵。一个操作10<em>10）。这就是代码膨胀的一个典型样例。</em></p>
+<p><em>这两份函数差点儿全然同样（除了一个操作55矩阵。一个操作1010）。这就是代码膨胀的一个典型样例。</em></p>
 <p><em>上面两个函数除了操作矩阵大小不同外。其它同样。这时能够为其建立一个带数值的函数，而不是反复代码。于是有了对SquareMatrix的第一份改动</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -699,30 +701,28 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrixBase</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">invert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">matrixSize</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="err">……</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrix</span> <span class="o">:</span> <span class="k">private</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="k">using</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">invert</span><span class="p">();</span><span class="c1">//编码遮掩base中的invert，**条款**33
+</span></span><span class="line"><span class="cl">  <span class="k">using</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">invert</span><span class="p">();</span>  <span class="c1">// 编码遮掩base中的invert，条款33有说到
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="err">……</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">invert</span><span class="p">()</span><span class="c1">//求逆运算
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">invsert</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="c1">//稍后解释为什么用this
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">invert</span><span class="p">()</span> <span class="p">{</span>  <span class="c1">// 求逆运算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">-&gt;</span><span class="n">invsert</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>  <span class="c1">// 稍后解释为什么用this
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>SquareMatrixBase::invert仅仅是企图避免derived classes代码反复，所以它以protected替换public。这个函数使用this-&gt;，由于模板化基类内的函数名称会被derived classes掩盖（条款43）</em></p>
-<p><em>注意，SquareMatrixBase和SquareMatrix之间继承关系是private。这说明base class是为了帮助derived classes实现，两者不是**is-a关系。</em></p>
+</div><p><em><code>SquareMatrixBase::invert</code>仅仅是企图避免derived classes代码反复，所以它以protected替换public。这个函数使用<code>this-&gt;</code>，由于模板化基类内的函数名称会被derived classes掩盖（条款43）</em></p>
+<p><em>注意，SquareMatrixBase和SquareMatrix之间继承关系是private。这说明base class是为了帮助derived classes实现，两者不是is-a关系</em></p>
 <p><em>如今另一个问题，SquareMatrixBase::invert操作的数据在哪？它在參数中直到矩阵大小，可是矩阵数据derived class才知道。derived class和base class怎样联络？一个做法是能够为SquareMatrixBase::invert加入一个參数（比如一个指针）。</em></p>
 <p><em>这个行得通，可是考虑到其它因素（比如，SquareMatrixBase内还有其它函数。也要操作这些数据），能够把这个指针加入到SquareMatrixBase类中</em></p>
 <div class="highlight"><div class="chroma">
@@ -745,26 +745,22 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrixBase</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">SquareMatirxBase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="p">,</span><span class="n">T</span><span class="o">*</span> <span class="n">pMem</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">pData</span><span class="p">(</span><span class="n">pMem</span><span class="p">){}</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">setDataPtr</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span> <span class="p">{</span><span class="n">pData</span><span class="o">=</span><span class="n">ptr</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">SquareMatirxBase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span> <span class="n">pMem</span><span class="p">)</span> <span class="o">:</span> <span class="n">size</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">pData</span><span class="p">(</span><span class="n">pMem</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">setDataPtr</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span> <span class="p">{</span> <span class="n">pData</span><span class="o">=</span><span class="n">ptr</span><span class="p">;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="err">……</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">size</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="n">T</span><span class="o">*</span> <span class="n">pData</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrix</span><span class="o">:</span><span class="k">private</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrix</span> <span class="o">:</span> <span class="k">private</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">SquareMatrix</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="o">:</span><span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">data</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">SquareMatrix</span><span class="p">()</span> <span class="o">:</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="err">……</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">];</span>
@@ -774,26 +770,20 @@
 </div><p><em>这样的类型的对象不须要动态分配内存。可是对象自身可能非常大。另一个做法是把矩阵数据放到heap</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrix</span><span class="o">:</span><span class="k">private</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SquareMatrix</span> <span class="o">:</span> <span class="k">private</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">  <span class="n">SquareMatrix</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="o">:</span><span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">  <span class="n">pData</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">setDataPtr</span><span class="p">(</span><span class="n">pData</span><span class="p">.</span><span class="n">get</span><span class="p">());}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">SquareMatrix</span><span class="p">()</span> <span class="o">:</span> <span class="n">SquareMatrixBase</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pData</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">])</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">setDataPtr</span><span class="p">(</span><span class="n">pData</span><span class="p">.</span><span class="n">get</span><span class="p">());</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="err">……</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="n">boost</span><span class="o">::</span><span class="n">scoped_array</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">pData</span><span class="p">;</span>
@@ -805,7 +795,7 @@
 <ol>
 <li><em>原因是模板会根据具体类型具象化不同的代码，如果将与模板无关的代码也放入模板函数或者类中，那么就会生成重复的代码，就会导致代码膨胀的问题，函数模板中与参数无关的代码可以包装成单独的函数。类模板中与参数无关的模板可以放到父类中</em></li>
 </ol>
-<h2 id="条款45-">***条款45 ***</h2>
+<h2 id="条款45-运用成员函数模板接受全部兼容类型"><em><strong>条款45 运用成员函数模板接受全部兼容类型</strong></em></h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
