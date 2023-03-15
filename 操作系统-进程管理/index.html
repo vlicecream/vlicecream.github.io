@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  6256 ,
+                        }],"genre": "posts","keywords": "进程, 线程, 调度方法, 死锁","wordcount":  6278 ,
         "url": "https:\/\/vlicecream.github.io\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2022-07-20T21:40:32+08:00","dateModified": "2023-02-26T06:54:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,7 +120,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">进程管理</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6256 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6278 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="进程管理">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -200,20 +200,21 @@
 <li><em><strong>内核级线程</strong></em>
 <ul>
 <li><em>线程的控制块在操作系统的内核空间里 被称为内核级线程 但是线程的数据块和程序块还依然在用户控件</em></li>
-<li><em><strong>实现了真正意义上的线程并行</strong></em></li>
-<li><em><strong>不需要运行时系统的参与</strong></em></li>
-<li><em><strong>正因为数据块和程序块在用户空间，所以频繁的切换会导致内核开销大</strong></em></li>
+<li><em>实现了真正意义上的线程并行</em></li>
+<li><em>不需要运行时系统的参与</em></li>
+<li><em>正因为数据块和程序块在用户空间，所以频繁的切换会导致内核开销大</em></li>
 </ul>
 </li>
 <li><em><strong>用户级线程</strong></em>
 <ul>
 <li><em>线程的控制快在操作系统的用户控件里 被称为用户级线程 不依赖于操作系统 调度依赖于用户程序 在操作系统的视角里其实感觉不到用户级线程的存在</em></li>
-<li><em><strong>线程位于用户控件（不需要模式切换）</strong></em></li>
-<li><em><strong>独立于操作系统（线程可以在不支持他们的操作系统上运行）</strong></em></li>
-<li><em><strong>运行时系统可以切换用户控件中的本地阻塞线程（eg：等待另一个线程完成）</strong></em></li>
-<li><em><strong>系统调用中，对一个线程的阻塞将会导致整个进程的阻塞</strong></em></li>
-<li><em><strong>非真正意义的线程并行（一个进程安排在单个cpu上）</strong></em></li>
-<li><em><strong>不存在时钟中断</strong></em></li>
+<li><em>线程位于用户控件（不需要模式切换）</em></li>
+<li><em>独立于操作系统（线程可以在不支持他们的操作系统上运行）</em></li>
+<li><em>运行时系统可以切换用户控件中的本地阻塞线程（eg：等待另一个线程完成）</em></li>
+<li><em>系统调用中，对一个线程的阻塞将会导致整个进程的阻塞</em></li>
+<li><em>非真正意义的线程并行（一个进程安排在单个cpu上）</em></li>
+<li><em>不存在时钟中断</em></li>
+<li>更多的用户级线程的知识请看《<a href="https://vlicecream.github.io/%e7%bc%98%e8%b5%b7-%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e5%8d%8f%e7%a8%8b/" target="_blank" rel="noopener noreffer ">如何理解协程?</a>》</li>
 </ul>
 </li>
 </ol>
