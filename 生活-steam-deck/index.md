@@ -125,8 +125,8 @@ curl -s uudeck.com|sudo sh
 
 3. *Giddy-up! 系列*
 
-   - ![img](https://i0.hdslb.com/bfs/article/4f19f2891636b3187d66ac4fea11edecaea478d2.png@942w_554h_progressive.webp)
-   - ![img](https://i0.hdslb.com/bfs/article/f617fbed1fe882d23c7e19af34fbf3e8b6ca6880.png@942w_176h_progressive.webp)
+   - ![img](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303221359000.webp)
+   - ![img](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303221359118.webp)
    - *这些mod大致作用是可以骑动物，在动物背上开枪等，用这个mod还是推荐养敲击兽*
 
 4. *Go Explore!*
