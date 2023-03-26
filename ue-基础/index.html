@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>虚幻c&#43;&#43;基础类及相关api - Ame林汀</title><meta name="Description" content="虚幻基础类和相关api"><meta property="og:title" content="虚幻c&#43;&#43;基础类及相关api" />
+<meta property="og:description" content="虚幻基础类和相关api" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-26T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-03-26T00:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
+
+<meta name="twitter:title" content="虚幻c&#43;&#43;基础类及相关api"/>
+<meta name="twitter:description" content="虚幻基础类和相关api"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" /><link rel="prev" href="https://vlicecream.github.io/%E7%94%9F%E6%B4%BB-steam-deck/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "虚幻c++基础类及相关api",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/vlicecream.github.io\/ue-%E5%9F%BA%E7%A1%80\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "UE4","wordcount":  3514 ,
+        "url": "https:\/\/vlicecream.github.io\/ue-%E5%9F%BA%E7%A1%80\/","datePublished": "2023-03-26T00:00:00+08:00","dateModified": "2023-03-26T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/vlicecream.github.io\/images\/avatar.png",
+                    "width":  640 ,
+                    "height":  634 
+                }},"author": {
+                "@type": "Person",
+                "name": "Ame林汀"
+            },"description": "虚幻基础类和相关api"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame林汀"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/ue-%E5%9F%BA%E7%A1%80/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame林汀"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/ue-%E5%9F%BA%E7%A1%80/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">虚幻c++基础类及相关api</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-26">2023-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3514 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/ue-%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="虚幻c&#43;&#43;基础类及相关api">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言"><em><strong>前言</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#虚幻c类的继承结构"><em><strong>虚幻c++类的继承结构</strong></em></a></li>
+    <li><a href="#反射--宏--垃圾回收系统"><em><strong>反射 / 宏 / 垃圾回收系统</strong></em></a></li>
+    <li><a href="#加快unreal的编译速度"><em><strong>加快Unreal的编译速度</strong></em></a></li>
+    <li><a href="#虚幻命名规范"><em><strong>虚幻命名规范</strong></em></a></li>
+    <li><a href="#c与blueprint的关系"><em><strong>c++与blueprint的关系</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#蓝图类"><em><strong>蓝图类</strong></em></a></li>
+    <li><a href="#创建uobject的蓝图类"><em><strong>创建UObject的蓝图类</strong></em></a></li>
+    <li><a href="#使用ue_log打印日志"><em><strong>使用UE_LOG打印日志</strong></em></a></li>
+    <li><a href="#在蓝图中实例化继承于object的类"><em><strong>在蓝图中实例化继承于Object的类</strong></em></a></li>
+    <li><a href="#如何删除自定义的c类"><em><strong>如何删除自定义的c++类</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#默认生成的actor代码"><em><strong>默认生成的Actor代码</strong></em></a></li>
+    <li><a href="#组件简介"><em><strong>组件简介</strong></em></a></li>
+    <li><a href="#c实现静态网格"><em><strong>c++实现静态网格</strong></em></a></li>
+    <li><a href="#关于actor位置的基本api"><em><strong>关于Actor位置的基本api</strong></em></a></li>
+    <li><a href="#通过代码增加力与力矩"><em><strong>通过代码增加力与力矩</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基础宏参数介绍"><em><strong>基础宏参数介绍</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言"><em><strong>前言</strong></em></h2>
+<p><em>Unreal 4.22.3</em></p>
+<p><em>有很多功能比如StaticMesh，代码和蓝图都可以实现，但是在本篇博客是c++系列，所以蓝图并不会介绍太多，主要则是c++代码知识</em></p>
+<h1 id="虚幻基础概念"><em><strong>虚幻基础概念</strong></em></h1>
+<h2 id="虚幻c类的继承结构"><em><strong>虚幻c++类的继承结构</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303261407447.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303261407447.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303261407447.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303261407447.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303261407447.jpg"
+        title="虚幻c&#43;&#43;类的继承结构" /></p>
+<h2 id="反射--宏--垃圾回收系统"><em><strong>反射 / 宏 / 垃圾回收系统</strong></em></h2>
+<ol>
+<li>
+<p><em>反射是程序在运行时的自检。c++没有内建的自检系统，但是是虚幻拥有自己的自检系统</em></p>
+<ul>
+<li>
+<p><em>这一系统的功能是融合C++数据，提供虚幻的蓝图使用</em></p>
+<ul>
+<li>
+<p><em>如果创建一个继承自对象的对象，那么默认是不能通过蓝图来创建一个继承它的类的。需要做的是在<code>UCLASS(blueprintable)</code>中传以蓝图可打印参数 即可</em></p>
+</li>
+<li>
+<p><em>创造的变量需要使用<code>UPROPERTY()</code>来标记，并且还需要传递<code>BlueprintReadWrit</code>e参数，注意变量需要使用<code>Public:</code>来修改作用域</em></p>
+</li>
+<li>
+<p><em>创造的函数需要用到UFUNCTION()，并且要传BlueprintCallable参数</em></p>
+</li>
+<li>
+<p><em>举例: 垃圾回收</em></p>
+<ul>
+<li>
+<p><em>为了对象能被这一系统识别，需要使用专用的宏<code>SPECIAL_MACRO()</code></em></p>
+</li>
+<li>
+<p><em>任何想被虚幻引导垃圾回收系统管理的对象，都需要被使用</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">SPECIAL_MACRO</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AMyActor</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AActor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>  <span class="c1">// 垃圾回收系统使用来标记对象的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">AMyActor</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AActor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">UPROPERTY</span><span class="p">()</span>  <span class="c1">// 标明某一个变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">float</span> <span class="n">MyFloat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">UFUNCTION</span><span class="p">()</span>  <span class="c1">// 标明某一个函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">void</span> <span class="n">MyFunction</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Unreal Header Tool UHT</em></p>
+<ul>
+<li><em>用来在编译时收集这个信息的程序。当遇到这个宏时，额外的代码会添加到这个对象，提供垃圾回收系统获得</em></li>
+<li><em>这个 UHT 要求<code>#include &quot;&lt;MyActor&gt;.generated.h&quot;</code>，这个引用必须是最后一个，<code>MyActor</code>是你创建的类的名称</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="加快unreal的编译速度"><em><strong>加快Unreal的编译速度</strong></em></h2>
+<p><em>在4.22.3版本之前，如果我们没有修改任何代码的时候，重新编译，他会重新生成所有的反射代码，这样就很蠢</em></p>
+<p><em>在这里教一下玄学的方法，本方法仅仅针对 win64 平台</em></p>
+<ol>
+<li><em>打开此电脑，找到Unreal的安装路径</em></li>
+<li><em>Engine -&gt; Binaries -&gt; win64 -&gt; UnrealHeaderTool.target</em></li>
+<li><em>打开 UnrealHeaderTool.target，在第二行结尾加一个空格</em></li>
+<li><em>回到Unreal 不要动任何代码，再次编译，看看有没有效，第一次还是会有问题，第二次就会生效</em></li>
+</ol>
+<p><em>后续版本 Unreal可能会更新，反正大家可以去验证下，毕竟很好验证，只需要随便创建一个Object类，然后转换蓝图类，就别动代码就好了</em></p>
+<h2 id="虚幻命名规范"><em><strong>虚幻命名规范</strong></em></h2>
+<ol>
+<li><em>派生自 Actor 的类带有 A 前缀，如 AController</em></li>
+<li><em>派生自 Object 的类有 U 前缀，如UComponent</em></li>
+<li><em>Enums 的前缀是E，如EFortificationType</em></li>
+<li><em>Interface 的前缀是 I，如IAbilitySystemInterface</em></li>
+<li><em>Template 的前缀是T，如TArray</em></li>
+<li><em>派生自 SWidget的类(Slate UI) 带有前缀S， 如SButton</em></li>
+<li><em>其他类的前缀为字母F，如FVector</em></li>
+<li><em>bool 的前缀是 b 开头</em></li>
+</ol>
+<h2 id="c与blueprint的关系"><em><strong>c++与blueprint的关系</strong></em></h2>
+<p><em>在Unreal里，其实不需要写代码，光使用蓝图也是可以做出来一个游戏的，那同理，光使用代码，不使用蓝图，也是可以做出一款游戏的</em></p>
+<p><em>但是明眼人都知道，这是两个极端，肯定不可取，所以我们要利用好蓝图和c++的优点配合使用</em></p>
+<p><em>我们一般都是用c++代码来完成底层逻辑，然后在蓝图上实现一些简单拓展</em></p>
+<h1 id="uobject"><em><strong>UObject</strong></em></h1>
+<ol>
+<li>
+<p><em>我们在c++类中生成了Myobject类后，vs就会帮我们生成 .h .cpp 两个文件，我们来看看 .h 文件</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Fill out your copyright notice in the Description page of Project Settings.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#pragma once
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;CoreMinimal.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;UObject/NoExportTypes.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MyObject.generated.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BASICTRAINING_API</span> <span class="nl">UMyObject</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UObject</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>随后我们也可以在虚幻引擎中，看到我们生成的这个类，如果看不到，刷新一下也就是切换下文件夹就看到了</em></p>
+<p><em>但是我们右键MyObjcet类的时候，发现并不能转换蓝图类，这是因为我们宏没有传参数，也就是没有告诉他这个类要承担什么反射角色</em></p>
+</li>
+</ol>
+<h2 id="蓝图类"><em><strong>蓝图类</strong></em></h2>
+<ol>
+<li><em>Blueprintable</em>
+<ul>
+<li><em>如果想要让一个类被蓝图继承，成为蓝图类，那么就可以<code>UCLASS(Blurprintable)</code></em></li>
+<li><em>在Unreal编译后，这时候就可以在Unreal里把这个类转换成蓝图类</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="创建uobject的蓝图类"><em><strong>创建UObject的蓝图类</strong></em></h2>
+<ol>
+<li>
+<p><em>流程</em></p>
+<ul>
+<li><em>在Content下创建文件夹&quot;Blueprints&quot;，专门放置蓝图类</em></li>
+<li><em>我们在建立好的c++类中，右键 创建基于MyObject的蓝图类，名字取为&quot;BP_MyObject&quot;，存放到Blueprints文件夹中</em></li>
+<li><em>随后在这个蓝图类中 右键查询自己的成员属性，成员方法，就可以使用啦</em></li>
+</ul>
+</li>
+<li>
+<p><em>代码</em></p>
+<ul>
+<li>
+<p><em>MyObject.h</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">(</span><span class="n">Blueprintable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BASICTRAINING_API</span> <span class="nl">UMyObject</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UObject</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UMyObject</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">MyFloat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">MyFunction</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>MyObject.cpp</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MyObject.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">UMyObject</span><span class="o">::</span><span class="n">UMyObject</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">UMyObject</span><span class="o">::</span><span class="n">MyFunction</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<h2 id="使用ue_log打印日志"><em><strong>使用UE_LOG打印日志</strong></em></h2>
+<ol>
+<li>
+<p><em>UE_LOG()</em></p>
+<ul>
+<li><em>第一个变量 - 输出日志类型，可以写LogTemp，也可以自己自定义</em></li>
+<li><em>第二个变量 - 输出级别</em>
+<ul>
+<li><em>Log</em></li>
+<li><em>Warning</em></li>
+<li><em>Error</em></li>
+</ul>
+</li>
+<li><em>打印的内容</em>
+<ul>
+<li><em>不是简单的字符串，需要加&quot;TEXT()&quot;</em></li>
+<li><em>如<code>TEXT(&quot;Hello Unreal&quot;)</code></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>基于以上 MyObject 的代码改动</em></p>
+<ul>
+<li>
+<p><em>MyObject,h</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">(</span><span class="n">Blueprintable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BASICTRAINING_API</span> <span class="nl">UMyObject</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UObject</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UMyObject</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;My Variables&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">MyFloat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;My Functions&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">MyFunction</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>MyObject.cpp</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MyObject.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">UMyObject</span><span class="o">::</span><span class="n">UMyObject</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">MyFloat</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<p>void UMyObject::MyFunction()
+{
+UE_LOG(LogTemp, Log, TEXT(&ldquo;This is Log&rdquo;));
+UE_LOG(LogTemp, Warning, TEXT(&ldquo;This is Warning&rdquo;));
+UE_LOG(LogTemp, Error, TEXT(&ldquo;This is Error&rdquo;));
+}
+```</p>
+<h2 id="在蓝图中实例化继承于object的类"><em><strong>在蓝图中实例化继承于Object的类</strong></em></h2>
+<ol>
+<li><em>问题</em>
+<ul>
+<li><em>Object是不能放在场景中的哦~ 那么怎么才能将继承于Object的类放置在场景中，那就是关卡蓝图，一般用来做于测试，摄像机，或者属于这个关卡的独特配置</em></li>
+</ul>
+</li>
+<li><em>流程</em>
+<ul>
+<li><em>Blueprints -&gt; Open Level Blueprint</em></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png"
+        title="image-20230326164453845" /></li>
+</ul>
+</li>
+</ol>
+<h2 id="如何删除自定义的c类"><em><strong>如何删除自定义的c++类</strong></em></h2>
+<ol>
+<li>
+<p><em>去找到相对应的文件夹删除就好了，在UE，至少在4里面是不行的</em></p>
+<ul>
+<li>
+<p><em>将你想删除的c++类的派生类和有关的蓝图这些的全部删掉</em></p>
+</li>
+<li>
+<p><em>在项目里找到 sources，然后选中项目名，删除自己想删除的类文件就好了，但是注意有些东西是不能删的哦</em></p>
+</li>
+<li>
+<p><em>工程目录找到文件夹Binaries 直接删除这个文件夹</em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="actor"><em><strong>Actor</strong></em></h1>
+<h2 id="默认生成的actor代码"><em><strong>默认生成的Actor代码</strong></em></h2>
+<p><em>他是可以直接转换成蓝图类的，因为他的父类 AActor 已经在宏里面加了参数</em></p>
+<ol>
+<li>
+<p><em>MyActor.h</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Fill out your copyright notice in the Description page of Project Settings.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#pragma once
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;CoreMinimal.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;GameFramework/Actor.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MyActor.generated.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BASICTRAINING_API</span> <span class="nl">AMyActor</span> <span class="p">:</span> <span class="k">public</span> <span class="n">AActor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>	
+</span></span><span class="line"><span class="cl">	<span class="c1">// Sets default values for this actor&#39;s properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">AMyActor</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Called when the game starts or when spawned
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">BeginPlay</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>	
+</span></span><span class="line"><span class="cl">	<span class="c1">// Called every frame
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tick</span><span class="p">(</span><span class="kt">float</span> <span class="n">DeltaTime</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>MyActor.cpp</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Fill out your copyright notice in the Description page of Project Settings.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MyActor.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Sets default values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">AMyActor</span><span class="o">::</span><span class="n">AMyActor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> 	<span class="c1">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don&#39;t need it.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">PrimaryActorTick</span><span class="p">.</span><span class="n">bCanEverTick</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Called when the game starts or when spawned
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">AMyActor</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Called every frame
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">AMyActor</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="kt">float</span> <span class="n">DeltaTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="组件简介"><em><strong>组件简介</strong></em></h2>
+<ol>
+<li><em>DefaultSceneRoot</em>
+<ul>
+<li><em>在c++类转换为蓝图类的时候，默认增加的一个组件</em></li>
+<li><em>他的作用就是给蓝图标明位置，和显示为一个球体</em></li>
+</ul>
+</li>
+<li><em>StaticMesh</em>
+<ul>
+<li><em>最简单的一个组件，他就是为你在世界中渲染出来一个静态网格</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="c实现静态网格"><em><strong>c++实现静态网格</strong></em></h2>
+<ol>
+<li>
+<p><em>MyActor.h</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BASICTRAINING_API</span> <span class="nl">AMyActor</span> <span class="p">:</span> <span class="k">public</span> <span class="n">AActor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>	
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;My Actor Component&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UStaticMeshComponent</span><span class="o">*</span> <span class="n">MyStaticMesh</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>MyActor.cpp</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MyActor.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Sets default values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">AMyActor</span><span class="o">::</span><span class="n">AMyActor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 注意传参是一个标识，在一个类中不能重复，不会再蓝图显示出来，一般再报错上显示
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">MyStaticMesh</span> <span class="o">=</span> <span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UStaticMeshComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;MyStaticMesh&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="关于actor位置的基本api"><em><strong>关于Actor位置的基本api</strong></em></h2>
+<ol>
+<li><em>SetActorLocation</em>
+<ul>
+<li><em>只有第一个参数必传，其他都有默认值，第一个参数传 FVector 类型即可</em></li>
+<li><em><code>SetActorLocation(FVector(0.0f));</code></em></li>
+</ul>
+</li>
+<li><em>GetActorLocation</em>
+<ul>
+<li><em>获取当前Actor的位置坐标</em></li>
+<li><code>PlacedLocation = GetActorLocation();</code></li>
+</ul>
+</li>
+<li><em>AddActorLocalOffset</em>
+<ul>
+<li><em>Actor移动偏移量</em></li>
+<li><em>参数介绍</em>
+<ul>
+<li><em>第一个参数 - 移动的偏移坐标系 （必传）</em></li>
+<li><em>第二个参数 - 如果设为true并且没有开启物理模拟，碰到障碍物则就是一个遮挡的感觉 （default = false）</em></li>
+<li><em>第三个参数 - FHitResult reference，碰撞信息，比如碰撞到物体时的坐标点（default = nullptr）</em>
+<ul>
+<li><em><code>HitResult.Location.x</code>，<code>HitResult.Location.z</code>，<code>HitResult.Location.z</code></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><code>AddActorLocalOffset(FVector(0.0f), true, HitResult);</code></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="通过代码增加力与力矩"><em><strong>通过代码增加力与力矩</strong></em></h2>
+<p><em>需要导入头文件哦，而且这是 UStaticMeshComponent 的成员方法</em></p>
+<p><em><code>#include &quot;Components/StaticMeshComponent.h&quot;</code></em></p>
+<ol>
+<li>
+<p><em>AddForce</em></p>
+<ul>
+<li>
+<p><em>传参</em></p>
+<ul>
+<li><em>第一个参数 - 施加多大的力 （必传）</em></li>
+<li><em>第二个参数 - 施加在什么骨骼（default = &ldquo;Name_None&rdquo;）</em></li>
+<li><em>第三个参数 - 是否无视质量，直接给加速度 （default = false）</em></li>
+</ul>
+</li>
+<li>
+<p><em><code>MyStaticMesh-&gt;AddForce(FVector(0.0f), &quot;Name_None&quot;, true);</code></em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>AddTorque</em></p>
+<ul>
+<li>
+<p><em>第一个参数 - 施加多大的力 （必传）</em></p>
+</li>
+<li>
+<p><em>第二个参数 - 施加在什么骨骼（default = &ldquo;Name_None&rdquo;）</em></p>
+</li>
+<li>
+<p><em>第三个参数 - 是否无视质量，直接给加速度 （default = false）</em></p>
+</li>
+<li>
+<p><em><code>MyStaticMesh-&gt;AddTorque(FVector(0.0f), &quot;Name_None&quot;, true)</code></em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="基础宏参数"><em><strong>基础宏参数</strong></em></h1>
+<h2 id="基础宏参数介绍"><em><strong>基础宏参数介绍</strong></em></h2>
+<ol>
+<li>
+<p><em>BlueprintReadWrite</em></p>
+<ul>
+<li><em>在蓝图中可以进行get and set</em></li>
+</ul>
+</li>
+<li>
+<p><em>BlueprintReadOnly</em></p>
+<ul>
+<li><em>只读，在蓝图中只有get，没有set</em></li>
+</ul>
+</li>
+<li>
+<p><em>BlueprintCallable</em></p>
+<ul>
+<li><em>在蓝图中可以被调用</em></li>
+</ul>
+</li>
+<li>
+<p><em>Category</em></p>
+<ul>
+<li><em><code>Category = &quot;My Functions&quot;</code> 这个是分类到&quot;My Functions&quot;的意思，可以在蓝图调用的时候显示出来，就是分类本身的作用</em></li>
+<li><em>如果还想弄子分类那就加 &ldquo;|&rdquo; 如：<code>Category = &quot;My Actor Properties | Vector&quot;</code></em></li>
+</ul>
+</li>
+<li>
+<p><em>VisibleAnywhere</em></p>
+<ul>
+<li><em>在组件用的比较多，作用就是在任何地方都可以看见他</em></li>
+</ul>
+</li>
+<li>
+<p><em>EditInstanceOnly</em></p>
+<ul>
+<li><em>只允许在实例上修改，（也就是在场景实例化之后的编辑栏去编辑，不能再未实例化的地方编辑）</em></li>
+</ul>
+</li>
+<li>
+<p><em>VisibleInstanceOnly</em></p>
+<ul>
+<li><em>只允许在实例上查看，（也就是在场景实例化之后的编辑栏去编辑，不能再未实例化的地方编辑）</em></li>
+</ul>
+</li>
+<li>
+<p><em>EditDefaultsOnly</em></p>
+<ul>
+<li><em>只允许在默认值上修改，而且还是统一修改（也就是直接打开蓝图类的编辑版，非实例化场景）</em></li>
+</ul>
+</li>
+<li>
+<p><em>VisibleDefaultsOnly</em></p>
+<ul>
+<li><em>只允许在默认值上查看（也就是直接打开蓝图类的编辑版，非实例化场景）</em></li>
+</ul>
+</li>
+<li>
+<p><em>EditAnywhere</em></p>
+<ul>
+<li><em>无论在哪都可以修改</em></li>
+<li><em>千万不要将组件指针设为EditAnywhere</em></li>
+</ul>
+</li>
+<li>
+<p><em>meta</em></p>
+<ul>
+<li>
+<p><em>Clamp系列可以限制输入值的范围 / UI系列可以限制输入框鼠标拖动值的范围</em></p>
+</li>
+<li>
+<p><code>meta = (ClampMin = -5.0f, ClampMax = 5.0f, UIMin = -5.0f, UIMax = 5.0f)</code></p>
+</li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-03-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ue-%E5%9F%BA%E7%A1%80/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" data-title="虚幻c&#43;&#43;基础类及相关api" data-hashtags="UE4"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" data-hashtag="UE4"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" data-title="虚幻c&#43;&#43;基础类及相关api"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" data-title="虚幻c&#43;&#43;基础类及相关api"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/ue-%E5%9F%BA%E7%A1%80/" data-title="虚幻c&#43;&#43;基础类及相关api"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ue4/">UE4</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%94%9F%E6%B4%BB-steam-deck/" class="prev" rel="prev" title="steam deck"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>steam deck</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2017 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame林汀</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
