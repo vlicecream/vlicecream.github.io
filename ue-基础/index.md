@@ -86,160 +86,39 @@
 
 *我们一般都是用c++代码来完成底层逻辑，然后在蓝图上实现一些简单拓展*
 
-# ***UObject***
-
-1. *我们在c++类中生成了Myobject类后，vs就会帮我们生成 .h .cpp 两个文件，我们来看看 .h 文件*
-
-   ```cpp
-   // Fill out your copyright notice in the Description page of Project Settings.
-   
-   #pragma once
-   
-   #include "CoreMinimal.h"
-   #include "UObject/NoExportTypes.h"
-   #include "MyObject.generated.h"
-   
-   /**
-    * 
-    */
-   UCLASS()
-   class BASICTRAINING_API UMyObject : public UObject
-   {
-   	GENERATED_BODY()
-   	
-   };
-   ```
-
-   *随后我们也可以在虚幻引擎中，看到我们生成的这个类，如果看不到，刷新一下也就是切换下文件夹就看到了*
-
-   *但是我们右键MyObjcet类的时候，发现并不能转换蓝图类，这是因为我们宏没有传参数，也就是没有告诉他这个类要承担什么反射角色*
-
 ## ***蓝图类***
 
 1. *Blueprintable*
    - *如果想要让一个类被蓝图继承，成为蓝图类，那么就可以`UCLASS(Blurprintable)`*
    - *在Unreal编译后，这时候就可以在Unreal里把这个类转换成蓝图类*
-
-## ***创建UObject的蓝图类***
-
-1. *流程*
-
+2. *流程*
    - *在Content下创建文件夹"Blueprints"，专门放置蓝图类*
    - *我们在建立好的c++类中，右键 创建基于MyObject的蓝图类，名字取为"BP_MyObject"，存放到Blueprints文件夹中*
    - *随后在这个蓝图类中 右键查询自己的成员属性，成员方法，就可以使用啦*
 
-2. *代码*
-
-   - *MyObject.h*
-
-     ```cpp
-     UCLASS(Blueprintable)
-     class BASICTRAINING_API UMyObject : public UObject
-     {
-     	GENERATED_BODY()
-     	
-     public:
-     	UMyObject();
-     
-     	UPROPERTY(BlueprintReadWrite)
-     	float MyFloat;
-     
-     	UFUNCTION(BlueprintCallable)
-     	void MyFunction();
-     };
-     ```
-     
-   - *MyObject.cpp*
-   
-     ```cpp
-     #include "MyObject.h"
-     
-     UMyObject::UMyObject() { }
-     
-     void UMyObject::MyFunction() { }
-     ```
-
-## ***使用UE_LOG打印日志***
-
-1. *UE_LOG()*
-
-   - *第一个变量 - 输出日志类型，可以写LogTemp，也可以自己自定义*
-   - *第二个变量 - 输出级别*
-     - *Log*
-     - *Warning*
-     - *Error*
-   - *打印的内容*
-     - *不是简单的字符串，需要加"TEXT()"*
-     - *如`TEXT("Hello Unreal")`*
-
-2. *基于以上 MyObject 的代码改动*
-
-   - *MyObject,h*
-
-     ```cpp
-     UCLASS(Blueprintable)
-     class BASICTRAINING_API UMyObject : public UObject
-     {
-     	GENERATED_BODY()
-     	
-     public:
-     	UMyObject();
-     
-     	UPROPERTY(BlueprintReadOnly, Category = "My Variables")
-     	float MyFloat;
-     
-     	UFUNCTION(BlueprintCallable, Category = "My Functions")
-     	void MyFunction();
-     };
-     ```
-     
-   - *MyObject.cpp*
-   
-     ```cpp
-     #include "MyObject.h"
-     
-     UMyObject::UMyObject() 
-     {
-     	MyFloat = 0.0f;
-     }
-     
-
-  void UMyObject::MyFunction()
-     {
-  	UE_LOG(LogTemp, Log, TEXT("This is Log"));
-     	UE_LOG(LogTemp, Warning, TEXT("This is Warning"));
-     	UE_LOG(LogTemp, Error, TEXT("This is Error"));
-     }
-     ```
-
-## ***在蓝图中实例化继承于Object的类***
-
-1. *问题*
-   - *Object是不能放在场景中的哦~ 那么怎么才能将继承于Object的类放置在场景中，那就是关卡蓝图，一般用来做于测试，摄像机，或者属于这个关卡的独特配置*
-2. *流程*
-   - *Blueprints -> Open Level Blueprint*
-   - ![image-20230326164453845](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png)
-
 ## ***如何删除自定义的c++类***
 
 1. *去找到相对应的文件夹删除就好了，在UE，至少在4里面是不行的*
-
    - *将你想删除的c++类的派生类和有关的蓝图这些的全部删掉*
 
    - *在项目里找到 sources，然后选中项目名，删除自己想删除的类文件就好了，但是注意有些东西是不能删的哦*
    - *工程目录找到文件夹Binaries 直接删除这个文件夹*
 
-# ***Actor***
+# ***虚幻基础知识***
 
-## ***默认生成的Actor代码***
+## ***类的默认生成代码***
 
-*他是可以直接转换成蓝图类的，因为他的父类 AActor 已经在宏里面加了参数*
+### ***默认生成的UObject代码***
+
+*我们在c++类中生成了Myobject类后，vs就会帮我们生成 .h .cpp 两个文件，默认是没有任何方法*
+
+*因为默认代码中的宏没有传参数，也就是没有告诉他这个类要承担什么反射角色，所以默认的UObject类是不能转换成蓝图类的*
+
+### ***默认生成的Actor代码***
 
 1. *MyActor.h*
 
    ```cpp
-   // Fill out your copyright notice in the Description page of Project Settings.
-   
    #pragma once
    
    #include "CoreMinimal.h"
@@ -256,11 +135,11 @@
    	AMyActor();
    
    protected:
-   	// Called when the game starts or when spawned
+   	// 在游戏开始或生成时调用
    	virtual void BeginPlay() override;
    
    public:	
-   	// Called every frame
+   	// 每一帧都会调用
    	virtual void Tick(float DeltaTime) override;
    
    };
@@ -269,27 +148,23 @@
 2. *MyActor.cpp*
 
    ```cpp
-   // Fill out your copyright notice in the Description page of Project Settings.
-   
-   
    #include "MyActor.h"
    
    // Sets default values
    AMyActor::AMyActor()
    {
-    	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    	// 将此 actor 设置为每帧调用 Tick()。如果不需要，可以关闭它以提高性能
    	PrimaryActorTick.bCanEverTick = true;
-   
    }
    
-   // Called when the game starts or when spawned
+   // 在游戏开始或生成时调用
    void AMyActor::BeginPlay()
    {
    	Super::BeginPlay();
    	
    }
    
-   // Called every frame
+   // 每一帧都会调用
    void AMyActor::Tick(float DeltaTime)
    {
    	Super::Tick(DeltaTime);
@@ -297,62 +172,503 @@
    }
    ```
 
-## ***组件简介***
+### ***默认生成的Pawn代码***
 
-1. *DefaultSceneRoot*
-   - *在c++类转换为蓝图类的时候，默认增加的一个组件*
-   - *他的作用就是给蓝图标明位置，和显示为一个球体*
-2. *StaticMesh*
-   - *最简单的一个组件，他就是为你在世界中渲染出来一个静态网格*
-
-## ***c++实现静态网格***
-
-1. *MyActor.h*
+1. *MyPawn.h*
 
    ```cpp
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "GameFramework/Pawn.h"
+   #include "MyPawn.generated.h"
+   
    UCLASS()
-   class BASICTRAINING_API AMyActor : public AActor
+   class BASICTRAINING_API AMyPawn : public APawn
    {
    	GENERATED_BODY()
-   	
+   
+   public:
+   	// Sets default values for this pawn's properties
+   	AMyPawn();
+   
+   protected:
+   	// 在游戏开始或生成时调用
+   	virtual void BeginPlay() override;
+   
    public:	
-   	...
-   	UPROPERTY(VisibleAnywhere, Category = "My Actor Component")
-   	UStaticMeshComponent* MyStaticMesh;
-   	...
+   	// 每一帧调用
+   	virtual void Tick(float DeltaTime) override;
+   
+   	// 调用以将功能绑定到输入
+   	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
    };
    ```
 
-2. *MyActor.cpp*
+2. *MyPawn.cpp*
 
    ```cpp
-   #include "MyActor.h"
+   #include "MyPawn.h"
    
    // Sets default values
-   AMyActor::AMyActor()
+   AMyPawn::AMyPawn()
    {
-   	...
-   	// 注意传参是一个标识，在一个类中不能重复，不会再蓝图显示出来，一般再报错上显示
-   	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MyStaticMesh"));
+    	// 将此 pawn 设置为每帧调用 Tick()。如果不需要，可以关闭它以提高性能
+   	PrimaryActorTick.bCanEverTick = true;
+   }
+   
+   // 在游戏开始或生成时调用
+   void AMyPawn::BeginPlay()
+   {
+   	Super::BeginPlay();
+   }
+   
+   // 每一帧调用
+   void AMyPawn::Tick(float DeltaTime)
+   {
+   	Super::Tick(DeltaTime);
+   }
+   
+   // 调用以将功能绑定到输入
+   void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+   {
+   	Super::SetupPlayerInputComponent(PlayerInputComponent);
    }
    ```
 
-## ***关于Actor位置的基本api***
+   
 
-1. *SetActorLocation*
-   - *只有第一个参数必传，其他都有默认值，第一个参数传 FVector 类型即可*
-   - *`SetActorLocation(FVector(0.0f));`*
-2. *GetActorLocation*
-   - *获取当前Actor的位置坐标*
-   - `PlacedLocation = GetActorLocation();`
-3. *AddActorLocalOffset*
-   - *Actor移动偏移量*
-   - *参数介绍*
-     - *第一个参数 - 移动的偏移坐标系 （必传）*
-     - *第二个参数 - 如果设为true并且没有开启物理模拟，碰到障碍物则就是一个遮挡的感觉 （default = false）*
-     - *第三个参数 - FHitResult reference，碰撞信息，比如碰撞到物体时的坐标点（default = nullptr）*
-       - *`HitResult.Location.x`，`HitResult.Location.z`，`HitResult.Location.z`*
-   - *`AddActorLocalOffset(FVector(0.0f), true, HitResult);`*
+## ***蓝图类***
+
+### ***UObject代码***
+
+- *MyObject.h*
+
+  ```cpp
+  UCLASS(Blueprintable)
+  class BASICTRAINING_API UMyObject : public UObject
+  {
+  	GENERATED_BODY()
+  public:
+  	UMyObject();
+      
+  	UPROPERTY(BlueprintReadWrite)
+  	float MyFloat;
+      
+  	UFUNCTION(BlueprintCallable)
+  	void MyFunction();
+  };
+  ```
+  
+- *MyObject.cpp*
+
+  ```cpp
+  #include "MyObject.h"
+  UMyObject::UMyObject() { }
+  void UMyObject::MyFunction() { }
+  ```
+
+### ***在蓝图中实例化继承于Object的类***
+
+1. *问题*
+   - *Object是不能放在场景中的哦~ 那么怎么才能将继承于Object的类放置在场景中，那就是关卡蓝图，一般用来做于测试，摄像机，或者属于这个关卡的独特配置*
+2. *流程*
+   - *Blueprints -> Open Level Blueprint*
+   - ![image-20230326164453845](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png)
+
+### ***Actor / Pawn*** 
+
+*这些都是可以直接转换蓝图类的，因为他们的父类以及在宏中进行了反射*
+
+## ***打印日志***
+
+### ***UE_LOG( )***
+
+- *第一个变量 - 输出日志类型，可以写LogTemp，也可以自己自定义*
+- *第二个变量 - 输出级别*
+  - *Log*
+  - *Warning*
+  - *Error*
+- *打印的内容*
+  - *不是简单的字符串，需要加"TEXT()"*
+  - *如`TEXT("Hello Unreal")`*
+
+- *基于以上 MyObject 的代码改动*
+  - *MyObject,h*
+
+  ```cpp
+  UCLASS(Blueprintable)
+  class BASICTRAINING_API UMyObject : public UObject
+  {
+  	GENERATED_BODY()
+  	
+  public:
+  	UMyObject();
+  
+  	UPROPERTY(BlueprintReadOnly, Category = "My Variables")
+  	float MyFloat;
+  
+  	UFUNCTION(BlueprintCallable, Category = "My Functions")
+  	void MyFunction();
+  };
+  ```
+
+  - *MyObject.cpp*
+
+  ```cpp
+  #include "MyObject.h"
+  
+  UMyObject::UMyObject() 
+  {
+  	MyFloat = 0.0f;
+  }
+  
+  void UMyObject::MyFunction()
+  {
+      UE_LOG(LogTemp, Log, TEXT("This is Log"));
+      UE_LOG(LogTemp, Warning, TEXT("This is Warning"));
+      UE_LOG(LogTemp, Error, TEXT("This is Error"));
+  }
+  ```
+
+## ***组件***
+
+### ***DefaultSceneRoot***
+
+- *在c++类转换为蓝图类的时候，默认增加的一个组件*
+- *他的作用就是给蓝图标明位置，和显示为一个球体*
+
+### ***静态网格组件***
+
+1. *作用*
+
+   - *最简单的一个组件，他就是为你在世界中渲染出来一个静态网格*
+
+2. *调用其方法要导入的头文件*
+
+   - *`#include "Components/StaticMeshComponent.h"`*
+
+3. *代码示例*
+
+   - *MyActor.h*
+
+     ```cpp
+     UCLASS()
+     class BASICTRAINING_API AMyActor : public AActor
+     {
+     	GENERATED_BODY()
+     	
+     public:	
+     	...
+     	UPROPERTY(VisibleAnywhere, Category = "My Actor Component")
+     	UStaticMeshComponent* MyStaticMesh;
+     	...
+     };
+     ```
+
+   - *MyActor.cpp*
+
+     ```cpp
+     #include "MyActor.h"
+     
+     // Sets default values
+     AMyActor::AMyActor()
+     {
+     	...
+     	// 注意传参是一个标识，在一个类中不能重复，不会再蓝图显示出来，一般再报错上显示
+     	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MyStaticMesh"));
+     }
+     ```
+
+### ***根组件***
+
+1. *`RootComponent`并不需要声明，他是 Unreal 帮你声明好的一个变量*
+
+   ```cpp
+   RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+   ```
+
+2. *将组件附加到根组件*
+
+   - *不同的组件里面会持有`SetupAttachment();`方法的，但是要引入相对应的头文件*
+
+     *`GetRootComponent()`方法的作用就是获得根组件*
+
+     ```cpp
+     SetupAttachment(GetRootComponent());
+     ```
+
+   - *eg：将静态网格组件附加到根组件*
+     - *h 文件*
+
+       ```cpp
+       UCLASS()
+       class BASICTRAINING_API AMyPawn : public APawn
+       {
+       	GENERATED_BODY()
+       
+       public:
+       ...
+       	// 声明静态网格
+       	UPROPERTY(VisibleAnywhere, Category = "My Actor Component")
+       	UStaticMeshComponent* MyStaticMesh;
+       ...
+       };
+       
+       ```
+
+     - *MyPawn.cpp*
+
+       ```cpp
+       #include "MyPawn.h"
+       #include "Components/StaticMeshComponent.h"
+       
+       // Sets default values
+       AMyPawn::AMyPawn()
+       {
+       ...
+       	// 初始化场景组件 - 根组件
+       	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+       	// 初始化静态网格组件
+       	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MyStaticMesh"));
+       	// 将静态网格附加到根组件
+       	MyStaticMesh->SetupAttachment(GetRootComponent());
+       ...
+       }
+       ```
+
+### ***相机组件***
+
+1. *作用*
+
+   - *对相机进行操作，例如设置初始位置*
+
+2. *调用其方法要导入的头文件*
+
+   - `#include "Camera/CameraComponent.h"`
+
+3. *示例代码*
+
+   - *MyPawn.h*
+
+     ```cpp
+     UCLASS()
+     class BASICTRAINING_API AMyPawn : public APawn
+     {
+     	GENERATED_BODY()
+     
+     public:
+     ...
+     	// 声明相机组件
+     	class UCameraComponent* MyCamera;
+     ...
+     };
+     ```
+
+   - *MyPawn.cpp*
+
+     ```cpp
+     #include "MyPawn.h"
+     #include "Camera/CameraComponent.h"
+     
+     // Sets default values
+     AMyPawn::AMyPawn()
+     {
+     ...
+     	// 初始化场景组件 - 根组件
+     	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+     
+     	// 初始化相机组件，并附加到根组件
+     	MyCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("MyCamera"));
+     	MyCamera->SetupAttachment(GetRootComponent());
+         
+         // 设置相机组件和附组件的相对位置
+         MyCamera->SetRelativeLocation(FVector(-300.0f, 0.0f, 300.0f));
+     	MyCamera->SetRelativeRotation(FRotator(-45.0f, 0.0f, 0.0f));
+     }
+     ```
+
+### ***SpringArm组件***
+
+1. *作用*
+
+   - *类似于拍电影的摄像头悬臂的作用，比如你穿墙，然后就会调整视角，不会被墙挡住*
+
+2. *调用其方法要导入的头文件*
+
+   - `#include "GameFramework/SpringArmComponent.h"`
+
+3. *代码示例*
+
+   - *MyPawn.h*
+
+     ```cpp
+     UCLASS()
+     class BASICTRAINING_API AMyPawn : public APawn
+     {
+     	GENERATED_BODY()
+     
+     public:
+     ...
+     	// 声明悬臂组件
+     	class USpringArmComponent* MySpringArm;
+     ...
+     };
+     ```
+
+   - *MyPawn.cpp*
+
+     ```cpp
+     #include "MyPawn.h"
+     #include "Components/StaticMeshComponent.h"
+     #include "Camera/CameraComponent.h"
+     #include "Components/InputComponent.h"
+     #include "GameFramework/SpringArmComponent.h"
+     
+     // Sets default values
+     AMyPawn::AMyPawn()
+     {
+     ...
+     	// 初始化静态网格组件并附加到根组件
+     	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MyStaticMesh"));
+     	MyStaticMesh->SetupAttachment(GetRootComponent());
+     
+     	// 初始化SpringArm组件
+     	MySpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("MySpringArm"));
+     	MySpringArm->SetupAttachment(MyStaticMesh);
+     	MySpringArm->RelativeRotation = FRotator(-45.0f, 0.0f, 0.0f);
+     	MySpringArm->TargetArmLength = 400.0f;
+     	MySpringArm->bEnableCameraLag = true;
+     	MySpringArm->CameraLagSpeed = 3.0f;
+     ...
+     }
+     ```
+
+## ***关于位置的基本api***
+
+### ***SetActorLocation***
+
+- *只有第一个参数必传，其他都有默认值，第一个参数传 FVector 类型即可*
+  1. *"FVector" Type*
+
+- *`SetActorLocation(FVector(0.0f));`*
+
+### ***GetActorLocation***
+
+- *获取当前Actor的位置坐标*
+- `PlacedLocation = GetActorLocation();`
+
+### ***AddActorLocalOffset***
+
+- *Actor移动偏移量*
+- *参数介绍*
+  - *第一个参数 - 移动的偏移坐标系 （必传）*
+  - *第二个参数 - 如果设为true并且没有开启物理模拟，碰到障碍物则就是一个遮挡的感觉 （default = false）*
+  - *第三个参数 - FHitResult reference，碰撞信息，比如碰撞到物体时的坐标点（default = nullptr）*
+    - *`HitResult.Location.x`，`HitResult.Location.z`，`HitResult.Location.z`*
+- *`AddActorLocalOffset(FVector(0.0f), true, HitResult);`*
+
+## ***移动***
+
+### ***轴按键映射***
+
+- *Settings -> Project Settings -> Input -> Axis Mappings*
+- *加了轴按键映射后，还需要在代码中去绑定轴按键*
+
+### ***轴按键绑定***
+
+- *需要在pawn类中加入对按键也就是移动的处理方法，然后在Pawn的`SetupPlayerInputComponent()`函数中利用`BindAxis()`去处理*
+
+  ```cpp
+  // Called to bind functionality to input
+  void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+  {
+  	Super::SetupPlayerInputComponent(PlayerInputComponent);
+  	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &AMyPawn::MoveForward);
+  	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AMyPawn::MoveRight);
+  }
+  
+  
+  void AMyPawn::MoveForward(float Value)
+  {
+  }
+  
+  void AMyPawn::MoveRight(float Value)
+  {
+  }
+  ```
+
+### ***利用 Tick 去实现移动的处理方法***
+
+1. *MyPawn.h*
+
+   ```cpp
+   UCLASS()
+   class BASICTRAINING_API AMyPawn : public APawn
+   {
+   	GENERATED_BODY()
+   
+   public:
+   ...
+   	// 最大速度值
+   	UPROPERTY(EditAnywhere, Category = "My Pawn Movement")
+   	float MaxSpeed;
+   ...
+   
+   public:	
+   	// Called every frame
+   	virtual void Tick(float DeltaTime) override;
+   
+   	// Called to bind functionality to input
+   	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+   
+   private:
+   	void MoveForward(float Value);
+   	void MoveRight(float Value);
+   	FVector Velocity;
+   };
+   ```
+
+2. *MyPawn.cpp*
+
+   ```cpp
+   // Called every frame
+   void AMyPawn::Tick(float DeltaTime)
+   {
+   	Super::Tick(DeltaTime);
+   
+   	AddActorLocalOffset(Velocity * DeltaTime, true);
+   }
+   
+   // Called to bind functionality to input
+   void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+   {
+   	Super::SetupPlayerInputComponent(PlayerInputComponent);
+   	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &AMyPawn::MoveForward);
+   	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AMyPawn::MoveRight);
+   }
+   
+   void AMyPawn::MoveForward(float Value)
+   {
+   	// Clamp 是限制这个值的大小
+   	Velocity.X = FMath::Clamp(Value, -1.0f, 1.0f) * MaxSpeed;
+   }
+   
+   void AMyPawn::MoveRight(float Value)
+   {
+   	// Clamp 是限制这个值的大小
+   	Velocity.Y = FMath::Clamp(Value, -1.0f, 1.0f) * MaxSpeed;
+   }
+   
+   ```
+
+### ***DeltaTime***
+
+*DeltaTime能够帮助我们进行优化，对于那些性能较高的电脑和性能较低的电脑保持一样的情况*
+
+![image-20230327142109824](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230327142109824.png)
+
+## ***旋转控制视野***
 
 ## ***通过代码增加力与力矩***
 
@@ -362,12 +678,12 @@
 
 1. *AddForce*
 
-   - *传参*
-     - *第一个参数 - 施加多大的力 （必传）*
-     - *第二个参数 - 施加在什么骨骼（default = "Name_None"）*
-     - *第三个参数 - 是否无视质量，直接给加速度 （default = false）*
+- *传参*
+  - *第一个参数 - 施加多大的力 （必传）*
+  - *第二个参数 - 施加在什么骨骼（default = "Name_None"）*
+  - *第三个参数 - 是否无视质量，直接给加速度 （default = false）*
 
-   - *`MyStaticMesh->AddForce(FVector(0.0f), "Name_None", true);`*
+- *`MyStaticMesh->AddForce(FVector(0.0f), "Name_None", true);`*
 
 2. *AddTorque*
 
@@ -375,16 +691,77 @@
    - *第二个参数 - 施加在什么骨骼（default = "Name_None"）*
    - *第三个参数 - 是否无视质量，直接给加速度 （default = false）*
 
-   - *`MyStaticMesh->AddTorque(FVector(0.0f), "Name_None", true)`*
+- *`MyStaticMesh->AddTorque(FVector(0.0f), "Name_None", true)`*
+
+## ***player 0 自动持有该pawn***
+
+`AutoPossessPlayer = EAutoReceiveInput::Player0;`
+
+## ***设置模型与材质的默认值***
+
+*我们可以利用`#include "UObject/ConstructorHelpers.h"`文件来设置，它是一个静态文件，所以必须要用static*
+
+- *MyPawn.h*
+
+  ```cpp
+  UCLASS()
+  class BASICTRAINING_API AMyPawn : public APawn
+  {
+  	GENERATED_BODY()
+  
+  public:
+  ...
+  	// 声明静态网格
+  	UPROPERTY(VisibleAnywhere, Category = "My Actor Component")
+  	UStaticMeshComponent* MyStaticMesh;
+  ...
+  };
+  ```
+
+- *MyPawn.cpp*
+
+  ```cpp
+  #include "MyPawn.h"
+  #include "Components/StaticMeshComponent.h"
+  #include "Camera/CameraComponent.h"
+  #include "Components/InputComponent.h"
+  #include "GameFramework/SpringArmComponent.h"
+  #include "UObject/ConstructorHelpers.h"
+  
+  // Sets default values
+  AMyPawn::AMyPawn()
+  {
+  ...
+  
+  	// 初始化场景组件 - 根组件
+  	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+  
+  	// 初始化静态网格组件并附加到根组件
+  	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MyStaticMesh"));
+  	MyStaticMesh->SetupAttachment(GetRootComponent());
+  
+  	// 给静态网格组件增加默认的静态网格和默认的材质
+  	static ConstructorHelpers::FObjectFinder<UStaticMesh> StaticMeshAsset(TEXT("xxx"));
+  	static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialAsset(TEXT("xxx"));
+  	if (StaticMeshAsset.Succeeded() && MaterialAsset.Succeeded()) {
+  		MyStaticMesh->SetStaticMesh(StaticMeshAsset.Object);
+  		MyStaticMesh->SetMaterial(0, MaterialAsset.Object);
+  		MyStaticMesh->SetWorldScale3D(FVector(0.5f));
+  	}
+  ...
+  }
+  
+  ```
+
+## 
 
 # ***基础宏参数***
 
 ## ***基础宏参数介绍***
 
 1. *BlueprintReadWrite*
-
-   - *在蓝图中可以进行get and set*
-
+- *在蓝图中可以进行get and set*
+  
 2. *BlueprintReadOnly*
 
    - *只读，在蓝图中只有get，没有set*
