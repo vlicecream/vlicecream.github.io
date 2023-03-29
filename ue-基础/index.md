@@ -274,7 +274,7 @@
    - *Object是不能放在场景中的哦~ 那么怎么才能将继承于Object的类放置在场景中，那就是关卡蓝图，一般用来做于测试，摄像机，或者属于这个关卡的独特配置*
 2. *流程*
    - *Blueprints -> Open Level Blueprint*
-   - ![image-20230326164453845](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303262125395.png)
+   - ![image-20230326164453845](C:\Users\Xu\Desktop\Unreal Note\image-20230326164453845.png)
 
 ### ***Actor / Pawn*** 
 
