@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>材质基础 - Ame林汀</title><meta name="Description" content="虚幻材质"><meta property="og:title" content="材质基础" />
+<meta property="og:description" content="虚幻材质" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" /><meta property="og:image" content="https://vlicecream.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-29T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-04-01T00:00:00+08:00" /><meta property="og:site_name" content="Ame林汀" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://vlicecream.github.io/logo.png"/>
+
+<meta name="twitter:title" content="材质基础"/>
+<meta name="twitter:description" content="虚幻材质"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" /><link rel="prev" href="https://vlicecream.github.io/ue-%E8%93%9D%E5%9B%BE/" /><link rel="next" href="https://vlicecream.github.io/ue-umg/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "材质基础",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/vlicecream.github.io\/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "UE4","wordcount":  2067 ,
+        "url": "https:\/\/vlicecream.github.io\/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F\/","datePublished": "2023-03-29T00:00:00+08:00","dateModified": "2023-04-01T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/vlicecream.github.io\/images\/avatar.png",
+                    "width":  640 ,
+                    "height":  634 
+                }},"author": {
+                "@type": "Person",
+                "name": "Ame林汀"
+            },"description": "虚幻材质"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame林汀"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame林汀"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">材质基础</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-29">2023-03-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2067 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" class="leancloud_visitors" data-flag-title="材质基础">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是材质"><em><strong>什么是材质</strong></em></a></li>
+    <li><a href="#模型制作渲染流程"><em><strong>模型制作渲染流程</strong></em></a></li>
+    <li><a href="#ue4中的材质"><em><strong>UE4中的材质</strong></em></a></li>
+    <li><a href="#材质编辑页面ui功能"><em><strong>材质编辑页面UI功能</strong></em></a></li>
+    <li><a href="#材质类型控制属性"><em><strong>材质类型控制属性</strong></em></a></li>
+    <li><a href="#材质输入属性"><em><strong>材质输入属性</strong></em></a>
+      <ul>
+        <li><a href="#基础材质节点图表概述"><em><strong>基础材质节点图表概述</strong></em></a></li>
+        <li><a href="#base-color-底色"><em><strong>Base Color 底色</strong></em></a></li>
+        <li><a href="#metallic-金属色"><em><strong>Metallic 金属色</strong></em></a></li>
+        <li><a href="#roughness-粗糙度"><em><strong>Roughness 粗糙度</strong></em></a></li>
+        <li><a href="#specular-高光"><em><strong>Specular 高光</strong></em></a></li>
+        <li><a href="#emissive-color-自发光颜色"><em><strong>Emissive Color 自发光颜色</strong></em></a></li>
+        <li><a href="#world-position-offset-世界位置偏移"><em><strong>World Position Offset 世界位置偏移</strong></em></a></li>
+        <li><a href="#ambient-occlusion-环境遮挡"><em><strong>Ambient Occlusion 环境遮挡</strong></em></a></li>
+        <li><a href="#pixel--depth-offset-像素深度偏移"><em><strong>Pixel  Depth Offset 像素深度偏移</strong></em></a></li>
+        <li><a href="#opacity-mask-不透明遮罩"><em><strong>Opacity Mask 不透明遮罩</strong></em></a></li>
+        <li><a href="#opacity-不透明度"><em><strong>Opacity 不透明度</strong></em></a></li>
+        <li><a href="#world-displacement--tessellation-multipiller"><em><strong>World Displacement &amp; Tessellation Multipiller</strong></em></a></li>
+        <li><a href="#subsurface-color-子表面颜色"><em><strong>Subsurface Color 子表面颜色</strong></em></a></li>
+        <li><a href="#clear-coat--clear-coat-roughness"><em><strong>Clear Coat &amp; Clear Coat Roughness</strong></em></a></li>
+        <li><a href="#refraction-折射"><em><strong>Refraction 折射</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#常用重要节点"><em><strong>常用重要节点</strong></em></a>
+      <ul>
+        <li><a href="#texturesample节点"><em><strong>TextureSample节点</strong></em></a></li>
+        <li><a href="#multiply-节点"><em><strong>Multiply 节点</strong></em></a></li>
+        <li><a href="#time-节点"><em><strong>Time 节点</strong></em></a></li>
+        <li><a href="#vertexnormalws-节点"><em><strong>VertexNormalWS 节点</strong></em></a></li>
+        <li><a href="#terp-节点"><em><strong>Terp 节点</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#材质参数化"><em><strong>材质参数化</strong></em></a></li>
+    <li><a href="#材质函数"><em><strong>材质函数</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="什么是材质"><em><strong>什么是材质</strong></em></h2>
+<p><em>简单地说就是物体看起来是什么质地，材质可以看成是材料和质感的结合</em></p>
+<p><em>在Ai渲染程式中，他是表面各可视属性的结合。这些可视属性是指表面的色彩、纹理、光滑度、透明度、反射率、折射率、发光度等</em></p>
+<h2 id="模型制作渲染流程"><em><strong>模型制作渲染流程</strong></em></h2>
+<p><em>Maya Max3d 的流程基本都是 制作模型 -&gt; 拆分UV -&gt; 添加灯光 -&gt; 制作材质 -&gt; 渲染 -&gt; 合成</em></p>
+<h2 id="ue4中的材质"><em><strong>UE4中的材质</strong></em></h2>
+<ol>
+<li><em>UE4中的材质是什么作用</em>
+<ul>
+<li><em>可以应用到网格物体上的资源，用它可控制场景的可视外观。当穿过场景的光照接触到表面后，材质被用来 <strong>计算该光照如何与该表面进行互动</strong>。这些计算是通过对材质的输入数据来完成的，而这些输入数据来自于一系列图像(贴图)以及数学表达式，以及材质本身所继承的不同属性设置</em></li>
+</ul>
+</li>
+<li><em>UE4中的材质是什么</em>
+<ul>
+<li><em>UE4中的材质是基于物理的材质(PVR)：Unreal4使用了基于物理的着色器模型。这意味着不再使用数学模型中的某个参数属性（比如漫反射颜色和高光次幂）定义一个材质，而是使用和现实世界更加相关的属性定义材质。这些属性包括底色、金属色、高光及粗糙度</em></li>
+</ul>
+</li>
+<li><em>UE4中的材质跟普通的材质有什么区别</em>
+<ul>
+<li><em>普通的材质是基于数学逻辑 / UE4中的材质是基于物理逻辑</em></li>
+<li><em>UE4这样会更加接近现实世界的质感</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="材质编辑页面ui功能"><em><strong>材质编辑页面UI功能</strong></em></h2>
+<ul>
+<li><em>菜单栏：列出当前材质的菜单选项</em></li>
+<li><em>工具栏：含材质使用工具</em></li>
+<li><em>视口面板：预览材质在网格体上的效果</em></li>
+<li><em>细节面板：列出材质、所选材质表现或函数节点的属性</em></li>
+<li><em>图标面板：显示创建材质着色器指令的材质表现和函数节点</em></li>
+<li><em>控制板（调色板面板）：列出所有材质表现和函数节点</em></li>
+<li><em>更加详细的可以参考官方文档：http://api.unrealengine.com/CHN/Engine/Rendering/Materials/Editor/Interface/index.html#%E5%B7%A5%E5%85%B7%E6%A0%8F</em></li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331201340469.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331201340469.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331201340469.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331201340469.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331201340469.png"
+        title="image-20230331201340469" /></p>
+<h2 id="材质类型控制属性"><em><strong>材质类型控制属性</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331224025089.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331224025089.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331224025089.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331224025089.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331224025089.png"
+        title="image-20230331224025089" /></p>
+<p><em>更多内容请参考官方文档：http://api.unrealengine.com/CHN/Engine/Rendering/Materials/MaterialInputs/index.html</em></p>
+<h2 id="材质输入属性"><em><strong>材质输入属性</strong></em></h2>
+<h3 id="基础材质节点图表概述"><em><strong>基础材质节点图表概述</strong></em></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331205231530.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331205231530.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331205231530.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331205231530.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331205231530.png"
+        title="image-20230331205231530" /></p>
+<h3 id="base-color-底色"><em><strong>Base Color 底色</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>定义整个材质的基础颜色</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>1 代表白色 / 0 代表黑色 / 中间值代表比例灰色</em></li>
+<li><em>也可以直接使用 RGB 或者 依靠 TextureSample节点贴图</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="metallic-金属色"><em><strong>Metallic 金属色</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>让材质更接近金属感觉</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>1 代表金属质感 / 0 代表无金属质感 / 中间值代表比例过渡</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="roughness-粗糙度"><em><strong>Roughness 粗糙度</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>决定材质的粗糙度</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>1 代表粗糙质感 - 完全没有光泽或者漫射 / 0 代表平滑质感 - 镜面反射 / 中间值代表比例过渡</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="specular-高光"><em><strong>Specular 高光</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>高光，用于调整非金属的表面上的镜面反射量，在金属上是没有效果的</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>取值范围0 ~ 1，默认值 0.5</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="emissive-color-自发光颜色"><em><strong>Emissive Color 自发光颜色</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>控制材质的哪些部分将发光</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>通过RGB 还有 Multiply节点</em></li>
+<li><em>注意配合 Multiply 的时候，只适用于这个 Emissive Color</em></li>
+</ul>
+</li>
+</ol>
+<p><em><strong>Normal 法线</strong></em></p>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>通过发现图将每个单独像素的法线或面向方向打乱，为表面提供重要的物理细节</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="world-position-offset-世界位置偏移"><em><strong>World Position Offset 世界位置偏移</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>使得网格物体的顶点可以由材质在世界空间内进行控制</em></li>
+<li><em>比如可以使我们目标可以移动，或者改变形状，旋转，甚至还可以写环境动画</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>可以配合Time、VertexNormalWS节点来使用</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="ambient-occlusion-环境遮挡"><em><strong>Ambient Occlusion 环境遮挡</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>用来模拟在表面缝隙中发生的自我遮蔽</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>一般和环境遮挡贴图（OCC）配合使用</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="pixel--depth-offset-像素深度偏移"><em><strong>Pixel  Depth Offset 像素深度偏移</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>可以将像素的深度沿着摄像机到该像素的方向推一个值</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>给一个值即可</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="opacity-mask-不透明遮罩"><em><strong>Opacity Mask 不透明遮罩</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>表现材质效果，要么完全可见，要么完全不可见</em></li>
+<li><em>比如铁丝网，围栏等</em></li>
+<li><em><strong>只有当混合模式为Masked才可用</strong></em></li>
+</ul>
+</li>
+</ol>
+<h3 id="opacity-不透明度"><em><strong>Opacity 不透明度</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>用来表现半透明度</em></li>
+</ul>
+</li>
+<li><em>使用</em>
+<ul>
+<li><em>0 代表完全透明 / 1 代表不透明 / 中间值代表半透明</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="world-displacement--tessellation-multipiller"><em><strong>World Displacement &amp; Tessellation Multipiller</strong></em></h3>
+<ol>
+<li><em>World Displacement 世界场景位置</em>
+<ul>
+<li><em>和世界位置偏移类似，但是使用曲面细分顶点而不是网格的基本顶点，使曲面细分顶点可以由材质在世界空间内进行控制</em></li>
+</ul>
+</li>
+<li><em>Tessellation Multiplier 曲面细分乘数</em>
+<ul>
+<li><em>控制表面的曲面细分量，与允许在需要的地方添加更多的细节</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="subsurface-color-子表面颜色"><em><strong>Subsurface Color 子表面颜色</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>可以用来模拟光照通过表面时的颜色的变化</em></li>
+<li><em>只有当 shading model 设置为subsurface时才可以使用</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="clear-coat--clear-coat-roughness"><em><strong>Clear Coat &amp; Clear Coat Roughness</strong></em></h3>
+<ol>
+<li><em>Clear Coat 透明图层</em>
+<ul>
+<li><em>可以用来模拟多层材料，这些材料的表面有一层薄薄的半透明薄膜</em></li>
+<li><em>只有在 shading model 设置为 clear coat才可以使用</em></li>
+<li><em>0 默认光照模式 / 1 完全透明图层模式</em></li>
+</ul>
+</li>
+<li><em>Clear Coat Roughness 透明图层粗糙度</em>
+<ul>
+<li><em>一般取比较小的值</em></li>
+<li><em>可以用来模拟车漆等</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="refraction-折射"><em><strong>Refraction 折射</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>用来模拟表明的折射率</em></li>
+<li><em>可以应用于水、玻璃</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="常用重要节点"><em><strong>常用重要节点</strong></em></h2>
+<h3 id="texturesample节点"><em><strong>TextureSample节点</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>纹理取样</em></li>
+<li><em>输出纹理中的颜色值</em></li>
+</ul>
+</li>
+<li><em>引脚介绍</em>
+<ul>
+<li><em>UVs</em></li>
+<li><em>Tex：通过 Texture Object节点配合使用来控制贴图，优先级最高，在细节面板也是可以设置贴图，但是相比优先级较低</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="multiply-节点"><em><strong>Multiply 节点</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>乘法，RGB每个通道分别相乘</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="time-节点"><em><strong>Time 节点</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>时间节点，用来像材质或相关操作添加经历时间</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="vertexnormalws-节点"><em><strong>VertexNormalWS 节点</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>顶点法线方向节点，输出世界场景空间顶点法线</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="terp-节点"><em><strong>Terp 节点</strong></em></h3>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>线性插值</em></li>
+<li><em>（A(1-alpha) + B(1+alpha)）</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="材质参数化"><em><strong>材质参数化</strong></em></h2>
+<p><em>场景：如果多个材质只有粗糙度不一样，其他一致，我们就要创建多个材质，并且进行连线吗?</em></p>
+<p><em>解决：可以将粗糙度的值提升为变量参数，这样就可以实例化他的子类，然后输入我们想要修改的粗糙度即可</em></p>
+<h2 id="材质函数"><em><strong>材质函数</strong></em></h2>
+<ol>
+<li><em>什么是材质函数</em>
+<ul>
+<li><em>材质图的一些小片段，他们可以保存在包中，并在多个材质之间复用</em></li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-04-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" data-title="材质基础" data-hashtags="UE4"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" data-hashtag="UE4"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" data-title="材质基础"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" data-title="材质基础"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://vlicecream.github.io/ue-%E6%9D%90%E8%B4%A8%E7%B3%BB%E7%BB%9F/" data-title="材质基础"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ue4/">UE4</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ue-%E8%93%9D%E5%9B%BE/" class="prev" rel="prev" title="虚幻 蓝图基础"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>虚幻 蓝图基础</a>
+            <a href="/ue-umg/" class="next" rel="next" title="UMG">UMG<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2017 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame林汀</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
