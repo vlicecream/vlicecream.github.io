@@ -33,9 +33,19 @@
 
 ![image-20230331201340469](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331201340469.png)
 
+## ***快捷键属性***
+
+![image-20230402210038896](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022100386.png)
+
 ## ***材质类型控制属性***
 
 ![image-20230331224025089](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331224025089.png)
+
+![image-20230402210647088](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022106478.png)
+
+![image-20230402210657985](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022106854.png)
+
+![image-20230402210713277](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022107360.png)
 
 *更多内容请参考官方文档：http://api.unrealengine.com/CHN/Engine/Rendering/Materials/MaterialInputs/index.html*
 
@@ -45,10 +55,10 @@
 
 ![image-20230331205231530](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data%5Cimage-20230331205231530.png)
 
-### ***Base Color 底色***
+### ***Base Color 基础颜色***
 
 1. *作用*
-   - *定义整个材质的基础颜色*
+   - *没有任何光照的颜色*
 2. *使用*
    - *1 代表白色 / 0 代表黑色 / 中间值代表比例灰色*
    - *也可以直接使用 RGB 或者 依靠 TextureSample节点贴图*
@@ -163,10 +173,29 @@
    - *UVs*
    - *Tex：通过 Texture Object节点配合使用来控制贴图，优先级最高，在细节面板也是可以设置贴图，但是相比优先级较低*
 
+### ***Add 节点***
+
+1. *作用*
+
+   - *加法，具体作用请看图示*
+
+2. *图示*
+
+   ![image-20230402210540727](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022105763.png)
+
+   ![image-20230402210600129](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022106486.png)
+
 ### ***Multiply 节点***
 
 1. *作用*
+   
    - *乘法，RGB每个通道分别相乘*
+   
+1. *图示*
+   
+   ![image-20230402210319779](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022103933.png)
+   
+   ![image-20230402210339765](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022103173.png)
 
 ### ***Time 节点***
 
@@ -178,11 +207,16 @@
 1. *作用*
    - *顶点法线方向节点，输出世界场景空间顶点法线*
 
-### ***Terp 节点***
+### ***Lerp 节点***
 
 1. *作用*
+   
    - *线性插值*
    - *（A(1-alpha) + B(1+alpha)）*
+   
+1. *图示*
+   
+   ![image-20230402210226711](https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202304022102184.png)
 
 ## ***材质参数化***
 
