@@ -35,7 +35,7 @@
                             "url": "https:\/\/vlicecream.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "数组, 链表, 跳表","wordcount":  2019 ,
+                        }],"genre": "posts","keywords": "数组, 链表, 跳表","wordcount":  1995 ,
         "url": "https:\/\/vlicecream.github.io\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E8%B7%B3%E8%A1%A8\/","datePublished": "2022-08-24T21:40:32+08:00","dateModified": "2022-08-24T21:40:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">数组-链表-跳表</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://vlicecream.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame林汀</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>数据结构</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-24">2022-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2019 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E8%B7%B3%E8%A1%A8/" class="leancloud_visitors" data-flag-title="数组-链表-跳表">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-24">2022-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1995 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E8%B7%B3%E8%A1%A8/" class="leancloud_visitors" data-flag-title="数组-链表-跳表">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -142,15 +142,15 @@
 <ol>
 <li><em><strong>数组的特点</strong></em>
 <ul>
-<li><em>当我们申请数组的时候，计算机会在内存开辟一段连续的内存地址，内存管理器可以直接访问每个内存地址，所以我们可以通过&quot;<i class="far fa-square fa-fw" aria-hidden="true"></i> &ldquo;去取值</em></li>
+<li><em>当我们申请数组的时候，计算机会在内存开辟一段连续的内存地址，内存管理器可以直接访问每个内存地址，所以我们可以通过&quot; [  ] &ldquo;去取值</em></li>
 </ul>
 </li>
 <li><em><strong>数组的时间复杂度</strong></em>
 <ul>
-<li>***select：*<em>O(1)</em></li>
-<li>***insert：*<em>O(n)</em></li>
-<li>***append：*<em>O(1)</em></li>
-<li>***delete：*<em>O(n)</em></li>
+<li><em><strong>select：</strong></em> <em>O(1)</em></li>
+<li><em><strong>insert：</strong></em> <em>O(n)</em></li>
+<li><em><strong>append：</strong></em> <em>O(1)</em></li>
+<li><em><strong>delete：</strong></em> <em>O(n)</em></li>
 </ul>
 </li>
 <li><em><strong>数组时间复杂度图示</strong></em>
@@ -168,12 +168,14 @@
 </ol>
 <h2 id="链表"><em><strong>链表</strong></em></h2>
 <ol>
-<li><em><strong>引出</strong></em>
+<li>
+<p><em><strong>引出</strong></em></p>
 <ul>
 <li><em>研究数据结构的科学家们 看到数组的 &ldquo;insert&rdquo; &ldquo;delete&rdquo; 就会去想优化这个时间复杂度 随后 链表诞生了</em></li>
 </ul>
 </li>
-<li><em><strong>何为链表</strong></em>
+<li>
+<p><em><strong>何为链表</strong></em></p>
 <ul>
 <li>*非连续的内存空间 有一个个的**节点（node）*<em>组成</em></li>
 <li><em>node 又是由 <strong>value next</strong> 组成</em></li>
@@ -181,7 +183,8 @@
 <li><em>next 则就是一个指针 指向下一个node</em></li>
 </ul>
 </li>
-<li><em><strong>时间复杂度</strong></em>
+<li>
+<p><em><strong>时间复杂度</strong></em></p>
 <ul>
 <li><em><strong>select:</strong> O(n)</em></li>
 <li><em>Append</em>: O(1)</li>
@@ -189,7 +192,20 @@
 <li><em>delete: O(1)</em></li>
 </ul>
 </li>
-<li><em><strong>ps: 不结合实际场景的计算时间复杂度都是耍流氓</strong></em></li>
+<li>
+<p><em><strong>ps: 不结合实际场景的计算时间复杂度都是耍流氓</strong></em></p>
+</li>
+<li>
+<p><em><strong>图示</strong></em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202310232157907.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202310232157907.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202310232157907.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202310232157907.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202310232157907.jpg"
+        title="链表" /></p>
+</li>
 </ol>
 <h2 id="单向链表"><em><strong>单向链表</strong></em></h2>
 <ol>
