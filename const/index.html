@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - Ame</title><meta name="Description" content="一个艺术世界"><meta property="og:url" content="http://localhost:1313/const/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="Ame">
+  <meta property="og:description" content="const const object non-const object const member functions ✅ ✅ non-const member functions ❌ ✅ object 与 member func 的关系 我们根据上述表格来看看例子">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="og:image" content="http://localhost:1313/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/logo.png">
+  <meta name="twitter:title" content="Ame">
+  <meta name="twitter:description" content="const const object non-const object const member functions ✅ ✅ non-const member functions ❌ ✅ object 与 member func 的关系 我们根据上述表格来看看例子">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/const/" /><link rel="prev" href="http://localhost:1313/friend/" /><link rel="next" href="http://localhost:1313/mysql-cmd/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/const\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1409 ,
+        "url": "http:\/\/localhost:1313\/const\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/const/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/const/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1409 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#object-与-member-func-的关系"><em><strong>object 与 member func 的关系</strong></em></a></li>
+    <li><a href="#const修饰"><em><strong>const修饰</strong></em></a></li>
+    <li><a href="#effective-c-item"><em><strong>Effective c++ Item</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="const">const</h1>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center">const object</th>
+          <th style="text-align: center">non-const object</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><em><strong>const member functions</strong></em></td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><em><strong>non-const member functions</strong></em></td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="object-与-member-func-的关系"><em><strong>object 与 member func 的关系</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>我们根据上述表格来看看例子</strong></em></p>
+<p><em>我们创建了一个常量 str 并且调用<code>print</code>方法，但是如果当初设计 <code>string::print()</code> 时候没有指明const 那么会直接报错， 因为 &ldquo;const obj&rdquo; 调用 non-const 成员函数的时候 是不允许的～～</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">String</span> <span class="nf">str</span><span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">str</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><strong>我们再来看一个标准库 string 的例子 <code>class template std::basic_string&lt;...&gt;</code> 有如下两个 成员函数</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">chatT</span> <span class="k">operator</span><span class="p">[]</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">pos</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>  <span class="c1">// 不必考虑copy on write
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">reference</span> <span class="k">operator</span><span class="p">[]</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>  <span class="c1">// 必须考虑copy on write
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>在设计字符串的时候 因为字符串是共享的 可能a拷贝一份 b拷贝一份 就有多份 最致命的是 如果a修改了 b的字符串也随之修改了，所以我们必须要考虑这个共享的问题</em></p>
+<p><em>所以这个就考虑到了 const 下面没有const，那么可能就会修改字符串，上面的有 const 那么就不允许修改</em></p>
+<p><em>下面也是可行的 因为 non-const member func 是可以创建 non-const obj 的</em></p>
+<p><em>但是上面的 const member func 又可以创建 const obj 又可以创建 non-const obj，那么编译器怎么调用呢</em></p>
+<p><em>当成员函数的 “const&quot; 和 &ldquo;non-const&rdquo; 版本同时存在 const obj 只能调用const 版本 “non-const obj” 只能调用&quot;non-const&quot;版本</em></p>
+</li>
+</ol>
+<h2 id="const修饰"><em><strong>const修饰</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>const 修饰基本数据类型</strong></em></p>
+<ul>
+<li><em>基本数据类型，修饰符 const 可以用在类型说明符前，也可以 用在类型说明符后，其结果是一样的。在使用这些常量的时候，只要不改变这些常量的值即可</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>const 修饰指针变量和引用变量</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">//指向整形常量的指针，它指向的值不能修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span><span class="o">*</span> <span class="k">const</span> <span class="n">p2</span><span class="p">;</span> <span class="c1">//指向整形的常量指针 ，它不能在指向别的变量，但指向(变量)的值可以修改。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="k">const</span> <span class="n">p3</span><span class="p">;</span> <span class="c1">//指向整形常量的常量指针 。它既不能再指向别的常量，指向的值也不能修改。
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><strong>const 应用到函数中</strong></em></p>
+<ul>
+<li>
+<p><em><strong>作为参数的 const 修饰符：</strong></em> <em>调用函数的时候，用相应的变量初始化const常量，则在函数体中，按照const所修饰的部分进行常量化，保护了原对象的属性</em></p>
+<p><em><strong>注意：参数 const 通常用于参数为指针或引用的情况</strong></em></p>
+</li>
+<li>
+<p><em><strong>作为函数返回值的 const 修饰符：</strong></em> <em>声明了返回值后，const 按照&quot;修饰原则&quot;进行修饰，起到相应的保护作用</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>const 在类中的用法</strong></em></p>
+<ul>
+<li><em><strong>const成员变量</strong></em>
+<ul>
+<li><em>只在某个对象生命周期内是常量，而对于整个类而言 是可以改变的</em></li>
+<li><em>const 数据成员的初始化只能在类的构造函数的初始化列表中进行</em>
+<ul>
+<li><em>因为类可以创建多个对象，不同的对象其 const 数据成员值可以不同。所以不能在类的声明中初始化 const 数据成员，因为类的对象在没有创建时候，编译器不知道 const 数据成员的值是什么</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>const成员函数</strong></em>
+<ul>
+<li><em>const 成员函数的主要目的是防止成员函数修改对象的内容</em></li>
+<li><em>要注意，const 关键字和 static 关键字对于成员函数来说是不能同时使用的</em>
+<ul>
+<li><em>因为 static 关键字修饰静态成员 函数不含有 this 指针，即不能实例化，const 成员函数又必须具体到某一个函数</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>const 修饰类对象，定义常量对象</strong></em></p>
+<ul>
+<li><em>常量对象只能调用常量函数，别的成员函数都不能调用</em></li>
+</ul>
+</li>
+<li>
+<p><strong>C++</strong> 中的 <strong>const</strong>类成员函数(用法和意义)</p>
+<ul>
+<li>
+<p><em>常量对象可以调用类中的 const member func，但不能调用non-const member func</em></p>
+<p><em>这是因为对象调用成员函数的时候，在形参列表最前面加一个形参<code>this</code>，但是这个是隐式的。this 指针是默认指向调用函数的当前对象的，所以，很自然，this是一个常量指针<code>test* const</code>，因为不可修改this指针代表的地址。但当member func的参数列表后加了 const 关键字 <code>void print() const;</code> ，此成员函数为常量成员函数，此时他的隐式this形参为 <code>const test* const</code> 即 <strong>不可以通过this指针来改变指向对象的值</strong></em></p>
+</li>
+<li>
+<p><em>非常量对象可以调用类中的 const 成员函数，也可以调用非 const 成员函数。</em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="effective-c-item"><em><strong>Effective c++ Item</strong></em></h2>
+<ol>
+<li><em>对于更多的const的相关知识，可以查看《<a href="https://vlicecream.github.io/effective-c-%E6%9D%A1%E6%AC%BE1-4-%E4%B9%A0%E6%83%AFc-/" target="_blank" rel="noopener noreffer ">Effective c++ Item3 - 尽量使用const</a>》</em></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/const/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://localhost:1313/const/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/const/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/const/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/const/" data-title=""><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/const/" data-title="" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/friend/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/mysql-cmd/" class="next" rel="next" title="CMD">CMD<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

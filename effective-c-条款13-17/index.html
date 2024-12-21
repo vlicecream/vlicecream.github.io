@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>条款13～17 资源管理 - Ame</title><meta name="Description" content="条款13～17 资源管理"><meta property="og:url" content="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="条款13～17 资源管理">
+  <meta property="og:description" content="条款13～17 资源管理">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-03-05T16:29:59+08:00">
+    <meta property="article:modified_time" content="2023-03-05T16:29:59+08:00">
+    <meta property="article:tag" content="Effective C&#43;&#43;">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="条款13～17 资源管理">
+  <meta name="twitter:description" content="条款13～17 资源管理">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/" /><link rel="prev" href="https://example.com/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/" /><link rel="next" href="https://example.com/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "条款13～17 资源管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/effective-c-%E6%9D%A1%E6%AC%BE13-17\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Effective C\u002b\u002b","wordcount":  2599 ,
+        "url": "https:\/\/example.com\/effective-c-%E6%9D%A1%E6%AC%BE13-17\/","datePublished": "2023-03-05T16:29:59+08:00","dateModified": "2023-03-05T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "条款13～17 资源管理"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE13-17/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/effective-c-%E6%9D%A1%E6%AC%BE13-17/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">条款13～17 资源管理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/effective-c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Effective C++</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-05">2023-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2599 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/effective-c-%E6%9D%A1%E6%AC%BE13-17/" class="leancloud_visitors" data-flag-title="条款13～17 资源管理">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></a></li>
+    <li><a href="#条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></a>
+      <ul>
+        <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款14-在资源管理类中小心copying行为"><em><strong>条款14 在资源管理类中小心copying行为</strong></em></a>
+      <ul>
+        <li><a href="#summary-1"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款15-资源管理类中提供对原始资源的访问"><em><strong>条款15 资源管理类中提供对原始资源的访问</strong></em></a>
+      <ul>
+        <li><a href="#summary-2"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款16-new和delete-要使用相同形式"><em><strong>条款16 new和delete 要使用相同形式</strong></em></a>
+      <ul>
+        <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款17-以独立语句将newed对象置入智能指针"><em><strong>条款17 以独立语句将newed对象置入智能指针</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="条款1317-资源管理">条款13～17 资源管理</h1>
+<h2 id="知识点-raii对象"><em><strong>知识点 RAII对象</strong></em></h2>
+<ol>
+<li><em>本大章节-资源管理，需要弄懂什么是RAII，在本博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-raii%E6%98%AF%E4%BB%80%E4%B9%88/" target="_blank" rel="noopener noreffer ">什么是RAII</a>》中有详解</em></li>
+</ol>
+<h2 id="条款13-以对象管理资源"><em><strong>条款13 以对象管理资源</strong></em></h2>
+<ol>
+<li>
+<p><em>前言</em></p>
+<ul>
+<li>
+<p><em>其实在本文中的<code>auto_ptr</code>已经被弃用了，建议去看《<a href="https://vlicecream.github.io/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" target="_blank" rel="noopener noreffer ">Effective Modern c++ Item18 ~ Item22</a>》</em></p>
+</li>
+<li>
+<p><em>但是在这里还是说一下该条款的一些思路点</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>思路点</em></p>
+<ul>
+<li>
+<p><em>在构造中获得资源并在析构函数中释放资源</em></p>
+</li>
+<li>
+<p><em>两个常用的自动管理资源的类是shared_ptr和auto_ptr，其中auto_ptr的复制动作，会导致复制对象变为null，容易造成意外的错误，一般推荐使用shared_ptr，其使用引用计数的原理实现对象共享的目的，并且在计数为0时自动释放对象</em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="summary"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>已过时，建议去看《<a href="https://vlicecream.github.io/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" target="_blank" rel="noopener noreffer ">Effective Modern c++ Item18 ~ Item22</a>》</em></li>
+<li><em>思路点其实就是RAII原则</em></li>
+</ol>
+<h2 id="条款14-在资源管理类中小心copying行为"><em><strong>条款14 在资源管理类中小心copying行为</strong></em></h2>
+<ol>
+<li>
+<p><em>引言</em></p>
+<ul>
+<li><em>上节是对资源的管理说明。有时候我们不能依赖于shared_ptr或者auto_ptr,所以我们须要自己建立一个资源管理类来管理自己的资源</em></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><em>假设我们使用<code>C API</code>函数处理<code>Mutex</code>互斥器对象：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">lock</span><span class="p">(</span><span class="n">Mutex</span><span class="o">*</span> <span class="n">pm</span><span class="p">);</span>   <span class="c1">//锁定pm所指的互斥器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">unlock</span><span class="p">(</span><span class="n">Mutex</span><span class="o">*</span> <span class="n">pm</span><span class="p">);</span> <span class="c1">//解除锁定
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>为了忘记释放锁，我们想要建立一个class来进行资源管理，这里class应该满足<code>RAII</code>守则，即&quot;资源在构造期间获得，在析构期间释放&quot;</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Lock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">explicit</span> <span class="n">Lock</span><span class="p">(</span><span class="n">Mutex</span><span class="o">*</span> <span class="n">pm</span><span class="p">)</span><span class="o">:</span><span class="n">mutexPtr</span><span class="p">(</span><span class="n">pm</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lock</span><span class="p">(</span><span class="n">mutexPtr</span><span class="p">);</span><span class="c1">//获得资源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Lock</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unlock</span><span class="p">(</span><span class="n">mutexPtr</span><span class="p">);</span> <span class="c1">// 释放资源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Mutex</span><span class="o">*</span> <span class="n">mutexPtr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<ol start="2">
+<li>
+<p><em>copying行为</em></p>
+<ul>
+<li>
+<p><em>上述例子写的这很不错，但是如果此时<code>Lock</code>对象被复制，会发生什么？</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Lock</span> <span class="nf">ml1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span> <span class="c1">// 锁定m
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Lock</span> <span class="nf">ml2</span><span class="p">(</span><span class="n">ml1</span><span class="p">);</span> <span class="c1">// 将ml1复制到ml2身上
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这样做绝对不行，我们不能确定什么时候m2和m1会被析构，一旦被析构就会导致mutex解锁，mutex一旦解锁就会被别的进程所调用，程序将出现巨大的混乱</em></p>
+<p><em>其实，这不是说一个特定例子，一般的情况是：当一个<code>RAII</code>对象被复制时，应该如何选择，有以下两种做法</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>禁止复制</em></p>
+<ul>
+<li><em>如条款06所言：将<code>copying</code>操作声明为<code>private</code>，或者利用c++11新特性 <code>= delete</code></em></li>
+</ul>
+</li>
+<li>
+<p><em>引用计数</em></p>
+<ul>
+<li><em>对底层资源使用”reference-count“</em></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><em>有时候希望保有资源，直到它的最后一个使用者（某对象）被销毁。对<code>Lock</code>打算使用<code>reference counting</code>它可以改变<code>mutexPtr</code>类型，将<code>Mutex*</code>改为<code>tr1::shared_ptr&lt;Mutex&gt;</code>，当然这不是我们想要的，我们只是想释放锁，而不是删除锁</em></p>
+</li>
+<li>
+<p><em>幸运的是<code>tr1::shared_ptr</code>运行指定所谓的删除器，那是一个函数或对象，引用次数为0才被调用。删除器对<code>tr1::shared_ptr</code>构造函数而言是可有可无的第二参数，所以代码看起来像这样</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Lock</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">explicit</span> <span class="n">Lock</span><span class="p">(</span><span class="n">mutex</span><span class="o">*</span> <span class="n">pm</span><span class="p">)</span> <span class="o">:</span> <span class="n">mutexPtr</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">unlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lock</span><span class="p">(</span><span class="n">mutexPtr</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">trl</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Mutex</span><span class="o">&gt;</span> <span class="n">mutexPtr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="summary-1"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>复制<code>RAII</code>对象必须一并复制它所管理的资源，所以资源的<code>copying</code>行为决定<code>RAII</code>对象的<code>copying</code>行为</em></li>
+<li><em>普遍常见的RAII class copying 行为是：禁止复制、施行引用计数法</em></li>
+</ol>
+<h2 id="条款15-资源管理类中提供对原始资源的访问"><em><strong>条款15 资源管理类中提供对原始资源的访问</strong></em></h2>
+<p><em>这里想要将<code>RAII</code>class对象进行转换为其内含之原始资源，有两种转换</em></p>
+<ol>
+<li>
+<p><em>示例代码</em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FontHandle</span> <span class="nf">getFont</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">releaseFont</span><span class="p">(</span><span class="n">FontHandle</span> <span class="n">fh</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Font</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">explicit</span> <span class="n">Font</span><span class="p">(</span><span class="n">FontHandle</span> <span class="n">fh</span><span class="p">)</span> <span class="o">:</span> <span class="n">f</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">Font</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">releaseFont</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">FontHanle</span> <span class="nf">get</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">f</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 显示转换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="k">operator</span> <span class="nf">FontHandle</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">f</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 隐式转换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FontHandle</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Font</span> <span class="nf">f1</span><span class="p">(</span><span class="n">getFont</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">FontHanle</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">f1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em>显示转换</em></p>
+<ul>
+<li><em>提供<code>get()</code>函数得到原始指针</em></li>
+<li><em>显示调用 很不错 没有啥问题</em></li>
+</ul>
+</li>
+<li>
+<p><em>隐式转换</em></p>
+<ul>
+<li><em>允许隐式转换，但是会有问题，在客户<code>FontHanle f2 = f1;</code>的时候，并不知道这还有一层隐式转换的逻辑，所以会增加错误率</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="summary-2"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>APIs往往要求访问原始资源，所以每一个RAII class应该提供一个”取得其所管理之资源“的方法</em></li>
+<li><em>对原始资源的方法可能会经由显式转换或隐式转换</em>
+<ul>
+<li><em>相对而言显式转换比较安全，但是频繁<code>get()</code>很烦人</em></li>
+<li><em>但隐式转换对用户比较方便</em></li>
+</ul>
+</li>
+<li><em>个人觉得是显示调用要好，频繁调用<code>get()</code>又不会死，隐式调用用户如果不告诉他，或者他自己发现，也不会察觉到有一次隐式调用，会增加报错的几率</em></li>
+</ol>
+<h2 id="条款16-new和delete-要使用相同形式"><em><strong>条款16 new和delete 要使用相同形式</strong></em></h2>
+<ol>
+<li>
+<p><em>在使用<code>new</code> <code>delete</code>需要使用一致的形势使用，否则会导致内存泄漏</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">stringPtr1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">stringPtr2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="n">stringPtr1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span><span class="p">[]</span> <span class="n">stringPtr2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>要注意<code>typedef</code>自定义类型</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">AddressLines</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">pal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AddressLines</span><span class="p">;</span> <span class="c1">// new string[4]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="n">pal</span><span class="p">;</span> <span class="c1">// undefined!!!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">delete</span><span class="p">[]</span> <span class="n">pal</span><span class="p">;</span> <span class="c1">// fine
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这个规则对于使用<code>typedef</code>的程序员来说十分重要，因为它意味着<code>typedef</code>的作者必须说清楚：当程序员以<code>new</code>创建该种<code>typedef</code>类型对象是，该以哪一种<code>delete</code>形式删除之，考虑一下这个<code>typedef</code>:</em></p>
+<p><em>为避免诸如此类错误，尽量不是对数组形式使用<code>typedef</code>操作。这容易达成，因为C++标准程序库含有<code>string</code> <code>vector</code>等templates,可以将数组的需求下降到0</em></p>
+</li>
+</ol>
+<h3 id="summary-3"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>在使用<code>new</code> <code>delete</code>需要使用一致的形势使用，否则会导致内存泄漏</em></li>
+<li><em>在<code>typedef</code>自定义类型的时候，一定要注释写着哪一种delete形式删除</em></li>
+</ol>
+<h2 id="条款17-以独立语句将newed对象置入智能指针"><em><strong>条款17 以独立语句将newed对象置入智能指针</strong></em></h2>
+<ol>
+<li>
+<p><em>有些智能指针类(比如<code>shared_ptr&lt;T&gt;</code>)不支持隐式类型转换,假设存在这样两个函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fun</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lhs</span><span class="p">,</span><span class="kt">int</span> <span class="n">rhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">foo</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>那么对于以下函数调用</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">fun</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">,</span><span class="n">foo</span><span class="p">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>将不能通过编译,解决方法之一:</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">fun</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">),</span><span class="n">foo</span><span class="p">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它共有三个步骤</em></p>
+<ul>
+<li><em>执行<code>new int</code></em></li>
+<li><em>构造<code>shared_ptr&lt;int&gt;</code></em></li>
+<li><em>调用<code>foo()</code></em></li>
+</ul>
+<p><em>但是由于编译器对于同一语句的各项操作具有重新排列的自由,因此除了执行new int肯定在构造<code>shared_ptr&lt;int&gt;</code>之前外,调用<code>foo()</code>,可以发生在任何阶段,可能在最前,中间,最后,如果是按:执行<code>new int</code>→调用<code>foo()</code>→构造<code>shared_ptr&lt;int&gt;</code>的顺序执行,那么如果<code>foo()</code>发生异常,就会在<code>shared_ptr&lt;int&gt;</code>构造之前造成内存泄露.</em></p>
+</li>
+<li>
+<p><em>对于1出现的问题,可以利用编译器对于&quot;跨越语句的各项操作&quot;没有重新排列的权力,以独立语句将newed对象置入智能指针,如下</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">fun</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="n">foo</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这样可以防止由于foo在new出的int被放入<code>shared_ptr&lt;int&gt;</code>之前抛出异常而导致内存泄露,但要注意:</em></p>
+<ul>
+<li><em>ptr不是临时对象,也就是说调用fun后ptr管理的内存没有被释放,而ptr的存在并不是为了要访问底层资源,而是为了防止出现异常而造成内存泄露存在的,所以如果不需要ptr所指向的内存,最好调用<code>reset()</code>将它释放.(个人认为这个条款有些鸡肋)</em></li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-03-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/effective-c-%E6%9D%A1%E6%AC%BE13-17/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/" data-title="条款13～17 资源管理" data-hashtags="Effective C&#43;&#43;"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/" data-hashtag="Effective C&#43;&#43;"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/" data-title="条款13～17 资源管理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/" data-title="条款13～17 资源管理"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/effective-c-%E6%9D%A1%E6%AC%BE13-17/" data-title="条款13～17 资源管理" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/effective-c&#43;&#43;/">Effective C&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/" class="prev" rel="prev" title="位运算"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>位运算</a>
+            <a href="/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="next" rel="next" title="动态规划">动态规划<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

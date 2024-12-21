@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>索引 - Ame</title><meta name="Description" content="MySQL的索引"><meta property="og:url" content="https://example.com/mysql-%E7%B4%A2%E5%BC%95/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="索引">
+  <meta property="og:description" content="MySQL的索引">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2017-07-30T16:29:59+08:00">
+    <meta property="article:modified_time" content="2017-07-30T16:29:59+08:00">
+    <meta property="article:tag" content="索引">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="索引">
+  <meta name="twitter:description" content="MySQL的索引">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/mysql-%E7%B4%A2%E5%BC%95/" /><link rel="prev" href="https://example.com/mysql-%E4%BA%8B%E5%8A%A1/" /><link rel="next" href="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "索引",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/mysql-%E7%B4%A2%E5%BC%95\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "索引","wordcount":  3457 ,
+        "url": "https:\/\/example.com\/mysql-%E7%B4%A2%E5%BC%95\/","datePublished": "2017-07-30T16:29:59+08:00","dateModified": "2017-07-30T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "MySQL的索引"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/mysql-%E7%B4%A2%E5%BC%95/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/mysql-%E7%B4%A2%E5%BC%95/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">索引</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>MySQL</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-07-30">2017-07-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3457 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/mysql-%E7%B4%A2%E5%BC%95/" class="leancloud_visitors" data-flag-title="索引">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#索引的基本种类"><em><strong>索引的基本种类</strong></em></a></li>
+    <li><a href="#索引的优点缺点"><em><strong>索引的优点缺点</strong></em></a></li>
+    <li><a href="#最左匹配原则"><em><strong>最左匹配原则</strong></em></a></li>
+    <li><a href="#索引的妙用"><em><strong>索引的妙用</strong></em></a></li>
+    <li><a href="#b-tree"><em><strong>B+ Tree</strong></em></a></li>
+    <li><a href="#b-tree-和-跳表的区别"><em><strong>B+ Tree 和 跳表的区别</strong></em></a></li>
+    <li><a href="#b-tree-与-b-tree的区别"><em><strong>B Tree 与 B+ Tree的区别</strong></em></a></li>
+    <li><a href="#聚簇索引--非聚簇索引"><em><strong>聚簇索引 &amp; 非聚簇索引</strong></em></a></li>
+    <li><a href="#在不同引擎下的索引"><em><strong>在不同引擎下的索引</strong></em></a></li>
+    <li><a href="#使用聚簇索引的优势"><em><strong>使用聚簇索引的优势</strong></em></a></li>
+    <li><a href="#mysql的主键类型"><em><strong>mysql的主键类型</strong></em></a></li>
+    <li><a href="#参考资料"><em><strong>参考资料</strong></em></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#参考资料-1">参考资料</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="索引">索引</h1>
+<h2 id="索引的基本种类"><em><strong>索引的基本种类</strong></em></h2>
+<ol>
+<li><em><strong>Innodb</strong></em>
+<ul>
+<li><em><code>主键索引</code>在建立主键的时候就会自动帮你创建一个主键索引，在Innodb引擎下主键索引是聚簇索引，可以不唯一</em></li>
+<li><em><code>普通索引</code>除主键外，任意一列创建的索引就叫做普通索引 普通索引可以有多个</em></li>
+<li><em><code>唯一索引</code>跟主键索引唯一的区别就是 该索引是唯一的，可以为null</em></li>
+<li><em><code>联合索引</code>一个索引包含多个列</em></li>
+</ul>
+</li>
+<li><strong>MyISAM</strong>
+<ul>
+<li><em><code>全文索引</code>全文索引类型为 FULLTEXT, 在定义索引的列上支持值的全文查找, 允许在这些索引列中插入重复值和空值 可以在 char varchar text类型列上创建</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="索引的优点缺点"><em><strong>索引的优点缺点</strong></em></h2>
+<ol>
+<li><em><strong>优点</strong></em>
+<ul>
+<li><em>能够大大加快索引的查询速度</em></li>
+</ul>
+</li>
+<li><strong>缺点</strong>
+<ul>
+<li><em>索引会占用磁盘空间</em></li>
+<li><em>维护索引需要消耗数据库的资源</em></li>
+<li><em>在 insert update delete操作下 会性能下降 因为要维护索引</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="最左匹配原则"><em><strong>最左匹配原则</strong></em></h2>
+<ol>
+<li><em><strong>现在有一个联合索引包含了 name age bir 三个列</strong></em>
+<ul>
+<li><em>name bir age 能否利用索引 - yes</em></li>
+<li><em>name age bir 能否利用索引 - yes</em></li>
+<li><em>age bir 能否利用索引 - no</em></li>
+<li><em>bir age name 能否利用索引 - yes</em></li>
+<li><em>age bir 能否利用索引 - no</em></li>
+</ul>
+</li>
+<li><em><strong>面对上述问题 有两个要注意</strong></em>
+<ul>
+<li><em>最左匹配原则 也就是 &ldquo;name&rdquo; or &ldquo;name age&rdquo; or &ldquo;name age bir&rdquo; 就可以走索引</em></li>
+<li><em>mysql 引擎在查询为了更好利用索引 在查询过程中会动态优化查询字段</em></li>
+</ul>
+</li>
+<li><em><strong>a = 1 and b = 1 and c &gt; 1 and d = 1</strong></em>
+<ul>
+<li><em><strong>联合索引 走到范围查询就会停止 所以这里d不会走到索引</strong></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="索引的妙用"><em><strong>索引的妙用</strong></em></h2>
+<ol>
+<li><em><strong>SELECT</strong></em>
+<ul>
+<li><em>如果有这样的char列，前10个字符都是唯一的，可以建立短索引（前缀索引）这样能加快查询效率 并且减少磁盘io</em></li>
+</ul>
+</li>
+<li><em><strong>WHERE</strong></em>
+<ul>
+<li><em><code>!=</code> <code>not in</code>这些并不会使用索引，但是<code>&lt;</code> <code>&gt;</code>等 都可以使用索引</em></li>
+<li><em>如果where子句使用到函数 则不会走索引</em></li>
+<li><em>如果where子句已经使用过索引 orderby 并不会使用索引 所以真要使用orderby 最好建立联合索引</em></li>
+<li><em>如果用 <code>like</code> <code>%like%</code> <code>%like</code> 不使用索引 <code>like%</code> 才会使用</em></li>
+<li><em>如果用 <code>or</code>如果 <code>or</code> 前后的两个条件的列都是索引, 那么查询会使用索引， 如果前后两个条件有一个不是索引 则不会使用索引</em></li>
+</ul>
+</li>
+<li><em><strong>JOIN</strong></em>
+<ul>
+<li><em>在需要join的列最好用索引 但是要注意 主键与外键的类型必须是相同的 要不然不走索引</em></li>
+</ul>
+</li>
+<li><em><strong>使用索引建议性原则</strong></em>
+<ul>
+<li><em>在 查询中很少使用 或者参考的列不要创建索引。由于这些列很少使用到，增加索引反而会降低系统的维护速度和增大空间需求</em></li>
+<li><em>只有很少数据值的列 也不应该增加索引，由于这些列的取值很少，区分度太低。例如人事表中的性别,在查询时,需要在表中搜索的数据行的比例很大, 增加索引，并不能明显加快检索速度</em></li>
+<li><em>定义为 text、image 和 bit 数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少</em></li>
+<li><em>当 修改性能远远大于检索性能 时，不应该创建索引。这是因为，二者是相互矛盾的，当增加索引时，会提高检索性能，但是会降低修改性能</em></li>
+<li><em>定义有 外键 的数据列一定要创建索引</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="b-tree"><em><strong>B+ Tree</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>B+ Tree导出过程</strong></em></p>
+<ul>
+<li>
+<p><em>举个例子 现在有几条数据 在底层存储是这么存储的绿色: 主键 / 红色: 数据 / 蓝色: 指针 下一个数据(node)</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202301311330164.png"
+        title="b&#43;树 - 链表形态" /></p>
+</li>
+<li>
+<p>*但是这样随后问题就来了 数据量少就算了 如果有1000条数据 链表时间复杂度为O(n) 所以mysql采用了 **分页（升维）*<em>的思路每一个数据都会存放着自己的那一页的第一条数据的逐渐 随后指针p指向自己的分页的下一级数据</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303021739126.png"
+        title="b&#43;tree 升维后的跳表" /></p>
+</li>
+<li>
+<p><em>然后我们把第一层的页目录再次提取一层，最终用了三层的结构</em></p>
+<p>![b+树 终极形态](/Users/ting/Library/Application Support/typora-user-images/image-20230302174409156.png)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>b+ tree总结</strong></em></p>
+<ul>
+<li><em>B+树本质上是一种多叉平衡二叉树，是由多个页组成的多层级结构，每个页16Kb，对于主键索引来说，最末级的叶子结点放行数据，非叶子结点放的则是索引信息(主键id和页号)，用于加速查询</em></li>
+<li><em>B+树利用了空间换时间、升维的方式(构造了一批非叶子结点用于存放索引信息)，将查询时间复杂度从O(n)优化为O(lg(n))</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="b-tree-和-跳表的区别"><em><strong>B+ Tree 和 跳表的区别</strong></em></h2>
+<ol>
+<li><em><strong>查询</strong></em>
+<ul>
+<li><em>B+树是多叉树结构，每个结点都是一个16k的数据页，能存放较多索引信息，所以扇出很高。三层左右就可以存储2kw左右的数据 / 跳表是链表结构，一条数据一个结点，如果最底层要存放2kw数据，且每次查询都要能达到二分查找的效果，2kw大概在2的24次方左右，所以，跳表大概高度在24层左右，所以得出结论 <strong>b+Tree的查询效率要比跳表高得多</strong></em></li>
+</ul>
+</li>
+<li><em><strong>写</strong></em>
+<ul>
+<li><em>B+树需要拆分合并索引数据页，跳表则独立插入，并根据随机函数确定层数，没有旋转和维持平衡的开销，因此跳表的写入性能会比B+树要好</em></li>
+</ul>
+</li>
+<li><em>其实，mysql的存储引擎是可以换的，以前是myisam，后来才有的innodb，它们底层索引用的都是B+树。也就是说，你完全可以造一个索引为跳表的存储引擎装到mysql里。事实上，facebook造了个rocksDB的存储引擎，里面就用了跳表。直接说结论，它的写入性能确实是比innodb要好，但读性能确实比innodb要差不少</em></li>
+<li><em><strong>redis为什么使用跳表而不使用B+树或二叉树呢?</strong></em>
+<ul>
+<li><em>大家知道，redis 是纯纯的内存数据库。进行读写数据都是操作内存，跟磁盘没啥关系，因此也不存在磁盘IO了，所以层高就不再是跳表的劣势了。并且前面也提到B+树是有一系列合并拆分操作的，换成红黑树或者其他AVL树的话也是各种旋转，目的也是为了保持树的平衡。而跳表插入数据时，只需要随机一下，就知道自己要不要往上加索引，根本不用考虑前后结点的感受，也就少了旋转平衡的开销。因此，redis选了跳表，而不是B+树</em></li>
+</ul>
+</li>
+<li><em><strong>总结</strong></em>
+<ul>
+<li><em>B+树是多叉平衡搜索树，扇出高，只需要3层左右就能存放2kw左右的数据，同样情况下跳表则需要24层左右，假设层高对应磁盘IO，那么B+树的读性能会比跳表要好，因此mysql选了B+树做索引</em></li>
+<li><em>redis的读写全在内存里进行操作，不涉及磁盘IO，同时跳表实现简单，相比B+树、AVL树、少了旋转树结构的开销，因此redis使用跳表来实现ZSET，而不是树结构</em></li>
+<li><em>存储引擎RocksDB内部使用了跳表，对比使用B+树的innodb，虽然写性能更好，但读性能属实差了些。在读多写少的场景下，B+树依旧YYDS</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="b-tree-与-b-tree的区别"><em><strong>B Tree 与 B+ Tree的区别</strong></em></h2>
+<ol>
+<li><em>B Tree  非叶子结点也会存储数据 这样会导致 树的高度比 b+ tree 高 查询磁盘io次数也会比 b+ tree高  这样会影响查询效率</em></li>
+<li><em>B+ Tree    只有叶子节点会存储数据 非叶子节点只存储键值信息 注意 不是键值对哦~    所有叶子节点之间都有一个键指针</em></li>
+</ol>
+<h2 id="聚簇索引--非聚簇索引"><em><strong>聚簇索引 &amp; 非聚簇索引</strong></em></h2>
+<ol>
+<li><em><strong>聚簇索引</strong></em>
+<ul>
+<li><em>将数据与索引存放在一块 索引结构的叶子节点保存了行数据</em></li>
+</ul>
+</li>
+<li><em><strong>非聚簇索引</strong></em>
+<ul>
+<li><em>将数据与索引分开存储 索引结构的叶子节点指向了数据对应的位置(注意 不是地址哦~)</em></li>
+</ul>
+</li>
+<li><em><strong>注意事项</strong></em>
+<ul>
+<li><em>在Innodb中, 在聚簇索引之上创建的索引称之为辅助索引. 非聚簇索引都是辅助索引</em></li>
+<li><em>像联合索引 唯一索引 前缀索引叶子节点存储的不再是行的物理位置，而是主键值</em></li>
+<li><em>辅助索引访问数据总是二次查找</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="在不同引擎下的索引"><em><strong>在不同引擎下的索引</strong></em></h2>
+<ol>
+<li><em><strong>Innodb</strong></em>
+<ul>
+<li><em>Innodb使用的是聚簇索引，将主键组织到一颗b+树中，而行数据就储存到叶子节点</em></li>
+<li><em><strong>使用 <code>WHERE id = 14</code>这样的主键条件的查询过程</strong></em>
+<ul>
+<li><em>按照 b+ tree 的检索算法即可找到对应的叶节点，之后获得行数据</em></li>
+</ul>
+</li>
+<li><em><strong>使用 非主键 <code>WHERE name = 'Ame'</code> 的条件查询过程</strong></em>
+<ul>
+<li><em>在辅助索引b+ tree中检索name，到达其叶子节点获取对应的主键</em></li>
+<li><em>使用主键在主索引b+ tree中在执行一次b+ tree检索操作，最终到达叶子节点即可获取整行数据</em></li>
+</ul>
+</li>
+<li><em>聚簇索引默认是主键，如果表中没有定义主键，Innodb会选择一个唯一且非空的索引代替，如果还是没有这样的索引，Innodb会隐式定义一个主键来作为聚簇索引</em></li>
+<li><em>如果已经设置了主键为聚簇索引又希望再单独设置聚簇索引，必须先删除主键，然后添加我们想要的聚簇索引，最后恢复设置主键即可</em></li>
+</ul>
+</li>
+<li><em><strong>MyISAM</strong></em>
+<ul>
+<li><em>MYISAM使用的是非聚簇索引 非聚簇索引的两颗b+树看上去没什么不同 节点的结构一样 只是存储的内容不同    主键索引b+树的节点存储了主键, 辅助索引b+树存储了辅助键 这两颗b+树的叶子节点都使用一个地址指向真正的表数</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="使用聚簇索引的优势"><em><strong>使用聚簇索引的优势</strong></em></h2>
+<ol>
+<li><em><strong>引出</strong></em>
+<ul>
+<li><em>每次使用辅助索引都要经过两次 b+树查找, 看上去聚簇索引的效率明显要低于非聚簇索引, 所以使用聚簇索引优势在哪</em></li>
+</ul>
+</li>
+<li><em>由于行数据和聚簇索引的叶子节点存储在一起, 同一页会有多条数据, 访问同一数据页不同行记录时, 已经将页加载到了buffer</em></li>
+<li><em>辅助索引的叶子节点, 存储主键值, 而不是数据的存放地址. 好处是当行数据发生变化时, 索引树的节点也需要变化    或者是我们需要查找的数据, 在上一次io读写的缓存中没有, 需要发生一次新的io操作时, 可以比避免对辅助索引的维护工作， 只需要维护聚簇索引树就好了    还有一个因为辅助索引存放的主键值 还少了辅助索引占用的存储空间大小</em></li>
+</ol>
+<h2 id="mysql的主键类型"><em><strong>mysql的主键类型</strong></em></h2>
+<ol>
+<li><em><strong>mysql不推荐uuid为主键</strong></em>
+<ul>
+<li><em>uuid不适合排序且可能会出现新增加记录的uuid 会插入在索引树中间的位置 导致索引树调整复杂度变大 消耗更多的时间和资源</em></li>
+<li><em>建议使用int bigint类型, 方便排序并且默认会在索引树的末尾增加主键值</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="参考资料"><em><strong>参考资料</strong></em></h2>
+<h4 id="参考资料-1">参考资料</h4>
+<ul>
+<li><em>《MYSQL内核：INNODB存储引擎 卷1》</em></li>
+<li><em>《RocksDB和Innodb引擎性能PK胜负难料?》</em></li>
+<li><em><a href="https://cloud.tencent.com/developer/article/1813695" target="_blank" rel="noopener noreffer ">https://cloud.tencent.com/developer/article/1813695</a></em></li>
+<li><em><a href="https://www.51cto.com/article/706701.html" target="_blank" rel="noopener noreffer ">https://www.51cto.com/article/706701.html</a></em></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-07-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/mysql-%E7%B4%A2%E5%BC%95/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/mysql-%E7%B4%A2%E5%BC%95/" data-title="索引" data-hashtags="索引"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/mysql-%E7%B4%A2%E5%BC%95/" data-hashtag="索引"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/mysql-%E7%B4%A2%E5%BC%95/" data-title="索引"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/mysql-%E7%B4%A2%E5%BC%95/" data-title="索引"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/mysql-%E7%B4%A2%E5%BC%95/" data-title="索引" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%B4%A2%E5%BC%95/">索引</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql-%E4%BA%8B%E5%8A%A1/" class="prev" rel="prev" title="事务"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>事务</a>
+            <a href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/" class="next" rel="next" title="概述">概述<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

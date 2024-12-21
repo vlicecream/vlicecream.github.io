@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - Ame</title><meta name="Description" content="一个艺术世界"><meta property="og:url" content="http://localhost:1313/value-poionter-reference/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="Ame">
+  <meta property="og:description" content="value &amp; poionter &amp; reference 引用 什么是引用
+reference 其实就是一个漂亮的 pointer 引用的代码
+1 2 3 4 5 6 7 ">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="og:image" content="http://localhost:1313/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/logo.png">
+  <meta name="twitter:title" content="Ame">
+  <meta name="twitter:description" content="value &amp; poionter &amp; reference 引用 什么是引用
+reference 其实就是一个漂亮的 pointer 引用的代码
+1 2 3 4 5 6 7 ">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/value-poionter-reference/" /><link rel="prev" href="http://localhost:1313/%E5%B7%A6%E5%80%BC%E5%8F%B3%E5%80%BC%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8/" /><link rel="next" href="http://localhost:1313/stl-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/value-poionter-reference\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1549 ,
+        "url": "http:\/\/localhost:1313\/value-poionter-reference\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/value-poionter-reference/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/value-poionter-reference/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1549 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#引用"><em><strong>引用</strong></em></a></li>
+    <li><a href="#签名"><em><strong>签名</strong></em></a></li>
+    <li><a href="#指针和引用的区别"><em><strong>指针和引用的区别</strong></em></a></li>
+    <li><a href="#参数传递"><em><strong>参数传递</strong></em></a></li>
+    <li><a href="#野指针"><em><strong>野指针</strong></em></a></li>
+    <li><a href="#悬空指针"><em><strong>悬空指针</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="value--poionter--reference">value &amp; poionter &amp; reference</h1>
+<h2 id="引用"><em><strong>引用</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>什么是引用</strong></em></p>
+<ul>
+<li><em>reference 其实就是一个漂亮的 pointer</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>引用的代码</strong></em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span> <span class="c1">// p is a pointer to x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// r is a reference to x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">x2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">x2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">&amp;</span> <span class="n">r2</span><span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><code>int*</code>是 pointer to int，<code>int&amp;</code>是 reference to int，比如 <code>int* p = &amp;x;</code> 我们会说指针p指向了x，而<code>int&amp; r = x;</code>我们会说 r 代表了 x，其实r里面有一个指针指向了x ，r 只要代表了 x 就不可以代表别的变量，pointer不同，pointer还可以指向别的变量</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>假象</strong></em></p>
+<ul>
+<li><em>我们观察上面的 x 和 r的地址和大小，就发现 <code>sizeof(r) = sizeof(x)</code> <code>&amp;x == &amp;r</code> object 和其 reference的大小相同，地址也相同（但是都是假象）</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>reference的常见用途</strong></em></p>
+<ul>
+<li>
+<p><em><strong>reference一般不用在声明变量，而用在参数类型和返回类型的描述</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func1</span><span class="p">(</span><span class="n">Cls</span><span class="o">*</span> <span class="n">pobj</span><span class="p">)</span> <span class="p">{</span> <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">xxx</span><span class="p">();</span> <span class="p">}</span> <span class="c1">// pass by pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">func2</span><span class="p">(</span><span class="n">Cls</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="n">obj</span><span class="p">.</span><span class="n">xxx</span><span class="p">();</span> <span class="p">}</span> <span class="c1">// pass by value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">func3</span><span class="p">(</span><span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="n">obj</span><span class="p">.</span><span class="n">xxx</span><span class="p">();</span> <span class="p">}</span> <span class="c1">// pass by reference
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Cls</span> <span class="n">obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">func1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">obj</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">func2</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">func</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>我们能发现 pass by pointer 跟其他的都不一样，而&quot;value&quot; &ldquo;reference&quot;被调用端的写法相同，调用端接口也相同</em></p>
+<p><em><strong>所以最好用 reference 不行的情况下 比如返回临时对象的情况下，用value</strong></em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="签名"><em><strong>签名</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>什么是签名</strong></em></p>
+<ul>
+<li>
+<p><em>不含return type的函数部分叫做签名</em></p>
+</li>
+<li>
+<p><em>如下述代码 他们的签名都是 <code>image(const double im)</code> 所以他们两者不能同时存在</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">image</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span><span class="o">&amp;</span> <span class="n">im</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">image</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">im</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><strong>const 也算函数签名</strong></em></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="指针和引用的区别"><em><strong>指针和引用的区别</strong></em></h2>
+<ol>
+<li><em>指针和引用都是内存地址的一个概念，区别就是指针是一个实体，引用是一个别名</em></li>
+<li><em>指针他指向一个内存，在编译的时候会以 &ldquo;指针名 - 指向的内存地址&rdquo; 存入符号表，所以说 指针包含的内容是可以改变的，并且是可以 <code>const</code>修饰的，允许拷贝和赋值，甚至可以为空，<code>sizeof</code>得到的就是指针类型的大小</em></li>
+<li><em>引用则就是相当于一个内存的别名，在添加到符号表的时候，是以 &ldquo;引用变量名 - 引用对象的地址&quot;添加到符号表中，符号表一经完成不能改变，所以引用必须而且只能在定义时被绑 定到一块内存上，后续不能更改，也不能为空，也没有 const 和非 const 区别</em></li>
+<li><em>sizeof</em>
+<ul>
+<li><em>sizeof 引用得到代表对象的大小</em></li>
+<li><em>sizeof 指针得到的是指针本身的大小</em></li>
+</ul>
+</li>
+<li><em>参数传递</em>
+<ul>
+<li><em>传指针的实质是传值，传递的值是指针的地址。指针需要被解引用后才可以对对象进行操作</em></li>
+<li><em>传引用的实质是传地址，传递的是参数的地址。直接对引用进行的修改会直接作用到引用对象上</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="参数传递"><em><strong>参数传递</strong></em></h2>
+<ol>
+<li>
+<p><em>pass by value</em></p>
+<ul>
+<li><em>形参是实参的拷⻉，函数内部对形参的操作并不会影响到外部的实参</em></li>
+<li><em>值传递过程中，被调函数的形式参数作为被调函数的局部变量处理，会在栈中开辟内存空间以存放由主调函数传递进来的实参 值，从而形成了实参的一个副本(替身)</em></li>
+<li><em>值传递的特点就是被调函数对形式参数的任何操作都是作为局部变量进行的，不会影响主调函数的实参变量的值(形参指针变了，实参指针不会变)</em></li>
+</ul>
+</li>
+<li>
+<p><em>pass by pointer</em></p>
+<ul>
+<li><em>指针参数本质上就是一个值传递，他所传递的是一个地址值</em></li>
+<li><em>当对地址值的指向操作时，就相当于对实参本身进行操作</em></li>
+</ul>
+</li>
+<li>
+<p><em>pass by reference</em></p>
+<ul>
+<li>
+<p><em>被调函数的形式参数也作为局部变量在栈中开辟了内存空间，但是这时 存放的是由主调函数放进来的实参变量的地址</em></p>
+</li>
+<li>
+<p><em>被调函数对形参(本体)的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量(根据别名找到主调函数中的 本体)</em></p>
+<p><em><strong>因此，被调函数对形参的任何操作都会影响主调函数中的实参变量</strong></em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>引用传递和指针传递是不同的</em></p>
+<ul>
+<li><em>虽然他们都是被调函数栈空间上的一个局部变量，但是任何对于引用参数的处理都会通过一个间接寻址的方式操作到主调函数中的相关变量，而对于指针传递的参数，如果改变被调函数中的指针地址，他将应用不到主调函数的相关变量。</em></li>
+<li><em>如果想通过指针参数传递来改变主调函数中的相关变量(地址)，那就得使用指向指针的指针或者指针引用</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="野指针"><em><strong>野指针</strong></em></h2>
+<ol>
+<li><em>什么是野指针</em>
+<ul>
+<li><em>就是没有被初始化过的指针</em></li>
+</ul>
+</li>
+<li><em>如何避免野指针</em>
+<ul>
+<li><em>在平时的编码中，养成定义指针后初始化或者使用智能指针的习惯</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="悬空指针"><em><strong>悬空指针</strong></em></h2>
+<ol>
+<li><em>什么是悬空指针</em>
+<ul>
+<li><em>是指针最初指向的内存已经被释放的一种指针</em></li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/value-poionter-reference/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://localhost:1313/value-poionter-reference/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/value-poionter-reference/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/value-poionter-reference/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/value-poionter-reference/" data-title=""><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/value-poionter-reference/" data-title="" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E5%B7%A6%E5%80%BC%E5%8F%B3%E5%80%BC%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/stl-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

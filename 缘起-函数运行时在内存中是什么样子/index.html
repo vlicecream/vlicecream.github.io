@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>函数运行时在内存中是什么样子 - Ame</title><meta name="Description" content="PImpl"><meta property="og:url" content="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="函数运行时在内存中是什么样子">
+  <meta property="og:description" content="PImpl">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-02-16T16:29:59+08:00">
+    <meta property="article:modified_time" content="2023-02-16T16:29:59+08:00">
+    <meta property="article:tag" content="函数">
+    <meta property="article:tag" content="内存">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="函数运行时在内存中是什么样子">
+  <meta name="twitter:description" content="PImpl">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" /><link rel="prev" href="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" /><link rel="next" href="https://example.com/%E7%BC%98%E8%B5%B7-%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%8D%8F%E7%A8%8B/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "函数运行时在内存中是什么样子",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "函数, 内存","wordcount":  3411 ,
+        "url": "https:\/\/example.com\/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90\/","datePublished": "2023-02-16T16:29:59+08:00","dateModified": "2023-02-16T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "PImpl"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">函数运行时在内存中是什么样子</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%98%E8%B5%B7-%E5%9C%A8%E4%BA%BA%E7%BE%A4%E4%B8%AD-%E6%88%91%E7%9C%8B%E8%A7%81%E4%BD%A0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>缘起 在人群中 我看见你</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-16">2023-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3411 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" class="leancloud_visitors" data-flag-title="函数运行时在内存中是什么样子">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#引言"><em><strong>引言</strong></em></a></li>
+    <li><a href="#从进程线程到函数调用"><em><strong>从进程、线程到函数调用</strong></em></a></li>
+    <li><a href="#函数执行的活动轨迹栈"><em><strong>函数执行的活动轨迹：栈</strong></em></a></li>
+    <li><a href="#a-box"><em><strong>A Box</strong></em></a></li>
+    <li><a href="#控制转移"><em><strong>控制转移</strong></em></a></li>
+    <li><a href="#传递参数与获取返回值"><em><strong>传递参数与获取返回值</strong></em></a></li>
+    <li><a href="#局部变量"><em><strong>局部变量</strong></em></a></li>
+    <li><a href="#big-picture"><em><strong>Big Picture</strong></em></a></li>
+    <li><a href="#问题1"><em><strong>问题1</strong></em></a></li>
+    <li><a href="#总结"><em><strong>总结</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="函数运行时在内存中是什么样子">函数运行时在内存中是什么样子?</h1>
+<h2 id="引言"><em><strong>引言</strong></em></h2>
+<p><em>在进入到本章的内容前，我们来思考思考几个问题</em></p>
+<ol>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">10000000</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>你能看出这段代码有啥问题吗</em></p>
+</li>
+<li>
+<p><em>你知道协程的本质吗？有的同学可能会说是用户态线程，那么用户态线程是怎么实现的？</em></p>
+</li>
+<li>
+<p><em>函数运行起来后在内存中是什么样子？</em></p>
+</li>
+</ol>
+<p><em><strong>这几个问题看起来没什么关联，但是背后都指向一个东西，这就是所谓函数运行栈（run time stack）</strong></em></p>
+<h2 id="从进程线程到函数调用"><em><strong>从进程、线程到函数调用</strong></em></h2>
+<p><em>举个小例子，汽车在高速上行驶时有很多信息，比如速度、位置，通过这些信息我们可以直观的感受汽车的运行时状态</em></p>
+<p><em>同样的，程序在运行时也有很多信息，像有哪些程序正在运行、这些程序执行到了哪里等等，通过这些信息我们可以直观的感受系统中程序运行的状态</em></p>
+<p><em>其中，我们创造了进程、线程这样的概念来记录有哪些程序正在运行</em></p>
+<p><em><strong>进程和线程的运行体现在函数执行上</strong></em>，<em>函数的执行除了函数内部执行的顺序执行还有子函数调用的控制转移以及子函数执行完毕的返回。其中函数内部的顺序执行乏善可陈，重点是函数的调用</em></p>
+<p><em>因此接下来我们的视角将从宏观的进程和线程拉近到微观下的函数调用，重点来讨论一下函数调用是怎样实现的</em></p>
+<h2 id="函数执行的活动轨迹栈"><em><strong>函数执行的活动轨迹：栈</strong></em></h2>
+<p><em>也是一样，举个小例子，玩过游戏的同学应该知道，有时你为了完成一项主线任务不得不去打一些支线的任务，支线任务中可能还有支线任务，当一个支线任务完成后退回到前一个支线任务</em></p>
+<ol>
+<li><em>主线任务A - 西天取经</em>
+<ul>
+<li><em>支线任务B - 收服🐒</em>
+<ul>
+<li><em>支线任务D - 拿到紧箍咒</em></li>
+</ul>
+</li>
+<li><em>支线任务C - 收服🐷</em></li>
+</ul>
+</li>
+</ol>
+<p><em>也就是说，我们必须支线任务B和支线任务C完成后，才能继续完成主线任务A</em></p>
+<p><em>想要完成支线任务B 就必须完成支线任务D-拿到紧箍咒</em></p>
+<p><em>整个任务的依赖关系如图所示：</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051738468.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051738468.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051738468.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051738468.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051738468.png"
+        title="游戏任务脉络图解" /></li>
+</ul>
+<p><em>然后，我们来模拟模拟任务完成过程</em></p>
+<ol>
+<li><em>首先，我们来到任务A，执行主线任务</em>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png"
+        title="A" /></li>
+</ul>
+</li>
+<li><em>执行任务A的过程中我们发现任务A依赖任务B，这时我们暂停任务A去执行任务B</em>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png"
+        title="A-B" /></li>
+</ul>
+</li>
+<li><em>执行任务B的时候，我们又发现依赖任务D</em>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804272.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804272.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804272.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804272.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804272.png"
+        title="A-B-D" /></li>
+</ul>
+</li>
+<li><em>执行任务D的时候我们发现该任务不再依赖任何其它任务，因此C完成后我们可以会退到前一个任务，也就是B</em>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051804059.png"
+        title="A-B" /></li>
+</ul>
+</li>
+<li><em>任务B除了依赖任务C外不再依赖其它任务，这样任务B完成后就可以回到任务A</em>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051806443.png"
+        title="A" /></li>
+</ul>
+</li>
+<li><em>现在我们回到了主线任务A，依赖的任务B执行完成，接下来是任务C</em>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051807851.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051807851.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051807851.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051807851.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051807851.png"
+        title="A-C" /></li>
+</ul>
+</li>
+<li><em>和任务D一样，C不依赖任何其它其它任务，任务C完成后就可以再次回到任务A，再之后任务A执行完毕，整个任务执行完成</em></li>
+</ol>
+<p><em>让我们来看一下整个任务的活动轨迹</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051808577.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051808577.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051808577.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051808577.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051808577.jpg"
+        title="任务的活动轨迹" /></li>
+</ul>
+<p><em>仔细观察，实际上你会发现这是一个 <strong>&ldquo;First In Last Out&rdquo;</strong> 的顺序，天然适用于栈这种数据结构来处理。</em></p>
+<p><em>再仔细看一下栈顶的轨迹，也就是A、B、D、B、A、C、A，<strong>实际上你会发现这里的轨迹就是任务依赖树的遍历过程</strong>，是不是很神奇，这也是为什么树这种数据结构的遍历除了<strong>可以用递归也可以用栈来实现</strong>的原因。</em></p>
+<h2 id="a-box"><em><strong>A Box</strong></em></h2>
+<p><em>函数调用也是同样的道理，你把上面的ABCD换成函数ABCD，本质不变</em></p>
+<p><em>因此，我们知道了，使用栈这种结构就可以用来保存函数调用信息</em></p>
+<p><em>和游戏中的每个任务一样，当函数在运行时每个函数也要有自己的一个&quot;小盒子&quot;，<strong>这个小盒子中保存了函数运行时的各种信息</strong>，这写小盒子通过栈这种结构组织起来，这个小盒子就被称为&quot;栈帧（stack frames）&quot;，也有的称之为 call stack</em></p>
+<p><em>不管用什么命名，总之，就是这里所说的小盒子，这个小盒子就是函数运行起来后占用的内存，这些小盒子构成了我们通常所说的栈区</em></p>
+<p><em>那么问题也就来了，函数调用时都有哪些信息呢</em></p>
+<h2 id="控制转移"><em><strong>控制转移</strong></em></h2>
+<p><em>我们知道当函数A调用函数B的时候，控制从A转移到了B，所谓控制其实就是指CPU执行属于哪个函数的指令，CPU从开始执行属于函数A的指令切换到执行属于函数B的指令，我们就说控制从函数A转移到了函数B</em></p>
+<p><em>控制从函数A转移到了函数B，我们需要有这两个信息</em></p>
+<ul>
+<li><em>我从哪里来（返回）</em></li>
+<li><em>要到哪里去（跳转）</em></li>
+</ul>
+<p><em>好比你出去旅游，你需要知道去哪里，还需要记住回家的路（写到这里我想起来 哲学的三大问题 我是谁，我从哪里来，要到哪里去。笑死，其实函数也一样要问自己这三个问题，人的智慧其实就是会仿生，无论什么东西都是充斥的模仿的艺术，好比tree数据结构，不是吗?）</em></p>
+<p><em>好，回归正题，函数调用也是一样的道理，当函数A调用函数B，我们只要知道</em></p>
+<ul>
+<li><em>函数A对于的机器指令执行到了哪里（我从哪里来）</em></li>
+<li><em>函数B第一条机器指令所在的地址（要到哪里去）</em></li>
+</ul>
+<p><em>那么这些信息是怎么获取并保持的呢，现在我们就可以打开这个小盒子，来看看怎么玩的</em></p>
+<p><em>假设函数A调用函数B，如图所示</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051842547.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051842547.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051842547.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051842547.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051842547.jpg"
+        title="函数A call 函数B" /></li>
+</ul>
+<p><em>当前，CPU执行函数A的机器指令，该指令的地址为0x400564，接下来CPU将执行下一条机器指令也就是 <code>call 0x400540</code></em></p>
+<p><em>这条机器指令对应的就是我们在代码中所写的函数调用，注意call后有一条机器指令地址，注意观察上图你会看到，<strong>该地址就是函数B的第一条机器指令</strong>，从这条机器指令后CPU将跳转到函数B</em></p>
+<p><em>现在我们已经解决了控制跳转的“要到哪里去”问题，当函数B执行完毕后怎么跳转回来呢？</em></p>
+<p><em>原来，call指令除了给出跳转地址之外还有这样一个作用，也就是<strong>把call指令的下一条指令的地址，也就是0x40056a push到函数A的栈帧中</strong>，如图所示</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051841097.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051841097.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051841097.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051841097.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051841097.jpg"
+        title="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051841097.jpg" /></li>
+</ul>
+<p><em>现在，函数A的小盒子变大了一些，因为装入了返回地址</em></p>
+<p><em>现在CPU开始执行函数B对应的机器指令，注意观察，函数B也有一个属于自己的小盒子(栈帧)，可以往里面扔一些必要的信息</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051848881.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051848881.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051848881.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051848881.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051848881.jpg"
+        title="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051848881.jpg" /></li>
+</ul>
+<p><em>如果函数B中又调用了其它函数呢？道理和函数A调用函数B是一样的</em></p>
+<p><em>让我们来看一下函数B最后一条机器指令ret，这条机器指令的作用是告诉CPU跳转到函数A保存在栈帧上的返回地址，这样当函数B执行完毕后就可以跳转到函数A继续执行了</em></p>
+<p><em>至此，我们解决了控制转移中“我从哪里来”的问题</em></p>
+<h2 id="传递参数与获取返回值"><em><strong>传递参数与获取返回值</strong></em></h2>
+<p><em>函数调用与返回使得我们可以编写函数，进行函数调用。但调用函数除了提供函数名称之外还需要传递参数以及获取返回值，那么这又是怎样实现的呢？</em></p>
+<p><em>在x86-64中，多数情况下参数的传递与获取返回值是通过<strong>寄存器</strong>来实现的</em></p>
+<p><em>假设函数A调用了函数B，函数A将一些参数写入相应的寄存器，当CPU执行函数B时就可以从这些寄存器中获取参数了</em></p>
+<p><em>同样的，函数B也可以将返回值写入寄存器，当函数B之行结束后函数A从该寄存器中就可以读取到返回值了</em></p>
+<p><em>但是，我们都知道寄存器的数量是有限的，当传递的参数多于寄存器的数量该怎么办</em></p>
+<p><em>这时候，小盒子也就是栈帧，又是他发挥作用的时候到了</em></p>
+<ul>
+<li><em>原来，当参数个数多于寄存器数量时剩下的参数直接放到栈帧中，这样被调函数就可以<strong>从前一个函数的栈帧中获取到参数了</strong></em></li>
+</ul>
+<p><em>现在栈帧的样子又可以进一步丰富了，如图所示：</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858033.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858033.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858033.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858033.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858033.png"
+        title="加了参数的栈帧" /></li>
+</ul>
+<p><em>从图中我们可以看到，调用函数B时有部分参数放到了函数A的栈帧中，同时函数A栈帧的顶部依然保存的是返回地址</em></p>
+<h2 id="局部变量"><em><strong>局部变量</strong></em></h2>
+<p><em>我们知道在函数内部定义的变量被称为局部变量，这些变量在函数运行时被放在了哪里呢</em></p>
+<p><em>原来，这些变量同样可以放在寄存器中，但是当局部变量的数量超过寄存器的时候这些变量就必须放到栈帧中了</em></p>
+<p><em>因此，我们的栈帧内容又一步丰富了</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858483.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858483.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858483.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858483.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051858483.png"
+        title="加了局部变量的栈帧" /></li>
+</ul>
+<p><em>细心的同学可能会有这样的疑问，我们知道寄存器是共享资源可以被所有函数使用，既然可以将函数A的局部变量写入寄存器，那么当函数A调用函数B时，函数B的局部变量也可以写到寄存器，这样的话当函数B执行完毕回到函数A时寄存器的值已经被函数B修改过了，这样会有问题吧</em></p>
+<p><em>这样的确会有问题，因此我们在向寄存器中写入局部变量之前，<strong>一定要先将寄存器中开始的值保存起来</strong>，当寄存器使用完毕后再恢复原值就可以了</em></p>
+<p><em>那么我们要将寄存器中的原始值保存在哪里呢？ 没错 还是栈帧</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051857350.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051857350.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051857350.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051857350.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051857350.png"
+        title="加了寄存器初始值的栈帧" /></li>
+</ul>
+<p><em>最终，我们的小盒子就变成了如图所示的样子，当寄存器使用完毕后根据栈帧中保存的初始值恢复其内容就可以了</em></p>
+<p><em>现在你应该知道函数在运行时到底是什么样子了吧，以上就是问题3的答案</em></p>
+<h2 id="big-picture"><em><strong>Big Picture</strong></em></h2>
+<p><em><strong>需要再次强调的一点就是，上述讨论的栈帧就位于我们常说的栈区</strong></em></p>
+<p><em>栈区，属于进程地址空间的一部分，如图所示，我们将栈区放大就是图左边的样子</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051903759.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051903759.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051903759.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051903759.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051903759.png"
+        title="进程地址空间" /></li>
+</ul>
+<p><em>关于栈区详细的讲解你可以参考《深入理解操作系统：程序员应如何理解内存（未完待续）》这篇。</em></p>
+<h2 id="问题1"><em><strong>问题1</strong></em></h2>
+<p><em>最后，让我们回到文章开始的这段简单代码</em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">100000000</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><em>想一想这段代码会有什么问题？</em></p>
+<p><em>原来，<strong>栈区是有大小限制的</strong>，当超过限制后就会出现著名的<strong>栈溢出</strong>问题，显然上述代码会导致这一问题的出现</em></p>
+<p><em>因此我们要注意</em></p>
+<ul>
+<li><em>不要创建过大的局部变量</em></li>
+<li><em>函数栈帧，也就是调用层次不能太多</em></li>
+</ul>
+<h2 id="总结"><em><strong>总结</strong></em></h2>
+<ol>
+<li><em>本章我们从几个看似没什么关联的问题出发，详细讲解了函数运行时栈是怎么一回事，为什么我们不能创建过多的局部变量</em></li>
+<li><em>细心的同学会发现第2个问题我们没有解答，这个问题的讲解可以在《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%8D%8F%E7%A8%8B/" target="_blank" rel="noopener noreffer ">如何理解协程</a>》中理解</em></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-02-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" data-title="函数运行时在内存中是什么样子" data-hashtags="函数,内存"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" data-hashtag="函数"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" data-title="函数运行时在内存中是什么样子"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" data-title="函数运行时在内存中是什么样子"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" data-title="函数运行时在内存中是什么样子" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%87%BD%E6%95%B0/">函数</a>,&nbsp;<a href="/tags/%E5%86%85%E5%AD%98/">内存</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" class="prev" rel="prev" title="线程共享了哪些进程资源"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>线程共享了哪些进程资源</a>
+            <a href="/%E7%BC%98%E8%B5%B7-%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%8D%8F%E7%A8%8B/" class="next" rel="next" title="如何理解协程">如何理解协程<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

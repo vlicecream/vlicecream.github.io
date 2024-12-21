@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>IO模型 - Ame</title><meta name="Description" content="操作系统的IO模型"><meta property="og:url" content="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="IO模型">
+  <meta property="og:description" content="操作系统的IO模型">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-07-19T16:29:59+08:00">
+    <meta property="article:modified_time" content="2022-07-19T16:29:59+08:00">
+    <meta property="article:tag" content="IO模型">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="IO模型">
+  <meta name="twitter:description" content="操作系统的IO模型">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" /><link rel="prev" href="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B/" /><link rel="next" href="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-osi/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IO模型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IO模型","wordcount":  5984 ,
+        "url": "https:\/\/example.com\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B\/","datePublished": "2022-07-19T16:29:59+08:00","dateModified": "2022-07-19T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "操作系统的IO模型"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IO模型</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-19">2022-07-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5984 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" class="leancloud_visitors" data-flag-title="IO模型">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#从tcp发送信息流程开始讲起"><em><strong>从TCP发送信息流程开始讲起</strong></em></a></li>
+    <li><a href="#阻塞非阻塞-io模型"><em><strong>阻塞/非阻塞 IO模型</strong></em></a>
+      <ul>
+        <li><a href="#什么是阻塞io"><em><strong>什么是阻塞IO</strong></em></a></li>
+        <li><a href="#什么是非阻塞io"><em><strong>什么是非阻塞IO</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#io复用模型"><em><strong>IO复用模型</strong></em></a></li>
+    <li><a href="#信号驱动io模型"><em><strong>信号驱动IO模型</strong></em></a></li>
+    <li><a href="#异步io"><em><strong>异步IO</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#epoll-vs-select"><em><strong>epoll V.S select</strong></em></a></li>
+    <li><a href="#select">select</a></li>
+    <li><a href="#poll">poll</a></li>
+    <li><a href="#epoll"><em><strong>epoll</strong></em></a>
+      <ul>
+        <li><a href="#epoll触发模式"><em><strong>epoll触发模式</strong></em></a></li>
+        <li><a href="#et的意义"><em><strong>ET的意义</strong></em></a></li>
+        <li><a href="#epoll的优点"><em><strong>epoll的优点</strong></em></a></li>
+        <li><a href="#epoll提供的函数"><em><strong>epoll提供的函数</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#总结"><em><strong>总结</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="io模型">IO模型</h1>
+<h1 id="5种-io模型"><em><strong>5种 IO模型</strong></em></h1>
+<h2 id="从tcp发送信息流程开始讲起"><em><strong>从TCP发送信息流程开始讲起</strong></em></h2>
+<p><em>要深入的理解各种 I/O 模型，那么必须先了解下产生各种IO的原因是什么，要知道这其中的本质问题那么我们就必须要知道一条消息是如何从一个人发送到另外一个人的</em></p>
+<p><em>以两个应用程序通讯为例，我们来了解一下当“A”向&quot;B&quot; 发送一条消息，简单来说会经过如下流程</em></p>
+<ol>
+<li><em>应用A将数据发送到TCP发送缓冲区</em></li>
+<li><em>TCP发送缓冲区再把数据发送出去，经过网络传递后，数据会发送到服务器B的TCP接收缓冲区</em></li>
+<li><em>B再从TCP接收缓冲区去读取属于自己的数据</em></li>
+</ol>
+<p><em>这个流程我们了解后 我们就开始来进入主题</em></p>
+<h2 id="阻塞非阻塞-io模型"><em><strong>阻塞/非阻塞 IO模型</strong></em></h2>
+<p><em>我们先来思考一个问题：</em></p>
+<p>因为发送信息肯定是间断 他不会一直都会有信息，一直在发送，所以如果B的TCP接收缓冲区没有数据，B发送了一个接收数据的读取请求，那么这时候是会直接告诉B没有可读消息，还是让B一直等待直到有可读消息呢</p>
+<h3 id="什么是阻塞io"><em><strong>什么是阻塞IO</strong></em></h3>
+<p><em>我们这个问题思考完 其实就已经明白了什么是阻塞IO</em></p>
+<p><em><strong>所谓阻塞IO就是当应用B发起读取数据申请时，在内核数据没有准备好之前，应用B会一直处于等待数据状态，直到内核把数据准备好了交给应用B才结束</strong></em></p>
+<h3 id="什么是非阻塞io"><em><strong>什么是非阻塞IO</strong></em></h3>
+<p><em>按照上面的思路，所谓非阻塞IO就是当应用B发起读取数据申请时，如果内核数据没有准备好会即刻告诉应用B，不会让B在这里等待</em></p>
+<h2 id="io复用模型"><em><strong>IO复用模型</strong></em></h2>
+<p><em>我们依旧先来思考一个问题：</em></p>
+<p><em>我们还是从 服务器B 要去从缓冲区读取数据的问题，如果在并发的场景下，可能会有N个人向服务器B发送消息，这种情况一般我们会开多个线程去处理不同的消息，每个线程都会自己调用 recvfrom 去读取数据</em></p>
+<p><em>并发情况下服务器很可能一瞬间会收到几十上百万的请求，这种情况下应用B就需要创建几十上百万的线程去读取数据，同时又因为应用线程是不知道什么时候会有数据读取，为了保证消息能及时读取到，那么这些线程自己必须不断的向内核发送recvfrom 请求来读取数据</em></p>
+<p><em>那么问题来了，这么多的线程不断调用 recvfrom 请求数据，先不说服务器能不能扛得住这么多线程，就算扛得住那么很明显这种方式是不是太浪费资源了，线程是我们操作系统的宝贵资源，大量的线程用来去读取数据了，那么就意味着能做其它事情的线程就会少</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201352591.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201352591.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201352591.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201352591.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201352591.jpg"
+        title="IO复用引出模型" /></p>
+<p><em>有人就提出了一个思路，能不能提供一种方式，可以由一个线程监控多个网络请求（<strong>我们后面将称为fd文件描述符，linux系统把所有网络请求以一个fd来标识</strong>），这样就可以只需要一个或几个线程就可以完成数据状态询问的操作，当有数据准备就绪之后再分配对应的线程去读取数据，这么做就可以节省出大量的线程资源出来，这个就是IO复用模型的思路</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202302201359641.jpg"
+        title="IO复用模型" /></p>
+<p><em>正如上图，IO复用模型的思路就是系统提供了一种函数可以同时监控多个fd的操作，这个函数就是我们常说到的select、poll、epoll函数，有了这个函数后，应用线程通过调用select函数就可以同时监控多个fd，select函数监控的fd中只要有任何一个数据状态准备就绪了，select函数就会返回可读状态，这时询问线程再去通知处理数据的线程，对应线程此时再发起recvfrom请求去读取数据</em></p>
+<p><em>进程将一个fd或者多个fd传递给 select，阻塞在select操作上，select帮我们侦测多个fd是否准备就绪，当有fd准备就绪时，select返回数据可读状态，应用程序再调用recvfrom读取数据</em></p>
+<p><em><strong>复用IO的基本思路就是通过select或poll、epoll 来监控多fd ，来达到不必为每个fd创建一个对应的监控线程，从而减少线程资源创建的目的</strong></em></p>
+<h2 id="信号驱动io模型"><em><strong>信号驱动IO模型</strong></em></h2>
+<p><em>我们继续来看一个问题：</em></p>
+<p><em>select会一直轮询 这就代表着绝大多数的轮询都是无意义的 那我们能不能发出请求后 也别去管他了 数据准备好直接来通知我呢?</em></p>
+<p><em>所以就衍生了信号驱动 IO模型</em></p>
+<p><em>于是信号驱动IO不是用循环请求询问的方式去监控数据就绪状态，而是在调用sigaction时候建立一个SIGIO的信号联系，当内核数据准备好之后再通过SIGIO信号通知线程数据准备好后的可读状态，当线程收到可读状态的信号后，此时再向内核发起recvfrom读取数据的请求，因为信号驱动IO的模型下应用线程在发出信号监控后即可返回，不会阻塞，所以这样的方式下，一个应用线程也可以同时监控多个fd</em></p>
+<p><em>首先开启套接口信号驱动IO功能，并通过系统调用sigaction执行一个信号处理函数，此时请求即刻返回，当数据准备就绪时，就生成对应进程的SIGIO信号，通过信号回调通知应用线程调用recvfrom来读取数据</em></p>
+<p><em><strong>IO复用模型里面的select虽然可以监控多个fd了，但select其实现的本质上还是通过不断的轮询fd来监控数据状态， 因为大部分轮询请求其实都是无效的，所以信号驱动IO意在通过这种建立信号关联的方式，实现了发出请求后只需要等待数据就绪的通知即可，这样就可以避免大量无效的数据状态轮询操作</strong></em></p>
+<h2 id="异步io"><em><strong>异步IO</strong></em></h2>
+<p><em>还是老样子，我们来看一个问题：</em></p>
+<p><em>也许你一开始就有一个疑问，为什么我们明明是想读取数据，而却非得要先发起一个select询问数据状态的请求，然后再发起真正的读取数据请求,能不能有一种一劳永逸的方式，我只要发送一个请求我告诉内核我要读取数据，然后我就什么都不管了，然后内核去帮我去完成剩下的所有事情?</em></p>
+<p><em>当然既然你想得出来，那么就会有人做得到，有人设计了一种方案，应用只需要向内核发送一个read 请求,告诉内核它要读取数据后即刻返回；内核收到请求后会建立一个信号联系，当数据准备就绪，内核会主动把数据从内核复制到用户空间，等所有操作都完成之后，内核会发起一个通知告诉应用，我们称这种一劳永逸的模式为异步IO模型</em></p>
+<p><em><strong>应用告知内核启动某个操作，并让内核在整个操作完成之后，通知应用，这种模型与信号驱动模型的主要区别在于，信号驱动IO只是由内核通知我们合适可以开始下一个IO操作，而异步IO模型是由内核通知我们操作什么时候完成</strong></em></p>
+<p><em><strong>异步IO的优化思路是解决了应用程序需要先后发送询问请求、发送接收数据请求两个阶段的模式，在异步IO的模式下，只需要向内核发送一次请求就可以完成状态询问和数拷贝的所有操作。</strong></em></p>
+<h1 id="io多路复用机制"><em><strong>IO多路复用机制</strong></em></h1>
+<h2 id="epoll-vs-select"><em><strong>epoll V.S select</strong></em></h2>
+<p><em><strong>假想这么一个场景 你朋友来找你较量一场击剑，然后不知道寝室在哪 所以找了宿管</strong></em></p>
+<ul>
+<li><em>select宿管带着你的朋友挨家挨户找，直到找到你</em></li>
+<li><em>epoll宿管，她会先记下每位同学的房间号，你的朋友来的时候只要告诉房间号即可</em></li>
+</ul>
+<p><em><strong>那如果来了10000个人 都要找你击剑，那么select效率更高还是epoll？</strong></em></p>
+<ul>
+<li><em>select 如一个保姆照顾一群孩子，如果把孩子尿尿这件事必做 IO，那保姆就相当于问每一个孩子需要尿尿不</em></li>
+<li><em>epoll的机制下 保姆无需挨个询问孩子是否要尿尿，而是每个孩子若自己需要尿尿，主动站到事先约定好的地方，而保姆的职责就是看约定好的地方有无孩子。因此，epoll的这种机制，能够高效的处理成千上万的并发连接，而且性能不会随着连接数增加而下降</em></li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center">select</th>
+          <th style="text-align: center">epoll</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">性能</td>
+          <td style="text-align: center">随着连接数的增加，急剧下降</td>
+          <td style="text-align: center">随着连接数的增加，性能基本不会下降</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">连接数</td>
+          <td style="text-align: center">连接数有限制-1024如果要处理超过1024，则需要修改FD_SETSIZE宏，并重新编译</td>
+          <td style="text-align: center">连接数无限制</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">内在处理机制</td>
+          <td style="text-align: center">轮询</td>
+          <td style="text-align: center">回调callback</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">开发复杂性</td>
+          <td style="text-align: center">低</td>
+          <td style="text-align: center">中</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="select">select</h2>
+<p><em><strong>select 通过设置或检查存放fd标志位的数据结构进行下一步处理 这会带来问题：</strong></em></p>
+<ol>
+<li><em>单个进程可监控的fd数量被限制, 只允许1024，这些是由 FD_SETSIZE宏去控制的， 当然也可对其修改，然后重新编译内核，但性能可能受影响，这需要进一步测试。一般该数和系统内存关系很大</em></li>
+<li><em>当 socket 较多的时候，每次select都要遍历FD_SETSIZE的socket，不管是否活跃都很浪费CPU的时间，若能给socket注册某个回调函数，当他们活跃时候，直接完成相关操作 即可避免轮询 这就是 <strong>epoll</strong>和 <strong>kqueue</strong></em></li>
+</ol>
+<p><em><strong>select 缺点</strong></em></p>
+<ol>
+<li><em>内核需要将消息传递到用户空间，都需要内核拷贝动作。需要维护一个用来存放大量fd的数据结构，使得用户控件和内核空间在传递该结构时复制开销大</em></li>
+<li><em>每次调用select，都需把fd集合从用户态拷贝到内核态，fd很多时开销就很大</em></li>
+<li><em>每次调用select，都需在内核遍历传递进来的所有fd</em></li>
+<li><em>select支持的文件描述符数量太小，默认最大支持1024</em></li>
+<li><em>主动轮询效率很低</em></li>
+</ol>
+<h2 id="poll">poll</h2>
+<p><em><strong>和select类似，只是描述fd集合的方式不同，poll使用 pollfd 结构而非select的 fd_set 结构</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">pollfd</span> <span class="p">{</span>  <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>  <span class="kt">short</span> <span class="n">events</span><span class="p">;</span>  <span class="kt">short</span> <span class="n">revents</span><span class="p">;};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>管理多个描述符也是进行轮询，根据描述符的状态进行处理，<strong>但是poll无最大文件描述符数量的限制</strong></em></p>
+<p><em>poll和select都有一个缺点 就是包含大量文件描述符的数组被整体复制于用户态和内核的地址空间之间，而不论这些文件描述符是否就绪，其开销也随着文件描述符数量增大而线性增大</em></p>
+<ul>
+<li><em>将用户态传入的数组拷贝到内核空间</em></li>
+<li>然后查询每个fd对应设备状态
+<ul>
+<li><em>若设备就绪 在设备等待队列中加入一项继续遍历</em></li>
+<li><em>若遍历完所有fd后，都没发现就绪的设备，挂起当前进程，直到设备就绪或主动超时，被唤醒后它又再次遍历fd。这个过程经历多次无意义遍历</em></li>
+</ul>
+</li>
+</ul>
+<p><em><strong>无最大连接数量限制 基于链表存储 缺点：</strong></em></p>
+<ul>
+<li><em>大量fd数组被整体复制于用户空间和内核空间中，而不管是否有意义</em></li>
+<li><em>若报告了fd后，没有被处理，则下次poll时会再次报告该fd</em></li>
+<li><em>链表查询时间复杂度为 O(n)</em></li>
+</ul>
+<p><em><strong>所以又有了 epoll</strong></em></p>
+<h2 id="epoll"><em><strong>epoll</strong></em></h2>
+<p><em>epoll模型修改主动轮询为被动通知，当有事件发生时，被动接收通知。所以epoll模型注册套接字后，主程序可做其他事情，当事件发生时，接收到通知后再去处理</em></p>
+<p><em>可理解为<strong>event poll</strong>，epoll会把哪个流发生哪种I/O事件通知我们。所以epoll是事件驱动（每个事件关联fd），此时我们对这些流的操作都是有意义的。复杂度也降到O(1)</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="c1">// 事件参数描述链接到文件描述符fd的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">epoll_event</span> <span class="p">{</span>  <span class="n">__u32</span> <span class="n">events</span><span class="p">;</span>  <span class="n">__u64</span> <span class="n">data</span><span class="p">;}</span> <span class="n">EPOLL_PACKED</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="epoll触发模式"><em><strong>epoll触发模式</strong></em></h3>
+<ul>
+<li><em><strong>LT，默认的模式（水平触发）只要该fd还有数据可读，每次<code>epoll_wait</code> 都会返回他的事件，提醒用户程序去操作</strong></em></li>
+<li><em><strong>ET，边缘触发</strong></em></li>
+</ul>
+<p><em>只会提示一次，直到下次再有数据流入之前都不会再提示，无论fd中是否还有数据可读。所以ET模式下，read一个fd时，一定要把它的buffer读完，即读到read返回值小于请求值或遇到EAGAIN错误</em></p>
+<p><em>epoll使用“事件”就绪通知方式，通过<code>epoll_ctl</code>注册fd，一旦该fd就绪，内核就会采用类似回调机制激活该fd，<code>epoll_wait</code>便可收到通知</em></p>
+<h3 id="et的意义"><em><strong>ET的意义</strong></em></h3>
+<p><em>若用<code>LT</code>，系统中一旦有大量无需读写的就绪文件描述符，它们每次调用<code>epoll_wait</code>都会返回，这大大降低处理程序检索自己关心的就绪文件描述符的效率。 而采用<code>ET</code>，当被监控的文件描述符上有可读写事件发生时，<code>epoll_wait</code>会通知处理程序去读写。若这次没有把数据全部读写完(如读写缓冲区太小)，则下次调用<code>epoll_wait</code>时，它不会通知你，即只会通知你一次，直到该文件描述符上出现第二次可读写事件才通知你。这比水平触发效率高，系统不会充斥大量你不关心的就绪文件描述符</em></p>
+<h3 id="epoll的优点"><em><strong>epoll的优点</strong></em></h3>
+<ul>
+<li><em>无最大并发连接的限制，能打开的FD上限远大于1024（1G内存能监听约10万个端口）</em></li>
+<li><em>效率提升，不是轮询，不会随FD数目增加而效率下降。只有活跃可用的FD才会调用callback函数 即Epoll最大优点在于它只关心“活跃”连接，而跟连接总数无关，因此实际网络环境中，Epoll效率远高于select、poll</em></li>
+<li><em>内存拷贝，利用mmap()文件映射内存加速与内核空间的消息传递；即epoll使用mmap减少复制开销。</em></li>
+<li><em>epoll通过内核和用户空间共享一块内存而实现</em></li>
+</ul>
+<p><em>表面上看epoll的性能最好，但在连接数少且都十分活跃情况下，select/poll性能可能比epoll好，毕竟epoll通知机制需要很多函数回调</em></p>
+<p><em>epoll跟select都能提供多路I/O复用。在现在的Linux内核里有都能够支持，epoll是Linux所特有，而select则是POSIX所规定，一般os均有实现</em></p>
+<h3 id="epoll提供的函数"><em><strong>epoll提供的函数</strong></em></h3>
+<ol>
+<li>
+<p><em><strong>epoll_create</strong></em></p>
+<ul>
+<li><em>创建一个句柄</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>epoll_ctl</strong></em></p>
+<ul>
+<li>
+<p><em>注册要监听的事件类型</em></p>
+</li>
+<li>
+<p><em>对于第一个缺点，epoll的解决方案在epoll_ctl.c，每次注册新事件到epoll句柄中时（在epoll_ctl中指定EPOLL_CTL_ADD），会把所有fd拷贝进内核，而非在epoll_wait时重复拷贝。epoll保证每个fd在整个过程中<strong>只会拷贝一次</strong>！</em></p>
+</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">EPOLL_CTL_ADD</span><span class="err">：在文件描述符</span><span class="n">epfd所引用的epoll实例上注册目标文件描述符fd</span><span class="err">，并将事件事件与内部文件链接到</span><span class="n">fd</span>
+</span></span><span class="line"><span class="cl"><span class="n">EPOLL_CTL_MOD</span><span class="err">：更改与目标文件描述符</span><span class="n">fd相关联的事件</span>
+</span></span><span class="line"><span class="cl"><span class="n">EPOLL_CTL_DEL</span><span class="err">：从</span><span class="n">epfd引用的epoll实例中删除目标文件描述符fd</span><span class="err">。该事件将被忽略，并且可以为</span><span class="nb">NULL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><strong>epoll_wait</strong></em></p>
+<ul>
+<li>
+<p><em>等待事件的产生</em></p>
+</li>
+<li>
+<p><em>对于第二个缺点，epoll解决方案不像select/poll每次都把current流加入fd对应的设备等待队列，而只在epoll_ctl时把current挂一遍（这一遍必不可少），并为每个fd指定一个回调函数</em></p>
+<p><em>当设备就绪，唤醒等待队列上的等待者时，就会调用该回调函数，而回调函数会把就绪fd加入一个就绪链表。</em></p>
+<p><em>epoll_wait实际上就是在该就绪链表中查看有无就绪fd（利用schedule_timeout()实现睡一会，判断一会的效果，和select实现中的第7步类似）。</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>对于第三个缺点，epoll无此限制，其支持FD上限是最大可以打开文件的数目，一般远大于2048。1GB内存机器大约10万左右，具体数目可查看 cat /proc/sys/fs/file-max，这数目和系统内存关系很大</strong></em></p>
+</li>
+</ol>
+<h2 id="总结"><em><strong>总结</strong></em></h2>
+<ol>
+<li><em>select，poll，epoll都是I/O多路复用机制，即能监视多个fd，一旦某fd就绪（读或写就绪），能够通知程序进行相应读写操作。 但select，poll，epoll本质都是<strong>同步I/O</strong>，因为他们都需在读写事件就绪后，自己负责进行读写，即该读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O实现会负责把数据从内核拷贝到用户空间</em></li>
+<li><em>select，poll需自己主动不断轮询所有fd集合，直到设备就绪，期间可能要睡眠和唤醒多次交替。而epoll其实也需调用epoll_wait不断轮询就绪链表，期间也可能多次睡眠和唤醒交替，但它是设备就绪时，调用回调函数，把就绪fd放入就绪链表，并唤醒在epoll_wait中进入睡眠的进程。虽然都要睡眠和交替，但select和poll在“醒着”时要遍历整个fd集合，而epoll在“醒着”的时候只需判断就绪链表是否为空，节省大量CPU时间，这就是回调机制带来的性能提升</em></li>
+<li><em>select，poll每次调用都要把fd集合从用户态往内核态拷贝一次，且要把current往设备等待队列中挂一次，而epoll只要一次拷贝，且把current往等待队列上挂也只挂一次（在epoll_wait开始，注意这里的等待队列并不是设备等待队列，只是一个epoll内部定义的等待队列）。这也能节省不少开销。</em></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-07-19</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" data-title="IO模型" data-hashtags="IO模型"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" data-hashtag="IO模型"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" data-title="IO模型"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" data-title="IO模型"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/" data-title="IO模型" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/io%E6%A8%A1%E5%9E%8B/">IO模型</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B/" class="prev" rel="prev" title="进程管理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>进程管理</a>
+            <a href="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-osi/" class="next" rel="next" title="OSI">OSI<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

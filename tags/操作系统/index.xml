@@ -1,0 +1,127 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>操作系统 - 标签 - Ame</title>
+        <link>https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <description>操作系统 - 标签 - Ame</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 Jul 2022 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>概述</title>
+    <link>https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/</link>
+    <pubDate>Sat, 16 Jul 2022 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/</guid>
+    <description><![CDATA[<h1 id="概念">概念</h1>
+<h1 id="用户空间与内核空间"><em><strong>用户空间与内核空间</strong></em></h1>
+<h2 id="用户空间与内核空间-1"><em><strong>用户空间与内核空间</strong></em></h2>
+<ol>
+<li><em><strong>什么是内核空间与用户空间</strong></em>
+<ul>
+<li><em>在操作系统分为用户空间和内核空间用户空间里运行着应用程序</em></li>
+<li><em>用户程序不能直接操作内核</em></li>
+<li><em>内核空间独立于普通的应用程序 可以访问受保存的内存空间,也可以访问底层硬件设备</em></li>
+</ul>
+</li>
+<li><em><strong>为什么要区分内核空间和用户控件</strong></em>
+<ul>
+<li><em>很简单 为了安全 因为用户程序可能会有很多隐患 比如清空内存 清空寄存器</em></li>
+<li><em>操作系统也分了特权指令和非特权指令，对于非常危险的指令 只允许操作系统及其相关的模块使用 也就是特权指令</em></li>
+<li><em>用户程序的指令 就是非特权指令 这里要注意 中断指令也是非特权指令</em></li>
+<li><em>intel的cpu分为4个特权等级 Ring0~Ring3    如果等级是Ring3则说明进程是运行在用户态 Ring0则说明是进程运行在内核态</em></li>
+</ul>
+</li>
+</ol>
+<h1 id="时钟管理"><em><strong>时钟管理</strong></em></h1>
+<h2 id="时钟管理-1"><em><strong>时钟管理</strong></em></h2>
+<ol>
+<li><em><strong>什么是时钟管理</strong></em>
+<ul>
+<li><em>在操作系统里面有个非常重要的就是时钟 他还是一个硬件</em></li>
+</ul>
+</li>
+<li><em><strong>作用</strong></em>
+<ul>
+<li><em>记录着系统时间</em></li>
+<li><em>时钟中断 (用来进行 进程 or 线程 切换)</em></li>
+</ul>
+</li>
+</ol>
+<h1 id="中断机制"><em><strong>中断机制</strong></em></h1>
+<h2 id="中断机制-1"><em><strong>中断机制</strong></em></h2>
+<ol>
+<li><em><strong>什么是中断</strong></em>
+<ul>
+<li><em>中断 是为了解决外部设备完成某些工作后通知CPU的一种机制(譬如硬盘完成读写操作后通过中断告知CPU已经完成)</em></li>
+</ul>
+</li>
+<li><em><strong>中断的分类</strong></em>
+<ul>
+<li><em>中断可以分为同步中断和异步中断</em></li>
+<li><em>同步中断是当指令执行时由 CPU 控制单元产生，之所以称为同步，是因为只有在一条指令执行完毕后 CPU 才会发出中断，而不是发生在代码指令执行期间  &mdash; 比如系统调用</em></li>
+<li><em>异步中断是指由其他硬件设备依照 CPU 时钟信号随机产生，即意味着中断能够在指令之间发生 &mdash; 例如键盘中断</em></li>
+<li><em>根据 Intel 官方资料，同步中断称为异常(exception)，异步中断被称为中断(interrupt)。中断可分为 可屏蔽中断(Maskable interrupt)和 非屏蔽中断(Nomaskable interrupt)。异常可分为 故障(fault)、陷阱(trap)、终止(abort)三类    从广义上讲，中断可分为四类：中断、故障、陷阱、终止</em></li>
+</ul>
+</li>
+<li><em><strong>中断分类图示</strong></em>
+<ul>
+<li></li>
+</ul>
+</li>
+</ol>
+<h2 id="中断的处理过程"><em><strong>中断的处理过程</strong></em></h2>
+<ol>
+<li><em><strong>关中断</strong></em>
+<ul>
+<li><em>进入不可再次响应中断的状态，由硬件实现</em></li>
+</ul>
+</li>
+<li><em><strong>保存断点</strong></em>
+<ul>
+<li><em>为了在[中断处理]结束后能正确返回到中断点。由硬件实现</em></li>
+</ul>
+</li>
+<li><em><strong>引出中断服务程序</strong></em>
+<ul>
+<li><em>将[中断服务程序]入口地址送PC，转向[中断服务程序]。可由硬件实现，也可由软件实现</em></li>
+</ul>
+</li>
+<li><em><strong>保存现场和屏蔽字</strong></em>
+<ul>
+<li><em>保护现场、置屏蔽字、开中断，即保护CPU中某些寄存器的内容、设置[中断处理]次序、允 许更高级的中断请求得到响应，实现中断嵌套由软件实现</em></li>
+</ul>
+</li>
+<li><em><strong>开中断</strong></em>
+<ul>
+<li><em>看 - 4</em></li>
+</ul>
+</li>
+<li><em><strong>执行中断服务程序</strong></em>
+<ul>
+<li><em>实际上有效的中断处理工作是在此程序段中实现的。由软件程序实现</em></li>
+</ul>
+</li>
+<li><em><strong>退出中断</strong></em>
+<ul>
+<li><em>在退出时，又应进入不可中断状态，即关中断、恢复屏蔽字、恢复现场、开中断、中断返回。由软件实现</em></li>
+</ul>
+</li>
+<li><em><strong>流程图示</strong></em>
+<ul>
+<li></li>
+</ul>
+</li>
+</ol>
+<h1 id="系统调用"><em><strong>系统调用</strong></em></h1>
+<h2 id="执行一个系统调用时os-发生的过程"><em><strong>执行一个系统调用时，OS 发生的过程</strong></em></h2>
+<ol>
+<li><em>执行用户程序(如:fork)</em></li>
+<li><em>根据glibc中的函数实现，取得系统调用号并执行int $0x80产生中断</em></li>
+<li><em>进行地址空间的转换和堆栈的切换，执行SAVE_ALL。(进行内核模式)</em></li>
+<li><em>进行中断处理，根据系统调用表调用内核函数</em></li>
+<li><em>执行内核函数</em></li>
+<li><em>执行 RESTORE_ALL 并返回用户模式</em></li>
+</ol>
+<h2 id="系统调用跟函数调用的区别"><em><strong>系统调用跟函数调用的区别</strong></em></h2>
+<p></p>]]></description>
+</item>
+</channel>
+</rss>

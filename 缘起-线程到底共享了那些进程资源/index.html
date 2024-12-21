@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>线程共享了哪些进程资源 - Ame</title><meta name="Description" content="线程共享了哪些进程资源"><meta property="og:url" content="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="线程共享了哪些进程资源">
+  <meta property="og:description" content="线程共享了哪些进程资源">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-02-10T16:29:59+08:00">
+    <meta property="article:modified_time" content="2023-02-10T16:29:59+08:00">
+    <meta property="article:tag" content="线程">
+    <meta property="article:tag" content="进程">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="线程共享了哪些进程资源">
+  <meta name="twitter:description" content="线程共享了哪些进程资源">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" /><link rel="prev" href="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" /><link rel="next" href="https://example.com/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "线程共享了哪些进程资源",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "线程, 进程","wordcount":  3054 ,
+        "url": "https:\/\/example.com\/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90\/","datePublished": "2023-02-10T16:29:59+08:00","dateModified": "2023-02-10T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "线程共享了哪些进程资源"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">线程共享了哪些进程资源</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%98%E8%B5%B7-%E5%9C%A8%E4%BA%BA%E7%BE%A4%E4%B8%AD-%E6%88%91%E7%9C%8B%E8%A7%81%E4%BD%A0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>缘起 在人群中 我看见你</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-10">2023-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3054 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" class="leancloud_visitors" data-flag-title="线程共享了哪些进程资源">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#引言"><em><strong>引言</strong></em></a></li>
+    <li><a href="#线程私有资源"><em><strong>线程私有资源</strong></em></a></li>
+    <li><a href="#代码区"><em><strong>代码区</strong></em></a></li>
+    <li><a href="#数据区"><em><strong>数据区</strong></em></a></li>
+    <li><a href="#堆区"><em><strong>堆区</strong></em></a></li>
+    <li><a href="#栈区"><em><strong>栈区</strong></em></a></li>
+    <li><a href="#动态链接库"><em><strong>动态链接库</strong></em></a></li>
+    <li><a href="#文件"><em><strong>文件</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="线程到底共享了哪些进程资源">线程到底共享了哪些进程资源?</h1>
+<h2 id="引言"><em><strong>引言</strong></em></h2>
+<ol>
+<li>
+<p><em>鲁迅经常说这样一句话：“反过来想，总是反过来想”，如果你对线程之间共享了哪些进程资源这个问题想不清楚的话那么也可以反过来思考，那就是<strong>有哪些资源是线程私有的</strong></em></p>
+</li>
+<li>
+<p><em>鲁迅：我真的说过这一句话吗?</em></p>
+</li>
+</ol>
+<h2 id="线程私有资源"><em><strong>线程私有资源</strong></em></h2>
+<p><em>线程运行的本质其实就是函数的执行，函数的执行总会有一个源头，这个源头就是所谓的入口函数，CPU从入口函数开始执行从而形成一个执行流，只不过我们人为的给执行流起一个名字，这个名字就叫线程</em></p>
+<p><em>既然线程运行的本质就是函数的执行，那么函数执行都有哪些信息呢？</em></p>
+<p><em>在《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" target="_blank" rel="noopener noreffer ">函数运行时在内存中是什么样子</a>》这篇文章中我们说过，函数运行时的信息保存在栈帧中，栈帧中保存了函数的返回值、调用其它函数的参数、该函数使用的局部变量以及该函数使用的寄存器信息</em></p>
+<p><em>如图所示，假设函数A调用函数B</em></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051932491.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051932491.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051932491.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051932491.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051932491.png"
+        title="img" /></li>
+</ul>
+<p><em>此外，CPU执行指令的信息保存在一个叫做程序计数器的寄存器中，通过这个寄存器我们就知道接下来要执行哪一条指令。由于操作系统随时可以暂停线程的运行，因此我们保存以及恢复程序计数器中的值就能知道线程是从哪里暂停的以及该从哪里继续运行了</em></p>
+<p><em>由于线程运行的本质就是函数运行，函数运行时信息是保存在栈帧中的，因此每个线程都有自己独立的、私有的栈区</em></p>
+<p><em>同时函数运行时需要额外的寄存器来保存一些信息，像部分局部变量之类，这些寄存器也是线程私有的，<strong>一个线程不可能访问到另一个线程的这类寄存器信息</strong></em></p>
+<p><em><strong>所以我们知道了什么是线程私有资源</strong></em></p>
+<ul>
+<li><em>栈区</em></li>
+<li><em>程序计数器</em></li>
+<li><em>栈指针</em></li>
+<li><em>函数运行使用的寄存器</em></li>
+</ul>
+<p><em>以上这些信息有一个统一的名字，就是<strong>线程上下文</strong>(thread context)</em></p>
+<p><em>我们也说过操作系统调度线程需要随时中断线程的运行并且需要线程被暂停后可以继续运行，操作系统之所以能实现这一点，依靠的就是线程上下文信息</em></p>
+<p><em>除此之外，剩下的都是线程间共享资源，我们来看一下剩下的资源</em></p>
+<h2 id="代码区"><em><strong>代码区</strong></em></h2>
+<p><em>进程地址空间中的代码区，这里保存的是什么呢？从名字中有的同学可能已经猜到了，没错，这里保存的就是我们写的代码，<strong>更准确的是编译后的可执行机器指令</strong></em></p>
+<p><em>那么这些机器指令又是从哪里来的呢？答案是从可执行文件中加载到内存的，可执行程序中的代码区就是用来初始化进程地址空间中的代码区的</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937523.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937523.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937523.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937523.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937523.png"
+        title="img" /></p>
+<p><em>线程之间共享代码区，<strong>这就意味着程序中的任何一个函数都可以放到线程中去执行，不存在某个函数只能被特定线程执行的情况</strong></em></p>
+<h2 id="数据区"><em><strong>数据区</strong></em></h2>
+<p><em>进程地址空间中的数据区，这里存放的就是所谓的全局变量</em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// 全局变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937219.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937219.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937219.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937219.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303051937219.png"
+        title="img" /></p>
+</li>
+</ul>
+<p><em>在程序员运行期间，也就是run time，<strong>数据区中的全局变量有且仅有一个实例，所有的线程都可以访问到该全局变量</strong></em></p>
+<p><em>但是要注意，c/c++里面有<code>static</code></em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(){</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><em>注意到，<strong>虽然变量a定义在函数内部，但变量a依然具有全局变量的特性</strong>，也就是说变量a放在了进程地址空间的数据区域，<strong>即使函数执行完后该变量依然存在</strong>，而普通的局部变量随着函数调用结束和函数栈帧一起被回收掉了，但这里的变量a不会被回收，因为其被放到了数据区</em></p>
+<p><em>这样的变量对每个线程来说也是可见的，也就是说每个线程都可以访问到该变量</em></p>
+<h2 id="堆区"><em><strong>堆区</strong></em></h2>
+<p><em>堆区是程序员比较熟悉的，我们在C/C++中用malloc或者new出来的数据就存放在这个区域，很显然，<strong>只要知道变量的地址，也就是指针，任何一个线程都可以访问指针指向的数据</strong>，因此堆区也是线程共享的属于进程的资源</em></p>
+<h2 id="栈区"><em><strong>栈区</strong></em></h2>
+<p><em>唉，等等！刚不是说栈区是线程私有资源吗，怎么这会儿又说起栈区了？</em></p>
+<p><em>确实，从线程这个抽象的概念上来说，栈区是线程私有的，然而从实际的实现上看，<strong>栈区属于线程私有这一规则并没有严格遵守</strong>，这句话是什么意思？</em></p>
+<p><em>通常来说，注意这里的用词是<strong>通常</strong>，通常来说栈区是线程私有，既然有通常就有不通常的时候</em></p>
+<p><em>不通常是因为不像进程地址空间之间的严格隔离，线程的栈区没有严格的隔离机制来保护，因此如果一个线程能拿到来自另一个线程栈帧上的指针，<strong>那么该线程就可以改变另一个线程的栈区</strong>，也就是说这些线程可以任意修改本属于另一个线程栈区中的变量</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052000461.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052000461.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052000461.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052000461.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052000461.png"
+        title="img" /></p>
+<p><em>这从某种程度上给了程序员极大的便利，但同时，这也会导致极其难以排查到的bug。</em></p>
+<p><em>试想一下你的程序运行的好好的，结果某个时刻突然出问题，定位到出问题代码行后根本就排查不到原因，你当然是排查不到问题原因的，因为你的程序本来就没有任何问题，是别人的问题导致你的函数栈帧数据被写坏从而产生bug，这样的问题通常很难排查到原因，需要对整体的项目代码非常熟悉，常用的一些debug工具这时可能已经没有多大作用了</em></p>
+<p><em>说了这么多，那么同学可能会问，一个线程是怎样修改本属于其它线程的数据呢？</em></p>
+<p><em>接下来我们用一个代码示例讲解一下</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">thread</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">var</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">var</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_t</span> <span class="n">tid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="kr">thread</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这段代码是什么意思呢？</em></p>
+<p><em>首先我们在主线程的栈区定义了一个局部变量，也就是 int a= 1这行代码，现在我们已经知道了，局部变量a属于主线程私有数据，但是，接下来我们创建了另外一个线程</em></p>
+<p><em>在新创建的这个线程中，我们将变量a的地址以参数的形式传给了新创建的线程，然后我来看一下thread函数</em></p>
+<p><em>在新创建的线程中，我们获取到了变量a的指针，然后将其修改为了2，也就是这行代码，我们在新创建的线程中修改了本属于主线程的私有数据</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052005792.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052005792.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052005792.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052005792.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052005792.png"
+        title="img" /></p>
+<p><em>现在你应该看明白了吧，尽管栈区是线程的私有数据，但由于栈区没有添加任何保护机制，一个线程的栈区对其它线程是可以见的，也就是说我们可以修改属于任何一个线程的栈区</em></p>
+<p><em>就像我们上文说得到的，这给程序员带来了极大便利的同时也带来了无尽的麻烦，试想上面这段代码，如果确实是项目需要那么这样写代码无可厚非，但如果上述新创建线程是因bug修改了属于其它线程的私有数据的话，那么产生问题就很难定位了，<strong>因为bug可能距离问题暴露的这行代码已经很远了</strong>，这样的问题通常难以排查</em></p>
+<h2 id="动态链接库"><em><strong>动态链接库</strong></em></h2>
+<p><em>进程地址空间中除了以上讨论的这些实际上还有其它内容，还有什么呢？</em></p>
+<p><em>这就要从可执行程序说起了。</em></p>
+<p><em>什么是可执行程序呢？在Windows中就是我们熟悉的exe文件，在Linux世界中就是ELF文件，这些可以被操作系统直接运行的程序就是我们所说的可执行程序。</em></p>
+<p><em>那么可执行程序是怎么来的呢？</em></p>
+<p><em>有的同学可能会说，废话，不就是编译器生成的吗？</em></p>
+<p><em>实际上这个答案只答对了一半。</em></p>
+<p><em>假设我们的项目比较简单只有几个源码文件，编译器是怎么把这几个源代码文件转换为最终的一个可执行程序呢？</em></p>
+<p><em>原来，编译器在将可执行程序翻译成机器指令后，接下来还有一个重要的步骤，这就是链接，链接完成后生成的才是可执行程序。</em></p>
+<p><em>完成链接这一过程的就是链接器。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052006600.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052006600.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052006600.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052006600.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052006600.png"
+        title="img" /></p>
+<p><em>其中链接器可以有两种链接方式，这就是<strong>静态链接</strong>和<strong>动态链接</strong>。</em></p>
+<p><em>静态链接的意思是说把所有的机器指令一股脑全部打包到可执行程序中，动态链接的意思是我们不把动态链接的部分打包到可执行程序，而是在可执行程序运行起来后去内存中找动态链接的那部分代码，这就是所谓的静态链接和动态链接。</em></p>
+<p><em>动态链接一个显而易见的好处就是可执行程序的大小会很小，就像我们在Windows下看一个exe文件可能很小，<strong>那么该exe很可能是动态链接的方式生成的</strong>。</em></p>
+<p><em>而动态链接的部分生成的库就是我们熟悉的动态链接库，在Windows下是以DLL结尾的文件，在Linux下是以so结尾的文件。</em></p>
+<p><em>说了这么多，这和线程共享资源有什么关系呢？</em></p>
+<p><em>原来如果一个程序是动态链接生成的，<strong>那么其地址空间中有一部分包含的就是动态链接库</strong>，否则程序就运行不起来了，这一部分的地址空间也是被所有线程所共享的。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007106.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007106.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007106.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007106.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007106.png"
+        title="img" /></p>
+<p>也就是说进程中的所有线程都可以使用动态链接库中的代码</p>
+<h2 id="文件"><em><strong>文件</strong></em></h2>
+<p><em>最后，如果程序在运行过程中打开了一些文件，那么进程地址空间中还保存有打开的文件信息，进程打开的文件也可以被所有的线程使用，这也属于线程间的共享资源</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007370.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007370.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007370.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007370.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/data/202303052007370.png"
+        title="img" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-02-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" data-title="线程共享了哪些进程资源" data-hashtags="线程,进程"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" data-hashtag="线程"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" data-title="线程共享了哪些进程资源"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" data-title="线程共享了哪些进程资源"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" data-title="线程共享了哪些进程资源" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>,&nbsp;<a href="/tags/%E8%BF%9B%E7%A8%8B/">进程</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" class="prev" rel="prev" title="TCP&amp;UDP"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>TCP&UDP</a>
+            <a href="/%E7%BC%98%E8%B5%B7-%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90/" class="next" rel="next" title="函数运行时在内存中是什么样子">函数运行时在内存中是什么样子<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

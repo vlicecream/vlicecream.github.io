@@ -4,40 +4,109 @@
         <link>https://example.com/posts/</link>
         <description>所有文章 | Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Mar 2023 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>动态规划</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
-    <pubDate>Sun, 05 Mar 2023 16:29:59 &#43;0800</pubDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>备忘录</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
-    <description><![CDATA[<h1 id="动态规划">动态规划</h1>
-<h2 id="动态规划-1"><em><strong>动态规划</strong></em></h2>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+    <description><![CDATA[<h1 id="备忘录">备忘录</h1>
+<h2 id="状态变化模式">状态变化模式</h2>
 <ol>
-<li>
-<p><em>动态规划 跟 “分治、递归、回溯”没有太大的区别，我们来看看动态规划的具体定义</em></p>]]></description>
-</item>
-<item>
-    <title>位运算</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
-    <pubDate>Sun, 05 Mar 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
-    <description><![CDATA[<h1 id="位运算">位运算</h1>
-<h2 id="前言">前言</h2>
-<p><em>本文分三个部分</em></p>
-<ol>
-<li>
-<p><em>有趣的位运算</em></p>
+<li><em><strong>什么是状态变化</strong></em>
+<ul>
+<li><em>在组件构建过程中, 某些对象的状态面临变化, 如何对这些变化进行有效的管理? 同时又保证高层的稳定?</em></li>
+</ul>
 </li>
-<li>
-<p><em>算法比较常用的 n &amp; (n - 1)</em></p>
-</li>
-<li>
-<p><em>算法例题</em></p>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Memento</em></li>
+<li><em>State</em></li>
+</ul>
 </li>
 </ol>
-<h1 id="位运算的基本概念">位运算的基本概念</h1>
-<h2 id="位运算符">位运算符</h2>
+<h2 id="动机">动机</h2>
+<ol>
+<li><em>在软件构建过程中, 某些对象的状态在转换过程中, 可能由于某种需要, 要求程序能够回溯到对象之前的状态</em></li>
+<li><em>如果使用一些公有接口来让其他对象得到对象的状态, 便会暴露对象的细节实现</em></li>
+<li><em>如何实现对象状态的良好保存与恢复? 但同时又不会因此而破坏对象本身的封装性</em></li>
+</ol>
+<h2 id="模式定义">模式定义</h2>
+<ol>
+<li><em>在不破坏封装性的的前提下, 捕获一个对象的内部状态, 并在该对象之外保存此状态，这样以后就可以将该对象恢复到原先保存的状态</em></li>
+</ol>
+<h2 id="要点总结">要点总结</h2>
+<ol>
+<li><em>备忘录(Memento)存储原发器对象的内部状态 在需要时恢复原发器状态</em></li>
+<li><em>Memento模式的核心是信息隐藏, 即原发器需要向外接隐藏信息, 保持其封装性，但同时有需要将状态保持到外界 (Memento)</em></li>
+<li><em>由于现代语言运行时都具有相当的对象序列化支持, 因此往往采用效率高、又较容器正确实现的序列化方案来实现Memento模式</em></li>
+</ol>]]></description>
+</item>
+<item>
+    <title>策略模式</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[<h1 id="策略模式">策略模式</h1>
+<h2 id="组件协作模式"><em><strong>组件协作模式</strong></em></h2>
+<ol>
+<li><em><strong>什么是组件协作模式</strong></em>
+<ul>
+<li><em>现代软件专业分工之后的第一个结果就是 <strong>框架与应用程序的划分</strong></em></li>
+<li><em><strong>组件协作</strong></em> <em>模式通过晚绑定，来实现框架和应用之间的松耦合，是二者之间协作时常用的模式</em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Template Method</em></li>
+<li><em>Observer / Event</em></li>
+<li><em>Strategy</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="使用策略模式的动机"><em><strong>使用策略模式的动机</strong></em></h2>
+<ol>
+<li><em>在软件构建的过程中，某些对象使用的算法可能多种多样的，经常改变，如果将这种算法都编码到对象中，将会使对象变得异常复杂，而且有时候支持不使用的算法也是一个性能负担</em></li>
+<li><em>如何在运行时根据需要透明的更改对象的算法? 将算法与对象本身解藕 从而避免上述问题</em></li>
+</ol>
+<h2 id="静态代码">静态代码</h2>
+<ol>
+<li>
+<p><em><strong>场景</strong></em></p>]]></description>
+</item>
+<item>
+    <title>抽象工厂</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
+    <description><![CDATA[<h1 id="抽象工厂">抽象工厂</h1>
+<h2 id="对象创建模式">对象创建模式</h2>
+<ol>
+<li><em><strong>什么是对象创建</strong></em>
+<ul>
+<li><em>通过对象创建模式，绕开new，来避免对象创建(new)过程中所导致的紧耦合(依赖具体类)从而支持对象创建</em></li>
+<li><em><strong>他是接口抽象之后的第一步工作</strong></em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Factory Method</em></li>
+<li><em>Abstract Factory</em></li>
+<li><em>Prototype</em></li>
+<li><em>Builder</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="抽象工厂动机">抽象工厂动机</h2>
+<ol>
+<li><em>在软件系统中 经常面临着 &ldquo;一系列相互依赖的对象&quot;的创建工作，同时, 由于需求的变化, 往往存在更多系列对象的创建工作</em></li>
+<li><em>如果应对这种变化? 如何绕过常规的对象创建方法(new), 提供一种&quot;封装机制&quot;来避免客户程序和这种&quot;多系列具体对象创建工作&quot;的紧耦合?</em></li>
+</ol>
+<h2 id="初始代码">初始代码</h2>
+<ol>
+<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -57,56 +126,462 @@
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pr]]></description>
 </item>
 <item>
-    <title>二分查找</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</link>
-    <pubDate>Sat, 04 Mar 2023 16:29:59 &#43;0800</pubDate>
+    <title>代理模式</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</guid>
-    <description><![CDATA[<h1 id="二分查找"><em><strong>二分查找</strong></em></h1>
-<h2 id="二分查找的思想-减而治之"><em><strong>二分查找的思想-减而治之</strong></em></h2>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[<h1 id="代理模式">代理模式</h1>
+<h2 id="接口隔离模式">接口隔离模式</h2>
+<ol>
+<li><em><strong>什么是接口隔离</strong></em>
+<ul>
+<li><em>在组件构建过程中, 某些接口之间直接的依赖 常常会带来很多问题 甚至根本无法实现</em></li>
+<li><em>采用添加一层间接(稳定)接口, 来隔离本来互相紧密关联的接口是一种常见的解决方案</em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Façade</em></li>
+<li><em>Proxy</em></li>
+<li><em>Mediator</em></li>
+<li><em>Adapter</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="动机">动机</h2>
+<ol>
+<li><em>在面向对象系统中, 有些对象由于某种原因(比如对象创建的开销很大, 或者某些操作需要安全控制, 或者需要进程外的访问等)直接访问会给使用者或者系统结构带来很多麻烦</em></li>
+<li><em>如何在不是去透明操作对象的同时来管理或者控制这些对象特有的复杂性？</em></li>
+<li><em>增加一层间接层是软件开发中常见的解决方式</em></li>
+</ol>
+<h2 id="初始代码">初始代码</h2>
 <ol>
 <li>
-<p><em>二分查找通过不断缩小区间的范围来查找目标元素，这种&quot;不断缩小区间&quot;就是减而治之的思想</em></p>]]></description>
-</item>
-<item>
-    <title>双指针</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88/</link>
-    <pubDate>Sat, 04 Mar 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88/</guid>
-    <description><![CDATA[<h1 id="双指针">双指针</h1>
-<h2 id="引言"><em><strong>引言</strong></em></h2>
-<p><em><strong>对于数组和链表 来说 &ldquo;双指针&quot;其实是一个常用的解法了</strong></em></p>
-<p><em><strong>双指针也是有很多种类的</strong></em></p>]]></description>
-</item>
-<item>
-    <title>时间/空间复杂度</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</link>
-    <pubDate>Fri, 03 Mar 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</guid>
-    <description><![CDATA[<h1 id="时间复杂度--空间复杂度">时间复杂度 &amp; 空间复杂度</h1>
-<h1 id="时间复杂度"><em><strong>时间复杂度</strong></em></h1>
-<ol>
-<li><em><strong>O(1) 常数复杂度</strong></em></li>
-<li><em><strong>O(log n) 对数复杂度</strong></em></li>
-<li><em><strong>O(n) 线性时间复杂度</strong></em></li>
-<li><em><strong>O(nlogn) 线性对数时间复杂度</strong></em></li>
-<li><em><strong>O(n ^ 2) 平方</strong></em></li>
-<li><em><strong>O(n ^ 3) 立方</strong></em></li>
-<li><em><strong>O(2 ^ n) 指数</strong></em></li>
-<li><em><strong>O(n!) 阶乘</strong></em></li>
-<li><em><strong>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n ^ 2) &lt; O(n ^ 3) &lt; O(2 ^ n) &lt; O(n!)</strong></em></li>
-</ol>
-<h2 id="o1"><em><strong>O(1)</strong></em></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pr]]></description>
+</item>
+<item>
+    <title>单例模式</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[<h1 id="单例模式">单例模式</h1>
+<h2 id="对象性能模式">对象性能模式</h2>
+<ol>
+<li><em><strong>什么是对象性能</strong></em>
+<ul>
+<li><em>面向对象很好的解决了&quot;抽象&quot;的问题, 但是必不可免的要付出一定的代价，对于通常情况来讲, 面向对象的成本大都可以忽略不计，但是某些情况, 面向对象所带来的成本必须谨慎处理</em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Singleton</em></li>
+<li><em>Flyweight</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="单例模式动机">单例模式动机</h2>
+<ol>
+<li><em>在软件系统中 经常有这样一些特殊的类, 必须保证他们在系统中只存在一个实例, 才能确保他们的逻辑正确性以及良好的效率</em></li>
+<li><em>如何绕过常规的构造器, 提供一种机制来保证一个类只有一个实例</em></li>
+<li><em>ps：这个是类设计者的责任, 而不是使用者的责任</em></li>
+</ol>
+<h2 id="演示代码">演示代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pr]]></description>
+</item>
+<item>
+    <title>迭代器</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/</guid>
+    <description><![CDATA[<h1 id="迭代器">迭代器</h1>
+<h2 id="数据结构模式">数据结构模式</h2>
+<ol>
+<li><em><strong>什么是数据结构</strong></em>
+<ul>
+<li><em>常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用</em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Composite</em></li>
+<li><em>Iterator</em></li>
+<li><em>Chain of Resposibility</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="迭代器前言">迭代器前言</h2>
+<ol>
+<li><em>这个模式 在 c++ 上其实已经过时了</em></li>
+<li><em>GoF 对迭代器的定义 是面向对象的迭代器 要去遍历很多的虚函数 然而虚函数是有性能代价的 运行时依赖</em></li>
+<li><em>懂得STL 泛型编程的朋友都知道 STL 里面定义了很多迭代器 这里面的迭代器是 模板方法的迭代器 编译时依赖</em></li>
+<li><em>但是一个模式过时 不代表思想会过时 c++的迭代器也是根据这个思想 把算法和容器给隔离开来，而且其他语言 比如java 这个面向对象的迭代器也在使用，所以我们还是得对这个模式一探究竟</em></li>
+</ol>
+<h2 id="动机">动机</h2>
+<ol>
+<li><em>在软件构建过程中, 集合对象内部结构常常变化各异，但对于这些集合对象, 我们希望在不暴露其内部结构的同时, 可以让外部客户代码透明的访问其中包含的元素，同时这种&quot;透明遍历&quot;也为&quot;同一种算法在多种集合对象上进行操作&quot;提供了可能</em></li>
+<li><em>使用面向对象技术将这种遍历机制抽象为&quot;迭代器对象&quot;，为&quot;应对变化中的集合对象&quot;提供了一种优雅的方式</em></li>
+</ol>
+<h2 id="模式定义">模式定义</h2>
+<ol>
+<li><em>提供一种方法顺序访问一个聚合对象中的各个元素, 而又不暴露(稳定)该对象的内部表示</em></li>
+</ol>
+<h2 id="要点总结">要点总结</h2>
+<ol>
+<li><em>迭代抽象: 访问一个聚合对象的内容而无需暴露他的内部表示</em></li>
+<li><em>迭代多态: 为遍历不同的集合结构提供一个统一的接口, 从而支持同样的算法在不同的集合结构上进行操作</em></li>
+<li><em>迭代器的健壮性考虑: 遍历的同时更改迭代器所在的集合结构, 会导致问题</em></li>
+</ol>]]></description>
+</item>
+<item>
+    <title>访问器</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E5%99%A8/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E5%99%A8/</guid>
+    <description><![CDATA[<h1 id="访问器">访问器</h1>
+<h2 id="行为变化模式">行为变化模式</h2>
+<ol>
+<li><em><strong>什么是行为变化</strong></em>
+<ul>
+<li><em>在组件的构建过程中, 组件行为的变化经常导致组件本身剧烈的变化，&ldquo;行为变化&quot;模式将组件的行为和组件本身进行解藕, 从而支持组件行为的变化, 实现两者之间的松耦合</em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Command</em></li>
+<li><em>Visitor</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="访问器---前言">访问器 - 前言</h2>
+<ol>
+<li><em>访问器这个模式 <strong>有一个很难的前提</strong></em>
+<ul>
+<li><em>就是在扩展的类的子类个数必须稳定 也就是说要提前就知道有多少个子类 不能增加</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="动机">动机</h2>
+<ol>
+<li><em>在软件构建过程中, 由于需求的改变, 某些类层次结构中常常需要增加新的行为(方法)，如果直接在基类中做这样的更改, 将会给子类带来很繁重的变更负担, 甚至破坏原有设计</em></li>
+<li><em>如何在不更改层次结构的前提下, 在运行时根据需要透明的为类层次结构上的各个类动态添加新的操作, 从而避免上述问题?</em></li>
+</ol>
+<h2 id="模式定义">模式定义</h2>
+<ol>
+<li><em>表示一个作用于某对象结构中的各元素操作，使得可以在不改变(稳定)各元素的类的前提下定义(扩展)作用于这些元素的新操作(变化)</em></li>
+</ol>
+<h2 id="要点总结">要点总结</h2>
+<ol>
+<li><em>Visitor模式通过所有双重分发来实现在不更改类层次结构的前提下, 在运行时透明的为类层次结构上的各个类动态添加新的操作</em></li>
+<li><em>所有双重分发即Visitor模式中间包含了两个多态分发</em>
+<ul>
+<li><em>第一个为accept方法的多态辨析</em></li>
+<li><em>第二个为visitElementX方法的多态辨析</em></li>
+</ul>
+</li>
+<li><em>Visitor模式的最大缺点为扩展类层次结构, 会导致visitor类的改变，因此这个模式适用于类层次结构稳定, 而其中的操作方法频繁变化</em></li>
+</ol>]]></description>
+</item>
+<item>
+    <title>分类</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%86%E7%B1%BB/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%86%E7%B1%BB/</guid>
+    <description><![CDATA[<h1 id="分类">分类</h1>
+<h1 id="模式分类">模式分类</h1>
+<h2 id="从目的来看">从目的来看</h2>
+<ol>
+<li><em><strong>创建型模式</strong></em>
+<ul>
+<li><em>将对象的部分创建工作延后到子类或者其他对象，从而应对需求变化为对象创建时带来的冲击</em></li>
+</ul>
+</li>
+<li><em><strong>结构型模式</strong></em>
+<ul>
+<li><em>通过类继承或者对象组合获得灵活的结构，从而应对需求变化为对象的结构带来冲击</em></li>
+</ul>
+</li>
+<li><em><strong>行为型模式</strong></em>
+<ul>
+<li><em>通过类继承或者对象组合来划分类与对象间的职责，从而应对需求变化为多个交互的对象带来的冲击</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="从范围来看">从范围来看</h2>
+<ol>
+<li><em><strong>类模式处理类与子类的静态关系</strong></em></li>
+<li><em><strong>对象模式处理对象间的动态关系</strong></em></li>
+</ol>
+<h2 id="从封装变化角度来看">从封装变化角度来看</h2>
+<ol>
+<li><em><strong>组件协作</strong></em>
+<ul>
+<li><em>Template Method</em></li>
+<li><em>Observer / Event</em></li>
+<li><em>Strategy</em></li>
+</ul>
+</li>
+<li><em><strong>单一职责</strong></em>
+<ul>
+<li><em>Decorator</em></li>
+<li><em>Bridge</em></li>
+</ul>
+</li>
+<li><em><strong>对象创建</strong></em>
+<ul>
+<li><em>Factory Method</em></li>
+<li><em>Abstract Factory</em></li>
+<li><em>Prototype</em></li>
+<li><em>Builder</em></li>
+</ul>
+</li>
+<li><em><strong>对象性能</strong></em>
+<ul>
+<li><em>Singleton</em></li>
+<li><em>Flyweight</em></li>
+</ul>
+</li>
+<li><em><strong>接口隔离</strong></em>
+<ul>
+<li><em>Façade</em></li>
+<li><em>Proxy</em></li>
+<li><em>Mediator</em></li>
+<li><em>Adapter</em></li>
+</ul>
+</li>
+<li><em><strong>状态变化</strong></em>
+<ul>
+<li><em>Memento</em></li>
+<li><em>State</em></li>
+</ul>
+</li>
+<li><em><strong>数据结构</strong></em>
+<ul>
+<li><em>Composite</em></li>
+<li><em>Iterator</em></li>
+<li><em>Chain of Resposibility</em></li>
+</ul>
+</li>
+<li><em><strong>行为变化</strong></em>
+<ul>
+<li><em>Command</em></li>
+<li><em>Visitor</em></li>
+</ul>
+</li>
+<li><em><strong>领域问题</strong></em>
+<ul>
+<li><em>Interpreter</em></li>
+</ul>
+</li>
+</ol>
+<h1 id="重构获得模式">重构获得模式</h1>
+<h2 id="重构获得模式-1">重构获得模式</h2>
+<ol>
+<li><em><strong>怎么去看待设计模式</strong></em>
+<ul>
+<li><em>面向对象模式是 &ldquo;好的面向对象设计&rdquo;，所谓好的面向对象设计就是指那些可以满足 <strong>应对变化</strong>，提高复用性</em></li>
+<li><em>现代软件设计的特征就是 <strong>需求的频繁变化</strong>，所以设计模式重点在于 <strong>寻求变化点</strong>，然后在变化点应用设计模式，从而来更好的应对需求的变化</em></li>
+<li><em><strong>所以说，什么时候，什么地点应用设计模式比理解设计模式结构本身更为重要!!!</strong></em></li>
+<li><em>同时，设计模式的应用不宜先入为主，一上来就是用设计模式，这是最大的错误，而且也没有一步到位的设计模式让你去使用</em></li>
+<li><em><strong>重构与模式 很重要!!! 还有脚踏实地!!!</strong></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="重构关键方法">重构关键方法</h2>
+<ol>
+<li><em>静态 -&gt; 动态</em></li>
+<li><em>早绑定 -&gt; 晚绑定</em></li>
+<li><em>继承 -&gt; 组合</em></li>
+<li><em>编译时依赖 -&gt; 运行时依赖</em></li>
+<li><em>紧耦合 -&gt; 松耦合</em></li>
+</ol>]]></description>
+</item>
+<item>
+    <title>工厂模式</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[<h1 id="工厂模式">工厂模式</h1>
+<h2 id="对象创建模式">对象创建模式</h2>
+<ol>
+<li><em><strong>什么是对象创建</strong></em>
+<ul>
+<li><em>通过对象创建模式，绕开new，来避免对象创建(new)过程中所导致的紧耦合(依赖具体类)从而支持对象创建</em></li>
+<li><em><strong>他是接口抽象之后的第一步工作</strong></em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Factory Method</em></li>
+<li><em>Abstract Factory</em></li>
+<li><em>Prototype</em></li>
+<li><em>Builder</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="工厂模式动机">工厂模式动机</h2>
+<ol>
+<li><em>在软件系统中 经常面临着创建对象的工作 由于需求的变化 需要创建的对象的具体类型经常变化</em></li>
+<li><em>如何应对这种变化? 如何绕过常规的对象创建方法(new), 提供一种&quot;封装机制&quot;来避免客户程序和这种&quot;具体对象创建工作&quot;的紧耦合?</em></li>
+</ol>
+<h2 id="初始代码">初始代码</h2>
+<ol>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pr]]></description>
+</item>
+<item>
+    <title>构建器</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%9E%84%E5%BB%BA%E5%99%A8/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%9E%84%E5%BB%BA%E5%99%A8/</guid>
+    <description><![CDATA[<h1 id="构建器">构建器</h1>
+<h2 id="对象创建模式">对象创建模式</h2>
+<ol>
+<li><em><strong>什么是对象创建</strong></em>
+<ul>
+<li><em>通过对象创建模式，绕开new，来避免对象创建(new)过程中所导致的紧耦合(依赖具体类)从而支持对象创建</em></li>
+<li><em><strong>他是接口抽象之后的第一步工作</strong></em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Factory Method</em></li>
+<li><em>Abstract Factory</em></li>
+<li><em>Prototype</em></li>
+<li><em>Builder</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="构建器动机">构建器动机</h2>
+<ol>
+<li><em>在软件系统中，有时候面临着“一个复杂对象”的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将它们组合在一起的算法却相对稳定。</em></li>
+<li><em>如何应对这种变化？如何提供一种“封装机制”来隔离出“复杂对象的各个部分”的变化，从而保持系统中的“稳定构建算法”不随着需求改变而改变？</em></li>
+</ol>
+<h2 id="模式定义">模式定义</h2>
+<ol>
+<li><em>将一个复杂对象的构建与其表示相分离，使得同样的构建过程(稳定)可以创建不同的表示(变化)</em></li>
+</ol>
+<h2 id="要点总结">要点总结</h2>
+<ol>
+<li><em>Builder模式主要用于“分步骤构建一个复杂的对象”。在这其中“分步骤”是一个稳定的算法，而复杂对象的各个部分则经常变化。</em></li>
+<li><em>变化点在哪里，封装哪里—— Builder模式主要在于应对“复杂对象各个部分”的频繁需求变动。其缺点在于难以应对“分步骤构建算法”的需求变动</em></li>
+<li><em>在Builder模式中，要注意不同语言中构造器内调用虚函数的差别（C++ vs. C#)</em></li>
+</ol>]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,105 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>索引 - 标签 - Ame</title>
+        <link>https://example.com/tags/%E7%B4%A2%E5%BC%95/</link>
+        <description>索引 - 标签 - Ame</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 30 Jul 2017 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%B4%A2%E5%BC%95/" rel="self" type="application/rss+xml" /><item>
+    <title>索引</title>
+    <link>https://example.com/mysql-%E7%B4%A2%E5%BC%95/</link>
+    <pubDate>Sun, 30 Jul 2017 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/mysql-%E7%B4%A2%E5%BC%95/</guid>
+    <description><![CDATA[<h1 id="索引">索引</h1>
+<h2 id="索引的基本种类"><em><strong>索引的基本种类</strong></em></h2>
+<ol>
+<li><em><strong>Innodb</strong></em>
+<ul>
+<li><em><code>主键索引</code>在建立主键的时候就会自动帮你创建一个主键索引，在Innodb引擎下主键索引是聚簇索引，可以不唯一</em></li>
+<li><em><code>普通索引</code>除主键外，任意一列创建的索引就叫做普通索引 普通索引可以有多个</em></li>
+<li><em><code>唯一索引</code>跟主键索引唯一的区别就是 该索引是唯一的，可以为null</em></li>
+<li><em><code>联合索引</code>一个索引包含多个列</em></li>
+</ul>
+</li>
+<li><strong>MyISAM</strong>
+<ul>
+<li><em><code>全文索引</code>全文索引类型为 FULLTEXT, 在定义索引的列上支持值的全文查找, 允许在这些索引列中插入重复值和空值 可以在 char varchar text类型列上创建</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="索引的优点缺点"><em><strong>索引的优点缺点</strong></em></h2>
+<ol>
+<li><em><strong>优点</strong></em>
+<ul>
+<li><em>能够大大加快索引的查询速度</em></li>
+</ul>
+</li>
+<li><strong>缺点</strong>
+<ul>
+<li><em>索引会占用磁盘空间</em></li>
+<li><em>维护索引需要消耗数据库的资源</em></li>
+<li><em>在 insert update delete操作下 会性能下降 因为要维护索引</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="最左匹配原则"><em><strong>最左匹配原则</strong></em></h2>
+<ol>
+<li><em><strong>现在有一个联合索引包含了 name age bir 三个列</strong></em>
+<ul>
+<li><em>name bir age 能否利用索引 - yes</em></li>
+<li><em>name age bir 能否利用索引 - yes</em></li>
+<li><em>age bir 能否利用索引 - no</em></li>
+<li><em>bir age name 能否利用索引 - yes</em></li>
+<li><em>age bir 能否利用索引 - no</em></li>
+</ul>
+</li>
+<li><em><strong>面对上述问题 有两个要注意</strong></em>
+<ul>
+<li><em>最左匹配原则 也就是 &ldquo;name&rdquo; or &ldquo;name age&rdquo; or &ldquo;name age bir&rdquo; 就可以走索引</em></li>
+<li><em>mysql 引擎在查询为了更好利用索引 在查询过程中会动态优化查询字段</em></li>
+</ul>
+</li>
+<li><em><strong>a = 1 and b = 1 and c &gt; 1 and d = 1</strong></em>
+<ul>
+<li><em><strong>联合索引 走到范围查询就会停止 所以这里d不会走到索引</strong></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="索引的妙用"><em><strong>索引的妙用</strong></em></h2>
+<ol>
+<li><em><strong>SELECT</strong></em>
+<ul>
+<li><em>如果有这样的char列，前10个字符都是唯一的，可以建立短索引（前缀索引）这样能加快查询效率 并且减少磁盘io</em></li>
+</ul>
+</li>
+<li><em><strong>WHERE</strong></em>
+<ul>
+<li><em><code>!=</code> <code>not in</code>这些并不会使用索引，但是<code>&lt;</code> <code>&gt;</code>等 都可以使用索引</em></li>
+<li><em>如果where子句使用到函数 则不会走索引</em></li>
+<li><em>如果where子句已经使用过索引 orderby 并不会使用索引 所以真要使用orderby 最好建立联合索引</em></li>
+<li><em>如果用 <code>like</code> <code>%like%</code> <code>%like</code> 不使用索引 <code>like%</code> 才会使用</em></li>
+<li><em>如果用 <code>or</code>如果 <code>or</code> 前后的两个条件的列都是索引, 那么查询会使用索引， 如果前后两个条件有一个不是索引 则不会使用索引</em></li>
+</ul>
+</li>
+<li><em><strong>JOIN</strong></em>
+<ul>
+<li><em>在需要join的列最好用索引 但是要注意 主键与外键的类型必须是相同的 要不然不走索引</em></li>
+</ul>
+</li>
+<li><em><strong>使用索引建议性原则</strong></em>
+<ul>
+<li><em>在 查询中很少使用 或者参考的列不要创建索引。由于这些列很少使用到，增加索引反而会降低系统的维护速度和增大空间需求</em></li>
+<li><em>只有很少数据值的列 也不应该增加索引，由于这些列的取值很少，区分度太低。例如人事表中的性别,在查询时,需要在表中搜索的数据行的比例很大, 增加索引，并不能明显加快检索速度</em></li>
+<li><em>定义为 text、image 和 bit 数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少</em></li>
+<li><em>当 修改性能远远大于检索性能 时，不应该创建索引。这是因为，二者是相互矛盾的，当增加索引时，会提高检索性能，但是会降低修改性能</em></li>
+<li><em>定义有 外键 的数据列一定要创建索引</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="b-tree"><em><strong>B+ Tree</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>B+ Tree导出过程</strong></em></p>]]></description>
+</item>
+</channel>
+</rss>

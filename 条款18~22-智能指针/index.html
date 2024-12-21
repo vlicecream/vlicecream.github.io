@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - Ame</title><meta name="Description" content="一个艺术世界"><meta property="og:url" content="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="Ame">
+  <meta property="og:description" content="条款18~22 智能指针 前言 其实《Effective C&#43;&#43; Item13》已经过时了，所以我们可以在《Effective Modern c&#43;&#43; Item18~Item22》条款中去理解智能指针 我们不爱裸指针的原因 裸指针的声明没办法告诉我们它指向的是单个对象还是数组 没办法知道用完这个裸指针后要不要销毁它指向的对象 没办法知道怎么销毁这个裸指针，是用operator delete还是什么其它自定义的途径 参照原因1，没办法知道该用delete还是delete[]，如果用错了，结果未定义 很难保证调用路径上恰好销毁这个指针一次，可能内存泄露，也可能double free 通常没办法知道裸指针是否是空悬指针，即是否指向已销毁的对象 智能指针的作用 智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱 C&#43;&#43;11中有4种智能指针：std::auto_ptr、std::unique_ptr、std::shared_ptr、std::weak_ptr 其中std::auto_ptr已经过时了，C&#43;&#43;11中可以被std::unique_ptr取代了 正式看本博客之前，需要去弄懂&#34;PImpl&#34; 具体关于PImpl是什么，可以查看我这个博客《PImpl》 还有如果前言都没好好看，导致Item22不知道PImpl是啥，这时候你是不是应该要质疑一下自己，学习是不是太浮躁了? 条款18 对于占有性资源使用unique_ptr std::unique_ptr的特点">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="og:image" content="http://localhost:1313/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/logo.png">
+  <meta name="twitter:title" content="Ame">
+  <meta name="twitter:description" content="条款18~22 智能指针 前言 其实《Effective C&#43;&#43; Item13》已经过时了，所以我们可以在《Effective Modern c&#43;&#43; Item18~Item22》条款中去理解智能指针 我们不爱裸指针的原因 裸指针的声明没办法告诉我们它指向的是单个对象还是数组 没办法知道用完这个裸指针后要不要销毁它指向的对象 没办法知道怎么销毁这个裸指针，是用operator delete还是什么其它自定义的途径 参照原因1，没办法知道该用delete还是delete[]，如果用错了，结果未定义 很难保证调用路径上恰好销毁这个指针一次，可能内存泄露，也可能double free 通常没办法知道裸指针是否是空悬指针，即是否指向已销毁的对象 智能指针的作用 智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱 C&#43;&#43;11中有4种智能指针：std::auto_ptr、std::unique_ptr、std::shared_ptr、std::weak_ptr 其中std::auto_ptr已经过时了，C&#43;&#43;11中可以被std::unique_ptr取代了 正式看本博客之前，需要去弄懂&#34;PImpl&#34; 具体关于PImpl是什么，可以查看我这个博客《PImpl》 还有如果前言都没好好看，导致Item22不知道PImpl是啥，这时候你是不是应该要质疑一下自己，学习是不是太浮躁了? 条款18 对于占有性资源使用unique_ptr std::unique_ptr的特点">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" /><link rel="next" href="http://localhost:1313/mysql-cmd/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  10071 ,
+        "url": "http:\/\/localhost:1313\/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 10071 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 21 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言"><em><strong>前言</strong></em></a></li>
+    <li><a href="#条款18-对于占有性资源使用unique_ptr"><em><strong>条款18 对于占有性资源使用<code>unique_ptr</code></strong></em></a>
+      <ul>
+        <li><a href="#summary"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款19-需要共享所有权的资源管理用shared_ptr"><em><strong>条款19 需要共享所有权的资源管理，用<code>shared_ptr</code></strong></em></a>
+      <ul>
+        <li><a href="#summary-1"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款20-在需要共享语义且可能空悬的地方用weak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>weak_ptr</code></strong></em></a>
+      <ul>
+        <li><a href="#summary-2"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款21-优先用make_unique和make_shared而不是直接new"><em><strong>条款21 优先用<code>make_unique</code>和<code>make_shared</code>而不是直接<code>new</code></strong></em></a>
+      <ul>
+        <li><a href="#summary-3"><em><strong>Summary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#条款22-在用到pimpl惯用法时在实现文件中定义特殊成员函数"><em><strong>条款22 在用到PImpl惯用法时，在实现文件中定义特殊成员函数</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="条款1822-智能指针">条款18~22 智能指针</h1>
+<h2 id="前言"><em><strong>前言</strong></em></h2>
+<ol>
+<li><em>其实《Effective C++ Item13》已经过时了，所以我们可以在《Effective Modern c++ Item18~Item22》条款中去理解智能指针</em></li>
+<li><em>我们不爱裸指针的原因</em>
+<ul>
+<li><em>裸指针的声明没办法告诉我们它指向的是单个对象还是数组</em></li>
+<li><em>没办法知道用完这个裸指针后要不要销毁它指向的对象</em></li>
+<li><em>没办法知道怎么销毁这个裸指针，是用<code>operator delete</code>还是什么其它自定义的途径</em></li>
+<li><em>参照原因1，没办法知道该用<code>delete</code>还是<code>delete[]</code>，如果用错了，结果未定义</em></li>
+<li><em>很难保证调用路径上恰好销毁这个指针一次，可能内存泄露，也可能double free</em></li>
+<li><em>通常没办法知道裸指针是否是空悬指针，即是否指向已销毁的对象</em></li>
+</ul>
+</li>
+<li><em>智能指针的作用</em>
+<ul>
+<li><em>智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱</em></li>
+<li><em>C++11中有4种智能指针：<code>std::auto_ptr</code>、<code>std::unique_ptr</code>、<code>std::shared_ptr</code>、<code>std::weak_ptr</code></em></li>
+<li><em>其中<code>std::auto_ptr</code>已经过时了，C++11中可以被<code>std::unique_ptr</code>取代了</em></li>
+</ul>
+</li>
+<li><em>正式看本博客之前，需要去弄懂&quot;PImpl&quot;</em>
+<ul>
+<li><em>具体关于PImpl是什么，可以查看我这个博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/" target="_blank" rel="noopener noreffer ">PImpl</a>》</em></li>
+<li><em>还有如果前言都没好好看，导致Item22不知道PImpl是啥，这时候你是不是应该要质疑一下自己，学习是不是太浮躁了?</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="条款18-对于占有性资源使用unique_ptr"><em><strong>条款18 对于占有性资源使用<code>unique_ptr</code></strong></em></h2>
+<ol>
+<li>
+<p><em><code>std::unique_ptr</code>的特点</em></p>
+<ul>
+<li>
+<p><em>默认情况下，<code>std::unique_ptr</code>与裸指针一样大，且对于绝大多数操作来说（包括解引用），他们编译后的指令都是完全一样的，所有裸指针的空间和性能开销能满足要求的场景，<code>std::unique_ptr</code>一样能满足</em></p>
+</li>
+<li>
+<p><em><code>std::unique_ptr</code>体现了显式所有权的语义</em></p>
+</li>
+<li>
+<p><em>非空的<code>std::unique_ptr</code>总是拥有他指向的对象</em></p>
+</li>
+<li>
+<p><em>移动一个<code>std::unique_ptr</code>，所有权会从源指针转移到目的指针（之后源指针会设置为空指针）</em></p>
+</li>
+<li>
+<p><em>拷贝<code>std::unique_ptr</code>是不允许的，因为如果你可以拷贝它，那么就有两个<code>std::unique_ptr</code>指向相同的资源，每一个都认为它拥有（和负责销毁）那份资源</em></p>
+<ul>
+<li><em>因此<code>std::unique_ptr</code>是只可移动类型</em></li>
+</ul>
+</li>
+<li>
+<p><em>当销毁的时候，一个非空的<code>std::unique_ptr</code>会销毁它的资源</em></p>
+<ul>
+<li><em>默认情况下，资源销毁是通过对<code>std::unique_ptr</code>内的原生指针使用<strong>delete</strong>来完成的</em></li>
+</ul>
+</li>
+<li>
+<p><em>一个例子是工厂函数。假设有一个基类和三个派生类，通过一个工厂函数来返回某个派生类的<code>std::unique_ptr</code>，这样调用方就不需要费心什么时候销毁返回的对象了：<code>std::unique_ptr</code>会负责这件事。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Investment</span> <span class="p">{...};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Stock</span><span class="o">:</span> <span class="k">public</span> <span class="n">Investment</span> <span class="p">{...};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Bond</span><span class="o">:</span> <span class="k">public</span> <span class="n">Investment</span> <span class="p">{...};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RealEstate</span><span class="o">:</span> <span class="k">public</span> <span class="n">Investment</span> <span class="p">{...};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="o">&gt;</span> <span class="n">makeInvestment</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">pInvestment</span> <span class="o">=</span> <span class="n">makeInvestment</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 注意这里实际上有个所有权的转移：工厂函数通过std::unique_ptr将Investment对象的所有权转移给了调用者
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em><code>std::unique_ptr</code>可以传入自定义的销毁器</em></p>
+<ul>
+<li>
+<p><em>在构造<code>std::unique_ptr</code>时，我们还可以传入一个自定义的销毁器，它会在<code>std::unique_ptr</code>析构时被调用，来销毁对应的资源</em></p>
+</li>
+<li>
+<p><em>比如我们可能不想只是<code>delete obj</code>，还想输出一条日志</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">delInvmt</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Investment</span><span class="o">*</span> <span class="n">pInvestment</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">makeLogEntry</span><span class="p">(</span><span class="n">pInvestment</span><span class="p">);</span> <span class="c1">// make log
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">delete</span> <span class="n">pInvestment</span><span class="p">;</span> <span class="c1">// delete obj
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">delInvmt</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">makeInvestment</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">params</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">delInvmt</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">pInv</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">delInvmt</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(...)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pInv</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span> <span class="n">Stock</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;</span><span class="p">(</span><span class="n">params</span><span class="p">)...));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">pInv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>从调用者的角度，你可以放心的处理<code>std::unique_ptr</code>，你可以相信在调用过程中资源只会销毁一次，且按恰当的方式销毁。理解以下几点能帮助你理解这种实现有多漂亮</em></p>
+<ul>
+<li>
+<p><em><code>delInvmt</code>是自定义的销毁器，在<code>std::unique_ptr</code>析构时，自定义的销毁器会来完成释放资源必需的操作。这里用lambda表达式来实现<code>delInvmt</code>，不仅更方便，性能还更好</em></p>
+</li>
+<li>
+<p><em>自定义的销毁器的类型必须与<code>std::unique_ptr</code>的第二个模板参数相同，因此我们要用<code>decltype(delInvmt)</code>来声明<code>std::unique_ptr</code></em></p>
+</li>
+<li>
+<p><em><code>makeInvestment</code>的基本策略是创建一个空的<code>std::unique_ptr</code>，再令它指向合适的类型，再返回。其中我们把<code>delInvmt</code>作为第二个构造参数传给<code>std::unique_ptr</code>，从而将销毁器与<code>pInv</code>关联起来</em></p>
+</li>
+<li>
+<p><em>无法将裸指针隐式转换为<code>std::unique_ptr</code>，需要用<code>reset</code>来修改<code>std::unique_ptr</code>持有的裸指针</em></p>
+</li>
+<li>
+<p><em>我们在创建具体的对象时，使用了<code>std::forward</code>将<code>makeInvestment</code>的所有参数完美转发给对应的构造函数</em></p>
+</li>
+<li>
+<p><em>注意<code>delInvmt</code>的参数是<code>Investment*</code>，而它的实际类型可能是派生类，因此需要基类<code>Investment</code>有一个虚的析构函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Investment</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">Investment</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em>前文我们说过在不提供自定义的销毁器时，<code>std::unique_ptr</code>的大小与裸指针相同。但在有了自定义的销毁器后，这个假设不成立了。销毁器的大小取决于它内部保存了多少状态。对于无状态的函数对象（例如捕获列表为空的lambda表达式），销毁器实际不占用任何空间，这就意味着当你需要一个无状态的销毁器时，在lambda表达式和函数间做选择，lambda表达式更好</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">delInvmt1</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Investment</span><span class="o">*</span> <span class="n">pInvestment</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">delInvmt1</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">makeInvestment</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">);</span> <span class="c1">// return type has size of Investment*
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">delInvmt2</span><span class="p">(</span><span class="n">Investment</span><span class="o">*</span> <span class="n">pInvestment</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Investment</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">makeInvestment</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">);</span> <span class="c1">// return type has size of Investment*
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                                                                                <span class="c1">// plus at least size of function pointer
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><code>std::unique_ptr</code>另一个广泛应用的场景是pImpl模式</em></p>
+</li>
+<li>
+<p><em><code>std::unique_ptr</code>的两种形式分别是<code>std::unique_ptr&lt;T&gt;</code>和<code>std::unique_ptr&lt;T[]&gt;</code>，其中前者没有定义<code>operator[]</code>，后者在默认析构时会调用<code>delete[]</code>，且没有定义<code>operator*</code>和<code>operator-&gt;</code>。但在用到<code>std::unique_ptr&lt;T[]&gt;</code>的地方，你可能需要想一下是不是<code>std::vector</code>、<code>std::array</code>、<code>std::string</code>更合适。唯一一个用<code>std::unique_ptr&lt;T[]&gt;</code>更好的场合就是当你需要与C API交互时</em></p>
+</li>
+<li>
+<p><em><code>std::unique_ptr</code>另一个吸引人的地方在于，它可以作为<code>std::shared_ptr</code>的构造参数，因此上面的工厂函数返回<code>std::unique_ptr</code>就再正确不过了：调用者可以根据自己对所有权的需求来决定用<code>std::unique_ptr</code>还是<code>std::shared_ptr</code>，反正都支持</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>在C++11中，<code>std::unique_ptr</code>是表达独占所有权的方式，但它最吸引人的一个特性是它能即简单又高效地转化为<code>std::shared_ptr</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Investment</span><span class="o">&gt;</span> <span class="n">sp</span> <span class="o">=</span>    <span class="c1">// 把 std::unique_ptr转换为
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">makeInvestment</span><span class="p">(</span><span class="n">argument</span><span class="p">);</span>         <span class="c1">// std::shared_ptr
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这是为什么<code>std::unique_ptr</code>如此适合做工厂函数的关键原因，工厂函数不会知道：独占所有权语义和共享所有权语义哪个更适合调用者。通过返回一个<code>std::unique_ptr</code>，工厂提供给调用者的是最高效的智能指针，但它不妨碍调用者用<code>std::shared_ptr</code>来替换它</em></p>
+</li>
+</ol>
+<h3 id="summary"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em><code>std::unique_ptr</code>是一个具有开销小，速度快，只可移动的智能指针，使用独占所有权语义管理资源</em></li>
+<li><em>默认情况下，释放资源由<code>delete</code>来完成，也可以指定自定义的析构函数来替代，但是具有丰富状态的deleters和以函数指针作为deleters增大了<code>std::unique_ptr</code>的存储开销</em></li>
+<li><em>很容易将一个<code>std::unique_ptr</code>转化为<code>std::shared_ptr</code></em></li>
+</ol>
+<h2 id="条款19-需要共享所有权的资源管理用shared_ptr"><em><strong>条款19 需要共享所有权的资源管理，用<code>shared_ptr</code></strong></em></h2>
+<ol>
+<li><em>什么是<code>std::shared_ptr</code></em>
+<ul>
+<li><em>使用<code>std::shared_ptr</code>管理的对象的所有权是共享的，没有哪个<code>std::shared_ptr</code>特别拥有这个对象，而是最后一个<code>std::shared_ptr</code>析构时，销毁这个对象</em></li>
+<li><em>与垃圾回收类似，调用者不需要手动管理<code>std::shared_ptr</code>管理的对象</em></li>
+<li><em>与析构函数类似，对象的析构时间是确定的</em></li>
+</ul>
+</li>
+<li><em><code>std::shared_ptr</code>的特点</em>
+<ul>
+<li><em><code>std::shared_ptr</code>内部有引用计数，被复制时，引用计数+1，有<code>std::shared_ptr</code>析构时，引用计数-1，当引用计数为0时，析构持有的对象</em></li>
+</ul>
+</li>
+<li><em>引用计数的存在有以下性能影响</em>
+<ul>
+<li><code>*std::shared_ptr</code>的大小是裸指针的两倍：一个指针指向持有的对象，一个指针指向引用计数。*</li>
+<li><em>引用计数使用的内存必须动态分配，原因是<code>std::shared_ptr</code>的引用计数是非侵入式的，必须要独立在对象外面。用<code>std::make_shared</code>能避免这次单独的内存分配</em></li>
+<li><em>引用计数的加减必须是原子的，因此你必须假设读写引用计数是有成本的</em></li>
+<li><em>注意，不是所有<code>std::shared_ptr</code>的构造都会增加引用计数，移动构造就不会。因此移动构造一个<code>std::shared_ptr</code>要比复制一个更快</em></li>
+</ul>
+</li>
+</ol>
+<p><em>与<code>std::unique_ptr</code>类似，<code>std::shared_ptr</code>的默认销毁动作也是<code>delete</code>，且也可以接受自定义的销毁器</em></p>
+<p><em>但与<code>std::unique_ptr</code>不同的是，<code>std::shared_ptr</code>的销毁器类型不必作为它的模板参数之一</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">loggingDel</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Widget</span><span class="o">*</span> <span class="n">pw</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">makeLogEntry</span><span class="p">(</span><span class="n">pw</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">pw</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">loggingDel</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">upw</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">,</span> <span class="n">loggingDel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">,</span> <span class="n">loggingDel</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>因此<code>std::shared_ptr</code>要比<code>std::unique_ptr</code>使用更灵活，比如不同销毁器的<code>std::shared_ptr</code>可以放到同一个容器中，而<code>std::unique_ptr</code>则不可以</em></p>
+<p><em>另外，不同的销毁器不会改变<code>std::shared_ptr</code>的大小。<code>std::shared_ptr</code>内部需要为引用计数单独开辟一块内存，那么这块内存中再放一个销毁器也没什么额外开销。实际上这块内存被称为”控制块”，它里面包含以下元素</em></p>
+<ul>
+<li><em>引用计数</em></li>
+<li><em>弱引用计数</em></li>
+<li><em>其它数据，包括</em>
+<ul>
+<li><em>自定义销毁器</em></li>
+<li><em>内存分配器</em></li>
+<li><em>等等</em></li>
+</ul>
+</li>
+</ul>
+<p><em>控制块的创建规则为</em></p>
+<ul>
+<li><em><code>std::make_shared</code>总会创建一个控制块</em></li>
+<li><em>通过一个独享所有权的指针（如<code>std::unique_ptr</code>或<code>std::auto_ptr</code>）创建出的<code>std::shared_ptr</code>总会创建一个控制块</em></li>
+<li><em>通过裸指针创建的<code>std::shared_ptr</code>会创建控制块</em></li>
+</ul>
+<p><em>一个推论就是：通过一个裸指针创建两个<code>std::shared_ptr</code>，会创建两个控制块，进而导致这个裸指针会被析构两次</em></p>
+<p><em>从中我们可以得到两个教训</em></p>
+<ul>
+<li><em>不要直接用裸指针构造<code>std::shared_ptr</code>，尽量用<code>std::make_shared</code>。当然在需要自定义的销毁器时不能用<code>std::make_shared</code></em></li>
+<li><em>非要用裸指针构造<code>std::shared_ptr</code>的话，尽量直接new，不要传入已有的裸指针变量</em></li>
+</ul>
+<p><em>控制块会带来哪些开销呢？一个控制块通常只有几个word大，但其中会用到继承，甚至还有虚函数。这也意味着使用<code>std::shared_ptr</code>也会有调用虚函数的开销</em></p>
+<p><em>但通常来说<code>std::shared_ptr</code>的额外开销是很小的。对于<code>std::make_shared</code>创建的<code>std::shared_ptr</code>，它的控制块只有3个word大，且内存分配上无额外成本。解引用一个<code>std::shared_ptr</code>也不会比解引用一个裸指针开销大。操作引用计数会带来一两次原子操作的开销，但通常也不大</em></p>
+<p><em><code>std::shared_ptr</code>的一个缺点是它不支持数组，但在C++11已经提供了<code>std::array</code>、<code>std::vector</code>、<code>std::string</code>这些容器类的前提下，还要用<code>std::shared_ptr</code>去管理一个数组，本身就是不好设计的信号</em></p>
+<h3 id="summary-1"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em><code>std::shared_ptr</code>为了管理任意资源的共享式内存管理，提供了自动垃圾回收的便利</em></li>
+<li><em><code>std::shared_ptr</code>是原生指针的两倍大小，因为他们内部除了包含一个原生指针以外，还包含了一个引用计数</em></li>
+<li><em><code>std::shared_ptr</code> 是 <code>std::unique_ptr</code> 的两倍大，除了控制块，还有需要原子引用计数操作引起的开销</em></li>
+<li><em>避免从原生指针类型变量创建 <code>std::shared_ptr</code></em></li>
+<li><em>引用计数的内存必须被动态分配，当然用<code>make_shared</code>来创建<code>shared_ptr</code>会避免动态内存的开销</em></li>
+<li><em>引用计数的递增和递减必须是原子操作</em></li>
+<li><em>资源的默认析构一般通过delete来进行，但是自定义的deleter也是支持的。deleter的类型对于 <code>std::shared_ptr</code> 的类型不会产生影响</em></li>
+</ol>
+<h2 id="条款20-在需要共享语义且可能空悬的地方用weak_ptr"><em><strong>条款20 在需要共享语义且可能空悬的地方用<code>weak_ptr</code></strong></em></h2>
+<p><em>有时候我们需要一种类似<code>std::shared_ptr</code>，但又不参与这个共享对象的所有权的智能指针。这样它就需要能知道共享对象是否已经销毁了。这就是`std::weak_ptr``</em></p>
+<p><em>``std::weak_ptr<code>不是单独存在的，它不能解引用，也不能检测是否为空，它就是配合</code>std::shared_ptr`使用的</em></p>
+<p><em>通常<code>std::weak_ptr</code>都是通过<code>std::shared_ptr</code>构造的，但它不会影响<code>std::shared_ptr</code>的引用计数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">spw</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// ref count is 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">weap_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">wpw</span><span class="p">(</span><span class="n">spw</span><span class="p">);</span>        <span class="c1">// ref count remains 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">spw</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>可以用<code>expired()</code>来检测<code>std::weak_ptr</code>指向的对象是否有效</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">wpw</span><span class="p">.</span><span class="n">expired</span><span class="p">())</span> <span class="p">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>另一个常用的操作是<code>lock()</code>，它能原子地检测对象是否有效，以及返回这个对象的<code>std::shared_ptr</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span> <span class="o">=</span> <span class="n">wpw</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span> <span class="c1">// if wpw&#39;s expired, spw is null
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>与之类似的操作是用<code>std::weak_ptr</code>构造一个<code>std::shared_ptr</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">(</span><span class="n">wpw</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>区别在于，如果<code>wpw</code>已经失效了，这次构造会抛<code>std::bad_weak_ptr</code>的异常</em></p>
+<p><em>下面我们用几个例子来说明<code>std::weak_ptr</code>的必要性</em></p>
+<ul>
+<li>
+<p><em>想象我们要实现一个cache，希望其中的元素在无人使用后被销毁。这里我们用<code>std::unique_ptr</code>并不合适，因为cache天然需要共享的语义。这样每个调用者都可以获得一个cache中元素的<code>std::shared_ptr</code>，它的生命期由调用者控制。cache内还需要保存一份元素的指针，且有能力检测它是不是失效了。这里我们需要的就是<code>std::weak_ptr</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Widget</span><span class="o">&gt;</span> <span class="n">fastLoadWidget</span><span class="p">(</span><span class="n">WidgetID</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">WidgetID</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Widget</span><span class="o">&gt;&gt;</span> <span class="n">cache</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">objPtr</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">id</span><span class="p">].</span><span class="n">lock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">objPtr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">objPtr</span> <span class="o">=</span> <span class="n">loadWidget</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cache</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">objPtr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">objPtr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 请不用在意上面的static，这只是个示意
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>第二个例子是设计模式中的“观察者模式”。它的一种典型实现是每个主题对象持有一组观察者的指针，每当主题对象有状态变化时依次通知每个观察者。这里主题对象不需要控制观察者的生命期，但需要知道观察者的指针是否还有效。用<code>std::weak_ptr</code>就可以非常自然的实现出这样的特性</em></p>
+</li>
+<li>
+<p><em>第三个例子是，当A和C都持有B的<code>std::shared_ptr</code>时，如果B也需要持有A的某种指针，该持有什么？</em></p>
+<ul>
+<li><em>裸指针：如果A析构了，但C还在，B也就还在，此时B持有的A的裸指针就成了空悬指针，不好</em></li>
+<li><em><code>std::shared_ptr</code>：这样A与B就形成了循环依赖，永远不可能析构了</em></li>
+<li><em><code>std::weak_ptr</code>：唯一的好选择</em></li>
+</ul>
+</li>
+</ul>
+<p><em>但要注意的是，用<code>std::weak_ptr</code>来解<code>std::shared_ptr</code>可能造成的循环依赖，这种特性本身并没有价值。设计良好的数据结构，比如树，父节点控制子节点的生命期，但子节点也需要持有父节点的指针，这里最好的方案是父节点用<code>std::unique_ptr</code>来持有子节点，而子节点直接持有父节点的裸指针。即，严格层次结构，明确生命期的场景，不需要使用<code>std::weak_ptr</code>。<code>std::weak_ptr</code>的价值在于：在生命期不明确的场景，可以知道对象是否还有效</em></p>
+<p><em>在效率方面，<code>std::weak_ptr</code>的大小与<code>std::shared_ptr</code>是相同的，它们使用相同的控制块，区别在于<code>std::weak_ptr</code>不会影响控制块中的引用计数，只会影响其中的弱引用计数</em></p>
+<h3 id="summary-2"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em><code>std::weak_ptr</code> 用来模仿类似<code>std::shared_ptr</code>的可悬挂指针</em></li>
+<li><em>潜在的使用 <code>std::weak_ptr</code>的场景包括缓存，观察者列表，以及阻止 <code>std::shared_ptr</code> 形成的环</em></li>
+</ol>
+<h2 id="条款21-优先用make_unique和make_shared而不是直接new"><em><strong>条款21 优先用<code>make_unique</code>和<code>make_shared</code>而不是直接<code>new</code></strong></em></h2>
+<ol>
+<li>
+<p><em>前言</em></p>
+<ul>
+<li>
+<p><em>先做一下介绍，<code>std::make_shared</code>是在C++11中增加的，但<code>std::make_unique</code>却是在C++14中增加的。如果你想在C++11中就用上<code>std::make_unique</code>，自己写一个简单版的也不难</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">make_unique</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">params</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;</span><span class="p">(</span><span class="n">params</span><span class="p">)...));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这个版本不支持数组，不支持自定义的销毁器，但这些都不重要，它足够用了。但要记住的是，不要把它放到<code>namespace std</code>下面</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>优先用这两个make的好处</em></p>
+<ul>
+<li>
+<p><em>这两个make函数的功能就不解释了，和它们类似的还有一个<code>std::allocate_shared</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="nf">upw1</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">upw2</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="nf">spw1</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw2</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>上面这个例子说明了用make函数的第一个好处：不需要重复写一遍类型。所有程序员都知道：不要重复代码。代码越少，bug越少</em></p>
+</li>
+<li>
+<p><em>异常安全性。想象我们有两个函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">processWidget</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">,</span> <span class="kt">int</span> <span class="n">priority</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">computePriority</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>调用代码很可能长成这个样子</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">processWidget</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">),</span> <span class="n">computePriority</span><span class="p">());</span> <span class="c1">// potential resource leak!
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>上面这行代码有内存泄漏的风险，为什么？根据C++标准，在<code>processWidget</code>的参数求值过程中，我们只能确定下面几点：</em></p>
+<ul>
+<li><em><code>new Widget</code>一定会执行，即一定会有一个<code>Widget</code>对象在堆上被创建。</em></li>
+<li><em><code>std::shared_ptr&lt;Widget&gt;</code>的构造函数一定会执行。</em></li>
+<li><em><code>computePriority</code>一定会执行。</em></li>
+</ul>
+<p><em><code>new Widget</code>的结果是<code>std::shared_ptr&lt;Widget&gt;</code>构造函数的参数，因此前者一定早于后者执行。除此之外，编译器不保证其它操作的顺序，即有可能执行顺序为：</em></p>
+<ol>
+<li><em><code>new Widget</code></em></li>
+<li><em>执行<code>computePriority</code></em></li>
+<li><em>构造<code>std::shared_ptr&lt;Widget&gt;</code></em></li>
+</ol>
+<p><em>如果第2步抛异常，第1步创建的对象还没有被<code>std::shared_ptr&lt;Widget&gt;</code>管理，就会发生内存泄漏。</em></p>
+<p><em>如果这里我们用<code>std::make_shared</code>，就能保证<code>new Widget</code>和<code>std::shared_ptr&lt;Widget&gt;</code>是一起完成的，中间不会有其它操作插进来，即不会有不受智能指针保护的裸指针出现：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">processWidget</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">computePriority</span><span class="p">());</span> <span class="c1">// no potential resource leak
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><em>更高效</em></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="nl">std</span><span class="p">:</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这行代码中，我们以为只有一次内存分配，实际发生了两次，第二次是在分配<code>std::shared_ptr</code>控制块。如果用<code>std::make_shared</code>，它会把<code>Widget</code>对象和控制块合并为一次内存分配</em></p>
+<p><em>但是make函数也有一些缺点。</em></p>
+<ul>
+<li>第一个缺点：无法传入自定义的销毁器。</li>
+<li>第二个缺点：make函数初始化时使用了括号初始化，而不是花括号初始化，比如<code>std::make_unique&lt;std::vector&lt;int&gt;&gt;(10, 20)</code>创建了一个有着20个值为10的元素的<code>vector</code>，而不是创建了<code>{10, 20}</code>这么两个元素的<code>vector</code>(参见<a href="https://fuzhe1989.github.io/2017/05/22/effective-modern-cpp-chapter3-iterm7-10/" target="_blank" rel="noopener noreffer ">Item7</a>)。</li>
+<li>第三个缺点：对象和控制块分配在一块内存上，减少了内存分配的次数，但也导致对象和控制块占用的内存也要一次回收掉。即，如果还有<code>std::weak_ptr</code>存在，控制块就要在，对象占用的内存也没办法回收。如果对象比较大，且<code>std::weak_ptr</code>在对象析构后还可能长期存在，那么这种开销是不可忽视的。</li>
+</ul>
+<p>如果我们因为前面这三个缺点而不能使用<code>std::make_shared</code>，那么我们要保证，智能指针的构造一定要单独一个语句。回到之前<code>processWidget</code>的例子中，假设我们有个自定义的销毁器<code>void cusDel(Widget* ptr);</code>，因此不能使用<code>std::make_shared</code>，那么我们要这么写来保证异常安全性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">std::shared_ptr&lt;Widget&gt; spw(new Widget, cusDel);
+</span></span><span class="line"><span class="cl">processWidget(spw, computePriority());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>但这么写还不够高效，这里我们明确知道<code>spw</code>就是给<code>processWidget</code>用的，那么可以使用<code>std::move</code>，将其转为右值，来避免对引用计数的修改：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">spw</span><span class="p">(</span><span class="k">new</span> <span class="n">Widget</span><span class="p">,</span> <span class="n">cusDel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">processWidget</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">spw</span><span class="p">),</span> <span class="n">computePriority</span><span class="p">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<h3 id="summary-3"><em><strong>Summary</strong></em></h3>
+<ol>
+<li><em>和直接使用new相比，使用make函数减少了代码的重复量，提升了异常安全度，并且，对于<code>std::make_shared</code>以及<code>std::allocate_shared</code>来说，产生的代码更加简洁快速</em></li>
+<li><em>也会存在使用make函数不合适的场景：包含指定自定义的deleter,以及传递大括号initializer的需要</em></li>
+<li><em>对于<code>std::shared_ptr</code>来说，使用make函数的额外的不使用场景还包含</em>
+<ul>
+<li><em>带有自定义内存管理的class</em></li>
+<li><em>内存非常紧俏的系统，非常大的对象以及比对应的<code>std::shared_ptr</code>活的还要长的<code>std::weak_ptr</code></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="条款22-在用到pimpl惯用法时在实现文件中定义特殊成员函数"><em><strong>条款22 在用到PImpl惯用法时，在实现文件中定义特殊成员函数</strong></em></h2>
+<p><em>我们经常用名为PImpl的方法来实现接口与实现分离，进而大大降低程序构建的时间</em></p>
+<p><em>PImpl是指把类A中的所有数据成员都移到一个impl类中，A中只留下一个impl类型的指针</em></p>
+<p><em>举一个例子</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Gadget</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">;</span>        <span class="c1">// Gadget is some user-defined type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><code>Widget</code>的数据成员的类型为<code>std::string</code>、<code>std::vector&lt;double&gt;</code>、<code>Gadget</code>，这样就至少要include三个头文件，这也意味着每个需要include了这个包含<code>Widget</code>定义的头文件的地方，都被动引入了三个头文件。如果有一天我们修改了<code>Widget</code>的实现，比如增加或删除了一个成员，即使它们都是private的，即使接口完全没有变化，所有include它的用户文件都要重新编译。我们不想污染用户文件，也不想用户文件因为我们的实现修改而重新编译，我们就可以用PImpl</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">Impl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Impl</span><span class="o">*</span> <span class="n">pImpl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>注意这里出现的<code>Impl</code>类型只是声明，没有定义，称为“不完整类型”，这样的类型只支持很少的操作，其中包括了我们需要的：声明一个不完整类型的指针</em></p>
+<p><em>对应的实现文件内容为</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Widget</span><span class="o">::</span><span class="n">Impl</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Gadget</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Widget</span><span class="o">::</span><span class="n">Widget</span><span class="p">()</span> <span class="o">:</span> <span class="n">pImpl</span><span class="p">(</span><span class="k">new</span> <span class="n">Impl</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Widget</span><span class="o">::~</span><span class="n">Widget</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">pImpl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>有了智能指针后，我们觉得直接<code>new</code>和<code>delete</code>不好，需要用<code>std::unique_ptr</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">Impl</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Impl</span><span class="o">&gt;</span> <span class="n">pImpl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>因为不需要手动的<code>delete</code>，我们没有自己实现<code>Widget</code>的析构函数</em></p>
+<p><em>看起来都很美好，编译也没问题，但在用户要用时，出事了</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Widget</span> <span class="n">w</span><span class="p">;</span> <span class="c1">// error!!!
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>究其原因，是因为我们没有给<code>Widget</code>实现自定义的析构函数，因此编译器为<code>Widget</code>准备了一个。这个析构函数会被放到<code>Widget</code>的定义体内，默认是内联的，因此会有一份实现在用户文件中。<code>~Widget</code>中只做一件事：析构<code>pImpl</code>，即析构一个<code>std::unique_ptr&lt;Impl&gt;</code>。注意，我们隐藏了<code>Impl</code>的实现，在析构<code>std::unique_ptr&lt;Impl&gt;</code>时编译器发现<code>Impl</code>还是个不完整类型，此时对它调用<code>delete</code>是危险的，因此编译器用<code>static_cast</code>禁止了这种行为</em></p>
+<p><em>解决方案很简单：自己实现<code>Widget</code>的析构函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// widget.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">Impl</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Impl</span><span class="o">&gt;</span> <span class="n">pImpl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// widget.cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">Widget</span><span class="o">::</span><span class="n">Widget</span><span class="p">()</span> <span class="o">:</span> <span class="n">pImpl</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Impl</span><span class="o">&gt;</span><span class="p">())</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Widget</span><span class="o">::~</span><span class="n">Widget</span><span class="p">()</span> <span class="p">{}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>参考条款17，更好的方法是将析构函数定义为<code>= default</code></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Widget</span><span class="o">::~</span><span class="n">Widget</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>根据条款17，自定义的析构函数会阻止编译器生成移动构造函数和移动赋值函数，因此如果你想要<code>Widget</code>有移动的能力，就要自己实现</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Widget</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">// right idea, wrong code!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Widget</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>注意不要在这些特殊成员函数的声明后面加<code>= default</code>，这样会重复上面析构函数的问题：会被内联，因此在用户代码中有一份实现，遇到不完整类型，game over。我们要做的就是在.cpp中将它们的实现定义为<code>= default</code></em></p>
+<p><em>接下来就是复制构造函数和复制赋值函数了。我们用<code>std::unique_ptr</code>是为了更好的实现PImpl方法，这也导致了<code>Widget</code>无法自动生成复制函数（<code>std::unique_ptr</code>不支持），但这并不意味着<code>Widget</code>就不能支持复制了，我们还可以自己定义两个复制函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// widget.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="p">(</span><span class="k">const</span> <span class="n">Widget</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Widget</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Widget</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// widget.cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Widget</span><span class="o">::</span><span class="n">Widget</span><span class="p">(</span><span class="k">const</span> <span class="n">Widget</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">pImpl</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span><span class="p">.</span><span class="n">pImpl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pImpl</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Impl</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">rhs</span><span class="p">.</span><span class="n">pImpl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">Widget</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Widget</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rhs</span><span class="p">.</span><span class="n">pImpl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pImpl</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pImpl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pImpl</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Impl</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">rhs</span><span class="p">.</span><span class="n">pImpl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">pImpl</span> <span class="o">=</span> <span class="o">*</span><span class="n">rhs</span><span class="p">.</span><span class="n">pImpl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>有意思的是，如果你把<code>pImpl</code>的类型改为<code>std::shared_ptr&lt;Impl&gt;</code>，你会发现上面所有这些注意事项，都不见了。你不需要手动实现析构函数、移动函数、构造函数，程序编译仍然是好的。</em></p>
+<p><em>这种差异来自于<code>std::unique_ptr</code>和<code>std::shared_ptr</code>对自定义销毁器的支持方式不同。<code>std::unique_ptr</code>的目标是从体积到性能上尽可能与裸指针相同，因此它将销毁器类型作为模板参数的一部分，这样实现起来更高效，代价是各种特殊函数在编译时就要知道元素的完整类型。而<code>std::shared_ptr</code>没有这种性能上的要求，因此它的销毁器不是模板参数的一部分，性能会有一点点影响，但好处是不需要在编译特殊函数时知道元素的完整类型</em></p>
+<blockquote>
+<p><code>std::shared_ptr</code>在构造时就把销毁器保存在了控制块中，之后即使传递到了不知道元素完整类型的地方，它仍然能调用正确的销毁器来销毁元素指针。而<code>std::unique_ptr</code>是依靠模板参数提供的类型信息来进行销毁，因此必须要知道元素的完整类型</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title=""><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/%E6%9D%A1%E6%AC%BE18~22-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title="" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/mysql-cmd/" class="next" rel="next" title="CMD">CMD<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

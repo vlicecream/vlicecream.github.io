@@ -1,0 +1,47 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Effective Modern C&#43;&#43; 条款 - 分类 - Ame</title>
+        <link>https://example.com/categories/effective-modern-c&#43;&#43;-%E6%9D%A1%E6%AC%BE/</link>
+        <description>Effective Modern C&#43;&#43; 条款 - 分类 - Ame</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Mar 2023 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/effective-modern-c&#43;&#43;-%E6%9D%A1%E6%AC%BE/" rel="self" type="application/rss+xml" /><item>
+    <title>条款18~22 智能指针</title>
+    <link>https://example.com/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22/</link>
+    <pubDate>Mon, 13 Mar 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/effective-modern-c-%E6%9D%A1%E6%AC%BE18-22/</guid>
+    <description><![CDATA[<h1 id="条款1822-智能指针">条款18~22 智能指针</h1>
+<h2 id="前言"><em><strong>前言</strong></em></h2>
+<ol>
+<li><em>其实《Effective C++ Item13》已经过时了，所以我们可以在《Effective Modern c++ Item18~Item22》条款中去理解智能指针</em></li>
+<li><em>我们不爱裸指针的原因</em>
+<ul>
+<li><em>裸指针的声明没办法告诉我们它指向的是单个对象还是数组</em></li>
+<li><em>没办法知道用完这个裸指针后要不要销毁它指向的对象</em></li>
+<li><em>没办法知道怎么销毁这个裸指针，是用<code>operator delete</code>还是什么其它自定义的途径</em></li>
+<li><em>参照原因1，没办法知道该用<code>delete</code>还是<code>delete[]</code>，如果用错了，结果未定义</em></li>
+<li><em>很难保证调用路径上恰好销毁这个指针一次，可能内存泄露，也可能double free</em></li>
+<li><em>通常没办法知道裸指针是否是空悬指针，即是否指向已销毁的对象</em></li>
+</ul>
+</li>
+<li><em>智能指针的作用</em>
+<ul>
+<li><em>智能指针就是来解这些问题的，它们用起来像裸指针，但能避免以上的很多陷阱</em></li>
+<li><em>C++11中有4种智能指针：<code>std::auto_ptr</code>、<code>std::unique_ptr</code>、<code>std::shared_ptr</code>、<code>std::weak_ptr</code></em></li>
+<li><em>其中<code>std::auto_ptr</code>已经过时了，C++11中可以被<code>std::unique_ptr</code>取代了</em></li>
+</ul>
+</li>
+<li><em>正式看本博客之前，需要去弄懂&quot;PImpl&quot;</em>
+<ul>
+<li><em>具体关于PImpl是什么，可以查看我这个博客《<a href="https://vlicecream.github.io/%E7%BC%98%E8%B5%B7-pimpl/" target="_blank" rel="noopener noreffer ">PImpl</a>》</em></li>
+<li><em>还有如果前言都没好好看，导致Item22不知道PImpl是啥，这时候你是不是应该要质疑一下自己，学习是不是太浮躁了?</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="条款18-对于占有性资源使用unique_ptr"><em><strong>条款18 对于占有性资源使用<code>unique_ptr</code></strong></em></h2>
+<ol>
+<li>
+<p><em><code>std::unique_ptr</code>的特点</em></p>]]></description>
+</item>
+</channel>
+</rss>

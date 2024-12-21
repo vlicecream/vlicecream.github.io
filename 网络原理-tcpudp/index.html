@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>TCP&amp;UDP - Ame</title><meta name="Description" content="TCP&amp;UDP"><meta property="og:url" content="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="TCP&UDP">
+  <meta property="og:description" content="TCP&amp;UDP">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-01-03T16:29:59+08:00">
+    <meta property="article:modified_time" content="2023-01-03T16:29:59+08:00">
+    <meta property="article:tag" content="TCP">
+    <meta property="article:tag" content="UDP">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="TCP&UDP">
+  <meta name="twitter:description" content="TCP&amp;UDP">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" /><link rel="prev" href="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-ip/" /><link rel="next" href="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TCP\u0026UDP",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "TCP, UDP","wordcount":  4491 ,
+        "url": "https:\/\/example.com\/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp\/","datePublished": "2023-01-03T16:29:59+08:00","dateModified": "2023-01-03T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "TCP\u0026UDP"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TCP&UDP</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>网络原理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-03">2023-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4491 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" class="leancloud_visitors" data-flag-title="TCP&amp;UDP">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#传输层的定义"><em><strong>传输层的定义</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#tcp-概念--流控制"><em><strong>TCP 概念 &amp; 流控制</strong></em></a></li>
+    <li><a href="#tcp-序列号--应答机制"><em><strong>TCP 序列号 &amp; 应答机制</strong></em></a></li>
+    <li><a href="#tcp-重发超时"><em><strong>TCP 重发超时</strong></em></a></li>
+    <li><a href="#tcp-三次握手"><em><strong>TCP 三次握手</strong></em></a></li>
+    <li><a href="#tcp-四次挥手"><em><strong>TCP 四次挥手</strong></em></a></li>
+    <li><a href="#为什么需要3次握手-挥手需要4次"><em><strong>为什么需要3次握手 挥手需要4次</strong></em></a></li>
+    <li><a href="#tcp-以段为单位发送数据"><em><strong>TCP 以段为单位发送数据</strong></em></a></li>
+    <li><a href="#tcp-窗口控制"><em><strong>TCP 窗口控制</strong></em></a></li>
+    <li><a href="#tcp-重发控制"><em><strong>TCP 重发控制</strong></em></a></li>
+    <li><a href="#tcp-拥塞窗口"><em><strong>TCP 拥塞窗口</strong></em></a></li>
+    <li><a href="#tcp-连接状态"><em><strong>TCP 连接状态</strong></em></a></li>
+    <li><a href="#tcp-首部格式"><em><strong>TCP 首部格式</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#udp-概念--用途"><em><strong>UDP 概念 &amp; 用途</strong></em></a></li>
+    <li><a href="#udp-首部格式"><em><strong>UDP 首部格式</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="tcpudp">TCP/UDP</h1>
+<h1 id="传输层"><em><strong>传输层</strong></em></h1>
+<h2 id="传输层的定义"><em><strong>传输层的定义</strong></em></h2>
+<ul>
+<li><em>传输层是第一次在端对端也就是主机对主机的一层 专门负责处理上层的数据 负责可靠不可靠的传输</em></li>
+<li><em>传输层下层是使用 mac 和 ip 地址来寻找到特定主机 但是光凭 mac ip 可不够,还要需要端口, 也是在这一层 有了端口的概念</em></li>
+<li><em>这一层的数据单位称为数据段</em></li>
+</ul>
+<h1 id="tcp"><em><strong>TCP</strong></em></h1>
+<h2 id="tcp-概念--流控制"><em><strong>TCP 概念 &amp; 流控制</strong></em></h2>
+<ul>
+<li><em>TCP是 <strong>面向有链接</strong> 协议, 因为他是 <strong>流控制</strong>，也被称作流式协议</em></li>
+<li><em><strong>流控制：</strong> 接收端告诉发送端 我这边可以接收多少数据 发送端也跟接收端确认少数据 取最小值 将数据切割</em></li>
+<li><em>TCP是可靠协议 他有一系列的方法来实现可靠性</em></li>
+</ul>
+<h2 id="tcp-序列号--应答机制"><em><strong>TCP 序列号 &amp; 应答机制</strong></em></h2>
+<ol>
+<li><strong>引出：</strong>
+<ul>
+<li><em>TCP是一个可靠协议 所以TCP需要各种方法来保证他的可靠性</em></li>
+</ul>
+</li>
+<li><strong>解决：</strong>
+<ul>
+<li><em>发送端发送数据后 接收端接收成功 会发送一个<strong>ACK应答</strong></em></li>
+<li><strong>缺点</strong>
+<ul>
+<li><em>万一ACK发送失败 发送端就会一直发送数据 这是一个问题</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>优化：</strong>
+<ul>
+<li><em>引入 <strong>序列号</strong> 机制 为每一个数据都打上一个序列号 ACK也算一个序列号</em></li>
+<li><em>接收端收到数据后, 就会分析她下一次应该接收数据的序列号 然后以ACK应答出去</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-重发超时"><em><strong>TCP 重发超时</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>RTT 与 RTO</strong></em></p>
+<ul>
+<li>
+<p><strong>RTT 和 RTO的概念</strong></p>
+<ul>
+<li><em>TCP作为一个面向有连接型的协议，需要保证其可靠性 所以其内部实现了一个重传计时器</em></li>
+<li><em>每发送一个数据包，就给这个数据设置一个重传计时器, 如果在计时器超时之前收到了针对这个数据包的ack，就取消这个计时器。如果没有收到，则开始发起重传。计时器超时的时间被称为RTO，这个时间的确定取决于RTT</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>关于两者详细的解释</strong></p>
+<ul>
+<li><code>RTT(Round Trip Time)</code>: <em>一个连接的往返时间，即数据发送时刻到接收到确认的时刻的差值</em></li>
+<li><code>RTO(Retransmission Time Out)</code>: <em>重传超时时间，即从数据发送时刻算起，超过这个时间便执行重传</em></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p><em><strong>RTT的测量</strong></em></p>
+<ul>
+<li><em><strong>每发送一个分组 TCP就会对其采样，这个采样只会对同一时间的数据段进行采样, 随后用这个采样记录当作RTT</strong></em></li>
+<li><strong>采样方法一般有两种</strong>
+<ul>
+<li><em><strong>采用时间戳：</strong></em> <em>发送一个数据段时在TCP选项中记录下时间 收到数据段再记录下时间 随后计算出差值 就把这个差值作为RTT 但是需要发送端和接收端都需要支持这个选项</em></li>
+<li><em><strong>重传队列中数据包的TCP控制块：</strong></em> <em>每个数据包第一次发送出去后都会放到重传队列中，数据包中的TCP控制块包含着一个变量，tcp_skb_cb-&gt;when，记录了该数据包的第一次发送时间。如果没有时间戳选项，那么RTT就等于当前时间和when的差值</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>RTO的计算</strong></em></p>
+<ul>
+<li><em><strong>为了避免单次RTT波动，计算RTO时新引入了变量SRTT，表示更加平滑的RTT数值，它的计算方法：</strong></em></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">SRTT</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">SRTT</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="n">RTT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// x被称为平滑因子，一般建议设置在[0.8, 0.9]，意思是SRTT值百分之八十来自于之前的值，百分之二十来自于当前值。
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><em><strong>计算RTO的方法为：</strong></em></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">RTO</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ubound</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">lbound</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">SRTT</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// y 是时延离散因子，推荐值为[1.3, 2.0]，ubound是RTO的上边界，lbound是RTO的下边界
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em><strong>算法的缺点</strong></em></p>
+<ul>
+<li><em>在RTT波动较大时，RTO不能明显适应网络变化</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>标准方法</strong></em></p>
+<ol>
+<li><em>标准方法引入了<strong>平均偏差</strong>的概念，它类似于统计学里面的方差，但是因为方差的计算过程代价较大，对于快速TCP来说不太适合。假设rtt的值为M，RTO的计算方式为：</em></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">srtt</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">g</span><span class="p">)</span><span class="nx">srtt</span> <span class="o">+</span> <span class="nf">g</span><span class="p">(</span><span class="nx">M</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">rttval</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">h</span><span class="p">)</span><span class="nx">rttval</span> <span class="o">+</span> <span class="nf">h</span><span class="p">(|</span><span class="nx">M</span> <span class="o">-</span> <span class="nx">rttval</span><span class="p">|);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">RTO</span> <span class="p">=</span> <span class="nx">srtt</span> <span class="o">+</span> <span class="mi">4</span><span class="p">(</span><span class="nx">rttval</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*    
+</span></span></span><span class="line"><span class="cl"><span class="cm">    其中`g`设置为1/8，`h`设置为`1/4`
+</span></span></span><span class="line"><span class="cl"><span class="cm">    对srtt而言，它有1/8取决于当前值，7/8取决于现有值    当RTT变化时，偏差增量越大，RTO的增量也越大
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="tcp-三次握手"><em><strong>TCP 三次握手</strong></em></h2>
+<ol>
+<li><em><strong>第一次握手</strong></em>
+<ul>
+<li><em><strong>SYN = 1，seq = x</strong></em></li>
+<li><em>客户端发送一个 <strong>SYN标志为1</strong>，指明客户端打算连接的服务器<strong>端口</strong>，以及初始的<strong>序列号为随机生成的 x</strong> 的一个TCP包</em></li>
+<li><em>发送完成后，客户端进入 <code>SYN_SEND</code>状态</em></li>
+</ul>
+</li>
+<li><em><strong>第二次握手</strong></em>
+<ul>
+<li><em><strong>SYN = 1，ACK = 1，seq = y，ACKNum = x+1</strong></em></li>
+<li><em>服务端发回 SYN=1 ACK=1，并且ACK也算一个序列号+1 所以ACKNum是 x+1，随后再把自己要发送的数据标上序列号，序列号变成了 y 的一个TCP包</em></li>
+<li><em><strong>服务端发送完毕后 进入 <code>SYN_RECV</code>状态</strong></em></li>
+</ul>
+</li>
+<li><em><strong>第三次握手</strong></em>
+<ul>
+<li><em><strong>ACK = 1，ACKNum = y+1</strong></em></li>
+<li><em>客户端再次发送确认包(ACK)，SYN 标志位为0，ACK 标志位为1，并且把服务器发来 ACK 的序号字段+1，放在确定字段中发送给对方，并且在数据段放写ISN的+1</em></li>
+<li><em><strong>发送完毕 客户端进入 <code>ESTABLISH</code>状态，服务端接收到这个包后 也进入<code>ESTABLISH</code>状态，TCP握手结束</strong></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-四次挥手"><em><strong>TCP 四次挥手</strong></em></h2>
+<ol>
+<li><em><strong>第一次挥手</strong></em>
+<ul>
+<li><em><strong>FIN = 1, seq = x</strong></em></li>
+<li><em>假设客户端想要关闭连接，客户端发送一个FIN标志位置为1的包，表示自己像断开连接 没有数据可以发送了，但是仍然可以接收数据</em></li>
+<li><em>发送完毕后，客户端进入 <code>FIN_WAIT_1</code> 状态</em></li>
+</ul>
+</li>
+<li><em><strong>第二次挥手</strong></em>
+<ul>
+<li><em><strong>ACK = 1 ACKNum = x + 1</strong></em></li>
+<li><em>服务端接受到了客户端想要断开的链接的请求，便发出了一个ACK标志位为1的TCP包，表明自己接收到了请求，但还没有准备好关闭连接</em></li>
+<li><em>发送完毕后，服务器端进入 <code>CLOSE_WAIT</code> 状态，客户端接收到了这个确认包之后，进入 <code>FIN_WAIT_2</code>的状态，等待服务端关闭连接</em></li>
+</ul>
+</li>
+<li><em><strong>第三次挥手</strong></em>
+<ul>
+<li><em><strong>FIN=1，seq=y</strong></em></li>
+<li><em>服务器端准备好关闭连接时，向客户端发送结束连接请求，FIN 置为1</em></li>
+<li><em><strong>发送完毕后，服务器端进入 <code>LAST_ACK</code> 状态，等待来自客户端的最后一个ACK</strong></em></li>
+</ul>
+</li>
+<li><em><strong>第四次挥手</strong></em>
+<ul>
+<li><em><strong>ACK = 1，ACKNum = y + 1</strong></em></li>
+<li><em>客户端接收到来自服务器端的关闭请求，发送一个确认包</em></li>
+<li><em><strong>客户端发送完包并进入 <code>TIME_WAIT</code> 状态，等待可能出现的要求重传的ACK包</strong></em></li>
+<li><em><strong>服务端接收到这个确认包后，关闭连接，进入<code>CLOSED</code>状态</strong></em></li>
+</ul>
+</li>
+</ol>
+<h2 id="为什么需要3次握手-挥手需要4次"><em><strong>为什么需要3次握手 挥手需要4次</strong></em></h2>
+<ol>
+<li><em><strong>3次握手目的是要确定客户端和服务端通信也就是两边的“收”“发”功能是否正常</strong></em>
+<ul>
+<li><em>第一次握手: 客户端发送网络包 服务器收到了 这个时候服务端就能确定客户端的&quot;发&quot; 和 服务端的 &ldquo;收&rdquo; 都没有问题</em></li>
+<li><em>第二次握手: 服务端发送 这个时候客户端就能确定 客户端的 &ldquo;发收&rdquo; 服务端的 &ldquo;收发&rdquo; 是没有问题的 但是服务端还没有确定</em></li>
+<li><em>第三次握手: 客户端发包 这个时候服务端就能确定 服务端的 &ldquo;发收&rdquo; 客户端的 &ldquo;收发&rdquo; 是没有的问题的</em></li>
+<li><em><strong>所以综上所述 两次握手是没有办法确定 双方的通信能力是否正常 至少也要三次</strong></em></li>
+</ul>
+</li>
+<li><em><strong>4次挥手目的是要数据接收完毕 不能在数据没有接受完全就直接关闭了连接TCP连接是双向传输的对等的模式, 就是说双方都可以同时向对方发送或接受数据</strong></em>
+<ul>
+<li><em>第一次挥手: 当有一方要关闭连接时，会发送指令告知对方 我们要close连接</em></li>
+<li><em>第二次挥手: 对方回一个ack应答 此时一个方向的连接关闭 但是！另一个方向仍然可以继续传输数据 等到数据发送完 就进行第三次挥手</em></li>
+<li><em>第三次挥手: 发送FIN段</em></li>
+<li><em>第四次挥手: 回ACK应答</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-以段为单位发送数据"><em><strong>TCP 以段为单位发送数据</strong></em></h2>
+<ol>
+<li><em><strong>什么是段</strong></em>
+<ul>
+<li><em>在三次握手的期间发送端会告诉接受端 我一次性能发送多少数据接受端也会告诉发送端 我一次性能接受多少数据随后发送端就会把全部数据切割为最小值 发送出去</em></li>
+<li><em>这个最小值为段</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-窗口控制"><em><strong>TCP 窗口控制</strong></em></h2>
+<ol>
+<li><em><strong>引出</strong></em>
+<ul>
+<li><em>当我们以段为单位 一次发送数据 随后又得等待ack 这样包的往返效率很慢</em></li>
+<li><em>所以tcp采用了滑动窗口来优化</em></li>
+</ul>
+</li>
+<li><em><strong>什么是窗口控制</strong></em>
+<ul>
+<li><em>滑动窗口就是我们设置窗口值 在没超够窗口值的前提下 不用等待ack的应答 就可以发送段数据</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-重发控制"><em><strong>TCP 重发控制</strong></em></h2>
+<ol>
+<li><em><strong>引出</strong></em>
+<ul>
+<li><em>当我们利用窗口来发送数据 如果有数据丢失怎么办</em></li>
+</ul>
+</li>
+<li><em><strong>ACK丢失</strong></em>
+<ul>
+<li><em>如有几个ack应答丢失是没有关系的 因为剩下的ack会到达发送端</em></li>
+<li><em>所以一对比单个段发送的效率 窗口的性能还是蛮高的</em></li>
+</ul>
+</li>
+<li><em><strong>段丢失</strong></em>
+<ul>
+<li><em>如果段数据丢失了 接受端会一直返回相对应的序列号的ack应答 如果发送端一直接受同样的ack三次 就会进行重发</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-拥塞窗口"><em><strong>TCP 拥塞窗口</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>引出</strong></em></p>
+<ul>
+<li><em>计算机网络都处在一个共享的环境。 因此也有可能会因为其他主机之间的通信会造成网络拥堵。如果在网络拥堵的时候 发送一个较大量的数据包 会可能导致整个网络的瘫痪</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>什么是拥塞窗口</strong></em></p>
+<ul>
+<li><em><strong>TCP在通信一开始的时候会通过一个叫做慢启动的算法得出的数值，对发送数据量进行控制</strong></em></li>
+<li><em>首先，为了在发送端调节要发送数据的量,定义了一个叫做 “拥塞窗口” 的概念    在慢启动的时候，将这个窗口调节为1个数据段发送数据，随后没收到一个ack就进行+=1    在发送数据的时候 也会将其拥塞窗口的大小和接受端的窗口对比 取其最小值 然后发送比这个最小值还小一点的数据</em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>上述解决办法会出现的问题</strong></em></p>
+<ul>
+<li><em>随着包的往返，拥塞窗口也会以 1 2 4 等指数函数增长，拥堵状况激增甚至导致拥塞的发生</em></li>
+<li><em><strong>慢启动阈值他也就来了</strong></em></li>
+</ul>
+</li>
+<li>
+<p><em><strong>慢启动阈值</strong></em></p>
+<ul>
+<li>
+<p><em>只要拥塞窗口的值超过这个范围，则每一次收到ack，只允许下面这种比例放大拥塞窗口</em></p>
+</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="mi">1</span><span class="err">个数据段的字节数</span> <span class="o">/</span> <span class="err">拥塞窗口</span><span class="p">(</span><span class="err">字节</span><span class="p">)</span> <span class="n">X</span> <span class="mi">1</span><span class="err">个数据段字节数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<h2 id="tcp-连接状态"><em><strong>TCP 连接状态</strong></em></h2>
+<ul>
+<li><em><strong>CLOSED: 初始状态</strong></em></li>
+<li><em><strong>LISTEN: 服务器处于监听状态</strong></em></li>
+<li><em><strong>SYN_SEND: 客户端socket执行CONNECT连接，发送syn包 进入此状态</strong></em></li>
+<li><em><strong>SYN_RECV: 服务端收到SYN包并发送服务端SYN包，进入此状态</strong></em></li>
+<li><em><strong>ESTABLISH: 表示连接建立。客户端发送了最后一个ACK包后进入此状态，服务端接 收到ACK包后进入此状态</strong></em></li>
+<li><em><strong>FIN_WAIT_1: 终止连接的一方发送了FIN报文后进入,等待对方FIN</strong></em></li>
+<li><em><strong>CLOSE_WAIT: 假设服务器)接收到客户机FIN包之后等待关闭的阶段。在接收到 对方的FIN包之后，自然是需要立即回复ACK包的，表示已经知道断开请求。但是本 方是否立即断开连接(发送FIN包)取决于是否还有数据需要发送给客户端，若有， 则在发送FIN包之前均为此状态</strong></em></li>
+<li><em><strong>FIN_WAIT_2: 此时是半连接状态, 既有一方要求关闭连接，等待另一方关闭，客户端接收到服务端的ACK包，但并没有接收到服务端的FIN包，进入FIN_WAIT_2状态</strong></em></li>
+<li><em><strong>LAST_ACK: 服务端发动最后的FIN包，等待最后的客户端ACK响应，进入此状态。</strong></em></li>
+<li><em><strong>TIME_WAIT: 客户端收到服务端的FIN包，并立即发出ACK包做最后的确认，在此之 后的2MSL时间称为TIME_WAIT状态。</strong></em></li>
+</ul>
+<h2 id="tcp-首部格式"><em><strong>TCP 首部格式</strong></em></h2>
+<ol>
+<li><em><strong>源端口号</strong></em>
+<ul>
+<li><em>发送方的应用端口 占16位</em></li>
+</ul>
+</li>
+<li><em><strong>目标端口号</strong></em>
+<ul>
+<li><em>接受端的应用端口 占16位</em></li>
+</ul>
+</li>
+<li><em><strong>序列号</strong></em>
+<ul>
+<li><em>占32位</em></li>
+<li><em>发送端会在发送数据的每个字节上标上序号</em></li>
+<li><em>不一定每一个序列号都是0, 1开始的 这个序列号是随机的 会在syn包也就是第一次握手 告诉接受端</em></li>
+<li><em>syn包 &amp; fin包 &amp; ACK 都是一个字节</em></li>
+</ul>
+</li>
+<li><em><strong>确认应答号</strong></em>
+<ul>
+<li><em>占32位</em></li>
+<li><em>收到数据后 会返回下一次应该收到的序列号信息作为确认应答</em></li>
+<li><em>这个确认应答也就代表着 前面的数据我都收到了的意思</em></li>
+</ul>
+</li>
+<li><em><strong>偏移量</strong></em>
+<ul>
+<li><em>tcp首部长度</em></li>
+</ul>
+</li>
+<li><em><strong>保留</strong></em>
+<ul>
+<li><em>占4位 主要是为了以后扩展用的 一般都是0</em></li>
+</ul>
+</li>
+<li><em><strong>控制位</strong></em>
+<ul>
+<li><em>字段长为8位, 当它们对应位上的值为1 就会有特殊作用</em></li>
+<li><em><strong>三次握手, 四次挥手</strong></em>
+<ul>
+<li><em>ack 该位为1时, 确认应答的字段变为有效, tcp规定除了最开始的syn包外, 必须为1</em></li>
+<li><em>syn 该位为1时, 代表希望建立连接, 并且序列号会随机生成</em></li>
+<li><em>fin 该位为1时, 代表希望断开连接</em></li>
+</ul>
+</li>
+<li><em><strong>英语全称(其实一开始作者看错了 以为都是p开头 结果阴差阳错发现了 然后就记住了 哈哈) =-=</strong></em>
+<ul>
+<li><em>psh(push) 该位为1时，代表需要直接将数据传给上一层 / 该位为0时 需要先进行缓存在进行传送</em></li>
+<li><em>rst(reset) 该位为1时，代表tcp连接出现异常 必须强制断开连接 比如对方突然断电</em></li>
+</ul>
+</li>
+<li><em><strong>紧急指针相关</strong></em>
+<ul>
+<li><em>URG 该位为1时，代表包中有需要紧急处理的数据</em></li>
+</ul>
+</li>
+<li><em><strong>拥塞窗口</strong></em>
+<ul>
+<li><em>cwr 该位为1时，则会通知对方拥塞窗口缩小</em></li>
+<li><em>ece 该位为1时，通知对方，从对方到这里的网络有拥塞</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>窗口大小</strong></em>
+<ul>
+<li><em>长为16位</em></li>
+<li><em>代表发送数据最多不能超过这个窗口大小</em></li>
+<li><em>如果窗口大小为0 则就是代表可以窗口探测 去寻找最新的窗口大小</em></li>
+</ul>
+</li>
+<li><em><strong>校验和</strong></em></li>
+<li><em><strong>紧急指针</strong></em>
+<ul>
+<li><em>该字段长为16位, 只有在URG控制位为1时有效</em></li>
+<li><em>数据的首位到紧急指针指向的位置 都是紧急数据</em></li>
+<li><em>怎么处理紧急数据 就是应用层要实现的事情, 一般在暂停通信 或者中断通信的时候使用</em></li>
+</ul>
+</li>
+<li><em><strong>选项</strong></em></li>
+</ol>
+<h1 id="udp"><em><strong>UDP</strong></em></h1>
+<h2 id="udp-概念--用途"><em><strong>UDP 概念 &amp; 用途</strong></em></h2>
+<ol>
+<li><em><strong>UDP 是面向无连接协议 爆式协议 他不会去管数据到底有没有到达 所以想啥时候发数据就啥时候发数据经常用于广播 视频 音频等</strong></em></li>
+</ol>
+<h2 id="udp-首部格式"><em><strong>UDP 首部格式</strong></em></h2>
+<ol>
+<li><em><strong>因为UDP简单 所以首部只有 源端口号 目标端口号 检验和 包长度 四个数据</strong></em></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-01-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" data-title="TCP&amp;UDP" data-hashtags="TCP,UDP"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" data-hashtag="TCP"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" data-title="TCP&amp;UDP"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" data-title="TCP&amp;UDP"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/" data-title="TCP&amp;UDP" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tcp/">TCP</a>,&nbsp;<a href="/tags/udp/">UDP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-ip/" class="prev" rel="prev" title="IP"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>IP</a>
+            <a href="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" class="next" rel="next" title="线程共享了哪些进程资源">线程共享了哪些进程资源<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,58 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>访问器 - 标签 - Ame</title>
+        <link>https://example.com/tags/%E8%AE%BF%E9%97%AE%E5%99%A8/</link>
+        <description>访问器 - 标签 - Ame</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E8%AE%BF%E9%97%AE%E5%99%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>访问器</title>
+    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E5%99%A8/</link>
+    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E5%99%A8/</guid>
+    <description><![CDATA[<h1 id="访问器">访问器</h1>
+<h2 id="行为变化模式">行为变化模式</h2>
+<ol>
+<li><em><strong>什么是行为变化</strong></em>
+<ul>
+<li><em>在组件的构建过程中, 组件行为的变化经常导致组件本身剧烈的变化，&ldquo;行为变化&quot;模式将组件的行为和组件本身进行解藕, 从而支持组件行为的变化, 实现两者之间的松耦合</em></li>
+</ul>
+</li>
+<li><em><strong>典型模式</strong></em>
+<ul>
+<li><em>Command</em></li>
+<li><em>Visitor</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="访问器---前言">访问器 - 前言</h2>
+<ol>
+<li><em>访问器这个模式 <strong>有一个很难的前提</strong></em>
+<ul>
+<li><em>就是在扩展的类的子类个数必须稳定 也就是说要提前就知道有多少个子类 不能增加</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="动机">动机</h2>
+<ol>
+<li><em>在软件构建过程中, 由于需求的改变, 某些类层次结构中常常需要增加新的行为(方法)，如果直接在基类中做这样的更改, 将会给子类带来很繁重的变更负担, 甚至破坏原有设计</em></li>
+<li><em>如何在不更改层次结构的前提下, 在运行时根据需要透明的为类层次结构上的各个类动态添加新的操作, 从而避免上述问题?</em></li>
+</ol>
+<h2 id="模式定义">模式定义</h2>
+<ol>
+<li><em>表示一个作用于某对象结构中的各元素操作，使得可以在不改变(稳定)各元素的类的前提下定义(扩展)作用于这些元素的新操作(变化)</em></li>
+</ol>
+<h2 id="要点总结">要点总结</h2>
+<ol>
+<li><em>Visitor模式通过所有双重分发来实现在不更改类层次结构的前提下, 在运行时透明的为类层次结构上的各个类动态添加新的操作</em></li>
+<li><em>所有双重分发即Visitor模式中间包含了两个多态分发</em>
+<ul>
+<li><em>第一个为accept方法的多态辨析</em></li>
+<li><em>第二个为visitElementX方法的多态辨析</em></li>
+</ul>
+</li>
+<li><em>Visitor模式的最大缺点为扩展类层次结构, 会导致visitor类的改变，因此这个模式适用于类层次结构稳定, 而其中的操作方法频繁变化</em></li>
+</ol>]]></description>
+</item>
+</channel>
+</rss>
