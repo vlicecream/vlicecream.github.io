@@ -26,7 +26,7 @@
 <meta name="application-name" content="Ame林汀">
 <meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" /><link rel="prev" href="https://example.com/unreal-%E5%90%91%E9%87%8F/" /><link rel="next" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" /><link rel="prev" href="https://example.com/unreal-hlsl/" /><link rel="next" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -128,78 +128,93 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#标量"><em><strong>标量</strong></em></a></li>
-    <li><a href="#向量"><em><strong>向量</strong></em></a>
+    <li><a href="#标量与向量"><em><strong>标量与向量</strong></em></a>
       <ul>
-        <li><a href="#介绍"><em><strong>介绍</strong></em></a></li>
-        <li><a href="#数学公式"><em><strong>数学公式</strong></em></a></li>
-        <li><a href="#图示"><em><strong>图示</strong></em></a></li>
-        <li><a href="#代码"><em><strong>代码</strong></em></a></li>
+        <li><a href="#标量"><em><strong>标量</strong></em></a></li>
+        <li><a href="#向量"><em><strong>向量</strong></em></a>
+          <ul>
+            <li><a href="#介绍"><em><strong>介绍</strong></em></a></li>
+            <li><a href="#数学公式"><em><strong>数学公式</strong></em></a></li>
+            <li><a href="#图示"><em><strong>图示</strong></em></a></li>
+            <li><a href="#代码"><em><strong>代码</strong></em></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#介绍-1"><em><strong>介绍</strong></em></a></li>
-    <li><a href="#数学公式-1"><em><strong>数学公式</strong></em></a></li>
-    <li><a href="#代码-1"><em><strong>代码</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#简介"><em><strong>简介</strong></em></a></li>
-    <li><a href="#数学公式-2"><em><strong>数学公式</strong></em></a></li>
-    <li><a href="#代码-2"><em><strong>代码</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#介绍-2"><em><strong>介绍</strong></em></a></li>
-    <li><a href="#数学公式-3"><em><strong>数学公式</strong></em></a></li>
-    <li><a href="#图示-1"><em><strong>图示</strong></em></a></li>
-    <li><a href="#代码-3"><em><strong>代码</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#介绍-3"><em><strong>介绍</strong></em></a></li>
-    <li><a href="#数学公式-4"><em><strong>数学公式</strong></em></a></li>
-    <li><a href="#图示-2"><em><strong>图示</strong></em></a></li>
-    <li><a href="#代码-4"><em><strong>代码</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#介绍-4"><em><strong>介绍</strong></em></a></li>
-    <li><a href="#数学公式-5"><em><strong>数学公式</strong></em></a></li>
-    <li><a href="#图示-3"><em><strong>图示</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#介绍-5"><em><strong>介绍</strong></em></a></li>
-    <li><a href="#数学公式-6"><em><strong>数学公式</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#介绍-6"><em><strong>介绍</strong></em></a></li>
-    <li><a href="#点乘"><em><strong>点乘</strong></em></a>
+    <li><a href="#向量与标量运算"><em><strong>向量与标量运算</strong></em></a>
       <ul>
-        <li><a href="#介绍-7"><em><strong>介绍</strong></em></a></li>
-        <li><a href="#数学公式-7"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#介绍-1"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-1"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#代码-1"><em><strong>代码</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#叉乘"><em><strong>叉乘</strong></em></a>
+    <li><a href="#向量取反"><em><strong>向量取反</strong></em></a>
       <ul>
-        <li><a href="#介绍-8"><em><strong>介绍</strong></em></a></li>
-        <li><a href="#数学公式-8"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#简介"><em><strong>简介</strong></em></a></li>
+        <li><a href="#数学公式-2"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#代码-2"><em><strong>代码</strong></em></a></li>
       </ul>
     </li>
+    <li><a href="#向量的加法"><em><strong>向量的加法</strong></em></a>
+      <ul>
+        <li><a href="#介绍-2"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-3"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#图示-1"><em><strong>图示</strong></em></a></li>
+        <li><a href="#代码-3"><em><strong>代码</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#向量的减法"><em><strong>向量的减法</strong></em></a>
+      <ul>
+        <li><a href="#介绍-3"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-4"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#图示-2"><em><strong>图示</strong></em></a></li>
+        <li><a href="#代码-4"><em><strong>代码</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#向量的长度"><em><strong>向量的长度</strong></em></a>
+      <ul>
+        <li><a href="#介绍-4"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-5"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#图示-3"><em><strong>图示</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#单位向量"><em><strong>单位向量</strong></em></a>
+      <ul>
+        <li><a href="#介绍-5"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-6"><em><strong>数学公式</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#向量的相乘"><em><strong>向量的相乘</strong></em></a>
+      <ul>
+        <li><a href="#介绍-6"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#点乘"><em><strong>点乘</strong></em></a>
+          <ul>
+            <li><a href="#介绍-7"><em><strong>介绍</strong></em></a></li>
+            <li><a href="#数学公式-7"><em><strong>数学公式</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#叉乘"><em><strong>叉乘</strong></em></a>
+          <ul>
+            <li><a href="#介绍-8"><em><strong>介绍</strong></em></a></li>
+            <li><a href="#数学公式-8"><em><strong>数学公式</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#缩放"><em><strong>缩放</strong></em></a></li>
+    <li><a href="#位移"><em><strong>位移</strong></em></a></li>
+    <li><a href="#齐次坐标"><em><strong>齐次坐标</strong></em></a></li>
+    <li><a href="#旋转"><em><strong>旋转</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="标量与向量"><em><strong>标量与向量</strong></em></h1>
-<h2 id="标量"><em><strong>标量</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="标量与向量"><em><strong>标量与向量</strong></em></h2>
+<h3 id="标量"><em><strong>标量</strong></em></h3>
 <p><em>标量有大小 可以是正负，但是他没有方向</em></p>
-<h2 id="向量"><em><strong>向量</strong></em></h2>
-<h3 id="介绍"><em><strong>介绍</strong></em></h3>
+<h3 id="向量"><em><strong>向量</strong></em></h3>
+<h4 id="介绍"><em><strong>介绍</strong></em></h4>
 <p><em>向量最基本的定义就是一个方向。或者更正式的说，向量有一个方向(Direction)和大小(Magnitude，也叫做强度或长度)</em></p>
 <p><em>我们通常只使用2至4维。如果一个向量有2个维度，它表示一个平面的方向(想象一下2D的图像)，当它有3个维度的时候它可以表达一个3D世界的方向</em></p>
-<h3 id="数学公式"><em><strong>数学公式</strong></em></h3>
+<h4 id="数学公式"><em><strong>数学公式</strong></em></h4>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -208,7 +223,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-55-2024-12-24-10-07-20-image.png"
         title="sss" /></p>
-<h3 id="图示"><em><strong>图示</strong></em></h3>
+<h4 id="图示"><em><strong>图示</strong></em></h4>
 <p><em>你可以把这些2D向量当做z坐标为0的3D向量。由于向量表示的是方向，起始于何处并不会改变它的值。下图我们可以看到向量v¯和w¯是相等的，尽管他们的起始点不同</em></p>
 <p><img
         class="lazyload"
@@ -218,7 +233,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png" /></p>
-<h3 id="代码"><em><strong>代码</strong></em></h3>
+<h4 id="代码"><em><strong>代码</strong></em></h4>
 <ol>
 <li>
 <p><em><strong>2D向量代码</strong></em></p>
@@ -230,11 +245,11 @@
 <p><em><strong>4D向量代码</strong></em></p>
 </li>
 </ol>
-<h1 id="向量与标量运算"><em><strong>向量与标量运算</strong></em></h1>
-<h2 id="介绍-1"><em><strong>介绍</strong></em></h2>
+<h2 id="向量与标量运算"><em><strong>向量与标量运算</strong></em></h2>
+<h3 id="介绍-1"><em><strong>介绍</strong></em></h3>
 <p><em>标量(Scalar)只是一个数字（或者说是仅有一个分量的向量）。当把一个向量加/减/乘/除一个标量，我们可以简单的把向量的每个分量分别进行该运算</em></p>
 <p><em><strong>注意，数学上是没有向量与标量相加这个运算的，但是很多线性代数的库都对它有支持（比如说我们用的GLM）。如果你使用过numpy的话，可以把它理解为<a href="https://numpy.org/doc/1.18/user/basics.broadcasting.html" target="_blank" rel="noopener noreffer ">Broadcasting</a>。</strong></em></p>
-<h2 id="数学公式-1"><em><strong>数学公式</strong></em></h2>
+<h3 id="数学公式-1"><em><strong>数学公式</strong></em></h3>
 <p><em>其中的+可以是+，-，·或÷，其中·是乘号。注意－和÷运算时不能颠倒（标量-/÷向量），因为颠倒的运算是没有定义的。</em></p>
 <p><img
         class="lazyload"
@@ -244,7 +259,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png" /></p>
-<h2 id="代码-1"><em><strong>代码</strong></em></h2>
+<h3 id="代码-1"><em><strong>代码</strong></em></h3>
 <ol>
 <li>
 <p><em><strong>2D向量代码</strong></em></p>
@@ -256,10 +271,10 @@
 <p><em><strong>4D向量代码</strong></em></p>
 </li>
 </ol>
-<h1 id="向量取反"><em><strong>向量取反</strong></em></h1>
-<h2 id="简介"><em><strong>简介</strong></em></h2>
+<h2 id="向量取反"><em><strong>向量取反</strong></em></h2>
+<h3 id="简介"><em><strong>简介</strong></em></h3>
 <p><em>对一个向量取反(Negate)会将其方向逆转。一个指向东北的向量取反后就指向西南方向了。我们在一个向量的每个分量前加负号就可以实现取反了（或者说用-1数乘该向量）</em></p>
-<h2 id="数学公式-2"><em><strong>数学公式</strong></em></h2>
+<h3 id="数学公式-2"><em><strong>数学公式</strong></em></h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -268,7 +283,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png" /></p>
-<h2 id="代码-2"><em><strong>代码</strong></em></h2>
+<h3 id="代码-2"><em><strong>代码</strong></em></h3>
 <ol>
 <li>
 <p><em><strong>2D向量代码</strong></em></p>
@@ -280,10 +295,10 @@
 <p><em><strong>4D向量代码</strong></em></p>
 </li>
 </ol>
-<h1 id="向量的加法"><em><strong>向量的加法</strong></em></h1>
-<h2 id="介绍-2"><em><strong>介绍</strong></em></h2>
+<h2 id="向量的加法"><em><strong>向量的加法</strong></em></h2>
+<h3 id="介绍-2"><em><strong>介绍</strong></em></h3>
 <p><em>向量的加法可以被定义为是分量的(Component-wise)相加，即将一个向量中的每一个分量加上另一个向量的对应分量</em></p>
-<h2 id="数学公式-3"><em><strong>数学公式</strong></em></h2>
+<h3 id="数学公式-3"><em><strong>数学公式</strong></em></h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -292,7 +307,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png" /></p>
-<h2 id="图示-1"><em><strong>图示</strong></em></h2>
+<h3 id="图示-1"><em><strong>图示</strong></em></h3>
 <p><em>向量<code>v = (4, 2)</code>和<code>k = (1, 2)</code>可以直观地表示</em></p>
 <p><img
         class="lazyload"
@@ -302,7 +317,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png" /></p>
-<h2 id="代码-3"><em><strong>代码</strong></em></h2>
+<h3 id="代码-3"><em><strong>代码</strong></em></h3>
 <ol>
 <li>
 <p><em><strong>2D向量代码</strong></em></p>
@@ -314,10 +329,10 @@
 <p><em><strong>4D向量代码</strong></em></p>
 </li>
 </ol>
-<h1 id="向量的减法"><em><strong>向量的减法</strong></em></h1>
-<h2 id="介绍-3"><em><strong>介绍</strong></em></h2>
+<h2 id="向量的减法"><em><strong>向量的减法</strong></em></h2>
+<h3 id="介绍-3"><em><strong>介绍</strong></em></h3>
 <p><em>就像普通数字的加减一样，向量的减法等于加上第二个向量的相反向量</em></p>
-<h2 id="数学公式-4"><em><strong>数学公式</strong></em></h2>
+<h3 id="数学公式-4"><em><strong>数学公式</strong></em></h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -326,7 +341,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png" /></p>
-<h2 id="图示-2"><em><strong>图示</strong></em></h2>
+<h3 id="图示-2"><em><strong>图示</strong></em></h3>
 <p><em>两个向量的相减会得到这两个向量指向位置的差。这在我们想要获取两点的差会非常有用</em></p>
 <p><img
         class="lazyload"
@@ -336,7 +351,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png" /></p>
-<h2 id="代码-4"><em><strong>代码</strong></em></h2>
+<h3 id="代码-4"><em><strong>代码</strong></em></h3>
 <ol>
 <li>
 <p><em><strong>2D向量代码</strong></em></p>
@@ -348,10 +363,10 @@
 <p><em><strong>4D向量代码</strong></em></p>
 </li>
 </ol>
-<h1 id="向量的长度"><em><strong>向量的长度</strong></em></h1>
-<h2 id="介绍-4"><em><strong>介绍</strong></em></h2>
+<h2 id="向量的长度"><em><strong>向量的长度</strong></em></h2>
+<h3 id="介绍-4"><em><strong>介绍</strong></em></h3>
 <p><em>我们使用勾股定理(Pythagoras Theorem)来获取向量的长度(Length)/大小(Magnitude)。如果你把向量的x与y分量画出来，该向量会和x与y分量为边形成一个三角形</em></p>
-<h2 id="数学公式-5"><em><strong>数学公式</strong></em></h2>
+<h3 id="数学公式-5"><em><strong>数学公式</strong></em></h3>
 <p><em>因为两条边（x和y）是已知的，如果希望知道斜边v¯的长度，我们可以直接通过勾股定理来计算</em></p>
 <p><img
         class="lazyload"
@@ -370,7 +385,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png" /></p>
-<h2 id="图示-3"><em><strong>图示</strong></em></h2>
+<h3 id="图示-3"><em><strong>图示</strong></em></h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -379,10 +394,10 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png" /></p>
-<h1 id="单位向量"><em><strong>单位向量</strong></em></h1>
-<h2 id="介绍-5"><em><strong>介绍</strong></em></h2>
+<h2 id="单位向量"><em><strong>单位向量</strong></em></h2>
+<h3 id="介绍-5"><em><strong>介绍</strong></em></h3>
 <p><em>有一个特殊类型的向量叫做单位向量(Unit Vector)。单位向量有一个特别的性质——它的长度是1。我们可以用任意向量的每个分量除以向量的长度得到它的单位向量n^</em></p>
-<h2 id="数学公式-6"><em><strong>数学公式</strong></em></h2>
+<h3 id="数学公式-6"><em><strong>数学公式</strong></em></h3>
 <p><em>我们把这种方法叫做一个向量的标准化(Normalizing)。单位向量头上有一个^样子的记号。通常单位向量会变得很有用，特别是在我们只关心方向不关心长度的时候（如果改变向量的长度，它的方向并不会改变）。</em></p>
 <p><img
         class="lazyload"
@@ -392,11 +407,11 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png" /></p>
-<h1 id="向量的相乘"><em><strong>向量的相乘</strong></em></h1>
-<h2 id="介绍-6"><em><strong>介绍</strong></em></h2>
+<h2 id="向量的相乘"><em><strong>向量的相乘</strong></em></h2>
+<h3 id="介绍-6"><em><strong>介绍</strong></em></h3>
 <p><em>两个向量相乘是一种很奇怪的情况。普通的乘法在向量上是没有定义的，因为它在视觉上是没有意义的。但是在相乘的时候我们有两种特定情况可以选择：一个是点乘(Dot Product)，记作v¯⋅k¯，另一个是叉乘(Cross Product)，记作v¯×k¯。</em></p>
-<h2 id="点乘"><em><strong>点乘</strong></em></h2>
-<h3 id="介绍-7"><em><strong>介绍</strong></em></h3>
+<h3 id="点乘"><em><strong>点乘</strong></em></h3>
+<h4 id="介绍-7"><em><strong>介绍</strong></em></h4>
 <p><em>两个向量的点乘等于它们的数乘结果乘以两个向量之间夹角的余弦值。可能听起来有点费解，我们来看一下公式</em></p>
 <p><img
         class="lazyload"
@@ -424,7 +439,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png" /></p>
-<h3 id="数学公式-7"><em><strong>数学公式</strong></em></h3>
+<h4 id="数学公式-7"><em><strong>数学公式</strong></em></h4>
 <p><em>所以，我们该如何计算点乘呢？点乘是通过将对应分量逐个相乘，然后再把所得积相加来计算的。两个单位向量的（你可以验证它们的长度都为1）点乘会像是这样</em></p>
 <p><img
         class="lazyload"
@@ -435,8 +450,8 @@
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png" /></p>
 <p><em>要计算两个单位向量间的夹角，我们可以使用反余弦函数cos−1 ，可得结果是143.1度。现在我们很快就计算出了这两个向量的夹角。点乘会在计算光照的时候非常有用</em></p>
-<h2 id="叉乘"><em><strong>叉乘</strong></em></h2>
-<h3 id="介绍-8"><em><strong>介绍</strong></em></h3>
+<h3 id="叉乘"><em><strong>叉乘</strong></em></h3>
+<h4 id="介绍-8"><em><strong>介绍</strong></em></h4>
 <p><em>叉乘只在3D空间中有定义，它需要两个不平行向量作为输入，生成一个正交于两个输入向量的第三个向量。如果输入的两个向量也是正交的，那么叉乘之后将会产生3个互相正交的向量。下面的图片展示了3D空间中叉乘的样子</em></p>
 <p><img
         class="lazyload"
@@ -446,7 +461,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png" /></p>
-<h3 id="数学公式-8"><em><strong>数学公式</strong></em></h3>
+<h4 id="数学公式-8"><em><strong>数学公式</strong></em></h4>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -455,7 +470,7 @@
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png" /></p>
-<h1 id="缩放"><em><strong>缩放</strong></em></h1>
+<h2 id="缩放"><em><strong>缩放</strong></em></h2>
 <p><em>对一个向量进行缩放(Scaling)就是对向量的长度进行缩放，而保持它的方向不变。由于我们进行的是2维或3维操作，我们可以分别定义一个有2或3个缩放变量的向量，每个变量缩放一个轴(x、y或z)。</em></p>
 <p><em>我们先来尝试缩放向量v¯=(3,2)。我们可以把向量沿着x轴缩放0.5，使它的宽度缩小为原来的二分之一；我们将沿着y轴把向量的高度缩放为原来的两倍。我们看看把向量缩放(0.5, 2)倍所获得的s¯是什么样的</em></p>
 <p><img
@@ -467,12 +482,12 @@
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png"
         title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png" /></p>
 <p><em>对于 2D的情况我们可以把z轴缩放 1倍，这样 z轴的值就不变了。我们刚刚的缩放操作是不均匀(Non-uniform)缩放，因为每个轴的缩放因子(Scaling Factor)都不一样。如果每个轴的缩放因子都一样那么就叫均匀缩放(Uniform Scale)</em></p>
-<h1 id="位移"><em><strong>位移</strong></em></h1>
+<h2 id="位移"><em><strong>位移</strong></em></h2>
 <p><em>位移(Translation)是在原始向量的基础上加上另一个向量从而获得一个在不同位置的新向量的过程，从而在位移向量基础上<strong>移动</strong>了原始向量。我们已经讨论了向量加法，所以这应该不会太陌生</em></p>
-<h1 id="齐次坐标"><em><strong>齐次坐标</strong></em></h1>
+<h2 id="齐次坐标"><em><strong>齐次坐标</strong></em></h2>
 <p><em>向量的w分量也叫齐次坐标。想要从齐次向量得到 3D向量，我们可以把x、y和z坐标分别除以w坐标。我们通常不会注意这个问题，因为w分量通常是1.0。使用齐次坐标有几点好处：它允许我们在3D向量上进行位移（如果没有w分量我们是不能位移向量的）</em></p>
 <p><em><strong>如果一个向量的齐次坐标是0，这个坐标就是方向向量(Direction Vector)，因为w坐标是0，这个向量就不能位移</strong></em></p>
-<h1 id="旋转"><em><strong>旋转</strong></em></h1>
+<h2 id="旋转"><em><strong>旋转</strong></em></h2>
 <p><em>2D或3D空间中的旋转用角(Angle)来表示。角可以是角度制或弧度制的，周角是360角度或2 <a href="https://en.wikipedia.org/wiki/Pi" target="_blank" rel="noopener noreffer ">PI</a>弧度。我个人更喜欢用角度，因为它们看起来更直观</em></p>
 <p><em>大多数旋转函数需要用弧度制的角，但幸运的是角度制的角也可以很容易地转化为弧度制的：</em></p>
 <ul>
@@ -505,7 +520,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/unreal-%E5%90%91%E9%87%8F/" class="prev" rel="prev" title="向量"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>向量</a>
+    <div class="post-nav"><a href="/unreal-hlsl/" class="prev" rel="prev" title="Unreal HLSL"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Unreal HLSL</a>
             <a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="next" rel="next" title="矩阵">矩阵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
