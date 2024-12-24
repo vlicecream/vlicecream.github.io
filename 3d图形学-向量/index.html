@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>向量 - Ame</title><meta name="Description" content="标量与向量"><meta property="og:url" content="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="向量">
+  <meta property="og:description" content="标量与向量">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-23T22:00:00+08:00">
+    <meta property="article:modified_time" content="2024-12-24T11:20:00+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="3D图形学">
+    <meta property="article:tag" content="向量">
+    <meta property="article:tag" content="标量">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="向量">
+  <meta name="twitter:description" content="标量与向量">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" /><link rel="prev" href="https://example.com/unreal-%E5%90%91%E9%87%8F/" /><link rel="next" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "向量",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  2791 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2024-12-24T11:20:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "标量与向量"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2791 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#标量"><em><strong>标量</strong></em></a></li>
+    <li><a href="#向量"><em><strong>向量</strong></em></a>
+      <ul>
+        <li><a href="#介绍"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式"><em><strong>数学公式</strong></em></a></li>
+        <li><a href="#图示"><em><strong>图示</strong></em></a></li>
+        <li><a href="#代码"><em><strong>代码</strong></em></a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#介绍-1"><em><strong>介绍</strong></em></a></li>
+    <li><a href="#数学公式-1"><em><strong>数学公式</strong></em></a></li>
+    <li><a href="#代码-1"><em><strong>代码</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#简介"><em><strong>简介</strong></em></a></li>
+    <li><a href="#数学公式-2"><em><strong>数学公式</strong></em></a></li>
+    <li><a href="#代码-2"><em><strong>代码</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#介绍-2"><em><strong>介绍</strong></em></a></li>
+    <li><a href="#数学公式-3"><em><strong>数学公式</strong></em></a></li>
+    <li><a href="#图示-1"><em><strong>图示</strong></em></a></li>
+    <li><a href="#代码-3"><em><strong>代码</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#介绍-3"><em><strong>介绍</strong></em></a></li>
+    <li><a href="#数学公式-4"><em><strong>数学公式</strong></em></a></li>
+    <li><a href="#图示-2"><em><strong>图示</strong></em></a></li>
+    <li><a href="#代码-4"><em><strong>代码</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#介绍-4"><em><strong>介绍</strong></em></a></li>
+    <li><a href="#数学公式-5"><em><strong>数学公式</strong></em></a></li>
+    <li><a href="#图示-3"><em><strong>图示</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#介绍-5"><em><strong>介绍</strong></em></a></li>
+    <li><a href="#数学公式-6"><em><strong>数学公式</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#介绍-6"><em><strong>介绍</strong></em></a></li>
+    <li><a href="#点乘"><em><strong>点乘</strong></em></a>
+      <ul>
+        <li><a href="#介绍-7"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-7"><em><strong>数学公式</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#叉乘"><em><strong>叉乘</strong></em></a>
+      <ul>
+        <li><a href="#介绍-8"><em><strong>介绍</strong></em></a></li>
+        <li><a href="#数学公式-8"><em><strong>数学公式</strong></em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="标量与向量"><em><strong>标量与向量</strong></em></h1>
+<h2 id="标量"><em><strong>标量</strong></em></h2>
+<p><em>标量有大小 可以是正负，但是他没有方向</em></p>
+<h2 id="向量"><em><strong>向量</strong></em></h2>
+<h3 id="介绍"><em><strong>介绍</strong></em></h3>
+<p><em>向量最基本的定义就是一个方向。或者更正式的说，向量有一个方向(Direction)和大小(Magnitude，也叫做强度或长度)</em></p>
+<p><em>我们通常只使用2至4维。如果一个向量有2个维度，它表示一个平面的方向(想象一下2D的图像)，当它有3个维度的时候它可以表达一个3D世界的方向</em></p>
+<h3 id="数学公式"><em><strong>数学公式</strong></em></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-55-2024-12-24-10-07-20-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-55-2024-12-24-10-07-20-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-55-2024-12-24-10-07-20-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-55-2024-12-24-10-07-20-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-55-2024-12-24-10-07-20-image.png"
+        title="sss" /></p>
+<h3 id="图示"><em><strong>图示</strong></em></h3>
+<p><em>你可以把这些2D向量当做z坐标为0的3D向量。由于向量表示的是方向，起始于何处并不会改变它的值。下图我们可以看到向量v¯和w¯是相等的，尽管他们的起始点不同</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-09-55-57-2024-12-24-09-55-52-image.png" /></p>
+<h3 id="代码"><em><strong>代码</strong></em></h3>
+<ol>
+<li>
+<p><em><strong>2D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>3D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>4D向量代码</strong></em></p>
+</li>
+</ol>
+<h1 id="向量与标量运算"><em><strong>向量与标量运算</strong></em></h1>
+<h2 id="介绍-1"><em><strong>介绍</strong></em></h2>
+<p><em>标量(Scalar)只是一个数字（或者说是仅有一个分量的向量）。当把一个向量加/减/乘/除一个标量，我们可以简单的把向量的每个分量分别进行该运算</em></p>
+<p><em><strong>注意，数学上是没有向量与标量相加这个运算的，但是很多线性代数的库都对它有支持（比如说我们用的GLM）。如果你使用过numpy的话，可以把它理解为<a href="https://numpy.org/doc/1.18/user/basics.broadcasting.html" target="_blank" rel="noopener noreffer ">Broadcasting</a>。</strong></em></p>
+<h2 id="数学公式-1"><em><strong>数学公式</strong></em></h2>
+<p><em>其中的+可以是+，-，·或÷，其中·是乘号。注意－和÷运算时不能颠倒（标量-/÷向量），因为颠倒的运算是没有定义的。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-52-2024-12-24-10-01-53-image.png" /></p>
+<h2 id="代码-1"><em><strong>代码</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>2D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>3D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>4D向量代码</strong></em></p>
+</li>
+</ol>
+<h1 id="向量取反"><em><strong>向量取反</strong></em></h1>
+<h2 id="简介"><em><strong>简介</strong></em></h2>
+<p><em>对一个向量取反(Negate)会将其方向逆转。一个指向东北的向量取反后就指向西南方向了。我们在一个向量的每个分量前加负号就可以实现取反了（或者说用-1数乘该向量）</em></p>
+<h2 id="数学公式-2"><em><strong>数学公式</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-14-49-2024-12-24-10-14-46-image.png" /></p>
+<h2 id="代码-2"><em><strong>代码</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>2D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>3D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>4D向量代码</strong></em></p>
+</li>
+</ol>
+<h1 id="向量的加法"><em><strong>向量的加法</strong></em></h1>
+<h2 id="介绍-2"><em><strong>介绍</strong></em></h2>
+<p><em>向量的加法可以被定义为是分量的(Component-wise)相加，即将一个向量中的每一个分量加上另一个向量的对应分量</em></p>
+<h2 id="数学公式-3"><em><strong>数学公式</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-22-25-2024-12-24-10-22-22-image.png" /></p>
+<h2 id="图示-1"><em><strong>图示</strong></em></h2>
+<p><em>向量<code>v = (4, 2)</code>和<code>k = (1, 2)</code>可以直观地表示</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-23-08-2024-12-24-10-23-06-image.png" /></p>
+<h2 id="代码-3"><em><strong>代码</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>2D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>3D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>4D向量代码</strong></em></p>
+</li>
+</ol>
+<h1 id="向量的减法"><em><strong>向量的减法</strong></em></h1>
+<h2 id="介绍-3"><em><strong>介绍</strong></em></h2>
+<p><em>就像普通数字的加减一样，向量的减法等于加上第二个向量的相反向量</em></p>
+<h2 id="数学公式-4"><em><strong>数学公式</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-25-38-2024-12-24-10-25-34-image.png" /></p>
+<h2 id="图示-2"><em><strong>图示</strong></em></h2>
+<p><em>两个向量的相减会得到这两个向量指向位置的差。这在我们想要获取两点的差会非常有用</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-26-11-2024-12-24-10-26-09-image.png" /></p>
+<h2 id="代码-4"><em><strong>代码</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>2D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>3D向量代码</strong></em></p>
+</li>
+<li>
+<p><em><strong>4D向量代码</strong></em></p>
+</li>
+</ol>
+<h1 id="向量的长度"><em><strong>向量的长度</strong></em></h1>
+<h2 id="介绍-4"><em><strong>介绍</strong></em></h2>
+<p><em>我们使用勾股定理(Pythagoras Theorem)来获取向量的长度(Length)/大小(Magnitude)。如果你把向量的x与y分量画出来，该向量会和x与y分量为边形成一个三角形</em></p>
+<h2 id="数学公式-5"><em><strong>数学公式</strong></em></h2>
+<p><em>因为两条边（x和y）是已知的，如果希望知道斜边v¯的长度，我们可以直接通过勾股定理来计算</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png" /></p>
+<p><em>||v¯||表示向量v¯的长度，我们也可以加上z2把这个公式拓展到三维空间。例子中向量(4, 2)的长度等于</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png" /></p>
+<h2 id="图示-3"><em><strong>图示</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-43-44-2024-12-24-10-43-41-image.png" /></p>
+<h1 id="单位向量"><em><strong>单位向量</strong></em></h1>
+<h2 id="介绍-5"><em><strong>介绍</strong></em></h2>
+<p><em>有一个特殊类型的向量叫做单位向量(Unit Vector)。单位向量有一个特别的性质——它的长度是1。我们可以用任意向量的每个分量除以向量的长度得到它的单位向量n^</em></p>
+<h2 id="数学公式-6"><em><strong>数学公式</strong></em></h2>
+<p><em>我们把这种方法叫做一个向量的标准化(Normalizing)。单位向量头上有一个^样子的记号。通常单位向量会变得很有用，特别是在我们只关心方向不关心长度的时候（如果改变向量的长度，它的方向并不会改变）。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-47-40-2024-12-24-10-47-38-image.png" /></p>
+<h1 id="向量的相乘"><em><strong>向量的相乘</strong></em></h1>
+<h2 id="介绍-6"><em><strong>介绍</strong></em></h2>
+<p><em>两个向量相乘是一种很奇怪的情况。普通的乘法在向量上是没有定义的，因为它在视觉上是没有意义的。但是在相乘的时候我们有两种特定情况可以选择：一个是点乘(Dot Product)，记作v¯⋅k¯，另一个是叉乘(Cross Product)，记作v¯×k¯。</em></p>
+<h2 id="点乘"><em><strong>点乘</strong></em></h2>
+<h3 id="介绍-7"><em><strong>介绍</strong></em></h3>
+<p><em>两个向量的点乘等于它们的数乘结果乘以两个向量之间夹角的余弦值。可能听起来有点费解，我们来看一下公式</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png" /></p>
+<p><em>它们之间的夹角记作θ。为什么这很有用？想象如果v¯和k¯都是单位向量，它们的长度会等于1。这样公式会有效简化成</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png" /></p>
+<p><em><strong>现在点积只定义了两个向量的夹角。你也许记得90度的余弦值是0，0度的余弦值是1。使用点乘可以很容易测试两个向量是否正交(Orthogonal)或平行（正交意味着两个向量互为直角）</strong></em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-58-11-2024-12-24-10-58-08-image.png" /></p>
+<h3 id="数学公式-7"><em><strong>数学公式</strong></em></h3>
+<p><em>所以，我们该如何计算点乘呢？点乘是通过将对应分量逐个相乘，然后再把所得积相加来计算的。两个单位向量的（你可以验证它们的长度都为1）点乘会像是这样</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-59-26-2024-12-24-10-59-24-image.png" /></p>
+<p><em>要计算两个单位向量间的夹角，我们可以使用反余弦函数cos−1 ，可得结果是143.1度。现在我们很快就计算出了这两个向量的夹角。点乘会在计算光照的时候非常有用</em></p>
+<h2 id="叉乘"><em><strong>叉乘</strong></em></h2>
+<h3 id="介绍-8"><em><strong>介绍</strong></em></h3>
+<p><em>叉乘只在3D空间中有定义，它需要两个不平行向量作为输入，生成一个正交于两个输入向量的第三个向量。如果输入的两个向量也是正交的，那么叉乘之后将会产生3个互相正交的向量。下面的图片展示了3D空间中叉乘的样子</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-18-2024-12-24-11-00-29-image.png" /></p>
+<h3 id="数学公式-8"><em><strong>数学公式</strong></em></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png" /></p>
+<h1 id="缩放"><em><strong>缩放</strong></em></h1>
+<p><em>对一个向量进行缩放(Scaling)就是对向量的长度进行缩放，而保持它的方向不变。由于我们进行的是2维或3维操作，我们可以分别定义一个有2或3个缩放变量的向量，每个变量缩放一个轴(x、y或z)。</em></p>
+<p><em>我们先来尝试缩放向量v¯=(3,2)。我们可以把向量沿着x轴缩放0.5，使它的宽度缩小为原来的二分之一；我们将沿着y轴把向量的高度缩放为原来的两倍。我们看看把向量缩放(0.5, 2)倍所获得的s¯是什么样的</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png"
+        title="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-13-38-06-2024-12-24-13-38-04-image.png" /></p>
+<p><em>对于 2D的情况我们可以把z轴缩放 1倍，这样 z轴的值就不变了。我们刚刚的缩放操作是不均匀(Non-uniform)缩放，因为每个轴的缩放因子(Scaling Factor)都不一样。如果每个轴的缩放因子都一样那么就叫均匀缩放(Uniform Scale)</em></p>
+<h1 id="位移"><em><strong>位移</strong></em></h1>
+<p><em>位移(Translation)是在原始向量的基础上加上另一个向量从而获得一个在不同位置的新向量的过程，从而在位移向量基础上<strong>移动</strong>了原始向量。我们已经讨论了向量加法，所以这应该不会太陌生</em></p>
+<h1 id="齐次坐标"><em><strong>齐次坐标</strong></em></h1>
+<p><em>向量的w分量也叫齐次坐标。想要从齐次向量得到 3D向量，我们可以把x、y和z坐标分别除以w坐标。我们通常不会注意这个问题，因为w分量通常是1.0。使用齐次坐标有几点好处：它允许我们在3D向量上进行位移（如果没有w分量我们是不能位移向量的）</em></p>
+<p><em><strong>如果一个向量的齐次坐标是0，这个坐标就是方向向量(Direction Vector)，因为w坐标是0，这个向量就不能位移</strong></em></p>
+<h1 id="旋转"><em><strong>旋转</strong></em></h1>
+<p><em>2D或3D空间中的旋转用角(Angle)来表示。角可以是角度制或弧度制的，周角是360角度或2 <a href="https://en.wikipedia.org/wiki/Pi" target="_blank" rel="noopener noreffer ">PI</a>弧度。我个人更喜欢用角度，因为它们看起来更直观</em></p>
+<p><em>大多数旋转函数需要用弧度制的角，但幸运的是角度制的角也可以很容易地转化为弧度制的：</em></p>
+<ul>
+<li><em>弧度转角度：<code>角度 = 弧度 * (180.0f / PI)</code></em></li>
+<li><em>角度转弧度：<code>弧度 = 角度 * (PI / 180.0f)</code></em></li>
+</ul>
+<p><em><code>PI</code>约等于3.14159265359。</em></p>
+<p><em>在3D空间中旋转需要定义一个角<strong>和</strong>一个旋转轴(Rotation Axis)。物体会沿着给定的旋转轴旋转特定角度。如果你想要更形象化的感受，可以试试向下看着一个特定的旋转轴，同时将你的头部旋转一定角度。当2D向量在3D空间中旋转时，我们把旋转轴设为z轴（尝试想象这种情况）。</em></p>
+<p><em>使用三角学，给定一个角度，可以把一个向量变换为一个经过旋转的新向量。这通常是使用一系列正弦和余弦函数（一般简称sin和cos）各种巧妙的组合得到的</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2024-12-24</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" data-title="向量" data-hashtags="Unreal,3D图形学,向量,标量"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" data-title="向量"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" data-title="向量"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" data-title="向量" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/">3D图形学</a>,&nbsp;<a href="/tags/%E5%90%91%E9%87%8F/">向量</a>,&nbsp;<a href="/tags/%E6%A0%87%E9%87%8F/">标量</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/unreal-%E5%90%91%E9%87%8F/" class="prev" rel="prev" title="向量"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>向量</a>
+            <a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="next" rel="next" title="矩阵">矩阵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
