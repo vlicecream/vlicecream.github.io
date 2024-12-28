@@ -100,7 +100,7 @@
        {
            return f_vector_2d(x / f, y / f);
        }
-       
+   
    private:
        float x;
        float y;
@@ -199,7 +199,7 @@
 
 3. ***4D向量代码***
 
-## ***向量的长度***
+## ***向量的长度（模）***
 
 ### ***介绍***
 
@@ -211,7 +211,7 @@
 
 ![](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-44-13-2024-12-24-10-44-11-image.png)
 
-*||$\vec{v}$||表示向量v¯的长度，我们也可以加上 z<sup>2</sup> 把这个公式拓展到三维空间。例子中向量( 4, 2 )的长度等于*
+*||$\vec{v}$||表示向量 $\vec{v}$的长度，我们也可以加上 z<sup>2</sup> 把这个公式拓展到三维空间。例子中向量( 4, 2 )的长度等于*
 
 ![](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-45-24-2024-12-24-10-45-19-image.png)
 
@@ -225,11 +225,9 @@
    
    ```cpp
    #include <cmath> 
-   
-   
    float size() const
    {
-       return std::sqrt(x * x + y * y);
+       return std::sqrt(x * x + y * y);
    }
    ```
 
@@ -249,7 +247,7 @@
 
 ### ***介绍***
 
-*两个向量相乘是一种很奇怪的情况。普通的乘法在向量上是没有定义的，因为它在视觉上是没有意义的。但是在相乘的时候我们有两种特定情况可以选择：一个是点乘(Dot Product)，记作 $\vec{v}$ ⋅  $\vec{k}$，另一个是叉乘(Cross Product)，记作  $\vec{v}$  x  $\vec{k}$。*
+*两个向量相乘是一种很奇怪的情况。普通的乘法在向量上是没有定义的，因为它在视觉上是没有意义的。但是在相乘的时候我们有两种特定情况可以选择：一个是点乘(Dot Product)，记作  $\vec{v} ⋅ \vec{k}$，另一个是叉乘(Cross Product)，记作  $\vec{v} x \vec{k}$。*
 
 ### ***点乘***
 
@@ -259,7 +257,7 @@
 
 ![](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-56-24-2024-12-24-10-56-22-image.png)
 
-*它们之间的夹角记作 θ。为什么这很有用？想象如果 $\vec{v}$ 和 $\vec{k}$ 都是单位向量，它们的长度会等于1。这样公式会有效简化成*
+*它们之间的夹角记作 θ。为什么这很有用？想象如果  $\vec{v}$ 和  $\vec{k}$ 都是单位向量，它们的长度会等于1。这样公式会有效简化成*
 
 ![](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-10-57-05-2024-12-24-10-57-03-image.png)
 
@@ -275,17 +273,6 @@
 
 *要计算两个单位向量间的夹角，我们可以使用反余弦函数cos−1 ，可得结果是143.1度。现在我们很快就计算出了这两个向量的夹角。点乘会在计算光照的时候非常有用*
 
-#### ***代码***
-
-1. ***2D向量***
-   
-   ```cpp
-   f_vector_2d operator* (const f_vector_2d& v) const
-   {
-       return f_vector_2d(x * v.x, y * v.y);
-   }
-   ```
-
 ### ***叉乘***
 
 #### ***介绍***
@@ -297,6 +284,38 @@
 #### ***数学公式***
 
 ![](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/24-11-01-22-2024-12-24-11-01-14-image.png)
+
+## ***正交投影***
+
+### ***推导***
+
+*参考下图。给出向量 $\vec{v}$ 和单位向量 $\vec{n}$ , 请借助点乘公式求出用  $\vec{v}$ 和 $\vec{n}$ 表示 向量 $\vec{p}$ 得公式*
+
+![](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/2024/12/28-17-26-36-2024-12-28-17-26-31-1735377979278.png)
+
+
+
+1. *首先观察图示可以得知存在一标量 **k** , 使得*
+   
+   *$\vec{p} = k * \vec{n}$ ;*
+
+2. *P得模 又可以用这个公式算出来* 
+   
+   *$||\mathbf{p}|| = |k| * ||\mathbf{n}||$ ;*
+
+3. *因为 我们假设 $\vec{n}$ 是单位向量*
+   
+   *$||\mathbf{n}|| = 1$*
+
+4. *然后推导出了* 
+   
+   *$||\mathbf{p}|| = |k| $*
+
+5. *注意这个 k 可能是负数，当且仅当 $\vec{p}$ 与 $\vec{n}$ 方向相反*
+
+6. *利用三角函数*
+   
+   *cos*
 
 ## ***缩放***
 
