@@ -297,27 +297,51 @@
 
 1. *首先观察图示可以得知存在一标量 **k** , 使得*
    
-   *$\vec{p} = k * \vec{n}$ ;*
+   *$\vec{p} = k\vec{n}$ ;*
 
 2. *P得模 又可以用这个公式算出来* 
    
-   *$||\mathbf{p}|| = |k| * ||\mathbf{n}||$ ;*
+   *$||p|| = |k| * ||n||$ ;*
 
 3. *因为 我们假设 $\vec{n}$ 是单位向量*
    
-   *$||\mathbf{n}|| = 1$*
+   *$||n|| = 1$*
 
 4. *然后推导出了* 
    
-   *$||\mathbf{p}|| = |k| $*
+   *$||p|| = |k| $*
 
 5. *注意这个 k 可能是负数，当且仅当 $\vec{p}$ 与 $\vec{n}$ 方向相反*
 
 6. *利用三角函数*
    
-   *cos = k / ||v||*
+   *$ cosθ = \frac{k}{||v||} $*
    
-   *k = ||v|| cos*
+   *$k = ||v||cosθ$*
+   
+   *$\vec{p} = k\vec{n} = (||v||cosθ)\vec{n}$*
+
+7. *由于 $\vec{n}$ 是单位向量，所以*
+   
+   *$\vec{p} = k\vec{n} = (||v|| \cdot cosθ)\vec{n} = (||v|| \cdot 1cosθ)n = (||v|| \cdot ||n|| \cdot cosθ)n$*
+
+8. *由于 $||v|| \cdot ||n|| cosθ = (\vec{v} \cdot \vec{n})$*
+   
+   *$\vec{p} = (||v|| \cdot ||n|| \cdot cosθ)\vec{n} = (\vec{v} \cdot \vec{n})\vec{n}$*
+
+9. *这里证明了，当 $\vec{n}$ 是单位向量时，$k = \vec{v} \cdot \vec{n}$，顺带也解释了这种情况下 $\vec{v} \cdot \vec{n}$ 得几何意义 我们称 $\vec{p}$ 为向量 v 落在向量 n 上得**正交投影** 通常将他表示为：*
+   
+   $\vec{p} = proj_n(\vec{v})$
+
+10. *如果将 $\vec{v}$看作是一个力，便可认为 $\vec{p}$ 是力 $\vec{v}$ 在方向 $\vec{n}$ 上得分力*
+
+11. *同理，$\vec{w} = prep_n(\vec{v}) = \vec{v} - \vec{p}$ 是作用力 $\vec{v}$ 在 $\vec{n}$ 正交方向上得分力（$prep_n(\vec{v})$ 表示垂直）*
+
+12. *所以我们观察到 $\vec{v} = \vec{p} + \vec{w} = proj_n(\vec{v}) + perp_n(\vec{b})$ ，这说明了可以将 $\vec{v}$ 分解成两个互相正交得 $\vec{p}$ 与 $\vec{w}$ 之和*
+    
+    1. *如果 $\vec{n}$ 不具有单位长度，就先对他进行规范化处理，让它成为单位向量。通过把 $\vec{n}$ 替换为单位向量 $\frac{\vec{n}}{||n||}$ ，就可以得到更具一般性的投影公式*
+       
+       *$\vec{p} = proj_n(\vec{v}) = (\vec{v} \cdot \frac{\vec{n}}{||n||}) \frac{\vec{n}}{||n||} = \frac{(\vec{v}) \cdot \vec{n}}{||n||^2} \vec{n} $*
 
 ## ***缩放***
 

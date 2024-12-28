@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  3219 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  3619 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2024-12-28T16:40:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3219 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3619 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -665,27 +665,55 @@
 <ol>
 <li>
 <p><em>首先观察图示可以得知存在一标量 <strong>k</strong> , 使得</em></p>
-<p><em>$\vec{p} = k * \vec{n}$ ;</em></p>
+<p><em>$\vec{p} = k\vec{n}$ ;</em></p>
 </li>
 <li>
 <p><em>P得模 又可以用这个公式算出来</em></p>
-<p><em>$||\mathbf{p}|| = |k| * ||\mathbf{n}||$ ;</em></p>
+<p><em>$||p|| = |k| * ||n||$ ;</em></p>
 </li>
 <li>
 <p><em>因为 我们假设 $\vec{n}$ 是单位向量</em></p>
-<p><em>$||\mathbf{n}|| = 1$</em></p>
+<p><em>$||n|| = 1$</em></p>
 </li>
 <li>
 <p><em>然后推导出了</em></p>
-<p><em>$||\mathbf{p}|| = |k| $</em></p>
+<p><em>$||p|| = |k| $</em></p>
 </li>
 <li>
 <p><em>注意这个 k 可能是负数，当且仅当 $\vec{p}$ 与 $\vec{n}$ 方向相反</em></p>
 </li>
 <li>
 <p><em>利用三角函数</em></p>
-<p><em>cos = k / ||v||</em></p>
-<p><em>k = ||v|| cos</em></p>
+<p><em>$ cosθ = \frac{k}{||v||} $</em></p>
+<p><em>$k = ||v||cosθ$</em></p>
+<p><em>$\vec{p} = k\vec{n} = (||v||cosθ)\vec{n}$</em></p>
+</li>
+<li>
+<p><em>由于 $\vec{n}$ 是单位向量，所以</em></p>
+<p><em>$\vec{p} = k\vec{n} = (||v|| \cdot cosθ)\vec{n} = (||v|| \cdot 1cosθ)n = (||v|| \cdot ||n|| \cdot cosθ)n$</em></p>
+</li>
+<li>
+<p><em>由于 $||v|| \cdot ||n|| cosθ = (\vec{v} \cdot \vec{n})$</em></p>
+<p><em>$\vec{p} = (||v|| \cdot ||n|| \cdot cosθ)\vec{n} = (\vec{v} \cdot \vec{n})\vec{n}$</em></p>
+</li>
+<li>
+<p><em>这里证明了，当 $\vec{n}$ 是单位向量时，$k = \vec{v} \cdot \vec{n}$，顺带也解释了这种情况下 $\vec{v} \cdot \vec{n}$ 得几何意义 我们称 $\vec{p}$ 为向量 v 落在向量 n 上得<strong>正交投影</strong> 通常将他表示为：</em></p>
+<p>$\vec{p} = proj_n(\vec{v})$</p>
+</li>
+<li>
+<p><em>如果将 $\vec{v}$看作是一个力，便可认为 $\vec{p}$ 是力 $\vec{v}$ 在方向 $\vec{n}$ 上得分力</em></p>
+</li>
+<li>
+<p><em>同理，$\vec{w} = prep_n(\vec{v}) = \vec{v} - \vec{p}$ 是作用力 $\vec{v}$ 在 $\vec{n}$ 正交方向上得分力（$prep_n(\vec{v})$ 表示垂直）</em></p>
+</li>
+<li>
+<p><em>所以我们观察到 $\vec{v} = \vec{p} + \vec{w} = proj_n(\vec{v}) + perp_n(\vec{b})$ ，这说明了可以将 $\vec{v}$ 分解成两个互相正交得 $\vec{p}$ 与 $\vec{w}$ 之和</em></p>
+<ol>
+<li>
+<p><em>如果 $\vec{n}$ 不具有单位长度，就先对他进行规范化处理，让它成为单位向量。通过把 $\vec{n}$ 替换为单位向量 $\frac{\vec{n}}{||n||}$ ，就可以得到更具一般性的投影公式</em></p>
+<p><em>$\vec{p} = proj_n(\vec{v}) = (\vec{v} \cdot \frac{\vec{n}}{||n||}) \frac{\vec{n}}{||n||} = \frac{(\vec{v}) \cdot \vec{n}}{||n||^2} \vec{n} $</em></p>
+</li>
+</ol>
 </li>
 </ol>
 <h2 id="缩放"><em><strong>缩放</strong></em></h2>
