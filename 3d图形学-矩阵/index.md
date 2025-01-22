@@ -12,10 +12,9 @@
 
 ### ***例子***
 
-$$ A = \quad \left[ \begin{matrix} 3.5 & 0 & 0 & 0 \\\ 0 & 1 & 0 & 0 \\\ 0 & 0 & 0.5 & 0 \\\ 2 & -5 & \sqrt{2} & 1   \end{matrix} \right] $$
 $$
 A = \quad \left[ \begin{matrix} 3.5 & 0 & 0 & 0 \\\ 0 & 1 & 0 & 0 \\\ 0 & 0 & 0.5 & 0 \\\ 2 & -5 & \sqrt{2} & 1   \end{matrix} \right] ~~~~~~~~ 
-B = \quad \begin{matrix} B_11 & B_12 \\\ B_21 & B_22 \\\ B_31 & B_32  \end{matrix} ~~~~~~~~
+B = \quad \left[ \begin{matrix} B_{11} & B_{12} \\\ B_{21} & B_{22} \\\ B_{31} & B_{}  \end{matrix} \right] ~~~~~~~~
 C = \quad \left[u_1, u_2 \right] ~~~~~~~~
 D = \quad \left[ \begin{matrix} 1 \\\ 2 \\\ \sqrt{3} \\\ \pi \end{matrix} \right]
 $$
