@@ -43,15 +43,7 @@ $$
 
 ### ***相等***
 
-```tex
-\\[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\]
-```
-
 *A = C*
-
-```tex
-$$ c = \pm\sqrt{a^2 + b^2} $$
-```
 
 ### ***加减***
 
