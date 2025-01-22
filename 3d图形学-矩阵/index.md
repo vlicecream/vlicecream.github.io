@@ -12,6 +12,7 @@
 
 ### ***例子***
 
+$$ A = \quad \left[ \begin{matrix} 3.5 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0.5 & 0 \\ 2 & -5 & \sqrt{2} & 1   \end{matrix} \right] $$
 $$
 A = \quad \left[ \begin{matrix} 3.5 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0.5 & 0 \\ 2 & -5 & \sqrt{2} & 1   \end{matrix} \right] ~~~~~~~~ 
 B = \quad \begin{matrix} B_11 & B_12 \\ B_21 & B_22 \\ B_31 & B_32  \end{matrix} ~~~~~~~~
