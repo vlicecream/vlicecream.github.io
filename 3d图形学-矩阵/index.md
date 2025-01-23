@@ -114,7 +114,6 @@ $$
 
 *可以观察到：该例中，uA 的计算结果是一个规模为 1 × 3 的行向量*
 $$
-\begin{align}
 uA = \left[ \vec{u} \cdot A_{*,1}, \vec{u} \cdot A_{*,2}, \vec{u} \cdot A_{*,3} \right] 
 \\\ \\\
 = \left[ xA_{11} + yA_{21} + zA_{31}, xA_{12} + yA_{22} + zA_{32}, xA_{13} + yA_{23} + zA_{33} \right] 
@@ -123,8 +122,7 @@ uA = \left[ \vec{u} \cdot A_{*,1}, \vec{u} \cdot A_{*,2}, \vec{u} \cdot A_{*,3} 
 \\\ \\\
 = x\left[ A_{11}, A_{12}, A_{13} \right] + y\left[ A_{21}, A_{22}, A_{23} \right] + z\left[ A_{31}, A_{32}, A_{33} \right] 
 \\\ \\\
-&= xA_{1,*} + yA_{2,*} + zA_{3,*}
-\end{align}
+= xA_{1,*} + yA_{2,*} + zA_{3,*}
 $$
 *这个结果实为一种线性组合（linear combination），这意味着向量与矩阵的乘积 uA 就相当于：向量*
 
