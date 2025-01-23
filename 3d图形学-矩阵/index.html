@@ -308,19 +308,22 @@ $$
 <p><em>换句话说，<strong>任何矩阵与单位矩阵相乘，得到的依然是原矩阵</strong>。我们可以将单位矩阵看作是矩阵中的“数字 1”。特别地，如果 M 是一个方阵，那么它与单位矩阵的乘法满足交换律：<strong>MI = IM = M</strong></em></p>
 <h3 id="证明--mi--im--m"><em><strong>证明  MI = IM = M</strong></em></h3>
 <p>$$
-\begin{align}
-设 ~ M &amp;= \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix} ~ 以及 ~ I = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+\begin{gather}
+设 ~ M
+= \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix} ~ 以及 ~ I = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
 \\ \\
-MI &amp;= \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix} \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+MI
+= \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix} \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
 = \begin{bmatrix} (1, 2) \cdot (1,0) &amp; (1,2) \cdot (0,1) \\ (0,4) \cdot (1,0) &amp; (0,4) \cdot (0,1) \end{bmatrix}
 = \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix}
 \\ \\
-IM &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix}
+IM
+= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix}
 = \begin{bmatrix} (1, 0) \cdot (1,0) &amp; (1,0) \cdot (2,4) \\ (0,1) \cdot (1,0) &amp; (0,1) \cdot (2,4) \end{bmatrix}
 = \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 4 \end{bmatrix}
 \\ \\
 所以 ~ MI = IM = M ~ 是成立的
-\end{align}
+\end{gather}
 $$</p>
 <h3 id="证明-ai--a"><em><strong>证明 AI = A</strong></em></h3>
 <p>$$
