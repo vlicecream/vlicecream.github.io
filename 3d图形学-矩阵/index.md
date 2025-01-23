@@ -174,17 +174,19 @@ $$
 ### ***证明  MI = IM = M***
 
 $$
-设 ~ M= \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix} ~ 以及 ~ I = \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix}
+\begin{align}
+设 ~ M &= \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix} ~ 以及 ~ I = \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix}
 \\\ \\\
-MI = \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix} \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix}
+MI &= \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix} \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix}
 = \begin{bmatrix} (1, 2) \cdot (1,0) & (1,2) \cdot (0,1) \\\ (0,4) \cdot (1,0) & (0,4) \cdot (0,1) \end{bmatrix}
 = \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix}
 \\\ \\\
-IM = \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix}
+IM &= \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix}
 = \begin{bmatrix} (1, 0) \cdot (1,0) & (1,0) \cdot (2,4) \\\ (0,1) \cdot (1,0) & (0,1) \cdot (2,4) \end{bmatrix}
 = \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix}
 \\\ \\\
 所以 ~ MI = IM = M ~ 是成立的
+\end{align}
 $$
 
 ### ***证明 AI = A***
