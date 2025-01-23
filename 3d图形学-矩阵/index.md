@@ -47,8 +47,7 @@ $$
 ### ***加减***
 
 $$
-A + B = \begin{bmatrix} 1 & 5 \\\ -2 & 3 \end{bmatrix}
-+ \begin{bmatrix} 6 & 2 \\\ 5 & -8 \end{bmatrix}
+A + B = \begin{bmatrix} 1 & 5 \\\ -2 & 3 \end{bmatrix} + \begin{bmatrix} 6 & 2 \\\ 5 & -8 \end{bmatrix}
 = \begin{bmatrix} 1+6 & 5+2 \\\ -2+5 & 3+(-8) \end{bmatrix}
 = \begin{bmatrix} 7 & 7 \\\ 3 & -5 \end{bmatrix}
 $$
