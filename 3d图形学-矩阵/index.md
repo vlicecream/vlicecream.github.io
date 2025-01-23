@@ -91,11 +91,17 @@ $$
 *由于矩阵 A 的列数与矩阵 B 的行数相同，可首先指出乘积 AB 是有意义的*
 
 *我们还可以发现乘积 BA 却没有意义，因为矩阵 B 的列数不等于矩阵 A 的行数。这表明，**矩阵的乘法一般不满足交换律，即 AB ≠ BA***
+
+
 $$
-\begin{align}
-AB &= \begin{bmatrix} -1 & 5 & -4 \\\ 3 & 2 & 1 \end{bmatrix} \begin{bmatrix} 2 & 1 & 0 \\\ 0 & -2 & 1 \\\ -1 & 2 & 3 \end{bmatrix} 
-\\\ \\\ &= \begin{bmatrix} (-1,5,-4) ~ \cdot ~ (2, 0, -1) & (-1,~5,~-4) \cdot (1,-2,2) & (-1,5,-4) \cdot (0,1,3) \\\ (3,2,1) \cdot (2,0.-1) & (3,2,1) \cdot (1,-2,2) & (3,2,1) \cdot (0,1,3) \end{bmatrix} 
-\\\ \\\ &= \begin{bmatrix} 2 & -19 & -7 \\\ 5 & 1 & 5 \end{bmatrix}
+\begin{align} 
+AB &= \begin{bmatrix} -1 & 5 & -4 \\\ 3 & 2 & 1 \end{bmatrix}
+\begin{bmatrix} 2 & 1 & 0 \\\ 0 & -2 & 1 \\\ -1 & 2 & 3 \end{bmatrix} 
+\\\ \\\
+&= \begin{bmatrix} (-1,5,-4) ~ \cdot ~ (2, 0, -1) & (-1,~5,~-4) \cdot (1,-2,2) & (-1,5,-4) \cdot (0,1,3) \\\
+(3,2,1) \cdot (2,0.-1) & (3,2,1) \cdot (1,-2,2) & (3,2,1) \cdot (0,1,3) \end{bmatrix} 
+\\\ \\\
+&= \begin{bmatrix} 2 & -19 & -7 \\\ 5 & 1 & 5 \end{bmatrix}
 \end{align}
 $$
 
@@ -109,13 +115,13 @@ $$
 *可以观察到：该例中，uA 的计算结果是一个规模为 1 × 3 的行向量*
 $$
 \begin{align}
-uA &= \left[ \vec{u} \cdot A_{*,1}, \vec{u} \cdot A_{*,2}, \vec{u} \cdot A_{*,3} \right] 
+uA = \left[ \vec{u} \cdot A_{*,1}, \vec{u} \cdot A_{*,2}, \vec{u} \cdot A_{*,3} \right] 
 \\\ \\\
-&= \left[ xA_{11} + yA_{21} + zA_{31}, xA_{12} + yA_{22} + zA_{32}, xA_{13} + yA_{23} + zA_{33} \right] 
+= \left[ xA_{11} + yA_{21} + zA_{31}, xA_{12} + yA_{22} + zA_{32}, xA_{13} + yA_{23} + zA_{33} \right] 
 \\\ \\\
-&= \left[ xA_{11}, xA_{12}, xA_{13} \right] + \left[ yA_{21}, yA_{22}, yA_{23} \right] + \left[ zA_{31}, zA_{32}, zA_{33} \right] 
+= \left[ xA_{11}, xA_{12}, xA_{13} \right] + \left[ yA_{21}, yA_{22}, yA_{23} \right] + \left[ zA_{31}, zA_{32}, zA_{33} \right] 
 \\\ \\\
-&= x\left[ A_{11}, A_{12}, A_{13} \right] + y\left[ A_{21}, A_{22}, A_{23} \right] + z\left[ A_{31}, A_{32}, A_{33} \right] 
+= x\left[ A_{11}, A_{12}, A_{13} \right] + y\left[ A_{21}, A_{22}, A_{23} \right] + z\left[ A_{31}, A_{32}, A_{33} \right] 
 \\\ \\\
 &= xA_{1,*} + yA_{2,*} + zA_{3,*}
 \end{align}
