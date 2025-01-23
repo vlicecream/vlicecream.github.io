@@ -96,7 +96,7 @@ $$
 AB &= \begin{bmatrix} -1 & 5 & -4 \\\ 3 & 2 & 1 \end{bmatrix}
 \begin{bmatrix} 2 & 1 & 0 \\\ 0 & -2 & 1 \\\ -1 & 2 & 3 \end{bmatrix} 
 \\\ \\\
-&= \begin{bmatrix} (-1,5,-4) ~ \cdot ~ (2, 0, -1) & (-1,5,~-4) \cdot (1,-2,2) & (-1,5,-4) \cdot (0,1,3) \\\
+&= \begin{bmatrix} (-1,5,-4) ~ \cdot ~ (2, 0, -1) & (-1,5,-4) \cdot (1,-2,2) & (-1,5,-4) \cdot (0,1,3) \\\
 (3,2,1) \cdot (2,0.-1) & (3,2,1) \cdot (1,-2,2) & (3,2,1) \cdot (0,1,3) \end{bmatrix} 
 \\\ \\\
 &= \begin{bmatrix} 2 & -19 & -7 \\\ 5 & 1 & 5 \end{bmatrix}
@@ -114,15 +114,17 @@ $$
 
 
 $$
-uA = \left[ \vec{u} \cdot A_{*,1}, \vec{u} \cdot A_{*,2}, \vec{u} \cdot A_{*,3} \right] 
+\begin{align}
+uA &= \left[ \vec{u} \cdot A_{\*,1}, \vec{u} \cdot A_{\*,2}, \vec{u} \cdot A_{\*,3} \right] 
 \\\ \\\
-= \left[ xA_{11} + yA_{21} + zA_{31}, xA_{12} + yA_{22} + zA_{32}, xA_{13} + yA_{23} + zA_{33} \right] 
+&= \left[ xA_{11} + yA_{21} + zA_{31}, xA_{12} + yA_{22} + zA_{32}, xA_{13} + yA_{23} + zA_{33} \right] 
 \\\ \\\
-= \left[ xA_{11}, xA_{12}, xA_{13} \right] + \left[ yA_{21}, yA_{22}, yA_{23} \right] + \left[ zA_{31}, zA_{32}, zA_{33} \right] 
+&= \left[ xA_{11}, xA_{12}, xA_{13} \right] + \left[ yA_{21}, yA_{22}, yA_{23} \right] + \left[ zA_{31}, zA_{32}, zA_{33} \right] 
 \\\ \\\
-= x\left[ A_{11}, A_{12}, A_{13} \right] + y\left[ A_{21}, A_{22}, A_{23} \right] + z\left[ A_{31}, A_{32}, A_{33} \right] 
+&= x\left[ A_{11}, A_{12}, A_{13} \right] + y\left[ A_{21}, A_{22}, A_{23} \right] + z\left[ A_{31}, A_{32}, A_{33} \right] 
 \\\ \\\
-= xA_{1,*} + yA_{2,*} + zA_{3,*}
+&= xA_{1,\*} + yA_{2,\*} + zA_{3,\*}
+\end{align}
 $$
 *这个结果实为一种线性组合（linear combination），这意味着向量与矩阵的乘积 uA 就相当于：向量*
 
@@ -139,8 +141,7 @@ $$
 A = \begin{bmatrix} 2 & -1 & 8 \\\ 3 & 6 & -4 \end{bmatrix} ~~~~~~~~
 B = \begin{bmatrix} a & b & c \\\ d & e & f \\\ g & h & i \end{bmatrix} ~~~~~~~~
 C = \begin{bmatrix} 1 \\\ 2 \\\ 3 \\\ 4 \end{bmatrix}
-\\\
-\\\
+\\\ \\\
 A^T = \begin{bmatrix} 2 & 3 \\\ -1 & 6 \\\ 8 & -4 \end{bmatrix} ~~~~~~~~
 B^T = \begin{bmatrix} a & d & g \\\ b & e & h \\\ c & f & i \end{bmatrix} ~~~~~~~~
 C^T = \begin{bmatrix} 1 & 2 & 3 & 4 \end{bmatrix}
