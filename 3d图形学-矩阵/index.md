@@ -138,6 +138,7 @@ $$
 ### ***例子***
 
 $$
+\begin{gather}
 A = \begin{bmatrix} 2 & -1 & 8 \\\ 3 & 6 & -4 \end{bmatrix} ~~~~~~~~
 B = \begin{bmatrix} a & b & c \\\ d & e & f \\\ g & h & i \end{bmatrix} ~~~~~~~~
 C = \begin{bmatrix} 1 \\\ 2 \\\ 3 \\\ 4 \end{bmatrix}
@@ -145,6 +146,7 @@ C = \begin{bmatrix} 1 \\\ 2 \\\ 3 \\\ 4 \end{bmatrix}
 A^T = \begin{bmatrix} 2 & 3 \\\ -1 & 6 \\\ 8 & -4 \end{bmatrix} ~~~~~~~~
 B^T = \begin{bmatrix} a & d & g \\\ b & e & h \\\ c & f & i \end{bmatrix} ~~~~~~~~
 C^T = \begin{bmatrix} 1 & 2 & 3 & 4 \end{bmatrix}
+\end{gather}
 $$
 
 ### ***实用性质***
@@ -195,6 +197,7 @@ $$
 ### ***证明 AI = A***
 
 $$
+\begin{gather}
 设 ~ \vec{u} = \begin{bmatrix} -1, & 2 \end{bmatrix} 且 ~ I = \begin{bmatrix} 1 & 0 \end{bmatrix} ~ 验证 ~ \vec{u}I = \vec{u}
 \\\ \\\
 \vec{u}I = \begin{bmatrix} -1 & 2 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix}
@@ -202,6 +205,7 @@ $$
 = \begin{bmatrix} -1, & 2 \end{bmatrix}
 \\\ \\\
 所以 ~ \vec{u}I = \vec{u} ~ 另外我们也可以看出，我们无法计算乘积 ~ I\vec{u}, 因为此矩阵乘法是无定义的
+\end{gather}
 $$
 
 ## ***矩阵的行列式***
