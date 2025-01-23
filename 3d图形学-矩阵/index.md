@@ -90,7 +90,7 @@ $$
 
 *由于矩阵 A 的列数与矩阵 B 的行数相同，可首先指出乘积 AB 是有意义的*
 
-*我们还可以发现乘积 BA 却没有意义，因为矩阵 B 的列数不等于矩阵 A 的行数。这表明，**矩阵的乘法一般不满足交换律，即 AB ≠ BA** *
+*我们还可以发现乘积 BA 却没有意义，因为矩阵 B 的列数不等于矩阵 A 的行数。这表明，**矩阵的乘法一般不满足交换律，即 AB ≠ BA***
 $$
 \begin{align} 
 AB &= \begin{bmatrix} -1 & 5 & -4 \\\ 3 & 2 & 1 \end{bmatrix}
@@ -106,11 +106,8 @@ $$
 ### ***向量与矩阵的乘法***
 
 $$
-\vec{u}A =
-\begin{bmatrix} x,y,z \end{bmatrix} 
-\begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix} = 
-\begin{bmatrix} x,y,z \end{bmatrix}
-\begin{bmatrix} \uparrow & \uparrow & \uparrow \\\ A_{*,1} & A_{*,2} & A_{*,3} \\\ \downarrow & \downarrow & \downarrow \end{bmatrix}
+\vec{u}A = \begin{bmatrix} x,y,z \end{bmatrix} \begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix} 
+= \begin{bmatrix} x,y,z \end{bmatrix} \begin{bmatrix} \uparrow & \uparrow & \uparrow \\\ A_{*,1} & A_{*,2} & A_{*,3} \\\ \downarrow & \downarrow & \downarrow \end{bmatrix}
 $$
 
 *可以观察到：该例中，uA 的计算结果是一个规模为 1 × 3 的行向量*
