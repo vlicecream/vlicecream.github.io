@@ -99,29 +99,33 @@ $$
 
 *在某些情况下，我们并不关心向量的长度，仅用它来表示方向。对此，我们希望使该向量的长度为 1。把一个向量的长度变为单位长度称为向量的规范化（normalizing）处理。具体实现方法是，将向量 的每个分量分别除以该向量的模*
 $$
+\begin{gather}
 \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
-\\\\ \\\\
+\\\ \\\
 为了验证公式的正确性，下面计算 \hat{u} 的长度，也就是模:
-\\\\ \\\\
+\\\ \\\
 \Vert \hat{u} \Vert 
 = \sqrt{(\frac{x}{\Vert u \Vert})^2 (\frac{x}{\Vert u \Vert})^2 (\frac{z}{\Vert u \Vert})^2}
 = \frac{\sqrt{x^2 + y^2 + z^2}}{\sqrt{\Vert u \Vert ^ 2}}
 = \frac{\Vert u \Vert}{\Vert u \Vert}
 = 1
-\\\\ \\\\
+\\\ \\\
 由此可见， \hat{u} 确实是一个单位向量（unit vector）
+\end{gather}
 $$
 
 ## ***点积***
 
 *点积（dot product，亦称数量积或内积）是一种计算结果为标量值的向量乘法运算，因此有时也称 为标量积（scalar product）。*
 $$
+\begin{gather}
 设向量 \vec{u} = ( u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
-\\\\ \\\\
+\\\ \\\
 则点积的定义为:
 \vec{u} \cdot \vec{v} = u_x v_x + u_y v_y + u_z v_z
-\\\\ \\\\
+\\\ \\\
 可见，点积就是向量间对应分量的乘积之和。
+\end{gather}
 $$
 *点积的定义并没有明显地体现出其几何意义。但是我们却能根据余弦定理（law of cosines)，找到二向量点积的几何关系*
 $$
@@ -145,17 +149,17 @@ $$
 $$
 \begin{align}
 \vec{p} &= k\vec{n} ~ (观察图示存在标量k，使得 \vec{p} = k\vec{n}。 只要都在同一方向 就可以用这个公式)
-\\\\ \\\\
+\\\ \\\
 &= (\Vert \vec{v} \Vert \cos\theta)\vec{n} ~ (这是利用三角函数, \cos \theta = \frac{k}{\vec{v}})
-\\\\ \\\\
-&= (\Vert \vec{v} \Vert \cdot 1 \cos\theta)\vec{n} ~ (这个 ~1~ 其实就是单位向量n)
-\\\\ \\\\
+\\\ \\\
+&= (\Vert \vec{v} \Vert \cdot 1 \cos\theta)\vec{n} ~ (这个 1 其实就是单位向量n)
+\\\ \\\
 &= (\Vert \vec{v} \Vert \Vert \vec{n} \Vert \cos\theta)\vec{n}
-\\\\ \\\\
+\\\ \\\
 &= (\vec{v} \cdot \vec{n})\vec{n}
 \end{align}
 $$
-*特别是这里证明了：当 n 是单位向量时， k = v ⋅ n *
+*特别是这里证明了：当 n 是单位向量时， k = v ⋅ n*
 
 *顺带也解释了在这种情况下 v n⋅ 的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：*
 $$
@@ -183,9 +187,9 @@ $$
 
 ### ***2个向量的正交化***
 
-*先来考察相对简单的 2D 情况吧(也就是说，集合内只有 2 个向量的情况)。假设我们有向量集合$ {v_0, v_1} $，现欲将它正交化为图 1.11 中所示的 正交集{w_0, w_0}*
+*先来考察相对简单的 2D 情况吧(也就是说，集合内只有 2 个向量的情况)。假设我们有向量集合$ {v_0, v_1} $，现欲将它正交化为图 1.11 中所示的 正交集${w_0, w_1}$*
 
-*首先设 $w_0 = v_0$，通过使 $v_1$减去它在 $w_0$上的分量（投影）来令它正交于 $w_0$：*
+*首先设 $ w_0 = v_0 $，通过使 $v_1$减去它在 $w_0$上的分量（投影）来令它正交于 $w_0$*
 $$
 \vec{w}_1 = \vec{v}_1 - proj_{\vec{w}_0}(\vec{v}_1)
 $$
@@ -209,7 +213,7 @@ $$
 
 *基本步骤：设$ \vec{w}_0 = \vec{v}_0 $*
 
-*对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}_i = \vec{v}_i -  \sum_{j=0}^{i-1} \text{proj}_{\mathbf{w}_j} (\mathbf{v}_i) $*
+对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}_i = \vec{v}_i -  \sum_{j=0}^{i-1} \text{proj}_{\mathbf{w}_j} (\mathbf{v}_i) $
 
 ## ***叉积***
 
@@ -217,11 +221,13 @@ $$
 
 *假设 3D 向量 u 和 v 的叉积得到的是另一个向量 w，则 w 与向量 u、v 彼此正交。也就是说，向量 w 既正交于 u，也正交于 v*
 $$
+\begin{gather}
 \vec{u} = (u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
-\\\\ \\\\
+\\\ \\\
 那么叉积的计算方法是
-\\\\ \\\\
+\\\ \\\
 \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+\end{gather}
 $$
 *根据计算结果可以明确地得出一项结论：一般来说 $ \vec{u} \times \vec{v} \neq \vec{v} \times \vec{u $ ，即向量的叉积不满足交换律*
 
