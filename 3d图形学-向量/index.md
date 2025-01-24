@@ -211,9 +211,9 @@ $$
 
 ### ***n个向量的正交化(格拉姆—施密特正交化)***
 
-*基本步骤：设$ \vec{w}_0 = \vec{v}_0 $*
+*基本步骤：设$ \vec{w}\_0 = \vec{v}\_0 $*
 
-对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}_i = \vec{v}_i -  \sum_{j=0}^{i-1} \text{proj}_{\mathbf{w}_j} (\mathbf{v}_i) $
+对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}\_i = \vec{v}\_i -  \sum\_{j=0}^{i-1} \text{proj}\_{\mathbf{w}\_j} (\mathbf{v}\_i) $
 
 ## ***叉积***
 
