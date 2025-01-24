@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  1875 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  4318 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-12-21T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1875 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4318 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -153,6 +153,32 @@
         <li><a href="#长度模--"><em><strong>长度（模  ）</strong></em></a></li>
         <li><a href="#单位向量"><em><strong>单位向量</strong></em></a></li>
         <li><a href="#向量的规范化"><em><strong>向量的规范化</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#点积"><em><strong>点积</strong></em></a>
+      <ul>
+        <li><a href="#点积几何性质"><em><strong>点积几何性质</strong></em></a></li>
+        <li><a href="#正交投影"><em><strong>正交投影</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#正交化"><em><strong>正交化</strong></em></a>
+      <ul>
+        <li><a href="#规范正交"><em><strong>规范正交</strong></em></a></li>
+        <li><a href="#2个向量的正交化"><em><strong>2个向量的正交化</strong></em></a></li>
+        <li><a href="#3个向量的正交化"><em><strong>3个向量的正交化</strong></em></a></li>
+        <li><a href="#n个向量的正交化格拉姆施密特正交化"><em><strong>n个向量的正交化(格拉姆—施密特正交化)</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#叉积"><em><strong>叉积</strong></em></a>
+      <ul>
+        <li><a href="#2d-向量的伪叉积-">***2D 向量的伪叉积 ***</a></li>
+      </ul>
+    </li>
+    <li><a href="#通过叉积来进行正交化处理"><em><strong>通过叉积来进行正交化处理</strong></em></a></li>
+    <li><a href="#点"><em><strong>点</strong></em></a></li>
+    <li><a href="#作业"><em><strong>作业</strong></em></a>
+      <ul>
+        <li><a href="#第一题"><em><strong>第一题</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -245,10 +271,185 @@ $$</p>
 <h3 id="单位向量"><em><strong>单位向量</strong></em></h3>
 <p><em>当向量的模为1的时候他就是单位向量</em></p>
 <h3 id="向量的规范化"><em><strong>向量的规范化</strong></em></h3>
-<p><em>在某些情况下，我们并不关心向量的长度，仅用它来表示方向。对此，我们希望使该向量的长度为 1。把一个向量的长度变为单位长度称为向量的规范化（normalizing）处理。具体实现方法是，将向量 的每个分量分别除以该向量的模：</em>
+<p><em>在某些情况下，我们并不关心向量的长度，仅用它来表示方向。对此，我们希望使该向量的长度为 1。把一个向量的长度变为单位长度称为向量的规范化（normalizing）处理。具体实现方法是，将向量 的每个分量分别除以该向量的模</em>
 $$
-\vec{u} = \frac
+\hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
+\\ \\
+为了验证公式的正确性，下面计算 \hat{u} 的长度，也就是模:
+\\ \\
+\Vert \hat{u} \Vert
+= \sqrt{(\frac{x}{\Vert u \Vert})^2 (\frac{x}{\Vert u \Vert})^2 (\frac{z}{\Vert u \Vert})^2}
+= \frac{\sqrt{x^2 + y^2 + z^2}}{\sqrt{\Vert u \Vert ^ 2}}
+= \frac{\Vert u \Vert}{\Vert u \Vert}
+= 1
+\\ \\
+由此可见， \hat{u} 确实是一个单位向量（unit vector）
 $$</p>
+<h2 id="点积"><em><strong>点积</strong></em></h2>
+<p><em>点积（dot product，亦称数量积或内积）是一种计算结果为标量值的向量乘法运算，因此有时也称 为标量积（scalar product）。</em>
+$$
+设向量 \vec{u} = ( u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
+\\ \\
+则点积的定义为:
+\vec{u} \cdot \vec{v} = u_x v_x + u_y v_y + u_z v_z
+\\ \\
+可见，点积就是向量间对应分量的乘积之和。
+$$
+<em>点积的定义并没有明显地体现出其几何意义。但是我们却能根据余弦定理（law of cosines)，找到二向量点积的几何关系</em>
+$$
+\vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta
+$$
+<em>其中，$ \theta $ 是向量 $ \vec{u} $与向量 $ \vec{v} $ 之间的夹角，$ 0  \leq \theta \leq \pi $</em></p>
+<p><em>如果向量 u 和向量 v 都是单位向量，那么 u ⋅ v 就等 于两向量夹角的余弦值，即 u⋅ v= cosθ</em></p>
+<h3 id="点积几何性质"><em><strong>点积几何性质</strong></em></h3>
+<ol>
+<li><em><strong>如果 u⋅ v = 0 ，那么 u v ⊥ （即两个向量正交）</strong></em></li>
+<li><em><strong>如果 u⋅ v &gt; 0 ，那么两向量之间的夹角 θ 小于 90°（即两向量间的夹角为一锐角）</strong></em></li>
+<li><em><strong>如果 u⋅ v &lt; 0 ，那么两向量之间的夹角 θ 大于 90°（即两向量间的夹角为一钝角）</strong></em></li>
+</ol>
+<h3 id="正交投影"><em><strong>正交投影</strong></em></h3>
+<p><em>考虑图 1.10。给出向量 v 和单位向量 n，请借助点积公式求出用 v 和 n 表示向量 p 的公式。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e6%8a%95%e5%bd%b1.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e6%8a%95%e5%bd%b1.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e6%8a%95%e5%bd%b1.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e6%8a%95%e5%bd%b1.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/正交投影.png"
+        title="正交投影" />
+$$
+\begin{align}
+\vec{p} &amp;= k\vec{n} ~ (观察图示存在标量k，使得 \vec{p} = k\vec{n}。 只要都在同一方向 就可以用这个公式)
+\\ \\
+&amp;= (\Vert \vec{v} \Vert \cos\theta)\vec{n} ~ (这是利用三角函数, \cos \theta = \frac{k}{\vec{v}})
+\\ \\
+&amp;= (\Vert \vec{v} \Vert \cdot 1 \cos\theta)\vec{n} ~ (这个 <del>1</del> 其实就是单位向量n)
+\\ \\
+&amp;= (\Vert \vec{v} \Vert \Vert \vec{n} \Vert \cos\theta)\vec{n}
+\\ \\
+&amp;= (\vec{v} \cdot \vec{n})\vec{n}
+\end{align}
+$$
+*特别是这里证明了：当 n 是单位向量时， k = v ⋅ n *</p>
+<p><em>顺带也解释了在这种情况下 v n⋅ 的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：</em>
+$$
+\vec{p} = proj_n(\vec{v})
+$$
+<em>如果 n 不具有单位长度，就先对它进行规范化处理，使之成为单位向量。通过把向量 n 替换为单位向量 $ \frac{n}{\Vert n \Vert} $，即可得到更具一般性的投影公式：</em>
+$$
+\vec{p}
+= proj_n(\vec{v})
+= (\vec{v} \cdot \frac{\vec{n}}{\Vert \vec{n} \Vert})\frac{\vec{n}}{\Vert \vec{n} \Vert}
+= (\frac{(\vec{v} \cdot \vec{n})}{\Vert \vec{n} \Vert ^ 2}) \vec{n}
+$$</p>
+<h2 id="正交化"><em><strong>正交化</strong></em></h2>
+<h3 id="规范正交"><em><strong>规范正交</strong></em></h3>
+<p>*如果向量集 $ {v_0, …, v_{n-1}} $中的每个向量都是互相正交（集合内的任一向量都与集合中的其他所有向量 相互正交）且皆具单位长度，那么我们就称此集合是规范正交（orthonormal）的</p>
+<p><em>有时我们会接到一个 近乎（但并不完全）规范正交的集合。这时，一个常见的工作就是通过正交化手段，使之成为规范正交集。</em></p>
+<p><em>例如，我们有时会在 3D 计算机图形学中用到规范正交集，但是由于处理过程中数值精度的问题， 它会随之逐步变为非规范正交集。这时就要用到正交化这一手段了</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e5%8c%96.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e5%8c%96.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e5%8c%96.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/%e6%ad%a3%e4%ba%a4%e5%8c%96.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/正交化.png"
+        title="正交化" /></p>
+<h3 id="2个向量的正交化"><em><strong>2个向量的正交化</strong></em></h3>
+<p><em>先来考察相对简单的 2D 情况吧(也就是说，集合内只有 2 个向量的情况)。假设我们有向量集合$ {v_0, v_1} $，现欲将它正交化为图 1.11 中所示的 正交集{w_0, w_0}</em></p>
+<p><em>首先设 $w_0 = v_0$，通过使 $v_1$减去它在 $w_0$上的分量（投影）来令它正交于 $w_0$：</em>
+$$
+\vec{w}_1 = \vec{v}<em>1 - proj</em>{\vec{w}_0}(\vec{v}_1)
+$$
+<em>此时，我们便得到了一个元素互相正交的向量集合${w_0, w_1}$；最后一步是构建一个规范正交集，将向量 $w_0$和 $w_1$规范化为单位向量即可。</em></p>
+<h3 id="3个向量的正交化"><em><strong>3个向量的正交化</strong></em></h3>
+<p><em>假设有向量集${v_0, v_1, v_2}$，现希望将它正交化为 正交集${w_0, w_1, w_2}$，过程如图 1.12 所示。</em></p>
+<p><em>首先使 $w_0 = v_0$，通过令 $v_1$减去它在 $w_0$方向上的分量，让它正交 于 $w_0$：</em>
+$$
+\vec{w}_1 = \vec{v}<em>1 - proj</em>{\vec{w}_0}(\vec{v}_1)
+$$
+<em>接下来，通过令 $v_2$依次减去它在 $w_0$方向与 $w_1$方向上的分量（投影），使之同时正交于 $w_0、w_1$：</em>
+$$
+\vec{w}_2 = \vec{v}<em>2 - proj</em>{\vec{w}_0}(\vec{v}<em>2) - proj</em>{\vec{w}_1}(\vec{v}_2)
+$$
+<em>现在我们就得到了所有元素都彼此正交的向量集${w_0, w_1, w_2}$；最后一步是通过将 $w_0、w_1、 w_2$规范化为单位向量来构建一个规范正交集</em></p>
+<h3 id="n个向量的正交化格拉姆施密特正交化"><em><strong>n个向量的正交化(格拉姆—施密特正交化)</strong></em></h3>
+<p><em>基本步骤：设$ \vec{w}_0 = \vec{v}_0 $</em></p>
+<p><em>对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}<em>i = \vec{v}<em>i -  \sum</em>{j=0}^{i-1} \text{proj}</em>{\mathbf{w}_j} (\mathbf{v}_i) $</em></p>
+<h2 id="叉积"><em><strong>叉积</strong></em></h2>
+<p><em>向量乘法的第二种形式是叉积（cross product，亦称向量积、外积）。与计算结果为标量的点积不同， 叉积的计算结果亦为向量。此外，只有 3D 向量的叉积有定义（不存在 2D 向量叉积）。</em></p>
+<p><em>假设 3D 向量 u 和 v 的叉积得到的是另一个向量 w，则 w 与向量 u、v 彼此正交。也就是说，向量 w 既正交于 u，也正交于 v</em>
+$$
+\vec{u} = (u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
+\\ \\
+那么叉积的计算方法是
+\\ \\
+\vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+$$
+<em>根据计算结果可以明确地得出一项结论：一般来说 $ \vec{u} \times \vec{v} \neq \vec{v} \times \vec{u $ ，即向量的叉积不满足交换律</em></p>
+<p><em>事实上， 我们同时也能够证明 $ \vec{u} \times \vec{v} = -\vec{v} \times \vec{u $  ，这正是叉积的反交换律。</em></p>
+<h3 id="2d-向量的伪叉积-">***2D 向量的伪叉积 ***</h3>
+<p><em>我们刚刚证明了：通过叉积可以求出与两个指定 3D 向量 正交的向量。在 2D 空间中虽然不存在这种情况，但是若给定 一个 2D 向量 $u = (u_x, u_y)$，我们还是能通过与 3D 向量叉积相似 的方法，求出与 向量u 正交的向量 v</em>
+$$
+\vec{u} \cdot \vec{v} = (u_x, u_y) \cdot (-v_y, v_x)
+$$</p>
+<h2 id="通过叉积来进行正交化处理"><em><strong>通过叉积来进行正交化处理</strong></em></h2>
+<p><em>我们也可以通过叉积来进行正交化处理,但是收到数值精度误差累计的影响，也许会导致成为非规范正交集</em></p>
+<h2 id="点"><em><strong>点</strong></em></h2>
+<p><em>在一个坐标系中，通 过一个处于标准位置的向量就能表示出 3D 空间中的特定位置，我们称这种向量为位置向 量（position vector）</em></p>
+<p><em>在这种情况下，向量箭头的位置才是值得关注的主要特征，而方向和大小都是无足 轻重的。“位置向量”和“点”这两个术语可以互相替代，这是因为一个位置向量足以确定一个点。</em></p>
+<p><em>然而，用向量表示点也有副作用，在代码中则更为明显，因为部分向量运算对点来说是没有意义的。 例如，两点之和的意义何在？但从另一方面来讲，一些运算却可以在点上得到推广</em></p>
+<p><em>可以将两个点 的差 q−p 定义为由点 p 指向点 q 的向量。同样，也可以定义点 p 与向量 v 相加，其意义为：令点 p 沿向 量 v 位移而得到点 q。</em></p>
+<h2 id="作业"><em><strong>作业</strong></em></h2>
+<h3 id="第一题"><em><strong>第一题</strong></em></h3>
+<p><em>设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量</em></p>
+<ol>
+<li>
+<p>$ \vec{u} + \vec{v} $</p>
+</li>
+<li>
+<p>$ \vec{u} - \vec{v} $</p>
+</li>
+<li>
+<p>$ 2\vec{u} + \frac{1}{2} \vec{v} $</p>
+</li>
+<li>
+<p>$ -2\vec{u} + \vec{v} $
+$$</p>
+<ol>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>\vec{u} + \vec{v}
+= (u_x + v_x, u_y + v_y)
+= (1 + 3, 2 + (-4))
+= (4, -2)
+\\ \\
+2. ~~~~~~~~~~~
+\vec{u} - \vec{v}
+= (u_x - v_x, u_y - v_y)
+= (1 - 3, 2 - (-4))
+= (-2, 6)
+\\ \\
+3. ~~~~~~~~~~~
+2\vec{u} + \frac{1}{2} \vec{v}
+= (2u_x, 2u_y) + (\frac{1}{2} v_x, \frac{1}{2} v_y)
+= (2u_x + \frac{1}{2} v_x, 2u_y + \frac{1}{2} v_y)
+= (2 + 1.5, 4 + (-2))
+= (3.5, 2)
+\\ \\
+4. ~~~~~~~~~~~
+-2\vec{u} + \vec{v}
+= ()
+$$</p>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
