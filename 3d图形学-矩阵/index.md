@@ -230,13 +230,13 @@ $$
 \\\ \\\
 A = \begin{bmatrix} A\_{11} & A\_{12} & A\_{13} \\\ A\_{21} & A\_{22} & A\_{23} \\\ A\_{31} & A\_{32} & A\_{33} \end{bmatrix}
 \\\ \\\
-去除矩阵A的第一行和第一列，得到 \overline{A}_{11} 为:
+去除矩阵A的第一行和第一列，得到 \overline{A}\_{11} 为:
 A = \begin{bmatrix} A\_{22} & A\_{23} \\\ A\_{32} & A\_{33} \end{bmatrix}
 \\\ \\\
-去除矩阵A的第二行和第二列，得到 \overline{A}_{22} 为:
+去除矩阵A的第二行和第二列，得到 \overline{A}\_{22} 为:
 A = \begin{bmatrix} A\_{11} & A\_{13} \\\ A\_{31} & A\_{33} \end{bmatrix}
 \\\ \\\
-去除矩阵A的第一行和第三列，得到 \overline{A}_{13} 为:
+去除矩阵A的第一行和第三列，得到 \overline{A}\_{13} 为:
 A = \begin{bmatrix} A\_{21} & A\_{22} \\\ A\_{31} & A\_{32} \end{bmatrix}
 \end{gather}
 $$
