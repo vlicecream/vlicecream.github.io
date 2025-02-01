@@ -263,11 +263,17 @@ $$
 2. *假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 \vec{v} = (v_x, v_y, v_z)，那么就能对他们进行下列向量计算*
 
    (a) 加法运算：$ \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z) $
+
    (b) 减法运算：$ \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z) $
+
    (c) 标量乘法运算：$ k\vec{u} = (ku_x, ku_y, ku_z) $
+
    (d) 向量长度(模): $ \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2} $
+
    (e) 规范化: $ \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert}) $
+
    (f) 点积: $ \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z $
+
    (g) 叉积: $ \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) $
 
 3. *[向量的几何意义](#向量的几何意义)*
@@ -297,26 +303,22 @@ $$
 *设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量*
 
 $$
-1. ~~~~~~~~~~~  
 \vec{u} + \vec{v} 
 = (u_x + v_x, u_y + v_y) 
 = (1 + 3, 2 + (-4))
 = (4, -2)
 \\\ \\\
-2. ~~~~~~~~~~~
 \vec{u} - \vec{v} 
 = (u_x - v_x, u_y - v_y) 
 = (1 - 3, 2 - (-4))
 = (-2, 6)
 \\\ \\\
-3. ~~~~~~~~~~~
 2\vec{u} + \frac{1}{2} \vec{v} 
 = (2u_x, 2u_y) + (\frac{1}{2} v_x, \frac{1}{2} v_y)
 = (2u_x + \frac{1}{2} v_x, 2u_y + \frac{1}{2} v_y)
 = (2 + 1.5, 4 + (-2))
 = (3.5, 2)
 \\\ \\\
-4. ~~~~~~~~~~~
 -2\vec{u} + \vec{v} 
 = ()
 $$
