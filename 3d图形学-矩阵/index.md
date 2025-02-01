@@ -228,16 +228,16 @@ $$
 \begin{gather}
 求出下列矩阵的余子阵 \overline{A}_{11} ~ \overline{A}_{22} ~ \overline{A}_{13}
 \\\ \\\
-A = \begin{bmatrix} A_{11} ~ A_{12} ~ A_{13} \\\ A_{21} ~ A_{22} ~ A_{23} \\\ A_{31} ~ A_{32} ~ A_{33} \end{bmatrix}
+A = \begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第一行和第一列，得到 \overline{A}_{11} 为:
-A = \begin{bmatrix} A_{22} ~ A_{23} \\\ A_{32} ~ A_{33} \end{bmatrix}
+A = \begin{bmatrix} A_{22} & A_{23} \\\ A_{32} & A_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第二行和第二列，得到 \overline{A}_{22} 为:
-A = \begin{bmatrix} A_{11} ~ A_{13} \\\ A_{31} ~ A_{33} \end{bmatrix}
+A = \begin{bmatrix} A_{11} & A_{13} \\\ A_{31} & A_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第一行和第三列，得到 \overline{A}_{13} 为:
-A = \begin{bmatrix} A_{21} ~ A_{22} \\\ A_{31} ~ A_{32} \end{bmatrix}
+A = \begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}
 \end{gather}
 $$
 
@@ -255,9 +255,28 @@ $$
 #### ***例子***
 
 $$
+\begin{gather}
 设 A 为一个 n \times n 的矩阵. 那么 n > 1时， 我们定义:
 \\\ \\\
-\det{A} = \sum_{j=1}^{n} A_{1_j}(-1)^{1+j} \det{\overline{A}_{i_j}}
+\det{A} = \sum_{j=1}^{n} A_{1j}(-1)^{1+j} \det{\overline{A}_{ij}}
+\\\ \\\
+对照余子阵\overline{A}_{ij}的定义可知，对于 2 \times 2 矩阵来说，其相应的行列式公式为:
+\\\ \\\
+\det{\begin{bmatrix} A_{11} & A_{12} \\\ A_{21} & A_{22} \end{bmatrix}}
+= A_{11} \det[A_{22}] - A_{12} \det{[A_{21}]} = A_{11}A_{22} - A_{12}A_{21}
+\\\ \\\
+对于3 \times 3矩阵来说，其行列式计算公式为：
+\\\ \\\
+\det{\begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix}} 
+= A_{11} \det{\begin{bmatrix} A_{22} & A_{23} \\\ A_{32} & A_{33} \end{bmatrix}}
+- A_{12} \det{\begin{bmatrix} A_{21} & A_{23} \\\ A_{31} & A_{33} \end{bmatrix}}
++ A_{13} \det{\begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}}
+\\\ \\\
+对于 4 \times 4 矩阵, 其行列式计算公式为：
+\\\ \\\
+\det{\begin{bmatrix} A_{11} & A_{12} & A_{13} & A_{14} \\\ A_{21} & A_{22} & A_{23} & A_{24} \\\ A_{31} & A_{32} & A_{33} & A_{34} \\\ A_{41} & A_{42} & A_{43} & A_{44} \end{bmatrix}}
+= A_
+\end{gather}
 $$
 
 
