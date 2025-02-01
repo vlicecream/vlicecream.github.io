@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  4319 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  4639 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-12-21T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4319 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4639 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -176,6 +176,7 @@
     </li>
     <li><a href="#通过叉积来进行正交化处理"><em><strong>通过叉积来进行正交化处理</strong></em></a></li>
     <li><a href="#点"><em><strong>点</strong></em></a></li>
+    <li><a href="#小结"><em><strong>小结</strong></em></a></li>
     <li><a href="#作业"><em><strong>作业</strong></em></a>
       <ul>
         <li><a href="#第一题"><em><strong>第一题</strong></em></a></li>
@@ -266,7 +267,7 @@ $$</p>
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/向量的模.png"
         title="向量的模" />
 $$
-||u|| = \sqrt{y^2 + a^2 } = \sqrt{y^2 + (\sqrt x^2 + z^2)^2} = \sqrt{x^2 + y^2 + z^2}
+\Vert u \Vert = \sqrt{y^2 + a^2 } = \sqrt{y^2 + (\sqrt x^2 + z^2)^2} = \sqrt{x^2 + y^2 + z^2}
 $$</p>
 <h3 id="单位向量"><em><strong>单位向量</strong></em></h3>
 <p><em>当向量的模为1的时候他就是单位向量</em></p>
@@ -406,29 +407,55 @@ $$</p>
 <p><em>在这种情况下，向量箭头的位置才是值得关注的主要特征，而方向和大小都是无足 轻重的。“位置向量”和“点”这两个术语可以互相替代，这是因为一个位置向量足以确定一个点。</em></p>
 <p><em>然而，用向量表示点也有副作用，在代码中则更为明显，因为部分向量运算对点来说是没有意义的。 例如，两点之和的意义何在？但从另一方面来讲，一些运算却可以在点上得到推广</em></p>
 <p><em>可以将两个点 的差 q−p 定义为由点 p 指向点 q 的向量。同样，也可以定义点 p 与向量 v 相加，其意义为：令点 p 沿向 量 v 位移而得到点 q。</em></p>
+<h2 id="小结"><em><strong>小结</strong></em></h2>
+<ol>
+<li>
+<p><em><strong>向量可以用来模拟同时具有大小和方向的物理量。</strong></em></p>
+<p><em><strong>在几何学上，我们用有向线段表示向量。当 向量平移至尾部与所在坐标系原点恰好重合的位置时，向量位于标准位置。一旦向量处于标准 位置，我们便可以用向量头部相对于坐标系的坐标来作为它的数学描述</strong></em></p>
+</li>
+<li>
+<p><em><strong>假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 \vec{v} = (v_x, v_y, v_z)，那么就能对他们进行下列向量计算</strong></em>
+$$
+(a) ~ 加法运算：\vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
+\\ \\
+(b) ~ 减法运算：\vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
+\\ \\
+(c) ~ 标量乘法运算：k\vec{u} = (ku_x, ku_y, ku_z)
+\\ \\
+(d) ~ 向量长度: \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2}
+\\ \\
+(e) ~ 规范化: \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
+\\ \\
+(f) ~ 点积: \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
+\\ \\
+(g) ~ 叉积: \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+$$</p>
+</li>
+<li>
+<p><em><strong>向量的几何意义</strong> #向量的几何意义</em></p>
+</li>
+<li></li>
+</ol>
 <h2 id="作业"><em><strong>作业</strong></em></h2>
 <h3 id="第一题"><em><strong>第一题</strong></em></h3>
 <p><em>设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量</em></p>
+<p>$$</p>
 <ol>
 <li>
-<p>$ \vec{u} + \vec{v} $</p>
-</li>
-<li>
-<p>$ \vec{u} - \vec{v} $</p>
-</li>
-<li>
-<p>$ 2\vec{u} + \frac{1}{2} \vec{v} $</p>
-</li>
-<li>
-<p>$ -2\vec{u} + \vec{v} $
-$$
-一. ~~~~~~~~~~~<br>
-\vec{u} + \vec{v}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>\vec{u} + \vec{v}
 = (u_x + v_x, u_y + v_y)
 = (1 + 3, 2 + (-4))
 = (4, -2)
 \\ \\
-e. ~~~~~~~~~~~
+2. ~~~~~~~~~~~
 \vec{u} - \vec{v}
 = (u_x - v_x, u_y - v_y)
 = (1 - 3, 2 - (-4))
@@ -445,8 +472,6 @@ e. ~~~~~~~~~~~
 -2\vec{u} + \vec{v}
 = ()
 $$</p>
-</li>
-</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
