@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  3272 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  3710 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/","datePublished": "2024-12-24T11:05:00+08:00","dateModified": "2024-12-24T11:05:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3272 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3710 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -175,6 +175,8 @@
         </li>
       </ul>
     </li>
+    <li><a href="#伴随矩阵"><em><strong>伴随矩阵</strong></em></a></li>
+    <li><a href="#逆矩阵"><em><strong>逆矩阵</strong></em></a></li>
     <li><a href="#基本运算定律"><em><strong>基本运算定律</strong></em></a></li>
   </ul>
 </nav></div>
@@ -387,9 +389,9 @@ $$</p>
 \begin{gather}
 设 A 为一个 n \times n 的矩阵. 那么 n &gt; 1时， 我们定义:
 \\ \\
-\det{A} = \sum_{j=1}^{n} A_{1j}(-1)^{1+j} \det{\overline{A}<em>{ij}}
+\det{A} = \sum_{j=1}^{n} A_{1j}(-1)^{1+j} \det{\overline{A}_{ij}}
 \\ \\
-对照余子阵\overline{A}</em>{ij}的定义可知，对于 2 \times 2 矩阵来说，其相应的行列式公式为:
+对照余子阵\overline{A}_{ij}的定义可知，对于 2 \times 2 矩阵来说，其相应的行列式公式为:
 \\ \\
 \det{\begin{bmatrix} A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{bmatrix}}
 = A_{11} \det[A_{22}] - A_{12} \det{[A_{21}]} = A_{11}A_{22} - A_{12}A_{21}
@@ -407,10 +409,30 @@ $$</p>
 对于 4 \times 4 矩阵, 其行列式计算公式为：
 \\ \\
 \det{\begin{bmatrix} A_{11} &amp; A_{12} &amp; A_{13} &amp; A_{14} \\ A_{21} &amp; A_{22} &amp; A_{23} &amp; A_{24} \\ A_{31} &amp; A_{32} &amp; A_{33} &amp; A_{34} \\ A_{41} &amp; A_{42} &amp; A_{43} &amp; A_{44} \end{bmatrix}}
-= A_{11} \det
+= A_{11} \det{\begin{bmatrix} A_{22} &amp; A_{23} &amp; A_{24} \\ A_{} \end{bmatrix}}
 \end{gather}
 $$</li>
 </ul>
+<h2 id="伴随矩阵"><em><strong>伴随矩阵</strong></em></h2>
+<p>$$
+\begin{gather}
+设A为一个 n \times n 矩阵。乘积C_{ij} = (-1)^{i+j}\det{\overline{A}_ij}称为元素A_{ij}的代数余子式
+\\ \\
+如果为矩阵A中的每个元素分别计算出C_{ij}，并将他置于C_A中的第i行，第j列的相应位置, 那么将获得矩阵A的代数余子式;
+\\ \\
+若取矩阵C_A的转置矩阵, 将得到矩阵A的伴随矩阵, 记作: A^* = C^T_A
+\end{gather}
+$$</p>
+<h2 id="逆矩阵"><em><strong>逆矩阵</strong></em></h2>
+<p><em>矩阵代数不存在除法运算的概念，但是却另外定义了一种矩阵乘法的逆运算。下面总结了与矩阵逆 运算有关的关键信息。</em></p>
+<ol>
+<li><em>只有方阵才具有逆矩阵。因此，当提到逆矩阵时，我们便假设要处理的是一个方阵。</em></li>
+<li><em>n x n 矩阵 M 的逆也是一个 n x n矩阵，并表示为 $ M^-1 $。</em></li>
+<li><em>不是每个方阵都有逆矩阵。存在逆矩阵的方阵称为可逆矩阵（invertible matrix），不存在逆矩阵 的方阵称作奇异矩阵（singular matrix）。</em></li>
+<li><em>可逆矩阵的逆矩阵是唯一的。</em></li>
+<li><em>矩阵与其逆矩阵相乘将得到单位方阵：$ MM^-1 = M^-1M = I $。可以发现，矩阵与其逆矩阵的乘法运 算满足交换律。</em></li>
+<li></li>
+</ol>
 <h2 id="基本运算定律"><em><strong>基本运算定律</strong></em></h2>
 <p><em>由于在矩阵的加法和标量乘法的运算过程中，是以元素为单位展开计算的，所以它们实际上也分别从实数运算中继承了下列性质</em></p>
 <ol>
