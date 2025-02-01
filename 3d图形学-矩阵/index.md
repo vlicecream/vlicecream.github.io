@@ -226,18 +226,18 @@ $$
 
 $$
 \begin{gather}
-求出下列矩阵的余子阵 \overline{A}_{11} ~ \overline{A}_{22} ~ \overline{A}_{13}
+求出下列矩阵的余子阵 \overline{A}\_{11} ~ \overline{A}\_{22} ~ \overline{A}\_{13}
 \\\ \\\
-A = \begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix}
+A = \begin{bmatrix} A\_{11} & A\_{12} & A\_{13} \\\ A\_{21} & A\_{22} & A\_{23} \\\ A\_{31} & A\_{32} & A\_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第一行和第一列，得到 \overline{A}_{11} 为:
-A = \begin{bmatrix} A_{22} & A_{23} \\\ A_{32} & A_{33} \end{bmatrix}
+A = \begin{bmatrix} A\_{22} & A\_{23} \\\ A\_{32} & A\_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第二行和第二列，得到 \overline{A}_{22} 为:
-A = \begin{bmatrix} A_{11} & A_{13} \\\ A_{31} & A_{33} \end{bmatrix}
+A = \begin{bmatrix} A\_{11} & A\_{13} \\\ A\_{31} & A\_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第一行和第三列，得到 \overline{A}_{13} 为:
-A = \begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}
+A = \begin{bmatrix} A\_{21} & A\_{22} \\\ A\_{31} & A\_{32} \end{bmatrix}
 \end{gather}
 $$
 
@@ -275,7 +275,7 @@ $$
 对于 4 \times 4 矩阵, 其行列式计算公式为：
 \\\ \\\
 \det{\begin{bmatrix} A_{11} & A_{12} & A_{13} & A_{14} \\\ A_{21} & A_{22} & A_{23} & A_{24} \\\ A_{31} & A_{32} & A_{33} & A_{34} \\\ A_{41} & A_{42} & A_{43} & A_{44} \end{bmatrix}}
-= A_
+= A_{11} \det
 \end{gather}
 $$
 
