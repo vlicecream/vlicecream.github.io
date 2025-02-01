@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  4639 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  4773 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-12-21T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4639 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4773 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -336,7 +336,7 @@ $$
 \end{align}
 $$
 <em>特别是这里证明了：当 n 是单位向量时， k = v ⋅ n</em></p>
-<p><em>顺带也解释了在这种情况下 v n⋅ 的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：</em>
+<p><em>顺带也解释了在这种情况下 v ⋅ n的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：</em>
 $$
 \vec{p} = proj_n(\vec{v})
 $$
@@ -410,31 +410,42 @@ $$</p>
 <h2 id="小结"><em><strong>小结</strong></em></h2>
 <ol>
 <li>
-<p><em><strong>向量可以用来模拟同时具有大小和方向的物理量。</strong></em></p>
-<p><em><strong>在几何学上，我们用有向线段表示向量。当 向量平移至尾部与所在坐标系原点恰好重合的位置时，向量位于标准位置。一旦向量处于标准 位置，我们便可以用向量头部相对于坐标系的坐标来作为它的数学描述</strong></em></p>
+<p><em>向量可以用来模拟同时具有大小和方向的物理量。</em></p>
+<p><em>在几何学上，我们用有向线段表示向量。当 向量平移至尾部与所在坐标系原点恰好重合的位置时，向量位于标准位置。一旦向量处于标准 位置，我们便可以用向量头部相对于坐标系的坐标来作为它的数学描述</em></p>
 </li>
 <li>
-<p><em><strong>假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 \vec{v} = (v_x, v_y, v_z)，那么就能对他们进行下列向量计算</strong></em>
+<p><em>假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 \vec{v} = (v_x, v_y, v_z)，那么就能对他们进行下列向量计算</em></p>
+<p>(a) 加法运算：$ \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z) $
+(b) 减法运算：$ \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z) $
+(c) 标量乘法运算：$ k\vec{u} = (ku_x, ku_y, ku_z) $
+(d) 向量长度(模): $ \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2} $
+(e) 规范化: $ \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert}) $
+(f) 点积: $ \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z $
+(g) 叉积: $ \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) $</p>
+</li>
+<li>
+<p><em><a href="#%e5%90%91%e9%87%8f%e7%9a%84%e5%87%a0%e4%bd%95%e6%84%8f%e4%b9%89" rel="">向量的几何意义</a></em></p>
+</li>
+<li>
+<p><em>当向量的模为1的时候他就是单位向量</em></p>
+</li>
+<li>
+<p><em><a href="#%e7%82%b9%e7%a7%af%e5%87%a0%e4%bd%95%e6%80%a7%e8%b4%a8" rel="">点积几何性质</a></em></p>
+</li>
+<li>
+<p><em>正交投影</em>
 $$
-(a) ~ 加法运算：\vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
-\\ \\
-(b) ~ 减法运算：\vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
-\\ \\
-(c) ~ 标量乘法运算：k\vec{u} = (ku_x, ku_y, ku_z)
-\\ \\
-(d) ~ 向量长度: \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2}
-\\ \\
-(e) ~ 规范化: \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
-\\ \\
-(f) ~ 点积: \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
-\\ \\
-(g) ~ 叉积: \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+\vec{p}
+= proj_n(\vec{v})
+= (\vec{v} \cdot \frac{\vec{n}}{\Vert \vec{n} \Vert})\frac{\vec{n}}{\Vert \vec{n} \Vert}
+= (\frac{(\vec{v} \cdot \vec{n})}{\Vert \vec{n} \Vert ^ 2}) \vec{n}
 $$</p>
 </li>
 <li>
-<p><em><strong>向量的几何意义</strong> #向量的几何意义</em></p>
+<p><em>向量的正交化其实就是一个递归，在将给定集合内的向量 $ \vec{v_i} $添加到规范正交集中时，我们需要令 $ \vec{v_i} $减去它 在现有规范正交集中其他向量$ {w_0, w_1, …, w_i−1} $方向上的分量（投影）</em></p>
+<p><em>基本步骤：设$ \vec{w}_0 = \vec{v}_0 $</em></p>
+<p>对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}_i = \vec{v}_i -  \sum_{j=0}^{i-1} \text{proj}_{\mathbf{w}_j} (\mathbf{v}_i) $</p>
 </li>
-<li></li>
 </ol>
 <h2 id="作业"><em><strong>作业</strong></em></h2>
 <h3 id="第一题"><em><strong>第一题</strong></em></h3>

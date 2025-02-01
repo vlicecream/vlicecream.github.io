@@ -161,7 +161,7 @@ $$
 $$
 *特别是这里证明了：当 n 是单位向量时， k = v ⋅ n*
 
-*顺带也解释了在这种情况下 v n⋅ 的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：*
+*顺带也解释了在这种情况下 v ⋅ n的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：*
 $$
 \vec{p} = proj_n(\vec{v})
 $$
@@ -256,30 +256,39 @@ $$
 
 ## ***小结***
 
-1. ***向量可以用来模拟同时具有大小和方向的物理量。***
+1. *向量可以用来模拟同时具有大小和方向的物理量。*
 
-   ***在几何学上，我们用有向线段表示向量。当 向量平移至尾部与所在坐标系原点恰好重合的位置时，向量位于标准位置。一旦向量处于标准 位置，我们便可以用向量头部相对于坐标系的坐标来作为它的数学描述***
+   *在几何学上，我们用有向线段表示向量。当 向量平移至尾部与所在坐标系原点恰好重合的位置时，向量位于标准位置。一旦向量处于标准 位置，我们便可以用向量头部相对于坐标系的坐标来作为它的数学描述*
 
-2. ***假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 \vec{v} = (v_x, v_y, v_z)，那么就能对他们进行下列向量计算***
+2. *假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 \vec{v} = (v_x, v_y, v_z)，那么就能对他们进行下列向量计算*
+
+   (a) 加法运算：$ \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z) $
+   (b) 减法运算：$ \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z) $
+   (c) 标量乘法运算：$ k\vec{u} = (ku_x, ku_y, ku_z) $
+   (d) 向量长度(模): $ \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2} $
+   (e) 规范化: $ \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert}) $
+   (f) 点积: $ \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z $
+   (g) 叉积: $ \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) $
+
+3. *[向量的几何意义](#向量的几何意义)*
+
+4. *当向量的模为1的时候他就是单位向量*
+
+5. *[点积几何性质](#点积几何性质)*
+
+6. *正交投影*
    $$
-   (a) ~ 加法运算：\vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
-   \\\ \\\
-   (b) ~ 减法运算：\vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
-   \\\ \\\
-   (c) ~ 标量乘法运算：k\vec{u} = (ku_x, ku_y, ku_z)
-   \\\ \\\
-   (d) ~ 向量长度: \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2}
-   \\\ \\\
-   (e) ~ 规范化: \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
-   \\\ \\\
-   (f) ~ 点积: \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
-   \\\ \\\
-   (g) ~ 叉积: \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+   \vec{p} 
+   = proj_n(\vec{v}) 
+   = (\vec{v} \cdot \frac{\vec{n}}{\Vert \vec{n} \Vert})\frac{\vec{n}}{\Vert \vec{n} \Vert} 
+   = (\frac{(\vec{v} \cdot \vec{n})}{\Vert \vec{n} \Vert ^ 2}) \vec{n}
    $$
 
-3. ***向量的几何意义** #向量的几何意义*
+7. *向量的正交化其实就是一个递归，在将给定集合内的向量 $ \vec{v\_i} $添加到规范正交集中时，我们需要令 $ \vec{v\_i} $减去它 在现有规范正交集中其他向量$ {w_0, w_1, …, w_i−1} $方向上的分量（投影）*
 
-4. 
+   *基本步骤：设$ \vec{w}\_0 = \vec{v}\_0 $*
+
+   对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}\_i = \vec{v}\_i -  \sum\_{j=0}^{i-1} \text{proj}\_{\mathbf{w}\_j} (\mathbf{v}\_i) $
 
 ## ***作业***
 
