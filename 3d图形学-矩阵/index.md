@@ -270,7 +270,7 @@ $$
 \det{\begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix}} 
 = A_{11} \det{\begin{bmatrix} A_{22} & A_{23} \\\ A_{32} & A_{33} \end{bmatrix}} 
 - A_{12} \det{\begin{bmatrix} A_{21} & A_{23} \\\ A_{31} & A_{33} \end{bmatrix}}
-+ A_{13} \det{\begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}}
+\+ A_{13} \det{\begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}}
 \\\ \\\
 对于 4 \times 4 矩阵, 其行列式计算公式为：
 \\\ \\\
@@ -302,7 +302,6 @@ $$
 3. *不是每个方阵都有逆矩阵。存在逆矩阵的方阵称为可逆矩阵（invertible matrix），不存在逆矩阵 的方阵称作奇异矩阵（singular matrix）。*
 4. *可逆矩阵的逆矩阵是唯一的。*
 5. *矩阵与其逆矩阵相乘将得到单位方阵：$ MM^-1 = M^-1M = I $。可以发现，矩阵与其逆矩阵的乘法运 算满足交换律。*
-6. 
 
 ## ***基本运算定律***
 
