@@ -268,7 +268,7 @@ $$
 对于3 \times 3矩阵来说，其行列式计算公式为：
 \\\ \\\
 \det{\begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix}} 
-= A_{11} \det{\begin{bmatrix} A_{22} & A_{23} \\\ A_{32} & A_{33} \end{bmatrix}}
+= A_{11} \det{\begin{bmatrix} A_{22} & A_{23} \\\ A_{32} & A_{33} \end{bmatrix}} 
 - A_{12} \det{\begin{bmatrix} A_{21} & A_{23} \\\ A_{31} & A_{33} \end{bmatrix}}
 + A_{13} \det{\begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}}
 \\\ \\\
