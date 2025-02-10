@@ -4,45 +4,45 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Steam Deck - Ame</title><meta name="Description" content="一个艺术世界"><meta property="og:url" content="https://example.com/index_zh-cn/">
+        <title>Direct3D的初始化 - Ame</title><meta name="Description" content="Direct3D的初始化"><meta property="og:url" content="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/">
   <meta property="og:site_name" content="Ame">
-  <meta property="og:title" content="Steam Deck">
-  <meta property="og:description" content="SteamDeck 最近在折腾steam deck 放一个博客存一些命令，以防格式化或者啥的，又得重弄
-但是专门为deck弄一个分类不太好，所以放生活吧~">
+  <meta property="og:title" content="Direct3D的初始化">
+  <meta property="og:description" content="Direct3D的初始化">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-01-23T16:29:59+08:00">
-    <meta property="article:modified_time" content="2025-01-23T16:29:59+08:00">
-    <meta property="article:tag" content="Steam Deck">
+    <meta property="article:published_time" content="2025-02-06T22:00:00+08:00">
+    <meta property="article:modified_time" content="2025-02-06T20:34:00+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="3D图形学">
+    <meta property="article:tag" content="Direct3D">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
-  <meta name="twitter:title" content="Steam Deck">
-  <meta name="twitter:description" content="SteamDeck 最近在折腾steam deck 放一个博客存一些命令，以防格式化或者啥的，又得重弄
-但是专门为deck弄一个分类不太好，所以放生活吧~">
+  <meta name="twitter:title" content="Direct3D的初始化">
+  <meta name="twitter:description" content="Direct3D的初始化">
 <meta name="application-name" content="Ame林汀">
 <meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/index_zh-cn/" /><link rel="prev" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" /><link rel="next" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" /><link rel="prev" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Steam Deck",
+        "headline": "Direct3D的初始化",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/example.com\/index_zh-cn\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Steam Deck","wordcount":  888 ,
-        "url": "https:\/\/example.com\/index_zh-cn\/","datePublished": "2025-01-23T16:29:59+08:00","dateModified": "2025-01-23T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, Direct3D","wordcount":  1581 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-02-06T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "Ame"
-            },"description": ""
+            },"description": "Direct3D的初始化"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -68,7 +68,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/index_zh-cn/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -102,7 +102,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/index_zh-cn/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -113,11 +113,11 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Steam Deck</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/steam-deck/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Steam Deck</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-01-23">2025-01-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 888 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/index_zh-cn/" class="leancloud_visitors" data-flag-title="Steam Deck">
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Direct3D的初始化</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1581 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" class="leancloud_visitors" data-flag-title="Direct3D的初始化">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -127,159 +127,69 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#刚拿到机子必须要做的事"><em><strong>刚拿到机子必须要做的事</strong></em></a>
+    <li><a href="#预备知识"><em><strong>预备知识</strong></em></a>
       <ul>
-        <li><a href="#注意事项"><em><strong>注意事项</strong></em></a></li>
-        <li><a href="#前置"><em><strong>前置</strong></em></a></li>
-        <li><a href="#加速桌面模式下的商店"><em><strong>加速桌面模式下的商店</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#桌面模式下-安装中文输入法"><em><strong>桌面模式下 安装中文输入法</strong></em></a></li>
-    <li><a href="#安装uu加速器插件"><em><strong>安装UU加速器插件</strong></em></a></li>
-    <li><a href="#clash---tomoon"><em><strong>Clash - ToMoon</strong></em></a>
-      <ul>
-        <li><a href="#安装"><em><strong>安装</strong></em></a></li>
-        <li><a href="#使用"><em><strong>使用</strong></em></a></li>
-        <li><a href="#复原-dns解决插件消失而导致无法联网"><em><strong>复原 DNS，解决插件消失而导致无法联网</strong></em></a></li>
+        <li><a href="#组件对象模型"><em><strong>组件对象模型</strong></em></a></li>
+        <li><a href="#纹理格式"><em><strong>纹理格式</strong></em></a></li>
+        <li><a href="#交换链和页面翻转"><em><strong>交换链和页面翻转</strong></em></a></li>
+        <li><a href="#深度缓冲"><em><strong>深度缓冲</strong></em></a></li>
+        <li><a href="#资源与描述符"><em><strong>资源与描述符</strong></em></a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="steamdeck">SteamDeck</h1>
-<p><em>最近在折腾steam deck 放一个博客存一些命令，以防格式化或者啥的，又得重弄</em></p>
-<p><em>但是专门为deck弄一个分类不太好，所以放生活吧~</em></p>
-<p><em>在前言放一个niu b的网站: <a href="https://ohmydeck.net/" target="_blank" rel="noopener noreffer ">https://ohmydeck.net/</a></em></p>
-<p><em>还有放一些游戏的攻略及一些相关东西</em></p>
-<h2 id="刚拿到机子必须要做的事"><em><strong>刚拿到机子必须要做的事</strong></em></h2>
-<h3 id="注意事项"><em><strong>注意事项</strong></em></h3>
-<ol>
-<li><em>千万不能把桌面模式改成中文 会出不少问题 如果改了就恢复出厂!!!</em></li>
-</ol>
-<h3 id="前置"><em><strong>前置</strong></em></h3>
-<ol>
-<li>
-<p><em>进入桌面模式</em></p>
-</li>
-<li>
-<p><em>设置密码</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">passwd
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p><em>解锁只读权限</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo steamos-readonly disable
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
-<h3 id="加速桌面模式下的商店"><em><strong>加速桌面模式下的商店</strong></em></h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="桌面模式下-安装中文输入法"><em><strong>桌面模式下 安装中文输入法</strong></em></h2>
-<ol>
-<li><em>首先，打开Discover应用商店，搜索“input”并找到Fcitx 5应用。点击安装按钮，开始下载并安装这款输入法应用</em></li>
-<li><em>安装完成后，进入Fcitx 5的详情页面，找到Addons选项。在这里，你可以找到并安装Chinese Addons，为你的输入法增添中文支持。</em></li>
-<li><em>安装完毕后，记得先启动Fcitx 5哦！然后，你可以通过右键点击状态栏中的输入法图标，选择Configure来配置你的输入法。在配置窗口中，输入“pinyin”并添加到左侧，即可开启拼音输入法功能。</em></li>
-<li><em>最后，为了确保每次开机都能自动启动Fcitx 5和中文输入法，你需要进入系统设置，选择Startup and shutdown选项，然后添加Fcitx 5到自启动列表中</em></li>
-</ol>
-<h2 id="安装uu加速器插件"><em><strong>安装UU加速器插件</strong></em></h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s uudeck.com|sudo sh
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="clash---tomoon"><em><strong>Clash - ToMoon</strong></em></h2>
-<h3 id="安装"><em><strong>安装</strong></em></h3>
-<p><em>如果已经安装过 Plugin Loader 2.0 以上版本，直接从第 8 点开始即可。</em></p>
-<ol>
-<li><em>打开到 Steam Deck 设置界面</em></li>
-<li><em>系统 -&gt; 系统设置 -&gt; 打开开发者模式</em></li>
-<li><em>回到设置向下翻，找到开发者 -&gt; 打开 CEF 远程调试</em></li>
-<li><em>等待 Steam Deck 重启</em></li>
-<li><em>按电源键切换到 Desktop 桌面模式</em></li>
-<li><em>打开 Konsole，输入 <code>curl -L http://dl.ohmydeck.net | sh</code> 安装 Plugin Loader</em></li>
-<li><em>输入 <code>curl -L http://i.ohmydeck.net | sh</code> 安装 Tomoon</em></li>
-<li><em>切换回到 Gamming 游戏模式，按下右侧摇杆下的快捷按钮（三个点的按钮），可以看到多了一个 Decky 插件面板</em></li>
-</ol>
-<h3 id="使用"><em><strong>使用</strong></em></h3>
-<ol>
-<li><em>打开 Manage Subscriptions，添加你服务商提供的 Clash 订阅链接并下载</em></li>
-<li><em>下载完成后，切换回主界面选择订阅并点击启动</em></li>
-<li><em>在桌面模式可通过浏览器 http://127.0.0.1:9090/ui 打开仪表盘</em></li>
-</ol>
-<h3 id="复原-dns解决插件消失而导致无法联网"><em><strong>复原 DNS，解决插件消失而导致无法联网</strong></em></h3>
-<p><em>在桌面模式打开 Konsole，输入以下命令。
-<strong>注意：不熟悉 Linux 的朋友请务必输入正确，看到命令执行完后有错误出现就是输入错了。</strong></em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo chattr -i /etc/resolv.conf
-</span></span><span class="line"><span class="cl">sudo systemctl stop systemd-resolved
-</span></span><span class="line"><span class="cl">sudo chmod a+w /etc/NetworkManager/conf.d/dns.conf
-</span></span><span class="line"><span class="cl">sudo <span class="nb">echo</span> -e <span class="s2">&#34;[main]\ndns=auto&#34;</span>  &gt; /etc/NetworkManager/conf.d/dns.conf
-</span></span><span class="line"><span class="cl">sudo nmcli general reload
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><em>如果安装的是 <code>v0.0.5</code> <em>(2022/11/18)</em> 以上版本，可以使用脚本直接恢复。</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">bash ~/tomoon_recover.sh
-</span></span></code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
+            </div><div class="content" id="content"><h1 id="direct3d的初始化"><em><strong>Direct3D的初始化</strong></em></h1>
+<h2 id="预备知识"><em><strong>预备知识</strong></em></h2>
+<p><em>通过 Direct3D 这种底层图形应用程序编程接口（Application Programming Interface，API），即可在 在应用程序中对图形处理器（Graphics Processing Unit，GPU）进行控制和编程。我们能够借此以硬件加 速的方式渲染出虚拟的 3D 场景</em></p>
+<h3 id="组件对象模型"><em><strong>组件对象模型</strong></em></h3>
+<p><em>组件对象模型（Component Object Model，COM）是一种令 DirectX 不受编程语言束缚，并且使之向后兼 容的技术。</em></p>
+<p>*我们通常将 COM 对象视为一种接口，但考虑当前编程的目的，遂将它当作一个 C++类来使用。 *</p>
+<p><em>用 C++语言编写 DirectX 程序时，COM 帮我们隐藏了大量底层细节。</em></p>
+<p><em>我们只需知道：要获取指向某 COM 接 口的指针，需借助特定函数或另一COM 接口的方法——而不是用C++语言中的关键字new 去创建一个COM 接口。</em></p>
+<p><em>另外，COM 对象会统计其引用次数；因此，在使用完某接口时，我们便应调用它的 Release 方法（COM 接口的所有功能都是从 IUnknown 这个 COM 接口继承而来的，包括 Release 方法在内），而不是用 delete 来删除——当 COM 对象的引用计数为 0 时，它将自行释放自己所占用的内存。</em></p>
+<h3 id="纹理格式"><em><strong>纹理格式</strong></em></h3>
+<p><em>2D 纹理（2D texture）是一种由数据元素构成的矩阵（可将此“矩阵”看作 2D 数组）。</em></p>
+<p><em>它的用途之 一是存储 2D 图像数据，在这种情况下，纹理中每个元素存储的都是一个像素的颜色。然而，纹理的 用处并非仅此而已。</em></p>
+<p><em>例如，有种称作法线贴图（normal mapping）的高级技术，其纹理内的每个元素存 储的就是一个 3D 向量而不是颜色信息。</em></p>
+<p><em>因此，尽管纹理给人的第一印象通常是用来存储图像数据，但 其实际用途却十分广泛。</em></p>
+<p><em>简单来讲，1D、2D、3D 纹理就相当于特定数据元素所构成 1D、2D、3D 数 组。但随着后续章节中对纹理讨论的逐渐深入，我们便会知道，纹理其实还不只是像“数据数组”那 样简单。它们可能还具有多种 mipmap 层级，而 GPU 则会据此对它们进行特殊的处理，例如运用过 滤器（filter）和进行多重采样（multisample）。另外，并不是任意类型的数据元素都能用于组成纹理， 它只能存储 DXGI_FORMAT 枚举类型中描述的特定格式的数据元素</em></p>
+<h3 id="交换链和页面翻转"><em><strong>交换链和页面翻转</strong></em></h3>
+<p><em>为了避免动画中出现画面闪烁的现象，最好将动画帧完整地绘制在一种称为后台缓冲区的离屏 （off-screen，即不可直接呈现在显示设备上之意）纹理内。</em></p>
+<p><em>只要将指定动画帧的整个场景绘到后台缓冲区 中，它就会以一个完整的帧画面展现在屏幕上；</em></p>
+<p><em>依照此法，观者便不会察觉出帧的绘制过程——而只会 观赏到完整的动画帧。</em></p>
+<p><em>为此，需要利用由硬件管理的两种纹理缓冲区：即所谓的前台缓冲区（front buffer） 和后台缓冲区（back buffer）。</em></p>
+<p><em>前台缓冲区存储的是当前显示在屏幕上的图像数据，而动画的下一帧则被 绘制在后台缓冲区里。</em></p>
+<p><em>当后台缓冲区中的动画帧绘制完成之后，两种缓冲区的角色互换：后台缓冲区变 为前台缓冲区呈现新一帧的画面，而前台缓冲区则为了展示动画的下一帧转为后台缓冲区，等待填充数 据。前后台缓冲的这种互换操作称为呈现（presenting，亦有译作提交、显示等）。</em></p>
+<p><em>呈现是一种高效的操 作，只需交换指向当前前台缓冲区和后台缓冲区的两个指针即可实现。</em></p>
+<h3 id="深度缓冲"><em><strong>深度缓冲</strong></em></h3>
+<p><em>深度缓冲区（depth buffer）这种纹理资源存储的并非图像数据，而是特定像素的深度信息。</em></p>
+<p><em>深度值 的范围为 0.0～1.0。0.0 代表观察者在视锥体（view frustum， 亦有译作视域体、视景体、视截体或视体等，意即观察者 能看到的空间范围，形如从四棱锥中截取的四棱台，常称 该形为平截头体（frustum，见图 4.3，后文亦有详述））中 能看到离自己最近的物体，1.0 则代表观察者在视锥体中能 看到离自己最远的物体。</em></p>
+<p><em>深度缓冲区中的元素与后台缓冲 区内的像素呈一 一对应关系（即后台缓冲区中第 i 行第 j 列 的元素对应于深度缓冲区内第 i 行第 j 列的元素）。所以， 如果后台缓冲区的分辨率为1280 × 1024  ，那么深度缓冲区 中就应当有1280 × 1024 个深度元素</em></p>
+<h3 id="资源与描述符"><em><strong>资源与描述符</strong></em></h3>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-01-23</span>
+                <span>更新于 2025-02-06</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/index_zh-cn/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/index_zh-cn/" data-title="Steam Deck" data-hashtags="Steam Deck"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/index_zh-cn/" data-hashtag="Steam Deck"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/index_zh-cn/" data-title="Steam Deck"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/index_zh-cn/" data-title="Steam Deck"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/index_zh-cn/" data-title="Steam Deck" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化" data-hashtags="Unreal,3D图形学,Direct3D"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/steam-deck/">Steam Deck</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/">3D图形学</a>,&nbsp;<a href="/tags/direct3d/">Direct3D</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="prev" rel="prev" title="矩阵"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>矩阵</a>
-            <a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="next" rel="next" title="变换矩阵">变换矩阵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="prev" rel="prev" title="变换矩阵"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>变换矩阵</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

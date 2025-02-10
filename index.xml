@@ -4,9 +4,29 @@
         <link>https://example.com/</link>
         <description>一个艺术世界</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 23 Jan 2025 16:29:59 &#43;0800</lastBuildDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 06 Feb 2025 22:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Direct3D的初始化</title>
+    <link>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+    <pubDate>Thu, 06 Feb 2025 22:00:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+    <description><![CDATA[<h1 id="direct3d的初始化"><em><strong>Direct3D的初始化</strong></em></h1>
+<h2 id="预备知识"><em><strong>预备知识</strong></em></h2>
+<p><em>通过 Direct3D 这种底层图形应用程序编程接口（Application Programming Interface，API），即可在 在应用程序中对图形处理器（Graphics Processing Unit，GPU）进行控制和编程。我们能够借此以硬件加 速的方式渲染出虚拟的 3D 场景</em></p>]]></description>
+</item>
+<item>
+    <title>变换矩阵</title>
+    <link>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/</link>
+    <pubDate>Thu, 06 Feb 2025 22:00:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/</guid>
+    <description><![CDATA[<h1 id="变换"><em><strong>变换</strong></em></h1>
+<h2 id="变换矩阵"><em><strong>变换矩阵</strong></em></h2>
+<p><em>先来研究一下数学函数 τ( ) v = τ( , , ) ( , , ) x y z x&rsquo; y&rsquo; z&rsquo; = 。此函数的输入和输出都是 3D 向量。我们称 τ 为 线性变换（linear transformation），当且仅当此函数具有下列性质：</em></p>]]></description>
+</item>
+<item>
     <title>Steam Deck</title>
     <link>https://example.com/index_zh-cn/</link>
     <pubDate>Thu, 23 Jan 2025 16:29:59 &#43;0800</pubDate>
@@ -225,140 +245,6 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pr]]></description>
-</item>
-<item>
-    <title>单例模式</title>
-    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
-    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[<h1 id="单例模式">单例模式</h1>
-<h2 id="对象性能模式">对象性能模式</h2>
-<ol>
-<li><em><strong>什么是对象性能</strong></em>
-<ul>
-<li><em>面向对象很好的解决了&quot;抽象&quot;的问题, 但是必不可免的要付出一定的代价，对于通常情况来讲, 面向对象的成本大都可以忽略不计，但是某些情况, 面向对象所带来的成本必须谨慎处理</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Singleton</em></li>
-<li><em>Flyweight</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="单例模式动机">单例模式动机</h2>
-<ol>
-<li><em>在软件系统中 经常有这样一些特殊的类, 必须保证他们在系统中只存在一个实例, 才能确保他们的逻辑正确性以及良好的效率</em></li>
-<li><em>如何绕过常规的构造器, 提供一种机制来保证一个类只有一个实例</em></li>
-<li><em>ps：这个是类设计者的责任, 而不是使用者的责任</em></li>
-</ol>
-<h2 id="演示代码">演示代码</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span></code></pr]]></description>
-</item>
-<item>
-    <title>迭代器</title>
-    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/</link>
-    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/</guid>
-    <description><![CDATA[<h1 id="迭代器">迭代器</h1>
-<h2 id="数据结构模式">数据结构模式</h2>
-<ol>
-<li><em><strong>什么是数据结构</strong></em>
-<ul>
-<li><em>常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Composite</em></li>
-<li><em>Iterator</em></li>
-<li><em>Chain of Resposibility</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="迭代器前言">迭代器前言</h2>
-<ol>
-<li><em>这个模式 在 c++ 上其实已经过时了</em></li>
-<li><em>GoF 对迭代器的定义 是面向对象的迭代器 要去遍历很多的虚函数 然而虚函数是有性能代价的 运行时依赖</em></li>
-<li><em>懂得STL 泛型编程的朋友都知道 STL 里面定义了很多迭代器 这里面的迭代器是 模板方法的迭代器 编译时依赖</em></li>
-<li><em>但是一个模式过时 不代表思想会过时 c++的迭代器也是根据这个思想 把算法和容器给隔离开来，而且其他语言 比如java 这个面向对象的迭代器也在使用，所以我们还是得对这个模式一探究竟</em></li>
-</ol>
-<h2 id="动机">动机</h2>
-<ol>
-<li><em>在软件构建过程中, 集合对象内部结构常常变化各异，但对于这些集合对象, 我们希望在不暴露其内部结构的同时, 可以让外部客户代码透明的访问其中包含的元素，同时这种&quot;透明遍历&quot;也为&quot;同一种算法在多种集合对象上进行操作&quot;提供了可能</em></li>
-<li><em>使用面向对象技术将这种遍历机制抽象为&quot;迭代器对象&quot;，为&quot;应对变化中的集合对象&quot;提供了一种优雅的方式</em></li>
-</ol>
-<h2 id="模式定义">模式定义</h2>
-<ol>
-<li><em>提供一种方法顺序访问一个聚合对象中的各个元素, 而又不暴露(稳定)该对象的内部表示</em></li>
-</ol>
-<h2 id="要点总结">要点总结</h2>
-<ol>
-<li><em>迭代抽象: 访问一个聚合对象的内容而无需暴露他的内部表示</em></li>
-<li><em>迭代多态: 为遍历不同的集合结构提供一个统一的接口, 从而支持同样的算法在不同的集合结构上进行操作</em></li>
-<li><em>迭代器的健壮性考虑: 遍历的同时更改迭代器所在的集合结构, 会导致问题</em></li>
-</ol>]]></description>
 </item>
 </channel>
 </rss>
