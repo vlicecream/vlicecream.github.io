@@ -4,45 +4,45 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>变换矩阵 - Ame</title><meta name="Description" content="标量与向量"><meta property="og:url" content="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/">
+        <title>Direct3D的初始化 - Ame</title><meta name="Description" content="Direct3D的初始化"><meta property="og:url" content="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/">
   <meta property="og:site_name" content="Ame">
-  <meta property="og:title" content="变换矩阵">
-  <meta property="og:description" content="标量与向量">
+  <meta property="og:title" content="Direct3D的初始化">
+  <meta property="og:description" content="Direct3D的初始化">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-02-06T22:00:00+08:00">
-    <meta property="article:modified_time" content="2025-02-06T20:34:00+08:00">
+    <meta property="article:published_time" content="2025-02-10T22:00:00+08:00">
+    <meta property="article:modified_time" content="2025-02-10T20:34:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="3D图形学">
-    <meta property="article:tag" content="变换矩阵">
+    <meta property="article:tag" content="Direct3D">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
-  <meta name="twitter:title" content="变换矩阵">
-  <meta name="twitter:description" content="标量与向量">
+  <meta name="twitter:title" content="Direct3D的初始化">
+  <meta name="twitter:description" content="Direct3D的初始化">
 <meta name="application-name" content="Ame林汀">
 <meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" /><link rel="prev" href="https://example.com/index_zh-cn/" /><link rel="next" href="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" /><link rel="prev" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" /><link rel="next" href="https://example.com/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "变换矩阵",
+        "headline": "Direct3D的初始化",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  99 ,
-        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-02-06T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/example.com\/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, Direct3D","wordcount":  2816 ,
+        "url": "https:\/\/example.com\/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96\/","datePublished": "2025-02-10T22:00:00+08:00","dateModified": "2025-02-10T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "Ame"
-            },"description": "标量与向量"
+            },"description": "Direct3D的初始化"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -68,7 +68,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -102,7 +102,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -113,11 +113,11 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 99 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Direct3D的初始化</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/direct3d/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Direct3D</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-10">2025-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2816 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" class="leancloud_visitors" data-flag-title="Direct3D的初始化">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -127,37 +127,86 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#变换矩阵"><em><strong>变换矩阵</strong></em></a></li>
+    <li><a href="#预备知识"><em><strong>预备知识</strong></em></a>
+      <ul>
+        <li><a href="#组件对象模型"><em><strong>组件对象模型</strong></em></a></li>
+        <li><a href="#纹理格式"><em><strong>纹理格式</strong></em></a></li>
+        <li><a href="#交换链和页面翻转"><em><strong>交换链和页面翻转</strong></em></a></li>
+        <li><a href="#深度缓冲"><em><strong>深度缓冲</strong></em></a></li>
+        <li><a href="#资源与描述符"><em><strong>资源与描述符</strong></em></a></li>
+        <li><a href="#多重采样技术的原理"><em><strong>多重采样技术的原理</strong></em></a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="变换"><em><strong>变换</strong></em></h1>
-<h2 id="变换矩阵"><em><strong>变换矩阵</strong></em></h2>
-<p><em>先来研究一下数学函数 τ( ) v = τ( , , ) ( , , ) x y z x&rsquo; y&rsquo; z&rsquo; = 。此函数的输入和输出都是 3D 向量。我们称 τ 为 线性变换（linear transformation），当且仅当此函数具有下列性质：</em></p>
+            </div><div class="content" id="content"><h1 id="direct3d的初始化"><em><strong>Direct3D的初始化</strong></em></h1>
+<h2 id="预备知识"><em><strong>预备知识</strong></em></h2>
+<p><em>通过 Direct3D 这种底层图形应用程序编程接口（Application Programming Interface，API），即可在 在应用程序中对图形处理器（Graphics Processing Unit，GPU）进行控制和编程。我们能够借此以硬件加 速的方式渲染出虚拟的 3D 场景</em></p>
+<h3 id="组件对象模型"><em><strong>组件对象模型</strong></em></h3>
+<p><em>组件对象模型（Component Object Model，COM）是一种令 DirectX 不受编程语言束缚，并且使之向后兼 容的技术。</em></p>
+<p><em>我们通常将 COM 对象视为一种接口，但考虑当前编程的目的，遂将它当作一个 C++类来使用。</em></p>
+<p><em>用 C++语言编写 DirectX 程序时，COM 帮我们隐藏了大量底层细节。</em></p>
+<p><em>我们只需知道：要获取指向某 COM 接 口的指针，需借助特定函数或另一COM 接口的方法——而不是用C++语言中的关键字new 去创建一个COM 接口。</em></p>
+<p><em>另外，COM 对象会统计其引用次数；因此，在使用完某接口时，我们便应调用它的 Release 方法（COM 接口的所有功能都是从 IUnknown 这个 COM 接口继承而来的，包括 Release 方法在内），而不是用 delete 来删除——当 COM 对象的引用计数为 0 时，它将自行释放自己所占用的内存。</em></p>
+<h3 id="纹理格式"><em><strong>纹理格式</strong></em></h3>
+<p><em>2D 纹理（2D texture）是一种由数据元素构成的矩阵（可将此“矩阵”看作 2D 数组）。</em></p>
+<p><em>它的用途之 一是存储 2D 图像数据，在这种情况下，纹理中每个元素存储的都是一个像素的颜色。然而，纹理的 用处并非仅此而已。</em></p>
+<p><em>例如，有种称作法线贴图（normal mapping）的高级技术，其纹理内的每个元素存 储的就是一个 3D 向量而不是颜色信息。</em></p>
+<p><em>因此，尽管纹理给人的第一印象通常是用来存储图像数据，但 其实际用途却十分广泛。</em></p>
+<p><em>简单来讲，1D、2D、3D 纹理就相当于特定数据元素所构成 1D、2D、3D 数 组。但随着后续章节中对纹理讨论的逐渐深入，我们便会知道，纹理其实还不只是像“数据数组”那 样简单。它们可能还具有多种 mipmap 层级，而 GPU 则会据此对它们进行特殊的处理，例如运用过 滤器（filter）和进行多重采样（multisample）。另外，并不是任意类型的数据元素都能用于组成纹理， 它只能存储 DXGI_FORMAT 枚举类型中描述的特定格式的数据元素</em></p>
+<h3 id="交换链和页面翻转"><em><strong>交换链和页面翻转</strong></em></h3>
+<p><em>为了避免动画中出现画面闪烁的现象，最好将动画帧完整地绘制在一种称为后台缓冲区的离屏 （off-screen，即不可直接呈现在显示设备上之意）纹理内。</em></p>
+<p><em>只要将指定动画帧的整个场景绘到后台缓冲区 中，它就会以一个完整的帧画面展现在屏幕上；</em></p>
+<p><em>依照此法，观者便不会察觉出帧的绘制过程——而只会 观赏到完整的动画帧。</em></p>
+<p><em>为此，需要利用由硬件管理的两种纹理缓冲区：即所谓的前台缓冲区（front buffer） 和后台缓冲区（back buffer）。</em></p>
+<p><em>前台缓冲区存储的是当前显示在屏幕上的图像数据，而动画的下一帧则被 绘制在后台缓冲区里。</em></p>
+<p><em>当后台缓冲区中的动画帧绘制完成之后，两种缓冲区的角色互换：后台缓冲区变 为前台缓冲区呈现新一帧的画面，而前台缓冲区则为了展示动画的下一帧转为后台缓冲区，等待填充数 据。前后台缓冲的这种互换操作称为呈现（presenting，亦有译作提交、显示等）。</em></p>
+<p><em>呈现是一种高效的操 作，只需交换指向当前前台缓冲区和后台缓冲区的两个指针即可实现。</em></p>
+<h3 id="深度缓冲"><em><strong>深度缓冲</strong></em></h3>
+<p><em>深度缓冲区（depth buffer）这种纹理资源存储的并非图像数据，而是特定像素的深度信息。</em></p>
+<p><em>深度值 的范围为 0.0～1.0。0.0 代表观察者在视锥体（view frustum， 亦有译作视域体、视景体、视截体或视体等，意即观察者 能看到的空间范围，形如从四棱锥中截取的四棱台，常称 该形为平截头体（frustum，见图 4.3，后文亦有详述））中 能看到离自己最近的物体，1.0 则代表观察者在视锥体中能 看到离自己最远的物体。</em></p>
+<p><em>深度缓冲区中的元素与后台缓冲 区内的像素呈一 一对应关系（即后台缓冲区中第 i 行第 j 列 的元素对应于深度缓冲区内第 i 行第 j 列的元素）。所以， 如果后台缓冲区的分辨率为1280 × 1024  ，那么深度缓冲区 中就应当有1280 × 1024 个深度元素</em></p>
+<h3 id="资源与描述符"><em><strong>资源与描述符</strong></em></h3>
+<p><em>在渲染处理的过程中，GPU 可能会对资源进行读（例如，从描述物体表面样貌的纹理或者存有 3D 场景中几何体位置信息的缓冲区中读取数据）和写（例如，向后台缓冲区或深度/模板缓冲区写入数据） 两种操作。</em></p>
+<p><em>在发出绘制命令之前，我们需要将与本次绘制调用（draw call）相关的资源绑定（bind 或称 链接，link）到渲染流水线上。</em></p>
+<p><em>部分资源可能在每次绘制调用时都会有所变化，所以我们也就要每次按 需更新绑定。</em></p>
+<p><em>但是，GPU 资源并非直接与渲染流水线相绑定，而是要通过一种名为描述符（descriptor） 的对象来对它间接引用，我们可以把描述符视为一种对送往 GPU 的资源进行描述的轻量级结构。</em></p>
+<p><em>从本质上来讲，它实际上即为一个中间层；若指定了资源描述符，GPU 将既能获得实际的资源数据，也能了解到 资源的必要信息。</em></p>
+<p><em>因此，我们将把绘制调用需要引用的资源，通过指定描述符的方式绑定到渲染流水线。</em></p>
+<h3 id="多重采样技术的原理"><em><strong>多重采样技术的原理</strong></em></h3>
+<p><em>由于屏幕中显示的像素不可能是无穷小的，所以并不是任意一条直线都能在显示器上“平滑”而 完美地呈现出来。</em></p>
+<p>*图 4.4 所示的，即为以像素矩阵（matrix of pixels，可以理解为“像素 2D 数组”）逼近 直线的方法所产生的“阶梯”（aliasing，锯齿状走样）效果。类似地，显示器中呈现的三角形之边也存 在着不同程度的锯齿效应。 *</p>
+<p>*通过提高显示器的分辨率就能够缩小像素的大小， 继而使上述问题得到显著地改善，使阶梯效应在很大 程度上不易被用户所察觉。 *</p>
+<p><em>在不能提升显示器分辨率，或在显示器分辨率受 限的情况下，我们就可以运用各种反走样（antialiasing， 也有译作抗锯齿、反锯齿、反失真等）技术。</em></p>
+<p><em>有一种 名为超级采样（supersampling，可简记作 SSAA，即 Super Sample Anti-Aliasing）的反走样技术，它使用 4 倍于屏幕分辨率大小的后台缓冲区和深度缓冲区。3D 场景将以这种更大的分辨率渲染到后台缓冲区中。当 数据要从后台缓冲区调往屏幕显示的时候，会将后台 缓冲区按 4 个像素一组进行解析（resolve，或称降采 样，downsample。把放大的采样点数降低回原采样点数）：每组用求平均值的方法得到一种相对平滑 的像素颜色。因此，超级采样实际上是通过软件的方式提升了画面的分辨率。</em></p>
+<p><em>超级采样是一种开销高昂的操作，因为它将像素的处理数量和占用的内存大小都增加到之前的 4 倍。 对此，Direct3D 还支持一种在性能与效果等方面都较为折中的反走样技术，叫作多重采样（multisampling，可简记作 MSAA，即 MultiSample Anti-Aliasing）。</em></p>
+<p><em>这种技术通过跨子像素①共享一些计算信息，从而使它比 超级采样的开销更低。现假设采用 4X 多重采样（即每个像素中都有 4 个子像素），并同样使用 4 倍于屏幕 分辨率的后台缓冲区和深度缓冲区。</em></p>
+<p><em>值得注意的是，这种技术并不需要对每一个子像素都进行计算，而是仅 计算一次像素中心处的颜色，再基于可视性（每个子像素经深度/模板测试的结果）和覆盖性（子像素的中心 在多边形的里面还是外面？）将得到的颜色信息分享给其子像素</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-02-06</span>
+                <span>更新于 2025-02-10</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" data-title="变换矩阵" data-hashtags="Unreal,3D图形学,变换矩阵"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" data-title="变换矩阵"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" data-title="变换矩阵"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" data-title="变换矩阵" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化" data-hashtags="Unreal,3D图形学,Direct3D"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" data-title="Direct3D的初始化" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/">3D图形学</a>,&nbsp;<a href="/tags/%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/">变换矩阵</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/">3D图形学</a>,&nbsp;<a href="/tags/direct3d/">Direct3D</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/index_zh-cn/" class="prev" rel="prev" title="Steam Deck"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Steam Deck</a>
-            <a href="/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/" class="next" rel="next" title="Direct3D的初始化">Direct3D的初始化<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="prev" rel="prev" title="变换矩阵"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>变换矩阵</a>
+            <a href="/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="next" rel="next" title="渲染流水线">渲染流水线<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

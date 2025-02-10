@@ -4,12 +4,22 @@
         <link>https://example.com/posts/</link>
         <description>所有文章 | Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 10 Feb 2025 22:00:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 10 Feb 2025 22:44:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>渲染流水线</title>
+    <link>https://example.com/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/</link>
+    <pubDate>Mon, 10 Feb 2025 22:44:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/</guid>
+    <description><![CDATA[<h1 id="渲染流水线"><em><strong>渲染流水线</strong></em></h1>
+<h2 id="3d-视觉即错觉"><em><strong>3D 视觉即错觉？</strong></em></h2>
+<p><em>我们都知道物体重叠（object overlap）的概念，即不透明物体能够遮挡住其后侧物体的局部（或整 体），如图 5.4 所示。这是一个重要的概念，它传达了不同物体在场景中的深度顺序关系。而我们在第 4 章 中也已经讨论过如何在 Direct3D 中借助深度缓冲区来确定那些应当受到遮蔽而不是绘制出来的像素。</em></p>]]></description>
+</item>
+<item>
     <title>Direct3D的初始化</title>
-    <link>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+    <link>https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
     <pubDate>Mon, 10 Feb 2025 22:00:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-directx3d%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+    <guid>https://example.com/directx3d-%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
     <description><![CDATA[<h1 id="direct3d的初始化"><em><strong>Direct3D的初始化</strong></em></h1>
 <h2 id="预备知识"><em><strong>预备知识</strong></em></h2>
 <p><em>通过 Direct3D 这种底层图形应用程序编程接口（Application Programming Interface，API），即可在 在应用程序中对图形处理器（Graphics Processing Unit，GPU）进行控制和编程。我们能够借此以硬件加 速的方式渲染出虚拟的 3D 场景</em></p>]]></description>
@@ -201,47 +211,6 @@
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
-</span></code></pr]]></description>
-</item>
-<item>
-    <title>代理模式</title>
-    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</link>
-    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[<h1 id="代理模式">代理模式</h1>
-<h2 id="接口隔离模式">接口隔离模式</h2>
-<ol>
-<li><em><strong>什么是接口隔离</strong></em>
-<ul>
-<li><em>在组件构建过程中, 某些接口之间直接的依赖 常常会带来很多问题 甚至根本无法实现</em></li>
-<li><em>采用添加一层间接(稳定)接口, 来隔离本来互相紧密关联的接口是一种常见的解决方案</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Façade</em></li>
-<li><em>Proxy</em></li>
-<li><em>Mediator</em></li>
-<li><em>Adapter</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机">动机</h2>
-<ol>
-<li><em>在面向对象系统中, 有些对象由于某种原因(比如对象创建的开销很大, 或者某些操作需要安全控制, 或者需要进程外的访问等)直接访问会给使用者或者系统结构带来很多麻烦</em></li>
-<li><em>如何在不是去透明操作对象的同时来管理或者控制这些对象特有的复杂性？</em></li>
-<li><em>增加一层间接层是软件开发中常见的解决方式</em></li>
-</ol>
-<h2 id="初始代码">初始代码</h2>
-<ol>
-<li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pr]]></description>
 </item>
 </channel>
