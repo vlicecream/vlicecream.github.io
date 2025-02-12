@@ -266,19 +266,31 @@ $$
    $$
    \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
    $$
-   
 
-   (b) 减法运算：$ \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z) $
-
-   (c) 标量乘法运算：$ k\vec{u} = (ku_x, ku_y, ku_z) $
-
-   (d) 向量长度(模): $ \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2} $
-
-   (e) 规范化: $ \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert}) $
-
-   (f) 点积: $ \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z $
-
-   (g) 叉积: $ \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) $
+   (b) 减法运算：
+   $$
+   \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
+   $$
+   (c) 标量乘法运算：
+   $$
+   k\vec{u} = (ku_x, ku_y, ku_z)
+   $$
+   (d) 向量长度(模): 
+   $$
+   \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2}
+   $$
+   (e) 规范化: 
+   $$
+   \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
+   $$
+   (f) 点积: 
+   $$
+   \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
+   $$
+   (g) 叉积: 
+   $$
+   \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+   $$
 
 3. *[向量的几何意义](#向量的几何意义)*
 
@@ -467,19 +479,18 @@ $$
 *设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$*
 $$
 \begin{align}
-||ku|| 
+||ku||
+&= ||ku_x, ku_y, ku_z||
 \\\ \\\
-= ||ku_x, ku_y, ku_z||
+&= \sqrt{(ku_x)^2 + (ku_y)^2 + (ku_z)^2}
 \\\ \\\
-= \sqrt{(ku_x)^2 + (ku_y)^2 + (ku_z)^2}
+&= \sqrt{k^2u_x^2 + k^2u_y^2 + k^2u_z^2}
 \\\ \\\
-= \sqrt{k^2u_x^2 + k^2u_y^2 + k^2u_z^2}
+&= \sqrt{k^2 + (u_x^2, u_y^2, u_z^2)}
 \\\ \\\
-= \sqrt{k^2 + (u_x^2, u_y^2, u_z^2)}
-\\\ \\\
-= \sqrt{k^2} + \sqrt{\vec{u}^2}
+&= \sqrt{k^2} + \sqrt{\vec{u}^2}
 \\\ \\
-= ||k|| + ||\vec{u}||
-\e{align}
+&= ||k|| + ||\vec{u}||
+\end{align}
 $$
 
