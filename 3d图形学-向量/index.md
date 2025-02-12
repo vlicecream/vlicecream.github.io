@@ -371,73 +371,81 @@ $$
 $$
 *(b) $ \vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w} $ （加法结合律）*
 $$
-\vec{u} + (\vec{v} + \vec{w})
+\begin{align}
+\vec{u} + (\vec{v} + \vec{w}) 
+&= (u_x, u_y, u_z) + (v_x + w_x, v_y + w_y, v_z + w_z) 
 \\\ \\\
-= (u_x, u_y, u_z) + (v_x + w_x, v_y + w_y, v_z + w_z) 
+&= (u_x + (v_x + w_x), u_y + (v_y + w_y), u_z + (v_z + w_z))
 \\\ \\\
-= (u_x + (v_x + w_x), u_y + (v_y + w_y), u_z + (v_z + w_z))
+&= ((u_x + v_x) + w_x, (u_y + v_y) + w_y, (u_z + v_z) + w_z)
 \\\ \\\
-= ((u_x + v_x) + w_x, (u_y + v_y) + w_y, (u_z + v_z) + w_z)
+&= (u_x + v_x, u_y + v_y, u_z + v_z) + (w_x, w_y, w_z) 
 \\\ \\\
-= (u_x + v_x, u_y + v_y, u_z + v_z) + (w_x, w_y, w_z) 
-\\\ \\\
-= (\vec{u} + \vec{v}) + \vec{w}
+&= (\vec{u} + \vec{v}) + \vec{w}
+\end{align}
 $$
 *(c) $ (ck)\vec{u} = c(k\vec{u}) $ （标量乘法的结合律）*
 $$
+\begin{align}
 (ck)\vec{u}
-= (ck)(u_x, u_y, u_z)
+&= (ck)(u_x, u_y, u_z)
 \\\ \\\
-= ((ck)u_x, (ck)u_y, (ck)u_z)
+&= ((ck)u_x, (ck)u_y, (ck)u_z)
 \\\ \\\
-= (c(ku_x), c(ku_y), c(ku_z))
+&= (c(ku_x), c(ku_y), c(ku_z))
 \\\ \\\
-= c(k\vec{u})
+&= c(k\vec{u})
+\end{align}
 $$
 *(d) $ k(\vec{u} + \vec{v}) = k\vec{u} + k\vec{v} $ （分配律 1）*
 $$
+\begin{align}
 k(\vec{u} + \vec{v}) 
+&= k(u_x + v_x, u_y + v_y, u_z + v_z)
 \\\ \\\
-= k(u_x + v_x, u_y + v_y, u_z + v_z)
+&= (ku_x + kv_x, ku_y + kv_y, ku_z + kv_z)
 \\\ \\\
-= (ku_x + kv_x, ku_y + kv_y, ku_z + kv_z)
-\\\ \\\
-= k\vec{u} + k\vec{v}
+&= k\vec{u} + k\vec{v}
+\end{align}
 $$
 *(e) $ \vec{u}(k + c) = k\vec{u} + c\vec{u} $ （分配律 2）*
 $$
+\begin{align}
 \vec{u}(k + c)
+&= (u_x(k+c), u_y(k+c), u_z(k+c))
 \\\ \\\
-= (u_x(k+c), u_y(k+c), u_z(k+c))
+&= (ku_x + cu_x, ku_y + cu_y, ku_z + cu_z)
 \\\ \\\
-= (ku_x + cu_x, ku_y + cu_y, ku_z + cu_z)
-\\\ \\\
-= k\vec{u} + c\vec{u}
+&= k\vec{u} + c\vec{u}
+\end{align}
 $$
 
 ### ***第四题***
 
 *根据等式  "2[(1, 2, 3) − x] − (−2, 0, 4) = −2(1, 2, 3)"，求其中的向量 x。*
 $$
-2[(1, 2, 3) − \vec{x}] − (−2, 0, 4) = -2(1, 2, 3)
+\begin{align}
+2[(1, 2, 3) − \vec{x}] − (−2, 0, 4) &= -2(1, 2, 3)
 \\\ \\\
-[(2, 4, 6) - 2(\vec{x})] - (-2, 0, 4) = (-2, -4, -6)
+[(2, 4, 6) - 2(\vec{x})] - (-2, 0, 4) &= (-2, -4, -6)
 \\\ \\\
-[(2, 4, 6) - 2(\vec{x})] = (-2, -4, -6) + (-2, 0, 4)
+[(2, 4, 6) - 2(\vec{x})] &= (-2, -4, -6) + (-2, 0, 4)
 \\\ \\\
-[(2, 4, 6) - 2(\vec{x})] = (-4, -4, -2)
+[(2, 4, 6) - 2(\vec{x})] &= (-4, -4, -2)
 \\\ \\\
-\- 2(\vec{x}) = (-4, -4, -2) - (2, 4, 6)
+\- 2(\vec{x}) &= (-4, -4, -2) - (2, 4, 6)
 \\\ \\\
-2(\vec{x}) = - (-6, -8, -8)
+2(\vec{x}) &= - (-6, -8, -8)
 \\\ \\\
-\vec{x} = (3, 4, 4)
+\vec{x} &= (3, 4, 4)
+\end{align}
 $$
 
 ### ***第五题***
 
 *设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。*
 $$
+\begin{align}
 \vec{u} 
 = \frac{\vec{u}}{\Vert \vec{u} \Vert}
 = \frac{(u_x, u_y, u_z)}{\sqrt{u_x^2 + u_y^2 + u_z^2}}
@@ -451,12 +459,14 @@ $$
 = \frac{(3, -4, 1)}{\sqrt{9 + 16 + 1}}
 = \frac{(3, -4, 1)}{\sqrt{26}}
 = (\frac{3}{\sqrt{26}}, \frac{-4}{\sqrt{26}}, \frac{1}{\sqrt{26}})
+\end{align}
 $$
 
 ### ***第六题***
 
 *设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$*
 $$
+\begin{align}
 ||ku|| 
 \\\ \\\
 = ||ku_x, ku_y, ku_z||
@@ -470,5 +480,6 @@ $$
 = \sqrt{k^2} + \sqrt{\vec{u}^2}
 \\\ \\
 = ||k|| + ||\vec{u}||
+\e{align}
 $$
 
