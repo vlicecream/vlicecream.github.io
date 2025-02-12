@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  5534 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  5551 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-12-21T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5534 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5551 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -573,27 +573,25 @@ $$
 [(2, 4, 6) - 2(\vec{x})] = (-2, -4, -6) + (-2, 0, 4)
 \\ \\
 [(2, 4, 6) - 2(\vec{x})] = (-4, -4, -2)
-\\ \\</p>
-<ul>
-<li>2(\vec{x}) = (-4, -4, -2) - (2, 4, 6)
+\\ \\
+- 2(\vec{x}) = (-4, -4, -2) - (2, 4, 6)
 \\ \\
 2(\vec{x}) = - (-6, -8, -8)
 \\ \\
 \vec{x} = (3, 4, 4)
-$$</li>
-</ul>
+$$</p>
 <h3 id="第五题"><em><strong>第五题</strong></em></h3>
 <p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。</em>
 $$
 \vec{u}
-= \frac{\vec{u}}{||\vec{u}||}
+= \frac{\vec{u}}{\Vert \vec{u} \Vert}
 = \frac{(u_x, u_y, u_z)}{\sqrt{u_x^2 + u_y^2 + u_z^2}}
 = \frac{(-1, 3, 2)}{\sqrt{1 + 9 + 4}}
 = \frac{(-1, 3, 2)}{\sqrt{14}}
 = (\frac{-1}{\sqrt{14}}, \frac{3}{\sqrt{14}}, \frac{2}{\sqrt{14}})
-\\ \\</p>
-<p>\vec{v}
-= \frac{\vec{v}}{||\vec{v}||}
+\\ \\
+\vec{v}
+= \frac{\vec{v}}{\Vert \vec{v} \Vert}
 = \frac{(v_x, v_y, v_z)}{\sqrt{v_x^2 + v_y^2 + v_z^2}}
 = \frac{(3, -4, 1)}{\sqrt{9 + 16 + 1}}
 = \frac{(3, -4, 1)}{\sqrt{26}}
@@ -603,11 +601,17 @@ $$</p>
 <p><em>设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$</em>
 $$
 ||ku||
+\\ \\
 = ||ku_x, ku_y, ku_z||
+\\ \\
 = \sqrt{(ku_x)^2 + (ku_y)^2 + (ku_z)^2}
+\\ \\
 = \sqrt{k^2u_x^2 + k^2u_y^2 + k^2u_z^2}
+\\ \\
 = \sqrt{k^2 + (u_x^2, u_y^2, u_z^2)}
+\\ \\
 = \sqrt{k^2} + \sqrt{\vec{u}^2}
+\\ \
 = ||k|| + ||\vec{u}||
 $$</p>
 </div><div class="post-footer" id="post-footer">
