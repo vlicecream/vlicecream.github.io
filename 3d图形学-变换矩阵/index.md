@@ -60,7 +60,7 @@ $$
 
 *下面证明 S 其实就是一种线性变换: *
 $$
-\begin{align*}
+\begin{align}
 S(\vec{u} + \vec{v}) 
 &= (s_x(u_x + v_x), s_y(u_y, v_y), sz(u_z + v_z))
 \\\ \\\
@@ -75,7 +75,7 @@ S(k\vec{u}) &= (s_x k u_x, s_y k u_y, s_z k u_z)
 &= k(s_x u_x, s_y u_y, s_z u_z)
 \\\ \\\
 &= kS(\vec{u})
-\end{align*}
+\end{align}
 $$
 *因此，缩放变换 S 满足上述所有的性质。*
 
@@ -159,7 +159,7 @@ $$
 
 4. *这样就推导除了下列旋转公式：*
    $$
-   \begin{align*}
+   \begin{align}
    R_n(\vec{v}) 
    &= proj_n(\vec{v}) + R_n(\vec{v}_\perp)
    \\\ \\\
@@ -168,7 +168,7 @@ $$
    &= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta(\vec{v} - (\vec{n} \cdot \vec{v})\vec{n}) + sin\theta(\vec{n} \times \vec{v})
    \\\ \\\
    &= cos\theta\vec{v} + (1 - cos\theta)(\vec{n} \times \vec{v})\vec{n} + sin\theta(\vec{n} \times \vec{v})
-   \end{align*}
+   \end{align}
    $$
 
 5. *若要得到旋转的变换矩阵表示，仅需将各个标准基向量代入到 Rn 中，再把得到的向量分别作为矩阵的行向量。 最终得到的结果为：*
@@ -246,7 +246,7 @@ $$
 
 *现在，我们希望令它绕 y 轴顺时针旋转−30°（即按逆时针方向旋转 30°）。*
 
-*根据问题所述可知， n =  (0,1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为：*
+*根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为：*
 $$
 R_y = 
 \begin{bmatrix}
@@ -256,7 +256,7 @@ cos\theta & 0 & -sin\theta
 \\\ \\\
 sin\theta & 0 & cos\theta
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 cos(-30\textdegree) & 0 & -sin(-30\textdegree)
 \\\ \\\
