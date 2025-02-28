@@ -58,7 +58,7 @@ S(x, y, z) = (s_x x, s_y y, s_z z)
 $$
 *此变换将相对于当前坐标系中的原点，令向量在 x, y, z 轴上分别以系数 $ s_x, s_y, s_z $ 进行缩放*
 
-*下面证明 S 其实就是一种线性变换: *
+*下面证明 S 其实就是一种线性变换:*
 $$
 \begin{align}
 S(\vec{u} + \vec{v}) 
@@ -149,7 +149,7 @@ $$
 
    *基于图3.3所示的三角关系可知：*
    $$
-   ||\vec{n} x \vec{v}|| = ||\vec{n}|| \cdot ||\vec{v}|| sin\alpha = ||\vec{v}||sin\alpha = ||v_\perp||
+   ||\vec{n} \times \vec{v}|| = ||\vec{n}|| \cdot ||\vec{v}|| sin\alpha = ||\vec{v}||sin\alpha = ||v_\perp||
    $$
 
 3. *其中，α 是 n 与 v 之间的夹角。由此可知：两个参考向量的长度相等，且都位于旋转的圆周之上。 根据三角学知识，我们就可以将这两个参考向量建立如下关系：*
@@ -161,9 +161,9 @@ $$
    $$
    \begin{align}
    R_n(\vec{v}) 
-   &= proj_n(\vec{v}) + R_n(\vec{v}_\perp)
+   &= proj_n(\vec{v}) + R_n(\vec{v}\_\perp)
    \\\ \\\
-   &= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta\vec{v}_\perp + sin\theta(\vec{n} \times \vec{v})
+   &= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta\vec{v}\_\perp + sin\theta(\vec{n} \times \vec{v})
    \\\ \\\
    &= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta(\vec{v} - (\vec{n} \cdot \vec{v})\vec{n}) + sin\theta(\vec{n} \times \vec{v})
    \\\ \\\
@@ -256,7 +256,7 @@ cos\theta & 0 & -sin\theta
 \\\ \\\
 sin\theta & 0 & cos\theta
 \end{bmatrix}
-=
+\=
 \begin{bmatrix}
 cos(-30\textdegree) & 0 & -sin(-30\textdegree)
 \\\ \\\
@@ -264,7 +264,7 @@ cos(-30\textdegree) & 0 & -sin(-30\textdegree)
 \\\ \\\
 sin(-30\textdegree) & 0 & cos(-30\textdegree)
 \end{bmatrix}
-= 
+\= 
 \begin{bmatrix}
 \frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
 \\\ \\\

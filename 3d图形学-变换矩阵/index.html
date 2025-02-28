@@ -189,7 +189,7 @@ $$
 S(x, y, z) = (s_x x, s_y y, s_z z)
 $$
 <em>此变换将相对于当前坐标系中的原点，令向量在 x, y, z 轴上分别以系数 $ s_x, s_y, s_z $ 进行缩放</em></p>
-<p>*下面证明 S 其实就是一种线性变换: *
+<p><em>下面证明 S 其实就是一种线性变换:</em>
 $$
 \begin{align}
 S(\vec{u} + \vec{v})
@@ -276,7 +276,7 @@ $$
 <p><em>通过计算叉积 $ \vec{n} x \vec{v} $来获得既正交于 $ \vec (\vec{v_\perp} $ 又正交于 $ \vec{n}$ 的第二个参考向量（根据左手拇指法则）</em></p>
 <p><em>基于图3.3所示的三角关系可知：</em>
 $$
-||\vec{n} x \vec{v}|| = ||\vec{n}|| \cdot ||\vec{v}|| sin\alpha = ||\vec{v}||sin\alpha = ||v_\perp||
+||\vec{n} \times \vec{v}|| = ||\vec{n}|| \cdot ||\vec{v}|| sin\alpha = ||\vec{v}||sin\alpha = ||v_\perp||
 $$</p>
 </li>
 <li>
@@ -290,9 +290,9 @@ $$</p>
 $$
 \begin{align}
 R_n(\vec{v})
-&amp;= proj_n(\vec{v}) + R_n(\vec{v}<em>\perp)
+&amp;= proj_n(\vec{v}) + R_n(\vec{v}_\perp)
 \\ \\
-&amp;= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta\vec{v}</em>\perp + sin\theta(\vec{n} \times \vec{v})
+&amp;= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta\vec{v}_\perp + sin\theta(\vec{n} \times \vec{v})
 \\ \\
 &amp;= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta(\vec{v} - (\vec{n} \cdot \vec{v})\vec{n}) + sin\theta(\vec{n} \times \vec{v})
 \\ \\
@@ -369,7 +369,7 @@ $$</p>
 <h4 id="例题-1"><em><strong>例题</strong></em></h4>
 <p><em>假设定义了一个最小点坐标为(−1, 0, −1)和最大点坐标为(1, 0, 1)的正方形。</em></p>
 <p><em>现在，我们希望令它绕 y 轴顺时针旋转−30°（即按逆时针方向旋转 30°）。</em></p>
-<h1 id="endbmatrix"><em>根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为：</em>
+<p><em>根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为：</em>
 $$
 R_y =
 \begin{bmatrix}
@@ -378,15 +378,17 @@ cos\theta &amp; 0 &amp; -sin\theta
 0 &amp; 1 &amp; 0
 \\ \\
 sin\theta &amp; 0 &amp; cos\theta
-\end{bmatrix}</h1>
-<h1 id="endbmatrix-1">\begin{bmatrix}
+\end{bmatrix}
+=
+\begin{bmatrix}
 cos(-30\textdegree) &amp; 0 &amp; -sin(-30\textdegree)
 \\ \\
 0 &amp; 1 &amp; 0
 \\ \\
 sin(-30\textdegree) &amp; 0 &amp; cos(-30\textdegree)
-\end{bmatrix}</h1>
-<p>\begin{bmatrix}
+\end{bmatrix}
+=
+\begin{bmatrix}
 \frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2}
 \\ \\
 0 &amp; 1 &amp; 0
