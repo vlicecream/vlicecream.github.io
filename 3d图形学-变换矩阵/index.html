@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  142 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  2179 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-02-25T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,8 +116,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 142 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2179 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -131,6 +131,17 @@
       <ul>
         <li><a href="#定义"><em><strong>定义</strong></em></a></li>
         <li><a href="#示例"><em><strong>示例</strong></em></a></li>
+        <li><a href="#矩阵表示法"><em><strong>矩阵表示法</strong></em></a></li>
+        <li><a href="#缩放"><em><strong>缩放</strong></em></a>
+          <ul>
+            <li><a href="#例题"><em><strong>例题</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#旋转"><em><strong>旋转</strong></em></a>
+          <ul>
+            <li><a href="#例题-1"><em><strong>例题</strong></em></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -146,8 +157,267 @@
 </ol>
 <p><em>其中，$ \vec{u} = (u_x, u_y, u_z)和 \vec{v} = (v_x, v_y, v_z) $是任意 3D 向量，k 为一个标量。</em></p>
 <h3 id="示例"><em><strong>示例</strong></em></h3>
-<p>$$</p>
-<p>$$</p>
+<p><em>定义函数 $ \tau(x, y, z) = (x^2, y^2, z^2) $, 例如 $ \tau(1, 2, 3) = (1, 4, 9) $ 这个函数是非线性函数，因为当 k=2 且 $ \vec{u} = (1, 2, 3) $时</em></p>
+<p>$$
+\tau(k\vec{u}) = \tau(2，4，6) = (4, 16, 36)
+$$
+<em>但</em>
+$$
+k\tau(u) = 2(1,4,9) = (2,8,18)
+$$
+<em>因此，该函数不满足刚刚说的第二条性质</em></p>
+<p><em>如果$ \tau $ 是线性函数，那么有</em>
+$$
+\begin{align*}
+\tau(a\vec{u} + b\vec{v} + c\vec{w})
+&amp;= \tau(a\vec{u} + (b\vec{v} + c\vec{w}))
+\\ \\
+&amp;= a\tau(\vec{u}) + \tau(b\vec{v} + c\vec{w})
+\\ \\
+&amp;= a\tau(\vec{u}) + b\tau(\vec{v}) + c\tau(\vec{w})
+\end{align*}
+$$</p>
+<h3 id="矩阵表示法"><em><strong>矩阵表示法</strong></em></h3>
+<p><em>设 $ \vec{u} = (x, y, z)，我们也可以将它写作 $</em>
+$$
+\vec{u} = (x, y, z) = x\vec{i} + y\vec{j} + z\vec{k} = x(1, 0, 0) + y(0,1,0) + z(0,0,1)
+$$</p>
+<h3 id="缩放"><em><strong>缩放</strong></em></h3>
+<p><em>缩放（scaling，也有译作比例变换）是指改变物体的大小</em></p>
+<p><em>我们把缩放定义为</em>
+$$
+S(x, y, z) = (s_x x, s_y y, s_z z)
+$$
+<em>此变换将相对于当前坐标系中的原点，令向量在 x, y, z 轴上分别以系数 $ s_x, s_y, s_z $ 进行缩放</em></p>
+<p><em>下面证明 S 其实就是一种线性变换: *
+$$
+\begin{align</em>}
+S(\vec{u} + \vec{v})
+&amp;= (s_x(u_x + v_x), s_y(u_y, v_y), sz(u_z + v_z))
+\\ \\
+&amp;= (s_x u_x + s_x v_x, s_y u_y + s_y v_y, s_z u_z + s_z v_z)
+\\ \\
+&amp;= (s_x u_x, s_y u_y, s_z u_z) + (s_x v_x, s_y v_y, s_z v_z)
+\\ \\
+&amp;= S(\vec{u}) + S(\vec{v})
+\\ \\
+S(k\vec{u}) &amp;= (s_x k u_x, s_y k u_y, s_z k u_z)
+\\ \\
+&amp;= k(s_x u_x, s_y u_y, s_z u_z)
+\\ \\
+&amp;= kS(\vec{u})
+\end{align*}
+$$
+<em>因此，缩放变换 S 满足上述所有的性质。</em></p>
+<p><em>这也就是说，S是线性变换并存在一种矩阵表示法。</em></p>
+<p><em>为了求出S的矩阵表示，我们只需把每一个标准基向量一次代入 S，在将得到的向量作为矩阵的行向量</em>
+$$
+S(i) = (s_x \cdot 1, s_y \cdot 0, s_z \cdot 0) = (s_x, 0, 0)
+\\ \\
+s(j) = (s_x \cdot 0, s_y \cdot 1, s_z \cdot 0) = (0, s_y, 0)
+\\ \\
+s(k) = (s_x \cdot 0, s_y \cdot 0, s_z \cdot 1) = (0, 0, s_z)
+$$
+<em>这样就得到了缩放变换 S 的矩阵表示</em>
+$$
+S=
+\begin{bmatrix}
+s_x &amp; 0 &amp; 0
+\\
+0 &amp; s_y &amp; 0
+\\
+0 &amp; 0 &amp; s_z
+\end{bmatrix}
+$$
+<em>我们称此矩阵为缩放矩阵（scaling matrix，亦有译为比例变换矩阵）。</em></p>
+<p><em>而其对用的逆矩阵则为：</em>
+$$
+S^{-1}=
+\begin{bmatrix}
+\frac{1}{s_x} &amp; 0 &amp; 0
+\\
+0 &amp; \frac{1}{s_y} &amp; 0
+\\
+0 &amp; 0 &amp; \frac{1}{s_z}
+\end{bmatrix}
+$$</p>
+<h4 id="例题"><em><strong>例题</strong></em></h4>
+<p><em>假设定义了一个最小点坐标为 (−4, −4, 0) 和最大点坐标为 (4, 4, 0) 的正方形。现欲将此正方形在 x 轴方 向上缩小 50%，在 y 轴方向上放大 2.0 倍，但在 z 轴方向上保持不变。其对应的缩放矩阵为：</em>
+$$
+S=
+\begin{bmatrix}
+0.5 &amp; 0 &amp; 0
+\\
+0 &amp; 2 &amp; 0
+\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$
+变换的效果如图所示</p>
+<h3 id="旋转"><em><strong>旋转</strong></em></h3>
+<p><em>在本节中，我们将用数学的方式来描述令向量 v 绕轴 n 以角 θ 进行旋转</em></p>
+<p><em>此过程如图 3.3 所示。注意，在沿 n 轴从上至下俯瞰时，我们按顺时针方向来测量角 θ ，并且假设 ||n|| = 1</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="C:%5cUsers%5cpeng.xu%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250227222204332.png"
+        data-srcset="C:%5cUsers%5cpeng.xu%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250227222204332.png, C:%5cUsers%5cpeng.xu%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250227222204332.png 1.5x, C:%5cUsers%5cpeng.xu%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250227222204332.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\peng.xu\AppData\Roaming\Typora\typora-user-images\image-20250227222204332.png"
+        title="image-20250227222204332" /></p>
+<ol>
+<li>
+<p><em>将向量 v 分解为两部分：一部分平行于 n，另一部分正交于 n。</em></p>
+<p><em>平行于 n 的部分即为 $ proj_n(\vec{v}) $ ，正交于 n 的部分则是  $ \vec{v_\perp } = perp_n(\vec{v}) = \vec{v} = proj_n(\vec{v}) $（由于 n 是单位向量，我们就可以得到 $ proj_n(\vec{v}) = (\vec{n} \cdot \vec{v})\vec{n} $ ）</em></p>
+<p><em>观察示意图能够发现这样一个关键信息：平行于 n 的部分 $  proj_n(\vec{v}) $ 在旋转时是保持不变的。因此，我们只需考虑怎样旋转与 n 正交的部分。根据图 3.3 可知，旋转向量  $ R_n(\vec{v}) = proj_n(\vec{v}) + R_n(\vec{v_\perp}) $ 。</em></p>
+</li>
+<li>
+<p><em>为了求出 $ R_n(\vec{v_\perp}) $，我们在旋转平面内建立一个2D坐标系，并将 $ \vec (\vec{v_\perp} $ 作为一个参考向量</em></p>
+<p><em>通过计算叉积 $ \vec{n} x \vec{v} $来获得既正交于 $ \vec (\vec{v_\perp} $ 又正交于 $ \vec{n}$ 的第二个参考向量（根据左手拇指法则）</em></p>
+<p><em>基于图3.3所示的三角关系可知：</em>
+$$
+||\vec{n} x \vec{v}|| = ||\vec{n}|| \cdot ||\vec{v}|| sin\alpha = ||\vec{v}||sin\alpha = ||v_\perp||
+$$</p>
+</li>
+<li>
+<p><em>其中，α 是 n 与 v 之间的夹角。由此可知：两个参考向量的长度相等，且都位于旋转的圆周之上。 根据三角学知识，我们就可以将这两个参考向量建立如下关系：</em>
+$$
+R_n(v_\perp) = cos\theta\vec{v}_\perp + sin\theta(\vec{n} \times \vec{v})
+$$</p>
+</li>
+<li>
+<p><em>这样就推导除了下列旋转公式：</em>
+$$
+\begin{align*}
+R_n(\vec{v})
+&amp;= proj_n(\vec{v}) + R_n(\vec{v}<em>\perp)
+\\ \\
+&amp;= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta\vec{v}</em>\perp + sin\theta(\vec{n} \times \vec{v})
+\\ \\
+&amp;= (\vec{n} \cdot \vec{v})\vec{n} + cos\theta(\vec{v} - (\vec{n} \cdot \vec{v})\vec{n}) + sin\theta(\vec{n} \times \vec{v})
+\\ \\
+&amp;= cos\theta\vec{v} + (1 - cos\theta)(\vec{n} \times \vec{v})\vec{n} + sin\theta(\vec{n} \times \vec{v})
+\end{align*}
+$$</p>
+</li>
+<li>
+<p><em>若要得到旋转的变换矩阵表示，仅需将各个标准基向量代入到 Rn 中，再把得到的向量分别作为矩阵的行向量。 最终得到的结果为：</em>
+$$
+R_n =
+\begin{bmatrix}
+c + (1 - c)x^2 &amp; (1-c)xy + sz &amp; (1-c)xz - sy
+\\ \\
+(1-c)xy - sz &amp; c + (1 - c)y^2 &amp; (1-c)yz + sx
+\\ \\
+(1-c)xz + sy &amp; (1-c)yz - sx &amp; c + (1-c)z^2
+\end{bmatrix}
+\\ \\
+此处设 c = cos\theta 且 s = sin\theta
+$$</p>
+</li>
+</ol>
+<p><em>旋转矩阵有个有趣的性质：每个行向量都为单位长度且两两正交（请分别证明）。</em></p>
+<p><em>也就是说，这些行 向量都是规范正交的（orthonormal，即互相正交且具有单位长度）。</em></p>
+<p><em>若一个矩阵的行向量都是规范正交 的，则称此矩阵为正交矩阵（orthogonal matrix）。</em></p>
+<p><em>正交矩阵有个引人注目的性质，即它的逆矩阵与转置 矩阵是相等的：</em>
+$$
+R^{-1}_n = R^T_n  =
+\begin{bmatrix}
+c + (1 - c)x^2 &amp; (1-c)xy + sz &amp; (1-c)xz - sy
+\\ \\
+(1-c)xy - sz &amp; c + (1 - c)y^2 &amp; (1-c)yz + sx
+\\ \\
+(1-c)xz + sy &amp; (1-c)yz - sx &amp; c + (1-c)z^2
+\end{bmatrix}
+\\ \\
+此处设 c = cos\theta 且 s = sin\theta
+$$
+<em><strong>通常来说，由于正交矩阵的逆矩阵计算方便且高效，所以很受青睐。</strong></em></p>
+<p><em>特别地，如果选择绕 x 轴、y 轴或 z 轴进行旋转（即分别取 n = (1, 0, 0)、n = (0, 1, 0)和 n = (0, 0, 1)）， 便会获得以 x、y、z 为旋转轴的对应旋转矩阵：</em>
+$$
+R_x =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0
+\\ \\
+0 &amp; cos\theta &amp; sin\theta
+\\ \
+0 &amp; -sin\theta &amp; cos\theta
+\\ \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+,R_y =
+\begin{bmatrix}
+cos\theta &amp; 0 &amp; -sin\theta
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \
+sin\theta &amp; 0 &amp; cos\theta
+\\ \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+,R_z =
+\begin{bmatrix}
+cos\theta &amp; sin\theta &amp; 0
+\\ \\
+-sin\theta &amp; cos\theta &amp; 0
+\\ \
+0 &amp; 0 &amp; 1
+\\ \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+$$</p>
+<h4 id="例题-1"><em><strong>例题</strong></em></h4>
+<p><em>假设定义了一个最小点坐标为(−1, 0, −1)和最大点坐标为(1, 0, 1)的正方形。</em></p>
+<p><em>现在，我们希望令它绕 y 轴顺时针旋转−30°（即按逆时针方向旋转 30°）。</em></p>
+<h1 id="endbmatrix"><em>根据问题所述可知， n =  (0,1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为：</em>
+$$
+R_y =
+\begin{bmatrix}
+cos\theta &amp; 0 &amp; -sin\theta
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \\
+sin\theta &amp; 0 &amp; cos\theta
+\end{bmatrix}</h1>
+<h1 id="endbmatrix-1">\begin{bmatrix}
+cos(-30\textdegree) &amp; 0 &amp; -sin(-30\textdegree)
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \\
+sin(-30\textdegree) &amp; 0 &amp; cos(-30\textdegree)
+\end{bmatrix}</h1>
+<p>\begin{bmatrix}
+\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2}
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \\
+-\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
+\end{bmatrix}
+$$
+<em>为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵：</em>
+$$
+[-1, 0, -1]
+\begin{bmatrix}
+\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2}
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \\
+-\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
+\end{bmatrix}
+\thickapprox
+[-0.36,0,-1.36]
+\\ \\
+[1, 0, 1]
+\begin{bmatrix}
+\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2}
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \\
+-\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
+\end{bmatrix}
+\thickapprox
+[0.36,0,1.36]
+$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
