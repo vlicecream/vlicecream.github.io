@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  2428 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  2476 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-02-25T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,7 +116,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2428 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2476 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -412,23 +412,25 @@ $$</p>
 <p><em>现在，我们希望令它绕 y 轴顺时针旋转−30°（即按逆时针方向旋转 30°）。</em></p>
 <p>根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为
 $$
-R_y =
-\begin{bmatrix}
-cos\theta &amp; 0 &amp; -sin\theta
-\\ \\
-0 &amp; 1 &amp; 0
-\\ \\
-sin\theta &amp; 0 &amp; cos\theta
+R_y = \begin{bmatrix}
+\cos\theta &amp; 0 &amp; -\sin\theta \\
+0 &amp; 1 &amp; 0 \\
+\sin\theta &amp; 0 &amp; \cos\theta
 \end{bmatrix}
-=
-\begin{bmatrix}
-cos(-30\textdegree) &amp; 0 &amp; -sin(-30\textdegree)
-\\ \\
-0 &amp; 1 &amp; 0
-\\ \\
-sin(-30\textdegree) &amp; 0 &amp; cos(-30\textdegree)
+= \begin{bmatrix}
+\cos(-30^\circ) &amp; 0 &amp; -\sin(-30^\circ) \\
+0 &amp; 1 &amp; 0 \\
+\sin(-30^\circ) &amp; 0 &amp; \cos(-30^\circ)
 \end{bmatrix}
-=
+= \begin{bmatrix}
+\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2} \\
+0 &amp; 1 &amp; 0 \\
+-\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
+\end{bmatrix}
+$$
+为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
+$$
+[-1, 0, -1]
 \begin{bmatrix}
 \frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2}
 \\ \\
@@ -436,10 +438,20 @@ sin(-30\textdegree) &amp; 0 &amp; cos(-30\textdegree)
 \\ \\
 -\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
 \end{bmatrix}
-$$
-为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
+\thickapprox
+[-0.36,0,-1.36]
+\\ \\
+[1, 0, 1]
+\begin{bmatrix}
+\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2}
+\\ \\
+0 &amp; 1 &amp; 0
+\\ \\
+-\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
+\end{bmatrix}
+\thickapprox
+[0.36,0,1.36]
 $$</p>
-<p>$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

@@ -293,23 +293,25 @@ $$
 
 根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为
 $$
-R_y = 
-\begin{bmatrix}
-cos\theta & 0 & -sin\theta
-\\\ \\\
-0 & 1 & 0
-\\\ \\\
-sin\theta & 0 & cos\theta
+R_y = \begin{bmatrix} 
+\cos\theta & 0 & -\sin\theta \\\
+0 & 1 & 0 \\\
+\sin\theta & 0 & \cos\theta 
+\end{bmatrix} 
+= \begin{bmatrix} 
+\cos(-30^\circ) & 0 & -\sin(-30^\circ) \\\
+0 & 1 & 0 \\\
+\sin(-30^\circ) & 0 & \cos(-30^\circ) 
+\end{bmatrix} 
+= \begin{bmatrix} 
+\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} \\\
+0 & 1 & 0 \\\
+-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2} 
 \end{bmatrix}
-\=
-\begin{bmatrix}
-cos(-30\textdegree) & 0 & -sin(-30\textdegree)
-\\\ \\\
-0 & 1 & 0
-\\\ \\\
-sin(-30\textdegree) & 0 & cos(-30\textdegree)
-\end{bmatrix}
-\= 
+$$
+为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
+$$
+[-1, 0, -1]
 \begin{bmatrix}
 \frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
 \\\ \\\
@@ -317,9 +319,18 @@ sin(-30\textdegree) & 0 & cos(-30\textdegree)
 \\\ \\\
 -\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
 \end{bmatrix}
-$$
-为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
-$$
-
+\thickapprox
+[-0.36,0,-1.36]
+\\\ \\\
+[1, 0, 1]
+\begin{bmatrix}
+\frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
+\\\ \\\
+0 & 1 & 0
+\\\ \\\
+-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
+\end{bmatrix}
+\thickapprox
+[0.36,0,1.36]
 $$
 
