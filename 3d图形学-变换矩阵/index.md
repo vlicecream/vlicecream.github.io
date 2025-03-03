@@ -311,26 +311,20 @@ R_y = \begin{bmatrix}
 $$
 为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
 $$
-[-1, 0, -1]
-\begin{bmatrix}
-\frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
+\begin{align*}
+[-1, 0, -1] \begin{bmatrix} 
+\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} \\\
+0 & 1 & 0 \\\
+-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2} 
+\end{bmatrix} 
+&\approx [-0.36, 0, -1.36] 
 \\\ \\\
-0 & 1 & 0
-\\\ \\\
--\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
-\end{bmatrix}
-\thickapprox
-[-0.36,0,-1.36]
-\\\ \\\
-[1, 0, 1]
-\begin{bmatrix}
-\frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
-\\\ \\\
-0 & 1 & 0
-\\\ \\\
--\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
-\end{bmatrix}
-\thickapprox
-[0.36,0,1.36]
+[1, 0, 1] \begin{bmatrix} 
+\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} \\\
+0 & 1 & 0 \\\
+-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2} 
+\end{bmatrix} 
+&\approx [0.36, 0, 1.36]
+\end{align*}
 $$
 
