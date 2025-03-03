@@ -176,7 +176,7 @@ $$
 
 *此过程如图 3.3 所示。注意，在沿 n 轴从上至下俯瞰时，我们按顺时针方向来测量角 θ ，并且假设 ||n|| = 1*
 
-![image-20250227222204332](C:\Users\peng.xu\AppData\Roaming\Typora\typora-user-images\image-20250227222204332.png)
+![image-20250303212116226](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250303212116226.png)
 
 1. *将向量 v 分解为两部分：一部分平行于 n，另一部分正交于 n。*
 
