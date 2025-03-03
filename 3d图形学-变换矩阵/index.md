@@ -214,6 +214,7 @@ $$
 
 5. *若要得到旋转的变换矩阵表示，仅需将各个标准基向量代入到 Rn 中，再把得到的向量分别作为矩阵的行向量。 最终得到的结果为：*
    $$
+   \begin{align*}
    R_n = 
    \begin{bmatrix}
    c + (1 - c)x^2 & (1-c)xy + sz & (1-c)xz - sy
@@ -224,6 +225,7 @@ $$
    \end{bmatrix}
    \\\ \\\
    此处设 c = cos\theta 且 s = sin\theta
+   \end{align*}
    $$
 
 *旋转矩阵有个有趣的性质：每个行向量都为单位长度且两两正交（请分别证明）。*
@@ -291,6 +293,7 @@ $$
 
 根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为
 $$
+\\\
 R_y = 
 \begin{bmatrix}
 cos\theta & 0 & -sin\theta
@@ -300,24 +303,11 @@ cos\theta & 0 & -sin\theta
 sin\theta & 0 & cos\theta
 \end{bmatrix}
 \=
-\begin{bmatrix}
-cos(-30\textdegree) & 0 & -sin(-30\textdegree)
-\\\ \\\
-0 & 1 & 0
-\\\ \\\
-sin(-30\textdegree) & 0 & cos(-30\textdegree)
-\end{bmatrix}
-\= 
-\begin{bmatrix}
-\frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
-\\\ \\\
-0 & 1 & 0
-\\\ \\\
--\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
-\end{bmatrix}
+\\\
 $$
 为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
 $$
+\\\
 [-1, 0, -1]
 \begin{bmatrix}
 \frac{\sqrt{3}}{2} & 0 & \frac{1}{2}
@@ -339,5 +329,6 @@ $$
 \end{bmatrix}
 \thickapprox
 [0.36,0,1.36]
+\\\
 $$
 
