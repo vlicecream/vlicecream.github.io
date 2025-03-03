@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  2478 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  2917 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-02-25T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,8 +116,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2478 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2917 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -142,6 +142,12 @@
             <li><a href="#例题-1"><em><strong>例题</strong></em></a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+    <li><a href="#仿射变换"><em><strong>仿射变换</strong></em></a>
+      <ul>
+        <li><a href="#齐次坐标"><em><strong>齐次坐标</strong></em></a></li>
+        <li><a href="#仿射变换的定义及其矩阵表示"><em><strong>仿射变换的定义及其矩阵表示</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -410,7 +416,7 @@ $$</p>
 <h4 id="例题-1"><em><strong>例题</strong></em></h4>
 <p><em>假设定义了一个最小点坐标为(−1, 0, −1)和最大点坐标为(1, 0, 1)的正方形。</em></p>
 <p><em>现在，我们希望令它绕 y 轴顺时针旋转−30°（即按逆时针方向旋转 30°）。</em></p>
-<p>根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为
+<p><em>根据问题所述可知， n =  (0, 1, 0) ，代入 $ R_n $ 并进行化简， 可得到 y 轴的旋转矩阵为</em>
 $$
 R_y = \begin{bmatrix}
 \cos\theta &amp; 0 &amp; -\sin\theta \\
@@ -428,7 +434,7 @@ R_y = \begin{bmatrix}
 -\frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}
 \end{bmatrix}
 $$
-为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵
+<em>为了旋转该正方形，还需将其最小点、最大点坐标分别乘以得到的旋转矩阵</em>
 $$
 \begin{align*}
 [-1, 0, -1] \begin{bmatrix}
@@ -445,6 +451,21 @@ $$
 \end{bmatrix}
 &amp;\approx [0.36, 0, 1.36]
 \end{align*}
+$$</p>
+<h2 id="仿射变换"><em><strong>仿射变换</strong></em></h2>
+<h3 id="齐次坐标"><em><strong>齐次坐标</strong></em></h3>
+<p><em>仿射变换 是一个线性变换和一个平移变换组合而成的。对于向量而言，平移操作是没有意义的，因为向量只描述方向和大小，却与位置无关。换句话说，平移向量不应该作用于向量。因此，平移变换只能应用于点(即位置向量)</em></p>
+<p><em>齐次坐标（homogeneous coordinate）所提供的表示机制，使我们可以方便地对点和向量进行统一的处理。在采用齐次坐标表示法时，我们将坐标扩充为四元组，其中，第四个坐标 w 的取值将根据被描述对象是点还是向量而定。具体来讲：</em></p>
+<ol>
+<li><em>(x, y, z, 0) 表示向量</em></li>
+<li><em>(x, y, z, 1)表示点</em></li>
+</ol>
+<p><em>在后面我们将会证明：设 w = 1 能使点被正确地平移，设 w = 0 则可以防止向量坐标受到平移操作的 影响（我们不希望对向量的坐标进行平移变换，因为这个计算过程会改变它的方向和大小——而平移操 作不应当修改向量的任何一种“属性”）。</em></p>
+<h3 id="仿射变换的定义及其矩阵表示"><em><strong>仿射变换的定义及其矩阵表示</strong></em></h3>
+<p><em>线性变换并不能表示出我们需要的所有变换，因此，现将其扩充为一种称作仿射变换的映射范围更广的函数类。</em></p>
+<p><em>仿射变换为一个线性变换加上一个平移向量 b，即：</em>
+$$
+(\vec{u}) = \tau(\vec{u}) + \vec{b}
 $$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
