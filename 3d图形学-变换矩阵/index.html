@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  2917 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  4698 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-02-25T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,8 +116,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2917 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4698 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -148,6 +148,20 @@
       <ul>
         <li><a href="#齐次坐标"><em><strong>齐次坐标</strong></em></a></li>
         <li><a href="#仿射变换的定义及其矩阵表示"><em><strong>仿射变换的定义及其矩阵表示</strong></em></a></li>
+        <li><a href="#平移"><em><strong>平移</strong></em></a>
+          <ul>
+            <li><a href="#例子"><em><strong>例子</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#缩放和旋转的仿射矩阵"><em><strong>缩放和旋转的仿射矩阵</strong></em></a></li>
+        <li><a href="#仿射变换矩阵的几何意义"><em><strong>仿射变换矩阵的几何意义</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -465,8 +479,185 @@ $$</p>
 <p><em>线性变换并不能表示出我们需要的所有变换，因此，现将其扩充为一种称作仿射变换的映射范围更广的函数类。</em></p>
 <p><em>仿射变换为一个线性变换加上一个平移向量 b，即：</em>
 $$
-(\vec{u}) = \tau(\vec{u}) + \vec{b}
+\alpha(\vec{u}) = \tau(\vec{u}) + \vec{b}
+$$
+<em>或者用矩阵表示法</em>
+$$
+\alpha(\vec{u})
+= \vec{u}A + \vec{b}
+= [x, y, z]
+\begin{bmatrix}
+A_{11} &amp; A_{12} &amp; A_{13}
+\\ \\
+A_{21} &amp; A_{22} &amp; A_{23}
+\\ \\
+A_{31} &amp; A_{32} &amp; A_{33}
+\end{bmatrix}</p>
+<ul>
+<li>[b_x, b_y, b_z]
+= [x&rsquo;, y&rsquo;, z&rsquo;]
+$$
+<em>其中，A 是一个线性变换的矩阵表示。</em></li>
+</ul>
+<p><em>如果用 w = 1 把坐标扩充为齐次坐标，那么就可以将上式更简洁地写作：</em>
+$$
+[x, y, z, 1]
+\begin{bmatrix}
+A_{11} &amp; A_{12} &amp; A_{13} &amp; 0
+\\ \\
+A_{21} &amp; A_{22} &amp; A_{23} &amp; 0
+\\ \\
+A_{31} &amp; A_{32} &amp; A_{33} &amp; 0
+\\ \\
+b_x &amp; b_y &amp; b_z &amp; 1
+\end{bmatrix}
+= [x&rsquo;, y&rsquo;, z&rsquo;, 1]
+$$
+<em>此 4 x 4 矩阵称为仿射变换的矩阵表示。</em></p>
+<p><em>可以看出，加上向量 b 的这步运算，从本质上来说是一种平移操作（使目标对象的位置发生了改变）。但是，我们既不希望将此平移操作应用到向量上（因为向量的性质中并没有位置这个概念），又想令向量 受到仿射变换中线性部分的处理。此时，如果将向量的第四个分量设为 w = 0，它便不会受到向量 b 平移 操作的影响（可通过矩阵的乘法运算来验证这一点）。</em></p>
+<h3 id="平移"><em><strong>平移</strong></em></h3>
+<p><em>恒等变换（identity transformation）是一种直接返回其输入参数的线性变换，形如 I(u) = u。不难证 明，这种线性变换的矩阵表示即为单位矩阵</em></p>
+<p><em>现将平移变换（translation transformation）定义为仿射变换，此时， 其中的线性变换就是一种恒等变换，即：</em>
+$$
+\tau(\vec{u}) = \vec{u}I + \vec{b} = \vec{u} + \vec{b}
+$$
+<em>如您所见，此线性变换简单地利用向量 b 对点 u 进行平移（或位移）。</em></p>
+<p><em>$ \tau $ 的矩阵表示为</em>
+$$
+T =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 1 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1 &amp; 0
+\\ \\
+b_x &amp; b_y &amp; b_z &amp; 1
+\end{bmatrix}
+$$
+<em>该矩阵称为平移矩阵（translation matrix）。</em></p>
+<p><em>平移矩阵的逆矩阵则为：</em>
+$$
+T^{-1} =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 1 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1 &amp; 0
+\\ \\
+-b_x &amp; -b_y &amp; -b_z &amp; 1
+\end{bmatrix}
 $$</p>
+<h4 id="例子"><em><strong>例子</strong></em></h4>
+<p><em>假设定义了一个正方形，其最小点坐标为(−8, 2, 0)，最大点坐标为(−2, 8, 0)。我们希望将此正方形沿 x 轴正方向平移 12 个单位，沿 y 轴正方向平移 −10 个单位，在 z 轴方向保持不变</em></p>
+<h1 id="endbmatrix"><em>则其对应的平移矩阵为：</em>
+$$
+T =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 1 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1 &amp; 0
+\\ \\
+12 &amp; -10 &amp; 0 &amp; 1
+\end{bmatrix}
+$$
+<em>现对此正方形进行平移（变换），将其最小点、最大点坐标分别乘以上述平移矩阵：</em>
+$$
+[-8, 2, 0, 1]
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 1 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1 &amp; 0
+\\ \\
+12 &amp; -10 &amp; 0 &amp; 1
+\end{bmatrix}</h1>
+<p>[4, -8, 0 ,1]</p>
+<h1 id="endbmatrix-1">[-2, -8, 0, 1]
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 1 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1 &amp; 0
+\\ \\
+12 &amp; -10 &amp; 0 &amp; 1
+\end{bmatrix}</h1>
+<p>[10, -2, 0 ,1]
+$$
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5-%e5%b9%b3%e7%a7%bb%e7%9f%a9%e9%98%b5.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5-%e5%b9%b3%e7%a7%bb%e7%9f%a9%e9%98%b5.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5-%e5%b9%b3%e7%a7%bb%e7%9f%a9%e9%98%b5.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5-%e5%b9%b3%e7%a7%bb%e7%9f%a9%e9%98%b5.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/变换矩阵-平移矩阵.png"
+        title="变换矩阵-平移矩阵" /></p>
+<h3 id="缩放和旋转的仿射矩阵"><em><strong>缩放和旋转的仿射矩阵</strong></em></h3>
+<p><em>通过观察可以发现，如果 b = 0，则仿射变换将退化为线性变换。这样一来，我们就能用 b = 0 的仿射变换来表示任意线性变换。更进一步说，也就意味着仅通过一个 4 × 4 的仿射矩阵表达出任意的线性变换。例如，缩放矩阵与旋转矩阵可写作下列的 4 × 4矩阵：</em>
+$$
+\begin{align*}
+S &amp;=
+\begin{bmatrix}
+s_x &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; s_y &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; s_z &amp; 0
+\\ \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\\ \\
+R_n
+&amp;=
+\begin{bmatrix}
+c + (1 - c)x^2 &amp; (1-c)xy + sz &amp; (1-c)xz - sy
+\\ \\
+(1-c)xy - sz &amp; c + (1 - c)y^2 &amp; (1-c)yz + sx
+\\ \\
+(1-c)xz + sy &amp; (1-c)yz - sx &amp; c+ (1-c)z^2
+\\ \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\end{align*}
+$$
+<em>如此一来，就能用 4 × 4 矩阵统一地表示所有变换，并通过1 × 4 齐次行向量来表示点和向量。</em></p>
+<h3 id="仿射变换矩阵的几何意义"><em><strong>仿射变换矩阵的几何意义</strong></em></h3>
+<p><em>首先让我们来考察刚体变换（rigid body transformation），其本质是一种保形（shape preserving，即保持形状） 变换。</em></p>
+<p><em>以下便是刚体变换在现实生活中的一个例子：从书桌上拿起书，再将它放到书架上。在移动书的这个过程中（平移），很可能会改变它的朝向（旋转）。</em></p>
+<p><em>设 $ \tau $ 为描述物体旋转操作的旋转变换，而 b 为定义物体平移操作的平移向量。那么，刚体变换就可以用仿射变换来表示：</em>
+$$
+\alpha(x, y, z) = \tau(x, y, z) + \vec{b} = x\tau(\vec{i}) + y\tau(\vec{j}) + z\tau{\vec{k}} + \vec{b}
+$$
+<em>在矩阵表示法中，若采用齐次坐标（表示点时，w = 1；表示向量时，w = 0，如此一来，平移变换就不会作用于向量），上式将被改写为：</em>
+$$
+[x, y, z, w]
+\begin{bmatrix}
+\leftarrow \tau(\vec{i}) \rightarrow
+\\ \\
+\leftarrow \tau(\vec{j}) \rightarrow
+\\ \\
+\leftarrow \tau(\vec{k}) \rightarrow
+\\ \\
+\leftarrow \vec{b} \rightarrow
+\end{bmatrix}
+= [x&rsquo;, y&rsquo;, z&rsquo;, w]
+$$
+<em>至此，为了理解此方程的几何意义，我们还要将矩阵中的行向量依次绘制出来（见图 3.7）。由于 $ \tau $ 是一个 旋转变换，所以它具有保长性与保角性（详见章末习题 26）。</em></p>
+<p><em>特别是我们能看到 $ \tau $ 仅将标准基向量 i、j 和 k，分 别旋转到对应的新方向 $ \tau(\vec{i}) 、\tau(\vec{j}) 和 \tau(\vec{k}) $ 。而向量b 则是一个位置向量，它表示物体相对于原点的位移。现在来看图3.7，它以几何学的角度展示了如何通过计算 $ \alpha(x, y, z) = x\tau(\vec{i}) + y\tau(\vec{j}) + z\tau{\vec{k}} + \vec{b} $ 来求取变换后的点。</em></p>
+<p><em>这种思路同样可以运用在缩放或斜切（skew，也有译作倾斜、扭曲等）变换上。请考虑这样一种线性变换 $ \tau $，它将图 3.8 所示的正方形拉扯为一个平行四边形。斜切处理后的点即为斜切变换后的基向量的线性组合。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250304204433342.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250304204433342.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250304204433342.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250304204433342.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250304204433342.png"
+        title="仿射变换矩阵的几何意义" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
