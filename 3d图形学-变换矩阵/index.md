@@ -361,7 +361,7 @@ A_{21} & A_{22} & A_{23}
 \\\ \\\
 A_{31} & A_{32} & A_{33}
 \end{bmatrix}
-+ [b_x, b_y, b_z]
+\+ [b_x, b_y, b_z]
 = [x', y', z']
 $$
 *其中，A 是一个线性变换的矩阵表示。*
@@ -454,7 +454,7 @@ $$
 \end{bmatrix}
 \=
 [4, -8, 0 ,1]
-
+\\\ \\\
 [-2, -8, 0, 1]
 \begin{bmatrix}
 1 & 0 & 0 & 0
@@ -465,7 +465,7 @@ $$
 \\\ \\\
 12 & -10 & 0 & 1
 \end{bmatrix}
-=
+\=
 [10, -2, 0 ,1]
 $$
 ![变换矩阵-平移矩阵](https://raw.githubusercontent.com/vlicecream/cloudImage/main/变换矩阵-平移矩阵.png)
