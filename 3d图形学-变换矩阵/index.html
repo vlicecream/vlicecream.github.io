@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  7825 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  7822 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-03-05T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,7 +116,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7825 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7822 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -778,7 +778,7 @@ $$
 $$
 \vec{p}_B = x\vec{u}_B + y\vec{v}_B + Q_B
 $$
-<em>如果给出 $ p_A = (x, y) $，同时也知道向量 u、v 以及原点 Q 相对于标架 B 的坐标分别为 $ u_B = (u_x, u_y)、v_B = (v_x, v_y)以及 Q_B = (Q_x, Q_y) $，那么，我们总能求出 $ p_B = (x&rsquo;, y&rsquo;) $</em></p>
+<em>如果给出 $ p_A = (x, y) $，同时也知道向量 u、v 以及原点 Q 相对于标架 B 的坐标分别为 $ u_B = (u_x, u_y)、v_B = (v_x, v_y) $ 以及 $ Q_B = (Q_x, Q_y) $，那么，我们总能求出 $ p_B = (x&rsquo;, y&rsquo;) $</em></p>
 <p><em>现把点的坐标变换推广到 3D 空间，如果 $ p_A = (x, y, z) $，那么：</em>
 $$
 \vec{p}_B = x\vec{u}_B + y\vec{v}_B + z\vec{w}_B + Q_B
@@ -847,7 +847,7 @@ $$
 <em>这样一来，就能把矩阵乘积 C = AB 看作是将坐标从标架 F 直接变换至标架 H 的标架变换矩阵，它将变换矩阵 A 和 B 结合为一个净矩阵&mdash;&mdash;-其思路就类似于函数的复合。</em></p>
 <p><em>这种计算方法还会对性能产生影响。为了说明这一点，我们假设一个由 20000 个点构成的 3D 物体， 现要对它的每个点进行两次标架变换。若使用逐步计算的方法，我们需进行 20000 × 2 次向量与矩阵的乘法运算。但利用结合矩阵的方法，我们只要进行 20000 次向量与矩阵的乘法运算以及一次矩阵与矩阵的乘法运算（用于结合两个标架变换矩阵）即可。不难看出，仅借助一次开销极低的矩阵之间的乘法运算， 便可以节省多次向量与矩阵乘法所需的大量计算资源。</em></p>
 <h3 id="坐标变换矩阵及其逆矩阵"><em><strong>坐标变换矩阵及其逆矩阵</strong></em></h3>
-<p><em>假设给定向量 p 相对于标架 B 的坐标 $p_B$，以及将坐标由标架 A 转换到标架 B 的变换矩阵 M，即有 $ p_B = p_AM。现希望求得 $ p_A $。换句话说，我们这次是希望通过坐标变换矩阵，将标架 B 中的坐标映射到标架 A 中。 为了求出这个矩阵，我们假设矩阵 M 是可逆的（即存在 $ M^−1 $）。通过下列步骤，我们就能得到坐标 $ p_A $：</em></p>
+<p><em>假设给定向量 p 相对于标架 B 的坐标 $p_B$，以及将坐标由标架 A 转换到标架 B 的变换矩阵 M，即有 $ p_B = p_AM $。现希望求得 $ p_A $。换句话说，我们这次是希望通过坐标变换矩阵，将标架 B 中的坐标映射到标架 A 中。 为了求出这个矩阵，我们假设矩阵 M 是可逆的（即存在 $ M^−1 $）。通过下列步骤，我们就能得到坐标 $ p_A $：</em></p>
 <ol>
 <li><em>$ \vec{p}_B = \vec{p}_AM $</em></li>
 <li><em>$ \vec{p}_B M^-1 = \vec{p}_AM M^-1 $  等式左右两次同时乘以矩阵 M^-1</em></li>
