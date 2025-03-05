@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-02-06T22:00:00+08:00">
-    <meta property="article:modified_time" content="2025-03-04T20:34:00+08:00">
+    <meta property="article:modified_time" content="2025-03-05T20:34:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="3D图形学">
     <meta property="article:tag" content="变换矩阵">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  4705 ,
-        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-03-04T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  6265 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-03-05T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -116,8 +116,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4705 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6265 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -155,6 +155,14 @@
         </li>
         <li><a href="#缩放和旋转的仿射矩阵"><em><strong>缩放和旋转的仿射矩阵</strong></em></a></li>
         <li><a href="#仿射变换矩阵的几何意义"><em><strong>仿射变换矩阵的几何意义</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#变换的复合"><em><strong>变换的复合</strong></em></a></li>
+    <li><a href="#坐标系变换"><em><strong>坐标系变换</strong></em></a>
+      <ul>
+        <li><a href="#向量的坐标变换"><em><strong>向量的坐标变换</strong></em></a></li>
+        <li><a href="#点的坐标变换"><em><strong>点的坐标变换</strong></em></a></li>
+        <li><a href="#坐标变换的矩阵表示"><em><strong>坐标变换的矩阵表示</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -303,7 +311,39 @@ S=
 0 &amp; 0 &amp; 1
 \end{bmatrix}
 $$
-变换的效果如图所示</p>
+<em>此时，若要对正方形进行缩放，只需将最小点、最大点坐标分别与缩放矩阵相乘即可：</em>
+$$
+\begin{align}
+[-4, -4, 0]
+\begin{bmatrix}
+0.5 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 2 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+&amp;= [-2, -8, 0]
+\\ \\
+[4, 4, 0]
+\begin{bmatrix}
+0.5 &amp; 0 &amp; 0
+\\ \\
+0 &amp; 2 &amp; 0
+\\ \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+&amp;= [2, 8, 0]
+\end{align}
+$$</p>
+<p><em>变换的效果如图所示</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250305200041712.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250305200041712.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250305200041712.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250305200041712.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250305200041712.png"
+        title="缩放矩阵" /></p>
 <h3 id="旋转"><em><strong>旋转</strong></em></h3>
 <p><em>在本节中，我们将用数学的方式来描述令向量 v 绕轴 n 以角 θ 进行旋转</em></p>
 <p><em>此过程如图 3.3 所示。注意，在沿 n 轴从上至下俯瞰时，我们按顺时针方向来测量角 θ ，并且假设 ||n|| = 1</em></p>
@@ -654,11 +694,99 @@ $$
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250304204433342.png"
         title="仿射变换矩阵的几何意义" /></p>
+<h2 id="变换的复合"><em><strong>变换的复合</strong></em></h2>
+<p><em>假设 S 是一个缩放矩阵，R 是一个旋转矩阵，T 是一个平移矩阵。</em></p>
+<p><em>现给定一个由 8 个顶点 $ v_i $（其 中 i = 0, 1, …, 7）构成的立方体，并希望将这 3 种变换相继应用到此正方体的每个顶点之上。</em></p>
+<p><em>我们以下列简明的方式来逐步对顶点进行变换：</em>
+$$
+\begin{align}
+((\vec{v}, S)R)T &amp;= (v&rsquo;_i R)T = v&rsquo;&rsquo;_i T = v&rsquo;&rsquo;&rsquo;_i
+\\ \\
+其中i&amp;=0,1, &hellip;,7
+\end{align}
+$$
+<em>然后，由于矩阵乘法满足结合律，因而此式可以等价的改写为：</em>
+$$
+\begin{align}
+v_i(SRT) &amp;= v&rsquo;&rsquo;&rsquo;_i
+\\ \\
+其中 i &amp;= 0, 1, &hellip; , 7
+\end{align}
+$$
+<em>还可将 C = SRT 视为一个矩阵，即提前将3种变换封装为一个净变换矩阵。换句话说，矩阵之间的乘法法则使我们将不同的变换连接在一起</em></p>
+<p><em>这里十级还涉及性能问题，来看一个例子：</em></p>
+<ol>
+<li><em>假设有一个由 20000 个点组成的 3D 物体，我们希望将 上述 3 种几何变换，逐个作用到这个物体上。</em></li>
+<li><em>如果采用按部就班的计算方法，我们需要进行 20000 3 × 次 向量与矩阵的乘法运算。但通过上述组合矩阵的计算方法，只需要执行 20000 次的向量与矩阵乘法运算以及两次矩阵与矩阵的乘法运算即可。</em></li>
+<li><em>显而易见的是，比起前者中近 3 倍的大量向量与矩阵乘法运算而 言，后者中两次额外的矩阵与矩阵乘法运算真可谓是九牛一毛。</em></li>
+</ol>
+<h2 id="坐标系变换"><em><strong>坐标系变换</strong></em></h2>
+<p><em>根据标架 A 与另一不同标架 B 的关系，我们就可以将相对于标架 A 表示某量的标量 k，转换为相对于标架 B 描述同一种量的新标量 k'</em></p>
+<p><em>我们把不 同标架间的坐标的转换称之为坐标系变换</em></p>
+<p><em>值得注意的是，在坐标变换的过程中，几何体本身并没有随之发生改变。坐标变换改变的仅是物体的参考系（又称参照系），因此改变的实为几何体的坐标表示。</em></p>
+<p><em>相比之下，我们可以认为旋转、平移和缩放这些操作才使几何体发生了实质上的移动或形变。</em></p>
+<p><em>3D 计算机图形学中，我们往往会用到许多不同的坐标系，所以需要了解在它们之间互相转换坐标 的方法。由于位置是点的属性，与向量无关，所以点和向量的坐标变换是不同的</em></p>
+<h3 id="向量的坐标变换"><em><strong>向量的坐标变换</strong></em></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%9d%90%e6%a0%87%e7%b3%bb%e5%8f%98%e6%8d%a2.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%9d%90%e6%a0%87%e7%b3%bb%e5%8f%98%e6%8d%a2.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%9d%90%e6%a0%87%e7%b3%bb%e5%8f%98%e6%8d%a2.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%9d%90%e6%a0%87%e7%b3%bb%e5%8f%98%e6%8d%a2.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/坐标系变换.png"
+        title="坐标系变换" /></p>
+<p><em>思考图 3.11，其中有一向量 p 分别位于标架 A 和标架 B 之中。</em></p>
+<p><em>假设给定向量 p 在标架 A 中的坐标为 $ p_A = (x, y) $，现希望求得向量 p 在标架 B 中的对应坐标 $ p_B = (x&rsquo;, y&rsquo;) $。</em></p>
+<p><em>说人话就是，向量p在另一个坐标系的坐标是什么</em></p>
+<p><em>从图可以看出</em>
+$$
+\vec{p} = x\vec{u} + y\vec{v}
+$$
+<em>其中，u 和 v 分别是标架Ａ中 x 轴、y 轴正方向上的单位向量。用标架 B 中的坐标来表示以上公式中的单位向量，可得：</em>
+$$
+\vec{p}_B = x\vec{u}_B + y\vec{v}_B
+$$
+<em><strong>所以，如果给定 $ p_A = (x, y) $，也已知向量 u 和向量 v 相对于标架 B 的坐标分别为 $ u_B = (u_x, u_y) $ 以及 $ v_B = (v_x, v_y) $， 那么就一定能求出 $ p_B = (x&rsquo;, y&rsquo;) $。</strong></em></p>
+<p><em>现将向量的坐标变换推广到3D空间，如果 $ \vec{p_A} = (x, y, z) $, 那么</em>
+$$
+\vec{p}_B = x\vec{u}_B + y\vec{v}_B + z\vec{w}_B
+$$
+<em>其中，u, v, w分别指向标价A中 x 轴，y 轴和 z 轴正方向上的单位向量</em></p>
+<p><em>现将向量的坐标变换推广到 3D 空间，如果 $ p_A = (x, y, z) $，那么：</em>
+$$
+\vec{p}_B = x\vec{u}_B + y\vec{v}_B + z\vec{w}_B
+$$
+<em>其中，u、v 和 w 分别是指向标架Ａ中 x 轴、y 轴和 z 轴正方向上的单位向量。</em></p>
+<h3 id="点的坐标变换"><em><strong>点的坐标变换</strong></em></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%82%b9%e7%9a%84%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%82%b9%e7%9a%84%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%82%b9%e7%9a%84%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%82%b9%e7%9a%84%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/点的坐标变换.png"
+        title="点的坐标变换" /></p>
+<p><em>点与向量的坐标变换稍有不同，这是由于位置是点的一个重要属性，因而不能将图 3.11 所示的向量 平移方法应用于点上。</em></p>
+<p><em>图 3.12 展示了一个对点进行坐标变换的情景，通过观察，可以将点 p 表示为：</em>
+$$
+\vec{p} = x\vec{u} + y\vec{v} + Q
+$$
+<em>其中 u 和 v 是分别指向标架 A 中 x 轴和 y 轴正方向上的单位向量，且 Q 是标架 A 中的原点。用标架 B 中的坐标来表示上式中的每一个向量和点，可得：</em>
+$$
+\vec{p}_B = x\vec{u}_B + y\vec{v}_B + Q_B
+$$
+<em>如果给出 $ p_A = (x, y) $，同时也知道向量 u、v 以及原点 Q 相对于标架 B 的坐标分别为 $ u_B = (u_x, u_y)、v_B = (v_x, v_y)以及 Q_B = (Q_x, Q_y) $，那么，我们总能求出 $ p_B = (x&rsquo;, y&rsquo;) $</em></p>
+<p><em>现把点的坐标变换推广到 3D 空间，如果 $ p_A = (x, y, z) $，那么：</em>
+$$
+\vec{p}_B = x\vec{u}_B + y\vec{v}_B + z\vec{w}_B + Q_B
+$$
+<em>其中，向量 u、v 和 w 是分别指向标架 A 中 x 轴、y 轴和 z 轴的正方向上的单位向量，Q 则为标架 A 中的原点。</em></p>
+<h3 id="坐标变换的矩阵表示"><em><strong>坐标变换的矩阵表示</strong></em></h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-03-04</span>
+                <span>更新于 2025-03-05</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
