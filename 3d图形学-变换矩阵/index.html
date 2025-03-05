@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  6265 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 变换矩阵","wordcount":  7825 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5\/","datePublished": "2025-02-06T22:00:00+08:00","dateModified": "2025-03-05T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,8 +116,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6265 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-06">2025-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7825 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="变换矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -163,8 +163,11 @@
         <li><a href="#向量的坐标变换"><em><strong>向量的坐标变换</strong></em></a></li>
         <li><a href="#点的坐标变换"><em><strong>点的坐标变换</strong></em></a></li>
         <li><a href="#坐标变换的矩阵表示"><em><strong>坐标变换的矩阵表示</strong></em></a></li>
+        <li><a href="#坐标变换矩阵及其结合律"><em><strong>坐标变换矩阵及其结合律</strong></em></a></li>
+        <li><a href="#坐标变换矩阵及其逆矩阵"><em><strong>坐标变换矩阵及其逆矩阵</strong></em></a></li>
       </ul>
     </li>
+    <li><a href="#变换矩阵与坐标变换矩阵"><em><strong>变换矩阵与坐标变换矩阵</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="变换"><em><strong>变换</strong></em></h1>
@@ -782,6 +785,88 @@ $$
 $$
 <em>其中，向量 u、v 和 w 是分别指向标架 A 中 x 轴、y 轴和 z 轴的正方向上的单位向量，Q 则为标架 A 中的原点。</em></p>
 <h3 id="坐标变换的矩阵表示"><em><strong>坐标变换的矩阵表示</strong></em></h3>
+<p><em>到目前为止，我们已经分别探讨了向量和点的坐标变换：</em>
+$$
+\begin{align*}
+(x&rsquo;, y&rsquo;, z&rsquo;) &amp;= x\vec{u}_B + y\vec{v}_B + z\vec{w}_B
+\\ \\
+(x&rsquo;, y&rsquo;, z&rsquo;) &amp;= x\vec{u}_B + y\vec{v}_B + z\vec{w}_B + Q_B
+\end{align*}
+$$
+<em>如果使用齐次坐标，就可以用同一公式对点和向量进行处理：</em>
+$$
+(x&rsquo;, y&rsquo;, z&rsquo;, w) = x\vec{u}_B + y\vec{v}_B + z\vec{w}_B + Q_B
+$$
+<em>如果 w= 0, 此式化简为向量的坐标变换公式；如果 w = 1，则此时化简为点的坐标变换公式，此式子的优点在于：只要为其正确的 设置 w 分量值，他就能相应的处理点或向量的坐标变换。</em></p>
+<p><em>这样，我们也就无需分别记住两个公式了，而且我们可以将此式子改写为矩阵形式：</em>
+$$
+\begin{align*}
+[x&rsquo;, y&rsquo;, z&rsquo;, w]
+&amp;= [x, y, z, w]
+\begin{bmatrix}
+\leftarrow \vec{u}_B \rightarrow
+\\ \\
+\leftarrow \vec{u}_B \rightarrow
+\\ \\
+\leftarrow \vec{u}_B \rightarrow
+\\ \\
+\leftarrow \vec{u}_B \rightarrow
+\end{bmatrix}
+\\ \\
+&amp;=
+[x, y, z, w]
+\begin{bmatrix}
+u_x &amp; u_y &amp; u_z &amp; 0
+\\ \\
+v_x &amp; v_y &amp; v_z &amp; 0
+\\ \\
+w_x &amp; w_y &amp; w_z &amp; 0
+\\ \\
+Q_x &amp; Q_y &amp; Q_z &amp; 1
+\end{bmatrix}
+\\ \\
+&amp;=
+x\vec{u}_B + y\vec{v}_B + z\vec{w}_B + wQ_B
+\end{align*}
+$$
+<em>其中，$ Q_B = (Q_x, Q_y, Q_z, 1)，\vec{u}_B = (u_x, u_y, u_z, 0)，\vec{v}_B = (v_x, v_y, v_z, 0)与 \vec{w}_B = (w_x, w_y, w_z, 0) $分别表示标架 A 中的 原点和诸坐标轴相对于标架 B 的齐次坐标。我们把上述式子里能把标架 A 中的坐标转换（或映射， map）为标架 B 中坐标的 4 x 4矩阵，称为坐标变换矩阵（change of coordinate matrix）或标架变换矩阵 （change of frame matrix）。</em></p>
+<h3 id="坐标变换矩阵及其结合律"><em><strong>坐标变换矩阵及其结合律</strong></em></h3>
+<p><em>现假设有 3 个标架 F、G 和 H。A 为将坐标从 F 转换到 G 的标架变换矩阵，B 为把坐标由 G 转换至 H 的标架变换矩阵</em></p>
+<p><em>在标架 F 中，有一向量的坐标为 $ p_F $，我们希望求出此向量相对于标架 H 的坐标 $ p_H $。 可按一般顺序来逐步计算：</em>
+$$
+\begin{align*}
+(\vec{p}_FA)B &amp;= \vec{p}_H
+\\ \\
+(\vec{p}_G)B &amp;= \vec{p}_H
+\end{align*}
+$$
+<em>由于矩阵的乘法运算满足结合律，我们可将 $ (\vec{p}_FA)B &amp;= \vec{p}_H $ 写作：</em>
+$$
+(\vec{p}_F)AB = \vec{p}_H
+$$
+<em>这样一来，就能把矩阵乘积 C = AB 看作是将坐标从标架 F 直接变换至标架 H 的标架变换矩阵，它将变换矩阵 A 和 B 结合为一个净矩阵&mdash;&mdash;-其思路就类似于函数的复合。</em></p>
+<p><em>这种计算方法还会对性能产生影响。为了说明这一点，我们假设一个由 20000 个点构成的 3D 物体， 现要对它的每个点进行两次标架变换。若使用逐步计算的方法，我们需进行 20000 × 2 次向量与矩阵的乘法运算。但利用结合矩阵的方法，我们只要进行 20000 次向量与矩阵的乘法运算以及一次矩阵与矩阵的乘法运算（用于结合两个标架变换矩阵）即可。不难看出，仅借助一次开销极低的矩阵之间的乘法运算， 便可以节省多次向量与矩阵乘法所需的大量计算资源。</em></p>
+<h3 id="坐标变换矩阵及其逆矩阵"><em><strong>坐标变换矩阵及其逆矩阵</strong></em></h3>
+<p><em>假设给定向量 p 相对于标架 B 的坐标 $p_B$，以及将坐标由标架 A 转换到标架 B 的变换矩阵 M，即有 $ p_B = p_AM。现希望求得 $ p_A $。换句话说，我们这次是希望通过坐标变换矩阵，将标架 B 中的坐标映射到标架 A 中。 为了求出这个矩阵，我们假设矩阵 M 是可逆的（即存在 $ M^−1 $）。通过下列步骤，我们就能得到坐标 $ p_A $：</em></p>
+<ol>
+<li><em>$ \vec{p}_B = \vec{p}_AM $</em></li>
+<li><em>$ \vec{p}_B M^-1 = \vec{p}_AM M^-1 $  等式左右两次同时乘以矩阵 M^-1</em></li>
+<li><em>$ \vec{p}_B = \vec{p}_AI$ 由逆矩阵的定义可知 MM^-1 = I</em></li>
+<li><em>$ \vec{p}_B M^-1 = \vec{p}_A 由单位矩阵的定义可知\vec{p}_AI = \vec{p}_A $</em></li>
+</ol>
+<p><em>所以矩阵 $ M^-1 $ 即为将坐标由标架B转换到标架A的变换矩阵</em></p>
+<h2 id="变换矩阵与坐标变换矩阵"><em><strong>变换矩阵与坐标变换矩阵</strong></em></h2>
+<p><em>到目前为止，我们已经对“使几何体本身发生改变”的变换（缩放、旋转和平移）与坐标变换进行了区分</em></p>
+<p><em>在本节中，我们将证明：从数学角度上看，两者在数学上其实是等价的。即，可将改变几何体的变换解释为坐标变换，反之亦然。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5%e4%b8%8e%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5%e4%b8%8e%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5%e4%b8%8e%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5%e4%b8%8e%e5%9d%90%e6%a0%87%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/变换矩阵与坐标变换矩阵.png"
+        title="变换矩阵与坐标变换矩阵" /></p>
+<p><em>如果我们能认识到这一点，会发现其意义非凡。对于坐标变换来说，标架之间的差异仅为位置和朝向。因此，令坐标在标架之间转换的数学公式实质上描述的即为所需执行的旋转和平移操作，最终也会得到与几何变换（对物体进行缩放、旋转和平移）相同的数学形式，可谓殊途同归。几何变换也好，坐标变换也罢，计算出的结果都是相同的，差别只在于解释变换的角度。对于某些情况来说，保持物体不变，使之在多个坐标系之间转换是种更直观的办法。但是，若描述对象的参考系发生了变化，则物体的 坐标表示也会随之改变。有些时候，我们又希望在同一个坐标系中表示物体的变换，而不改变其参考系，此时即可采用几何变换法。</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
