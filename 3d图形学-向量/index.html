@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-12-23T22:00:00+08:00">
-    <meta property="article:modified_time" content="2025-12-21T20:34:00+08:00">
+    <meta property="article:modified_time" content="2025-03-06T20:34:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="3D图形学">
     <meta property="article:tag" content="向量">
@@ -37,8 +37,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  5607 ,
-        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-12-21T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  6479 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-03-06T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5607 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6479 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -185,6 +185,9 @@
         <li><a href="#第四题"><em><strong>第四题</strong></em></a></li>
         <li><a href="#第五题"><em><strong>第五题</strong></em></a></li>
         <li><a href="#第六题"><em><strong>第六题</strong></em></a></li>
+        <li><a href="#第七题"><em><strong>第七题</strong></em></a></li>
+        <li><a href="#第八题"><em><strong>第八题</strong></em></a></li>
+        <li><a href="#第九题"><em><strong>第九题</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -279,7 +282,7 @@ $$</p>
 <h3 id="向量的规范化"><em><strong>向量的规范化</strong></em></h3>
 <p><em>在某些情况下，我们并不关心向量的长度，仅用它来表示方向。对此，我们希望使该向量的长度为 1。把一个向量的长度变为单位长度称为向量的规范化（normalizing）处理。具体实现方法是，将向量 的每个分量分别除以该向量的模</em>
 $$
-\begin{gather}
+\begin{gather*}
 \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
 \\ \\
 为了验证公式的正确性，下面计算 \hat{u} 的长度，也就是模:
@@ -291,19 +294,19 @@ $$
 = 1
 \\ \\
 由此可见， \hat{u} 确实是一个单位向量（unit vector）
-\end{gather}
+\end{gather*}
 $$</p>
 <h2 id="点积"><em><strong>点积</strong></em></h2>
 <p><em>点积（dot product，亦称数量积或内积）是一种计算结果为标量值的向量乘法运算，因此有时也称 为标量积（scalar product）。</em>
 $$
-\begin{gather}
+\begin{gather*}
 设向量 \vec{u} = ( u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
 \\ \\
 则点积的定义为:
 \vec{u} \cdot \vec{v} = u_x v_x + u_y v_y + u_z v_z
 \\ \\
 可见，点积就是向量间对应分量的乘积之和。
-\end{gather}
+\end{gather*}
 $$
 <em>点积的定义并没有明显地体现出其几何意义。但是我们却能根据余弦定理（law of cosines)，找到二向量点积的几何关系</em>
 $$
@@ -313,7 +316,7 @@ $$
 <p><em>如果向量 u 和向量 v 都是单位向量，那么 u ⋅ v 就等 于两向量夹角的余弦值，即 u⋅ v= cosθ</em></p>
 <h3 id="点积几何性质"><em><strong>点积几何性质</strong></em></h3>
 <ol>
-<li><em><strong>如果 u⋅ v = 0 ，那么 u v ⊥ （即两个向量正交）</strong></em></li>
+<li><em><strong>如果 u⋅ v = 0 ，那么 u ⊥ v （即两个向量正交）</strong></em></li>
 <li><em><strong>如果 u⋅ v &gt; 0 ，那么两向量之间的夹角 θ 小于 90°（即两向量间的夹角为一锐角）</strong></em></li>
 <li><em><strong>如果 u⋅ v &lt; 0 ，那么两向量之间的夹角 θ 大于 90°（即两向量间的夹角为一钝角）</strong></em></li>
 </ol>
@@ -328,7 +331,7 @@ $$
         alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/正交投影.png"
         title="正交投影" />
 $$
-\begin{align}
+\begin{align*}
 \vec{p} &amp;= k\vec{n} ~ (观察图示存在标量k，使得 \vec{p} = k\vec{n}。 只要都在同一方向 就可以用这个公式)
 \\ \\
 &amp;= (\Vert \vec{v} \Vert \cos\theta)\vec{n} ~ (这是利用三角函数, \cos \theta = \frac{k}{\vec{v}})
@@ -338,7 +341,7 @@ $$
 &amp;= (\Vert \vec{v} \Vert \Vert \vec{n} \Vert \cos\theta)\vec{n}
 \\ \\
 &amp;= (\vec{v} \cdot \vec{n})\vec{n}
-\end{align}
+\end{align*}
 $$
 <em>特别是这里证明了：当 n 是单位向量时， k = v ⋅ n</em></p>
 <p><em>顺带也解释了在这种情况下 v ⋅ n的几何意义。我们 称 p 为向量 v 落在向量 n 上的正交投影（orthogonal projection），通常将它表示为：</em>
@@ -390,13 +393,13 @@ $$
 <p><em>向量乘法的第二种形式是叉积（cross product，亦称向量积、外积）。与计算结果为标量的点积不同， 叉积的计算结果亦为向量。此外，只有 3D 向量的叉积有定义（不存在 2D 向量叉积）。</em></p>
 <p><em>假设 3D 向量 u 和 v 的叉积得到的是另一个向量 w，则 w 与向量 u、v 彼此正交。也就是说，向量 w 既正交于 u，也正交于 v</em>
 $$
-\begin{gather}
+\begin{gather*}
 \vec{u} = (u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
 \\ \\
 那么叉积的计算方法是
 \\ \\
 \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
-\end{gather}
+\end{gather*}
 $$
 <em>根据计算结果可以明确地得出一项结论：一般来说 $ \vec{u} \times \vec{v} \neq \vec{v} \times \vec{u} $ ，即向量的叉积不满足交换律</em></p>
 <p><em>事实上， 我们同时也能够证明 $ \vec{u} \times \vec{v} = -\vec{v} \times \vec{u} $  ，这正是叉积的反交换律。</em></p>
@@ -420,31 +423,31 @@ $$</p>
 </li>
 <li>
 <p><em>假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 $ \vec{v} = (v_x, v_y, v_z) $，那么就能对他们进行下列向量计算</em></p>
-<p>(a) 加法运算：
+<p><em>（a）加法运算：</em>
 $$
 \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
 $$</p>
-<p>(b) 减法运算：
+<p><em>（b） 减法运算：</em>
 $$
 \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
 $$
-(c) 标量乘法运算：
+<em>（c）标量乘法运算：</em>
 $$
 k\vec{u} = (ku_x, ku_y, ku_z)
 $$
-(d) 向量长度(模):
+<em>（d） 向量长度（模）:</em>
 $$
 \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2}
 $$
-(e) 规范化:
+<em>（e） 规范化：</em>
 $$
 \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
 $$
-(f) 点积:
+<em>（f） 点积：</em>
 $$
 \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
 $$
-(g) 叉积:
+<em>（g） 叉积：</em>
 $$
 \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
 $$</p>
@@ -477,14 +480,14 @@ $$</p>
 <h3 id="第一题"><em><strong>第一题</strong></em></h3>
 <p><em>设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量</em>
 $$
-\begin{align}
+\begin{align*}
 \vec{u} + \vec{v}
 &amp;= (u_x + v_x, u_y + v_y)
 \\ \\
 &amp;= (1 + 3, 2 + (-4))
 \\ \\
 &amp;= (4, -2)
-\end{align}
+\end{align*}
 $$</p>
 <p>$$
 \begin{align*}
@@ -523,27 +526,27 @@ $$</p>
 <h3 id="第二题"><em><strong>第二题</strong></em></h3>
 <p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。写出下列问题的解答过程</em>
 $$
-\begin{align}
+\begin{align*}
 \vec{u} + \vec{v}
 &amp;= (u_x + v_x, u_y + v_y, u_z + v_z)
 \\ \\
 &amp;= (-1 + 3, 3 + (-4), 2 + 1)
 \\ \\
 &amp;= (2, -1, 3)
-\end{align}
+\end{align*}
 $$</p>
 <p>$$
-\begin{align}
+\begin{align*}
 \vec{u} - \vec{v}
 &amp;= (u_x - v_x, u_y - v_y, u_z - v_z)
 \\ \\
 &amp;= (-1 - 3, 3 - (-4), 2 - 1)
 \\ \\
 &amp;= (-4, 7, 1)
-\end{align}
+\end{align*}
 $$</p>
 <p>$$
-\begin{align}
+\begin{align*}
 3\vec{u} + 2\vec{v}
 &amp;= (3u_x, 3u_y, 3u_z) + (2v_x, 2v_y, 2v_z)
 \\ \\
@@ -552,10 +555,10 @@ $$</p>
 &amp;= (-3 + 6, 9 + (-8), 6 + 2)
 \\ \\
 &amp;= (3, 1, 8)
-\end{align}
+\end{align*}
 $$</p>
 <p>$$
-\begin{align}
+\begin{align*}
 -2\vec{u} + \vec{v}
 &amp;= (-2u_x, -2u_y, -2u_z) + (v_x, v_y, v_z)
 \\ \\
@@ -564,7 +567,7 @@ $$</p>
 &amp;= (2 + 3, -6 + (-4), -4 + 1)
 \\ \\
 &amp;= (5, -10, -3)
-\end{align}
+\end{align*}
 $$</p>
 <h3 id="第三题"><em><strong>第三题</strong></em></h3>
 <p><em>(a) $ \vec{u} + \vec{v} =  \vec{v} + \vec{u} $ （加法交换律）</em>
@@ -576,7 +579,7 @@ $$
 $$
 <em>(b) $ \vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w} $ （加法结合律）</em>
 $$
-\begin{align}
+\begin{align*}
 \vec{u} + (\vec{v} + \vec{w})
 &amp;= (u_x, u_y, u_z) + (v_x + w_x, v_y + w_y, v_z + w_z)
 \\ \\
@@ -587,11 +590,11 @@ $$
 &amp;= (u_x + v_x, u_y + v_y, u_z + v_z) + (w_x, w_y, w_z)
 \\ \\
 &amp;= (\vec{u} + \vec{v}) + \vec{w}
-\end{align}
+\end{align*}
 $$
 <em>(c) $ (ck)\vec{u} = c(k\vec{u}) $ （标量乘法的结合律）</em>
 $$
-\begin{align}
+\begin{align*}
 (ck)\vec{u}
 &amp;= (ck)(u_x, u_y, u_z)
 \\ \\
@@ -600,34 +603,34 @@ $$
 &amp;= (c(ku_x), c(ku_y), c(ku_z))
 \\ \\
 &amp;= c(k\vec{u})
-\end{align}
+\end{align*}
 $$
 <em>(d) $ k(\vec{u} + \vec{v}) = k\vec{u} + k\vec{v} $ （分配律 1）</em>
 $$
-\begin{align}
+\begin{align*}
 k(\vec{u} + \vec{v})
 &amp;= k(u_x + v_x, u_y + v_y, u_z + v_z)
 \\ \\
 &amp;= (ku_x + kv_x, ku_y + kv_y, ku_z + kv_z)
 \\ \\
 &amp;= k\vec{u} + k\vec{v}
-\end{align}
+\end{align*}
 $$
 <em>(e) $ \vec{u}(k + c) = k\vec{u} + c\vec{u} $ （分配律 2）</em>
 $$
-\begin{align}
+\begin{align*}
 \vec{u}(k + c)
 &amp;= (u_x(k+c), u_y(k+c), u_z(k+c))
 \\ \\
 &amp;= (ku_x + cu_x, ku_y + cu_y, ku_z + cu_z)
 \\ \\
 &amp;= k\vec{u} + c\vec{u}
-\end{align}
+\end{align*}
 $$</p>
 <h3 id="第四题"><em><strong>第四题</strong></em></h3>
 <p><em>根据等式  &ldquo;2[(1, 2, 3) − x] − (−2, 0, 4) = −2(1, 2, 3)&quot;，求其中的向量 x。</em>
 $$
-\begin{align}
+\begin{align*}
 2[(1, 2, 3) − \vec{x}] − (−2, 0, 4) &amp;= -2(1, 2, 3)
 \\ \\
 [(2, 4, 6) - 2(\vec{x})] - (-2, 0, 4) &amp;= (-2, -4, -6)
@@ -641,12 +644,12 @@ $$
 2(\vec{x}) &amp;= - (-6, -8, -8)
 \\ \\
 \vec{x} &amp;= (3, 4, 4)
-\end{align}
+\end{align*}
 $$</p>
 <h3 id="第五题"><em><strong>第五题</strong></em></h3>
 <p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。</em>
 $$
-\begin{align}
+\begin{align*}
 \vec{u}
 = \frac{\vec{u}}{\Vert \vec{u} \Vert}
 = \frac{(u_x, u_y, u_z)}{\sqrt{u_x^2 + u_y^2 + u_z^2}}
@@ -660,12 +663,12 @@ $$
 = \frac{(3, -4, 1)}{\sqrt{9 + 16 + 1}}
 = \frac{(3, -4, 1)}{\sqrt{26}}
 = (\frac{3}{\sqrt{26}}, \frac{-4}{\sqrt{26}}, \frac{1}{\sqrt{26}})
-\end{align}
+\end{align*}
 $$</p>
 <h3 id="第六题"><em><strong>第六题</strong></em></h3>
 <p><em>设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$</em>
 $$
-\begin{align}
+\begin{align*}
 ||ku||
 &amp;= ||ku_x, ku_y, ku_z||
 \\ \\
@@ -678,13 +681,151 @@ $$
 &amp;= \sqrt{k^2} + \sqrt{\vec{u}^2}
 \\ \
 &amp;= ||k|| + ||\vec{u}||
-\end{align}
+\end{align*}
+$$</p>
+<h3 id="第七题"><em><strong>第七题</strong></em></h3>
+<p><em>下列各组向量中，u 与 v 之间的夹角是直角、锐角还是钝角？</em></p>
+<p><em>（a）u = (1, 1, 1)，v = (2, 3, 4)</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{2 + 3 + 4}{\sqrt{3} \cdot \sqrt{29}}
+\\ \\
+\cos\theta = \frac{9}{\sqrt{87}}
+\\ \\
+因\cos\theta &gt; 0, 故为锐角
+\\ \\
+如果想求出角度 则可以 θ=arccos(\frac{9}{\sqrt{87}})≈15.8^\circ
+\end{gather*}
+$$</p>
+<p><em>（b）u = (1, 1, 0)，v = (−2, 2, 0)</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{-2 + 2 + 0}{\sqrt{2} \cdot \sqrt{8}}
+\\ \\
+\cos\theta = \frac{0}{\sqrt{16}} = 0
+\\ \\
+因\cos\theta = 0, 故为直角
+\end{gather*}
+$$
+<em>（c）u = (−1, −1, −1)，v = (3, 1, 0)</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{(-3) + (-1) + 0}{\sqrt{3} \cdot \sqrt{10}}
+\\ \\
+\cos\theta = \frac{-4}{\sqrt{30}}
+\\ \\
+因\cos\theta &lt; 0, 故为钝角
+\end{gather*}
+$$</p>
+<h3 id="第八题"><em><strong>第八题</strong></em></h3>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。计算 u 和 v 之间的夹角 θ</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{(-3) + (-12) + 2}{\sqrt{14} \cdot \sqrt{26}}
+\\ \\
+\cos\theta = \frac{-13}{\sqrt{2\sqrt{91}}}
+\\ \\
+θ=arccos(\frac{-13}{2\sqrt{91}})≈123.7^\circ
+\end{gather*}
+$$</p>
+<h3 id="第九题"><em><strong>第九题</strong></em></h3>
+<p><em>设向量 $ u = (u_x, u_y, u_z)、v = (v_x, v_y, v_z)和 w = (w_x, w_y, w_z)，且 c 和 k 为标量。证明下列点积性质。</em></p>
+<p><em>（a）$ \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u} $</em>
+$$
+\begin{align*}
+\vec{u} \cdot \vec{v}
+&amp;= (u_x, u_y, u_z) + (v_x, v_y, v_z)
+\\ \\
+&amp;= (u_x v_x + u_y v_y + u_z v_z)
+\\ \\
+&amp;= (v_x, v_y, v_z) + (u_x, u_y, u_z)
+\\ \\
+&amp;= \vec{v} \cdot \vec{u}
+\end{align*}
+$$
+<em>（b）$ \vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w} $</em>
+$$
+\begin{align*}
+\vec{u} \cdot (\vec{v} + \vec{w})
+&amp;= (u_x, u_y, u_z) \cdot ((v_x + w_x, v_y + w_y, v_z + w_z))
+\\ \\
+&amp;= u_x(v_x + w_x) + u_y(v_y + w_y) + u_z(v_z + w_z)
+\\ \\
+&amp;= (u_x v_x + u_x w_x) + (u_y v_y + u_y w_y) + (u_z v_z + u_z w_z)
+\\ \\
+&amp;= (u_x v_x + u_y v_y + u_z v_z) + (u_x w_x + u_y w_y + u_z w_z)
+\\ \\
+&amp;= \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}
+\end{align*}
+$$
+<em>（c）$ k(\vec{u} \cdot \vec{v}) = (k\vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) $</em>
+$$
+\begin{align*}
+k(\vec{u} \cdot \vec{v})
+&amp;= k(u_x v_y + u_y v_y + u_z v_z)
+\\ \\
+&amp;= (ku_x)v_x + (ku_y)v_y + (ku_z)v_z
+\\ \\
+&amp;= (k\vec{u}) \cdot \vec{v}
+\\ \\
+&amp;= u_x(kv_x) + u_y(kv_y) + u_z(k)
+\\ \\
+&amp;= \vec{u} \cdot (k\vec{v})
+\end{align*}
+$$
+<em>（d）$ \vec{v} \cdot \vec{v} = ||v||^2 $</em>
+$$
+\begin{align*}
+\vec{v} \cdot \vec{v}
+&amp;= v_x v_x + v_y v_y + v_z v_z
+\\ \\
+&amp;= v_x^2 + v_y^2 + v_z^2
+\\ \\
+&amp;= \sqrt{v_x^2 + v_y^2 + v_z^2}^2
+\\ \\
+&amp;= ||v||^2
+\end{align*}
+$$
+<em>（e）$ 0 \cdot \vec{v} = 0 $</em>
+$$
+\begin{align*}
+0 \cdot \vec{v}
+&amp;= 0v_x + 0v_y + 0v_z
+\\ \\
+&amp;= 0 + 0 + 0
+\\ \\
+&amp;= 0
+\end{align*}
 $$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-12-21</span>
+                <span>更新于 2025-03-06</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

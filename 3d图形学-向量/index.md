@@ -99,7 +99,7 @@ $$
 
 *在某些情况下，我们并不关心向量的长度，仅用它来表示方向。对此，我们希望使该向量的长度为 1。把一个向量的长度变为单位长度称为向量的规范化（normalizing）处理。具体实现方法是，将向量 的每个分量分别除以该向量的模*
 $$
-\begin{gather}
+\begin{gather*}
 \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
 \\\ \\\
 为了验证公式的正确性，下面计算 \hat{u} 的长度，也就是模:
@@ -111,21 +111,21 @@ $$
 = 1
 \\\ \\\
 由此可见， \hat{u} 确实是一个单位向量（unit vector）
-\end{gather}
+\end{gather*}
 $$
 
 ## ***点积***
 
 *点积（dot product，亦称数量积或内积）是一种计算结果为标量值的向量乘法运算，因此有时也称 为标量积（scalar product）。*
 $$
-\begin{gather}
+\begin{gather*}
 设向量 \vec{u} = ( u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
 \\\ \\\
 则点积的定义为:
 \vec{u} \cdot \vec{v} = u_x v_x + u_y v_y + u_z v_z
 \\\ \\\
 可见，点积就是向量间对应分量的乘积之和。
-\end{gather}
+\end{gather*}
 $$
 *点积的定义并没有明显地体现出其几何意义。但是我们却能根据余弦定理（law of cosines)，找到二向量点积的几何关系*
 $$
@@ -137,7 +137,7 @@ $$
 
 ### ***点积几何性质***
 
-1. ***如果 u⋅ v = 0 ，那么 u v ⊥ （即两个向量正交）***
+1. ***如果 u⋅ v = 0 ，那么 u ⊥ v （即两个向量正交）***
 2. ***如果 u⋅ v > 0 ，那么两向量之间的夹角 θ 小于 90°（即两向量间的夹角为一锐角）***
 3. ***如果 u⋅ v < 0 ，那么两向量之间的夹角 θ 大于 90°（即两向量间的夹角为一钝角）***
 
@@ -147,7 +147,7 @@ $$
 
 ![正交投影](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/正交投影.png)
 $$
-\begin{align}
+\begin{align*}
 \vec{p} &= k\vec{n} ~ (观察图示存在标量k，使得 \vec{p} = k\vec{n}。 只要都在同一方向 就可以用这个公式)
 \\\ \\\
 &= (\Vert \vec{v} \Vert \cos\theta)\vec{n} ~ (这是利用三角函数, \cos \theta = \frac{k}{\vec{v}})
@@ -157,7 +157,7 @@ $$
 &= (\Vert \vec{v} \Vert \Vert \vec{n} \Vert \cos\theta)\vec{n}
 \\\ \\\
 &= (\vec{v} \cdot \vec{n})\vec{n}
-\end{align}
+\end{align*}
 $$
 *特别是这里证明了：当 n 是单位向量时， k = v ⋅ n*
 
@@ -221,13 +221,13 @@ $$
 
 *假设 3D 向量 u 和 v 的叉积得到的是另一个向量 w，则 w 与向量 u、v 彼此正交。也就是说，向量 w 既正交于 u，也正交于 v*
 $$
-\begin{gather}
+\begin{gather*}
 \vec{u} = (u_x, u_y, u_z),~ \vec{v} = (v_x, v_y, v_z)
 \\\ \\\
 那么叉积的计算方法是
 \\\ \\\
 \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
-\end{gather}
+\end{gather*}
 $$
 *根据计算结果可以明确地得出一项结论：一般来说 $ \vec{u} \times \vec{v} \neq \vec{v} \times \vec{u} $ ，即向量的叉积不满足交换律*
 
@@ -262,32 +262,32 @@ $$
 
 2. *假设有向量 $\vec{u} = (u_x, u_y, u_z)$ 和向量 $ \vec{v} = (v_x, v_y, v_z) $，那么就能对他们进行下列向量计算*
 
-   (a) 加法运算：
+   *（a）加法运算：*
    $$
    \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
    $$
 
-   (b) 减法运算：
+   *（b） 减法运算：*
    $$
    \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
    $$
-   (c) 标量乘法运算：
+   *（c）标量乘法运算：*
    $$
    k\vec{u} = (ku_x, ku_y, ku_z)
    $$
-   (d) 向量长度(模): 
+   *（d） 向量长度（模）:* 
    $$
    \Vert \vec{u} \Vert = \sqrt{x^2 + y^2 + z^2}
    $$
-   (e) 规范化: 
+   *（e） 规范化：*
    $$
    \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
    $$
-   (f) 点积: 
+   *（f） 点积：*
    $$
    \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
    $$
-   (g) 叉积: 
+   *（g） 叉积：* 
    $$
    \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
    $$
@@ -318,14 +318,14 @@ $$
 
 *设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量*
 $$
-\begin{align}
+\begin{align*}
 \vec{u} + \vec{v} 
 &= (u_x + v_x, u_y + v_y) 
 \\\ \\\
 &= (1 + 3, 2 + (-4))
 \\\ \\\
 &= (4, -2)
-\end{align}
+\end{align*}
 $$
 
 $$
@@ -371,29 +371,29 @@ $$
 
 *设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。写出下列问题的解答过程*
 $$
-\begin{align}
+\begin{align*}
 \vec{u} + \vec{v} 
 &= (u_x + v_x, u_y + v_y, u_z + v_z) 
 \\\ \\\
 &= (-1 + 3, 3 + (-4), 2 + 1)
 \\\ \\\
 &= (2, -1, 3)
-\end{align}
+\end{align*}
 $$
 
 $$
-\begin{align}
+\begin{align*}
 \vec{u} - \vec{v} 
 &= (u_x - v_x, u_y - v_y, u_z - v_z)
 \\\ \\\
 &= (-1 - 3, 3 - (-4), 2 - 1)
 \\\ \\\
 &= (-4, 7, 1)
-\end{align}
+\end{align*}
 $$
 
 $$
-\begin{align}
+\begin{align*}
 3\vec{u} + 2\vec{v}
 &= (3u_x, 3u_y, 3u_z) + (2v_x, 2v_y, 2v_z)
 \\\ \\\
@@ -402,11 +402,11 @@ $$
 &= (-3 + 6, 9 + (-8), 6 + 2)
 \\\ \\\
 &= (3, 1, 8)
-\end{align}
+\end{align*}
 $$
 
 $$
-\begin{align}
+\begin{align*}
 -2\vec{u} + \vec{v}
 &= (-2u_x, -2u_y, -2u_z) + (v_x, v_y, v_z)
 \\\ \\\
@@ -415,7 +415,7 @@ $$
 &= (2 + 3, -6 + (-4), -4 + 1)
 \\\ \\\
 &= (5, -10, -3)
-\end{align}
+\end{align*}
 $$
 
 
@@ -431,7 +431,7 @@ $$
 $$
 *(b) $ \vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w} $ （加法结合律）*
 $$
-\begin{align}
+\begin{align*}
 \vec{u} + (\vec{v} + \vec{w}) 
 &= (u_x, u_y, u_z) + (v_x + w_x, v_y + w_y, v_z + w_z) 
 \\\ \\\
@@ -442,11 +442,11 @@ $$
 &= (u_x + v_x, u_y + v_y, u_z + v_z) + (w_x, w_y, w_z) 
 \\\ \\\
 &= (\vec{u} + \vec{v}) + \vec{w}
-\end{align}
+\end{align*}
 $$
 *(c) $ (ck)\vec{u} = c(k\vec{u}) $ （标量乘法的结合律）*
 $$
-\begin{align}
+\begin{align*}
 (ck)\vec{u}
 &= (ck)(u_x, u_y, u_z)
 \\\ \\\
@@ -455,36 +455,36 @@ $$
 &= (c(ku_x), c(ku_y), c(ku_z))
 \\\ \\\
 &= c(k\vec{u})
-\end{align}
+\end{align*}
 $$
 *(d) $ k(\vec{u} + \vec{v}) = k\vec{u} + k\vec{v} $ （分配律 1）*
 $$
-\begin{align}
+\begin{align*}
 k(\vec{u} + \vec{v}) 
 &= k(u_x + v_x, u_y + v_y, u_z + v_z)
 \\\ \\\
 &= (ku_x + kv_x, ku_y + kv_y, ku_z + kv_z)
 \\\ \\\
 &= k\vec{u} + k\vec{v}
-\end{align}
+\end{align*}
 $$
 *(e) $ \vec{u}(k + c) = k\vec{u} + c\vec{u} $ （分配律 2）*
 $$
-\begin{align}
+\begin{align*}
 \vec{u}(k + c)
 &= (u_x(k+c), u_y(k+c), u_z(k+c))
 \\\ \\\
 &= (ku_x + cu_x, ku_y + cu_y, ku_z + cu_z)
 \\\ \\\
 &= k\vec{u} + c\vec{u}
-\end{align}
+\end{align*}
 $$
 
 ### ***第四题***
 
 *根据等式  "2[(1, 2, 3) − x] − (−2, 0, 4) = −2(1, 2, 3)"，求其中的向量 x。*
 $$
-\begin{align}
+\begin{align*}
 2[(1, 2, 3) − \vec{x}] − (−2, 0, 4) &= -2(1, 2, 3)
 \\\ \\\
 [(2, 4, 6) - 2(\vec{x})] - (-2, 0, 4) &= (-2, -4, -6)
@@ -498,14 +498,14 @@ $$
 2(\vec{x}) &= - (-6, -8, -8)
 \\\ \\\
 \vec{x} &= (3, 4, 4)
-\end{align}
+\end{align*}
 $$
 
 ### ***第五题***
 
 *设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。*
 $$
-\begin{align}
+\begin{align*}
 \vec{u} 
 = \frac{\vec{u}}{\Vert \vec{u} \Vert}
 = \frac{(u_x, u_y, u_z)}{\sqrt{u_x^2 + u_y^2 + u_z^2}}
@@ -519,14 +519,14 @@ $$
 = \frac{(3, -4, 1)}{\sqrt{9 + 16 + 1}}
 = \frac{(3, -4, 1)}{\sqrt{26}}
 = (\frac{3}{\sqrt{26}}, \frac{-4}{\sqrt{26}}, \frac{1}{\sqrt{26}})
-\end{align}
+\end{align*}
 $$
 
 ### ***第六题***
 
 *设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$*
 $$
-\begin{align}
+\begin{align*}
 ||ku||
 &= ||ku_x, ku_y, ku_z||
 \\\ \\\
@@ -539,6 +539,153 @@ $$
 &= \sqrt{k^2} + \sqrt{\vec{u}^2}
 \\\ \\
 &= ||k|| + ||\vec{u}||
-\end{align}
+\end{align*}
+$$
+
+### ***第七题***
+
+*下列各组向量中，u 与 v 之间的夹角是直角、锐角还是钝角？*
+
+*（a）u = (1, 1, 1)，v = (2, 3, 4)*
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\\ \\\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\\ \\\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\\ \\\
+\cos\theta = \frac{2 + 3 + 4}{\sqrt{3} \cdot \sqrt{29}}
+\\\ \\\
+\cos\theta = \frac{9}{\sqrt{87}}
+\\\ \\\
+因\cos\theta > 0, 故为锐角
+\\\ \\\
+如果想求出角度 则可以 θ=arccos(\frac{9}{\sqrt{87}})≈15.8^\circ
+\end{gather*}
+$$
+
+*（b）u = (1, 1, 0)，v = (−2, 2, 0)*
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\\ \\\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\\ \\\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\\ \\\
+\cos\theta = \frac{-2 + 2 + 0}{\sqrt{2} \cdot \sqrt{8}}
+\\\ \\\
+\cos\theta = \frac{0}{\sqrt{16}} = 0
+\\\ \\\
+因\cos\theta = 0, 故为直角
+\end{gather*}
+$$
+*（c）u = (−1, −1, −1)，v = (3, 1, 0)*
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\\ \\\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\\ \\\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\\ \\\
+\cos\theta = \frac{(-3) + (-1) + 0}{\sqrt{3} \cdot \sqrt{10}}
+\\\ \\\
+\cos\theta = \frac{-4}{\sqrt{30}}
+\\\ \\\
+因\cos\theta < 0, 故为钝角
+\end{gather*}
+$$
+
+### ***第八题***
+
+*设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。计算 u 和 v 之间的夹角 θ*
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\\ \\\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\\ \\\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\\ \\\
+\cos\theta = \frac{(-3) + (-12) + 2}{\sqrt{14} \cdot \sqrt{26}}
+\\\ \\\
+\cos\theta = \frac{-13}{\sqrt{2\sqrt{91}}}
+\\\ \\\
+θ=arccos(\frac{-13}{2\sqrt{91}})≈123.7^\circ
+\end{gather*}
+$$
+
+### ***第九题***
+
+*设向量 $ u = (u_x, u_y, u_z)、v = (v_x, v_y, v_z)和 w = (w_x, w_y, w_z)，且 c 和 k 为标量。证明下列点积性质。*
+
+*（a）$ \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u} $*
+$$
+\begin{align*}
+\vec{u} \cdot \vec{v}
+&= (u_x, u_y, u_z) + (v_x, v_y, v_z)
+\\\ \\\
+&= (u_x v_x + u_y v_y + u_z v_z)
+\\\ \\\
+&= (v_x, v_y, v_z) + (u_x, u_y, u_z)
+\\\ \\\
+&= \vec{v} \cdot \vec{u}
+\end{align*}
+$$
+*（b）$ \vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w} $*
+$$
+\begin{align*}
+\vec{u} \cdot (\vec{v} + \vec{w}) 
+&= (u_x, u_y, u_z) \cdot ((v_x + w_x, v_y + w_y, v_z + w_z))
+\\\ \\\
+&= u_x(v_x + w_x) + u_y(v_y + w_y) + u_z(v_z + w_z)
+\\\ \\\
+&= (u_x v_x + u_x w_x) + (u_y v_y + u_y w_y) + (u_z v_z + u_z w_z)
+\\\ \\\
+&= (u_x v_x + u_y v_y + u_z v_z) + (u_x w_x + u_y w_y + u_z w_z)
+\\\ \\\
+&= \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}
+\end{align*}
+$$
+*（c）$ k(\vec{u} \cdot \vec{v}) = (k\vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) $*
+$$
+\begin{align*}
+k(\vec{u} \cdot \vec{v})
+&= k(u_x v_y + u_y v_y + u_z v_z)
+\\\ \\\
+&= (ku_x)v_x + (ku_y)v_y + (ku_z)v_z
+\\\ \\\
+&= (k\vec{u}) \cdot \vec{v} 
+\\\ \\\
+&= u_x(kv_x) + u_y(kv_y) + u_z(k)
+\\\ \\\
+&= \vec{u} \cdot (k\vec{v})
+\end{align*}
+$$
+*（d）$ \vec{v} \cdot \vec{v} = ||v||^2 $*
+$$
+\begin{align*}
+\vec{v} \cdot \vec{v}
+&= v_x v_x + v_y v_y + v_z v_z
+\\\ \\\
+&= v_x^2 + v_y^2 + v_z^2
+\\\ \\\
+&= \sqrt{v_x^2 + v_y^2 + v_z^2}^2
+\\\ \\\
+&= ||v||^2
+\end{align*}
+$$
+*（e）$ 0 \cdot \vec{v} = 0 $*
+$$
+\begin{align*}
+0 \cdot \vec{v} 
+&= 0v_x + 0v_y + 0v_z
+\\\ \\\
+&= 0 + 0 + 0
+\\\ \\\
+&= 0
+\end{align*}
 $$
 
