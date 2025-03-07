@@ -659,7 +659,7 @@ k(\vec{u} \cdot \vec{v})
 \\\ \\\
 &= (k\vec{u}) \cdot \vec{v} 
 \\\ \\\
-&= u_x(kv_x) + u_y(kv_y) + u_z(k)
+&= u_x(kv_x) + u_y(kv_y) + u_z(kv_z)
 \\\ \\\
 &= \vec{u} \cdot (k\vec{v})
 \end{align*}
@@ -688,4 +688,52 @@ $$
 &= 0
 \end{align*}
 $$
+
+### ***第十题***
+
+*利用余弦定理 （ $  c^2 = a^2 + b^2 - 2ab \cos\theta $ ，其中 a、b、c 分别是三角形 3 条边的边长， θ 为 a 与 b 之间的夹角）来证明：$ u_x v_x + u_y v_y + u_z v_z = ||u|| ||v|| \cos\theta $*
+$$
+\begin{gather*}
+c^2 = a^2 + b^2 - 2ab \cos\theta
+\\\ \\\
+||w||^2 = ||u||^2 + ||v||^2 - 2||u|| ||v|| \cos\theta ~~~~~~ (因为 c a b都是各边对应的模)
+\\\ \\\
+||w||^2 = (\vec{u} - \vec{v})^2 = ||u||^2 + ||v||^2 - 2(\vec{u} \cdot \vec{v}) ~~~~~ (点积分配律)
+\\\ \\\
+||u||^2 + ||v||^2 - 2||u|| ||v|| \cos\theta = ||u||^2 + ||v||^2 - 2(\vec{u} \cdot \vec{v}) ~~~~~ (||w||^2 = ||w||^2)
+\\\ \\\
+- 2||u|| ||v|| \cos\theta = - 2(\vec{u} \cdot \vec{v})
+\\\ \\\
+||u|| ||v|| \cos\theta = \vec{u} \cdot \vec{v}
+\end{gather*}
+$$
+
+### ***第十一题***
+
+*设向量 n = (−2, 1)。将向量 g = (0, −9.8) 分解为两个相互正交的向量之和，使它们一个平行于 n、 一个正交于 n。最后，在同一 2D 坐标系中画出这些向量。*
+$$
+\begin{align*}
+\vec{g_{||}} 
+&= proj_n(\vec{g}) 
+\\\ \\\
+&= (\vec{g} \cdot \frac{\vec{n}}{\Vert \vec{n} \Vert})\frac{\vec{n}}{\Vert \vec{n} \Vert} 
+\\\ \\\
+&= (\frac{(\vec{g} \cdot \vec{n})}{\Vert \vec{n} \Vert ^ 2}) \vec{n}
+\\\ \\\
+&= (\frac{(g_x n_x + g_y n_y)}{\sqrt{n_x^2 + n_y^2}}) (-2, 1)
+\\\ \\\
+&= (\frac{(0 + (-9.8))}{\sqrt{5}})(-2, 1)
+\\\ \\\
+&= −1.96(−2,1)
+\\\ \\\
+&= (-3.92, −1.96)
+\\\ \\\
+\vec{g}_⊥ &= \vec{g} - \vec{g_{||}}
+\\\ \\\
+&=  (0, −9.8) − (3.92, −1.96) 
+\\\ \\\
+&= (−3.92, −7.84) 
+\end{align*}
+$$
+![向量第十一题](https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十一题.png)
 
