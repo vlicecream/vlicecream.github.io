@@ -702,7 +702,7 @@ c^2 = a^2 + b^2 - 2ab \cos\theta
 \\\ \\\
 ||u||^2 + ||v||^2 - 2||u|| ||v|| \cos\theta = ||u||^2 + ||v||^2 - 2(\vec{u} \cdot \vec{v}) ~~~~~ (||w||^2 = ||w||^2)
 \\\ \\\
-- 2||u|| ||v|| \cos\theta = - 2(\vec{u} \cdot \vec{v})
+\- 2||u|| ||v|| \cos\theta = - 2(\vec{u} \cdot \vec{v})
 \\\ \\\
 ||u|| ||v|| \cos\theta = \vec{u} \cdot \vec{v}
 \end{gather*}
@@ -728,7 +728,7 @@ $$
 \\\ \\\
 &= (-3.92, −1.96)
 \\\ \\\
-\vec{g}_⊥ &= \vec{g} - \vec{g_{||}}
+\vec{g}\_⊥ &= \vec{g} - \vec{g_{||}}
 \\\ \\\
 &=  (0, −9.8) − (3.92, −1.96) 
 \\\ \\\
