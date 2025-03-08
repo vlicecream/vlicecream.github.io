@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  6848 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  7326 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F\/","datePublished": "2024-12-23T22:00:00+08:00","dateModified": "2025-03-06T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6848 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7326 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="leancloud_visitors" data-flag-title="向量">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -190,6 +190,12 @@
         <li><a href="#第九题"><em><strong>第九题</strong></em></a></li>
         <li><a href="#第十题"><em><strong>第十题</strong></em></a></li>
         <li><a href="#第十一题"><em><strong>第十一题</strong></em></a></li>
+        <li><a href="#第十二题"><em><strong>第十二题</strong></em></a></li>
+        <li><a href="#第十三题"><em><strong>第十三题</strong></em></a></li>
+        <li><a href="#第十四题"><em><strong>第十四题</strong></em></a></li>
+        <li><a href="#第十五题"><em><strong>第十五题</strong></em></a></li>
+        <li><a href="#第十七题"><em><strong>第十七题</strong></em></a></li>
+        <li><a href="#第十八题"><em><strong>第十八题</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -416,7 +422,8 @@ $$</p>
 <p><em>在一个坐标系中，通 过一个处于标准位置的向量就能表示出 3D 空间中的特定位置，我们称这种向量为位置向 量（position vector）</em></p>
 <p><em>在这种情况下，向量箭头的位置才是值得关注的主要特征，而方向和大小都是无足 轻重的。“位置向量”和“点”这两个术语可以互相替代，这是因为一个位置向量足以确定一个点。</em></p>
 <p><em>然而，用向量表示点也有副作用，在代码中则更为明显，因为部分向量运算对点来说是没有意义的。 例如，两点之和的意义何在？但从另一方面来讲，一些运算却可以在点上得到推广</em></p>
-<p><em>可以将两个点 的差 q−p 定义为由点 p 指向点 q 的向量。同样，也可以定义点 p 与向量 v 相加，其意义为：令点 p 沿向 量 v 位移而得到点 q。</em></p>
+<p><em>可以将两个点 的差 q−p 定义为由点 p 指向点 q 的向量。</em></p>
+<p><em>同样，也可以定义点 p 与向量 v 相加，其意义为：令点 p 沿向量 v 位移而得到点 q。</em></p>
 <h2 id="小结"><em><strong>小结</strong></em></h2>
 <ol>
 <li>
@@ -859,7 +866,7 @@ $$
 \\ \\
 &amp;= (-3.92, −1.96)
 \\ \\
-\vec{g}_⊥ &amp;= \vec{g} - \vec{g_{||}}
+\vec{g}<em>\perp &amp;= \vec{g} - \vec{g</em>{||}}
 \\ \\
 &amp;=  (0, −9.8) − (3.92, −1.96)
 \\ \\
@@ -874,6 +881,67 @@ $$
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十一题.png"
         title="向量第十一题" /></p>
+<h3 id="第十二题"><em><strong>第十二题</strong></em></h3>
+<p><em>设向量 u = (−2, 1, 4)和向量 v = (3, −4, 1)。求向量 w  = u × v ，再证明 w⋅ u= 0 及 w ⋅ v= 0 。</em>
+$$
+\begin{align*}
+\vec{w} = \vec{u} \times \vec{v} &amp;= (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+\\ \\
+&amp;= (1 - (-16), 12 - (-2), 8 - 3)
+\\ \\
+&amp;= (17, 14, 5)
+\\ \\
+\vec{w} \cdot \vec{u} &amp;= (w_x u_x + w_y u_y + w_z u_z)
+\\ \\
+&amp;= (-34 + (14) + (20))
+\\ \\
+&amp;= 0
+\\ \\
+\vec{w} \cdot \vec{v} &amp;= (w_x v_x + w_y v_y + w_z v_z)
+\\ \\
+&amp;= (51 + (-56) + 5)
+\\ \\
+&amp;= 0
+\end{align*}
+$$</p>
+<h3 id="第十三题"><em><strong>第十三题</strong></em></h3>
+<p><em>设 A = (0, 0, 0)，B = (0, 1, 3)和 C = (5, 1, 0)三点在某坐标系中定义了一个三角形。求出一正交于此三角形的向量。</em>
+$$
+\begin{align*}
+\vec{AB} &amp;= B - A = (0 - 0, 1 - 0, 3 - 0) = (0, 1, 3)
+\\ \\
+\vec{AC} &amp;= C - A = (5 - 0, 1 - 0, 0 - 0) = (5, 1, 0)
+\\ \\
+\vec{ABC_\perp} &amp;= \vec{AB} \times \vec{AC}
+\\ \\
+&amp;= (AB_y AC_z - AB_z AC_y, AB_z AC_x - AB_x AC_z, AB_x AC_y - AB_y AC_x)
+\\ \\
+&amp;= (0 - 3, 15 - 0, 0 - 5)
+\\ \\
+&amp;= (-3, 15, -5)
+\end{align*}
+$$</p>
+<h3 id="第十四题"><em><strong>第十四题</strong></em></h3>
+<p><em>证明 $ \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta $</em>
+$$
+\Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta
+$$</p>
+<h3 id="第十五题"><em><strong>第十五题</strong></em></h3>
+<p><em>证明：由向量 u 和向量 v 张成的平行四边形面积为|| u × v || ，如图 1.21 所示。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十五题.png"
+        title="向量第十五题" /></p>
+<p><em><strong>第十六题</strong></em></p>
+<p><em>举例证明：存在 3D 向量 u、v 和 w，满足 u x (v x w) ≠ (u x v) x w 。这说明叉积一般不满足结合律。</em></p>
+<h3 id="第十七题"><em><strong>第十七题</strong></em></h3>
+<p><em>证明两个非零且相互平行向量的叉积为零向量，即 $ \vec{u} \times k\vec{u} = 0 $。</em></p>
+<h3 id="第十八题"><em><strong>第十八题</strong></em></h3>
+<p><em>利用格拉姆—施密特正交化方法，令向量集 {(1, 0, 0), (1, 5, 0), (2, 1, −4)} 规范正交化。</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
