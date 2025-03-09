@@ -233,6 +233,14 @@ $$
 
 *事实上， 我们同时也能够证明 $ \vec{u} \times \vec{v} = -\vec{v} \times \vec{u} $  ，这正是叉积的反交换律。*
 
+### ***叉积的模长公式***
+
+$$
+\Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta
+$$
+
+
+
 ### ***2D 向量的伪叉积***
 
 *我们刚刚证明了：通过叉积可以求出与两个指定 3D 向量 正交的向量。在 2D 空间中虽然不存在这种情况，但是若给定 一个 2D 向量 $u = (u_x, u_y)$，我们还是能通过与 3D 向量叉积相似 的方法，求出与 向量u 正交的向量 v*
@@ -266,12 +274,28 @@ $$
 
    *（a）加法运算：*
    $$
-   \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z)
+   \begin{gather*}
+   \vec{u} + \vec{v} = (u_x + v_x, u_y + v_y, u_z + v_z) ~~~~~ 公式
+   \\\ \\\
+   \vec{u} + \vec{v} = \vec{v} + \vec{u} ~~~~~ 满足交换律
+   \\\ \\\
+   (\vec{u} + \vec{v}) + \vec{w} = \vec{u} + (\vec{v} + \vec{w}) ~~~~~ 满足结合律
+   \\\ \\\
+   (\vec{u} + \vec{v})k = k\vec{u} + k\vec{v} ~~~~~ 满足与标量相乘的分配律
+   \end{gather*}
    $$
 
    *（b） 减法运算：*
    $$
-   \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z)
+   \begin{gather*}
+   \vec{u} - \vec{v} = (u_x - v_x, u_y - v_y, u_z - v_z) ~~~~~ 公式
+   \\\ \\\
+   \vec{u} - \vec{v} \neq \vec{v} - \vec{u} ~~~~~ 不满足交换律 ~ 除非 \vec{u} = \vec{v}
+   \\\ \\\
+   (\vec{u} - \vec{v}) - \vec{w} \neq \vec{u} - (\vec{v} - \vec{w}) ~~~~~ 不满足结合律 ~ 除非\vec{w} 是零向量
+   \\\ \\\
+   (\vec{u} - \vec{v})k = k\vec{u} - k\vec{v} ~~~~~ 满足与标量相乘的分配律
+   \end{gather*}
    $$
    *（c）标量乘法运算：*
    $$
@@ -286,12 +310,54 @@ $$
    \hat{u} = \frac{\vec{u}}{\Vert \vec{u} \Vert} = (\frac{x}{\Vert \vec{u} \Vert}, \frac{y}{\Vert \vec{u} \Vert}, \frac{z}{\Vert \vec{u} \Vert})
    $$
    *（f） 点积：*
+
+   *点积的一个重要几何应用是计算两个向量之间的夹角*
+
+   *点积可以利用正交投影公式来一个向量在另一个向量方向上的投影*
+
+   *点积可以判断两条直线或两个平面是否垂直*
    $$
-   \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z
+   \begin{gather*}
+   \vec{u} \cdot \vec{v} = \Vert u \Vert \Vert v \Vert \cos\theta = u_x v_x + u_u v_y + u_z v_z ~~~~~ 公式
+   \\\ \\\
+   \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u} ~~~~~ 满足交换律
+   \\\ \\\
+   (\vec{u} \cdot \vec{v}) \cdot \vec{w} = \vec{u} \cdot (\vec{v} \cdot \vec{w}) ~~~~~ 满足分配律
+   \\\ \\\
+   (k \vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) ~~~~~ 满足标量的结合律
+   \\\ \\\
+   (\vec{u} \cdot \vec{v}) \cdot \vec{w} \neq \vec{u} \cdot (\vec{v} \cdot \vec{w}) 
+   ~~~~~
+   不满足 点积与点积的结合律 这是因为点积的结果是一个标量，而标量与向量的点积没有定义。
+   \end{gather*}
    $$
    *（g） 叉积：* 
+
+   *叉积的结果向量垂直于 向量u 和 向量v 所在的平面，因此常用于计算平面的法向量。*
+
+   *叉积的模长等于以 向量u 和 向量v 为邻边的平行四边形的面积  || u x v ||*
+
+   *叉积的方向由右手定则确定，常用于判断向量的旋转方向。*
+
+   *在物理学中，叉积常用于计算力矩、角动量等与旋转相关的物理量。*
    $$
-   \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+   \begin{gather*}
+   \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) ~~~~~ 公式
+   \\\ \\\
+   \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta 
+   ~~~~~~ 
+   叉积的模长公式
+   \\\ \\\
+   \vec{u} \times \vec{v} = \vec{v} \times \vec{u} ~~~~~ 满足交换律
+   \\\ \\\
+   \vec{u} \times \vec{v} = -\vec{v} \times \vec{u} ~~~~~ 反交换律
+   \\\ \\\
+   \vec{u} \times (\vec{v} + \vec{w}) = \vec{u} \times \vec{c} + \vec{u} \times \vec{v} ~~~~~ 满足分配律
+   \\\ \\\
+   k\vec{u} \times \vec{v} = \vec{u} \times k\vec{v} ~~~~~~ 满足标量的结合律
+   \\\ \\\
+   (\vec{u} \times \vec{v}) \times\vec{w} \neq \vec{u} \times (\vec{v} \times\vec{w}) ~~~~~ 不满足叉积与叉积的结合律
+   \end{gather*}
    $$
 
 3. *[向量的几何意义](#向量的几何意义)*
@@ -315,6 +381,72 @@ $$
    对于 $ 1  \leq i \leq n-1 $ , 令 $ \vec{w}\_i = \vec{v}\_i -  \sum\_{j=0}^{i-1} \text{proj}\_{\mathbf{w}\_j} (\mathbf{v}\_i) $
 
 ## ***作业***
+
+### ***题目大纲***
+
+1. *设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量*
+
+2. *设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。写出下列问题的解答过程*
+
+3. *证明式子*
+
+   *(a) $ \vec{u} + \vec{v} =  \vec{v} + \vec{u} $ （加法交换律）*
+
+   *(b) $ \vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w} $ （加法结合律）*
+
+   *(c) $ (ck)\vec{u} = c(k\vec{u}) $ （标量乘法的结合律）*
+
+   *(d) $ k(\vec{u} + \vec{v}) = k\vec{u} + k\vec{v} $ （分配律 1）*
+
+   *(e) $ \vec{u}(k + c) = k\vec{u} + c\vec{u} $ （分配律 2）*
+
+4. *根据等式  "2[(1, 2, 3) − x] − (−2, 0, 4) = −2(1, 2, 3)"，求其中的向量 x。*
+
+5. *设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。*
+
+6. *设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$*
+
+7. *下列各组向量中，u 与 v 之间的夹角是直角、锐角还是钝角？*
+
+   *（a）u = (1, 1, 1)，v = (2, 3, 4)*
+
+   *（b）u = (1, 1, 0)，v = (−2, 2, 0)*
+
+   *（c）u = (−1, −1, −1)，v = (3, 1, 0)*
+
+8. *设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。计算 u 和 v 之间的夹角 θ*
+
+9. *设向量 $ u = (u_x, u_y, u_z)、v = (v_x, v_y, v_z)和 w = (w_x, w_y, w_z)，且 c 和 k 为标量。证明下列点积性质。*
+
+   *（a）$ \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u} $*
+
+   *（b）$ \vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w} $*
+
+   *（c）$ k(\vec{u} \cdot \vec{v}) = (k\vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) $*
+
+   *（d）$ \vec{v} \cdot \vec{v} = ||v||^2 $*
+
+   *（e）$ 0 \cdot \vec{v} = 0 $*
+
+10. *利用余弦定理 （ $  c^2 = a^2 + b^2 - 2ab \cos\theta $ ，其中 a、b、c 分别是三角形 3 条边的边长， θ 为 a 与 b 之间的夹角）来证明：$ u_x v_x + u_y v_y + u_z v_z = ||u|| ||v|| \cos\theta $*
+
+11. *设向量 n = (−2, 1)。将向量 g = (0, −9.8) 分解为两个相互正交的向量之和，使它们一个平行于 n、 一个正交于 n。最后，在同一 2D 坐标系中画出这些向量。*
+
+12. *设向量 u = (−2, 1, 4)和向量 v = (3, −4, 1)。求向量 w  = u × v ，再证明 w⋅ u= 0 及 w ⋅ v= 0 。*
+
+13. *设 A = (0, 0, 0)，B = (0, 1, 3)和 C = (5, 1, 0)三点在某坐标系中定义了一个三角形。求出一正交于此三角形的向量。*
+
+14. *证明 $ \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta $*
+
+15. *证明：由向量 u 和向量 v 张成的平行四边形面积为|| u × v || ，如图 1.21 所示。*
+
+    ![向量第十五题](https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十五题.png)
+
+16. *举例证明：存在 3D 向量 u、v 和 w，满足 u x (v x w) ≠ (u x v) x w 。这说明叉积一般不满足结合律。*
+
+17. *证明两个非零且相互平行向量的叉积为零向量，即 $ \vec{u} \times k\vec{u} = 0 $。*
+
+18. *利用格拉姆—施密特正交化方法，令向量集 {(1, 0, 0), (1, 5, 0), (2, 1, −4)} 规范正交化。*
 
 ### ***第一题***
 
@@ -787,22 +919,75 @@ $$
 
 *证明 $ \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta $*
 $$
-\Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta 
+\begin{gather*}
+\Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta
+\\\ \\\
+\Vert \vec{u} \times \vec{v} \Vert = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_z)
+\\\ \\\
+\Vert \vec{u} \times \vec{v} \Vert^2 = (u_y v_z - u_z v_y)^2 + (u_z v_x - u_x v_z)^2 + (u_x v_y - u_y v_z)^2
+\\\ \\\
+\Vert \vec{u} \times \vec{v} \Vert^2 
+= (u_y^2 v_z^2 - 2u_yv_zu_zv_y + u_z^2 v_y^2) 
++ (u_z^2 v_x^2 - 2u_zv_xu_xv_z + u_x^2 v_z^2) 
++ (u_x^2 v_y^2 - 2u_xv_yu_yv_x + u_y^2 v_x^2)
+\\\ \\\
+\Vert \vec{u} \Vert^2 \Vert \vec{v} \Vert^2 - (\vec{u} \cdot\vec{v})^2
+= (u_y^2 v_z^2 + u_z^2 v_y^2) 
++ (u_z^2 v_x^2 + u_x^2 v_z^2) 
++ (u_x^2 v_y^2 + u_y^2 v_x^2)
+\- 2(u_yv_zu_zv_y + u_zv_xu_xv_z + u_xv_yu_yv_x)
+\\\ \\\
+\Vert \vec{u} \Vert^2 \Vert \vec{v} \Vert^2 - (\vec{u} \cdot\vec{v})
+\end{gather*}
 $$
 
 ### ***第十五题***
 
-*证明：由向量 u 和向量 v 张成的平行四边形面积为|| u × v || ，如图 1.21 所示。*
+*证明：由向量 u 和向量 v 张成的平行四边形面积为 || u x v || ，如图 1.21 所示。*
 
 ![向量第十五题](https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十五题.png)
 
-***第十六题***
+$$
+A = \Vert \vec{v} \Vert h
+\\\ \\\
+h = \Vert \vec{u} \Vert \sin\theta
+\\\ \\\
+A = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta
+\\\ \\\
+A = \Vert \vec{u} \times \vec{v} \Vert
+$$
+
+### ***第十六题***
 
 *举例证明：存在 3D 向量 u、v 和 w，满足 u x (v x w) ≠ (u x v) x w 。这说明叉积一般不满足结合律。*
+$$
+\begin{gather*}
+设 \vec{u} = (1, 0, 0), \vec{v} = (1, 1, 0), \vec{w} = (0, 1, 1)
+\\\ \\\
+\vec{u} \times (\vec{v} \times \vec{w}) = \vec{u} \times (1, -1, 1) = (0, -1, -1)
+\\\ \\\
+(\vec{u} \times \vec{v}) \times \vec{w} = (0, 0, 1) \times \vec{w} = (-1, 0, 0)
+\\\ \\\
+故 \vec{u} \times (\vec{v} \times \vec{w}) \neq (\vec{u} \times \vec{v}) \times \vec{w}
+\end{gather*}
+$$
 
 ### ***第十七题***
 
 *证明两个非零且相互平行向量的叉积为零向量，即 $ \vec{u} \times k\vec{u} = 0 $。*
+$$
+\begin{align*}
+\vec{u} \times k\vec{u} 
+&= (u_y ku_z - u_z ku_y, u_z ku_x - u_x ku_z, u_x ku_y - u_y ku_x ) 
+\\\ \\\
+&= k(u_y u_z - u_z u_y, u_z u_x - u_x u_z, u_x u_y - u_y u_x)
+\\\ \\\
+&= k(0, 0, 0)
+\\\ \\\
+&= (0, 0, 0)
+\end{align*}
+$$
+
 
 ### ***第十八题***
 
