@@ -326,8 +326,10 @@ $$
    \\\ \\\
    (k \vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) ~~~~~ 满足标量的结合律
    \\\ \\\
-   (\vec{u} \cdot \vec{v}) \cdot \vec{w} \neq \vec{u} \cdot (\vec{v} \cdot \vec{w}) 
-   ~~~~~
+   (\vec{u} \cdot \vec{v}) \cdot \vec{w} \neq \vec{u} \cdot (\vec{v} \cdot \vec{w})
+   \\\ \\\
+   \downarrow
+   \\\ \\\
    不满足 点积与点积的结合律 这是因为点积的结果是一个标量，而标量与向量的点积没有定义。
    \end{gather*}
    $$
@@ -344,8 +346,7 @@ $$
    \begin{gather*}
    \vec{w} = \vec{u} \times \vec{v} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) ~~~~~ 公式
    \\\ \\\
-   \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta 
-   ~~~~~~ 
+   \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta ~~~~~~ 
    叉积的模长公式
    \\\ \\\
    \vec{u} \times \vec{v} = \vec{v} \times \vec{u} ~~~~~ 满足交换律
@@ -862,7 +863,7 @@ $$
 \\\ \\\
 &= (-3.92, −1.96)
 \\\ \\\
-\vec{g}_\perp &= \vec{g} - \vec{g_{||}}
+\vec{g}\_\perp &= \vec{g} - \vec{g_{||}}
 \\\ \\\
 &=  (0, −9.8) − (3.92, −1.96) 
 \\\ \\\
@@ -928,13 +929,11 @@ $$
 \\\ \\\
 \Vert \vec{u} \times \vec{v} \Vert^2 
 = (u_y^2 v_z^2 - 2u_yv_zu_zv_y + u_z^2 v_y^2) 
-+ (u_z^2 v_x^2 - 2u_zv_xu_xv_z + u_x^2 v_z^2) 
-+ (u_x^2 v_y^2 - 2u_xv_yu_yv_x + u_y^2 v_x^2)
+\+ (u_z^2 v_x^2 - 2u_zv_xu_xv_z + u_x^2 v_z^2) + (u_x^2 v_y^2 - 2u_xv_yu_yv_x + u_y^2 v_x^2)
 \\\ \\\
 \Vert \vec{u} \Vert^2 \Vert \vec{v} \Vert^2 - (\vec{u} \cdot\vec{v})^2
 = (u_y^2 v_z^2 + u_z^2 v_y^2) 
-+ (u_z^2 v_x^2 + u_x^2 v_z^2) 
-+ (u_x^2 v_y^2 + u_y^2 v_x^2)
+\+ (u_z^2 v_x^2 + u_x^2 v_z^2) + (u_x^2 v_y^2 + u_y^2 v_x^2)
 \- 2(u_yv_zu_zv_y + u_zv_xu_xv_z + u_xv_yu_yv_x)
 \\\ \\\
 \Vert \vec{u} \Vert^2 \Vert \vec{v} \Vert^2 - (\vec{u} \cdot\vec{v})
