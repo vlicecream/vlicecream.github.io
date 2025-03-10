@@ -15,8 +15,8 @@
 $$
 A = \quad \begin{bmatrix} 3.5 & 0 & 0 & 0 \\\ 0 & 1 & 0 & 0 \\\ 0 & 0 & 0.5 & 0 \\\ 2 & -5 & \sqrt{2} & 1 \end{bmatrix} ~~~~~~~~ 
 B = \quad \begin{bmatrix} B_{11} & B_{12} \\\ B_{21} & B_{22} \\\ B_{31} & B_{32}  \end{bmatrix} ~~~~~~~~
-C = \quad \left[u_1, u_2 \right] ~~~~~~~~
-D = \quad \begin{bmatrix} 1 \\\ 2 \\\ \sqrt{3} \\\ \pi \end{bmatrix}
+u = \quad \left[u_1, u_2 \right] ~~~~~~~~
+v = \quad \begin{bmatrix} 1 \\\ 2 \\\ \sqrt{3} \\\ \pi \end{bmatrix}
 $$
 
 1. *A是一个 4 x 4 矩阵，B是一个 3 x 2 矩阵，u 是一个特殊的 1 x 3矩阵，v是一个 4 x 1 矩阵*
@@ -310,5 +310,136 @@ $$
 
 ## ***小结***
 
-1. **
+1. *m × n 矩阵 M 是一个由 m 行 n 列实数所构成的矩形阵列*
+1. *如果 A 是一个 m × n矩阵，且 B 为一个 n × p矩阵，那么两者乘积 AB 的结果是一个规模为 m × p 的矩阵 C。*
+1. *矩阵乘法不满足交换律（即一般来说， AB ≠ BA ），但是却满足结合律 (AB)C = A(BC)*
+1. *转置矩阵由原矩阵互换行与列来求得。所以， m  ×  n矩阵的转置矩阵为 n × m矩阵。我们将矩阵 M 的转置矩阵表示为 $ M^T $。*
+1. *单位矩阵是一种除主对角线上的元素为 1 外，其他元素均为 0 的方阵。*
+1. *行列式 det A 是一种特殊的函数，向它传入一个方阵便会计算出一个对应的实数。方阵 A 是可逆的，当且仅当 det A  ≠ 0。行列式常常用于计算逆矩阵。*
+1. *矩阵与其逆矩阵的乘积结果为单位矩阵，即 $ MM^−1 = M^−1M = I $。如果一个矩阵是可逆的，则此矩 阵的逆矩阵是唯一的。只有方阵才可能有逆矩阵，即便是方阵也未必可逆。逆矩阵可由公式 1 * / det − AA A = 来计算，其中 * A 是伴随矩阵（即矩阵 A 的代数余子式矩阵的转置矩阵）。*
+
+## ***作业***
+
+### ***题目大纲***
+
+1. *求解下列矩阵方程中的矩阵 X $ 3(\begin{bmatrix}-2 & 0\\\ \\\ 1 & 3\end{bmatrix}- 2X) = 2\begin{bmatrix}-2 & 0\\\ \\\ 1 & 3\end{bmatrix} $*
+
+2. *计算下列矩阵的乘积：*
+
+   *（a）$ \begin{bmatrix}-2 & 0 & 3 \\\ \\\ 4 & 1 & -1 \end{bmatrix} \begin{bmatrix} 2 & -1 \\\ \\\ 0 & 6 \\\ \\\ 2 & -3 \end{bmatrix} $*
+
+   *（b）$ \begin{bmatrix}1 & 2 \\\ \\\ 3 & 4 \end{bmatrix} \begin{bmatrix} -2 & 0 \\\ \\\ 1 & 1 \end{bmatrix} $*
+
+   *（c）$ \begin{bmatrix} 2 & 0 & 2 \\\ \\\ 0 & -1 & -3 \\\ \\\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 \\\ \\\ 2 \\\ \\\ 1 \end{bmatrix} $*
+
+3. *计算下列矩阵的转置矩阵*
+
+   *（a）$ \begin{bmatrix} 1 & 2 & 3 \end{bmatrix} $*
+
+   *（b）$ \begin{bmatrix} x & y \\\ \\\ z & w \end{bmatrix} $*
+
+   *（c）$ \begin{bmatrix} 1 & 2 \\\ \\\ 3 & 4 \\\ \\\ 5 & 6 \\\ \\\ 7 & 8 \end{bmatrix} $*
+
+4. *将下列线性组合写作向量与矩阵乘积的形式：*
+
+   *（a）v = 2(1, 2, 3) − 4(−5, 0, −1) + 3(2, −2, 3)*
+
+   *（b）v = 3(2, −4) + 2(1, 4) − 1(−2, −3) + 5(1, 1)*
+
+### ***第一题***
+
+*求解下列矩阵方程中的矩阵 X $ 3(\begin{bmatrix}-2 & 0\\\ \\\ 1 & 3\end{bmatrix}- 2X) = 2\begin{bmatrix}-2 & 0\\\ \\\ 1 & 3\end{bmatrix} $*
+$$
+\begin{gather*}
+3(\begin{bmatrix}-2 & 0\\\ \\\ 1 & 3\end{bmatrix}- 2X) = 2\begin{bmatrix}-2 & 0\\\ \\\ 1 & 3\end{bmatrix}
+\\\ \\\
+\begin{bmatrix} -6 & 0 \\\ \\\ 3 & 9 \end{bmatrix} - 6X = \begin{bmatrix} -4 & 0 \\\ \\\ 2 & 6 \end{bmatrix}
+\\\ \\\
+-6X = \begin{bmatrix} -4 & 0 \\\ \\\ 2 & 6 \end{bmatrix} - \begin{bmatrix} -6 & 0 \\\ \\\ 3 & 9 \end{bmatrix}
+\\\ \\\
+-6X = \begin{bmatrix} 2 & 0 \\\ \\\ -1 & -3 \end{bmatrix}
+\\\ \\\
+X = \begin{bmatrix} -\frac{1}{3} & 0 \\\ \\\ \frac{1}{6} & \frac{1}{2} \end{bmatrix}
+\end{gather*}
+$$
+
+### ***第二题***
+
+*计算下列矩阵的乘积：*
+
+*（a）$ \begin{bmatrix}-2 & 0 & 3 \\\ \\\ 4 & 1 & -1 \end{bmatrix} \begin{bmatrix} 2 & -1 \\\ \\\ 0 & 6 \\\ \\\ 2 & -3 \end{bmatrix} $*
+$$
+\begin{bmatrix}-2 & 0 & 3 \\\ \\\ 4 & 1 & -1 \end{bmatrix} \begin{bmatrix} 2 & -1 \\\ \\\ 0 & 6 \\\ \\\ 2 & -3 \end{bmatrix} = \begin{bmatrix} 2 & -7 \\\ \\\ 6 & 5 \end{bmatrix}
+$$
+*（b）$ \begin{bmatrix}1 & 2 \\\ \\\ 3 & 4 \end{bmatrix} \begin{bmatrix} -2 & 0 \\\ \\\ 1 & 1 \end{bmatrix} $*
+$$
+\begin{bmatrix}1 & 2 \\\ \\\ 3 & 4 \end{bmatrix} \begin{bmatrix} -2 & 0 \\\ \\\ 1 & 1 \end{bmatrix}
+= \begin{bmatrix} 0 & 2 \\\ \\\ -2 & 4 \end{bmatrix}
+$$
+*（c）$ \begin{bmatrix} 2 & 0 & 2 \\\ \\\ 0 & -1 & -3 \\\ \\\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 \\\ \\\ 2 \\\ \\\ 1 \end{bmatrix} $*
+$$
+\begin{bmatrix} 2 & 0 & 2 \\\ \\\ 0 & -1 & -3 \\\ \\\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 \\\ \\\ 2 \\\ \\\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\\ \\\ -5 \\\ \\\ 1 \end{bmatrix}
+$$
+
+### ***第三题***
+
+*计算下列矩阵的转置矩阵*
+
+*（a）$ \begin{bmatrix} 1 & 2 & 3 \end{bmatrix} $*
+$$
+\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}^T = \begin{bmatrix} 1 \\\ 2 \\\ 3 \end{bmatrix}
+$$
+*（b）$ \begin{bmatrix} x & y \\\ \\\ z & w \end{bmatrix} $*
+$$
+\begin{bmatrix} x & y \\\ \\\ z & w \end{bmatrix} ^ T = \begin{bmatrix} x & z \\\ \\\ y & w \end{bmatrix}
+$$
+*（c）$ \begin{bmatrix} 1 & 2 \\\ \\\ 3 & 4 \\\ \\\ 5 & 6 \\\ \\\ 7 & 8 \end{bmatrix} $*
+$$
+\begin{bmatrix} 1 & 2 \\\ \\\ 3 & 4 \\\ \\\ 5 & 6 \\\ \\\ 7 & 8 \end{bmatrix} ^ T = 
+\begin{bmatrix} 1 & 3 & 5 & 7 \\\ \\\ 2 & 4 & 6 & 8 \end{bmatrix}
+$$
+
+### ***第四题***
+
+*将下列线性组合写作向量与矩阵乘积的形式：*
+
+*（a）v = 2(1, 2, 3) − 4(−5, 0, −1) + 3(2, −2, 3)*
+$$
+\begin{bmatrix} 1 & -5 & 2 \\\ \\\ 2 & 0 & -2 \\\ \\\ 3 & -1 & 3 \end{bmatrix}
+\begin{bmatrix} 2 \\\ \\\ -4 \\\ \\\ 3 \end{bmatrix}
+$$
+
+
+*（b）v = 3(2, −4) + 2(1, 4) − 1(−2, −3) + 5(1, 1)*
+$$
+\begin{bmatrix} 2 & 1 & -2 & 1 \\\ \\\ -4 & 4 & -3 & 1 \end{bmatrix}
+\begin{bmatrix} 3 \\\ \\\ 2 \\\ \\\ -1 \\\ \\\ 5 \end{bmatrix}
+$$
+
+### ***第五题***
+
+*证明：*
+$$
+AB = 
+\begin{bmatrix} A_{11} & A_{12} & A_{13} \\\ A_{21} & A_{22} & A_{23} \\\ A_{31} & A_{32} & A_{33} \end{bmatrix}
+\begin{bmatrix} B_{11} & B_{12} & B_{13} \\\ B_{21} & B_{22} & B_{23} \\\ B_{31} & B_{32} & B_{33} \end{bmatrix}
+=
+\begin{bmatrix} 
+\leftarrow A_{1,*}B \rightarrow 
+\\\ \\\ 
+\leftarrow A_{2,*}B \rightarrow
+\\\ \\\
+\leftarrow A_{3,*}B \rightarrow
+\end{bmatrix}
+$$
+
+$$
+AB = 
+\begin{bmatrix}
+(A_{11}, A_{12}, A_{13}) * (B_{11}, B_{21}, B_{31})
+\+ (A_{11}, A_{12}, A_{13}) * (B_{12}, B_{22}, B_{32})
+\+ ()
+\end{bmatrix}
+$$
+
 
