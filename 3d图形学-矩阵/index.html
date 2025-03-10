@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  6880 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  7348 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/","datePublished": "2024-12-24T11:05:00+08:00","dateModified": "2024-12-24T11:05:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6880 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="矩阵">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7348 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -171,12 +171,17 @@
         <li><a href="#行列式的定义"><em><strong>行列式的定义</strong></em></a>
           <ul>
             <li><a href="#例子-3"><em><strong>例子</strong></em></a></li>
+            <li><a href="#例子2"><em><strong>例子2</strong></em></a></li>
           </ul>
         </li>
       </ul>
     </li>
     <li><a href="#伴随矩阵"><em><strong>伴随矩阵</strong></em></a></li>
-    <li><a href="#逆矩阵"><em><strong>逆矩阵</strong></em></a></li>
+    <li><a href="#逆矩阵"><em><strong>逆矩阵</strong></em></a>
+      <ul>
+        <li><a href="#例子-4"><em><strong>例子</strong></em></a></li>
+      </ul>
+    </li>
     <li><a href="#基本运算定律"><em><strong>基本运算定律</strong></em></a></li>
     <li><a href="#小结"><em><strong>小结</strong></em></a></li>
     <li><a href="#作业"><em><strong>作业</strong></em></a>
@@ -413,16 +418,39 @@ $$
 - A_{12} \det{\begin{bmatrix} A_{21} &amp; A_{23} \\ A_{31} &amp; A_{33} \end{bmatrix}}
 + A_{13} \det{\begin{bmatrix} A_{21} &amp; A_{22} \\ A_{31} &amp; A_{32} \end{bmatrix}}
 $$
-<em>对于 4 x 4 矩阵, 其行列式计算公式为：</em>
-$$
-\det{\begin{bmatrix} A_{11} &amp; A_{12} &amp; A_{13} &amp; A_{14} \\ A_{21} &amp; A_{22} &amp; A_{23} &amp; A_{24} \\ A_{31} &amp; A_{32} &amp; A_{33} &amp; A_{34} \\ A_{41} &amp; A_{42} &amp; A_{43} &amp; A_{44} \end{bmatrix}}
-= A_{11} \det{\begin{bmatrix} A_{22} &amp; A_{23} &amp; A_{24} \\ A_{} \end{bmatrix}}
-$$</p>
+<em>对于 4 x 4 矩阵, 其行列式计算公式为：</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b54x4%e8%a1%8c%e5%88%97%e5%bc%8f.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b54x4%e8%a1%8c%e5%88%97%e5%bc%8f.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b54x4%e8%a1%8c%e5%88%97%e5%bc%8f.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b54x4%e8%a1%8c%e5%88%97%e5%bc%8f.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/矩阵4x4行列式.png"
+        title="矩阵4x4行列式" /></p>
+<p><em>在 3D 图形学中，主要使用 4 × 4矩阵。因此，我们不再继续推导 n &gt; 4 的行列式公式。</em></p>
+<h4 id="例子2"><em><strong>例子2</strong></em></h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b5%e8%a1%8c%e5%88%97%e5%bc%8f%e4%be%8b%e5%ad%902.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b5%e8%a1%8c%e5%88%97%e5%bc%8f%e4%be%8b%e5%ad%902.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b5%e8%a1%8c%e5%88%97%e5%bc%8f%e4%be%8b%e5%ad%902.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e7%9f%a9%e9%98%b5%e8%a1%8c%e5%88%97%e5%bc%8f%e4%be%8b%e5%ad%902.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/矩阵行列式例子2.png"
+        title="矩阵行列式例子2" /></p>
 <h2 id="伴随矩阵"><em><strong>伴随矩阵</strong></em></h2>
 <p><em>设A为一个 n x n 矩阵。</em></p>
-<p><em>乘积 $ C_{ij} = (-1)^{i+j}\det{\overline{A}_ij} $称为元素 $ A_{ij} $的代数余子式</em></p>
-<p><em>如果为矩阵A中的每个元素分别计算出 $ C_{ij} $，并将他置于 $ C_A $中的第i行，第j列的相应位置, 那么将获得矩阵A的代数余子式;</em></p>
-<p><em>若取矩阵 $ C_A $ 的转置矩阵, 将得到矩阵A的伴随矩阵, 记作: $ A^</em> = C^T_A $*</p>
+<p><em>乘积 $ C_{ij} = (-1)^{i+j}\det{\overline{A}_ij} $ 称为元素 $ A_{ij} $的代数余子式</em></p>
+<p><em>如果为矩阵A中的每个元素分别计算出 $ C_{ij} $，并将他置于 $ C_A $中的第i行，第j列的相应位置, 那么将获得矩阵A的代数余子式;</em>
+$$
+C_A =
+\begin{bmatrix}
+C_{11} &amp; C_{12} &amp; \cdots &amp; C_{1n} \\ \\
+C_{21} &amp; C_{22} &amp; \cdots &amp; C_{2n} \\ \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \\
+C_{n1} &amp; C_{n2} &amp; \cdots &amp; C_{nn}
+\end{bmatrix}
+$$
+<em>若取矩阵 $ C_A $ 的转置矩阵, 将得到矩阵A的伴随矩阵, 记作: $ A^* = C^T_A $</em></p>
 <h2 id="逆矩阵"><em><strong>逆矩阵</strong></em></h2>
 <p><em>矩阵代数不存在除法运算的概念，但是却另外定义了一种矩阵乘法的逆运算。下面总结了与矩阵逆 运算有关的关键信息。</em></p>
 <ol>
@@ -442,6 +470,78 @@ $$</p>
 <p><em>在任何一本大学水平的线性代数教科书里，都可以找到求逆矩阵公式的推导过程，这里也就不再赘述了。此公式由原矩阵的伴随矩阵和行列式构成：</em>
 $$
 A^{-1} = \frac{A^*}{detA}
+$$</p>
+<h3 id="例子-4"><em><strong>例子</strong></em></h3>
+<p><em>推导 2 × 2矩阵 A = $ \begin{bmatrix} A_{11} &amp; A_{12} \\ \\ A_{21} &amp; A_{22} \end{bmatrix} $ 的逆矩阵通式，并利用此式求出矩阵 M = $ \begin{bmatrix} 3 &amp; 0 \\ \\ -1 &amp; 2 \end{bmatrix} $ 的逆矩阵</em>
+$$
+\begin{gather}
+\det A = A_{11}A_{22} - A_{12}A_{21}
+\\ \\
+C_A =
+\begin{bmatrix}
+(-1)^{1+1} \det \overline{A}_{11} &amp; (-1)^{1+2} \det \overline{A}_{12} \\
+(-1)^{2+1} \det \overline{A}_{21} &amp; (-1)^{2+2} \det \overline{A}_{22}
+\end{bmatrix} =
+\begin{bmatrix}
+A_{22} &amp; -A_{21} \\
+-A_{12} &amp; A_{11}
+\end{bmatrix}
+\end{gather}
+$$
+<em>因此：</em>
+$$
+A^{-1} = \frac{A^*}{\det A} = \frac{C_A^T}{\det A} = \frac{1}{A_{11}A_{22} - A_{12}A_{21}}
+\begin{bmatrix}
+A_{22} &amp; -A_{12} \
+-A_{21} &amp; A_{11}
+\end{bmatrix}
+$$
+<em>现在运用此公式来求矩阵 M = $ \begin{bmatrix} 3 &amp; 0 \\ \\ -1 &amp; 2 \end{bmatrix} $ 的逆矩阵：</em>
+$$
+M^{-1} = \frac{1}{3 \cdot 2 - 0 \cdot (-1)}
+\begin{bmatrix}
+2 &amp; 0 \
+1 &amp; 3
+\end{bmatrix} =
+\begin{bmatrix}
+\frac{1}{3} &amp; 0 \
+\frac{1}{6} &amp; \frac{1}{2}
+\end{bmatrix}
+$$
+<em>为了核实结果，我们来验证 $ MM^{−1} = M^{−1}M = I $：</em>
+$$
+\begin{bmatrix}
+3 &amp; 0 \
+-1 &amp; 2
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{3} &amp; 0 \
+\frac{1}{6} &amp; \frac{1}{2}
+\end{bmatrix} =
+\begin{bmatrix}
+1 &amp; 0 \
+0 &amp; 1
+\end{bmatrix} =
+\begin{bmatrix}
+\frac{1}{3} &amp; 0 \
+\frac{1}{6} &amp; \frac{1}{2}
+\end{bmatrix}
+\begin{bmatrix}
+3 &amp; 0 \
+-1 &amp; 2
+\end{bmatrix}
+$$
+<em>我们以下列“矩阵乘积的逆”这一实用的代数性质，为此节画上句号：</em>
+$$
+(AB)^{-1} = B^{-1}A^{-1}
+$$
+<em>该性质假设矩阵 A 与矩阵 B 都是可逆的，而且皆为同维方阵。为了证明 $ B^{−1} A^{−1} $ 是乘积 AB 的逆，我 们必须证实 $ (AB)(B^{−1}A^{−1}) = I $ 以及 $ (B^{−1}A^{−1}) (AB) = I $。证明过程如下：</em>
+$$
+\begin{gather}
+(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AIA^{-1} = AA^{-1} = I
+\\ \\
+(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = B^{-1}IB = B^{-1}B = I
+\end{gather}
 $$</p>
 <h2 id="基本运算定律"><em><strong>基本运算定律</strong></em></h2>
 <p><em>由于在矩阵的加法和标量乘法的运算过程中，是以元素为单位展开计算的，所以它们实际上也分别从实数运算中继承了下列性质</em></p>

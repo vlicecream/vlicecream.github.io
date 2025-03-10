@@ -261,20 +261,32 @@ $$
 \+ A_{13} \det{\begin{bmatrix} A_{21} & A_{22} \\\ A_{31} & A_{32} \end{bmatrix}}
 $$
 *对于 4 x 4 矩阵, 其行列式计算公式为：*
-$$
-\det{\begin{bmatrix} A_{11} & A_{12} & A_{13} & A_{14} \\\ A_{21} & A_{22} & A_{23} & A_{24} \\\ A_{31} & A_{32} & A_{33} & A_{34} \\\ A_{41} & A_{42} & A_{43} & A_{44} \end{bmatrix}}
-= A_{11} \det{\begin{bmatrix} A_{22} & A_{23} & A_{24} \\\ A_{} \end{bmatrix}}
-$$
+
+![矩阵4x4行列式](https://raw.githubusercontent.com/vlicecream/cloudImage/main/矩阵4x4行列式.png)
+
+*在 3D 图形学中，主要使用 4 × 4矩阵。因此，我们不再继续推导 n > 4 的行列式公式。*
+
+#### ***例子2***
+
+![矩阵行列式例子2](https://raw.githubusercontent.com/vlicecream/cloudImage/main/矩阵行列式例子2.png)
 
 ## ***伴随矩阵***
 
 *设A为一个 n x n 矩阵。*
 
-*乘积 $ C_{ij} = (-1)^{i+j}\det{\overline{A}\_ij} $称为元素 $ A_{ij} $的代数余子式*
+*乘积 $ C_{ij} = (-1)^{i+j}\det{\overline{A}\_ij} $ 称为元素 $ A_{ij} $的代数余子式*
 
 *如果为矩阵A中的每个元素分别计算出 $ C_{ij} $，并将他置于 $ C_A $中的第i行，第j列的相应位置, 那么将获得矩阵A的代数余子式;*
-
-*若取矩阵 $ C_A $ 的转置矩阵, 将得到矩阵A的伴随矩阵, 记作: $ A^* = C^T_A $*
+$$
+C_A = 
+\begin{bmatrix}
+C_{11} & C_{12} & \cdots & C_{1n} \\\ \\\
+C_{21} & C_{22} & \cdots & C_{2n} \\\ \\\
+\vdots & \vdots & \ddots & \vdots \\\ \\\
+C_{n1} & C_{n2} & \cdots & C_{nn}
+\end{bmatrix}
+$$
+*若取矩阵 $ C_A $ 的转置矩阵, 将得到矩阵A的伴随矩阵, 记作: $ A^\* = C^T_A $*
 
 ## ***逆矩阵***
 
@@ -296,6 +308,81 @@ $$
 *在任何一本大学水平的线性代数教科书里，都可以找到求逆矩阵公式的推导过程，这里也就不再赘述了。此公式由原矩阵的伴随矩阵和行列式构成：*
 $$
 A^{-1} = \frac{A^*}{detA}
+$$
+
+
+### ***例子***
+
+*推导 2 × 2矩阵 A = $ \begin{bmatrix} A\_{11} & A\_{12} \\\ \\\ A\_{21} & A\_{22} \end{bmatrix} $ 的逆矩阵通式，并利用此式求出矩阵 M = $ \begin{bmatrix} 3 & 0 \\\ \\\ -1 & 2 \end{bmatrix} $ 的逆矩阵*
+$$
+\begin{gather}
+\det A = A_{11}A_{22} - A_{12}A_{21}
+\\\ \\\
+C_A = 
+\begin{bmatrix}
+(-1)^{1+1} \det \overline{A}\_{11} & (-1)^{1+2} \det \overline{A}\_{12} \\\
+(-1)^{2+1} \det \overline{A}\_{21} & (-1)^{2+2} \det \overline{A}\_{22}
+\end{bmatrix} =
+\begin{bmatrix}
+A\_{22} & -A_{21} \\\
+-A\_{12} & A\_{11}
+\end{bmatrix}
+\end{gather}
+$$
+*因此：*
+$$
+A^{-1} = \frac{A^*}{\det A} = \frac{C_A^T}{\det A} = \frac{1}{A_{11}A_{22} - A_{12}A_{21}} 
+\begin{bmatrix} 
+A_{22} & -A_{12} \\ 
+-A_{21} & A_{11} 
+\end{bmatrix}
+$$
+*现在运用此公式来求矩阵 M = $ \begin{bmatrix} 3 & 0 \\\ \\\ -1 & 2 \end{bmatrix} $ 的逆矩阵：*
+$$
+M^{-1} = \frac{1}{3 \cdot 2 - 0 \cdot (-1)} 
+\begin{bmatrix} 
+2 & 0 \\ 
+1 & 3 
+\end{bmatrix} = 
+\begin{bmatrix} 
+\frac{1}{3} & 0 \\ 
+\frac{1}{6} & \frac{1}{2} 
+\end{bmatrix}
+$$
+*为了核实结果，我们来验证 $ MM^{−1} = M^{−1}M = I $：*
+$$
+\begin{bmatrix} 
+3 & 0 \\ 
+-1 & 2 
+\end{bmatrix} 
+\begin{bmatrix} 
+\frac{1}{3} & 0 \\ 
+\frac{1}{6} & \frac{1}{2} 
+\end{bmatrix} = 
+\begin{bmatrix} 
+1 & 0 \\ 
+0 & 1 
+\end{bmatrix} = 
+\begin{bmatrix} 
+\frac{1}{3} & 0 \\ 
+\frac{1}{6} & \frac{1}{2} 
+\end{bmatrix} 
+\begin{bmatrix} 
+3 & 0 \\ 
+-1 & 2 
+\end{bmatrix}
+$$
+*我们以下列“矩阵乘积的逆”这一实用的代数性质，为此节画上句号：*
+$$
+(AB)^{-1} = B^{-1}A^{-1}
+$$
+*该性质假设矩阵 A 与矩阵 B 都是可逆的，而且皆为同维方阵。为了证明 $ B^{−1} A^{−1} $ 是乘积 AB 的逆，我 们必须证实 $ (AB)(B^{−1}A^{−1}) = I $ 以及 $ (B^{−1}A^{−1}) (AB) = I $。证明过程如下：*
+$$
+\begin{gather}
+(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AIA^{-1} = AA^{-1} = I
+\\\ \\\
+(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = B^{-1}IB = B^{-1}B = I
+\end{gather}
 $$
 
 
