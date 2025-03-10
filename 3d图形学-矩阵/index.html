@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  6913 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  6886 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/","datePublished": "2024-12-24T11:05:00+08:00","dateModified": "2024-12-24T11:05:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6913 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6886 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -381,7 +381,7 @@ $$</p>
 <p><em>行列式是一个特殊的函数，他以一个方阵作为输出，并输出一个实数。方阵A的行列式通常表示为 $ \det(A) $</em></p>
 <p><em>我们可以从几何的角度来解释行列式。行列式反映了在线性变换下，（n 维多面体）体积变化的相关信息。另外，行列式也应用于解线性方程组的克莱姆法则（Cramer’s Rule，亦称克莱默法则）。</em></p>
 <p><em>然而，我们在此学习行列式的主要目的是：<strong>利用它推导出求逆矩阵的公式</strong></em></p>
-<p>*此外， 行列式还可以用于证明：*<em>方阵 A 是可逆的，当且仅当 det A ≠ 0 ** 。这个结论很实用，因为它为我们确认 矩阵的可逆性提供了一种行之有效的计算工具。不过在定义行列式之前，我们先要介绍一下余子阵的 概念</em></p>
+<p><em>此外， 行列式还可以用于证明：方阵 A 是可逆的，当且仅当 det A ≠ 0  。这个结论很实用，因为它为我们确认矩阵的可逆性提供了一种行之有效的计算工具。不过在定义行列式之前，我们先要介绍一下余子阵的 概念</em></p>
 <h3 id="余子阵"><em><strong>余子阵</strong></em></h3>
 <p><em>指定一个 n × n 的矩阵 A，余子阵（minor matrix）$ \overline{A}_{ij} $ 即为从 A 中去除第 i 行和第 j 列的  (n-1)x(n-1) 矩阵。</em></p>
 <h4 id="例子-2"><em><strong>例子</strong></em></h4>
@@ -408,29 +408,26 @@ $$
 1 \times 1 矩阵A = [A_{11}] 的行列式被简单的定义为\det{[A_{11}]} = A_{11}
 $$</p>
 <h4 id="例子-3"><em><strong>例子</strong></em></h4>
-<p>$$
-\begin{gather*}
-设 A 为一个 n \times n 的矩阵. 那么 n &gt; 1时， 我们定义:
-\\ \\
+<p><em>设 A 为一个 $ n \times n $ 的矩阵. 那么 n &gt; 1时， 我们定义：</em>
+$$
 \det{A} = \sum_{j=1}^{n} A_{1j}(-1)^{1+j} \det{\overline{A}_{ij}}
-\\ \\
-对照余子阵\overline{A}_{ij}的定义可知，对于 2 \times 2 矩阵来说，其相应的行列式公式为:
-\\ \\
+$$
+<em>对照余子阵 $ \overline{A}_{ij} $ 的定义可知，对于 2 x 2 矩阵来说，其相应的行列式公式为：</em>
+$$
 \det{\begin{bmatrix} A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{bmatrix}}
 = A_{11} \det[A_{22}] - A_{12} \det{[A_{21}]} = A_{11}A_{22} - A_{12}A_{21}
-\\ \\
-对于3 \times 3矩阵来说，其行列式计算公式为：
-\\ \\
+$$
+<em>对于3 x 3矩阵来说，其行列式计算公式为：</em>
+$$
 \det{\begin{bmatrix} A_{11} &amp; A_{12} &amp; A_{13} \\ A_{21} &amp; A_{22} &amp; A_{23} \\ A_{31} &amp; A_{32} &amp; A_{33} \end{bmatrix}}
 = A_{11} \det{\begin{bmatrix} A_{22} &amp; A_{23} \\ A_{32} &amp; A_{33} \end{bmatrix}}
 - A_{12} \det{\begin{bmatrix} A_{21} &amp; A_{23} \\ A_{31} &amp; A_{33} \end{bmatrix}}
 + A_{13} \det{\begin{bmatrix} A_{21} &amp; A_{22} \\ A_{31} &amp; A_{32} \end{bmatrix}}
-\\ \\
-对于 4 \times 4 矩阵, 其行列式计算公式为：
-\\ \\
+$$
+<em>对于 4 x 4 矩阵, 其行列式计算公式为：</em>
+$$
 \det{\begin{bmatrix} A_{11} &amp; A_{12} &amp; A_{13} &amp; A_{14} \\ A_{21} &amp; A_{22} &amp; A_{23} &amp; A_{24} \\ A_{31} &amp; A_{32} &amp; A_{33} &amp; A_{34} \\ A_{41} &amp; A_{42} &amp; A_{43} &amp; A_{44} \end{bmatrix}}
 = A_{11} \det{\begin{bmatrix} A_{22} &amp; A_{23} &amp; A_{24} \\ A_{} \end{bmatrix}}
-\end{gather*}
 $$</p>
 <h2 id="伴随矩阵"><em><strong>伴随矩阵</strong></em></h2>
 <p><em>设A为一个 n x n 矩阵。</em></p>
@@ -453,7 +450,7 @@ $$</p>
 <li><em>$ p^&lsquo;M^{-1} = pI $，根据可逆矩阵的定义，有 $ MM^{-1} = I$</em></li>
 <li><em>$ p^&lsquo;M^{-1} = p $，根据单位矩阵的定义，有 $ pI = p $</em></li>
 </ol>
-<p><em>在任何一本大学水平的线性代数教科书里，都可以找到求逆矩阵公式的推导过程，这里也就不再赘 述了。此公式由原矩阵的伴随矩阵和行列式构成：</em>
+<p><em>在任何一本大学水平的线性代数教科书里，都可以找到求逆矩阵公式的推导过程，这里也就不再赘述了。此公式由原矩阵的伴随矩阵和行列式构成：</em>
 $$
 A^{-1} = \frac{A^*}{detA}
 $$</p>
@@ -473,7 +470,7 @@ $$</p>
 <li><em>转置矩阵由原矩阵互换行与列来求得。所以， m  ×  n矩阵的转置矩阵为 n × m矩阵。我们将矩阵 M 的转置矩阵表示为 $ M^T $。</em></li>
 <li><em>单位矩阵是一种除主对角线上的元素为 1 外，其他元素均为 0 的方阵。</em></li>
 <li><em>行列式 det A 是一种特殊的函数，向它传入一个方阵便会计算出一个对应的实数。方阵 A 是可逆的，当且仅当 det A  ≠ 0。行列式常常用于计算逆矩阵。</em></li>
-<li><em>矩阵与其逆矩阵的乘积结果为单位矩阵，即 $ MM^−1 = M^−1M = I $。如果一个矩阵是可逆的，则此矩 阵的逆矩阵是唯一的。只有方阵才可能有逆矩阵，即便是方阵也未必可逆。逆矩阵可由公式 1 * / det − AA A = 来计算，其中 * A 是伴随矩阵（即矩阵 A 的代数余子式矩阵的转置矩阵）。</em></li>
+<li><em>矩阵与其逆矩阵的乘积结果为单位矩阵，即 $ MM^−1 = M^−1M = I $。如果一个矩阵是可逆的，则此矩阵的逆矩阵是唯一的。只有方阵才可能有逆矩阵，即便是方阵也未必可逆。逆矩阵可由公式 $ A^{-1} = \frac{A^</em>}{detA} $ 来计算，其中 * A 是伴随矩阵（即矩阵 A 的代数余子式矩阵的转置矩阵）。*</li>
 </ol>
 <h2 id="作业"><em><strong>作业</strong></em></h2>
 <h3 id="题目大纲"><em><strong>题目大纲</strong></em></h3>
