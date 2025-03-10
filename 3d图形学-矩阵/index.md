@@ -92,7 +92,7 @@ $$
 
 *我们还可以发现乘积 BA 却没有意义，因为矩阵 B 的列数不等于矩阵 A 的行数。这表明，**矩阵的乘法一般不满足交换律，即 AB ≠ BA***
 $$
-\begin{align} 
+\begin{align*} 
 AB &= \begin{bmatrix} -1 & 5 & -4 \\\ 3 & 2 & 1 \end{bmatrix}
 \begin{bmatrix} 2 & 1 & 0 \\\ 0 & -2 & 1 \\\ -1 & 2 & 3 \end{bmatrix} 
 \\\ \\\
@@ -100,7 +100,7 @@ AB &= \begin{bmatrix} -1 & 5 & -4 \\\ 3 & 2 & 1 \end{bmatrix}
 (3,2,1) \cdot (2,0.-1) & (3,2,1) \cdot (1,-2,2) & (3,2,1) \cdot (0,1,3) \end{bmatrix} 
 \\\ \\\
 &= \begin{bmatrix} 2 & -19 & -7 \\\ 5 & 1 & 5 \end{bmatrix}
-\end{align}
+\end{align*}
 $$
 
 ### ***向量与矩阵的乘法***
@@ -114,7 +114,7 @@ $$
 
 
 $$
-\begin{align}
+\begin{align*}
 uA &= \left[ \vec{u} \cdot A_{\*,1}, \vec{u} \cdot A_{\*,2}, \vec{u} \cdot A_{\*,3} \right] 
 \\\ \\\
 &= \left[ xA_{11} + yA_{21} + zA_{31}, xA_{12} + yA_{22} + zA_{32}, xA_{13} + yA_{23} + zA_{33} \right] 
@@ -124,7 +124,7 @@ uA &= \left[ \vec{u} \cdot A_{\*,1}, \vec{u} \cdot A_{\*,2}, \vec{u} \cdot A_{\*
 &= x\left[ A_{11}, A_{12}, A_{13} \right] + y\left[ A_{21}, A_{22}, A_{23} \right] + z\left[ A_{31}, A_{32}, A_{33} \right] 
 \\\ \\\
 &= xA_{1,\*} + yA_{2,\*} + zA_{3,\*}
-\end{align}
+\end{align*}
 $$
 *这个结果实为一种线性组合（linear combination），这意味着向量与矩阵的乘积 uA 就相当于：向量*
 
@@ -138,7 +138,7 @@ $$
 ### ***例子***
 
 $$
-\begin{gather}
+\begin{gather*}
 A = \begin{bmatrix} 2 & -1 & 8 \\\ 3 & 6 & -4 \end{bmatrix} ~~~~~~~~
 B = \begin{bmatrix} a & b & c \\\ d & e & f \\\ g & h & i \end{bmatrix} ~~~~~~~~
 C = \begin{bmatrix} 1 \\\ 2 \\\ 3 \\\ 4 \end{bmatrix}
@@ -146,7 +146,7 @@ C = \begin{bmatrix} 1 \\\ 2 \\\ 3 \\\ 4 \end{bmatrix}
 A^T = \begin{bmatrix} 2 & 3 \\\ -1 & 6 \\\ 8 & -4 \end{bmatrix} ~~~~~~~~
 B^T = \begin{bmatrix} a & d & g \\\ b & e & h \\\ c & f & i \end{bmatrix} ~~~~~~~~
 C^T = \begin{bmatrix} 1 & 2 & 3 & 4 \end{bmatrix}
-\end{gather}
+\end{gather*}
 $$
 
 ### ***实用性质***
@@ -176,7 +176,7 @@ $$
 ### ***证明  MI = IM = M***
 
 $$
-\begin{gather}
+\begin{gather*}
 设 ~ M 
 = \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix} ~ 以及 ~ I = \begin{bmatrix} 1 & 0 \\\ 0 & 1 \end{bmatrix}
 \\\ \\\
@@ -191,13 +191,13 @@ IM
 = \begin{bmatrix} 1 & 2 \\\ 0 & 4 \end{bmatrix}
 \\\ \\\
 所以 ~ MI = IM = M ~ 是成立的
-\end{gather}
+\end{gather*}
 $$
 
 ### ***证明 AI = A***
 
 $$
-\begin{gather}
+\begin{gather*}
 设 ~ \vec{u} = \begin{bmatrix} -1, & 2 \end{bmatrix} 且 ~ I = \begin{bmatrix} 1 & 0 \end{bmatrix} ~ 验证 ~ \vec{u}I = \vec{u}
 \\\ \\\
 \vec{u}I = \begin{bmatrix} -1 & 2 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix}
@@ -205,7 +205,7 @@ $$
 = \begin{bmatrix} -1, & 2 \end{bmatrix}
 \\\ \\\
 所以 ~ \vec{u}I = \vec{u} ~ 另外我们也可以看出，我们无法计算乘积 ~ I\vec{u}, 因为此矩阵乘法是无定义的
-\end{gather}
+\end{gather*}
 $$
 
 ## ***矩阵的行列式***
@@ -225,7 +225,7 @@ $$
 #### ***例子***
 
 $$
-\begin{gather}
+\begin{gather*}
 求出下列矩阵的余子阵 \overline{A}\_{11} ~ \overline{A}\_{22} ~ \overline{A}\_{13}
 \\\ \\\
 A = \begin{bmatrix} A\_{11} & A\_{12} & A\_{13} \\\ A\_{21} & A\_{22} & A\_{23} \\\ A\_{31} & A\_{32} & A\_{33} \end{bmatrix}
@@ -238,7 +238,7 @@ A = \begin{bmatrix} A\_{11} & A\_{13} \\\ A\_{31} & A\_{33} \end{bmatrix}
 \\\ \\\
 去除矩阵A的第一行和第三列，得到 \overline{A}\_{13} 为:
 A = \begin{bmatrix} A\_{21} & A\_{22} \\\ A\_{31} & A\_{32} \end{bmatrix}
-\end{gather}
+\end{gather*}
 $$
 
 
@@ -255,7 +255,7 @@ $$
 #### ***例子***
 
 $$
-\begin{gather}
+\begin{gather*}
 设 A 为一个 n \times n 的矩阵. 那么 n > 1时， 我们定义:
 \\\ \\\
 \det{A} = \sum_{j=1}^{n} A_{1j}(-1)^{1+j} \det{\overline{A}\_{ij}}
@@ -276,7 +276,7 @@ $$
 \\\ \\\
 \det{\begin{bmatrix} A_{11} & A_{12} & A_{13} & A_{14} \\\ A_{21} & A_{22} & A_{23} & A_{24} \\\ A_{31} & A_{32} & A_{33} & A_{34} \\\ A_{41} & A_{42} & A_{43} & A_{44} \end{bmatrix}}
 = A_{11} \det{\begin{bmatrix} A_{22} & A_{23} & A_{24} \\\ A_{} \end{bmatrix}}
-\end{gather}
+\end{gather*}
 $$
 
 ## ***伴随矩阵***
@@ -298,6 +298,19 @@ $$
 3. *不是每个方阵都有逆矩阵。存在逆矩阵的方阵称为可逆矩阵（invertible matrix），不存在逆矩阵 的方阵称作奇异矩阵（singular matrix）。*
 4. *可逆矩阵的逆矩阵是唯一的。*
 5. *矩阵与其逆矩阵相乘将得到单位方阵：$ MM^-1 = M^-1M = I $。可以发现，矩阵与其逆矩阵的乘法运 算满足交换律。*
+
+*另外，可以利用逆矩阵来解矩阵方程。例如，设矩阵方程 p' = pM，且已知 p'与 M，求 p。假设矩阵 M 是可逆的（即存在 $ M^{−1} $），我们就能解得 p。过程如下：*
+
+1. *p' = pM*
+2. *$ p^'M^{-1} = pMM^{-1} $，方程两端各乘 $ M^{-1} $*
+3. *$ p^'M^{-1} = pI $，根据可逆矩阵的定义，有 $ MM^{-1} = I$*
+4. *$ p^'M^{-1} = p $，根据单位矩阵的定义，有 $ pI = p $*
+
+*在任何一本大学水平的线性代数教科书里，都可以找到求逆矩阵公式的推导过程，这里也就不再赘 述了。此公式由原矩阵的伴随矩阵和行列式构成：*
+$$
+A^{-1} = \frac{A^*}{detA}
+$$
+
 
 ## ***基本运算定律***
 
@@ -529,7 +542,7 @@ $$
 
 ### ***第十二题***
 
-*下列矩阵是可逆矩阵吗？\begin{bmatrix} 1 & 2 & 3 \\\ \\\ 0 & 4 & 5 \\\ \\\ 0 & 0 & 0 \end{bmatrix}*
+*下列矩阵是可逆矩阵吗？$ \begin{bmatrix} 1 & 2 & 3 \\\ \\\ 0 & 4 & 5 \\\ \\\ 0 & 0 & 0 \end{bmatrix} $*
 $$
 \begin{bmatrix}
 1 & 2 & 3 \\\ \\\ 0 & 4 & 5 \\\ \\\ 0 & 0 & 0
