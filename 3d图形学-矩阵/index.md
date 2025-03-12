@@ -333,7 +333,7 @@ $$
 $$
 A^{-1} = \frac{A^*}{\det A} = \frac{C_A^T}{\det A} = \frac{1}{A_{11}A_{22} - A_{12}A_{21}} 
 \begin{bmatrix} 
-A_{22} & -A_{12} \\ 
+A_{22} & -A_{12} \\\ \\\
 -A_{21} & A_{11} 
 \end{bmatrix}
 $$
@@ -341,34 +341,34 @@ $$
 $$
 M^{-1} = \frac{1}{3 \cdot 2 - 0 \cdot (-1)} 
 \begin{bmatrix} 
-2 & 0 \\ 
+2 & 0 \\\ \\\
 1 & 3 
 \end{bmatrix} = 
 \begin{bmatrix} 
-\frac{1}{3} & 0 \\ 
+\frac{1}{3} & 0 \\\ \\\ 
 \frac{1}{6} & \frac{1}{2} 
 \end{bmatrix}
 $$
 *为了核实结果，我们来验证 $ MM^{−1} = M^{−1}M = I $：*
 $$
 \begin{bmatrix} 
-3 & 0 \\ 
+3 & 0 \\\ \\\
 -1 & 2 
 \end{bmatrix} 
 \begin{bmatrix} 
-\frac{1}{3} & 0 \\ 
+\frac{1}{3} & 0 \\\ \\\
 \frac{1}{6} & \frac{1}{2} 
 \end{bmatrix} = 
 \begin{bmatrix} 
-1 & 0 \\ 
+1 & 0 \\\ \\\
 0 & 1 
 \end{bmatrix} = 
 \begin{bmatrix} 
-\frac{1}{3} & 0 \\ 
+\frac{1}{3} & 0 \\\ \\\
 \frac{1}{6} & \frac{1}{2} 
 \end{bmatrix} 
 \begin{bmatrix} 
-3 & 0 \\ 
+3 & 0 \\\ \\\
 -1 & 2 
 \end{bmatrix}
 $$

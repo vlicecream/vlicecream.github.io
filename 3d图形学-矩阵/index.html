@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  7348 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "3D图形学, 矩阵","wordcount":  7356 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5\/","datePublished": "2024-12-24T11:05:00+08:00","dateModified": "2024-12-24T11:05:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">矩阵</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7348 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-24">2024-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7356 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="矩阵">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -492,7 +492,7 @@ $$
 $$
 A^{-1} = \frac{A^*}{\det A} = \frac{C_A^T}{\det A} = \frac{1}{A_{11}A_{22} - A_{12}A_{21}}
 \begin{bmatrix}
-A_{22} &amp; -A_{12} \
+A_{22} &amp; -A_{12} \\ \\
 -A_{21} &amp; A_{11}
 \end{bmatrix}
 $$
@@ -500,34 +500,34 @@ $$
 $$
 M^{-1} = \frac{1}{3 \cdot 2 - 0 \cdot (-1)}
 \begin{bmatrix}
-2 &amp; 0 \
+2 &amp; 0 \\ \\
 1 &amp; 3
 \end{bmatrix} =
 \begin{bmatrix}
-\frac{1}{3} &amp; 0 \
+\frac{1}{3} &amp; 0 \\ \\
 \frac{1}{6} &amp; \frac{1}{2}
 \end{bmatrix}
 $$
 <em>为了核实结果，我们来验证 $ MM^{−1} = M^{−1}M = I $：</em>
 $$
 \begin{bmatrix}
-3 &amp; 0 \
+3 &amp; 0 \\ \\
 -1 &amp; 2
 \end{bmatrix}
 \begin{bmatrix}
-\frac{1}{3} &amp; 0 \
+\frac{1}{3} &amp; 0 \\ \\
 \frac{1}{6} &amp; \frac{1}{2}
 \end{bmatrix} =
 \begin{bmatrix}
-1 &amp; 0 \
+1 &amp; 0 \\ \\
 0 &amp; 1
 \end{bmatrix} =
 \begin{bmatrix}
-\frac{1}{3} &amp; 0 \
+\frac{1}{3} &amp; 0 \\ \\
 \frac{1}{6} &amp; \frac{1}{2}
 \end{bmatrix}
 \begin{bmatrix}
-3 &amp; 0 \
+3 &amp; 0 \\ \\
 -1 &amp; 2
 \end{bmatrix}
 $$
