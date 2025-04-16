@@ -53,7 +53,7 @@
 
 *显而易见的是，像点积和叉积这样的运算法则就不适用于颜色向量了*
 
-*颜色向量也有它们自 己专属的颜色运算，即分量式（modulation 或 componentwise）乘法*
+*颜色向量也有它们自己专属的颜色运算，即分量式（modulation 或 componentwise）乘法*
 $$
 (c_r, c_g, c_b) \otimes (k_r, k_g, k_b) = (c_rk_r, c_gk_g, c_bk_b)
 $$
