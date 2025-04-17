@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  18465 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  22284 ,
         "url": "https:\/\/example.com\/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93\/","datePublished": "2025-02-12T21:34:00+08:00","dateModified": "2025-04-16T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">绘制3D立方体</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/directx3d/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>DirectX3D</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-12">2025-02-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 18465 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 37 分钟&nbsp;<span id="/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93/" class="leancloud_visitors" data-flag-title="绘制3D立方体">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-12">2025-02-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 22284 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 45 分钟&nbsp;<span id="/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93/" class="leancloud_visitors" data-flag-title="绘制3D立方体">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -190,6 +190,11 @@
       </ul>
     </li>
     <li><a href="#几何图形辅助结构体"><em><strong>几何图形辅助结构体</strong></em></a></li>
+    <li><a href="#小结"><em><strong>小结</strong></em></a></li>
+    <li><a href="#作业大纲"><em><strong>作业大纲</strong></em></a></li>
+    <li><a href="#作业一"><em><strong>作业一</strong></em></a></li>
+    <li><a href="#作业二"><em><strong>作业二</strong></em></a></li>
+    <li><a href="#作业三"><em><strong>作业三</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="绘制3d立方体"><em><strong>绘制3D立方体</strong></em></h1>
@@ -2470,6 +2475,829 @@
 </span></span><span class="line"><span class="cl">		<span class="n">IndexBufferUploader</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="小结"><em><strong>小结</strong></em></h2>
+<ol>
+<li><em>除了空间位置信息，Direct3D 中的顶点还可以存储其他类型的属性数据。为了创建自定义的顶 点格式，我们首先要将选定的顶点数据定义为一个结构体。待顶点结构体定义好后，便可用输 入布局描述（D3D12_INPUT_LAYOUT_DESC）向 Direct3D 提供其细节。输入布局描述由两部 分组成：一个 D3D12_INPUT_ELEMENT_DESC 元素构成的数组，一个记录该数组中元素个数 的无符号整数。D3D12_INPUT_ELEMENT_DESC 数组中的元素要与顶点结构体中的成员一一对 应。事实上，输入布局描述为结构体 D3D12_GRAPHICS_PIPELINE_STATE_DESC 中的一个 字段，这就是说，它实为 PSO 的一个组成部分，用于与顶点着色器输入签名进行格式的比对验 证。因此，当 PSO 与渲染流水线绑定时，输入布局也将以 PSO 组成元素的身份随 PSO 与渲染 流水线的 IA 阶段相绑定。</em></li>
+<li><em>为了使 GPU 可以访问顶点/索引数组，便需要将其置于一种名为缓冲区（buffer）的资源之内。顶 点数据与索引数据的缓冲区分别称为顶点缓冲区（vertex buffer）和索引缓冲区（index buffer）。缓 冲区用接口 ID3D12Resource 表示，要创建缓冲区资源需要填写 D3D12_RESOURCE_DESC 结 构体，再调用 ID3D12Device::CreateCommittedResource 方法。顶点缓冲区的视图与索 引缓冲区的视图分别用 D3D12_VERTEX_BUFFER_VIEW 与 D3D12_INDEX_BUFFER_VIEW 结构 体加以描述。随后，即可通过 ID3D12GraphicsCommandList::IASetVertexBuffers 方法与 ID3D12GraphicsCommandList::IASetIndexBuffer方法分别将顶点缓冲区与索引缓冲区绑定 到渲染流水线的 IA 阶段。最后，要绘制非索引（non-indexed）描述的几何体（即以顶点数据来绘 制的几何体）可借助 ID3D12GraphicsCommandList::DrawInstanced 方法，而以索引描述的 几何体可由 ID3D12GraphicsCommandList::DrawIndexedInstanced 方法进行绘制。</em></li>
+<li><em>顶点着色器是一种用 HLSL 编写并在 GPU 上运行的程序，它以单个顶点作为输入与输出。每个 待绘制的顶点都要流经顶点着色器阶段。这使得程序员能够在此以顶点为基本单位进行处理， 继而获取多种多样的渲染效果。从顶点着色器输出的数据将传至渲染流水线的下一个阶段。</em></li>
+<li><em>常量缓冲区是一种 GPU 资源（ID3D12Resource），其数据内容可供着色器程序引用。它们被 创建在上传堆（upload heap）而非默认堆（default heap）中。因此，应用程序可通过将数据从系 统内存复制到显存中来更新常量缓冲区。如此一来，C++应用程序就可与着色器通信，并更新 常量缓冲区内着色器所需的数据。例如，C++程序可以借助这种方式对着色器所用的“世界— 观察—投影”矩阵进行更改。在此，我们建议读者考量数据更新的频繁程度，以此为依据来创 建不同的常量缓冲区。效率乃是划分常量缓冲区的动机。在对一个常量缓冲区进行更新的时 候，其中的所有变量都会随之更新，正所谓牵一发而动全身。因此，应根据更新频率将数据 有效地组织为不同的常量缓冲区，以此来避免无谓的冗余的更新，从而提高效率。</em></li>
+<li><em>像素着色器是一种用 HLSL 编写且运行在 GPU 上的程序，它以经过插值计算所得到的顶点数据 作为输入，待处理后，再输出与之对应的一种颜色值。由于硬件优化的原因，某些像素片段可能还未到像素着色器就已被渲染流水线剔除了（例如采用了提前深度剔除技术，early-z rejection）。 像素着色器可使程序员以像素为基本单位进行处理，从而获得变化万千的渲染效果。从像素着 色器输出的数据将被移交至渲染流水线的下一个阶段。</em></li>
+<li><em>大多数控制图形流水线状态的 Direct3D 对象都被指定到了一种称作流水线状态对象（pipeline state object，PSO）的集合之中，并用 ID3D12PipelineState 接口来表示。我们将这些对象 集总起来再统一对渲染流水线进行设置，是出于对性能因素的考虑。这样一来，Direct3D 就能 验证所有的状态是否彼此兼容，而驱动程序也将可以提前生成硬件本地指令及其状态。</em></li>
+</ol>
+<h2 id="作业大纲"><em><strong>作业大纲</strong></em></h2>
+<ol>
+<li>
+<p><em>写出与下列顶点结构体所对应的 D3D12_INPUT_ELEMENT_DESC 数组：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Vertex</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Tangent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Normal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT2</span> <span class="n">Tex0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT2</span> <span class="n">Tex1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMCOLOR</span> <span class="n">Color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><em>改写彩色立方体演示程序，这次使用两个顶点缓冲区（以及两个输入槽）来向渲染流水线传送 顶点数据。这两个顶点缓冲区，一个用来存储位置元素，另一个用来储存颜色元素。此时，我们应当利用两个顶点结构体以下列方式分别存放这两种不同的数据：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VColorData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT4</span> <span class="n">Color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>我们编写的 D3D12_INPUT_ELEMENT_DESC 数组应当是这样子的：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">D3D12_INPUT_ELEMENT_DESC</span> <span class="n">vertexDesc</span><span class="p">[]</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;POSITION&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;COLOR&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32A32_FLOAT</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>此后，位置元素会被连接到输入槽 0，而颜色元素将被连接到输入槽 1。而且我们还可以发现， 对于这两种元素来说，它们的 <code>D3D12_INPUT_ELEMENT_DESC::AlignedByteOffset</code> 字段皆为 0。这是因为位置和颜色这两种元素不再共用输入槽，而是独享各自的输入槽。</em></p>
+<p><em>接下来，我们再用 <code>ID3D12GraphicsCommandList::IASetVertexBuffers</code> 方法，将两个顶点缓冲区 分别与寄存器槽 0 和槽 1 相绑定。自此，Direct3D 也将用来自不同输入槽的元素来装配顶点（合成顶点数据）。这种将元素分槽存放的方法也可用于程序优化。</em></p>
+<p><em>例如，在实现阴影贴图算法 （shadow mapping algorithm，或称阴影映射算法）的过程中，我们需要在每一帧绘制场景两次：</em></p>
+<ol>
+<li><em>第一次是从光源的视角渲染场景（shadow pass，阴影绘制过程）</em></li>
+<li><em>第二次是从主摄像机的视角 来渲染场景（main pass，主渲染过程）。阴影绘制过程只需要用到位置数据和纹理坐标（为了对 几何体进行 alpha 测试）。所以，我们可以将顶点数据分到两个槽中：一个槽容纳位置信息和纹理坐标，另一个槽存储顶点的其他属性（如法向量和切向量）。如此一来，阴影绘制过程所需的顶点数据只用一个数据流即可（存有位置信息和纹理坐标的那组数据），从而节省阴影绘制过程 所消耗的数据带宽。而主渲染过程将同时使用这两个顶点输入槽，以获得所需的全部顶点数据。 考虑到程序性能，建议您尽量减少输入槽的使用数量，最好不要多于 3 个。</em></li>
+</ol>
+</li>
+<li>
+<p><em>绘制：</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png"
+        title="image-20250211201354990" /></p>
+<p><em>（a）图 5.13a 中所示的点列表。</em></p>
+<p><em>（b）图 5.13b 中所示的线条带。</em></p>
+<p><em>（c）图 5.13c 中所示的线列表。</em></p>
+<p><em>（d）图 5.13d 中所示的三角形带。</em></p>
+<p><em>（e）图 5.14a 中所示的三角形列表。</em></p>
+</li>
+</ol>
+<h2 id="作业一"><em><strong>作业一</strong></em></h2>
+<p><em>写出与下列顶点结构体所对应的 D3D12_INPUT_ELEMENT_DESC 数组：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Vertex</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Tangent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT3</span> <span class="n">Normal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT2</span> <span class="n">Tex0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMFLOAT2</span> <span class="n">Tex1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMCOLOR</span> <span class="n">Color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">D3D12_INPUT_ELEMENT_DESC</span> <span class="n">desc2</span><span class="p">[]</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;POSITION&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;TANGENT&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;NORMAL&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;TEXCOORD&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;TEXCOORD&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s">&#34;COLOR&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R8G8B8A8_UNORM</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="作业二"><em><strong>作业二</strong></em></h2>
+<p><em>改写彩色立方体演示程序，这次使用两个顶点缓冲区（以及两个输入槽）来向渲染流水线传送 顶点数据。这两个顶点缓冲区，一个用来存储位置元素，另一个用来储存颜色元素。（详细题目及解释看题目大纲）</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// d3dUtil.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">MeshGeometry</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3DBlob</span><span class="o">&gt;</span> <span class="n">VertexBufferCPU</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3DBlob</span><span class="o">&gt;</span> <span class="n">ColorBufferCPU</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3DBlob</span><span class="o">&gt;</span> <span class="n">IndexBufferCPU</span>  <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D12Resource</span><span class="o">&gt;</span> <span class="n">VertexBufferGPU</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D12Resource</span><span class="o">&gt;</span> <span class="n">ColorBufferGPU</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D12Resource</span><span class="o">&gt;</span> <span class="n">IndexBufferGPU</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D12Resource</span><span class="o">&gt;</span> <span class="n">VertexBufferUploader</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D12Resource</span><span class="o">&gt;</span> <span class="n">ColorBufferUploader</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Microsoft</span><span class="o">::</span><span class="n">WRL</span><span class="o">::</span><span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D12Resource</span><span class="o">&gt;</span> <span class="n">IndexBufferUploader</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">UINT</span> <span class="n">VertexByteStride</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UINT</span> <span class="n">VertexBufferByteSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UINT</span> <span class="n">ColorByteStride</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UINT</span> <span class="n">ColorBufferByteSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">DXGI_FORMAT</span> <span class="n">IndexFormat</span> <span class="o">=</span> <span class="n">DXGI_FORMAT_R16_UINT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UINT</span> <span class="n">IndexBufferByteSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">SubmeshGeometry</span><span class="o">&gt;</span> <span class="n">DrawArgs</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3D12_VERTEX_BUFFER_VIEW</span> <span class="nf">PositionBufferView</span><span class="p">()</span> <span class="k">const</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">D3D12_VERTEX_BUFFER_VIEW</span> <span class="n">vbv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vbv</span><span class="p">.</span><span class="n">BufferLocation</span> <span class="o">=</span> <span class="n">VertexBufferGPU</span><span class="o">-&gt;</span><span class="n">GetGPUVirtualAddress</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vbv</span><span class="p">.</span><span class="n">StrideInBytes</span> <span class="o">=</span> <span class="n">VertexByteStride</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vbv</span><span class="p">.</span><span class="n">SizeInBytes</span> <span class="o">=</span> <span class="n">VertexBufferByteSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">vbv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3D12_VERTEX_BUFFER_VIEW</span> <span class="nf">ColorBufferView</span><span class="p">()</span> <span class="k">const</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">D3D12_VERTEX_BUFFER_VIEW</span> <span class="n">vbv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vbv</span><span class="p">.</span><span class="n">BufferLocation</span> <span class="o">=</span> <span class="n">ColorBufferGPU</span><span class="o">-&gt;</span><span class="n">GetGPUVirtualAddress</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vbv</span><span class="p">.</span><span class="n">StrideInBytes</span> <span class="o">=</span> <span class="n">ColorByteStride</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vbv</span><span class="p">.</span><span class="n">SizeInBytes</span> <span class="o">=</span> <span class="n">ColorBufferByteSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">vbv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3D12_INDEX_BUFFER_VIEW</span> <span class="nf">IndexBufferView</span><span class="p">()</span><span class="k">const</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">D3D12_INDEX_BUFFER_VIEW</span> <span class="n">ibv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ibv</span><span class="p">.</span><span class="n">BufferLocation</span> <span class="o">=</span> <span class="n">IndexBufferGPU</span><span class="o">-&gt;</span><span class="n">GetGPUVirtualAddress</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ibv</span><span class="p">.</span><span class="n">Format</span> <span class="o">=</span> <span class="n">IndexFormat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ibv</span><span class="p">.</span><span class="n">SizeInBytes</span> <span class="o">=</span> <span class="n">IndexBufferByteSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">ibv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// We can free this memory after we finish upload to the GPU.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">void</span> <span class="nf">DisposeUploaders</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VertexBufferUploader</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">IndexBufferUploader</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// BoxApp.cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VColorData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT4</span> <span class="n">Color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">BoxApp</span><span class="o">::</span><span class="n">Draw</span><span class="p">(</span><span class="k">const</span> <span class="n">GameTimer</span><span class="o">&amp;</span> <span class="n">gt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他代码保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl">	<span class="c1">// 设置顶点缓冲区（现在有两个）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">D3D12_VERTEX_BUFFER_VIEW</span> <span class="n">vbViews</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">PositionBufferView</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">ColorBufferView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetVertexBuffers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">vbViews</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetIndexBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">IndexBufferView</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetPrimitiveTopology</span><span class="p">(</span><span class="n">D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他代码保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">BoxApp</span><span class="o">::</span><span class="n">BuildShadersAndInputLayout</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他代码保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">mInputLayout</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="s">&#34;POSITION&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32_FLOAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="s">&#34;COLOR&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DXGI_FORMAT_R32G32B32A32_FLOAT</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA</span><span class="p">,</span> <span class="mi">0</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">BoxApp</span><span class="o">::</span><span class="n">BuildBoxGeometry</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 位置数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VPosData</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">posVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="o">+</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0f</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 颜色数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VColorData</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">colorVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">White</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Black</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Red</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Green</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Blue</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Yellow</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Cyan</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">VColorData</span><span class="p">({</span> <span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">Colors</span><span class="o">::</span><span class="n">Magenta</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他代码保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 创建位置顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">ThrowIfFailed</span><span class="p">(</span><span class="n">D3DCreateBlob</span><span class="p">(</span><span class="n">posVBByteSize</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">VertexBufferCPU</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CopyMemory</span><span class="p">(</span><span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">VertexBufferCPU</span><span class="o">-&gt;</span><span class="n">GetBufferPointer</span><span class="p">(),</span> <span class="n">posVertices</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">posVBByteSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">VertexBufferGPU</span> <span class="o">=</span> <span class="n">d3dUtil</span><span class="o">::</span><span class="n">CreateDefaultBuffer</span><span class="p">(</span><span class="n">md3dDevice</span><span class="p">.</span><span class="n">Get</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">mCommandList</span><span class="p">.</span><span class="n">Get</span><span class="p">(),</span> <span class="n">posVertices</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">posVBByteSize</span><span class="p">,</span> <span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">VertexBufferUploader</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">// 创建颜色顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">ThrowIfFailed</span><span class="p">(</span><span class="n">D3DCreateBlob</span><span class="p">(</span><span class="n">colorVBByteSize</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">ColorBufferCPU</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CopyMemory</span><span class="p">(</span><span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">ColorBufferCPU</span><span class="o">-&gt;</span><span class="n">GetBufferPointer</span><span class="p">(),</span> <span class="n">colorVertices</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">colorVBByteSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">ColorBufferGPU</span> <span class="o">=</span> <span class="n">d3dUtil</span><span class="o">::</span><span class="n">CreateDefaultBuffer</span><span class="p">(</span><span class="n">md3dDevice</span><span class="p">.</span><span class="n">Get</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">		<span class="n">mCommandList</span><span class="p">.</span><span class="n">Get</span><span class="p">(),</span> <span class="n">colorVertices</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">colorVBByteSize</span><span class="p">,</span> <span class="n">mBoxGeo</span><span class="o">-&gt;</span><span class="n">ColorBufferUploader</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他代码保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="作业三"><em><strong>作业三</strong></em></h2>
+<p><em>绘制：</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png"
+        data-srcset="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png 1.5x, https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png"
+        title="image-20250211201354990" /></p>
+<p><em>（a）图 5.13a 中所示的点列表。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VPosData</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">posVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.4f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 索引缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">indices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetPrimitiveTopology</span><span class="p">(</span> <span class="n">D3D_PRIMITIVE_TOPOLOGY_POINTLIST</span>  <span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（b）图 5.13b 中所示的线条带。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VPosData</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">posVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.4f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 索引缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">indices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetPrimitiveTopology</span><span class="p">(</span> <span class="n">D3D_PRIMITIVE_TOPOLOGY_LINESTRIP</span>  <span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（c）图 5.13c 中所示的线列表。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VPosData</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">posVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.4f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 索引缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">indices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetPrimitiveTopology</span><span class="p">(</span> <span class="n">D3D_PRIMITIVE_TOPOLOGY_LINELIST</span>  <span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（d）图 5.13d 中所示的三角形带。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VPosData</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">posVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.4f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 索引缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="mi">18</span><span class="o">&gt;</span> <span class="n">indices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetPrimitiveTopology</span><span class="p">(</span> <span class="n">D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP</span>  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">BoxApp</span><span class="o">::</span><span class="n">BuildPSO</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他设置保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改光栅化状态 - 设置为线框模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CD3DX12_RASTERIZER_DESC</span> <span class="nf">rasterDesc</span><span class="p">(</span><span class="n">D3D12_DEFAULT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rasterDesc</span><span class="p">.</span><span class="n">FillMode</span> <span class="o">=</span> <span class="n">D3D12_FILL_MODE_WIREFRAME</span><span class="p">;</span>  <span class="c1">// 线框模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">rasterDesc</span><span class="p">.</span><span class="n">CullMode</span> <span class="o">=</span> <span class="n">D3D12_CULL_MODE_NONE</span><span class="p">;</span>       <span class="c1">// 禁用背面剔除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">psoDesc</span><span class="p">.</span><span class="n">RasterizerState</span> <span class="o">=</span> <span class="n">rasterDesc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他设置保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（e）图 5.14a 中所示的三角形列表。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">VPosData</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XMFLOAT3</span> <span class="n">Pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 顶点缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">VPosData</span><span class="p">,</span> <span class="mi">9</span><span class="o">&gt;</span> <span class="n">posVertices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.4f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VPosData</span><span class="p">({</span> <span class="n">XMFLOAT3</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 索引缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="mi">18</span><span class="o">&gt;</span> <span class="n">indices</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mCommandList</span><span class="o">-&gt;</span><span class="n">IASetPrimitiveTopology</span><span class="p">(</span> <span class="n">D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST</span>  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">BoxApp</span><span class="o">::</span><span class="n">BuildPSO</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他设置保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改光栅化状态 - 设置为线框模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CD3DX12_RASTERIZER_DESC</span> <span class="nf">rasterDesc</span><span class="p">(</span><span class="n">D3D12_DEFAULT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rasterDesc</span><span class="p">.</span><span class="n">FillMode</span> <span class="o">=</span> <span class="n">D3D12_FILL_MODE_WIREFRAME</span><span class="p">;</span>  <span class="c1">// 线框模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">rasterDesc</span><span class="p">.</span><span class="n">CullMode</span> <span class="o">=</span> <span class="n">D3D12_CULL_MODE_NONE</span><span class="p">;</span>       <span class="c1">// 禁用背面剔除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">psoDesc</span><span class="p">.</span><span class="n">RasterizerState</span> <span class="o">=</span> <span class="n">rasterDesc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 其他设置保持不变 ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">

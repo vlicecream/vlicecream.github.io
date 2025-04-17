@@ -1429,4 +1429,451 @@ struct MeshGeometry
 };
 ```
 
+## ***小结***
+
+1. *除了空间位置信息，Direct3D 中的顶点还可以存储其他类型的属性数据。为了创建自定义的顶 点格式，我们首先要将选定的顶点数据定义为一个结构体。待顶点结构体定义好后，便可用输 入布局描述（D3D12_INPUT_LAYOUT_DESC）向 Direct3D 提供其细节。输入布局描述由两部 分组成：一个 D3D12_INPUT_ELEMENT_DESC 元素构成的数组，一个记录该数组中元素个数 的无符号整数。D3D12_INPUT_ELEMENT_DESC 数组中的元素要与顶点结构体中的成员一一对 应。事实上，输入布局描述为结构体 D3D12_GRAPHICS_PIPELINE_STATE_DESC 中的一个 字段，这就是说，它实为 PSO 的一个组成部分，用于与顶点着色器输入签名进行格式的比对验 证。因此，当 PSO 与渲染流水线绑定时，输入布局也将以 PSO 组成元素的身份随 PSO 与渲染 流水线的 IA 阶段相绑定。*
+2. *为了使 GPU 可以访问顶点/索引数组，便需要将其置于一种名为缓冲区（buffer）的资源之内。顶 点数据与索引数据的缓冲区分别称为顶点缓冲区（vertex buffer）和索引缓冲区（index buffer）。缓 冲区用接口 ID3D12Resource 表示，要创建缓冲区资源需要填写 D3D12_RESOURCE_DESC 结 构体，再调用 ID3D12Device::CreateCommittedResource 方法。顶点缓冲区的视图与索 引缓冲区的视图分别用 D3D12_VERTEX_BUFFER_VIEW 与 D3D12_INDEX_BUFFER_VIEW 结构 体加以描述。随后，即可通过 ID3D12GraphicsCommandList::IASetVertexBuffers 方法与 ID3D12GraphicsCommandList::IASetIndexBuffer方法分别将顶点缓冲区与索引缓冲区绑定 到渲染流水线的 IA 阶段。最后，要绘制非索引（non-indexed）描述的几何体（即以顶点数据来绘 制的几何体）可借助 ID3D12GraphicsCommandList::DrawInstanced 方法，而以索引描述的 几何体可由 ID3D12GraphicsCommandList::DrawIndexedInstanced 方法进行绘制。*
+3. *顶点着色器是一种用 HLSL 编写并在 GPU 上运行的程序，它以单个顶点作为输入与输出。每个 待绘制的顶点都要流经顶点着色器阶段。这使得程序员能够在此以顶点为基本单位进行处理， 继而获取多种多样的渲染效果。从顶点着色器输出的数据将传至渲染流水线的下一个阶段。*
+4. *常量缓冲区是一种 GPU 资源（ID3D12Resource），其数据内容可供着色器程序引用。它们被 创建在上传堆（upload heap）而非默认堆（default heap）中。因此，应用程序可通过将数据从系 统内存复制到显存中来更新常量缓冲区。如此一来，C++应用程序就可与着色器通信，并更新 常量缓冲区内着色器所需的数据。例如，C++程序可以借助这种方式对着色器所用的“世界— 观察—投影”矩阵进行更改。在此，我们建议读者考量数据更新的频繁程度，以此为依据来创 建不同的常量缓冲区。效率乃是划分常量缓冲区的动机。在对一个常量缓冲区进行更新的时 候，其中的所有变量都会随之更新，正所谓牵一发而动全身。因此，应根据更新频率将数据 有效地组织为不同的常量缓冲区，以此来避免无谓的冗余的更新，从而提高效率。*
+5. *像素着色器是一种用 HLSL 编写且运行在 GPU 上的程序，它以经过插值计算所得到的顶点数据 作为输入，待处理后，再输出与之对应的一种颜色值。由于硬件优化的原因，某些像素片段可能还未到像素着色器就已被渲染流水线剔除了（例如采用了提前深度剔除技术，early-z rejection）。 像素着色器可使程序员以像素为基本单位进行处理，从而获得变化万千的渲染效果。从像素着 色器输出的数据将被移交至渲染流水线的下一个阶段。*
+6. *大多数控制图形流水线状态的 Direct3D 对象都被指定到了一种称作流水线状态对象（pipeline state object，PSO）的集合之中，并用 ID3D12PipelineState 接口来表示。我们将这些对象 集总起来再统一对渲染流水线进行设置，是出于对性能因素的考虑。这样一来，Direct3D 就能 验证所有的状态是否彼此兼容，而驱动程序也将可以提前生成硬件本地指令及其状态。*
+
+## ***作业大纲***
+
+1. *写出与下列顶点结构体所对应的 D3D12_INPUT_ELEMENT_DESC 数组：*
+
+   ```cpp
+   struct Vertex
+   {
+       XMFLOAT3 Pos;
+       XMFLOAT3 Tangent;
+       XMFLOAT3 Normal;
+       XMFLOAT2 Tex0;
+       XMFLOAT2 Tex1;
+       XMCOLOR Color;
+   }; 
+   ```
+
+2. *改写彩色立方体演示程序，这次使用两个顶点缓冲区（以及两个输入槽）来向渲染流水线传送 顶点数据。这两个顶点缓冲区，一个用来存储位置元素，另一个用来储存颜色元素。此时，我们应当利用两个顶点结构体以下列方式分别存放这两种不同的数据：*
+
+   ```cpp
+   struct VPosData
+   {
+       XMFLOAT3 Pos;
+   };
+   
+   struct VColorData
+   {
+       XMFLOAT4 Color;
+   }; 
+   ```
+
+   *我们编写的 D3D12_INPUT_ELEMENT_DESC 数组应当是这样子的：*
+
+   ```cpp
+   D3D12_INPUT_ELEMENT_DESC vertexDesc[] =
+   {
+       {"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+       {"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0}
+   }; 
+   ```
+
+   *此后，位置元素会被连接到输入槽 0，而颜色元素将被连接到输入槽 1。而且我们还可以发现， 对于这两种元素来说，它们的 `D3D12_INPUT_ELEMENT_DESC::AlignedByteOffset` 字段皆为 0。这是因为位置和颜色这两种元素不再共用输入槽，而是独享各自的输入槽。*
+
+   *接下来，我们再用 `ID3D12GraphicsCommandList::IASetVertexBuffers` 方法，将两个顶点缓冲区 分别与寄存器槽 0 和槽 1 相绑定。自此，Direct3D 也将用来自不同输入槽的元素来装配顶点（合成顶点数据）。这种将元素分槽存放的方法也可用于程序优化。*
+
+   *例如，在实现阴影贴图算法 （shadow mapping algorithm，或称阴影映射算法）的过程中，我们需要在每一帧绘制场景两次：*
+
+   1. *第一次是从光源的视角渲染场景（shadow pass，阴影绘制过程）*
+   2. *第二次是从主摄像机的视角 来渲染场景（main pass，主渲染过程）。阴影绘制过程只需要用到位置数据和纹理坐标（为了对 几何体进行 alpha 测试）。所以，我们可以将顶点数据分到两个槽中：一个槽容纳位置信息和纹理坐标，另一个槽存储顶点的其他属性（如法向量和切向量）。如此一来，阴影绘制过程所需的顶点数据只用一个数据流即可（存有位置信息和纹理坐标的那组数据），从而节省阴影绘制过程 所消耗的数据带宽。而主渲染过程将同时使用这两个顶点输入槽，以获得所需的全部顶点数据。 考虑到程序性能，建议您尽量减少输入槽的使用数量，最好不要多于 3 个。*
+
+3. *绘制：*
+
+   ![image-20250211201354990](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png)
+
+   *（a）图 5.13a 中所示的点列表。*
+
+   *（b）图 5.13b 中所示的线条带。*
+
+   *（c）图 5.13c 中所示的线列表。*
+
+   *（d）图 5.13d 中所示的三角形带。*
+
+   *（e）图 5.14a 中所示的三角形列表。*
+
+## ***作业一***
+
+*写出与下列顶点结构体所对应的 D3D12_INPUT_ELEMENT_DESC 数组：*
+
+```cpp
+struct Vertex
+{
+    XMFLOAT3 Pos;
+    XMFLOAT3 Tangent;
+    XMFLOAT3 Normal;
+    XMFLOAT2 Tex0;
+    XMFLOAT2 Tex1;
+    XMCOLOR Color;
+}; 
+```
+
+```cpp
+D3D12_INPUT_ELEMENT_DESC desc2[] =
+{
+    {"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+    {"TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+    {"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 24, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+    {"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 36, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+    {"TEXCOORD", 1, DXGI_FORMAT_R32G32_FLOAT, 0, 44, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+    {"COLOR", 0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, 52, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0}
+}
+```
+
+## ***作业二***
+
+*改写彩色立方体演示程序，这次使用两个顶点缓冲区（以及两个输入槽）来向渲染流水线传送 顶点数据。这两个顶点缓冲区，一个用来存储位置元素，另一个用来储存颜色元素。（详细题目及解释看题目大纲）*
+
+```cpp
+// d3dUtil.h
+struct MeshGeometry
+{
+	std::string Name;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> VertexBufferCPU = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> ColorBufferCPU = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> IndexBufferCPU  = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3D12Resource> VertexBufferGPU = nullptr;
+	Microsoft::WRL::ComPtr<ID3D12Resource> ColorBufferGPU = nullptr;
+	Microsoft::WRL::ComPtr<ID3D12Resource> IndexBufferGPU = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3D12Resource> VertexBufferUploader = nullptr;
+	Microsoft::WRL::ComPtr<ID3D12Resource> ColorBufferUploader = nullptr;
+	Microsoft::WRL::ComPtr<ID3D12Resource> IndexBufferUploader = nullptr;
+
+	UINT VertexByteStride = 0;
+	UINT VertexBufferByteSize = 0;
+	UINT ColorByteStride = 0;
+	UINT ColorBufferByteSize = 0;
+	DXGI_FORMAT IndexFormat = DXGI_FORMAT_R16_UINT;
+	UINT IndexBufferByteSize = 0;
+
+	std::unordered_map<std::string, SubmeshGeometry> DrawArgs;
+
+	D3D12_VERTEX_BUFFER_VIEW PositionBufferView() const
+	{
+		D3D12_VERTEX_BUFFER_VIEW vbv;
+		vbv.BufferLocation = VertexBufferGPU->GetGPUVirtualAddress();
+		vbv.StrideInBytes = VertexByteStride;
+		vbv.SizeInBytes = VertexBufferByteSize;
+		return vbv;
+	}
+
+	D3D12_VERTEX_BUFFER_VIEW ColorBufferView() const
+	{
+		D3D12_VERTEX_BUFFER_VIEW vbv;
+		vbv.BufferLocation = ColorBufferGPU->GetGPUVirtualAddress();
+		vbv.StrideInBytes = ColorByteStride;
+		vbv.SizeInBytes = ColorBufferByteSize;
+		return vbv;
+	}
+
+	D3D12_INDEX_BUFFER_VIEW IndexBufferView()const
+	{
+		D3D12_INDEX_BUFFER_VIEW ibv;
+		ibv.BufferLocation = IndexBufferGPU->GetGPUVirtualAddress();
+		ibv.Format = IndexFormat;
+		ibv.SizeInBytes = IndexBufferByteSize;
+
+		return ibv;
+	}
+
+	// We can free this memory after we finish upload to the GPU.
+	void DisposeUploaders()
+	{
+		VertexBufferUploader = nullptr;
+		IndexBufferUploader = nullptr;
+	}
+};
+```
+
+```cpp
+// BoxApp.cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+struct VColorData
+{
+	XMFLOAT4 Color;
+}; 
+
+void BoxApp::Draw(const GameTimer& gt)
+{
+    // ... 其他代码保持不变 ...
+	
+	// 设置顶点缓冲区（现在有两个）
+	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = {
+		mBoxGeo->PositionBufferView(),
+		mBoxGeo->ColorBufferView()
+	};
+	mCommandList->IASetVertexBuffers(0, 2, vbViews);
+	mCommandList->IASetIndexBuffer(&mBoxGeo->IndexBufferView());
+    mCommandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	
+    // ... 其他代码保持不变 ...
+}
+
+void BoxApp::BuildShadersAndInputLayout()
+{
+    // ... 其他代码保持不变 ...
+
+    mInputLayout =
+    {
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+        { "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+    };
+}
+
+void BoxApp::BuildBoxGeometry()
+{
+	// 位置数据
+	std::array<VPosData, 8> posVertices =
+	{
+		VPosData({ XMFLOAT3(-1.0f, -1.0f, -1.0f) }),
+		VPosData({ XMFLOAT3(-1.0f, +1.0f, -1.0f) }),
+		VPosData({ XMFLOAT3(+1.0f, +1.0f, -1.0f) }),
+		VPosData({ XMFLOAT3(+1.0f, -1.0f, -1.0f) }),
+		VPosData({ XMFLOAT3(-1.0f, -1.0f, +1.0f) }),
+		VPosData({ XMFLOAT3(-1.0f, +1.0f, +1.0f) }),
+		VPosData({ XMFLOAT3(+1.0f, +1.0f, +1.0f) }),
+		VPosData({ XMFLOAT3(+1.0f, -1.0f, +1.0f) })
+	};
+
+	// 颜色数据
+	std::array<VColorData, 8> colorVertices =
+	{
+		VColorData({ XMFLOAT4(Colors::White) }),
+		VColorData({ XMFLOAT4(Colors::Black) }),
+		VColorData({ XMFLOAT4(Colors::Red) }),
+		VColorData({ XMFLOAT4(Colors::Green) }),
+		VColorData({ XMFLOAT4(Colors::Blue) }),
+		VColorData({ XMFLOAT4(Colors::Yellow) }),
+		VColorData({ XMFLOAT4(Colors::Cyan) }),
+		VColorData({ XMFLOAT4(Colors::Magenta) })
+	};
+
+    // ... 其他代码保持不变 ...
+
+	// 创建位置顶点缓冲区
+	ThrowIfFailed(D3DCreateBlob(posVBByteSize, &mBoxGeo->VertexBufferCPU));
+	CopyMemory(mBoxGeo->VertexBufferCPU->GetBufferPointer(), posVertices.data(), posVBByteSize);
+
+	mBoxGeo->VertexBufferGPU = d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),
+		mCommandList.Get(), posVertices.data(), posVBByteSize, mBoxGeo->VertexBufferUploader);
+	
+	// 创建颜色顶点缓冲区
+	ThrowIfFailed(D3DCreateBlob(colorVBByteSize, &mBoxGeo->ColorBufferCPU));
+	CopyMemory(mBoxGeo->ColorBufferCPU->GetBufferPointer(), colorVertices.data(), colorVBByteSize);
+
+	mBoxGeo->ColorBufferGPU = d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),
+		mCommandList.Get(), colorVertices.data(), colorVBByteSize, mBoxGeo->ColorBufferUploader);
+
+    // ... 其他代码保持不变 ...
+}
+```
+
+## ***作业三***
+
+*绘制：*
+
+![image-20250211201354990](https://raw.githubusercontent.com/CuteCocoa/MyImage/main/image-20250211201354990.png)
+
+*（a）图 5.13a 中所示的点列表。*
+
+```cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+// 顶点缓冲区
+std::array<VPosData, 8> posVertices =
+{
+    VPosData({ XMFLOAT3(0.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.2f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.4f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 0.5f, 0.0f) })
+};
+
+// 索引缓冲区
+std::array<std::uint16_t, 8> indices =
+{
+    0, 1, 2, 3, 4, 5, 6, 7
+};
+
+mCommandList->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_POINTLIST  );
+```
+
+*（b）图 5.13b 中所示的线条带。*
+
+```cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+// 顶点缓冲区
+std::array<VPosData, 8> posVertices =
+{
+    VPosData({ XMFLOAT3(0.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.2f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.4f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 0.5f, 0.0f) })
+};
+
+// 索引缓冲区
+std::array<std::uint16_t, 8> indices =
+{
+    0, 1, 2, 3, 4, 5, 6, 7
+};
+
+mCommandList->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_LINESTRIP  );
+```
+
+*（c）图 5.13c 中所示的线列表。*
+
+```cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+// 顶点缓冲区
+std::array<VPosData, 8> posVertices =
+{
+    VPosData({ XMFLOAT3(0.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.2f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.4f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 0.5f, 0.0f) })
+};
+
+// 索引缓冲区
+std::array<std::uint16_t, 8> indices =
+{
+    0, 1, 2, 3, 4, 5, 6, 7
+};
+
+mCommandList->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_LINELIST  );
+```
+
+*（d）图 5.13d 中所示的三角形带。*
+
+```cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+// 顶点缓冲区
+std::array<VPosData, 8> posVertices =
+{
+    VPosData({ XMFLOAT3(0.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.2f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.4f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 0.5f, 0.0f) })
+};
+
+// 索引缓冲区
+std::array<std::uint16_t, 18> indices =
+{
+    0, 1, 2,
+    1, 2, 3,
+    2, 3, 4,
+    3, 4, 5,
+    4, 5, 6,
+    5, 6, 7
+};
+
+mCommandList->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP  );
+
+void BoxApp::BuildPSO()
+{
+    // ... 其他设置保持不变 ...
+
+    // 修改光栅化状态 - 设置为线框模式
+    CD3DX12_RASTERIZER_DESC rasterDesc(D3D12_DEFAULT);
+    rasterDesc.FillMode = D3D12_FILL_MODE_WIREFRAME;  // 线框模式
+    rasterDesc.CullMode = D3D12_CULL_MODE_NONE;       // 禁用背面剔除
+    psoDesc.RasterizerState = rasterDesc;
+    
+    // ... 其他设置保持不变 ...
+}
+```
+
+
+
+*（e）图 5.14a 中所示的三角形列表。*
+
+```cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+// 顶点缓冲区
+std::array<VPosData, 9> posVertices =
+{
+    VPosData({ XMFLOAT3(0.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.5f, 0.2f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.4f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.5f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 0.5f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 1.0f, 0.0f) })
+};
+
+// 索引缓冲区
+std::array<std::uint16_t, 18> indices =
+{
+    0, 1, 2,
+    3, 4, 5,
+    6, 7, 8
+};
+
+mCommandList->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST  );
+
+void BoxApp::BuildPSO()
+{
+    // ... 其他设置保持不变 ...
+
+    // 修改光栅化状态 - 设置为线框模式
+    CD3DX12_RASTERIZER_DESC rasterDesc(D3D12_DEFAULT);
+    rasterDesc.FillMode = D3D12_FILL_MODE_WIREFRAME;  // 线框模式
+    rasterDesc.CullMode = D3D12_CULL_MODE_NONE;       // 禁用背面剔除
+    psoDesc.RasterizerState = rasterDesc;
+
+    // ... 其他设置保持不变 ...
+}
+```
+
 
