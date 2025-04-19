@@ -326,7 +326,7 @@ u_z & v_z & w_z & 0
 \\\ \\\
 0 & 0 & 0 & 1
 \end{bmatrix}
-=
+\=
 \begin{bmatrix}
 u_x & v_x & w_x & 0
 \\\ \\\

@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  9429 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  9430 ,
         "url": "https:\/\/example.com\/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF\/","datePublished": "2025-02-10T22:44:00+08:00","dateModified": "2025-04-16T22:44:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">渲染流水线</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/directx3d/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>DirectX3D</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-10">2025-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9429 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-10">2025-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9430 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="leancloud_visitors" data-flag-title="渲染流水线">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -165,13 +165,6 @@
           </ul>
         </li>
         <li><a href="#观察空间"><em><strong>观察空间</strong></em></a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li>
-      <ul>
         <li><a href="#投影和齐次裁剪空间"><em><strong>投影和齐次裁剪空间</strong></em></a>
           <ul>
             <li><a href="#定义平截头体"><em><strong>定义平截头体</strong></em></a></li>
@@ -426,7 +419,7 @@ Q_x &amp; Q_y &amp; Q_z &amp; 1
 \end{bmatrix}
 $$
 <em>然而这并不是我们所期待的变换。刚好相反，我们需要的是从世界空间到观察空间的这一逆变换。 逆变换可由变换矩阵的逆来求得，所以世界空间到观察空间的坐标变换矩阵为 $ W^{−1}。$</em></p>
-<h1 id="endbmatrix"><em>世界坐标系和观察坐标系通常只有位置和朝向这两点差异，所以由观察空间到世界空间的变换可以直接表示为 W = RT（即世界矩阵可以分解为一个旋转矩阵与一个平移矩阵的乘积）。此形式使得上述逆变换更易于计算：</em>
+<p><em>世界坐标系和观察坐标系通常只有位置和朝向这两点差异，所以由观察空间到世界空间的变换可以直接表示为 W = RT（即世界矩阵可以分解为一个旋转矩阵与一个平移矩阵的乘积）。此形式使得上述逆变换更易于计算：</em>
 $$
 V = W^{-1} = (RT^{-1}) = T^{-1}R^{-1} = T^{-1}R^T =
 \\ \\
@@ -447,8 +440,9 @@ u_y &amp; v_y &amp; w_y &amp; 0
 u_z &amp; v_z &amp; w_z &amp; 0
 \\ \\
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}</h1>
-<p>\begin{bmatrix}
+\end{bmatrix}
+=
+\begin{bmatrix}
 u_x &amp; v_x &amp; w_x &amp; 0
 \\ \\
 u_y &amp; v_y &amp; w_y &amp; 0
