@@ -1500,6 +1500,21 @@ struct MeshGeometry
    *（d）图 5.13d 中所示的三角形带。*
 
    *（e）图 5.14a 中所示的三角形列表。*
+   
+4. *构造图 6.8 所示的金字塔的顶点列表和索引列表，并将其绘制出来：令塔顶为红色，其他底座顶点为绿色。*
+
+   ![3D立方体习题六](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250419162500139.png)
+
+5. *查阅本章的“Box”（立方体）演示程序代码可知，我们只对立方体的顶点处指定了颜色。运行此程序后会发现立方体却处处都呈现出了不同的色彩，那么问题就来了：构成立方体表面的三角形内的像素是怎样得到各自像素颜色的呢？*
+
+6. *修改“Box”演示程序，在顶点着色器将诸顶点变换到世界空间之前，先对顶点应用下列变换。*
+
+   ```cpp
+   vin.PosL.xy += 0.5f*sin(vin.PosL.x)*sin(3.0f*gTime);
+   vin.PosL.z *= 0.6f + 0.4f*sin(2.0f*gTime); 
+   ```
+
+   *为此，我们需要在程序中添加一个常量缓冲区变量gTime，此变量为函数GameTimer::TotalTime() 的当前值。这段代码将通过时间函数驱动各顶点，使立方体的形状随正弦函数周期性地发生改变。*
 
 ## ***作业一***
 
@@ -1873,6 +1888,154 @@ void BoxApp::BuildPSO()
     psoDesc.RasterizerState = rasterDesc;
 
     // ... 其他设置保持不变 ...
+}
+```
+
+## ***作业四***
+
+*构造图 6.8 所示的金字塔的顶点列表和索引列表，并将其绘制出来：令塔顶为红色，其他底座顶点为绿色。*
+
+![3D立方体习题六](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250419162500139.png)
+
+```cpp
+mCommandList->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP  );
+```
+
+```cpp
+struct VPosData
+{
+	XMFLOAT3 Pos;
+};
+
+struct VColorData
+{
+	XMFLOAT4 Color;
+}; 
+
+// 位置数据
+std::array<VPosData, 9> posVertices =
+{
+    VPosData({ XMFLOAT3(0.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(0.0f, 2.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 0.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(2.0f, 2.0f, 0.0f) }),
+    VPosData({ XMFLOAT3(1.0f, 1.0f, 3.0f) }),
+};
+
+// 颜色数据
+std::array<VColorData, 9> colorVertices =
+{
+    VColorData({ XMFLOAT4(Colors::Green) }),
+    VColorData({ XMFLOAT4(Colors::Green) }),
+    VColorData({ XMFLOAT4(Colors::Green) }),
+    VColorData({ XMFLOAT4(Colors::Green) }),
+    VColorData({ XMFLOAT4(Colors::Red) }),
+};
+
+std::array<std::uint16_t, 18> indices =
+{
+    // 底部
+    0, 1, 2,
+    1, 2, 3,
+
+    // 四个侧面三角形
+    0, 1, 4,
+    0, 2, 4,
+    1, 2, 4,
+    2, 3, 4,
+};
+```
+
+```cpp
+psoDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+```
+
+## ***作业五***
+
+*查阅本章的“Box”（立方体）演示程序代码可知，我们只对立方体的顶点处指定了颜色。运行此程序后会发现立方体却处处都呈现出了不同的色彩，那么问题就来了：构成立方体表面的三角形内的像素是怎样得到各自像素颜色的呢？*
+
+1. *颜色属性仅在顶点处定义。*
+2. *光栅化阶段自动对顶点颜色插值，填充三角形内部像素。*
+3. *插值结果是平滑的，因此立方体表面表现出颜色渐变效果。
+
+*这种机制是实时渲染的基础，不仅用于颜色，也适用于纹理坐标、法线等其他顶点属性。*
+
+## ***作业六***
+
+*修改“Box”演示程序，在顶点着色器将诸顶点变换到世界空间之前，先对顶点应用下列变换。*
+
+```cpp
+vin.PosL.xy += 0.5f*sin(vin.PosL.x)*sin(3.0f*gTime);
+vin.PosL.z *= 0.6f + 0.4f*sin(2.0f*gTime); 
+```
+
+*为此，我们需要在程序中添加一个常量缓冲区变量gTime，此变量为函数GameTimer::TotalTime() 的当前值。这段代码将通过时间函数驱动各顶点，使立方体的形状随正弦函数周期性地发生改变。*
+
+```cpp
+struct ObjectConstants
+{
+    XMFLOAT4X4 WorldViewProj = MathHelper::Identity4x4();
+	float gTime = 0.0f; // 新增时间变量
+	XMFLOAT3 padding;   // 用于对齐（常量缓冲区需16字节对齐）
+};
+
+void BoxApp::Update(const GameTimer& gt)
+{
+    // ... 其他设置保持不变 ...
+    
+	ObjectConstants objConstants;
+    XMStoreFloat4x4(&objConstants.WorldViewProj, XMMatrixTranspose(worldViewProj));
+	objConstants.gTime = gt.TotalTime(); // 传递时间值
+    mObjectCB->CopyData(0, objConstants);
+}
+```
+
+```hlsl
+// color.hlsl
+//***************************************************************************************
+// color.hlsl by Frank Luna (C) 2015 All Rights Reserved.
+//
+// Transforms and colors geometry.
+//***************************************************************************************
+
+cbuffer cbPerObject : register(b0)
+{
+	float4x4 gWorldViewProj; 
+	float gTime; // 新增时间变量
+};
+
+struct VertexIn
+{
+	float3 PosL  : POSITION;
+    float4 Color : COLOR;
+};
+
+struct VertexOut
+{
+	float4 PosH  : SV_POSITION;
+    float4 Color : COLOR;
+};
+
+VertexOut VS(VertexIn vin)
+{
+	VertexOut vout;
+	
+	// 对顶点位置应用动态变形
+	vin.PosL.xy += 0.5f * sin(vin.PosL.x) * sin(3.0f * gTime);
+	vin.PosL.z *= 0.6f + 0.4f * sin(2.0f * gTime);
+
+	// Transform to homogeneous clip space.
+	vout.PosH = mul(float4(vin.PosL, 1.0f), gWorldViewProj);
+	
+	// Just pass vertex color into the pixel shader.
+    vout.Color = vin.Color;
+    
+    return vout;
+}
+
+float4 PS(VertexOut pin) : SV_Target
+{
+    return pin.Color;
 }
 ```
 
