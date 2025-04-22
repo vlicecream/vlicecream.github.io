@@ -337,19 +337,170 @@ u_z & v_z & w_z & 0
 -Q \cdot \vec{u} & -Q \cdot \vec{v}  & -Q \cdot \vec{w}, & 1
 \end{bmatrix}
 $$
+![image-20250422202424820](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422202424820.png)
+
 *现在我们来展示一种用以构建观察矩阵中诸向量的直观方法。设 Q 为虚拟摄像机的位置，T 为此摄像机对准的观察目标点（target point）*
+
+*接下来，设 j 为表示世界空间“向上”方向的单位向量。（我们用世界空间中的平面 xo 作为场景中的“地平面”，并以世界空间的 y 轴来指示场景内“向上”的方向。 因此，j = (0, 1, 0)仅是平行于世界空间中 y 轴的一个单位向量。有时为了方便起见，一些应用程序也可能选择平面 xy 作为地平面，而选 z 轴来指示“向上”的方向）对于图 5.20 来讲，虚拟摄像机的观察方向为：*
+$$
+\vec{w} = \frac{T - Q}{|| T - Q ||}
+$$
+*该向量表示虚拟摄像机局部空间的 z 轴。指向 w“右侧”的单位向量为：*
+$$
+\vec{u} = \frac{\vec{j} \times \vec{w}}{|| \vec{j} \times \vec{w} ||}
+$$
+*它表示的是虚拟摄像机局部空间的 x 轴。最后，该摄像机局部空间的 y 轴为：*
+$$
+\vec{v} = \vec{w} \times \vec{u}
+$$
+*因为 w 和 u 为互相正交的单位向量，所以 w x u 亦必为单位向量。由此，我们也就无须对向量 v 进 行规范化处理了。*
+
+*综上所述，只要给定摄像机的位置、观察目标点以及世界空间中“向上”方向的向量，我们就能构建出对应的摄像机局部坐标系，并推导出相应的观察矩阵。*
+
+*DirectXMath 库针对上述计算观察矩阵的处理流程提供了以下函数：*
+
+```cpp
+MMATRIX XM_CALLCONV XMMatrixLookAtLH( // 输出观察矩阵 V
+ FXMVECTOR EyePosition, // 输入虚拟摄像机位置 Q
+ FXMVECTOR FocusPosition, // 输入观察目标点 T
+ FXMVECTOR UpDirection); // 输入世界空间中向上方向的向量
+```
+
+*一般来说，世界空间中的 y 轴方向与虚拟摄像机“向上”向量的方向相同，所以，我们通常将“向上”向量定为 j = (0, 1, 0)。举个例子，假设我们希望把虚拟摄像机架设于世界空间内点(5, 3, −10)的位置， 并令它观察世界空间的原点（0, 0, 0），则构建相应观察矩阵的过程为：*
+
+```cpp
+XMVECTOR pos = XMVectorSet(5, 3, -10, 1.0f);
+XMVECTOR target = XMVectorZero();
+XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+XMMATRIX V = XMMatrixLookAtLH(pos, target, up); 
+```
 
 ### ***投影和齐次裁剪空间***
 
+*摄像机在世界空间中的位置和朝向，除此之外，它还有另一个关键组成要素：即摄像机可观察到的空间体积（volume of space）。此范围可用一个由四棱锥截取的平截头体（frustum，即 四棱台）来表示（如图 5.21 所示）。*
+
+![image-20250422203553333](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422203553333.png)
+
+*我们将平截头体内的 3D 几何体投 影到一个 2D 投影窗口（projection window）之中。 根据前文所述的透视投影（perspective projection） 的原理可知，投影必将沿众平行线汇聚于消失点 上，而且随着物体 3D 深度的增加，其投影的尺寸也将逐渐变小*
+
+*我们将由顶点到观察 点（eye point，也译作视点）的连线称为顶点的投影线（vertex’s line of projection）。继而就可以定义出：将 3D 顶点 v 变换至其投影线与 2D 投影平面交点 v'的透视投影变换（perspective projection transformation）。我们称点 v'为点 v 的投影。3D 物体的投影即为构成该物体上所有顶点的投影。*
+
 #### ***定义平截头体***
+
+*在观察空间中，我们可以通过近平面（near plane，也译作近裁剪面）n、远平面（far plane，也译作远裁 剪面）f、垂直视场角（vertical field of view angle）α 以及纵横比（aspect ratio，也作宽高比）r 这 4 个参数来 定义一个：以原点作为投影的中心，并沿 z 轴正方向进行观察的平截头体（可参见图 5.23）。*
+
+![image-20250422204932536](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422204932536.png)
+
+*值得注意的是， 位于观察空间中的远、近平面皆平行于平面 xy，因此，我们就能方便地确定出它们分别沿 z 轴到原点的距离。 纵横比的定义为 r = w/h，其中 w 为投影窗口的宽度，h 为投影窗口的高度（以观察空间的单位为准）。*
+
+*我们通常将投影窗口的纵横比指定为后台缓冲区的纵横比 （比值并没有单位）如若投影窗口与后台缓冲区的纵横比不一致，那么映射的过程中，就需要对投影窗口在将投影窗口进行不等比缩放，继而导致图像出现拉伸变形的现象。*
+
+1. *我们现在通过垂直视场角 α 和纵横比 r 来确定水平视场角 β 。注意，投影窗口的实际大小并不重要，关键在于确定纵横比。因此，出于方便， 我们将高定为 2，而宽则必满足：*
+   $$
+   r = \frac{w}{h} = \frac{w}{2} \Rightarrow w = 2r
+   $$
+
+2. *为了求出具体的垂直视场角α ，我们假定投影窗口到原点的距离为 d：*
+   $$
+   \tan({\frac{\alpha}{2}}) = \frac{1}{d} \Rightarrow d = \cot{\frac{\alpha}{2}}
+   $$
+
+3. *因此，当投影窗口的高度为 2 且垂直视场角为 α 时，我们就能确定该投影窗口沿 z 轴到观察点的距离 d。已知这些条件，即可求取水平视场角 β 。观察图 5.23 中的平面 xz 可以发现：*
+   $$
+   \tan{\frac{\beta}{2}} = \frac{r}{d} = \frac{r}{\cot(\frac{\alpha}{2})} = r \cdot \tan({\frac{\alpha}{2}})
+   $$
+
+4. *所以，一旦给定垂直视场角α 和纵横比 r，我们必能求出水平视场角 β ：*
+   $$
+   \beta = 2arctan(r \cdot \tan(\frac{\alpha}{2}))
+   $$
+
+5. 
 
 #### ***投影顶点***
 
+![image-20250422211832271](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422211832271.png)
+
+*我们希望求出给定点（x, y, z）在投影平面 z = d 中的投影（x', y', d），见图 5.24。通过在 x 轴和 y 轴 上分别利用相似三角形的性质，我们可以发现：*
+$$
+\frac{x'}{d} = \frac{x}{z} \Rightarrow x' = \frac{xd}{z} = \frac{x\cot(\alpha / 2)}{z} = \frac{x}{z\tan(\alpha) / 2}
+\\\ \\\
+\frac{y'}{d} = \frac{y}{z} \Rightarrow y' = \frac{yd}{z} = \frac{y\cot(\alpha / 2)}{z} = \frac{y}{z\tan(\alpha) / 2}
+$$
+*同时不难看出，若点(x, y, z)位于平截头体内，当且仅当：*
+$$
+-r \le x' \le r
+\\\ \\\
+-1 \le y' \le 1
+\\\ \\\
+n \le z \le f
+$$
+
 #### ***规格化设备坐标***
+
+*由于硬件会涉及一些与投影窗口大小有关的操作，我们要去除投影窗口对纵横比的依赖，对此，我们的解决办法是将 x 坐标上的投影区间从[−r, r]缩放至归一化区间[−1, 1]， 就像下面这样：*
+$$
+-r \le x' \le r
+\\\ \\\
+-1 \le \frac{x'}{r} \le 1
+$$
+*经此映射处理后，x 坐标和 y 坐标就成为了规格化设备坐标*
+
+*我们可以把由观察空间到 NDC 空间的变换视为一种单位换算*
+$$
+x' = \frac{x}{rz\tan(\alpha/2)}
+\\\ \\\
+y' = \frac{y}{z\tan{\alpha/2}}
+$$
+*注意，在 NDC 坐标中，投影窗口的高和宽都为 2，所以它的大小是固定的，硬件也就无须知道纵横比。但是，我们一定要确保将投影坐标映射到 NDC 空间内（图形硬件假设我们会完成这项工作）。*
 
 #### ***用矩阵来表示投影公式***
 
+$$
+P = 
+\begin{bmatrix}
+\frac{1}{r\tan(\frac{\alpha}{2})} & 0 & 0 & 0
+\\\ \\\
+0 & \frac{1}{\tan(\frac{\alpha}{2})} & 0 & 0
+\\\ \\\
+0 & 0 & \frac{f}{f - n} & 1
+\\\ \\\
+0 & 0 & \frac{-nf}{f - n} & 0
+\end{bmatrix}
+$$
+
+*在顶点乘以投影矩阵之后但还未进行透视除法之前，几何体会处于所谓的齐次裁剪空间（homogeneous clip space）或投影空间（projection space）之中。待完成透视除法之后，便是用规格化设备坐标（NDC）来表示几何体了。*
+
 #### ***归一化深度值***
+
+*待投影操作完毕后，所有的投影点都会位于 2D 投影窗口上，从而构成视觉上可见的 2D 图像。看起来，我 们似乎在此时就可以丢弃原始的 3D z 坐标了。然而，为了实现深度缓冲算法，我们仍需保留这些 3D 深度信息。 就像 Direct3D 希望将 x、y 坐标映射到归一化范围一样，深度坐标也要被映射到归一化区间[0, 1]以内。*
+
+#### ***XMMatrixPerspectiveFovLH 函数***
+
+*我们可以利用 DirectXMath 库内的 `XMMatrixPerspectiveFovLH ` 函数来构建透视投影矩阵：*
+
+```cpp
+// 返回投影矩阵
+XMMATRIX XM_CALLCONV XMMatrixPerspectiveFovLH(
+    float FovAngleY, // 用弧度制表示的垂直视场角
+    float Aspect, // 纵横比 = 宽度 / 高度
+    float NearZ, // 到近平面的距离
+    float FarZ // 到远平面的距离
+); 
+```
+
+*下面的代码片段详细解释了 XMMatrixPerspectiveFovLH 函数的用法。在此例中，我们将垂直视场角指定为 45° ，近平面位于 z = 1 处，远平面位于 z = 1000 处（这些长度皆以观察空间中的单位表示）。*
+
+```cpp
+XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f*XM_PI, AspectRatio(), 1.0f, 1000.0f);
+// 纵横比采用的是我们窗口的宽高比：
+float D3DApp::AspectRatio()const
+{
+    return static_cast<float>(mClientWidth) / mClientHeight;
+} 
+```
+
+
 
 ## ***曲面细分阶段***
 

@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  9430 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  11981 ,
         "url": "https:\/\/example.com\/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF\/","datePublished": "2025-02-10T22:44:00+08:00","dateModified": "2025-04-16T22:44:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">渲染流水线</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/directx3d/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>DirectX3D</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-10">2025-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9430 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="leancloud_visitors" data-flag-title="渲染流水线">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-10">2025-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11981 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="leancloud_visitors" data-flag-title="渲染流水线">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -172,6 +172,7 @@
             <li><a href="#规格化设备坐标"><em><strong>规格化设备坐标</strong></em></a></li>
             <li><a href="#用矩阵来表示投影公式"><em><strong>用矩阵来表示投影公式</strong></em></a></li>
             <li><a href="#归一化深度值"><em><strong>归一化深度值</strong></em></a></li>
+            <li><a href="#xmmatrixperspectivefovlh-函数"><em><strong>XMMatrixPerspectiveFovLH 函数</strong></em></a></li>
           </ul>
         </li>
       </ul>
@@ -452,14 +453,206 @@ u_z &amp; v_z &amp; w_z &amp; 0
 -Q \cdot \vec{u} &amp; -Q \cdot \vec{v}  &amp; -Q \cdot \vec{w}, &amp; 1
 \end{bmatrix}
 $$
-<em>现在我们来展示一种用以构建观察矩阵中诸向量的直观方法。设 Q 为虚拟摄像机的位置，T 为此摄像机对准的观察目标点（target point）</em></p>
-<h3 id="投影和齐次裁剪空间"><em><strong>投影和齐次裁剪空间</strong></em></h3>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422202424820.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422202424820.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422202424820.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422202424820.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422202424820.png"
+        title="image-20250422202424820" /></p>
+<p><em>现在我们来展示一种用以构建观察矩阵中诸向量的直观方法。设 Q 为虚拟摄像机的位置，T 为此摄像机对准的观察目标点（target point）</em></p>
+<p><em>接下来，设 j 为表示世界空间“向上”方向的单位向量。（我们用世界空间中的平面 xo 作为场景中的“地平面”，并以世界空间的 y 轴来指示场景内“向上”的方向。 因此，j = (0, 1, 0)仅是平行于世界空间中 y 轴的一个单位向量。有时为了方便起见，一些应用程序也可能选择平面 xy 作为地平面，而选 z 轴来指示“向上”的方向）对于图 5.20 来讲，虚拟摄像机的观察方向为：</em>
+$$
+\vec{w} = \frac{T - Q}{|| T - Q ||}
+$$
+<em>该向量表示虚拟摄像机局部空间的 z 轴。指向 w“右侧”的单位向量为：</em>
+$$
+\vec{u} = \frac{\vec{j} \times \vec{w}}{|| \vec{j} \times \vec{w} ||}
+$$
+<em>它表示的是虚拟摄像机局部空间的 x 轴。最后，该摄像机局部空间的 y 轴为：</em>
+$$
+\vec{v} = \vec{w} \times \vec{u}
+$$
+<em>因为 w 和 u 为互相正交的单位向量，所以 w x u 亦必为单位向量。由此，我们也就无须对向量 v 进 行规范化处理了。</em></p>
+<p><em>综上所述，只要给定摄像机的位置、观察目标点以及世界空间中“向上”方向的向量，我们就能构建出对应的摄像机局部坐标系，并推导出相应的观察矩阵。</em></p>
+<p><em>DirectXMath 库针对上述计算观察矩阵的处理流程提供了以下函数：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">MMATRIX</span> <span class="n">XM_CALLCONV</span> <span class="nf">XMMatrixLookAtLH</span><span class="p">(</span> <span class="c1">// 输出观察矩阵 V
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">FXMVECTOR</span> <span class="n">EyePosition</span><span class="p">,</span> <span class="c1">// 输入虚拟摄像机位置 Q
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">FXMVECTOR</span> <span class="n">FocusPosition</span><span class="p">,</span> <span class="c1">// 输入观察目标点 T
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">FXMVECTOR</span> <span class="n">UpDirection</span><span class="p">);</span> <span class="c1">// 输入世界空间中向上方向的向量
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>一般来说，世界空间中的 y 轴方向与虚拟摄像机“向上”向量的方向相同，所以，我们通常将“向上”向量定为 j = (0, 1, 0)。举个例子，假设我们希望把虚拟摄像机架设于世界空间内点(5, 3, −10)的位置， 并令它观察世界空间的原点（0, 0, 0），则构建相应观察矩阵的过程为：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">XMVECTOR</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">XMVectorSet</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">XMVECTOR</span> <span class="n">target</span> <span class="o">=</span> <span class="n">XMVectorZero</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">XMVECTOR</span> <span class="n">up</span> <span class="o">=</span> <span class="n">XMVectorSet</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">XMMATRIX</span> <span class="n">V</span> <span class="o">=</span> <span class="n">XMMatrixLookAtLH</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">up</span><span class="p">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="投影和齐次裁剪空间"><em><strong>投影和齐次裁剪空间</strong></em></h3>
+<p><em>摄像机在世界空间中的位置和朝向，除此之外，它还有另一个关键组成要素：即摄像机可观察到的空间体积（volume of space）。此范围可用一个由四棱锥截取的平截头体（frustum，即 四棱台）来表示（如图 5.21 所示）。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422203553333.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422203553333.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422203553333.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422203553333.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422203553333.png"
+        title="image-20250422203553333" /></p>
+<p><em>我们将平截头体内的 3D 几何体投 影到一个 2D 投影窗口（projection window）之中。 根据前文所述的透视投影（perspective projection） 的原理可知，投影必将沿众平行线汇聚于消失点 上，而且随着物体 3D 深度的增加，其投影的尺寸也将逐渐变小</em></p>
+<p><em>我们将由顶点到观察 点（eye point，也译作视点）的连线称为顶点的投影线（vertex’s line of projection）。继而就可以定义出：将 3D 顶点 v 变换至其投影线与 2D 投影平面交点 v&rsquo;的透视投影变换（perspective projection transformation）。我们称点 v&rsquo;为点 v 的投影。3D 物体的投影即为构成该物体上所有顶点的投影。</em></p>
 <h4 id="定义平截头体"><em><strong>定义平截头体</strong></em></h4>
+<p><em>在观察空间中，我们可以通过近平面（near plane，也译作近裁剪面）n、远平面（far plane，也译作远裁 剪面）f、垂直视场角（vertical field of view angle）α 以及纵横比（aspect ratio，也作宽高比）r 这 4 个参数来 定义一个：以原点作为投影的中心，并沿 z 轴正方向进行观察的平截头体（可参见图 5.23）。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422204932536.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422204932536.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422204932536.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422204932536.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422204932536.png"
+        title="image-20250422204932536" /></p>
+<p><em>值得注意的是， 位于观察空间中的远、近平面皆平行于平面 xy，因此，我们就能方便地确定出它们分别沿 z 轴到原点的距离。 纵横比的定义为 r = w/h，其中 w 为投影窗口的宽度，h 为投影窗口的高度（以观察空间的单位为准）。</em></p>
+<p><em>我们通常将投影窗口的纵横比指定为后台缓冲区的纵横比 （比值并没有单位）如若投影窗口与后台缓冲区的纵横比不一致，那么映射的过程中，就需要对投影窗口在将投影窗口进行不等比缩放，继而导致图像出现拉伸变形的现象。</em></p>
+<ol>
+<li>
+<p><em>我们现在通过垂直视场角 α 和纵横比 r 来确定水平视场角 β 。注意，投影窗口的实际大小并不重要，关键在于确定纵横比。因此，出于方便， 我们将高定为 2，而宽则必满足：</em>
+$$
+r = \frac{w}{h} = \frac{w}{2} \Rightarrow w = 2r
+$$</p>
+</li>
+<li>
+<p><em>为了求出具体的垂直视场角α ，我们假定投影窗口到原点的距离为 d：</em>
+$$
+\tan({\frac{\alpha}{2}}) = \frac{1}{d} \Rightarrow d = \cot{\frac{\alpha}{2}}
+$$</p>
+</li>
+<li>
+<p><em>因此，当投影窗口的高度为 2 且垂直视场角为 α 时，我们就能确定该投影窗口沿 z 轴到观察点的距离 d。已知这些条件，即可求取水平视场角 β 。观察图 5.23 中的平面 xz 可以发现：</em>
+$$
+\tan{\frac{\beta}{2}} = \frac{r}{d} = \frac{r}{\cot(\frac{\alpha}{2})} = r \cdot \tan({\frac{\alpha}{2}})
+$$</p>
+</li>
+<li>
+<p><em>所以，一旦给定垂直视场角α 和纵横比 r，我们必能求出水平视场角 β ：</em>
+$$
+\beta = 2arctan(r \cdot \tan(\frac{\alpha}{2}))
+$$</p>
+</li>
+<li></li>
+</ol>
 <h4 id="投影顶点"><em><strong>投影顶点</strong></em></h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422211832271.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422211832271.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422211832271.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422211832271.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250422211832271.png"
+        title="image-20250422211832271" /></p>
+<p><em>我们希望求出给定点（x, y, z）在投影平面 z = d 中的投影（x&rsquo;, y&rsquo;, d），见图 5.24。通过在 x 轴和 y 轴 上分别利用相似三角形的性质，我们可以发现：</em>
+$$
+\frac{x&rsquo;}{d} = \frac{x}{z} \Rightarrow x&rsquo; = \frac{xd}{z} = \frac{x\cot(\alpha / 2)}{z} = \frac{x}{z\tan(\alpha) / 2}
+\\ \\
+\frac{y&rsquo;}{d} = \frac{y}{z} \Rightarrow y&rsquo; = \frac{yd}{z} = \frac{y\cot(\alpha / 2)}{z} = \frac{y}{z\tan(\alpha) / 2}
+$$
+<em>同时不难看出，若点(x, y, z)位于平截头体内，当且仅当：</em>
+$$
+-r \le x&rsquo; \le r
+\\ \\
+-1 \le y&rsquo; \le 1
+\\ \\
+n \le z \le f
+$$</p>
 <h4 id="规格化设备坐标"><em><strong>规格化设备坐标</strong></em></h4>
+<p><em>由于硬件会涉及一些与投影窗口大小有关的操作，我们要去除投影窗口对纵横比的依赖，对此，我们的解决办法是将 x 坐标上的投影区间从[−r, r]缩放至归一化区间[−1, 1]， 就像下面这样：</em>
+$$
+-r \le x&rsquo; \le r
+\\ \\
+-1 \le \frac{x&rsquo;}{r} \le 1
+$$
+<em>经此映射处理后，x 坐标和 y 坐标就成为了规格化设备坐标</em></p>
+<p><em>我们可以把由观察空间到 NDC 空间的变换视为一种单位换算</em>
+$$
+x&rsquo; = \frac{x}{rz\tan(\alpha/2)}
+\\ \\
+y&rsquo; = \frac{y}{z\tan{\alpha/2}}
+$$
+<em>注意，在 NDC 坐标中，投影窗口的高和宽都为 2，所以它的大小是固定的，硬件也就无须知道纵横比。但是，我们一定要确保将投影坐标映射到 NDC 空间内（图形硬件假设我们会完成这项工作）。</em></p>
 <h4 id="用矩阵来表示投影公式"><em><strong>用矩阵来表示投影公式</strong></em></h4>
+<p>$$
+P =
+\begin{bmatrix}
+\frac{1}{r\tan(\frac{\alpha}{2})} &amp; 0 &amp; 0 &amp; 0
+\\ \\
+0 &amp; \frac{1}{\tan(\frac{\alpha}{2})} &amp; 0 &amp; 0
+\\ \\
+0 &amp; 0 &amp; \frac{f}{f - n} &amp; 1
+\\ \\
+0 &amp; 0 &amp; \frac{-nf}{f - n} &amp; 0
+\end{bmatrix}
+$$</p>
+<p><em>在顶点乘以投影矩阵之后但还未进行透视除法之前，几何体会处于所谓的齐次裁剪空间（homogeneous clip space）或投影空间（projection space）之中。待完成透视除法之后，便是用规格化设备坐标（NDC）来表示几何体了。</em></p>
 <h4 id="归一化深度值"><em><strong>归一化深度值</strong></em></h4>
-<h2 id="曲面细分阶段"><em><strong>曲面细分阶段</strong></em></h2>
+<p><em>待投影操作完毕后，所有的投影点都会位于 2D 投影窗口上，从而构成视觉上可见的 2D 图像。看起来，我 们似乎在此时就可以丢弃原始的 3D z 坐标了。然而，为了实现深度缓冲算法，我们仍需保留这些 3D 深度信息。 就像 Direct3D 希望将 x、y 坐标映射到归一化范围一样，深度坐标也要被映射到归一化区间[0, 1]以内。</em></p>
+<h4 id="xmmatrixperspectivefovlh-函数"><em><strong>XMMatrixPerspectiveFovLH 函数</strong></em></h4>
+<p><em>我们可以利用 DirectXMath 库内的 <code>XMMatrixPerspectiveFovLH </code> 函数来构建透视投影矩阵：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 返回投影矩阵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">XMMATRIX</span> <span class="n">XM_CALLCONV</span> <span class="nf">XMMatrixPerspectiveFovLH</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">FovAngleY</span><span class="p">,</span> <span class="c1">// 用弧度制表示的垂直视场角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">Aspect</span><span class="p">,</span> <span class="c1">// 纵横比 = 宽度 / 高度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">NearZ</span><span class="p">,</span> <span class="c1">// 到近平面的距离
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">FarZ</span> <span class="c1">// 到远平面的距离
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>下面的代码片段详细解释了 XMMatrixPerspectiveFovLH 函数的用法。在此例中，我们将垂直视场角指定为 45° ，近平面位于 z = 1 处，远平面位于 z = 1000 处（这些长度皆以观察空间中的单位表示）。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">XMMATRIX</span> <span class="n">P</span> <span class="o">=</span> <span class="n">XMMatrixPerspectiveFovLH</span><span class="p">(</span><span class="mf">0.25f</span><span class="o">*</span><span class="n">XM_PI</span><span class="p">,</span> <span class="n">AspectRatio</span><span class="p">(),</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1000.0f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 纵横比采用的是我们窗口的宽高比：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">D3DApp</span><span class="o">::</span><span class="n">AspectRatio</span><span class="p">()</span><span class="k">const</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mClientWidth</span><span class="p">)</span> <span class="o">/</span> <span class="n">mClientHeight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="曲面细分阶段"><em><strong>曲面细分阶段</strong></em></h2>
 <p><em>曲面细分阶段（tessellation stages）是利用镶嵌化处理技术对网格中的三角形进行细分（subdivide）， 以此来增加物体表面上的三角形数量。再将这些新增的三角形偏移到适当的位置，使网格表现出更加细腻的细节</em></p>
 <p><em>使用曲面细分的优点有以下几方面</em></p>
 <ol>
