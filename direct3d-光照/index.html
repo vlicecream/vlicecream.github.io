@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>光照 - Ame</title><meta name="Description" content="DirectX3D 光照"><meta property="og:url" content="https://example.com/direct3d-%E5%85%89%E7%85%A7/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="光照">
+  <meta property="og:description" content="DirectX3D 光照">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-14T21:34:00+08:00">
+    <meta property="article:modified_time" content="2025-06-05T21:34:00+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="DirectX3D">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="光照">
+  <meta name="twitter:description" content="DirectX3D 光照">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/direct3d-%E5%85%89%E7%85%A7/" /><link rel="prev" href="https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8B/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "光照",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/direct3d-%E5%85%89%E7%85%A7\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, DirectX3D","wordcount":  1887 ,
+        "url": "https:\/\/example.com\/direct3d-%E5%85%89%E7%85%A7\/","datePublished": "2025-05-14T21:34:00+08:00","dateModified": "2025-06-05T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "DirectX3D 光照"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/direct3d-%E5%85%89%E7%85%A7/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/direct3d-%E5%85%89%E7%85%A7/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">光照</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/directx3d/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>DirectX3D</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-14">2025-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1887 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/direct3d-%E5%85%89%E7%85%A7/" class="leancloud_visitors" data-flag-title="光照">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#光照与材质的交互"><em><strong>光照与材质的交互</strong></em></a>
+      <ul>
+        <li><a href="#局部光照模型"><em><strong>局部光照模型</strong></em></a></li>
+        <li><a href="#全局光照模型"><em><strong>全局光照模型</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#法向量"><em><strong>法向量</strong></em></a>
+      <ul>
+        <li><a href="#平面法线"><em><strong>平面法线</strong></em></a></li>
+        <li><a href="#曲面法线"><em><strong>曲面法线</strong></em></a></li>
+        <li><a href="#顶点法线"><em><strong>顶点法线</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#计算法向量"><em><strong>计算法向量</strong></em></a>
+      <ul>
+        <li><a href="#求顶点法线平均值"><em><strong>求顶点法线平均值</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#变换法向量"><em><strong>变换法向量</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="光照与材质的交互"><em><strong>光照与材质的交互</strong></em></h2>
+<p><em>在开启光照的同时，我们不再直接指出顶点的颜色，而是指定材质与光照，再运用光照方程（lighting equation）基于两者的交互来计算顶点颜色。这样做会使物体的颜色更趋于真实</em></p>
+<h3 id="局部光照模型"><em><strong>局部光照模型</strong></em></h3>
+<p><em>若使用这种局部模型，则每个物体的光照皆独立于其他物体，我们也就可以在处理光照的过 程中仅考虑光源直接发出的光线（即在处理当前的 物体光照时，忽略来自场景中其他物体所反弹来的</em></p>
+<p><em><strong>说通俗点也就是即使物体被遮挡，但是也会受到光照，每个物体的光照皆独立于其他物体</strong></em></p>
+<h3 id="全局光照模型"><em><strong>全局光照模型</strong></em></h3>
+<p><em>谈及全局光照模型， 除了要考虑由光源直接发出的光，还要顾及场景中其他物体所反弹来的间接光照。</em></p>
+<p><em>之所以称为全局光 照模型，是因为在对一个物体进行照明时，还要考虑全局场景中的所有事物。</em></p>
+<p><em>全局光照模型的开销通常是实时游戏所负担不起的（但是这种模型会生成十分接近于照片级真实感的场景）。</em></p>
+<p><em>接近于全局光照的实时方 法尚处于研究阶段。例如，立体像素全局光照技术。 另一种流行的方法是预计算静态物体（如墙壁、塑像）的间接光照，再用得到的结果来近似地模拟动态 物体（如可运动游戏角色）的间接光照。</em></p>
+<h2 id="法向量"><em><strong>法向量</strong></em></h2>
+<h3 id="平面法线"><em><strong>平面法线</strong></em></h3>
+<p><em>平面法线是一种描述多边形朝向（即正交于多边形上所有点）的单位向量</em></p>
+<h3 id="曲面法线"><em><strong>曲面法线</strong></em></h3>
+<p><em>曲面法线（surface normal）是 一种垂直于曲面上一点处切平面（有文献强调还要满足曲面法线经过该点这一条件）的单位向量</em></p>
+<h3 id="顶点法线"><em><strong>顶点法线</strong></em></h3>
+<p><em>为了求出曲面法线，我们仅先指定位于网格顶点处的曲面法线（所以也将之称作顶点法线）</em></p>
+<h2 id="计算法向量"><em><strong>计算法向量</strong></em></h2>
+<p><em>为了找到三角形 $p_0,p_1,p_2$ 的平面法线，我们首先计算位于三角形边上的两个向量：</em>
+$$
+\vec{u} = p_1 - p_0
+\vec{v} = p_2 - p_0
+$$
+<em>那么，此三角形的平面法线即为：</em>
+$$
+\vec{n} =  \frac{\vec{u} \times \vec{v}}{|| \vec{u} \times \vec{v} ||}
+$$
+下列函数将根据三角形的 3 个顶点来计算该三角形正面的平面法线：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">MVECTOR</span> <span class="nf">ComputeNormal</span><span class="p">(</span><span class="n">FXMVECTOR</span> <span class="n">p0</span><span class="p">,</span> <span class="n">FXMVECTOR</span> <span class="n">p1</span><span class="p">,</span> <span class="n">FXMVECTOR</span> <span class="n">p2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMVECTOR</span> <span class="n">u</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMVECTOR</span> <span class="n">v</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">XMVector3Normalize</span><span class="p">(</span><span class="n">XMVector3Cross</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="求顶点法线平均值"><em><strong>求顶点法线平均值</strong></em></h3>
+<p><em>对于可微的光滑曲面而言，我们可以利用微积分方面的知识来求出曲面点处的法线。但问题在于，三角形网格运用一种被称为求顶点法线平均值（vertex normal averaging）的计算方法。</em></p>
+<p><em>此方法通过对网格中共享顶点 v 的多边形的平面法线求取平均值，从而获得网格中任意顶点 v 处的顶点法线 n。</em></p>
+<p><em>例如网格中的四个多边形共用顶点 v，因此，v 处的顶点法线求法如下：</em>
+$$
+\vec{n}_{avg} =
+\frac{\vec{n}_0 + \vec{n}_1 + \vec{n}_2 + \vec{n}_3}{|| \vec{n}_0 + \vec{n}_1 + \vec{n}_2 + \vec{n}_3 ||}
+$$
+<em>在上面这个例子中，由于我们对求和的结果已进行了规范化处 理，因此便无需像往常求算术平均值那样再除以 4。</em></p>
+<p><em>注意，为了得到更为精准的结果，我们还可以采用更加复杂的求平均值方法，比如说，根据多边形的面积来确定权重（如面积大的多边形的权重要大于面积小的多边形），以求取加权平均值。</em></p>
+<p><em>下列伪代码展示了若给定三角形网格的顶点列表和索引列表，该如何来求取相应的法线平均值。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 输入
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 1. 一个顶点数组（mVertices）。每个顶点都有一个位置分量（pos）和一个法线分量（normal）
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2. 一个索引数组（mIndices）
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 对于网格中的每个三角形来说
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="n">UINT</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mNumTriangles</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 第 i 个三角形的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UINT</span> <span class="n">i0</span> <span class="o">=</span> <span class="n">mIndices</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UINT</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">mIndices</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UINT</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">mIndices</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 第 i 个三角形的顶点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Vertex</span> <span class="n">v0</span> <span class="o">=</span> <span class="n">mVertices</span><span class="p">[</span><span class="n">i0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Vertex</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">mVertices</span><span class="p">[</span><span class="n">i1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Vertex</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">mVertices</span><span class="p">[</span><span class="n">i2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 计算平面法线
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Vector3</span> <span class="n">e0</span> <span class="o">=</span> <span class="n">v1</span><span class="p">.</span><span class="n">pos</span> <span class="o">-</span> <span class="n">v0</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Vector3</span> <span class="n">e1</span> <span class="o">=</span> <span class="n">v2</span><span class="p">.</span><span class="n">pos</span> <span class="o">-</span> <span class="n">v0</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Vector3</span> <span class="n">faceNormal</span> <span class="o">=</span> <span class="n">Cross</span><span class="p">(</span><span class="n">e0</span><span class="p">,</span> <span class="n">e1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 该三角形共享了下面 3 个顶点，所以将此平面法线与这些顶点法线相加以求平均值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">mVertices</span><span class="p">[</span><span class="n">i0</span><span class="p">].</span><span class="n">normal</span> <span class="o">+=</span> <span class="n">faceNormal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mVertices</span><span class="p">[</span><span class="n">i1</span><span class="p">].</span><span class="n">normal</span> <span class="o">+=</span> <span class="n">faceNormal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mVertices</span><span class="p">[</span><span class="n">i2</span><span class="p">].</span><span class="n">normal</span> <span class="o">+=</span> <span class="n">faceNormal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 对于每个顶点 v 来说，由于我们已经对所有共享顶点 v 的三角形的平面法线进行求和，所以现在仅需进行规范化处理即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">UINT</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mNumVertices</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mVertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">normal</span> <span class="o">=</span> <span class="n">Normalize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mVertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">normal</span><span class="p">));</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="变换法向量"><em><strong>变换法向量</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250605211124775.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250605211124775.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250605211124775.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250605211124775.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250605211124775.png"
+        title="image-20250605211124775" /></p>
+<p><em>思考图 8.7a。图中，切向量 u = v1 – v0 正交于法向量 n。如果对此应用一个非等比缩放变换 A，则可从图 8.7b 看到，变换后的切向量 uA = v1A – v0A 没能与变换后的法向量 nA 继续保持正交性。</em></p>
+<p><em>若给定一个用于变换点与向量（非法线）的变换矩阵 A，如何能够求出这样一个变换矩阵 B：通过它来变换法向量，使经矩阵 A 变换后的切向量与法向量重归正交的关 系（即 uA ⋅  nB = 0 ）。</em></p>
+<p><em>我们首先从已知的信息着手，如果法向量 n 正交于切向量 u，则有：</em></p>
+<ol>
+<li>
+<p><em>切向量正交于法向量</em>
+$$
+\vec{u} \cdot \vec{n} = 0
+$$</p>
+</li>
+<li>
+<p><em>点积改写为矩阵乘法</em>
+$$
+\vec{u}\vec{n}^T = 0
+$$</p>
+</li>
+<li>
+<p><em>插入单位矩阵 $ I = AA^{−1} $</em>
+$$
+\vec{u}(AA^{-1})\vec{n}^T
+$$</p>
+</li>
+<li>
+<p><em>根据矩阵乘法运算的结合律</em>
+$$
+(\vec{u}A)(A^{-1}\vec{n}^T) = 0
+$$</p>
+</li>
+<li>
+<p><em>根据转置矩阵的性质 $ (A^T)^T = A $</em>
+$$
+(\vec{u}A)((A^{-1}\vec{n}^T)^T)^T = 0
+$$</p>
+</li>
+<li>
+<p><em>根据转置矩阵的性质 $ (AB)^T = B^T A^T $</em>
+$$
+(\vec{u}A)(\vec{n}(A^{-1})^T)^T = 0
+$$</p>
+</li>
+<li>
+<p><em>将矩阵乘法改写为点积的形式</em>
+$$
+\vec{u}A \cdot \vec{n}(A^{-1})^T = 0
+$$</p>
+</li>
+<li>
+<p><em>变换后的切向量正交于变换后的法向量</em>
+$$
+\vec{u}A \cdot \vec{n}B = 0
+$$</p>
+</li>
+</ol>
+<p><em>因此，通过 $ B = (A^{−1})^T $（矩阵 A 的逆转置矩阵）对法向量进行变换后，即可使它垂直于经矩阵 A 变换后的切向量 uA。</em></p>
+<p><em>我们可以为计算逆转置矩阵实现一个辅助函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">XMMATRIX</span> <span class="nf">InverseTranspose</span><span class="p">(</span><span class="n">CXMMATRIX</span> <span class="n">M</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMMATRIX</span> <span class="n">A</span> <span class="o">=</span> <span class="n">M</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">A</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">XMVectorSet</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMVECTOR</span> <span class="n">det</span> <span class="o">=</span> <span class="n">XMMatrixDeterminant</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">XMMatrixTranspose</span><span class="p">(</span><span class="n">XMMatrixInverse</span><span class="p">(</span><span class="o">&amp;</span><span class="n">det</span><span class="p">,</span> <span class="n">A</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-06-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/direct3d-%E5%85%89%E7%85%A7/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/direct3d-%E5%85%89%E7%85%A7/" data-title="光照" data-hashtags="Unreal,DirectX3D"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/direct3d-%E5%85%89%E7%85%A7/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/direct3d-%E5%85%89%E7%85%A7/" data-title="光照"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/direct3d-%E5%85%89%E7%85%A7/" data-title="光照"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/direct3d-%E5%85%89%E7%85%A7/" data-title="光照" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/directx3d/">DirectX3D</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8B/" class="prev" rel="prev" title="绘制3D立方体(下)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>绘制3D立方体(下)</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

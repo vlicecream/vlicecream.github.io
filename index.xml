@@ -4,9 +4,18 @@
         <link>https://example.com/</link>
         <description>一个艺术世界</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Apr 2025 21:34:00 &#43;0800</lastBuildDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 May 2025 21:34:00 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>光照</title>
+    <link>https://example.com/direct3d-%E5%85%89%E7%85%A7/</link>
+    <pubDate>Wed, 14 May 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/direct3d-%E5%85%89%E7%85%A7/</guid>
+    <description><![CDATA[<h2 id="光照与材质的交互"><em><strong>光照与材质的交互</strong></em></h2>
+<p><em>在开启光照的同时，我们不再直接指出顶点的颜色，而是指定材质与光照，再运用光照方程（lighting equation）基于两者的交互来计算顶点颜色。这样做会使物体的颜色更趋于真实</em></p>]]></description>
+</item>
+<item>
     <title>绘制3D立方体(下)</title>
     <link>https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8B/</link>
     <pubDate>Wed, 23 Apr 2025 21:34:00 &#43;0800</pubDate>
@@ -107,44 +116,6 @@
     <description><![CDATA[<h1 id="steamdeck">SteamDeck</h1>
 <p><em>最近在折腾steam deck 放一个博客存一些命令，以防格式化或者啥的，又得重弄</em></p>
 <p><em>但是专门为deck弄一个分类不太好，所以放生活吧~</em></p>]]></description>
-</item>
-<item>
-    <title>备忘录</title>
-    <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/</link>
-    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-    <description><![CDATA[<h1 id="备忘录">备忘录</h1>
-<h2 id="状态变化模式">状态变化模式</h2>
-<ol>
-<li><em><strong>什么是状态变化</strong></em>
-<ul>
-<li><em>在组件构建过程中, 某些对象的状态面临变化, 如何对这些变化进行有效的管理? 同时又保证高层的稳定?</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Memento</em></li>
-<li><em>State</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机">动机</h2>
-<ol>
-<li><em>在软件构建过程中, 某些对象的状态在转换过程中, 可能由于某种需要, 要求程序能够回溯到对象之前的状态</em></li>
-<li><em>如果使用一些公有接口来让其他对象得到对象的状态, 便会暴露对象的细节实现</em></li>
-<li><em>如何实现对象状态的良好保存与恢复? 但同时又不会因此而破坏对象本身的封装性</em></li>
-</ol>
-<h2 id="模式定义">模式定义</h2>
-<ol>
-<li><em>在不破坏封装性的的前提下, 捕获一个对象的内部状态, 并在该对象之外保存此状态，这样以后就可以将该对象恢复到原先保存的状态</em></li>
-</ol>
-<h2 id="要点总结">要点总结</h2>
-<ol>
-<li><em>备忘录(Memento)存储原发器对象的内部状态 在需要时恢复原发器状态</em></li>
-<li><em>Memento模式的核心是信息隐藏, 即原发器需要向外接隐藏信息, 保持其封装性，但同时有需要将状态保持到外界 (Memento)</em></li>
-<li><em>由于现代语言运行时都具有相当的对象序列化支持, 因此往往采用效率高、又较容器正确实现的序列化方案来实现Memento模式</em></li>
-</ol>]]></description>
 </item>
 </channel>
 </rss>
