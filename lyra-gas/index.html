@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  2164 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  2168 ,
         "url": "https:\/\/example.com\/lyra-gas\/","datePublished": "2025-06-09T21:34:00+08:00","dateModified": "2025-06-10T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,7 +116,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra-GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2164 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2168 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/lyra-gas/" class="leancloud_visitors" data-flag-title="Lyra-GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -239,21 +239,40 @@
 <h3 id="igameframeworkinitstateinterface"><em><strong>IGameFrameworkInitStateInterface</strong></em></h3>
 <p><em>此Component继承了这个类，<code>IGameFrameworkInitStateInterface</code> 是一个 <strong>初始化状态管理接口</strong>，主要用于 <strong>控制游戏框架（Game Framework）中各个子系统或模块的初始化顺序和状态依赖</strong></em></p>
 <h4 id="getfeaturename"><em><strong><code>GetFeatureName()</code></strong></em></h4>
-<p><em><strong><code>virtual FName GetFeatureName() const</code></strong>： 返回当前模块或组件的 <strong>唯一标识名称</strong>（用于区分不同的初始化模块）。</em></p>
+<ol>
+<li><em>作用：</em></li>
+</ol>
+<p>​	<em><strong><code>virtual FName GetFeatureName() const</code></strong>： 返回当前模块或组件的 <strong>唯一标识名称</strong>（用于区分不同的初始化模块）。</em></p>
 <h4 id="canchangeinitstate"><em><strong><code>CanChangeInitState()</code></strong></em></h4>
 <p><em>检查当前模块 <strong>是否允许从 <code>CurrentState</code> 切换到 <code>DesiredState</code></strong>（状态变更的条件验证）。</em></p>
-<p><em><strong>参数：</strong></em></p>
 <ol>
-<li>Manager<code>管理初始化状态的</code>UGameFrameworkComponentManager`*</li>
-<li><em><code>CurrentState</code>：当前状态（如 <code>&quot;PreInit&quot;</code>）</em></li>
-<li><em><code>DesiredState</code>：目标状态（如 <code>&quot;Initialized&quot;</code>）</em></li>
-</ol>
-<p><em><strong>返回值</strong></em></p>
+<li>
+<p><em>参数：</em></p>
 <ul>
-<li><code>true</code>：允许切换。</li>
-<li><code>false</code>：阻止切换（需满足依赖条件后再尝试）。</li>
+<li>
+<p>Manager<code>管理初始化状态的</code>UGameFrameworkComponentManager`*</p>
+</li>
+<li>
+<p><em><code>CurrentState</code>：当前状态（如 <code>&quot;PreInit&quot;</code>）</em></p>
+</li>
+<li>
+<p><em><code>DesiredState</code>：目标状态（如 <code>&quot;Initialized&quot;</code>）</em></p>
+</li>
 </ul>
-<p><em><strong>示例：</strong></em></p>
+</li>
+<li>
+<p><em>返回值</em></p>
+<ul>
+<li>
+<p><code>true</code>：允许切换。</p>
+</li>
+<li>
+<p><code>false</code>：阻止切换（需满足依赖条件后再尝试）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>示例：</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -274,14 +293,30 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>调用时机：</em></p>
-<p><em>在状态变更前由 <code>UGameFrameworkComponentManager</code> 调用</em></p>
+</div></li>
+<li>
+<p><em>调用时机：</em></p>
+<ul>
+<li><em>在状态变更前由 <code>UGameFrameworkComponentManager</code> 调用</em></li>
+</ul>
+</li>
+</ol>
 <h4 id="handlechangeinitstate"><em><strong><code>HandleChangeInitState()</code></strong></em></h4>
-<p><em><strong>作用：</strong></em></p>
-<p><em>执行状态变更的 <strong>实际逻辑</strong>（如加载资源、注册回调等）。</em></p>
-<p><em><strong>参数</strong></em></p>
-<p><em>同 <code>CanChangeInitState</code>。</em></p>
-<p><em><strong>示例：</strong></em></p>
+<ol>
+<li>
+<p><em>作用：</em></p>
+<ul>
+<li><em>执行状态变更的 <strong>实际逻辑</strong>（如加载资源、注册回调等）。</em></li>
+</ul>
+</li>
+<li>
+<p><em>参数</em></p>
+<ul>
+<li><em>同 <code>CanChangeInitState</code>。</em></li>
+</ul>
+</li>
+<li>
+<p><em>示例：</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -302,16 +337,30 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em><strong>调用时机</strong></em></p>
-<p><em>当 <code>CanChangeInitState</code> 返回 <code>true</code> 后，由管理器触发。</em></p>
+</div></li>
+<li>
+<p><em>调用时机</em></p>
+<ul>
+<li><em>当 <code>CanChangeInitState</code> 返回 <code>true</code> 后，由管理器触发。</em></li>
+</ul>
+</li>
+</ol>
 <h4 id="onactorinitstatechanged"><em><strong><code>OnActorInitStateChanged()</code></strong></em></h4>
-<p><em><strong>作用：</strong></em></p>
-<p><em>监听 <strong>Actor 的初始化状态变化</strong>，用于处理与 Actor 相关的依赖逻辑。</em></p>
-<p><em><strong>参数：</strong></em></p>
+<ol>
+<li>
+<p><em>作用：</em></p>
+<ul>
+<li><em>监听 <strong>Actor 的初始化状态变化</strong>，用于处理与 Actor 相关的依赖逻辑。</em></li>
+</ul>
+</li>
+<li>
+<p><em>参数：</em></p>
 <ul>
 <li><em><code>Params</code>：包含变动的 Actor 和状态信息（<code>FActorInitStateChangedParams</code>）。</em></li>
 </ul>
-<p><em><strong>示例：</strong></em></p>
+</li>
+<li>
+<p><em>示例：</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -328,14 +377,24 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em><strong>调用时机</strong></em></p>
+</div></li>
+<li>
+<p><em>调用时机</em></p>
 <ul>
-<li>当某个 Actor 的初始化状态变化时（如从 <code>Spawned</code> 变为 <code>Possessed</code>）。</li>
+<li><em>当某个 Actor 的初始化状态变化时（如从 <code>Spawned</code> 变为 <code>Possessed</code>）。</em></li>
 </ul>
+</li>
+</ol>
 <h4 id="checkdefaultinitialization"><em><strong><code>CheckDefaultInitialization()</code></strong></em></h4>
-<p><em><strong>作用</strong></em></p>
-<p><em><strong>强制检查</strong>当前模块的默认初始化状态，通常用于修复未正确初始化的模块。</em></p>
-<p><em><strong>示例</strong></em></p>
+<ol>
+<li>
+<p><em>作用</em></p>
+<ul>
+<li><em><strong>强制检查</strong>当前模块的默认初始化状态，通常用于修复未正确初始化的模块。</em></li>
+</ul>
+</li>
+<li>
+<p><em>示例</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -352,13 +411,22 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em><strong>调用时机</strong></em></p>
+</div></li>
+<li>
+<p><em>调用时机</em></p>
 <ul>
-<li>引擎启动时或手动调用 <code>UGameFrameworkComponentManager::CheckDefaultInitialization</code>。</li>
+<li><em>引擎启动时或手动调用 <code>UGameFrameworkComponentManager::CheckDefaultInitialization</code>。</em></li>
 </ul>
+</li>
+</ol>
 <h4 id="static-const-fname-name_actorfeaturename"><em><strong><code>static const FName NAME_ActorFeatureName</code></strong></em></h4>
-<p><em><strong>作用</strong></em></p>
-<p><em>静态常量，定义模块的 <strong>默认名称</strong>（避免硬编码字符串）。</em></p>
+<ol>
+<li><em>作用</em>
+<ul>
+<li><em>静态常量，定义模块的 <strong>默认名称</strong>（避免硬编码字符串）。</em></li>
+</ul>
+</li>
+</ol>
 <h3 id="总结"><em>总结</em></h3>
 <p><em><code>ULyraPawnExtensionComponent</code> 是 Lyra 框架里连接 Pawn 和 Ability System 的桥梁组件，承担以下关键职责：</em></p>
 <ul>

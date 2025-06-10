@@ -82,114 +82,109 @@
 
 #### ***`GetFeatureName()`***
 
-***`virtual FName GetFeatureName() const`**： 返回当前模块或组件的 **唯一标识名称**（用于区分不同的初始化模块）。* 
+1. *作用：*
+
+​	***`virtual FName GetFeatureName() const`**： 返回当前模块或组件的 **唯一标识名称**（用于区分不同的初始化模块）。* 
 
 #### ***`CanChangeInitState()`***
 
 *检查当前模块 **是否允许从 `CurrentState` 切换到 `DesiredState`**（状态变更的条件验证）。*
 
-***参数：***
+1. *参数：*
 
-1. Manager` 管理初始化状态的 `UGameFrameworkComponentManager`*
-2. *`CurrentState`：当前状态（如 `"PreInit"`）*
-3. *`DesiredState`：目标状态（如 `"Initialized"`）*
+   * Manager` 管理初始化状态的 `UGameFrameworkComponentManager`*
 
-***返回值***
+   * *`CurrentState`：当前状态（如 `"PreInit"`）*
 
-- `true`：允许切换。
-- `false`：阻止切换（需满足依赖条件后再尝试）。
+   * *`DesiredState`：目标状态（如 `"Initialized"`）*
 
-***示例：***
+2. *返回值*
 
-```cpp
-virtual bool CanChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState) const override {
-    // 只有渲染系统初始化完成后，音频系统才允许初始化
-    if (DesiredState == TAG_InitState_Initialized) {
-        return Manager->HasFeatureReachedInitState(TEXT("RenderSystem"), TAG_InitState_Initialized);
-    }
-    return true;
-}
-```
+   - `true`：允许切换。
 
-*调用时机：*
+   - `false`：阻止切换（需满足依赖条件后再尝试）。
 
-*在状态变更前由 `UGameFrameworkComponentManager` 调用*
+3. *示例：*
+
+   ```cpp
+   virtual bool CanChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState) const override {
+       // 只有渲染系统初始化完成后，音频系统才允许初始化
+       if (DesiredState == TAG_InitState_Initialized) {
+           return Manager->HasFeatureReachedInitState(TEXT("RenderSystem"), TAG_InitState_Initialized);
+       }
+       return true;
+   }
+   ```
+
+4. *调用时机：*
+   * *在状态变更前由 `UGameFrameworkComponentManager` 调用*
 
 #### ***`HandleChangeInitState()`***
 
-***作用：***
+1. *作用：*
+   * *执行状态变更的 **实际逻辑**（如加载资源、注册回调等）。*
 
-*执行状态变更的 **实际逻辑**（如加载资源、注册回调等）。*
+2. *参数*
+   * *同 `CanChangeInitState`。*
 
-***参数***
+3. *示例：*
 
-*同 `CanChangeInitState`。*
+   ```cpp
+   virtual void HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState) override {
+       if (DesiredState == TAG_InitState_Initialized) {
+           LoadSoundBanks(); // 初始化音频资源
+       } else if (DesiredState == TAG_InitState_Uninitialized) {
+           ReleaseSoundBanks(); // 清理资源
+       }
+   }
+   ```
 
-***示例：***
-
-```cpp
-virtual void HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState) override {
-    if (DesiredState == TAG_InitState_Initialized) {
-        LoadSoundBanks(); // 初始化音频资源
-    } else if (DesiredState == TAG_InitState_Uninitialized) {
-        ReleaseSoundBanks(); // 清理资源
-    }
-}
-```
-
-***调用时机***
-
-*当 `CanChangeInitState` 返回 `true` 后，由管理器触发。*
+4. *调用时机*
+   * *当 `CanChangeInitState` 返回 `true` 后，由管理器触发。*
 
 #### ***`OnActorInitStateChanged()`***
 
-***作用：***
+1. *作用：*
+   * *监听 **Actor 的初始化状态变化**，用于处理与 Actor 相关的依赖逻辑。*
 
-*监听 **Actor 的初始化状态变化**，用于处理与 Actor 相关的依赖逻辑。*
+2. *参数：*
+   - *`Params`：包含变动的 Actor 和状态信息（`FActorInitStateChangedParams`）。*
 
-***参数：***
+3. *示例：*
 
-- *`Params`：包含变动的 Actor 和状态信息（`FActorInitStateChangedParams`）。*
+   ```cpp
+   virtual void OnActorInitStateChanged(const FActorInitStateChangedParams& Params) override {
+       if (Params.FeatureName == TEXT("PlayerController") && Params.NewState == TAG_InitState_Initialized) {
+           BindInputEvents(Params.Actor); // 当玩家控制器初始化后绑定输入
+       }
+   }
+   ```
 
-***示例：***
-
-```cpp
-virtual void OnActorInitStateChanged(const FActorInitStateChangedParams& Params) override {
-    if (Params.FeatureName == TEXT("PlayerController") && Params.NewState == TAG_InitState_Initialized) {
-        BindInputEvents(Params.Actor); // 当玩家控制器初始化后绑定输入
-    }
-}
-```
-
-***调用时机***
-
-- 当某个 Actor 的初始化状态变化时（如从 `Spawned` 变为 `Possessed`）。
+4. *调用时机*
+   - *当某个 Actor 的初始化状态变化时（如从 `Spawned` 变为 `Possessed`）。*
 
 #### ***`CheckDefaultInitialization()`***
 
-***作用***
+1. *作用*
+   * ***强制检查**当前模块的默认初始化状态，通常用于修复未正确初始化的模块。*
 
-***强制检查**当前模块的默认初始化状态，通常用于修复未正确初始化的模块。*
+2. *示例*
 
-***示例***
+   ```cpp
+   virtual void CheckDefaultInitialization() override {
+       if (GetInitState() == TAG_InitState_None) {
+           Manager->SetInitState(GetFeatureName(), TAG_InitState_PreInit); // 重新触发初始化
+       }
+   }
+   ```
 
-```cpp
-virtual void CheckDefaultInitialization() override {
-    if (GetInitState() == TAG_InitState_None) {
-        Manager->SetInitState(GetFeatureName(), TAG_InitState_PreInit); // 重新触发初始化
-    }
-}
-```
-
-***调用时机***
-
-- 引擎启动时或手动调用 `UGameFrameworkComponentManager::CheckDefaultInitialization`。
+3. *调用时机*
+   - *引擎启动时或手动调用 `UGameFrameworkComponentManager::CheckDefaultInitialization`。*
 
 #### ***`static const FName NAME_ActorFeatureName`***
 
-***作用***
-
-*静态常量，定义模块的 **默认名称**（避免硬编码字符串）。*
+1. *作用*
+   * *静态常量，定义模块的 **默认名称**（避免硬编码字符串）。*
 
 ### *总结*
 
