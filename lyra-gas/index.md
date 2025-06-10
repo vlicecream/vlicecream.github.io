@@ -83,12 +83,13 @@
 #### ***`GetFeatureName()`***
 
 1. *作用：*
-
-​	***`virtual FName GetFeatureName() const`**： 返回当前模块或组件的 **唯一标识名称**（用于区分不同的初始化模块）。* 
+   * ***`virtual FName GetFeatureName() const`**： 返回当前模块或组件的 **唯一标识名称**（用于区分不同的初始化模块）。* 
 
 #### ***`CanChangeInitState()`***
 
-*检查当前模块 **是否允许从 `CurrentState` 切换到 `DesiredState`**（状态变更的条件验证）。*
+1. *作用：*
+
+   * *检查当前模块 **是否允许从 `CurrentState` 切换到 `DesiredState`**（状态变更的条件验证）。*
 
 1. *参数：*
 
