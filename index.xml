@@ -4,7 +4,7 @@
         <link>https://example.com/</link>
         <description>一个艺术世界</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 10 Jun 2025 21:34:00 &#43;0800</lastBuildDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 11 Jun 2025 21:34:00 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>纹理</title>
@@ -21,8 +21,52 @@
     <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/lyra-gas/</guid>
-    <description><![CDATA[<h2 id="ulyrapawnextensioncomponent"><em><strong>ULyraPawnExtensionComponent</strong></em></h2>
+    <description><![CDATA[<h2 id="ulyraherocomponent"><em><strong>ULyraHeroComponent</strong></em></h2>
 <h3 id="作用"><em><strong>作用</strong></em></h3>
+<ol>
+<li><em>让 Pawn 有能力接收输入、处理视角、连接 GAS 输入。</em></li>
+<li><em>为玩家控制的 Pawn 提供输入初始化功能。</em></li>
+<li><em>管理 camera mode（视角模式），支持 Gameplay Ability 控制相机。</em></li>
+<li><em>与 GAS 输入系统结合，负责把输入（比如按下 Q）映射到能力（如施放火球）。</em></li>
+<li><em>依赖 <code>ULyraPawnExtensionComponent</code> 的初始化状态。</em></li>
+</ol>
+<h3 id="接口与方法"><em><strong>接口与方法</strong></em></h3>
+<h4 id="initializeplayerinputuinputcomponent-playerinputcomponent"><strong><em>InitializePlayerInput(UInputComponent</em> PlayerInputComponent)</strong>*</h4>
+<ul>
+<li><em>真正把 Enhanced Input 系统的按键绑定到函数或 GAS 的入口。</em></li>
+</ul>
+<h4 id="input_abilityinputtagpressedfgameplaytag-inputtag"><em><strong>Input_AbilityInputTagPressed(FGameplayTag InputTag)</strong></em></h4>
+<ul>
+<li><em>当玩家按下某个技能键（比如“技能1”）时被调用。</em></li>
+<li><em>会调用 AbilitySystemComponent 的对应函数，比如：<code>AbilitySystem-&gt;AbilityLocalInputPressed(InputTag)</code>。实际作用是：激活绑定了该 InputTag 的 Ability。</em></li>
+</ul>
+<h4 id="addadditionalinputconfigremoveadditionalinputconfig"><em><strong>AddAdditionalInputConfig/RemoveAdditionalInputConfig</strong></em></h4>
+<ul>
+<li><em>允许动态添加/移除输入配置（如切换战斗/驾驶模式时加载不同操作逻辑）。</em></li>
+</ul>
+<h4 id="setabilitycameramode--clearabilitycameramode"><em><strong>SetAbilityCameraMode / ClearAbilityCameraMode</strong></em></h4>
+<ul>
+<li><em>GAS 中的 Ability 可以覆盖默认相机模式，比如瞄准模式/特殊视角。</em></li>
+<li><em>设置 <code>AbilityCameraMode</code> 和记录触发这个模式的 <code>AbilitySpecHandle</code>。</em></li>
+</ul>
+<h4 id="isreadytobindinputs"><em><strong>IsReadyToBindInputs()</strong></em></h4>
+<ul>
+<li><em>检查当前 HeroComponent 是否已经准备好进行输入绑定（比如 PlayerController 已就绪）。</em></li>
+<li><em><code>bReadyToBindInputs</code> 是这个状态的缓存。</em></li>
+</ul>
+<h4 id="初始化接口-igameframeworkinitstateinterface"><em><strong>初始化接口 <code>IGameFrameworkInitStateInterface</code></strong></em></h4>
+<ul>
+<li><em>Lyra 使用了一套通用初始化流程，组件通过实现这个接口来参与初始化状态机（如 Pawn 的各个初始化阶段）</em></li>
+</ul>
+<h3 id="成员变量说明"><em><strong>成员变量说明</strong></em></h3>
+<ul>
+<li><em>DefaultInputMappings：默认的输入映射表（使用 Enhanced Input）</em></li>
+<li><em>AbilityCameraMode：当前由 Ability 设置的相机类</em></li>
+<li><em>AbilityCameraModeOwningSpecHandle：设置相机的 Ability 的句柄</em></li>
+<li><em>bReadyToBindInput：标记是否已完成输入绑定（通常在角色初始化完成后设为 true）</em></li>
+</ul>
+<h2 id="ulyrapawnextensioncomponent"><em><strong>ULyraPawnExtensionComponent</strong></em></h2>
+<h3 id="作用-1"><em><strong>作用</strong></em></h3>
 <ol>
 <li><em><code>ULyraPawnExtensionComponent</code> 继承自 <code>UPawnComponent</code>（Pawn 的组件基类），并实现了<code>IGameFrameworkInitStateInterface</code>，说明它参与游戏框架的初始化状态管理流程。</em></li>
 <li><em>它为 Pawn 提供统一的扩展支持，主要包含：</em>

@@ -1,6 +1,52 @@
 # Lyra-GAS
 
 
+## ***ULyraHeroComponent***
+
+### ***作用***
+
+1. *让 Pawn 有能力接收输入、处理视角、连接 GAS 输入。*
+2. *为玩家控制的 Pawn 提供输入初始化功能。*
+3. *管理 camera mode（视角模式），支持 Gameplay Ability 控制相机。*
+4. *与 GAS 输入系统结合，负责把输入（比如按下 Q）映射到能力（如施放火球）。*
+5. *依赖 `ULyraPawnExtensionComponent` 的初始化状态。*
+
+### ***接口与方法***
+
+#### ***InitializePlayerInput(UInputComponent* PlayerInputComponent)***
+
+* *真正把 Enhanced Input 系统的按键绑定到函数或 GAS 的入口。*
+
+#### ***Input_AbilityInputTagPressed(FGameplayTag InputTag)***
+
+* *当玩家按下某个技能键（比如“技能1”）时被调用。*
+* *会调用 AbilitySystemComponent 的对应函数，比如：`AbilitySystem->AbilityLocalInputPressed(InputTag)`。实际作用是：激活绑定了该 InputTag 的 Ability。*
+
+#### ***AddAdditionalInputConfig/RemoveAdditionalInputConfig***
+
+* *允许动态添加/移除输入配置（如切换战斗/驾驶模式时加载不同操作逻辑）。*
+
+#### ***SetAbilityCameraMode / ClearAbilityCameraMode***
+
+* *GAS 中的 Ability 可以覆盖默认相机模式，比如瞄准模式/特殊视角。*
+* *设置 `AbilityCameraMode` 和记录触发这个模式的 `AbilitySpecHandle`。*
+
+#### ***IsReadyToBindInputs()***
+
+* *检查当前 HeroComponent 是否已经准备好进行输入绑定（比如 PlayerController 已就绪）。*
+* *`bReadyToBindInputs` 是这个状态的缓存。*
+
+#### ***初始化接口 `IGameFrameworkInitStateInterface`***
+
+* *Lyra 使用了一套通用初始化流程，组件通过实现这个接口来参与初始化状态机（如 Pawn 的各个初始化阶段）*
+
+### ***成员变量说明***
+
+* *DefaultInputMappings：默认的输入映射表（使用 Enhanced Input）*
+* *AbilityCameraMode：当前由 Ability 设置的相机类*
+* *AbilityCameraModeOwningSpecHandle：设置相机的 Ability 的句柄*
+* *bReadyToBindInput：标记是否已完成输入绑定（通常在角色初始化完成后设为 true）*
+
 ## ***ULyraPawnExtensionComponent***
 
 ### ***作用***
