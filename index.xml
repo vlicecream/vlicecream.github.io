@@ -4,9 +4,23 @@
         <link>https://example.com/</link>
         <description>一个艺术世界</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 11 Jun 2025 21:34:00 &#43;0800</lastBuildDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 16 Jun 2025 21:34:00 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Lyra-Plugins</title>
+    <link>https://example.com/lyra-plugins/</link>
+    <pubDate>Mon, 16 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-plugins/</guid>
+    <description><![CDATA[<h2 id="modulargameplayactors"><em><strong>ModularGameplayActors</strong></em></h2>
+<h3 id="作用"><em><strong>作用</strong></em></h3>
+<ul>
+<li><em>Lyra 里的插件 <strong><code>ModularGameplayActors</code></strong> 是整个架构的一个核心部分，用来实现 <strong>角色、控制器、HUD 等 Gameplay 类的模块化（Modular）构建机制</strong>。它是 Lyra “模块化组件系统” 的基础，支持你以“插件化方式”给 Actor 添加功能，而不是通过硬继承和写死逻辑。</em></li>
+</ul>
+<h3 id="模块化系统的核心目标"><em><strong>模块化系统的核心目标</strong></em></h3>
+<p><em>传统方式的问题：</em></p>]]></description>
+</item>
+<item>
     <title>纹理</title>
     <link>https://example.com/direct3d-%E7%BA%B9%E7%90%86/</link>
     <pubDate>Tue, 10 Jun 2025 21:34:00 &#43;0800</pubDate>
@@ -81,6 +95,28 @@
 <p><em>它是挂载在 Pawn（角色、载具等）上的一个扩展组件，负责协调角色的能力系统（GAS）及其他初始化状态的管理。整体职责是让所有 Pawn 类统一支持 Lyra 项目的功能扩展，尤其是与 <strong>Ability System Component (ASC)</strong> 相关的管理和初始化。</em></p>]]></description>
 </item>
 <item>
+    <title>Lyra-Input</title>
+    <link>https://example.com/lyra-input/</link>
+    <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-input/</guid>
+    <description><![CDATA[<h2 id="ulyrainputconfig"><em><strong>ULyraInputConfig</strong></em></h2>
+<h3 id="作用"><em><strong>作用</strong></em></h3>
+<ol>
+<li><em>如何定义 <code>GameplayTag</code> 与 <code>InputAction</code> 的映射</em></li>
+</ol>
+<h3 id="接口与方法"><em><strong>接口与方法</strong></em></h3>
+<h4 id="flyrainputaction"><em><strong>FLyraInputAction</strong></em></h4>
+<ol>
+<li><em>该结构体用于将输入操作映射到游戏玩法的输入标签上。</em></li>
+</ol>
+<h4 id="findnativeinputactionfortag"><em><strong>FindNativeInputActionForTag</strong></em></h4>
+<ol>
+<li><em>根据 GameplayTag来搜索 NativeInputAction</em></li>
+</ol>
+<p><em><strong>FindAbilityInputActionForTag</strong></em></p>]]></description>
+</item>
+<item>
     <title>光照</title>
     <link>https://example.com/direct3d-%E5%85%89%E7%85%A7/</link>
     <pubDate>Wed, 14 May 2025 21:34:00 &#43;0800</pubDate>
@@ -138,26 +174,6 @@
 <h2 id="变换矩阵"><em><strong>变换矩阵</strong></em></h2>
 <h3 id="定义"><em><strong>定义</strong></em></h3>
 <p><em>先来研究一下数学函数 $ \tau(\vec{v}) = \tau(x, y, z) = (x&rsquo;, y&rsquo;, z&rsquo;) $。此函数的输入和输出都是 3D 向量。</em></p>]]></description>
-</item>
-<item>
-    <title>矩阵</title>
-    <link>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/</link>
-    <pubDate>Tue, 24 Dec 2024 11:05:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/</guid>
-    <description><![CDATA[<h1 id="矩阵"><em><strong>矩阵</strong></em></h1>
-<h2 id="矩阵的定义"><em><strong>矩阵的定义</strong></em></h2>
-<p><em>一个规模为 m × n  的矩阵（matrix）M，是由 m 行 n 列实数所构成的矩形阵列。行数和列数的乘积表示了矩阵的维度。</em></p>]]></description>
-</item>
-<item>
-    <title>向量</title>
-    <link>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/</link>
-    <pubDate>Mon, 23 Dec 2024 22:00:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/</guid>
-    <description><![CDATA[<h1 id="向量"><em><strong>向量</strong></em></h1>
-<h2 id="向量的定义"><em><strong>向量的定义</strong></em></h2>
-<p><em>向量（vector）是一种兼具大小（也称为模，magnitude）和方向的量。具有这两种属性的量皆 称为向量值物理量（vector-valued quantity）</em></p>]]></description>
 </item>
 </channel>
 </rss>
