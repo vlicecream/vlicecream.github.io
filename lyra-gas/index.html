@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  2770 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  2991 ,
         "url": "https:\/\/example.com\/lyra-gas\/","datePublished": "2025-06-09T21:34:00+08:00","dateModified": "2025-06-10T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,7 +116,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra-GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2770 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2991 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/lyra-gas/" class="leancloud_visitors" data-flag-title="Lyra-GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -169,6 +169,19 @@
         <li><a href="#总结"><em>总结</em></a></li>
       </ul>
     </li>
+    <li><a href="#ugamefeatureaction_addabilities"><em><strong>UGameFeatureAction_AddAbilities</strong></em></a>
+      <ul>
+        <li><a href="#作用-2"><em><strong>作用</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#ulyraabilityset"><em><strong>ULyraAbilitySet</strong></em></a>
+      <ul>
+        <li><a href="#作用-3"><em><strong>作用</strong></em></a></li>
+        <li><a href="#flyraabilityset_grantedhandles"><em><strong>FLyraAbilitySet_GrantedHandles</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#ulyraabilitysystemcomponent"><em><strong>ULyraAbilitySystemComponent</strong></em></a></li>
+    <li><a href="#ulyragameplayability"><em><strong>ULyraGameplayAbility</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="ulyraherocomponent"><em><strong>ULyraHeroComponent</strong></em></h2>
@@ -505,6 +518,33 @@
 <li><em><strong>提供事件广播机制</strong>，通知外部 Ability System 初始化/解绑的状态变化。</em></li>
 </ul>
 <p><em>这个组件让 Lyra 里的角色能够在不同模块间灵活协作，特别是在 GAS 能力系统的动态加载、初始化和解绑中起到核心作用。</em></p>
+<h2 id="ugamefeatureaction_addabilities"><em><strong>UGameFeatureAction_AddAbilities</strong></em></h2>
+<h3 id="作用-2"><em><strong>作用</strong></em></h3>
+<ol>
+<li><em>该类功能是为一个Actor在注册的时候就为其附上能力，当然此类功能也包括了为该Actor注册一个Component 或者其他的功能</em></li>
+</ol>
+<h2 id="ulyraabilityset"><em><strong>ULyraAbilitySet</strong></em></h2>
+<h3 id="作用-3"><em><strong>作用</strong></em></h3>
+<ol>
+<li>
+<p><em>用于授予游戏玩法能力和游戏玩法效果的不可变数据资产。</em></p>
+</li>
+<li>
+<p><em><code>ULyraAbilitySet</code> 代表一组可以一次性<strong>注入给一个角色的能力内容</strong>，包括：</em></p>
+<ul>
+<li><em>一组 <strong>Gameplay Abilities</strong></em></li>
+<li><em>一组 <strong>Attribute Sets</strong></em></li>
+<li><em>一组 <strong>Gameplay Effects</strong></em></li>
+</ul>
+<p><em>这些内容通过一个接口 <code>GiveToAbilitySystem()</code> 注入到 <code>ULyraAbilitySystemComponent</code> 上，并通过 <code>FLyraAbilitySet_GrantedHandles</code> 对象<strong>记录所有加上的内容，方便后续移除（TakeFromAbilitySystem）</strong>。</em></p>
+</li>
+</ol>
+<h3 id="flyraabilityset_grantedhandles"><em><strong>FLyraAbilitySet_GrantedHandles</strong></em></h3>
+<ul>
+<li><em>用于记录调用 <code>GiveToAbilitySystem()</code> 后添加的所有能力/属性/效果</em></li>
+</ul>
+<h2 id="ulyraabilitysystemcomponent"><em><strong>ULyraAbilitySystemComponent</strong></em></h2>
+<h2 id="ulyragameplayability"><em><strong>ULyraGameplayAbility</strong></em></h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

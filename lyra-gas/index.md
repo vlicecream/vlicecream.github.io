@@ -245,3 +245,32 @@
 
 *这个组件让 Lyra 里的角色能够在不同模块间灵活协作，特别是在 GAS 能力系统的动态加载、初始化和解绑中起到核心作用。*
 
+## ***UGameFeatureAction_AddAbilities***
+
+### ***作用***
+
+1. *该类功能是为一个Actor在注册的时候就为其附上能力，当然此类功能也包括了为该Actor注册一个Component 或者其他的功能*
+
+## ***ULyraAbilitySet***
+
+### ***作用***
+
+1. *用于授予游戏玩法能力和游戏玩法效果的不可变数据资产。*
+
+2. *`ULyraAbilitySet` 代表一组可以一次性**注入给一个角色的能力内容**，包括：*
+
+   - *一组 **Gameplay Abilities***
+   - *一组 **Attribute Sets***
+   - *一组 **Gameplay Effects***
+
+   *这些内容通过一个接口 `GiveToAbilitySystem()` 注入到 `ULyraAbilitySystemComponent` 上，并通过 `FLyraAbilitySet_GrantedHandles` 对象**记录所有加上的内容，方便后续移除（TakeFromAbilitySystem）**。*
+
+### ***FLyraAbilitySet_GrantedHandles***
+
+* *用于记录调用 `GiveToAbilitySystem()` 后添加的所有能力/属性/效果*
+
+## ***ULyraAbilitySystemComponent***
+
+## ***ULyraGameplayAbility***
+
+

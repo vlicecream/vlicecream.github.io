@@ -61,6 +61,13 @@
 
 *`GameFeature` 是 UE5 引入的一个 **模块化插件系统**，主要目标是：*
 
+| *Feature 插件*     | *功能*                           |
+| ------------------ | -------------------------------- |
+| *InputMapping*     | *添加新的输入操作映射*           |
+| *Weapon_AR*        | *加入一个步枪的逻辑、资源、蓝图* |
+| *UI_HUD*           | *添加一个特定的 HUD 或菜单界面*  |
+| *Ability_Fireball* | *加入一个技能火球术*             |
+
 *每个 `GameFeature` 插件都能控制：*
 
 - *加载哪些资源（IMC、AbilitySet、蓝图、DataAsset…）*
