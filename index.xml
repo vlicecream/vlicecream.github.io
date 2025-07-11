@@ -4,9 +4,28 @@
         <link>https://example.com/</link>
         <description>一个艺术世界</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 07 Jul 2025 22:00:00 &#43;0800</lastBuildDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Lyra 架构解析：Experience DataAsset 的动态加载机制</title>
+    <link>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</link>
+    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</guid>
+    <description><![CDATA[<p><em><strong>举的例子为 大厅</strong></em></p>
+<h2 id="什么是-experience-dataasset-的动态加载机制"><em><strong>什么是 Experience DataAsset 的动态加载机制</strong></em></h2>
+<p><em>Lyra中是分很多游戏玩法的，他在进入一个新的玩法的时候，就会找到玩法对应的 ULyraExperienceDefinition 的数据，系统根据 ULyraExperienceDefinition 里的内容去激活<strong>Game Features</strong>、<strong>Abilities</strong> 和 <strong>UI</strong> 等。</em></p>]]></description>
+</item>
+<item>
+    <title>解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调</title>
+    <link>https://example.com/lyra-igameframeworkinitstateinterface/</link>
+    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-igameframeworkinitstateinterface/</guid>
+    <description><![CDATA[<h2 id="作用"><em><strong>作用</strong></em></h2>
+<p><em>IGameFrameworkInitStateInterface 的作用，就是将一个组件原本<strong>混乱、单体</strong>的初始化过程（主要挤在BeginPlay里），拆分成一个<strong>清晰、有序、分阶段的“生命周期”</strong>。</em></p>]]></description>
+</item>
+<item>
     <title>p4v的下载和使用</title>
     <link>https://example.com/p4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
     <pubDate>Mon, 07 Jul 2025 22:00:00 &#43;0800</pubDate>
@@ -135,26 +154,20 @@
 <p><em>它是挂载在 Pawn（角色、载具等）上的一个扩展组件，负责协调角色的能力系统（GAS）及其他初始化状态的管理。整体职责是让所有 Pawn 类统一支持 Lyra 项目的功能扩展，尤其是与 <strong>Ability System Component (ASC)</strong> 相关的管理和初始化。</em></p>]]></description>
 </item>
 <item>
-    <title>Lyra-Input</title>
+    <title>深入Lyra输入系统：从按键到能力的完整旅程</title>
     <link>https://example.com/lyra-input/</link>
     <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/lyra-input/</guid>
-    <description><![CDATA[<h2 id="ulyrainputconfig"><em><strong>ULyraInputConfig</strong></em></h2>
-<h3 id="作用"><em><strong>作用</strong></em></h3>
+    <description><![CDATA[<h2 id="前言"><em><strong>前言</strong></em></h2>
+<p><em>需要你先了解：</em></p>
 <ol>
-<li><em>如何定义 <code>GameplayTag</code> 与 <code>InputAction</code> 的映射</em></li>
+<li><em>Lyra 架构解析：Experience DataAsset 的动态加载机制</em></li>
 </ol>
-<h3 id="接口与方法"><em><strong>接口与方法</strong></em></h3>
-<h4 id="flyrainputaction"><em><strong>FLyraInputAction</strong></em></h4>
+<h2 id="角色的基础输入流程"><em><strong>角色的基础输入流程</strong></em></h2>
 <ol>
-<li><em>该结构体用于将输入操作映射到游戏玩法的输入标签上。</em></li>
-</ol>
-<h4 id="findnativeinputactionfortag"><em><strong>FindNativeInputActionForTag</strong></em></h4>
-<ol>
-<li><em>根据 GameplayTag来搜索 NativeInputAction</em></li>
-</ol>
-<p><em><strong>FindAbilityInputActionForTag</strong></em></p>]]></description>
+<li>
+<p><em>经历过 Experience DataAsset 的动态加载成功，收到信号</em></p>]]></description>
 </item>
 <item>
     <title>光照</title>
@@ -173,26 +186,6 @@
     <guid>https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8B/</guid>
     <description><![CDATA[<h2 id="帧资源"><em><strong>帧资源</strong></em></h2>
 <p><em>在上篇，我们的演示程序在绘制每一帧时 都会将 CPU 和 GPU 进行一次同步，这样做的原因当然是确保数据安全。这种解决方案虽然奏效却效率低下</em></p>]]></description>
-</item>
-<item>
-    <title>绘制3D立方体(上)</title>
-    <link>https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8A/</link>
-    <pubDate>Wed, 12 Feb 2025 21:34:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8A/</guid>
-    <description><![CDATA[<h1 id="绘制3d立方体"><em><strong>绘制3D立方体</strong></em></h1>
-<h2 id="顶点与输入布局"><em><strong>顶点与输入布局</strong></em></h2>
-<p><em>除了空间位置，Direct3D 中的顶点还可以存储其他属性数据</em></p>]]></description>
-</item>
-<item>
-    <title>渲染流水线</title>
-    <link>https://example.com/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/</link>
-    <pubDate>Mon, 10 Feb 2025 22:44:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/direct3d-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF/</guid>
-    <description><![CDATA[<h1 id="渲染流水线"><em><strong>渲染流水线</strong></em></h1>
-<h2 id="3d-视觉即错觉"><em><strong>3D 视觉即错觉？</strong></em></h2>
-<p><em>我们都知道物体重叠（object overlap）的概念，即不透明物体能够遮挡住其后侧物体的局部（或整 体），如图 5.4 所示。这是一个重要的概念，它传达了不同物体在场景中的深度顺序关系。而我们在第 4 章 中也已经讨论过如何在 Direct3D 中借助深度缓冲区来确定那些应当受到遮蔽而不是绘制出来的像素。</em></p>]]></description>
 </item>
 </channel>
 </rss>

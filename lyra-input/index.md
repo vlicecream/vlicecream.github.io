@@ -1,5 +1,21 @@
-# Lyra-Input
+# 深入Lyra输入系统：从按键到能力的完整旅程
 
+
+## ***前言***
+
+*需要你先了解：*
+
+1. *Lyra 架构解析：Experience DataAsset 的动态加载机制*
+
+## ***角色的基础输入流程***
+
+1. *经历过 Experience DataAsset 的动态加载成功，收到信号*
+
+2. `void ALyraGameMode::OnExperienceLoaded(const ULyraExperienceDefinition* CurrentExperience)`
+
+   *将世界的所有 Playcontroller 遍历一遍，如果满足 Restart条件，则 RestartPlayer(PC)*
+
+3. ``
 
 ## ***ULyraInputConfig***
 
