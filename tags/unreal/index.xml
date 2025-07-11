@@ -4,7 +4,39 @@
         <link>https://example.com/tags/unreal/</link>
         <description>Unreal - 标签 - Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/unreal/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 11 Jul 2025 22:00:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/unreal/" rel="self" type="application/rss+xml" /><item>
+    <title>Rider &amp; Unreal 配置P4V</title>
+    <link>https://example.com/p4-rider%E8%BF%9E%E6%8E%A5p4v/</link>
+    <pubDate>Fri, 11 Jul 2025 22:00:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/p4-rider%E8%BF%9E%E6%8E%A5p4v/</guid>
+    <description><![CDATA[<h2 id="rider"><em><strong>Rider</strong></em></h2>
+<h3 id="配置p4v信息"><em><strong>配置P4V信息</strong></em></h3>
+<ol>
+<li><em>打开 Rider 设置: File -&gt; Settings (或者按 Ctrl+Alt+S)。</em></li>
+<li><em>导航到 Version Control -&gt; Perforce。</em></li>
+<li><em>配置连接参数:</em>
+<ul>
+<li><em><strong>Port</strong>: 输入你的服务器地址和端口，格式为 host:port (例如 p4.mycompany.com:1666)</em></li>
+<li><em><strong>User</strong>: 输入你的 Perforce 用户名。</em></li>
+<li><em><strong>Workspace</strong>: 输入你为这个项目创建的 <strong>工作区名称</strong>。这是 Rider 用来确定哪些文件在你的控制之下的关键。</em></li>
+<li><em><strong>Path to P4 executable</strong>: 通常你可以留空，Rider 会自动从系统 PATH 中找到 p4.exe。如果找不到，你可以点击 &hellip; 按钮手动指定 p4.exe 文件的完整路径。</em></li>
+<li><em><strong>Path to P4VC executable</strong>: 通常你可以留空，Rider 会自动从系统 PATH 中找到 p4v.exe。如果找不到，你可以点击 &hellip; 按钮手动指定 p4v.exe 文件的完整路径。</em></li>
+</ul>
+</li>
+<li><em>测试连接:</em>
+<ul>
+<li><em>点击 Test Connection 按钮。</em></li>
+<li><em>如果一切配置正确，你会看到一个 &ldquo;Connection successful&rdquo; 的提示。</em></li>
+<li><em>如果提示需要输入密码，它会弹出一个对话框让你输入。输入后可以选择“记住密码”。</em></li>
+<li><em>如果连接失败，请仔细检查你的服务器地址、用户名和工作区名称是否拼写正确。</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="将项目与-perforce-关联"><em><strong>将项目与 Perforce 关联</strong></em></h3>
+<p><em>即使配置好了连接，你还需要告诉 Rider 这个<strong>特定的项目</strong>要使用 Perforce 进行版本控制。</em></p>]]></description>
+</item>
+<item>
     <title>Lyra 架构解析：Experience DataAsset 的动态加载机制</title>
     <link>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</link>
     <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
@@ -175,15 +207,6 @@
     <guid>https://example.com/direct3d-%E5%85%89%E7%85%A7/</guid>
     <description><![CDATA[<h2 id="光照与材质的交互"><em><strong>光照与材质的交互</strong></em></h2>
 <p><em>在开启光照的同时，我们不再直接指出顶点的颜色，而是指定材质与光照，再运用光照方程（lighting equation）基于两者的交互来计算顶点颜色。这样做会使物体的颜色更趋于真实</em></p>]]></description>
-</item>
-<item>
-    <title>绘制3D立方体(下)</title>
-    <link>https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8B/</link>
-    <pubDate>Wed, 23 Apr 2025 21:34:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/direct3d-%E7%BB%98%E5%88%B63d%E7%AB%8B%E6%96%B9%E4%BD%93%E4%B8%8B/</guid>
-    <description><![CDATA[<h2 id="帧资源"><em><strong>帧资源</strong></em></h2>
-<p><em>在上篇，我们的演示程序在绘制每一帧时 都会将 CPU 和 GPU 进行一次同步，这样做的原因当然是确保数据安全。这种解决方案虽然奏效却效率低下</em></p>]]></description>
 </item>
 </channel>
 </rss>
