@@ -27,7 +27,7 @@
 
    ![image-20250715234304112](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715234304112.png)
 
-5. *这样的话我们就创建好了*
+5. *这样的话我们就创建好了，记得在插件设置里面启动你刚刚创建好的插件*
 
 ## ***GameFeature接口***
 

@@ -7,15 +7,39 @@
 
 1. *Lyra 架构解析：Experience DataAsset 的动态加载机制*
 
-## ***角色的基础输入流程***
+## ***Lyra 基础 Input 流程***
 
-1. *经历过 Experience DataAsset 的动态加载成功，收到信号*
+1. `void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState)`
 
-2. `void ALyraGameMode::OnExperienceLoaded(const ULyraExperienceDefinition* CurrentExperience)`
+   *经历过加载游戏体验的DataAsset后，就来到了这个函数*
 
-   *将世界的所有 Playcontroller 遍历一遍，如果满足 Restart条件，则 RestartPlayer(PC)*
+2. `void ULyraHeroComponent::InitializePlayerInput(UInputComponent* PlayerInputComponent)`
 
-3. ``
+   *这边就是初始化WASD的一个重要函数，他会去拿到你的游戏体验中配置的InputConfig的信息，从而拿到 FInputMappingContextAndPriority 具体的信息*
+
+   ***要注意，你需要建立一个 GameFeature 然后利用LyraDataAsset 将InputMappingContext 提前加载进内存，否则判断不会进去***
+
+   *你还要注意将项目设置里面的 UEnhancedInputComponent 给替换成自己实现的类，随后就是绑定输入了*
+
+   *蓝图中创建 InputAction 和 InputMappingContext 自己配置好其对应的游戏体验DataAsset 即可*
+
+## ***注意的坑***
+
+### ***Mouse上下移动的方向***
+
+```ini
+[/Script/LyraGame.LyraPlayerController]
+InputYawScale=1.0
+InputPitchScale=1.0
+InputRollScale=1.0
+ForceFeedbackScale=1.0
+```
+
+*Lyra 是靠这个 来使得我们鼠标向上滑就是人往天看，InputPitchScale默认值是-2.5，如果是默认值，效果则反之*
+
+***要记住的点***
+
+1. *需要在项目设置手动指定增强输入的setting类*
 
 ## ***ULyraInputConfig***
 

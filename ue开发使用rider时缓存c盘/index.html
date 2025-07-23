@@ -4,44 +4,45 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Lyra架构：Game Feature 篇 - Ame</title><meta name="Description" content="Lyra 里的 Game Feature"><meta property="og:url" content="https://example.com/lyra-gamefeature/">
+        <title>UE开发使用Rider时缓存干爆C盘的解决方案 - Ame</title><meta name="Description" content="一个艺术世界"><meta property="og:url" content="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/">
   <meta property="og:site_name" content="Ame">
-  <meta property="og:title" content="Lyra架构：Game Feature 篇">
-  <meta property="og:description" content="Lyra 里的 Game Feature">
+  <meta property="og:title" content="UE开发使用Rider时缓存干爆C盘的解决方案">
+  <meta property="og:description" content="我们在使用Rider开发UE时，Ride会为每一个项目创建一个解决方案缓存，如果开几个新项目写测试demo，我们的C盘会逐渐捉急
+不知道官方怎么想的，默认在C盘就算了，还没法改">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-07-15T21:34:00+08:00">
-    <meta property="article:modified_time" content="2025-07-15T21:34:00+08:00">
-    <meta property="article:tag" content="Unreal">
-    <meta property="article:tag" content="Lyra">
+    <meta property="article:published_time" content="2025-07-18T13:31:00+08:00">
+    <meta property="article:modified_time" content="2025-07-18T13:31:00+08:00">
+    <meta property="article:tag" content="Rider">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
-  <meta name="twitter:title" content="Lyra架构：Game Feature 篇">
-  <meta name="twitter:description" content="Lyra 里的 Game Feature">
+  <meta name="twitter:title" content="UE开发使用Rider时缓存干爆C盘的解决方案">
+  <meta name="twitter:description" content="我们在使用Rider开发UE时，Ride会为每一个项目创建一个解决方案缓存，如果开几个新项目写测试demo，我们的C盘会逐渐捉急
+不知道官方怎么想的，默认在C盘就算了，还没法改">
 <meta name="application-name" content="Ame林汀">
 <meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/lyra-gamefeature/" /><link rel="prev" href="https://example.com/lyra-camera/" /><link rel="next" href="https://example.com/lyra-dataassetmanager/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" /><link rel="prev" href="https://example.com/lyra-dataassetmanager/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Lyra架构：Game Feature 篇",
+        "headline": "UE开发使用Rider时缓存干爆C盘的解决方案",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/example.com\/lyra-gamefeature\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra","wordcount":  547 ,
-        "url": "https:\/\/example.com\/lyra-gamefeature\/","datePublished": "2025-07-15T21:34:00+08:00","dateModified": "2025-07-15T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/example.com\/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Rider","wordcount":  399 ,
+        "url": "https:\/\/example.com\/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98\/","datePublished": "2025-07-18T13:31:00+08:00","dateModified": "2025-07-18T13:31:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "Ame"
-            },"description": "Lyra 里的 Game Feature"
+            },"description": ""
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -67,7 +68,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/lyra-gamefeature/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -101,7 +102,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/lyra-gamefeature/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -112,11 +113,11 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra架构：Game Feature 篇</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 547 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/lyra-gamefeature/" class="leancloud_visitors" data-flag-title="Lyra架构：Game Feature 篇">
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">UE开发使用Rider时缓存干爆C盘的解决方案</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9D%82%E8%B0%88/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>杂谈</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-18">2025-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 399 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" class="leancloud_visitors" data-flag-title="UE开发使用Rider时缓存干爆C盘的解决方案">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -124,104 +125,54 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#作用"><em><strong>作用</strong></em></a></li>
-    <li><a href="#创建一个gamefeature插件"><em><strong>创建一个GameFeature插件</strong></em></a></li>
-    <li><a href="#gamefeature接口"><em><strong>GameFeature接口</strong></em></a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="作用"><em><strong>作用</strong></em></h2>
-<p><em><strong>Game Feature</strong>（游戏特性）是虚幻引擎中一个强大的插件系统，旨在实现</em><em>高度模块化和可扩展的游戏开发</em>*。*</p>
-<p><em>想象一下，你可以像搭乐高积木一样构建你的游戏：角色的能力、新的游戏模式、季节性活动，甚至UI界面，都可以作为一个独立的“特性”插件来开发。当需要时，只需<strong>动态地激活</strong>这个插件，所有相关的功能、内容和逻辑就会自动应用到游戏中；不需要时，则可以随时<strong>停用</strong>，干净利落地移除，而不会影响游戏的核心代码。</em></p>
-<p><em>这种方式极大地<strong>降低了团队协作的耦合度</strong>，让大型项目管理变得前所未有的清晰和高效。</em></p>
-<p><em>可以理解为游戏Mod把</em></p>
-<h2 id="创建一个gamefeature插件"><em><strong>创建一个GameFeature插件</strong></em></h2>
-<ol>
-<li>
-<p><em>打开GameFeature插件</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233759648.png"
-        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233759648.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233759648.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233759648.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233759648.png"
-        title="image-20250715233759648" /></p>
-</li>
-<li>
-<p><em>在插件页面 点击 Add(添加) 根据是否需要c++ 创建GameFeature</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233911414.png"
-        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233911414.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233911414.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233911414.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715233911414.png"
-        title="image-20250715233911414" /></p>
-</li>
-<li>
-<p><em>他会帮你默认创建一个 GameFeature的 PrimaryDataAsset，写好你需要的即可</em></p>
-</li>
-<li>
-<p><em>我们一定要打开项目设置查看下，这个是否加入，没有得补上去</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715234304112.png"
-        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715234304112.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715234304112.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715234304112.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250715234304112.png"
-        title="image-20250715234304112" /></p>
-</li>
-<li>
-<p><em>这样的话我们就创建好了，记得在插件设置里面启动你刚刚创建好的插件</em></p>
-</li>
-</ol>
-<h2 id="gamefeature接口"><em><strong>GameFeature接口</strong></em></h2>
-<ol>
-<li>
-<p><code>virtual void OnGameFeatureRegistering() override;</code></p>
-<p><em>当虚幻引擎启动并发现这个 Game Feature 插件时，会立即调用。</em></p>
-</li>
-<li>
-<p><code>virtual void OnGameFeatureUnregistering() override;</code></p>
-<p><em>引擎关闭的时候，会立刻调用</em></p>
-</li>
-<li>
-<p><code>virtual void OnGameFeatureActivating(FGameFeatureActivatingContext&amp; Context) override; </code></p>
-<p><em>当游戏逻辑通过调用 UGameFeaturesSubsystem::Get().ActivateGameFeaturePlugin() 来<strong>主动激活</strong>这个插件时触发。这通常是游戏流程的一部分</em></p>
-</li>
-<li>
-<p><code>virtual void OnGameFeatureDeactivating(FGameFeatureDeactivatingContext&amp; Context) override; </code></p>
-<p><em>当游戏逻辑通过调用 UGameFeaturesSubsystem::Get().DeactivateGameFeaturePlugin() 来<strong>主动停用</strong>这个插件时触发</em></p>
-</li>
-</ol>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p><em>我们在使用Rider开发UE时，Ride会为每一个项目创建一个解决方案缓存，如果开几个新项目写测试demo，我们的C盘会逐渐捉急</em></p>
+<p><em>不知道官方怎么想的，默认在C盘就算了，还没法改</em></p>
+<p><em>目前没有找到这个路径相关的设置，只能另辟蹊径</em></p>
+<p><em>我们既然改不掉这个路径，那就将这个路径映射到其他路径上</em></p>
+<p><em>windows下，可以使用mklink指令，创建类似linux的软连接</em></p>
+<p><em>首先把C:\Users&quot;用户名&quot;\AppData\Local\JetBrains这个文件夹移动到你希望他出现的位置</em></p>
+<p><em>然后用管理员身份打开CMD</em></p>
+<p><em>使用下面的指令，把里面%引起来的内容替换成你的东西</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">mklink</span> <span class="o">/</span><span class="n">j</span> <span class="s">&#34;C:\Users\%你的用户名%\AppData\Local\JetBrains&#34;</span> <span class="s">&#34;%你希望这个缓存所在的路径%&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="err">我的就是</span>
+</span></span><span class="line"><span class="cl"><span class="n">mklink</span> <span class="o">/</span><span class="n">j</span> <span class="nl">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">User</span><span class="err">\</span><span class="n">AppData</span><span class="err">\</span><span class="n">Local</span><span class="err">\</span><span class="n">JetBrains</span> <span class="nl">G</span><span class="p">:</span><span class="err">\</span><span class="n">JetCache</span><span class="err">\</span><span class="n">JetBrains</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>他已经不占用C盘空间了，也不影响Rider解析，大功告成，告别C盘焦虑</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-07-15</span>
+                <span>更新于 2025-07-18</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/lyra-gamefeature/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-gamefeature/" data-title="Lyra架构：Game Feature 篇" data-hashtags="Unreal,Lyra"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-gamefeature/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-gamefeature/" data-title="Lyra架构：Game Feature 篇"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-gamefeature/" data-title="Lyra架构：Game Feature 篇"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-gamefeature/" data-title="Lyra架构：Game Feature 篇" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" data-title="UE开发使用Rider时缓存干爆C盘的解决方案" data-hashtags="Rider"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" data-hashtag="Rider"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" data-title="UE开发使用Rider时缓存干爆C盘的解决方案"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" data-title="UE开发使用Rider时缓存干爆C盘的解决方案"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" data-title="UE开发使用Rider时缓存干爆C盘的解决方案" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/lyra/">Lyra</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rider/">Rider</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/lyra-camera/" class="prev" rel="prev" title="Lyra相机系统：数据驱动与责任分离的设计哲学"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lyra相机系统：数据驱动与责任分离的设计哲学</a>
-            <a href="/lyra-dataassetmanager/" class="next" rel="next" title="Lyra 资源管理核心：自定义 AssetManager 实战">Lyra 资源管理核心：自定义 AssetManager 实战<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/lyra-dataassetmanager/" class="prev" rel="prev" title="Lyra 资源管理核心：自定义 AssetManager 实战"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lyra 资源管理核心：自定义 AssetManager 实战</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
