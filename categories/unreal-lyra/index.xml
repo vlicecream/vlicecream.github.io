@@ -4,7 +4,37 @@
         <link>https://example.com/categories/unreal-lyra/</link>
         <description>Unreal-Lyra - 分类 - Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 15 Jul 2025 23:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/unreal-lyra/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Jul 2025 21:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/unreal-lyra/" rel="self" type="application/rss+xml" /><item>
+    <title>Lyra 库存与装备系统</title>
+    <link>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Wed, 23 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[<h2 id="equipment"><em><strong>Equipment</strong></em></h2>
+<p><em>Equipment 是 Lyra 的装备系统，也就是执行装备这个过程逻辑的一个系统</em></p>
+<p><em>它通过 <code>ULyraEquipmentDefinition</code> 这个类，来获得装备的Actor真正的实例，以及装备上会获得什么技能，还有装备到哪里，比如枪装备到人的一个左手骨骼点上</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra-HealthComponent</title>
+    <link>https://example.com/lyra-healthcomponent/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-healthcomponent/</guid>
+    <description><![CDATA[Lyra 里的 HealthComponent]]></description>
+</item>
+<item>
+    <title>Lyra动画层（Anim Layers）与重写机制全解析</title>
+    <link>https://example.com/lyra-animation/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-animation/</guid>
+    <description><![CDATA[<h2 id="参考资料"><em><strong>参考资料</strong></em></h2>
+<p><em><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3" target="_blank" rel="noopener noreffer ">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3</a></em></p>
+<p><em><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3" target="_blank" rel="noopener noreffer ">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3</a></em></p>
+<h2 id="简介"><em><strong>简介</strong></em></h2>
+<p><em>Lyra 的 动画蓝图，首先是采用 蓝图线程安全更新动画，此开启方法在文档中就写了。再次提一句，这实现了使用属性访问（Property Access）来访问其所有数据，并避免了重新计算链接的图层可能使用的值，如 <strong>加速度（Acceleration）</strong> 或 <strong>速度（Velocity）</strong> 。</em></p>]]></description>
+</item>
+<item>
     <title>Lyra 资源管理核心：自定义 AssetManager 实战</title>
     <link>https://example.com/lyra-dataassetmanager/</link>
     <pubDate>Tue, 15 Jul 2025 23:34:00 &#43;0800</pubDate>
@@ -72,80 +102,9 @@
     <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/lyra-gas/</guid>
-    <description><![CDATA[<h2 id="ulyraherocomponent"><em><strong>ULyraHeroComponent</strong></em></h2>
-<h3 id="作用"><em><strong>作用</strong></em></h3>
-<ol>
-<li><em>让 Pawn 有能力接收输入、处理视角、连接 GAS 输入。</em></li>
-<li><em>为玩家控制的 Pawn 提供输入初始化功能。</em></li>
-<li><em>管理 camera mode（视角模式），支持 Gameplay Ability 控制相机。</em></li>
-<li><em>与 GAS 输入系统结合，负责把输入（比如按下 Q）映射到能力（如施放火球）。</em></li>
-<li><em>依赖 <code>ULyraPawnExtensionComponent</code> 的初始化状态。</em></li>
-</ol>
-<h3 id="接口与方法"><em><strong>接口与方法</strong></em></h3>
-<h4 id="initializeplayerinputuinputcomponent-playerinputcomponent"><strong><em>InitializePlayerInput(UInputComponent</em> PlayerInputComponent)</strong>*</h4>
-<ul>
-<li><em>真正把 Enhanced Input 系统的按键绑定到函数或 GAS 的入口。</em></li>
-</ul>
-<h4 id="input_abilityinputtagpressedfgameplaytag-inputtag"><em><strong>Input_AbilityInputTagPressed(FGameplayTag InputTag)</strong></em></h4>
-<ul>
-<li><em>当玩家按下某个技能键（比如“技能1”）时被调用。</em></li>
-<li><em>会调用 AbilitySystemComponent 的对应函数，比如：<code>AbilitySystem-&gt;AbilityLocalInputPressed(InputTag)</code>。实际作用是：激活绑定了该 InputTag 的 Ability。</em></li>
-</ul>
-<h4 id="addadditionalinputconfigremoveadditionalinputconfig"><em><strong>AddAdditionalInputConfig/RemoveAdditionalInputConfig</strong></em></h4>
-<ul>
-<li><em>允许动态添加/移除输入配置（如切换战斗/驾驶模式时加载不同操作逻辑）。</em></li>
-</ul>
-<h4 id="setabilitycameramode--clearabilitycameramode"><em><strong>SetAbilityCameraMode / ClearAbilityCameraMode</strong></em></h4>
-<ul>
-<li><em>GAS 中的 Ability 可以覆盖默认相机模式，比如瞄准模式/特殊视角。</em></li>
-<li><em>设置 <code>AbilityCameraMode</code> 和记录触发这个模式的 <code>AbilitySpecHandle</code>。</em></li>
-</ul>
-<h4 id="isreadytobindinputs"><em><strong>IsReadyToBindInputs()</strong></em></h4>
-<ul>
-<li><em>检查当前 HeroComponent 是否已经准备好进行输入绑定（比如 PlayerController 已就绪）。</em></li>
-<li><em><code>bReadyToBindInputs</code> 是这个状态的缓存。</em></li>
-</ul>
-<h4 id="初始化接口-igameframeworkinitstateinterface"><em><strong>初始化接口 <code>IGameFrameworkInitStateInterface</code></strong></em></h4>
-<ul>
-<li><em>Lyra 使用了一套通用初始化流程，组件通过实现这个接口来参与初始化状态机（如 Pawn 的各个初始化阶段）</em></li>
-</ul>
-<h3 id="成员变量说明"><em><strong>成员变量说明</strong></em></h3>
-<ul>
-<li><em>DefaultInputMappings：默认的输入映射表（使用 Enhanced Input）</em></li>
-<li><em>AbilityCameraMode：当前由 Ability 设置的相机类</em></li>
-<li><em>AbilityCameraModeOwningSpecHandle：设置相机的 Ability 的句柄</em></li>
-<li><em>bReadyToBindInput：标记是否已完成输入绑定（通常在角色初始化完成后设为 true）</em></li>
-</ul>
-<h2 id="ulyrapawnextensioncomponent"><em><strong>ULyraPawnExtensionComponent</strong></em></h2>
-<h3 id="作用-1"><em><strong>作用</strong></em></h3>
-<ol>
-<li><em><code>ULyraPawnExtensionComponent</code> 继承自 <code>UPawnComponent</code>（Pawn 的组件基类），并实现了<code>IGameFrameworkInitStateInterface</code>，说明它参与游戏框架的初始化状态管理流程。</em></li>
-<li><em>它为 Pawn 提供统一的扩展支持，主要包含：</em>
-<ul>
-<li><em>Ability System Component (ASC) 的初始化与解绑</em></li>
-<li><em>角色数据（PawnData）的管理与同步</em></li>
-<li><em>输入绑定相关的辅助</em></li>
-<li><em>监听并响应 Pawn 相关的状态变化（控制器变化、玩家状态同步等）</em></li>
-</ul>
-</li>
-</ol>
-<p><em>它是挂载在 Pawn（角色、载具等）上的一个扩展组件，负责协调角色的能力系统（GAS）及其他初始化状态的管理。整体职责是让所有 Pawn 类统一支持 Lyra 项目的功能扩展，尤其是与 <strong>Ability System Component (ASC)</strong> 相关的管理和初始化。</em></p>]]></description>
-</item>
-<item>
-    <title>深入Lyra输入系统：从按键到能力的完整旅程</title>
-    <link>https://example.com/lyra-input/</link>
-    <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/lyra-input/</guid>
-    <description><![CDATA[<h2 id="前言"><em><strong>前言</strong></em></h2>
-<p><em>需要你先了解：</em></p>
-<ol>
-<li><em>Lyra 架构解析：Experience DataAsset 的动态加载机制</em></li>
-</ol>
-<h2 id="lyra-基础-input-流程"><em><strong>Lyra 基础 Input 流程</strong></em></h2>
-<ol>
-<li>
-<p><code>void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState)</code></p>]]></description>
+    <description><![CDATA[<h2 id="lyra-gas的流程"><em><strong>Lyra GAS的流程</strong></em></h2>
+<h3 id="gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></h3>
+<p><em>经过游戏体验DataAsset和一系列的组件初始化加载后，在 LyraHeroComponent 绑定按键</em></p>]]></description>
 </item>
 </channel>
 </rss>

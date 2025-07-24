@@ -15,68 +15,89 @@
 
 2. `void ULyraHeroComponent::InitializePlayerInput(UInputComponent* PlayerInputComponent)`
 
-   *这边就是初始化WASD的一个重要函数，他会去拿到你的游戏体验中配置的InputConfig的信息，从而拿到 FInputMappingContextAndPriority 具体的信息*
+   *这边就是初始化Input的一个重要函数，他会去拿到你的游戏体验中配置的InputConfig的信息，从而拿到 FInputMappingContextAndPriority 具体的信息*
 
    ***要注意，你需要建立一个 GameFeature 然后利用LyraDataAsset 将InputMappingContext 提前加载进内存，否则判断不会进去***
 
    *你还要注意将项目设置里面的 UEnhancedInputComponent 给替换成自己实现的类，随后就是绑定输入了*
 
    *蓝图中创建 InputAction 和 InputMappingContext 自己配置好其对应的游戏体验DataAsset 即可*
+   
+   ```cpp
+   LyraIC->BindAbilityActions(InputConfig, this, &ThisClass::Input_AbilityInputTagPressed, &ThisClass::Input_AbilityInputTagReleased, /*out*/ BindHandles);
+   
+   /*
+   	此函数是技能函数，比如鼠标左键枪开火
+   	在 ULyraInputConfig 里配置 AbilityInputActions
+   */
+   ```
+   
+   ```cpp
+   /*
+   	此函数则是配置一些角色基本移动输入
+   	在 ULyraInputConfig 里配置 NativeInputActions
+   */
+   LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Move, ETriggerEvent::Triggered, this, &ThisClass::Input_Move, /*bLogIfNotFound=*/ false);
+   LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Look_Mouse, ETriggerEvent::Triggered, this, &ThisClass::Input_LookMouse, /*bLogIfNotFound=*/ false);
+   LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Look_Stick, ETriggerEvent::Triggered, this, &ThisClass::Input_LookStick, /*bLogIfNotFound=*/ false);
+   LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Crouch, ETriggerEvent::Triggered, this, &ThisClass::Input_Crouch, /*bLogIfNotFound=*/ false);
+   LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_AutoRun, ETriggerEvent::Triggered, this, &ThisClass::Input_AutoRun, /*bLogIfNotFound=*/ false);
+   ```
 
-## ***注意的坑***
-
-### ***Mouse上下移动的方向***
-
-```ini
-[/Script/LyraGame.LyraPlayerController]
-InputYawScale=1.0
-InputPitchScale=1.0
-InputRollScale=1.0
-ForceFeedbackScale=1.0
-```
-
-*Lyra 是靠这个 来使得我们鼠标向上滑就是人往天看，InputPitchScale默认值是-2.5，如果是默认值，效果则反之*
-
-***要记住的点***
+## ***要记住的点***
 
 1. *需要在项目设置手动指定增强输入的setting类*
 
-## ***ULyraInputConfig***
+2. *Mouse上下移动的方向*
 
-### ***作用***
+   ```ini
+   [/Script/LyraGame.LyraPlayerController]
+   InputYawScale=1.0
+   InputPitchScale=1.0
+   InputRollScale=1.0
+   ForceFeedbackScale=1.0
+   ```
+
+   *Lyra 是靠这个 来使得我们鼠标向上滑就是人往天看，InputPitchScale默认值是-2.5，如果是默认值，效果则反之*
+
+## ***相关类与结构体***
+
+### ***ULyraInputConfig***
+
+#### ***作用***
 
 1. *如何定义 `GameplayTag` 与 `InputAction` 的映射*
 
-### ***接口与方法***
+#### ***接口与方法***
 
-#### ***FLyraInputAction***
+##### ***FLyraInputAction***
 
 1. *该结构体用于将输入操作映射到游戏玩法的输入标签上。*
 
-#### ***FindNativeInputActionForTag***
+##### ***FindNativeInputActionForTag***
 
 1. *根据 GameplayTag来搜索 NativeInputAction*
 
-***FindAbilityInputActionForTag***
+##### ***FindAbilityInputActionForTag***
 
 1. *根据 GameplayTag来搜索 AbilityInputAction*
 
-### ***成员变量说明***
+#### ***成员变量说明***
 
 * *NativeInputActions：就是WASD这些有关基本操作的*
 * *AbilityInputActions: 跟技能相关的，只要跟GAS有关联，都可放这里*
 
-## ***ULyraInputComponent***
+### ***ULyraInputComponent***
 
-### ***作用***
+#### ***作用***
 
 1. *用于通过输入配置数据资产来管理输入映射和绑定的组件。说白了就是处理ULyraInputConfig数据CURD的*
 
-### ***接口与方法***
+#### ***接口与方法***
 
 1. *不多说，基本每个方法直接看就能看出来 都是CURD*
 
-## ***UGameFeatureAction_AddInputContextMapping***
+### ***UGameFeatureAction_AddInputContextMapping***
 
 #### ***作用***
 
@@ -114,9 +135,9 @@ ForceFeedbackScale=1.0
 - *在哪个状态执行（只在服务器？只在客户端？）*
 - *在哪张地图中生效*
 
-## ***ULyraHeroComponent***
+### ***ULyraHeroComponent***
 
-### ***作用***
+#### ***作用***
 
 1. *让 Pawn 有能力接收输入、处理视角、连接 GAS 输入。*
 2. *为玩家控制的 Pawn 提供输入初始化功能。*
@@ -124,45 +145,45 @@ ForceFeedbackScale=1.0
 4. *与 GAS 输入系统结合，负责把输入（比如按下 Q）映射到能力（如施放火球）。*
 5. *依赖 `ULyraPawnExtensionComponent` 的初始化状态。*
 
-### ***接口与方法***
+#### ***接口与方法***
 
-#### ***InitializePlayerInput(UInputComponent* PlayerInputComponent)***
+##### ***InitializePlayerInput(UInputComponent* PlayerInputComponent)***
 
 * *真正把 Enhanced Input 系统的按键绑定到函数或 GAS 的入口。*
 
-#### ***Input_AbilityInputTagPressed(FGameplayTag InputTag)***
+##### ***Input_AbilityInputTagPressed(FGameplayTag InputTag)***
 
 * *当玩家按下某个技能键（比如“技能1”）时被调用。*
 * *会调用 AbilitySystemComponent 的对应函数，比如：`AbilitySystem->AbilityLocalInputPressed(InputTag)`。实际作用是：激活绑定了该 InputTag 的 Ability。*
 
-#### ***AddAdditionalInputConfig/RemoveAdditionalInputConfig***
+##### ***AddAdditionalInputConfig/RemoveAdditionalInputConfig***
 
 * *允许动态添加/移除输入配置（如切换战斗/驾驶模式时加载不同操作逻辑）。*
 
-#### ***SetAbilityCameraMode / ClearAbilityCameraMode***
+##### ***SetAbilityCameraMode / ClearAbilityCameraMode***
 
 * *GAS 中的 Ability 可以覆盖默认相机模式，比如瞄准模式/特殊视角。*
 * *设置 `AbilityCameraMode` 和记录触发这个模式的 `AbilitySpecHandle`。*
 
-#### ***IsReadyToBindInputs()***
+##### ***IsReadyToBindInputs()***
 
 * *检查当前 HeroComponent 是否已经准备好进行输入绑定（比如 PlayerController 已就绪）。*
 * *`bReadyToBindInputs` 是这个状态的缓存。*
 
-#### ***初始化接口 `IGameFrameworkInitStateInterface`***
+##### ***初始化接口 `IGameFrameworkInitStateInterface`***
 
 * *Lyra 使用了一套通用初始化流程，组件通过实现这个接口来参与初始化状态机（如 Pawn 的各个初始化阶段）*
 
-### ***成员变量说明***
+##### ***成员变量说明***
 
 * *DefaultInputMappings：默认的输入映射表（使用 Enhanced Input）*
 * *AbilityCameraMode：当前由 Ability 设置的相机类*
 * *AbilityCameraModeOwningSpecHandle：设置相机的 Ability 的句柄*
 * *bReadyToBindInput：标记是否已完成输入绑定（通常在角色初始化完成后设为 true）*
 
-## ***ULyraPawnExtensionComponent***
+### ***ULyraPawnExtensionComponent***
 
-### ***作用***
+#### ***作用***
 
 1. *`ULyraPawnExtensionComponent` 继承自 `UPawnComponent`（Pawn 的组件基类），并实现了`IGameFrameworkInitStateInterface`，说明它参与游戏框架的初始化状态管理流程。*
 2. *它为 Pawn 提供统一的扩展支持，主要包含：*
@@ -173,16 +194,16 @@ ForceFeedbackScale=1.0
 
 *它是挂载在 Pawn（角色、载具等）上的一个扩展组件，负责协调角色的能力系统（GAS）及其他初始化状态的管理。整体职责是让所有 Pawn 类统一支持 Lyra 项目的功能扩展，尤其是与 **Ability System Component (ASC)** 相关的管理和初始化。*
 
-### ***关键成员变量***
+#### ***关键成员变量***
 
 1. *`TObjectPtr<const ULyraPawnData> PawnData`：角色数据，通常是配置角色属性、模型、能力等的 DataAsset，带网络同步（`ReplicatedUsing`）*
 2. *`TObjectPtr<ULyraAbilitySystemComponent>` ：AbilitySystemComponent 缓存指向角色的 ASC，方便快速访问（非持久化，Transient）*
 3. *`FSimpleMulticastDelegate OnAbilitySystemInitialized`：角色成为 ASC Avatar 时触发的事件广播*
 4. *`FSimpleMulticastDelegate OnAbilitySystemUninitialized`：角色解绑 ASC Avatar 时触发的事件广播*
 
-### ***接口与方法***
+#### ***接口与方法***
 
-#### ***接口实现：`IGameFrameworkInitStateInterface`***
+##### ***接口实现：`IGameFrameworkInitStateInterface`***
 
 - *`GetFeatureName()`：返回组件功能名称，用于框架的功能管理。*
 - *`CanChangeInitState()`：判断是否允许状态从当前转变到目标状态。*
@@ -190,7 +211,7 @@ ForceFeedbackScale=1.0
 - *`OnActorInitStateChanged()`：当 Pawn 初始化状态改变时的响应。*
 - *`CheckDefaultInitialization()`：检查默认初始化状态。*
 
-#### ***Ability System 相关方法***
+***Ability System 相关方法***
 
 - `InitializeAbilitySystem(ULyraAbilitySystemComponent* InASC, AActor* InOwnerActor)`
   ***初始化能力系统，绑定 ASC 和 Owner 角色，建立能力系统与 Pawn 的关联。***
@@ -199,7 +220,7 @@ ForceFeedbackScale=1.0
 - `GetLyraAbilitySystemComponent()`
   *** 返回当前绑定的 ASC。***
 
-#### ***PawnData 相关方法***
+***PawnData 相关方法***
 
 - `GetPawnData()`
 
@@ -211,7 +232,7 @@ ForceFeedbackScale=1.0
 - `OnRep_PawnData()`
    *网络同步回调，PawnData 变化时触发。*
 
-***角色状态变化回调***
+#### ***角色状态变化回调***
 
 - `HandleControllerChanged()`
 
@@ -230,7 +251,7 @@ ForceFeedbackScale=1.0
 - `OnAbilitySystemUninitialized_Register()`
    *注册 AbilitySystem 解绑事件委托*。
 
-###  ***静态辅助***
+####  ***静态辅助***
 
 - `FindPawnExtensionComponent(const AActor* Actor)`
    *静态方法，方便查找某个 Actor 上的 `ULyraPawnExtensionComponent`。*
@@ -346,7 +367,7 @@ ForceFeedbackScale=1.0
 1. *作用*
    * *静态常量，定义模块的 **默认名称**（避免硬编码字符串）。*
 
-### *总结*
+#### *总结*
 
 *`ULyraPawnExtensionComponent` 是 Lyra 框架里连接 Pawn 和 Ability System 的桥梁组件，承担以下关键职责：*
 

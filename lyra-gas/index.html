@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-06-09T21:34:00+08:00">
-    <meta property="article:modified_time" content="2025-06-10T21:34:00+08:00">
+    <meta property="article:modified_time" content="2025-07-24T21:34:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="GAS">
     <meta property="article:tag" content="Lyra">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  2991 ,
-        "url": "https:\/\/example.com\/lyra-gas\/","datePublished": "2025-06-09T21:34:00+08:00","dateModified": "2025-06-10T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  516 ,
+        "url": "https:\/\/example.com\/lyra-gas\/","datePublished": "2025-06-09T21:34:00+08:00","dateModified": "2025-07-24T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -116,8 +116,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra-GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2991 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/lyra-gas/" class="leancloud_visitors" data-flag-title="Lyra-GAS">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 516 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/lyra-gas/" class="leancloud_visitors" data-flag-title="Lyra-GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -127,321 +127,17 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#ulyraherocomponent"><em><strong>ULyraHeroComponent</strong></em></a>
+    <li><a href="#lyra-gas的流程"><em><strong>Lyra GAS的流程</strong></em></a>
       <ul>
-        <li><a href="#作用"><em><strong>作用</strong></em></a></li>
-        <li><a href="#接口与方法"><em><strong>接口与方法</strong></em></a>
-          <ul>
-            <li><a href="#initializeplayerinputuinputcomponent-playerinputcomponent"><strong><em>InitializePlayerInput(UInputComponent</em> PlayerInputComponent)</strong>*</a></li>
-            <li><a href="#input_abilityinputtagpressedfgameplaytag-inputtag"><em><strong>Input_AbilityInputTagPressed(FGameplayTag InputTag)</strong></em></a></li>
-            <li><a href="#addadditionalinputconfigremoveadditionalinputconfig"><em><strong>AddAdditionalInputConfig/RemoveAdditionalInputConfig</strong></em></a></li>
-            <li><a href="#setabilitycameramode--clearabilitycameramode"><em><strong>SetAbilityCameraMode / ClearAbilityCameraMode</strong></em></a></li>
-            <li><a href="#isreadytobindinputs"><em><strong>IsReadyToBindInputs()</strong></em></a></li>
-            <li><a href="#初始化接口-igameframeworkinitstateinterface"><em><strong>初始化接口 <code>IGameFrameworkInitStateInterface</code></strong></em></a></li>
-          </ul>
-        </li>
-        <li><a href="#成员变量说明"><em><strong>成员变量说明</strong></em></a></li>
+        <li><a href="#gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></a></li>
+        <li><a href="#技能的装备giveability"><em><strong>技能的装备（GiveAbility）</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#ulyrapawnextensioncomponent"><em><strong>ULyraPawnExtensionComponent</strong></em></a>
-      <ul>
-        <li><a href="#作用-1"><em><strong>作用</strong></em></a></li>
-        <li><a href="#关键成员变量"><em><strong>关键成员变量</strong></em></a></li>
-        <li><a href="#接口与方法-1"><em><strong>接口与方法</strong></em></a>
-          <ul>
-            <li><a href="#接口实现igameframeworkinitstateinterface"><em><strong>接口实现：<code>IGameFrameworkInitStateInterface</code></strong></em></a></li>
-            <li><a href="#ability-system-相关方法"><em><strong>Ability System 相关方法</strong></em></a></li>
-            <li><a href="#pawndata-相关方法"><em><strong>PawnData 相关方法</strong></em></a></li>
-            <li><a href="#事件注册"><em><strong>事件注册</strong></em></a></li>
-          </ul>
-        </li>
-        <li><a href="#静态辅助"><em><strong>静态辅助</strong></em></a></li>
-        <li><a href="#igameframeworkinitstateinterface"><em><strong>IGameFrameworkInitStateInterface</strong></em></a>
-          <ul>
-            <li><a href="#getfeaturename"><em><strong><code>GetFeatureName()</code></strong></em></a></li>
-            <li><a href="#canchangeinitstate"><em><strong><code>CanChangeInitState()</code></strong></em></a></li>
-            <li><a href="#handlechangeinitstate"><em><strong><code>HandleChangeInitState()</code></strong></em></a></li>
-            <li><a href="#onactorinitstatechanged"><em><strong><code>OnActorInitStateChanged()</code></strong></em></a></li>
-            <li><a href="#checkdefaultinitialization"><em><strong><code>CheckDefaultInitialization()</code></strong></em></a></li>
-            <li><a href="#static-const-fname-name_actorfeaturename"><em><strong><code>static const FName NAME_ActorFeatureName</code></strong></em></a></li>
-          </ul>
-        </li>
-        <li><a href="#总结"><em>总结</em></a></li>
-      </ul>
-    </li>
-    <li><a href="#ugamefeatureaction_addabilities"><em><strong>UGameFeatureAction_AddAbilities</strong></em></a>
-      <ul>
-        <li><a href="#作用-2"><em><strong>作用</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#ulyraabilityset"><em><strong>ULyraAbilitySet</strong></em></a>
-      <ul>
-        <li><a href="#作用-3"><em><strong>作用</strong></em></a></li>
-        <li><a href="#flyraabilityset_grantedhandles"><em><strong>FLyraAbilitySet_GrantedHandles</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#ulyraabilitysystemcomponent"><em><strong>ULyraAbilitySystemComponent</strong></em></a></li>
-    <li><a href="#ulyragameplayability"><em><strong>ULyraGameplayAbility</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="ulyraherocomponent"><em><strong>ULyraHeroComponent</strong></em></h2>
-<h3 id="作用"><em><strong>作用</strong></em></h3>
-<ol>
-<li><em>让 Pawn 有能力接收输入、处理视角、连接 GAS 输入。</em></li>
-<li><em>为玩家控制的 Pawn 提供输入初始化功能。</em></li>
-<li><em>管理 camera mode（视角模式），支持 Gameplay Ability 控制相机。</em></li>
-<li><em>与 GAS 输入系统结合，负责把输入（比如按下 Q）映射到能力（如施放火球）。</em></li>
-<li><em>依赖 <code>ULyraPawnExtensionComponent</code> 的初始化状态。</em></li>
-</ol>
-<h3 id="接口与方法"><em><strong>接口与方法</strong></em></h3>
-<h4 id="initializeplayerinputuinputcomponent-playerinputcomponent"><strong><em>InitializePlayerInput(UInputComponent</em> PlayerInputComponent)</strong>*</h4>
-<ul>
-<li><em>真正把 Enhanced Input 系统的按键绑定到函数或 GAS 的入口。</em></li>
-</ul>
-<h4 id="input_abilityinputtagpressedfgameplaytag-inputtag"><em><strong>Input_AbilityInputTagPressed(FGameplayTag InputTag)</strong></em></h4>
-<ul>
-<li><em>当玩家按下某个技能键（比如“技能1”）时被调用。</em></li>
-<li><em>会调用 AbilitySystemComponent 的对应函数，比如：<code>AbilitySystem-&gt;AbilityLocalInputPressed(InputTag)</code>。实际作用是：激活绑定了该 InputTag 的 Ability。</em></li>
-</ul>
-<h4 id="addadditionalinputconfigremoveadditionalinputconfig"><em><strong>AddAdditionalInputConfig/RemoveAdditionalInputConfig</strong></em></h4>
-<ul>
-<li><em>允许动态添加/移除输入配置（如切换战斗/驾驶模式时加载不同操作逻辑）。</em></li>
-</ul>
-<h4 id="setabilitycameramode--clearabilitycameramode"><em><strong>SetAbilityCameraMode / ClearAbilityCameraMode</strong></em></h4>
-<ul>
-<li><em>GAS 中的 Ability 可以覆盖默认相机模式，比如瞄准模式/特殊视角。</em></li>
-<li><em>设置 <code>AbilityCameraMode</code> 和记录触发这个模式的 <code>AbilitySpecHandle</code>。</em></li>
-</ul>
-<h4 id="isreadytobindinputs"><em><strong>IsReadyToBindInputs()</strong></em></h4>
-<ul>
-<li><em>检查当前 HeroComponent 是否已经准备好进行输入绑定（比如 PlayerController 已就绪）。</em></li>
-<li><em><code>bReadyToBindInputs</code> 是这个状态的缓存。</em></li>
-</ul>
-<h4 id="初始化接口-igameframeworkinitstateinterface"><em><strong>初始化接口 <code>IGameFrameworkInitStateInterface</code></strong></em></h4>
-<ul>
-<li><em>Lyra 使用了一套通用初始化流程，组件通过实现这个接口来参与初始化状态机（如 Pawn 的各个初始化阶段）</em></li>
-</ul>
-<h3 id="成员变量说明"><em><strong>成员变量说明</strong></em></h3>
-<ul>
-<li><em>DefaultInputMappings：默认的输入映射表（使用 Enhanced Input）</em></li>
-<li><em>AbilityCameraMode：当前由 Ability 设置的相机类</em></li>
-<li><em>AbilityCameraModeOwningSpecHandle：设置相机的 Ability 的句柄</em></li>
-<li><em>bReadyToBindInput：标记是否已完成输入绑定（通常在角色初始化完成后设为 true）</em></li>
-</ul>
-<h2 id="ulyrapawnextensioncomponent"><em><strong>ULyraPawnExtensionComponent</strong></em></h2>
-<h3 id="作用-1"><em><strong>作用</strong></em></h3>
-<ol>
-<li><em><code>ULyraPawnExtensionComponent</code> 继承自 <code>UPawnComponent</code>（Pawn 的组件基类），并实现了<code>IGameFrameworkInitStateInterface</code>，说明它参与游戏框架的初始化状态管理流程。</em></li>
-<li><em>它为 Pawn 提供统一的扩展支持，主要包含：</em>
-<ul>
-<li><em>Ability System Component (ASC) 的初始化与解绑</em></li>
-<li><em>角色数据（PawnData）的管理与同步</em></li>
-<li><em>输入绑定相关的辅助</em></li>
-<li><em>监听并响应 Pawn 相关的状态变化（控制器变化、玩家状态同步等）</em></li>
-</ul>
-</li>
-</ol>
-<p><em>它是挂载在 Pawn（角色、载具等）上的一个扩展组件，负责协调角色的能力系统（GAS）及其他初始化状态的管理。整体职责是让所有 Pawn 类统一支持 Lyra 项目的功能扩展，尤其是与 <strong>Ability System Component (ASC)</strong> 相关的管理和初始化。</em></p>
-<h3 id="关键成员变量"><em><strong>关键成员变量</strong></em></h3>
-<ol>
-<li><em><code>TObjectPtr&lt;const ULyraPawnData&gt; PawnData</code>：角色数据，通常是配置角色属性、模型、能力等的 DataAsset，带网络同步（<code>ReplicatedUsing</code>）</em></li>
-<li><em><code>TObjectPtr&lt;ULyraAbilitySystemComponent&gt;</code> ：AbilitySystemComponent 缓存指向角色的 ASC，方便快速访问（非持久化，Transient）</em></li>
-<li><em><code>FSimpleMulticastDelegate OnAbilitySystemInitialized</code>：角色成为 ASC Avatar 时触发的事件广播</em></li>
-<li><em><code>FSimpleMulticastDelegate OnAbilitySystemUninitialized</code>：角色解绑 ASC Avatar 时触发的事件广播</em></li>
-</ol>
-<h3 id="接口与方法-1"><em><strong>接口与方法</strong></em></h3>
-<h4 id="接口实现igameframeworkinitstateinterface"><em><strong>接口实现：<code>IGameFrameworkInitStateInterface</code></strong></em></h4>
-<ul>
-<li><em><code>GetFeatureName()</code>：返回组件功能名称，用于框架的功能管理。</em></li>
-<li><em><code>CanChangeInitState()</code>：判断是否允许状态从当前转变到目标状态。</em></li>
-<li><em><code>HandleChangeInitState()</code>：执行状态切换时的逻辑。</em></li>
-<li><em><code>OnActorInitStateChanged()</code>：当 Pawn 初始化状态改变时的响应。</em></li>
-<li><em><code>CheckDefaultInitialization()</code>：检查默认初始化状态。</em></li>
-</ul>
-<h4 id="ability-system-相关方法"><em><strong>Ability System 相关方法</strong></em></h4>
-<ul>
-<li><code>InitializeAbilitySystem(ULyraAbilitySystemComponent* InASC, AActor* InOwnerActor)</code>
-<em><strong>初始化能力系统，绑定 ASC 和 Owner 角色，建立能力系统与 Pawn 的关联。</strong></em></li>
-<li><code>UninitializeAbilitySystem()</code>
-<em><strong>解绑 ASC，清理关联，通常在角色销毁或失去控制时调用。</strong></em></li>
-<li><code>GetLyraAbilitySystemComponent()</code>
-*** 返回当前绑定的 ASC。***</li>
-</ul>
-<h4 id="pawndata-相关方法"><em><strong>PawnData 相关方法</strong></em></h4>
-<ul>
-<li>
-<p><code>GetPawnData()</code></p>
-<p><em>模板方法，获取具体类型的 PawnData，方便访问角色配置。</em></p>
-</li>
-<li>
-<p><code>SetPawnData(const ULyraPawnData* InPawnData)</code>
-<em>设置 Pawn 的数据 Asset，通常在角色生成或更换数据时调用。</em></p>
-</li>
-<li>
-<p><code>OnRep_PawnData()</code>
-<em>网络同步回调，PawnData 变化时触发。</em></p>
-</li>
-</ul>
-<p><em><strong>角色状态变化回调</strong></em></p>
-<ul>
-<li>
-<p><code>HandleControllerChanged()</code></p>
-<p><em>Pawn 的控制器变更时调用，可能需要重新绑定输入或权限。</em></p>
-</li>
-<li>
-<p><code>HandlePlayerStateReplicated()</code>
-<em>PlayerState 网络同步完成后调用，通常用于初始化角色状态。</em></p>
-</li>
-<li>
-<p><code>SetupPlayerInputComponent()</code>
-<em>绑定玩家输入，映射按键与 Ability 系统交互。</em></p>
-</li>
-</ul>
-<h4 id="事件注册"><em><strong>事件注册</strong></em></h4>
-<ul>
-<li><code>OnAbilitySystemInitialized_RegisterAndCall()</code>
-<em>注册并立即调用 AbilitySystem 初始化事件委托。</em></li>
-<li><code>OnAbilitySystemUninitialized_Register()</code>
-<em>注册 AbilitySystem 解绑事件委托</em>。</li>
-</ul>
-<h3 id="静态辅助"><em><strong>静态辅助</strong></em></h3>
-<ul>
-<li><code>FindPawnExtensionComponent(const AActor* Actor)</code>
-<em>静态方法，方便查找某个 Actor 上的 <code>ULyraPawnExtensionComponent</code>。</em></li>
-</ul>
-<h3 id="igameframeworkinitstateinterface"><em><strong>IGameFrameworkInitStateInterface</strong></em></h3>
-<p><em>此Component继承了这个类，<code>IGameFrameworkInitStateInterface</code> 是一个 <strong>初始化状态管理接口</strong>，主要用于 <strong>控制游戏框架（Game Framework）中各个子系统或模块的初始化顺序和状态依赖</strong></em></p>
-<h4 id="getfeaturename"><em><strong><code>GetFeatureName()</code></strong></em></h4>
-<ol>
-<li><em>作用：</em>
-<ul>
-<li><em><strong><code>virtual FName GetFeatureName() const</code></strong>： 返回当前模块或组件的 <strong>唯一标识名称</strong>（用于区分不同的初始化模块）。</em></li>
-</ul>
-</li>
-</ol>
-<h4 id="canchangeinitstate"><em><strong><code>CanChangeInitState()</code></strong></em></h4>
-<ol>
-<li>
-<p><em>作用：</em></p>
-<ul>
-<li><em>检查当前模块 <strong>是否允许从 <code>CurrentState</code> 切换到 <code>DesiredState</code></strong>（状态变更的条件验证）。</em></li>
-</ul>
-</li>
-<li>
-<p><em>参数：</em></p>
-<ul>
-<li>
-<p>Manager<code>管理初始化状态的</code>UGameFrameworkComponentManager`*</p>
-</li>
-<li>
-<p><em><code>CurrentState</code>：当前状态（如 <code>&quot;PreInit&quot;</code>）</em></p>
-</li>
-<li>
-<p><em><code>DesiredState</code>：目标状态（如 <code>&quot;Initialized&quot;</code>）</em></p>
-</li>
-</ul>
-</li>
-<li>
-<p><em>返回值</em></p>
-<ul>
-<li>
-<p><code>true</code>：允许切换。</p>
-</li>
-<li>
-<p><code>false</code>：阻止切换（需满足依赖条件后再尝试）。</p>
-</li>
-</ul>
-</li>
-<li>
-<p><em>示例：</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">CanChangeInitState</span><span class="p">(</span><span class="n">UGameFrameworkComponentManager</span><span class="o">*</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">FGameplayTag</span> <span class="n">CurrentState</span><span class="p">,</span> <span class="n">FGameplayTag</span> <span class="n">DesiredState</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 只有渲染系统初始化完成后，音频系统才允许初始化
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">DesiredState</span> <span class="o">==</span> <span class="n">TAG_InitState_Initialized</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Manager</span><span class="o">-&gt;</span><span class="n">HasFeatureReachedInitState</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;RenderSystem&#34;</span><span class="p">),</span> <span class="n">TAG_InitState_Initialized</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p><em>调用时机：</em></p>
-<ul>
-<li><em>在状态变更前由 <code>UGameFrameworkComponentManager</code> 调用</em></li>
-</ul>
-</li>
-</ol>
-<h4 id="handlechangeinitstate"><em><strong><code>HandleChangeInitState()</code></strong></em></h4>
-<ol>
-<li>
-<p><em>作用：</em></p>
-<ul>
-<li><em>执行状态变更的 <strong>实际逻辑</strong>（如加载资源、注册回调等）。</em></li>
-</ul>
-</li>
-<li>
-<p><em>参数</em></p>
-<ul>
-<li><em>同 <code>CanChangeInitState</code>。</em></li>
-</ul>
-</li>
-<li>
-<p><em>示例：</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">HandleChangeInitState</span><span class="p">(</span><span class="n">UGameFrameworkComponentManager</span><span class="o">*</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">FGameplayTag</span> <span class="n">CurrentState</span><span class="p">,</span> <span class="n">FGameplayTag</span> <span class="n">DesiredState</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">DesiredState</span> <span class="o">==</span> <span class="n">TAG_InitState_Initialized</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">LoadSoundBanks</span><span class="p">();</span> <span class="c1">// 初始化音频资源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">DesiredState</span> <span class="o">==</span> <span class="n">TAG_InitState_Uninitialized</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ReleaseSoundBanks</span><span class="p">();</span> <span class="c1">// 清理资源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p><em>调用时机</em></p>
-<ul>
-<li><em>当 <code>CanChangeInitState</code> 返回 <code>true</code> 后，由管理器触发。</em></li>
-</ul>
-</li>
-</ol>
-<h4 id="onactorinitstatechanged"><em><strong><code>OnActorInitStateChanged()</code></strong></em></h4>
-<ol>
-<li>
-<p><em>作用：</em></p>
-<ul>
-<li><em>监听 <strong>Actor 的初始化状态变化</strong>，用于处理与 Actor 相关的依赖逻辑。</em></li>
-</ul>
-</li>
-<li>
-<p><em>参数：</em></p>
-<ul>
-<li><em><code>Params</code>：包含变动的 Actor 和状态信息（<code>FActorInitStateChangedParams</code>）。</em></li>
-</ul>
-</li>
-<li>
-<p><em>示例：</em></p>
+            </div><div class="content" id="content"><h2 id="lyra-gas的流程"><em><strong>Lyra GAS的流程</strong></em></h2>
+<h3 id="gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></h3>
+<p><em>经过游戏体验DataAsset和一系列的组件初始化加载后，在 LyraHeroComponent 绑定按键</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -451,105 +147,93 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">OnActorInitStateChanged</span><span class="p">(</span><span class="k">const</span> <span class="n">FActorInitStateChangedParams</span><span class="o">&amp;</span> <span class="n">Params</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">Params</span><span class="p">.</span><span class="n">FeatureName</span> <span class="o">==</span> <span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;PlayerController&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">Params</span><span class="p">.</span><span class="n">NewState</span> <span class="o">==</span> <span class="n">TAG_InitState_Initialized</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">BindInputEvents</span><span class="p">(</span><span class="n">Params</span><span class="p">.</span><span class="n">Actor</span><span class="p">);</span> <span class="c1">// 当玩家控制器初始化后绑定输入
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">	此函数是技能函数，比如鼠标左键枪开火
+</span></span></span><span class="line"><span class="cl"><span class="cm">	在 ULyraInputConfig 里配置 AbilityInputActions
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">LyraIC</span><span class="o">-&gt;</span><span class="n">BindAbilityActions</span><span class="p">(</span><span class="n">InputConfig</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ThisClass</span><span class="o">::</span><span class="n">Input_AbilityInputTagPressed</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ThisClass</span><span class="o">::</span><span class="n">Input_AbilityInputTagReleased</span><span class="p">,</span> <span class="cm">/*out*/</span> <span class="n">BindHandles</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p><em>调用时机</em></p>
-<ul>
-<li><em>当某个 Actor 的初始化状态变化时（如从 <code>Spawned</code> 变为 <code>Possessed</code>）。</em></li>
-</ul>
-</li>
-</ol>
-<h4 id="checkdefaultinitialization"><em><strong><code>CheckDefaultInitialization()</code></strong></em></h4>
-<ol>
-<li>
-<p><em>作用</em></p>
-<ul>
-<li><em><strong>强制检查</strong>当前模块的默认初始化状态，通常用于修复未正确初始化的模块。</em></li>
-</ul>
-</li>
-<li>
-<p><em>示例</em></p>
+</div><p><em>在绑定了按键后，会在ASC的 <code>void ULyraAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTag&amp; InputTag)</code> 留下记录</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">CheckDefaultInitialization</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">GetInitState</span><span class="p">()</span> <span class="o">==</span> <span class="n">TAG_InitState_None</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Manager</span><span class="o">-&gt;</span><span class="n">SetInitState</span><span class="p">(</span><span class="n">GetFeatureName</span><span class="p">(),</span> <span class="n">TAG_InitState_PreInit</span><span class="p">);</span> <span class="c1">// 重新触发初始化
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ULyraAbilitySystemComponent</span><span class="o">::</span><span class="n">AbilityInputTagPressed</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayTag</span><span class="o">&amp;</span> <span class="n">InputTag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">InputTag</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span> <span class="nl">AbilitySpec</span> <span class="p">:</span> <span class="n">ActivatableAbilities</span><span class="p">.</span><span class="n">Items</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Ability</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">GetDynamicSpecSourceTags</span><span class="p">().</span><span class="n">HasTagExact</span><span class="p">(</span><span class="n">InputTag</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">InputPressedSpecHandles</span><span class="p">.</span><span class="n">AddUnique</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Handle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">InputHeldSpecHandles</span><span class="p">.</span><span class="n">AddUnique</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Handle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p><em>调用时机</em></p>
-<ul>
-<li><em>引擎启动时或手动调用 <code>UGameFrameworkComponentManager::CheckDefaultInitialization</code>。</em></li>
-</ul>
-</li>
-</ol>
-<h4 id="static-const-fname-name_actorfeaturename"><em><strong><code>static const FName NAME_ActorFeatureName</code></strong></em></h4>
-<ol>
-<li><em>作用</em>
-<ul>
-<li><em>静态常量，定义模块的 <strong>默认名称</strong>（避免硬编码字符串）。</em></li>
-</ul>
-</li>
-</ol>
-<h3 id="总结"><em>总结</em></h3>
-<p><em><code>ULyraPawnExtensionComponent</code> 是 Lyra 框架里连接 Pawn 和 Ability System 的桥梁组件，承担以下关键职责：</em></p>
-<ul>
-<li><em><strong>管理 Ability System Component 的绑定与解绑</strong>，确保 Pawn 能正常作为 GAS 的 Avatar。</em></li>
-<li><em><strong>维护 Pawn 数据（PawnData）</strong>，提供角色配置数据的存取与网络同步。</em></li>
-<li><em><strong>支持游戏框架的初始化状态管理</strong>，与游戏框架的生命周期钩子相结合。</em></li>
-<li><em><strong>对控制器变更、玩家状态同步、输入绑定等事件提供接口</strong>，保证角色状态与能力系统正确同步。</em></li>
-<li><em><strong>提供事件广播机制</strong>，通知外部 Ability System 初始化/解绑的状态变化。</em></li>
-</ul>
-<p><em>这个组件让 Lyra 里的角色能够在不同模块间灵活协作，特别是在 GAS 能力系统的动态加载、初始化和解绑中起到核心作用。</em></p>
-<h2 id="ugamefeatureaction_addabilities"><em><strong>UGameFeatureAction_AddAbilities</strong></em></h2>
-<h3 id="作用-2"><em><strong>作用</strong></em></h3>
-<ol>
-<li><em>该类功能是为一个Actor在注册的时候就为其附上能力，当然此类功能也包括了为该Actor注册一个Component 或者其他的功能</em></li>
-</ol>
-<h2 id="ulyraabilityset"><em><strong>ULyraAbilitySet</strong></em></h2>
-<h3 id="作用-3"><em><strong>作用</strong></em></h3>
-<ol>
-<li>
-<p><em>用于授予游戏玩法能力和游戏玩法效果的不可变数据资产。</em></p>
-</li>
-<li>
-<p><em><code>ULyraAbilitySet</code> 代表一组可以一次性<strong>注入给一个角色的能力内容</strong>，包括：</em></p>
-<ul>
-<li><em>一组 <strong>Gameplay Abilities</strong></em></li>
-<li><em>一组 <strong>Attribute Sets</strong></em></li>
-<li><em>一组 <strong>Gameplay Effects</strong></em></li>
-</ul>
-<p><em>这些内容通过一个接口 <code>GiveToAbilitySystem()</code> 注入到 <code>ULyraAbilitySystemComponent</code> 上，并通过 <code>FLyraAbilitySet_GrantedHandles</code> 对象<strong>记录所有加上的内容，方便后续移除（TakeFromAbilitySystem）</strong>。</em></p>
-</li>
-</ol>
-<h3 id="flyraabilityset_grantedhandles"><em><strong>FLyraAbilitySet_GrantedHandles</strong></em></h3>
-<ul>
-<li><em>用于记录调用 <code>GiveToAbilitySystem()</code> 后添加的所有能力/属性/效果</em></li>
-</ul>
-<h2 id="ulyraabilitysystemcomponent"><em><strong>ULyraAbilitySystemComponent</strong></em></h2>
-<h2 id="ulyragameplayability"><em><strong>ULyraGameplayAbility</strong></em></h2>
+</div><p><em>自然松开的时候，会调用ASC的<code>void ULyraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag&amp; InputTag)</code> 并留下相对应的记录</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ULyraAbilitySystemComponent</span><span class="o">::</span><span class="n">AbilityInputTagReleased</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayTag</span><span class="o">&amp;</span> <span class="n">InputTag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">InputTag</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span> <span class="nl">AbilitySpec</span> <span class="p">:</span> <span class="n">ActivatableAbilities</span><span class="p">.</span><span class="n">Items</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Ability</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">GetDynamicSpecSourceTags</span><span class="p">().</span><span class="n">HasTagExact</span><span class="p">(</span><span class="n">InputTag</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">InputReleasedSpecHandles</span><span class="p">.</span><span class="n">AddUnique</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Handle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">InputHeldSpecHandles</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Handle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>在然后，ALyraPlayerController中会Tick调用<code>void ALyraPlayerController::PostProcessInput(const float DeltaTime, const bool bGamePaused)</code></em></p>
+<p><em>随后检索一些TArray记录下来的东西，通过 <code>TryActivateAbility(AbilitySpecHandle);</code> 调用到实际技能</em></p>
+<h3 id="技能的装备giveability"><em><strong>技能的装备（GiveAbility）</strong></em></h3>
+<p><em>举个例子， 比如是捡到枪，随后鼠标左键开火</em></p>
+<p><em>捡到枪并且装备是通过 Lyra 的 Equipment系统和Inventory系统来实现的，此时有一个ULyraEquipmentDefinition 中会记录一个 ULyraAbilitySet，里面有见到这个枪就会装备什么GameAbility技能，以及GameEffect效果，还有AttributeSet属性数值，这时候就会将GameAbility技能给GiveAbility装备上去</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-06-10</span>
+                <span>更新于 2025-07-24</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
