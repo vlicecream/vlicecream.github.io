@@ -1,31 +1,35 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Lyra&#34; - 标签 - Ame</title>
+        <title>Lyra - 标签 - Ame</title>
         <link>https://example.com/tags/lyra/</link>
-        <description>Lyra&#34; - 标签 - Ame</description>
+        <description>Lyra - 标签 - Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/lyra/" rel="self" type="application/rss+xml" /><item>
-    <title>Lyra 架构解析：Experience DataAsset 的动态加载机制</title>
-    <link>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</link>
-    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Jul 2025 21:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/lyra/" rel="self" type="application/rss+xml" /><item>
+    <title>Lyra 库存与装备系统</title>
+    <link>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Wed, 23 Jul 2025 21:34:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</guid>
-    <description><![CDATA[<p><em><strong>举的例子为 大厅</strong></em></p>
-<h2 id="什么是-experience-dataasset-的动态加载机制"><em><strong>什么是 Experience DataAsset 的动态加载机制</strong></em></h2>
-<p><em>Lyra中是分很多游戏玩法的，他在进入一个新的玩法的时候，就会找到玩法对应的 ULyraExperienceDefinition 的数据，系统根据 ULyraExperienceDefinition 里的内容去激活<strong>Game Features</strong>、<strong>Abilities</strong> 和 <strong>UI</strong> 等。</em></p>]]></description>
+    <guid>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[<h2 id="equipment"><em><strong>Equipment</strong></em></h2>
+<p><em>Equipment 是 Lyra 的装备系统，也就是执行装备这个过程逻辑的一个系统</em></p>
+<p><em>它通过 <code>ULyraEquipmentDefinition</code> 这个类，来获得装备的Actor真正的实例，以及装备上会获得什么技能，还有装备到哪里，比如枪装备到人的一个左手骨骼点上</em></p>]]></description>
 </item>
 <item>
-    <title>解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调</title>
-    <link>https://example.com/lyra-igameframeworkinitstateinterface/</link>
-    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <title>Lyra-HealthComponent</title>
+    <link>https://example.com/lyra-healthcomponent/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/lyra-igameframeworkinitstateinterface/</guid>
-    <description><![CDATA[<h2 id="作用"><em><strong>作用</strong></em></h2>
-<p><em>IGameFrameworkInitStateInterface 的作用，就是将一个组件原本<strong>混乱、单体</strong>的初始化过程（主要挤在BeginPlay里），拆分成一个<strong>清晰、有序、分阶段的“生命周期”</strong>。</em></p>]]></description>
+    <guid>https://example.com/lyra-healthcomponent/</guid>
+    <description><![CDATA[Lyra 里的 HealthComponent]]></description>
 </item>
-</channel>
-</rss>
-picgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3</a></em></p>
+<item>
+    <title>Lyra动画层（Anim Layers）与重写机制全解析</title>
+    <link>https://example.com/lyra-animation/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-animation/</guid>
+    <description><![CDATA[<h2 id="参考资料"><em><strong>参考资料</strong></em></h2>
+<p><em><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3" target="_blank" rel="noopener noreffer ">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3</a></em></p>
 <p><em><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3" target="_blank" rel="noopener noreffer ">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3</a></em></p>
 <h2 id="简介"><em><strong>简介</strong></em></h2>
 <p><em>Lyra 的 动画蓝图，首先是采用 蓝图线程安全更新动画，此开启方法在文档中就写了。再次提一句，这实现了使用属性访问（Property Access）来访问其所有数据，并避免了重新计算链接的图层可能使用的值，如 <strong>加速度（Acceleration）</strong> 或 <strong>速度（Velocity）</strong> 。</em></p>]]></description>
