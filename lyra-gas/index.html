@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-06-09T21:34:00+08:00">
-    <meta property="article:modified_time" content="2025-07-24T21:34:00+08:00">
+    <meta property="article:modified_time" content="2025-06-09T21:34:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="GAS">
     <meta property="article:tag" content="Lyra">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  516 ,
-        "url": "https:\/\/example.com\/lyra-gas\/","datePublished": "2025-06-09T21:34:00+08:00","dateModified": "2025-07-24T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS, Lyra","wordcount":  2821 ,
+        "url": "https:\/\/example.com\/lyra-gas\/","datePublished": "2025-06-09T21:34:00+08:00","dateModified": "2025-06-09T21:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -116,8 +116,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra-GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 516 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/lyra-gas/" class="leancloud_visitors" data-flag-title="Lyra-GAS">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2821 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/lyra-gas/" class="leancloud_visitors" data-flag-title="Lyra-GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -127,16 +127,22 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#lyra-gas的流程"><em><strong>Lyra GAS的流程</strong></em></a>
+    <li><a href="#gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></a></li>
+    <li><a href="#从武器到技能"><em><strong>从武器到技能</strong></em></a>
       <ul>
-        <li><a href="#gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></a></li>
-        <li><a href="#技能的装备giveability"><em><strong>技能的装备（GiveAbility）</strong></em></a></li>
+        <li><a href="#装备技能"><em><strong>装备技能</strong></em></a></li>
+        <li><a href="#技能的实现"><em><strong>技能的实现</strong></em></a></li>
+        <li><a href="#检测到伤害目标"><em><strong>检测到伤害目标</strong></em></a></li>
+        <li><a href="#应用ge"><em><strong>应用GE</strong></em></a></li>
+        <li><a href="#gameplayeffectcontext"><em><strong>GameplayEffectContext</strong></em></a></li>
+        <li><a href="#abilitysystemglobals"><em><strong>AbilitySystemGlobals</strong></em></a></li>
+        <li><a href="#executions"><em><strong>Executions</strong></em></a></li>
+        <li><a href="#应用attributeset"><em><strong>应用AttributeSet</strong></em></a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="lyra-gas的流程"><em><strong>Lyra GAS的流程</strong></em></h2>
-<h3 id="gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></h3>
+            </div><div class="content" id="content"><h2 id="gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></h2>
 <p><em>经过游戏体验DataAsset和一系列的组件初始化加载后，在 LyraHeroComponent 绑定按键</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -226,14 +232,230 @@
 </div>
 </div><p><em>在然后，ALyraPlayerController中会Tick调用<code>void ALyraPlayerController::PostProcessInput(const float DeltaTime, const bool bGamePaused)</code></em></p>
 <p><em>随后检索一些TArray记录下来的东西，通过 <code>TryActivateAbility(AbilitySpecHandle);</code> 调用到实际技能</em></p>
-<h3 id="技能的装备giveability"><em><strong>技能的装备（GiveAbility）</strong></em></h3>
-<p><em>举个例子， 比如是捡到枪，随后鼠标左键开火</em></p>
-<p><em>捡到枪并且装备是通过 Lyra 的 Equipment系统和Inventory系统来实现的，此时有一个ULyraEquipmentDefinition 中会记录一个 ULyraAbilitySet，里面有见到这个枪就会装备什么GameAbility技能，以及GameEffect效果，还有AttributeSet属性数值，这时候就会将GameAbility技能给GiveAbility装备上去</em></p>
-</div><div class="post-footer" id="post-footer">
+<h2 id="从武器到技能"><em><strong>从武器到技能</strong></em></h2>
+<p><em>举个例子， 比如是捡到枪，或者默认装备枪，随后鼠标左键开火，这其实就是一个开枪技能</em></p>
+<h3 id="装备技能"><em><strong>装备技能</strong></em></h3>
+<p><em>捡到枪并且装备是通过 Lyra 的 Equipment系统和Inventory系统来实现的，在这里不详细讲，但是此时有一个ULyraEquipmentDefinition 中会记录一个 ULyraAbilitySet，里面有见到这个枪就会装备什么GameAbility技能，以及GameEffect效果，还有AttributeSet属性数值，这时候就会将GameAbility技能给GiveAbility装备上去</em></p>
+<h3 id="技能的实现"><em><strong>技能的实现</strong></em></h3>
+<p><em>创建一个GA类，不管是蓝图还是c++，GameplayAbility有以下比较重要的接口</em></p>
+<ol>
+<li>
+<p><code>virtual bool CanActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayTagContainer* SourceTags = nullptr, const FGameplayTagContainer* TargetTags = nullptr, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;</code></p>
+<p><em>判断是否可以激活此技能，在 <code>TryActivateAbility</code> 后，其实会进行一系列的检查，此接口就在其中</em></p>
+</li>
+<li>
+<p><code>virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;</code></p>
+<p><em>在经过一系列技能检查后就会触发，也就是此技能的核心逻辑，比如播放蒙太奇，然后蒙太奇播放完调用 <code>EndAbility</code></em></p>
+</li>
+<li>
+<p><code>virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;</code></p>
+<p><em>技能结束的核心逻辑写在这个函数，但是记住这个函数不代表跟技能相关的实例就会销毁</em></p>
+</li>
+<li>
+<p><em>virtual void InputPressed(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo</em> ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) override;*
+<em>此函数的作用就在于，如果是通过按键去触发技能，那么在按下键的时候就会触发</em></p>
+</li>
+<li>
+<p><code>virtual void InputReleased(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) override;</code></p>
+<p><em>抬起键的时候触发</em></p>
+</li>
+</ol>
+<p><em>随后不管c++还是蓝图，将其 InstancingPolicy 修改为：InstancedPerActor，此参数有以下几种：</em></p>
+<ol>
+<li><em>NonInstanced：此能力从未实例化。任何执行此能力的操作都是在 CDO 上进行的。</em></li>
+<li><em>InstancedPerActor：当这个 Ability 被授予给一个 Actor 时，系统会为这个 Actor 创建一个全新的 UGameplayAbility 对象实例。如果 10 个不同的 Actor 都被授予了这个 Ability，内存中就会有 10 个独立的 Ability 对象。</em></li>
+<li><em>InstancedPerExecution：当这个 Ability 被授予时，系统不会立即创建实例。只有在每次这个 Ability 被激活 (ActivateAbility) 时，系统才会临时创建一个新的 Ability 对象实例。当这个 Ability 执行完毕并结束 (EndAbility) 时，这个临时的实例会被立即销毁（垃圾回收）。</em></li>
+</ol>
+<p><em>随后还得将一个变量Ability Triggers修改，将你的按键绑定的Tag输入进去，这样就可以将按键跟技能上面关联上啦</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250805230152296.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250805230152296.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250805230152296.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250805230152296.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250805230152296.png"
+        title="image-20250805230152296" /></p>
+<h3 id="检测到伤害目标"><em><strong>检测到伤害目标</strong></em></h3>
+<p><em>这里不详细讲如何检测到伤害目标（可能后续会更新？），比如枪发射子弹，就发出射线，进行扫描。如果是近战武器，则利用动画通知去生成碰撞盒子，来进行伤害目标</em></p>
+<p><em>如果要在这拿到GA实例，只要能拿到ASC，则可以利用 <code>ASC-&gt;GetActivatableAbilities()</code>，拿到所有激活的技能Spec，在通过 <code>AbilitySpec.GetPrimaryInstance()</code> Cast 成你的GA实例就好了</em></p>
+<h3 id="应用ge"><em><strong>应用GE</strong></em></h3>
+<p><em>这时候我们就会有目标Actor了，我们获取到自己的ASC和Target的ASC，可以利用如下代码，创建GameplayEffectSpecHandle，并且应用</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FGameplayEffectSpecHandle</span> <span class="n">DamageSpecHandle</span> <span class="o">=</span> <span class="n">MakeOutgoingGameplayEffectSpec</span><span class="p">(</span><span class="n">DamageEffect</span><span class="p">,</span> <span class="n">GetAbilityLevel</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">DamageSpecHandle</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SourceASC</span><span class="o">-&gt;</span><span class="n">ApplyGameplayEffectSpecToTarget</span><span class="p">(</span><span class="o">*</span><span class="n">DamageSpecHandle</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Get</span><span class="p">(),</span> <span class="n">TargetASC</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>好，这时候注意力来到 我们创建的GE，GE也有着很多的属性，我们关注点先放在Gameplay Effect</em></p>
+<ol>
+<li><em>Modifiers：这个可以应用比较简单的Attributes。比如直接将Health -&gt; Add -&gt; -10，这样每次攻击，都会对Target扣10点血。但是这样缺点就是不灵活，因为这个伤害值计算确实很复杂，比如lyra的枪，他有距离衰减，物理散射，包括打头伤害更高之类的，所以就需要 Executions</em></li>
+<li><em>Executions：我们可以创建一个 UGameplayEffectExecutionCalculation 的子类，这个类就可以帮助我们去算伤害的具体值，这个类的执行就是在应用AttricuteSet之前，所以我们可以直接操作他的伤害值</em></li>
+</ol>
+<h3 id="gameplayeffectcontext"><em><strong>GameplayEffectContext</strong></em></h3>
+<p><em>再聊到具体的 Executions 之前还得聊一聊这个，这个其实就是 GameplayEffect 的上下文，也就是储存着 GE 通知 AttricuteSet的各种信息，我们继承于这个Struct FGameplayEffectContext，这样就可以塞我们自己自定义的任何信息，比如伤害接口的伤害倍数，在这个struct有如下接口需要注意下，有可能用到：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// ~Begin FGameplayEffectContext Interface
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">virtual</span> <span class="n">FGameplayEffectContext</span><span class="o">*</span> <span class="nf">Duplicate</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>  <span class="c1">// 进行拷贝结构体的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">virtual</span> <span class="n">UScriptStruct</span><span class="o">*</span> <span class="nf">GetScriptStruct</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>  <span class="c1">// 获取当前 GameplayEffectContext 实例的实际 UStruct 类型。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">NetSerialize</span><span class="p">(</span><span class="n">FArchive</span><span class="o">&amp;</span> <span class="n">Ar</span><span class="p">,</span> <span class="k">class</span> <span class="nc">UPackageMap</span><span class="o">*</span> <span class="n">Map</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&amp;</span> <span class="n">bOutSuccess</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>  <span class="c1">// 进行网络复制
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ~End FGameplayEffectContext Interface
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><strong>我们如果想要我们自定义的生效，必须重写AbilitySystemGlobals方法，并且在Project Setting里 设置我们默认的 AbilitySystemGlobals 类</strong></em></p>
+<p><em><strong>并且要在 我们的GA中 重写 <code>virtual FGameplayEffectContextHandle MakeEffectContext(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo) const override;</code> 在这个函数里面去初始化我们的GEContext哦</strong></em></p>
+<h3 id="abilitysystemglobals"><em><strong>AbilitySystemGlobals</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">virtual</span> <span class="n">FGameplayEffectContext</span><span class="o">*</span> <span class="nf">AllocGameplayEffectContext</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">FGameplayEffectContext</span><span class="o">*</span> <span class="n">USAbilitySystemGlobals</span><span class="o">::</span><span class="n">AllocGameplayEffectContext</span><span class="p">()</span> <span class="k">const</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span> <span class="nf">FSGameplayEffectContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="executions"><em><strong>Executions</strong></em></h3>
+<p><em>好了，终于回到了我们的Executions，我们重写 <code>virtual void Execute_Implementation(const FGameplayEffectCustomExecutionParameters&amp; ExecutionParams, FGameplayEffectCustomExecutionOutput&amp; OutExecutionOutput) const override;</code>方法</em></p>
+<ol>
+<li><em>ExecutionParams：这个参数就是带有各种数据，比如SourceASC，TargetASC</em></li>
+<li><em>OutExecutionOutput：这个参数就是我们要给AttricuteSets的数据，所以我们弄好了伤害具体数值后就可以通过这个直接扔过去</em></li>
+</ol>
+<p><em>我们要注意 比如我们拿一个 BaseDamage，这个基础伤害，我们要通过FGameplayEffectAttributeCaptureDefinition 这个结构体去拿</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">FDamageStatics</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FGameplayEffectAttributeCaptureDefinition</span> <span class="n">BaseDamageDef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">FDamageStatics</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">BaseDamageDef</span> <span class="o">=</span> <span class="n">FGameplayEffectAttributeCaptureDefinition</span><span class="p">(</span><span class="n">USCombatSet</span><span class="o">::</span><span class="n">GetBaseDamageAttribute</span><span class="p">(),</span> <span class="n">EGameplayEffectAttributeCaptureSource</span><span class="o">::</span><span class="n">Source</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">FDamageStatics</span> <span class="nf">DamageStatics</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">FDamageStatics</span> <span class="n">Statics</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">Statics</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">USDamageExecution</span><span class="o">::</span><span class="n">USDamageExecution</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RelevantAttributesToCapture</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">BaseDamageDef</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>如上方代码所示，我们初始化的三个参数的意思分别为：</em></p>
+<ol>
+<li><em>USCombatSet::GetBaseDamageAttribute()：到我们的这个AttricuteSet去拿一个 Attricute</em></li>
+<li><em>EGameplayEffectAttributeCaptureSource::Source：是从Source拿 不是从Target拿</em></li>
+<li><em>True: 是否拍快照，这个基本都是true，要不然你的数据可能会被污染</em></li>
+</ol>
+<p><em>然后我们放在RelevantAttributesToCapture里，通过一下方式去拿：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FAggregatorEvaluateParameters</span> <span class="n">EvaluateParameters</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EvaluateParameters</span><span class="p">.</span><span class="n">SourceTags</span> <span class="o">=</span> <span class="n">SourceTags</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EvaluateParameters</span><span class="p">.</span><span class="n">TargetTags</span> <span class="o">=</span> <span class="n">TargetTags</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">BaseDamage</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">AttemptCalculateCapturedAttributeMagnitude</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">BaseDamageDef</span><span class="p">,</span> <span class="n">EvaluateParameters</span><span class="p">,</span> <span class="n">BaseDamage</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>我们最后通过拿到准确数据后就塞到数据里 返回回去：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">OutExecutionOutput</span><span class="p">.</span><span class="n">AddOutputModifier</span><span class="p">(</span><span class="n">FGameplayModifierEvaluatedData</span><span class="p">(</span><span class="n">USHealthSet</span><span class="o">::</span><span class="n">GetDamageAttribute</span><span class="p">(),</span> <span class="n">EGameplayModOp</span><span class="o">::</span><span class="n">Additive</span><span class="p">,</span> <span class="n">DamageDone</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>Lyra是通过WeaponInstance计算好具体的倍数，然后继承了一个接口，送到这里来的</em></p>
+<p><em>最后别忘记要在GE把这个Executions设置进去哦</em></p>
+<h3 id="应用attributeset"><em><strong>应用AttributeSet</strong></em></h3>
+<p><em>好了 这下数据都来AttributeSet了，我们就要修改角色身上的Attribute了，这Set也有几个很关键的接口</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">PreGameplayEffectExecute</span><span class="p">(</span><span class="n">FGameplayEffectModCallbackData</span><span class="o">&amp;</span> <span class="n">Data</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PostGameplayEffectExecute</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayEffectModCallbackData</span><span class="o">&amp;</span> <span class="n">Data</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PreAttributeBaseChange</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayAttribute</span><span class="o">&amp;</span> <span class="n">Attribute</span><span class="p">,</span> <span class="kt">float</span><span class="o">&amp;</span> <span class="n">NewValue</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PreAttributeChange</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayAttribute</span><span class="o">&amp;</span> <span class="n">Attribute</span><span class="p">,</span> <span class="kt">float</span><span class="o">&amp;</span> <span class="n">NewValue</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PostAttributeChange</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayAttribute</span><span class="o">&amp;</span> <span class="n">Attribute</span><span class="p">,</span> <span class="kt">float</span> <span class="n">OldValue</span><span class="p">,</span> <span class="kt">float</span> <span class="n">NewValue</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-07-24</span>
+                <span>更新于 2025-06-09</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
