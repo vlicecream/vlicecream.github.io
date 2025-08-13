@@ -47,7 +47,7 @@
 
    * *当两个平行线与x轴夹角相等，因此，非垂直的平行线具有相同的斜率，反之，具有相同斜率的直线与x轴的夹角相等，所以是平行线。*
 
-   * *当两条非垂直直线 L1 和 L2 是互相垂直的，他的斜率 m1 和 m2 满足 m1m2 = -1，所以 ***每个斜率是另一个斜率的负倒数：***
+   * *当两条非垂直直线 L1 和 L2 是互相垂直的，他的斜率 m1 和 m2 满足 m1m2 = -1，所以 **每个斜率是另一个斜率的负倒数：***
      $$
      m_1m_2 = -1 ~~~~~ m_1 = - \frac{1}{m_2} ~~~~~~ m_2 = - \frac{1}{m_1}
      $$
@@ -63,7 +63,7 @@
 
    ![平行线与垂直线](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250809102914873.png)
 
-   *论证大致如下：用图 3 的记号就是：$ m_1=\tan\phi_1=\frac{a}{h} $ ，而  $ m_2=\tan\phi_2=-\frac{h}{a} $，那么：$ m_1m_2 = (\frac{a}{h}) () = -1 $*
+   *论证大致如下：用图 3 的记号就是：$ m_1=\tan\phi_1=\frac{a}{h} $ ，而  $ m_2=\tan\phi_2=-\frac{h}{a} $，那么：$ m_1m_2 = (\frac{a}{h}) (-\frac{h}{a}) = -1 $*
 
 ### ***直线的方程***
 
@@ -126,73 +126,6 @@
 3. *解释说明：*
 
    *虽然一般线性方程的形式有助于快速识别直线，但斜率 - 截距形式使用计算器来画直线图形的输入形式*
-
-### ***习题***
-
-***题 1 和题 2中，从A到 B 的增量坐标***
-
-1. * *A(1,2), B(-1,-1)*
-
-   $$
-   \Delta{x} = -1 - 1 = -2
-   \\\ \\\
-   \Delta{y} = -1 - 2 = -3
-   $$
-
-   * *A(-3,2),B(-1,-2)*
-
-   $$
-   \Delta{x} = -1 - (-3) = 2
-   \\\ \\\
-   \Delta{y} = -2 - 2 = -4
-   $$
-
-2. * *A(-3,1),B(-8,1)*
-     $$
-     \Delta{x} = -8 - (-3) = -5
-     \\\ \\\
-     \Delta{y} = 1 - 1 = 0
-     $$
-
-   * *A(0,4),B(0, -2)*
-     $$
-     \Delta{x} = 0 - 0 = 0
-     \\\ \\\
-     \Delta{y} = -2 - 4 = -6
-     $$
-
-***题 3 和 题 4中，令L是点A和B决定的直线***
-
-* *图示A 和 B*
-* *求L的斜率*
-* *画出L的图形*
-
-3. * *A(1, -2), B(2, 1)*
-
-     ![图示](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250809130926908.png)
-     $$
-     m = \frac{\Delta{y}}{\Delta{x}} = \frac{B_y - A_y}{B_x - A_x} = \frac{1 - (-2)}{2 - 1} = \frac{3}{1} = 3
-     $$
-
-   * *A (-2, -1), B(-1, -2)*
-
-     ![图示](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250809132151041.png)
-     $$
-     m = \frac{\Delta{y}}{\Delta{x}} = \frac{B_y - A_y}{B_x - A_x} = \frac{-2 - (-1)}{-1 - (-2)} = \frac{-1}{1} = -1
-     $$
-     
-
-4. * *A(2, 3), B(-1, 3)*
-
-     ![图示](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250809132419562.png)
-
-     *光看y轴就是一条水平线，故斜率为0*
-
-   * *A(1, 2), B(1, -3)*
-
-     ![图示](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250809132636210.png)
-
-     *x轴相等，所以这是一条垂直线，斜率无意义*
 
 ## ***函数***
 
@@ -436,4 +369,44 @@
 1. *定义：*
 
    *底为 a 的对数函数 $ y = \log_a x $ 是底为 a 的指数函数 $ y=a^{x}(a>0,a\neq1) $ 的反函数*
+   
+   *以 e 为底和以 10 为底 的对数的应用是很重要以至于计算器有专门计算他们的键，他们也有其专门的记号和名称*
+   
+   * *$ \log_{e}x\quad $写作 $ \quad\ln x. $*
+   * *$ \log_{10}x \quad$ 写作 $ \quad \log x$*
+   
+   *函数 $ \ln x $ 称为自然对数函数，而 $ \log x $ 称为普通对数函数*
+   
+2. *$a^{x}$ 和 $\log_ax$ 的互为反函数性质：*
+
+   *底为 $ a: $ $ a^{\log_ax},\quad\log_aa^x=2x,\quad a>0,a\neq1,x>0 $*
+
+   *底为 $ e: $ $ \mathrm{e}^{\ln x}=-x,\quad\ln\mathrm{e}^x=-x,\quad x>0 $*
+
+3. *对数的算术性质（对任何的实数 x > 0 和 y > 0）：*
+
+   *乘积法则：$ \log_axy=\log_ax+\log_ay $*
+
+   *商法则：$ \log_{a}\frac{x}{y}=\log_{a}x-\log_{a}y $*
+
+   *幂法则：$ \log_ax^y=y\log_ax $*
+
+4. *每个指数函数是自然指数函数的幂函数*
+   $$
+   a^{x}=\mathrm{e}^{x\ln a}
+   $$
+   *即：$ a^x $ 和 $ e^x $ 的 $ \ln{a} 次幂是同样的 $*
+
+5. *底变换公式：*
+
+   *每个对数函数是自然对数函数的常数倍：*
+   $$
+   \log_ax=\frac{\ln x}{\ln a}\quad(a>0,a\neq1)
+   $$
+   
+
+
+
+
+
 

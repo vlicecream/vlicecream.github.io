@@ -4,9 +4,36 @@
         <link>https://example.com/</link>
         <description>一个艺术世界</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 08 Aug 2025 07:50:00 &#43;0800</lastBuildDate>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 13 Aug 2025 21:27:00 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>微积分 - 预备知识 - 习题及答案</title>
+    <link>https://example.com/%E5%BE%AE%E7%A7%AF%E5%88%86-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86-%E4%B9%A0%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88/</link>
+    <pubDate>Wed, 13 Aug 2025 21:27:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/%E5%BE%AE%E7%A7%AF%E5%88%86-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86-%E4%B9%A0%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88/</guid>
+    <description><![CDATA[<h2 id="直线---习题"><em><strong>直线 - 习题</strong></em></h2>
+<p><em><strong>题 1 和题 2中，求从A到 B 的增量坐标</strong></em></p>
+<ol>
+<li>
+<ul>
+<li><em>A(1,2), B(-1,-1)</em></li>
+</ul>
+<p>$$
+\Delta{x} = -1 - 1 = -2
+\\ \\
+\Delta{y} = -1 - 2 = -3
+$$</p>
+<ul>
+<li><em>A(-3,2),B(-1,-2)</em></li>
+</ul>
+<p>$$
+\Delta{x} = -1 - (-3) = 2
+\\ \\
+\Delta{y} = -2 - 2 = -4
+$$</p>]]></description>
+</item>
+<item>
     <title>微积分 - 预备知识</title>
     <link>https://example.com/%E5%BE%AE%E7%A7%AF%E5%88%86-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/</link>
     <pubDate>Fri, 08 Aug 2025 07:50:00 &#43;0800</pubDate>
@@ -98,38 +125,6 @@
     <description><![CDATA[<h2 id="lyra的相机系统-简介"><em><strong>Lyra的相机系统 简介</strong></em></h2>
 <p><em>Lyra其实没有用最基本的UCameraComponent，也没有用 USpringComponent</em></p>
 <p><em>他是自己实现了继承于 UCameraComponent的类，他的功能为：</em></p>]]></description>
-</item>
-<item>
-    <title>Rider &amp; Unreal 配置P4V</title>
-    <link>https://example.com/p4-rider%E8%BF%9E%E6%8E%A5p4v/</link>
-    <pubDate>Fri, 11 Jul 2025 22:00:00 &#43;0800</pubDate>
-    <author>Ame</author>
-    <guid>https://example.com/p4-rider%E8%BF%9E%E6%8E%A5p4v/</guid>
-    <description><![CDATA[<h2 id="rider"><em><strong>Rider</strong></em></h2>
-<h3 id="配置p4v信息"><em><strong>配置P4V信息</strong></em></h3>
-<ol>
-<li><em>打开 Rider 设置: File -&gt; Settings (或者按 Ctrl+Alt+S)。</em></li>
-<li><em>导航到 Version Control -&gt; Perforce。</em></li>
-<li><em>配置连接参数:</em>
-<ul>
-<li><em><strong>Port</strong>: 输入你的服务器地址和端口，格式为 host:port (例如 p4.mycompany.com:1666)</em></li>
-<li><em><strong>User</strong>: 输入你的 Perforce 用户名。</em></li>
-<li><em><strong>Workspace</strong>: 输入你为这个项目创建的 <strong>工作区名称</strong>。这是 Rider 用来确定哪些文件在你的控制之下的关键。</em></li>
-<li><em><strong>Path to P4 executable</strong>: 通常你可以留空，Rider 会自动从系统 PATH 中找到 p4.exe。如果找不到，你可以点击 &hellip; 按钮手动指定 p4.exe 文件的完整路径。</em></li>
-<li><em><strong>Path to P4VC executable</strong>: 通常你可以留空，Rider 会自动从系统 PATH 中找到 p4v.exe。如果找不到，你可以点击 &hellip; 按钮手动指定 p4v.exe 文件的完整路径。</em></li>
-</ul>
-</li>
-<li><em>测试连接:</em>
-<ul>
-<li><em>点击 Test Connection 按钮。</em></li>
-<li><em>如果一切配置正确，你会看到一个 &ldquo;Connection successful&rdquo; 的提示。</em></li>
-<li><em>如果提示需要输入密码，它会弹出一个对话框让你输入。输入后可以选择“记住密码”。</em></li>
-<li><em>如果连接失败，请仔细检查你的服务器地址、用户名和工作区名称是否拼写正确。</em></li>
-</ul>
-</li>
-</ol>
-<h3 id="将项目与-perforce-关联"><em><strong>将项目与 Perforce 关联</strong></em></h3>
-<p><em>即使配置好了连接，你还需要告诉 Rider 这个<strong>特定的项目</strong>要使用 Perforce 进行版本控制。</em></p>]]></description>
 </item>
 </channel>
 </rss>
