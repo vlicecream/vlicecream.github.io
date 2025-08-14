@@ -215,7 +215,6 @@
    \text{面积：} \quad y = f(x) = \frac{d}{\sqrt{2}} * \frac{d}{\sqrt{2}} = \frac{d^2}{2}
    $$
    
-
 3. *把立方体的棱边长表为该立方体对角线长度 d 的函数，然后把该立方体的表面积和体积表为对角线长度的函数*
    $$
    \text{边长：} y = f(x) = (\frac{\sqrt{3}}{3})d
@@ -225,7 +224,6 @@
    \text{体积：} y = f(x) = (\frac{\sqrt{3}}{9})d^2
    $$
    
-
 4. *第一象限中的点 P 位于函数 $ f(x) = \sqrt{x} $ 的图形上，把点 P 的坐标表为连接点 P 和原点的直线的斜率的函数*
    $$
    P(m) = (\frac{1}{m^2}, \frac{1}{m}) \quad m > 0
@@ -249,7 +247,6 @@
      值域：[1, \infty)
      $$
      
-
    * *$ f(x) = 1 - \sqrt{x} $*
      $$
      定义域：[0, \infty)
@@ -257,7 +254,7 @@
      值域: (-\infty, 1]
      $$
      
-
+   
 8. * *$ F(t) = \frac{1}{\sqrt{t}} $*
      $$
      定义域： [0, \infty)
@@ -265,7 +262,6 @@
      值域：(0, \infty)
      $$
      
-
    * *$ F(t) = \frac{1}{1 + \sqrt{t}} $*
      $$
      定义域： [0, \infty)
@@ -273,7 +269,7 @@
      值域：(0, 1]
      $$
      
-
+   
 9. * *$ g(z) = \sqrt{4 - z^2} $*
      $$
      定义域： [-2, 2]
@@ -287,6 +283,202 @@
       定义域： (-\infty,\infty)
       \\\ \\
       值域：(-\infty,\infty)
+      $$
+
+## ***函数和图形 - 习题***
+
+***画 题十一  和 题十二的图形，如果图形有对称性的话，是什么样的对称性?***
+
+11. * *$ y = -x^3 $*
+
+      ![y = -x^3](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814204107146.png)
+
+      *原点对称，是个奇函数*
+
+    * *$ y = -\frac{1}{x^2} $*
+
+      ![y = -\frac{1}{x^2}](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814222242639.png)
+
+      *很明显 y轴对称，是个偶函数*
+
+12. * *$ y = \sqrt{\mid x\mid } $*
+
+      ![y = \sqrt{\mid x\mid }](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814222402476.png)
+
+      *y轴对称，偶函数*
+
+    * *$ y = -\frac{1}{x} $*
+
+      ![y = -\frac{1}{x}](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814222452844.png)
+
+      *原点对称，是一个奇函数*
+
+13. *画出下列式子的图形并解释他们为什么不是 x 的函数*
+
+    * *$ \mid y \mid = x $*
+
+      ![\mid y \mid = x](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814222932389.png)
+
+      *因为一个 x 上有多个 y*
+
+    * *$ y^2 = x^2 $*
+
+      ![ y^2 = x^2](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814223015299.png)
+
+      *因为一个 x 上有多个 y*
+
+14. *画出下列式子的图形并解释他们为什么不是 x 的函数*
+
+    * *$ \mid x \mid + \mid y \mid = 1 $*
+
+      ![\mid x \mid + \mid y \mid = 1](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814223109885.png)
+
+      *因为一个 x 上有多个 y*
+
+    * *$ \mid x + y \mid = 1 $*
+
+      ![\mid x + y \mid = 1](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250814223141050.png)
+
+      *因为一个 x 上有多个 y*
+
+## ***偶函数和奇函数 - 习题***
+
+***在题 15 - 20 中，说出函数是否是偶函数、奇函数或两者都不是***
+
+15. * *$ f(x) = 3 $*
+
+      *偶函数，因为 y 永远都等于 3，也就是 $ f(x) = f(-x) $*
+      $$
+      f(x) = 3 \quad f(-x) = 3
+      $$
+
+    * *$ f(x) = x^{-5} $*
+
+      *奇函数，因为 $ f(x) \neq f(-x) $，但是 $ f(-x) = -f(x) $*
+      $$
+      f(-x) = -(x)^{-5} = \frac{1}{-x^5} = -\frac{1}{x^5}
+      \\\ \\\
+      f(x) = x^{-5} = \frac{1}{x^5}
+      \\\ \\\
+      -f(x) = -(x^{-5}) = -\frac{1}{x^5}
+      \\\ \\\
+      f(-x) = -f(x)
+      $$
+
+16. * *$ f(x) = x^2 + 1 $*
+
+      *偶函数*
+      $$
+      f(x) = x^2 + 1
+      \\\ \\\
+      f(-x) = (-x)^2 + 1 = x^2 + 1
+      \\\ \\\
+      f(x) = f(-x)
+      $$
+
+    * *$ f(x) = x^2 + x $*
+
+      *两者都不是*
+      $$
+      f(x) = x^2 + x
+      \\\ \\\
+      f(-x) = (-x)^2 - x = x^2 - x
+      \\\ \\
+      -f(x) = -(x^2 + x) = -x^2 - x
+      $$
+
+17. * *$ g(x) = x^3 + x $*
+
+      *奇函数*
+      $$
+      g(x) = x^3 + x
+      \\\ \\\
+      g(-x) = (-x)^3 - x = -x^3 - x
+      \\\ \\\
+      -g(x) = -(x^3 + x) = -x^3 - x
+      $$
+
+    * *$ g(x) = x^4 + 3x^2 - 1 $*
+
+      *偶函数*
+      $$
+      g(x) = x^4 + 3x^2 - 1
+      \\\ \\\
+      g(-x) = (-x)^4 + 3(-x)^2 - 1 = x^4 + 3x^2 - 1
+      \\\ \\\
+      g(x) = g(-x)
+      $$
+      
+
+18. * *$ g(x) = \frac{1}{x^2 - 1} $*
+
+      *偶函数*
+      $$
+      g(x) = \frac{1}{x^2 - 1}
+      \\\ \\\
+      g(-x) = \frac{1}{(-x)^2 - 1} = \frac{1}{x^2 - 1}
+      $$
+      
+
+    * *$ g(x) = \frac{x}{x^2 - 1} $*
+
+      *奇函数*
+      $$
+      g(x) = \frac{x}{x^2 - 1}
+      \\\ \\\
+      g(-x) = \frac{-x}{(-x)^2 - 1} = -\frac{x}{x^2 - 1}
+      \\\ \\\
+      -g(x) = -(\frac{x}{x^2 - 1}) = -\frac{x}{x^2 - 1}
+      \\\ \\\
+      g(-x) = -g(x)
+      $$
+      
+
+19. * *$ h(t) = \frac{1}{t - 1} $*
+
+      *两者都不是*
+      $$
+      h(t) = \frac{1}{t - 1}
+      \\\ \\\
+      h(-t) = \frac{1}{-t - 1} = -\frac{1}{t+1}
+      \\\ \\\
+      -h(t) = -\frac{1}{t -1}
+      $$
+      
+
+    * *$ h(t) = \mid t^3 \mid $*
+
+      *偶函数*
+      $$
+      h(t) = \mid t^3 \mid
+      \\\ \\\
+      h(-t) = \mid (-t)^3 \mid
+      \\\ \\\
+      h(t) = h(-t)
+      $$
+      
+
+20. * *$ h(t) = \sqrt{t^2 + 3} $*
+
+      *偶函数*
+      $$
+      h(t) = \sqrt{t^2 + 3}
+      \\\ \\\
+      h(-t) = \sqrt{(-t)^2 + 3} = \sqrt{t^2 + 3}
+      \\\ \\\
+      h(t) = h(-t)
+      $$
+      
+
+    * *$ h(t) = 2\mid t \mid + 1 $*
+
+      *偶函数*
+      $$
+      h(t) = 2\mid t \mid + 1
+      \\\ \\\
+      h(-t) = 2 \mid -t \mid + 1
+      \\\ \\\
+      h(t) = h(-t)
       $$
       
 
