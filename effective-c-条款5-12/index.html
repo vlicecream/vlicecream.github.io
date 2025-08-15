@@ -272,7 +272,7 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TimeKeeper</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="n">TimeKeeper</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">TimeKeeper</span><span class="p">()</span><span class="err">;</span> <span class="c1">// non-virtual
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">TimeKeeper</span><span class="p">();</span> <span class="c1">// non-virtual
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AtomicClock</span> <span class="o">:</span> <span class="k">public</span> <span class="n">TimeKeeper</span> <span class="p">{</span> <span class="p">};</span>
