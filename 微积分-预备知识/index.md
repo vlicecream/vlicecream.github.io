@@ -405,8 +405,132 @@
    $$
    
 
+## ***三角函数及其反函数***
 
+### ***弧度***
 
+1. *定义：*
 
+   *在单位圆中心处的 角 ACB 的弧度等于 ABC 从单位圆周上切割下的圆弧的长度*
+
+   ![弧度](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250816153832894.png)
+
+2. *转换公式：*
+   $$
+   \begin{gather*}
+   1\textbf{ 度 }= \frac \pi {180}( \approx 0. 02) 弧度 \quad 度到弧度：乘以\frac\pi{180}
+   \\\ \\\
+   1\textbf{ 弧 度 }= \frac {180}{- 7}( \approx 57) \textbf{度 } \quad 弧度到度：乘以\frac{180}{x}
+   \end{gather*}
+   $$
+
+3. *三角函数公式定义：*
+
+   *当弧度为 $\theta$ 的角置于半径为 r 的圆的标准位置时， $ \theta $ 的 6 个基本三角函数定义如下：*
+   $$
+   正弦：\sin \theta = \frac y r \quad 余割: \csc \theta = \frac ry
+   \\\ \\\
+   余弦: \cos \theta = \frac xr \quad 正割: \sec \theta = \frac rx
+   \\\ \\\
+   正切: \tan \theta=\frac{y}{x} \quad 余切：\cot \theta=\frac{x}{y}
+   $$
+
+### ***三角函数的图形***
+
+*当我们在坐标平面上画三角函数的图形时，通常我们不用 $\theta$ 而用 x 来记自变量(弧度)*
+
+![三角函数的图形](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250816155206997.png)
+
+### ***三角函数的值***
+
+![三角函数的值](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250816201805946.png)
+
+*如图40的圆周的半径 r = 1，定义 $ \sin \theta $ 和 $ \cos \theta $ 的方程就变成：*
+$$
+\cos \theta = x  \quad \sin \theta = y
+$$
+*于是我们可以直接从 点P坐标算出余弦和正弦的值。如果我们碰巧知道点P的坐标或者能从点P向下作垂线交于 x轴构成的锐角三角形间接知道点P坐标，我们也可以读出 x 和 y 的大小，他们的正负就由三角形的象限决定*
+
+![sin/cos/tan的值](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250816202423378.png)
+
+### ***周期性***
+
+1. *定义：*
+
+   *函数 $ f(x) $ 是周期函数，如果存在正数p使得对每个 x 值有 $ f(x + p) = f(x) $, 最小的这样的 p 值就是 $f$ 的周期*
+
+2. *三角函数的周期：*
+   $$
+   \begin{aligned}
+   \text{周期 }\pi: \quad &\tan(x+\pi)=\tan x \quad \cot(x+\pi)=\cot x
+   \\\ \\\
+   \text{周期 }2\pi: \quad &\sin(x+2\pi)=\sin x \quad \cos(x+2\pi)=\cos x
+   \\\ \\\
+   &\sec(x+2\pi)=\sec x \quad \csc(x+2\pi)=\csc x
+   \end{aligned}
+   $$
+
+### ***偶和奇三角函数***
+
+*$ \cos x $ 和 $ \sec x $ 是偶函数，他们的图形关于 y 轴对称，而其余的四个基本三角函数都是奇函数*
+
+### ***三角函数的变换***
+
+*把函数的移位，伸展，压缩和反射应用于三角函数。下面的图解会提醒你怎么控制参数：*
+
+![三角函数的变换](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250816203456479.png)
+
+### ***恒等式***
+
+1. $ \cos^2 \theta + \sin^2 \theta = 1 $
+
+2. $ 1 + \tan^2 \theta = sec^2 \theta，\quad 1 + \cot^2 \theta = csc^2 \theta $
+
+3. *和角公式：*
+   $$
+   \begin{gather*}
+   \cos(A + B) = \cos A \cos B - \sin A \sin B
+   \\\ \\\
+   \sin(A + B) = \sin A \cos B + \cos A \sin B
+   \end{gather*}
+   $$
+   
+
+4. *倍角公式（将和角公式中 A B 都用 $ \theta $ 代替）：*
+   $$
+   \begin{gather*}
+   \cos 2 \theta = \cos^2 \theta - \sin^2 \theta
+   \\\ \\\
+   \sin 2 \theta = 2\sin \theta \cos \theta
+   \end{gather*}
+   $$
+   
+
+5. *余弦定理（如果 a, b, c 是三角形 ABC的三条边，又如果 $ \theta $ 是 c边的对角）：*
+   $$
+   c^2 = a^2 + b^2 - 2ab \cos \theta
+   $$
+   *余弦定律推广了毕达哥拉斯定律*
+   $$
+   若 \theta = \frac{\pi}{2}，则 \cos \theta = 0，从而有 c^2 = a^2 + b^2
+   $$
+
+### ***反三角函数***
+
+![反三角函数](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250816204714182.png)
+
+### ***与反正弦和反余弦有关的恒等式***
+
+1. $ \sin^{-1}(-x) = -\sin^{-1}x $
+2. $ \cos^{-1}x + \cos^{-1}(-x) = \pi $
+3. *对于 x > 0 $ \sin^{-1}x + \cos^{-1}x = \frac{\pi}{2} $*
+
+## ***参数方程***
+
+### ***平面曲线的参数化***
+
+1. *定义：*
+
+   *如果 x 和 y 由 t 值 的区间上的函数 $ x = f(t), \quad y = g(t) $ 给出，那么由这些方程定义的点集$ (x, y) = (f(t), g(t)) $ 是一条参数曲线，方程成为曲线的参数方程*
 
 
