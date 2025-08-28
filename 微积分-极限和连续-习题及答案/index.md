@@ -1,4 +1,4 @@
-# 微积分 - 极限和连续 - 习题及答案
+# 微积分 - 极限和连续 - 部分习题及答案
 
 
 ## ***平均变化率 - 习题***
@@ -216,4 +216,53 @@
    * *$ \displaystyle \lim_{t \to (-4)^+} g(t) $*
    * *$ \displaystyle \lim_{t \to -4} g(t) $*
    * *$ g(-4) $*
+
+## ***运用极限法则 - 习题***
+
+7. *假设 $ \displaystyle \lim_{x \to 0} f(x) = 1$ 和  $ \displaystyle \lim_{x \to 0} g(x) = 5$，写出下面计算中步骤（a）（b）（c）中用得到的定理1中法则的名称*
+   $$
+   \displaystyle \lim_{x \to 0} f(x) = 1 和  \displaystyle \lim_{x \to 0} g(x) = 5
+   $$
+   *（a）商法则*
+
+   *（b）幂法则*
+
+   *（c）积法则*
+
+8. *设 $ \displaystyle \lim_{x \to 1}h(x) = 5, \lim_{x \to 1}p(x) = 1,\lim_{x \to 1}r(x) = -2 $ 写出下面计算中步骤（a）（b）（c）中用到的定理1中法则的名称*
+   $$
+   \displaystyle \lim_{x \to 1}h(x) = 5, \lim_{x \to 1}p(x) = 1,\lim_{x \to 1}r(x) = -2 
+   $$
+   *（a）商法则*
+
+   *（b）幂法则*
+
+   *（c）积法则*
+
+9. *假设 $ \displaystyle \lim_{x \to c} f(x) = 5 $ 以及 $ \displaystyle \lim_{x \to c} g(x) = -2 $求：*
+
+   * *$ \displaystyle \lim_{x \to c} f(x) g(x) $*
+   * *$ \displaystyle \lim_{x \to c} 2 f(x) g(x) $*
+   * *$ \displaystyle \lim_{x \to c} (f(x) + 3g(x) $*
+   * *$ \displaystyle \lim_{x \to c} \frac{f(x)}{f(x) - g(x)} $*
+
+10. *假设 $ \displaystyle \lim_{x \to c} f(x) = 0 $ 以及 $ \displaystyle \lim_{x \to c} g(x) = -3 $求：*
+
+    * *$ \displaystyle \lim_{x \to 4} (g(x) + 3) $*
+    * *$ \displaystyle \lim_{x \to 4} f(x) $*
+    * *$ \displaystyle \lim_{x \to 4} (g(x))^2 $*
+    * *$ \displaystyle \lim_{x \to 4} \frac{g(x)}{f(x) - 1} $*
+
+## ***极限计算 - 习题***
+
+***求 题 11 - 14 中的极限***
+
+11. * *$ \displaystyle \lim_{x \to -7} (2x + 5) $*
+    * *$ \displaystyle \lim_{x \to 6} 8(t - 5)(t - 7) $*
+    * *$ \displaystyle \lim_{x \to 2} \frac{y + 2}{y ^2 + 5y + 6} $*
+    * *$ \displaystyle \lim_{h \to 0} \frac{3}{\sqrt{3h + 1} + 1} $*
+12. * *$ \displaystyle  \lim_{r \to -2}(r^3 - 2r^2 + 4r + 8) $*
+    * *$ \displaystyle \lim_{x \to 2} \frac{x + 3}{x + 6} $*
+    * *$ \displaystyle \lim_{t \to -3} (5 - y)^{\frac{4}{3}} $*
+    * *$ \displaystyle \lim_{\theta - 5} \frac{\theta - 5}{\thera^2 - 25} $*
 
