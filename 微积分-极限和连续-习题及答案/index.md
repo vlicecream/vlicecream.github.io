@@ -204,18 +204,38 @@
 
 1. * *$ \displaystyle \lim_{x \to 3^-} f(x) $*
      - ***分析：***
-       - *当 x 从左侧无限接近 3 时 $ (t→3^⁻) $，函数 $ f(x) $ 的值趋近于 3。所以左极限是 3。*
+       - *当 x 从左侧无限接近 3 时 $ (x \to 3^⁻) $，函数 $ f(x) $ 的值趋近于 3。所以左极限是 3。*
      - ***答案：*** *$ \displaystyle \lim_{x \to 3^-} f(x) = 3 $*
    * *$ \displaystyle \lim_{x \to 3^+} f(x) $*
      - ***分析：***
-       - *当 x 从右侧无限接近 3 时 $ (t→3^+) $，函数 $ f(x) $ 的值趋近于 -2。所以左极限是 -2。*
+       - *当 x 从右侧无限接近 3 时 $ (x \to 3^+) $，函数 $ f(x) $ 的值趋近于 -2。所以右极限是 -2。*
      - ***答案：*** *$ \displaystyle \lim_{x \to 3^+} f(x) = -2 $*
    * *$ \displaystyle \lim_{x \to 3} f(x) $*
+     - ***分析：***
+       - *当 x 从左侧无限接近 3 时 $ (x \to 3^⁻) $，函数 $ f(x) $ 的值趋近于 3。所以左极限是 3。*
+       - *当 x 从右侧无限接近 3 时 $ (x \to 3^+) $，函数 $ f(x) $ 的值趋近于 -2。所以右极限是 -2。*
+     - ***答案：*** *因为左极限跟右极限不一样，所以极限不存在*
    * *$ f(3) $*
+     - ***分析：***
+       - *我们观察图像，在 x=3 的位置，有一个实心点，这个点对应的 y 值是 1（注意：极限值与函数在该点是否有定义或取值是多少没有必然联系）*
+     - ***答案：*** *$ f(3) = 1 $*
 2. * *$ \displaystyle \lim_{ t \to (-4)^-} g(t) $*
+     - ***分析：***
+       - *当 t 从左侧无限接近 -4 时 $ (t \to -4^⁻) $，函数 $ g(t) $ 的值趋近于 5。所以左极限是 5。*
+     - ***答案：*** *$ \displaystyle \lim_{ t \to (-4)^-} g(t) = 5 $*
    * *$ \displaystyle \lim_{t \to (-4)^+} g(t) $*
+     - ***分析：***
+       - *当 t 从右侧无限接近 -4 时 $ (t \to -4^+) $，函数 $ g(t) $ 的值趋近于 5。所以右极限是 5。*
+     - ***答案：*** *$ \displaystyle \lim_{ t \to (-4)^+} g(t) = 5 $*
    * *$ \displaystyle \lim_{t \to -4} g(t) $*
+     - ***分析：***
+       - *当 t 从左侧无限接近 -4 时 $ (t \to -4^⁻) $，函数 $ g(t) $ 的值趋近于 5。所以左极限是 5。*
+       - *当 t 从右侧无限接近 -4 时 $ (t \to -4^+) $，函数 $ g(t) $ 的值趋近于 5。所以右极限是 5。*
+     - ***答案：*** *$ \displaystyle \lim_{t \to -4} g(t) = 5 $*
    * *$ g(-4) $*
+     - ***分析：***
+       - *我们观察图像，在 t=-4 的位置，有一个实心点，这个点对应的 y 值是 2（注意：极限值与函数在该点是否有定义或取值是多少没有必然联系）*
+     - ***答案：*** *$ g(-4) = 2 $*
 
 ## ***运用极限法则 - 习题***
 
@@ -242,9 +262,30 @@
 9. *假设 $ \displaystyle \lim_{x \to c} f(x) = 5 $ 以及 $ \displaystyle \lim_{x \to c} g(x) = -2 $求：*
 
    * *$ \displaystyle \lim_{x \to c} f(x) g(x) $*
+     $$
+     \begin{gather*}
+     \displaystyle \lim_{x \to c} f(x) g(x) = 5 (-2) = -10
+     \end{gather*}
+     $$
+
    * *$ \displaystyle \lim_{x \to c} 2 f(x) g(x) $*
-   * *$ \displaystyle \lim_{x \to c} (f(x) + 3g(x) $*
+     $$
+     \begin{gather*}
+     \displaystyle \lim_{x \to c} 2 f(x) g(x) = (2 \cdot 5) (-2) = 10 \cdot (-2) = -20
+     \end{gather*}
+     $$
+
+   * *$ \displaystyle \lim_{x \to c} (f(x) + 3g(x)) $*
+     $$
+     \begin{gather*}
+     \displaystyle \lim_{x \to c} (f(x) + 3g(x)) = (5 + 3(-2)) = 5 - 6 = -1
+     \end{gather*}
+     $$
+
    * *$ \displaystyle \lim_{x \to c} \frac{f(x)}{f(x) - g(x)} $*
+     $$
+     \displaystyle \lim_{x \to c} \frac{f(x)}{f(x) - g(x)} = \frac{5}{5 - (-2)} = \frac{5}{7}
+     $$
 
 10. *假设 $ \displaystyle \lim_{x \to c} f(x) = 0 $ 以及 $ \displaystyle \lim_{x \to c} g(x) = -3 $求：*
 
@@ -261,8 +302,14 @@
     * *$ \displaystyle \lim_{x \to 6} 8(t - 5)(t - 7) $*
     * *$ \displaystyle \lim_{x \to 2} \frac{y + 2}{y ^2 + 5y + 6} $*
     * *$ \displaystyle \lim_{h \to 0} \frac{3}{\sqrt{3h + 1} + 1} $*
+    
 12. * *$ \displaystyle  \lim_{r \to -2}(r^3 - 2r^2 + 4r + 8) $*
+    
     * *$ \displaystyle \lim_{x \to 2} \frac{x + 3}{x + 6} $*
+    
     * *$ \displaystyle \lim_{t \to -3} (5 - y)^{\frac{4}{3}} $*
-    * *$ \displaystyle \lim_{\theta - 5} \frac{\theta - 5}{\thera^2 - 25} $*
+    
+    * *$ \displaystyle \lim_{\theta - 5} \frac{\theta - 5}{\theta^2 - 25} $*
+    
+      
 
