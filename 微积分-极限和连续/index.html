@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "微积分","wordcount":  2305 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "微积分","wordcount":  2671 ,
         "url": "https:\/\/example.com\/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD\/","datePublished": "2025-08-18T07:50:00+08:00","dateModified": "2025-08-19T23:25:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">微积分 - 极限和连续</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>微积分</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-18">2025-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2305 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD/" class="leancloud_visitors" data-flag-title="微积分 - 极限和连续">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-18">2025-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2671 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD/" class="leancloud_visitors" data-flag-title="微积分 - 极限和连续">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -139,6 +139,13 @@
         <li><a href="#三明治夹逼定理"><em><strong>三明治（夹逼）定理</strong></em></a></li>
         <li><a href="#单侧极限"><em><strong>单侧极限</strong></em></a></li>
         <li><a href="#有关--sin-theta--theta--的极限"><em><strong>有关 $ (\sin \theta) / \theta $ 的极限</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#与无穷有关的极限"><em><strong>与无穷有关的极限</strong></em></a>
+      <ul>
+        <li><a href="#-x-to-pm-infty--时的有限极限"><em><strong>$ x \to \pm \infty $ 时的有限极限</strong></em></a></li>
+        <li><a href="#-x-to-pm-infty--时有理函数的极限"><em><strong>$ x \to \pm \infty $ 时有理函数的极限</strong></em></a></li>
+        <li><a href="#水平和垂直渐近线无穷极限"><em><strong>水平和垂直渐近线：无穷极限</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -346,6 +353,73 @@ $$
 \lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1 \quad （\theta \text{为弧度}）
 $$</li>
 </ol>
+<h2 id="与无穷有关的极限"><em><strong>与无穷有关的极限</strong></em></h2>
+<h3 id="-x-to-pm-infty--时的有限极限"><em><strong>$ x \to \pm \infty $ 时的有限极限</strong></em></h3>
+<ol>
+<li>
+<p><em>我们说 x 趋于无穷时 $ f(x) $ 有极限 L 并记作</em>
+$$
+\lim_{x \to \infty} f(x) = L
+$$
+<em>如果当 x 沿正向离开原点越来越远时，$f(x)$ 任意接近 L</em></p>
+</li>
+<li>
+<p><em>我们说 x 趋于负无穷时 $f(x)$有极限 L 并记作</em>
+$$
+\lim_{x \to -\infty} f(x) = L
+$$
+<em>如果当 x 沿负向离开原点越来越远时，$f(x)$ 任意接近 L</em></p>
+</li>
+<li>
+<p><em>$ x \to \pm \infty $ 极限法则</em></p>
+<p><em>如果 L，M 和 k 都是实数，且</em>
+$$
+\lim_{x \to \pm \infty} f(x) = L\quad 和 \quad \lim_{x \to \pm \infty} g(x) = M \quad 那么：
+$$</p>
+<ul>
+<li>
+<p><em>和法则</em>
+$$
+\lim_{x \to \pm \infty}(f(x) + g(x)) = L + M
+$$</p>
+</li>
+<li>
+<p><em>差法则</em>
+$$
+\lim_{x \to \pm \infty}(f(x) - g(x)) = L - M
+$$</p>
+</li>
+<li>
+<p><em>积法则</em>
+$$
+\lim_{x \to \pm \infty}(f(x) \cdot g(x)) = L \cdot M
+$$</p>
+</li>
+<li>
+<p><em>常乘数法则</em>
+$$
+\lim_{x \to \pm \infty}(k \cdot f(x)) = k \cdot L
+$$</p>
+</li>
+<li>
+<p><em>商法则</em>
+$$
+\lim_{x \to \pm \infty} \frac{f(x)}{g(x)} = \frac{L}{M} \quad M \neq 0
+$$</p>
+</li>
+<li>
+<p><em>幂法则：如果 r 和 s 都是整数，并且 $s \neq 0$ 则：</em>
+$$
+\lim_{x \to \pm \infty} (f(x))^{r/s} = L^{r/s}
+$$</p>
+</li>
+</ul>
+</li>
+<li></li>
+</ol>
+<h3 id="-x-to-pm-infty--时有理函数的极限"><em><strong>$ x \to \pm \infty $ 时有理函数的极限</strong></em></h3>
+<p><em>为 $ x \to \pm \infty $ 时确定有理函数的极限，分子和分母可以同除以分母中 x 的最高幂次，结果如何取决于有关多项式的次</em></p>
+<h3 id="水平和垂直渐近线无穷极限"><em><strong>水平和垂直渐近线：无穷极限</strong></em></h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

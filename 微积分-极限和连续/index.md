@@ -209,3 +209,64 @@ $$
    \lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1 \quad （\theta \text{为弧度}）
    $$
 
+## ***与无穷有关的极限***
+
+### ***$ x \to \pm \infty $ 时的有限极限***
+
+1. *我们说 x 趋于无穷时 $ f(x) $ 有极限 L 并记作*
+   $$
+   \lim_{x \to \infty} f(x) = L
+   $$
+   *如果当 x 沿正向离开原点越来越远时，$f(x)$ 任意接近 L*
+
+2. *我们说 x 趋于负无穷时 $f(x)$有极限 L 并记作*
+   $$
+   \lim_{x \to -\infty} f(x) = L
+   $$
+   *如果当 x 沿负向离开原点越来越远时，$f(x)$ 任意接近 L*
+
+3. *$ x \to \pm \infty $ 极限法则*
+
+   *如果 L，M 和 k 都是实数，且*
+   $$
+   \lim_{x \to \pm \infty} f(x) = L\quad 和 \quad \lim_{x \to \pm \infty} g(x) = M \quad 那么：
+   $$
+
+   * *和法则*
+     $$
+     \lim_{x \to \pm \infty}(f(x) + g(x)) = L + M
+     $$
+
+   * *差法则*
+     $$
+     \lim_{x \to \pm \infty}(f(x) - g(x)) = L - M
+     $$
+
+   * *积法则*
+     $$
+     \lim_{x \to \pm \infty}(f(x) \cdot g(x)) = L \cdot M
+     $$
+
+   * *常乘数法则*
+     $$
+     \lim_{x \to \pm \infty}(k \cdot f(x)) = k \cdot L
+     $$
+
+   * *商法则*
+     $$
+     \lim_{x \to \pm \infty} \frac{f(x)}{g(x)} = \frac{L}{M} \quad M \neq 0
+     $$
+
+   * *幂法则：如果 r 和 s 都是整数，并且 $s \neq 0$ 则：*
+     $$
+     \lim_{x \to \pm \infty} (f(x))^{r/s} = L^{r/s}
+     $$
+
+4. 
+
+### ***$ x \to \pm \infty $ 时有理函数的极限***
+
+*为 $ x \to \pm \infty $ 时确定有理函数的极限，分子和分母可以同除以分母中 x 的最高幂次，结果如何取决于有关多项式的次*
+
+### ***水平和垂直渐近线：无穷极限***
+
