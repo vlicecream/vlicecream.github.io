@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "微积分","wordcount":  2948 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "微积分","wordcount":  4708 ,
         "url": "https:\/\/example.com\/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD\/","datePublished": "2025-08-18T07:50:00+08:00","dateModified": "2025-09-03T08:27:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">微积分 - 极限和连续</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>微积分</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-18">2025-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2948 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD/" class="leancloud_visitors" data-flag-title="微积分 - 极限和连续">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-18">2025-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4708 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/%E5%BE%AE%E7%A7%AF%E5%88%86-%E6%9E%81%E9%99%90%E5%92%8C%E8%BF%9E%E7%BB%AD/" class="leancloud_visitors" data-flag-title="微积分 - 极限和连续">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -150,7 +150,32 @@
             <li><a href="#例题求渐近线"><em><strong>例题（求渐近线）</strong></em></a></li>
           </ul>
         </li>
-        <li><a href="#在论三明治夹逼定理"><em><strong>在论三明治（夹逼）定理</strong></em></a></li>
+        <li><a href="#在论三明治夹逼定理"><em><strong>在论三明治（夹逼）定理</strong></em></a>
+          <ul>
+            <li><a href="#例题求-x-趋于-0-或者--pm-infty-时的极限"><em><strong>例题（求 x 趋于 0 或者 $ \pm \infty $时的极限）</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#无穷极限的精确定义"><em><strong>无穷极限的精确定义</strong></em></a></li>
+        <li><a href="#终极性态模型和斜渐近线"><em><strong>终极性态模型和斜渐近线</strong></em></a>
+          <ul>
+            <li><a href="#例题求终极性态模型"><em><strong>例题（求终极性态模型）</strong></em></a></li>
+            <li><a href="#斜渐进线"><em><strong>斜渐进线</strong></em></a></li>
+            <li><a href="#例题求一条斜渐近线"><em><strong>例题（求一条斜渐近线）</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#连续性"><em><strong>连续性</strong></em></a>
+      <ul>
+        <li><a href="#在一点的连续性"><em><strong>在一点的连续性</strong></em></a></li>
+        <li><a href="#连续性检验"><em><strong>连续性检验</strong></em></a></li>
+        <li><a href="#连续函数"><em><strong>连续函数</strong></em></a></li>
+        <li><a href="#代数组合"><em><strong>代数组合</strong></em></a></li>
+        <li><a href="#复合函数"><em><strong>复合函数</strong></em></a>
+          <ul>
+            <li><a href="#例题运用此定理"><em><strong>例题（运用此定理）</strong></em></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -468,6 +493,180 @@ $$
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903082651505.png"
         title="例题（求渐近线）" /></p>
 <h3 id="在论三明治夹逼定理"><em><strong>在论三明治（夹逼）定理</strong></em></h3>
+<p><em>对于 $ x \to \pm \infty $ 时极限的三明治（夹逼）定理也是成立的</em></p>
+<h4 id="例题求-x-趋于-0-或者--pm-infty-时的极限"><em><strong>例题（求 x 趋于 0 或者 $ \pm \infty $时的极限）</strong></em></h4>
+<p><em>运用三明治（夹逼）定理求曲线的渐近线</em>
+$$
+y = 2 + \frac{\sin{x}}{x}
+$$
+<em><strong>解：</strong></em></p>
+<p><em>我们对 $ x \to \pm \infty $ 和 $ x \to 0 $(分母为0)时函数的性态感兴趣</em></p>
+<ol>
+<li>
+<p><em>$ x \to 0 $时的性态，我们知道 $ \lim_{x \to 0} (\sin x)/x = 1 $，所以再原点没有渐近线</em></p>
+</li>
+<li>
+<p><em>$ x \to \pm \infty $时的形态，因为 $ 0 \leq | \frac{\sin x}{x} | \leq | \frac{1}{x} |$，以及 $ \displaystyle \lim_{x \to \pm \infty} | 1 /x | = 0 $，再有三明治（夹逼）定理我们有 $ \displaystyle \lim_{x \to \pm \infty} (\sin x) / x = 0 $，因此：</em>
+$$
+\lim_{x \to \pm \infty} (2 + \frac{\sin x}{x}) = 2 + 0 = 2
+$$
+<em>而直线 $ y = 2 $ 从左侧和右侧都是该曲线的渐近线</em></p>
+</li>
+</ol>
+<p><em><strong>这个例子说明曲线可以跨过他的一条渐近线，也许是跨过许多次</strong></em></p>
+<h3 id="无穷极限的精确定义"><em><strong>无穷极限的精确定义</strong></em></h3>
+<ol>
+<li>
+<p><em>我们说 <strong>x 趋于 $ x_0 $ 时 $ f(x) $趋于无穷，并记作：</strong></em>
+$$
+\lim_{x \to x_0} f(x) = \infty
+$$
+<em>如果对任何正实数 B存在相应的 $ \delta &gt; 0 $，使得对一切满足 $ 0 &lt; | x - x_0| &lt; \delta $ 的 x，有 $ f(x) &gt; B $</em></p>
+</li>
+<li>
+<p>*我们说 <em><strong>x趋于$ x_0 $ 时 $ f(x) $趋于负无穷，并记作：</strong></em>
+$$
+\lim_{x \to x_0} f(x) = -\infty
+$$
+<em>如果对任何负实数 -B存在相应的 $ \delta &gt; 0 $，使得对一切满足 $ 0 &lt; | x - x_0| &lt; \delta $ 的 x，有 $ f(x) &lt; -B $</em></p>
+</li>
+<li>
+<p><em>在 $ x_0 $ 的单侧无穷极限的精确定义是类似的</em></p>
+</li>
+</ol>
+<h3 id="终极性态模型和斜渐近线"><em><strong>终极性态模型和斜渐近线</strong></em></h3>
+<p><em>对于数值很大的 x，我们有时候可以对复杂函数的性态用一个实际上以同样方式起作用的较为简单的函数作为该复杂函数的模型</em></p>
+<p><em>函数 g 是：</em></p>
+<ol>
+<li>
+<p><em>$f$的右侧终极性态模型，当且仅当：</em>
+$$
+\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1
+$$</p>
+</li>
+<li>
+<p><em>$f$的左侧终极性态模型，当且仅当：</em>
+$$
+\lim_{x \to -\infty} \frac{f(x)}{g(x)} = 1
+$$</p>
+</li>
+<li>
+<p><em>函数的右侧，左侧终极性态模型不必是同一个函数</em></p>
+</li>
+</ol>
+<h4 id="例题求终极性态模型"><em><strong>例题（求终极性态模型）</strong></em></h4>
+<p><em>设 $ f(x) = x + e^{-x} $，试着证明 $ g(x) = x $是$ f $ 的右侧终极模型，而 $ h(x) = e^{-x} $ 是 $ f $ 的左侧终极模型</em></p>
+<p><em><strong>解：</strong></em></p>
+<p><em>在右边：</em>
+$$
+\begin{gather*}
+\lim_{x \to \infty} \frac{f(x)}{g(x)} = \lim_{x \to \infty} \frac{x + e^{-3}}{x} = \lim_{x \to \infty}(1 + \frac{e^{-x}}{x}) = 1
+\\ \\
+因为 \lim_{x \to \infty} \frac{e^{-x}}{x} = 0
+\end{gather*}
+$$
+<em>在左边：</em>
+$$
+\begin{gather*}
+\lim_{x \to -\infty} \frac{f(x)}{g(x)} = \lim_{x \to -\infty} \frac{x + e^-x}{-x} = \lim_{x \to -\infty} (\frac{x}{e^{-x}} + 1) = 1
+\\ \\
+因为 \lim_{x \to -\infty} \frac{x}{e^{-x}} = 0
+\end{gather*}
+$$</p>
+<h4 id="斜渐进线"><em><strong>斜渐进线</strong></em></h4>
+<p><em>有些情形，比如上面例题（求终极性态模型）我们求得有理函数的终极性态模型，如果分子的次比分母的次大1，那么有理函数$ f(x) $的图形就有一条，斜渐近线</em></p>
+<p><em>我们可以通过分子除以分母把 $f$表为一个线性函数再加上一项当 $ x \to \pm \infty $时趋于0的余项来求得渐近线的方程</em></p>
+<h4 id="例题求一条斜渐近线"><em><strong>例题（求一条斜渐近线）</strong></em></h4>
+<p><em>求下面函数图形的斜渐近线：</em>
+$$
+f(x) = \frac{2x^2 - 3}{7x + 4}
+$$
+<em><strong>解：</strong></em></p>
+<p><em>由长除法，我们得知：</em>
+$$
+\begin{align*}
+f(x) &amp;= \frac{2x^{2}+3}{7x+4}
+\\ \\
+&amp;=\underbrace{(\frac{2}{7}x-\frac{8}{49})}_{\text{线性函数}g(x)}+\underbrace{\frac{-115}{49(7x+4)}}_{\text{余项}}
+\end{align*}
+$$
+<em>当 $x \to \pm \infty $时，给出 $ f $ 和 $ g $ 的图形间的垂直距离的余项趋于零，就使得（倾斜的）直线</em>
+$$
+g(x) = \frac{2}{7}x - \frac{8}{49}
+$$
+<em>成为 $ f $的图形的渐近线。函数 $g$ 是 $f$ 的右侧终极模型 也是 $ f $ 的左侧终极模型</em></p>
+<h2 id="连续性"><em><strong>连续性</strong></em></h2>
+<h3 id="在一点的连续性"><em><strong>在一点的连续性</strong></em></h3>
+<ol>
+<li>
+<p><em><strong>内点：</strong></em> <em>函数 $ f(x) $ 在其定义域的内点 c 处是连续的，如果：</em>
+$$
+\lim_{x \to c} f(x) = f(c)
+$$</p>
+</li>
+<li>
+<p><em><strong>端点：</strong></em> <em>函数 $ f(x) $在其定义域的左端点 a 或者 右端点 b 是连续的，如果分别有：</em>
+$$
+\lim_{x \to a^+} f(x) = f(a) \quad 或 \quad \lim_{x \to b^-} f(x) = f(b)
+$$</p>
+</li>
+</ol>
+<p><em>如果函数 $ f $ 在点 c 处不是连续的，我们就说 $ f $ 在 c 间断，而 c 是 $ f $ 的一个间断点。注意 c 不必在 $ f $ 的定义域中</em></p>
+<p><em>函数 $ f $ 在其定义域的点 x = c 是右连续（从右侧连续）的，如果 $ \lim_{x \to c^+} f(x) = f(c) $</em></p>
+<p><em>如果 $ \lim_{x \to c^-} f(x) = f(c) $，则 $f$ 在 c 是左连续的</em></p>
+<h3 id="连续性检验"><em><strong>连续性检验</strong></em></h3>
+<p><em>函数 $ f(x) $在 x = c 连续，当且仅当它满足一下条件：</em></p>
+<ol>
+<li><em>$ f(c) $存在  （c 在 $f$ 的定义域中）</em></li>
+<li><em>$ \displaystyle \lim_{x \to c} f(x) $存在 （当 $ x \to c $时$f$有极限）</em></li>
+<li><em>$ \displaystyle \lim_{x \to c} f(x) = f(c)$ （极限等于函数值）</em></li>
+</ol>
+<h3 id="连续函数"><em><strong>连续函数</strong></em></h3>
+<p><em>函数在一个区间上连续当且仅当它在该区间的每一点连续。连续函数是在其定义域中每一点连续的函数</em></p>
+<p><em>连续函数不一定在所有可能的区间上连续</em></p>
+<h3 id="代数组合"><em><strong>代数组合</strong></em></h3>
+<p><em>连续函数的代数组合，当他们有定义的时候，是连续的</em></p>
+<p><em><strong>连续函数的性质：</strong></em></p>
+<p><em>如果函数 $f$ 和 $g$ 在 x = c 连续，那么下列 $ f $ 和 $ g $的组合在 x = c 都是连续的</em></p>
+<ol>
+<li><em>和：$ f + g $</em></li>
+<li><em>差：$ f - g $</em></li>
+<li><em>积：$ f \cdot g $</em></li>
+<li><em>乘常数：$ k \cdot f $，对任何数 k</em></li>
+<li><em>商：$ \frac{f}{g} $，倘若 $ g(c) \neq 0 $</em></li>
+</ol>
+<h3 id="复合函数"><em><strong>复合函数</strong></em></h3>
+<p><em>连续函数的复合函数是连续函数，因此像：</em>
+$$
+y = \sin(x^2) \quad 和 \quad y = | \cos x |
+$$
+<em><strong>如果 $ f $在 c 连续，而 g 在 $ f(c) $ 连续，那么复合函数 $ g \circ f $ 在 c 连续</strong></em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903225942259.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903225942259.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903225942259.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903225942259.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903225942259.png"
+        title="复合函数" /></p>
+<h4 id="例题运用此定理"><em><strong>例题（运用此定理）</strong></em></h4>
+<p><em>说明下面函数是连续函数：</em>
+$$
+y = \mid \frac{x \sin x}{x^2 + 2} \mid
+$$
+<em><strong>解：</strong></em></p>
+<p><em>$ y = \mid x \sin x / x^2 + 2 \mid $ 的图形 揭示该函数在每个 x 值处连续，令：</em>
+$$
+g(x) = \mid x \mid \quad 和 \quad f(x) = \mid \frac{x \sin x}{x^2 + 2} \mid
+$$
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903230754048.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903230754048.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903230754048.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903230754048.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903230754048.png"
+        title="例题（运用此定理）" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
