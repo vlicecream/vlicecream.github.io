@@ -262,11 +262,46 @@ $$
      \lim_{x \to \pm \infty} (f(x))^{r/s} = L^{r/s}
      $$
 
-4. 
-
 ### ***$ x \to \pm \infty $ 时有理函数的极限***
 
 *为 $ x \to \pm \infty $ 时确定有理函数的极限，分子和分母可以同除以分母中 x 的最高幂次，结果如何取决于有关多项式的次*
 
 ### ***水平和垂直渐近线：无穷极限***
+
+1. *直线 y = b 是 函数 $ y = f(x) $ 图形的水平渐近线，如果有：*
+   $$
+   \lim_{x \to \infty} f(x) = b \quad 或 \quad \lim_{x \to -\infty} f(x) = b
+   $$
+
+2. *直线 x = a 是该图形的垂直渐近线，如果有：*
+   $$
+   \lim_{x \to a^+} f(x) = \pm \infty \quad 或 \quad \lim_{x \to a^-} f(x) = \pm \infty
+   $$
+   
+
+#### ***例题（求渐近线）***
+
+$$
+求 \quad y = \frac{x + 3}{x + 2} \quad 的渐近线
+$$
+
+***解：***
+
+*我们对 $ x \to \pm \infty $ 和 $ x \to -2$(x = -2时分母为零)的形态感兴趣*
+
+*如果我们通过(x + 2)除(x+3) 把一个有理函数重写为一个多项式加上余项，那么渐近线很快就显现出来了*
+
+![余项](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903082440445.png)
+
+*结果是可把 y 重写为*
+$$
+y = 1 + \frac{1}{x + 2}
+$$
+*那么我们就知道该曲线是由 $ y = 1/x $的图形往上平移1单位并向左边平移2单位得到的*
+
+*现在的渐近线不是坐标轴而是直线 y = 1 和 x = -2*
+
+![例题（求渐近线）](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250903082651505.png)
+
+### ***在论三明治（夹逼）定理***
 
