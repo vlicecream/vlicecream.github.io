@@ -119,7 +119,7 @@ $$
 
 ### ***二阶和高阶导数***
 
-*导数 $y' = dy/dx $ 是 y 关于 x 的**一阶导数**。该导数本身就可能是 x 的可微函数；
+*导数 $y' = dy/dx $ 是 y 关于 x 的**一阶导数**。该导数本身就可能是 x 的可微函数；*
 
 *如果是这样的话，他的导数 $ y'' = \frac{dy'}{dx} = \frac{d}{dx}(\frac{dy}{dx}) = \frac{d^2y}{dx^2} $ 称为 y 关于 x 的* ***二阶导数***
 
@@ -225,5 +225,155 @@ $$
    $$
    \frac{d}{dx}(uv) = u\frac{dv}{dx} + v\frac{du}{dx}
    $$
-   
+
+### ***商***
+
+*如果 u 和 v在 x 可微，又如果 $ v(x) \neq 0 $，那么商 u/v 在 x 可微，且有：*
+$$
+\frac{d}{dx}(\frac{u}{v}) = \frac{v\frac{du}{dx} - u \frac{dv}{dx}}{v^2}
+$$
+
+### ***x 的负整数次幂***
+
+1. *法则：如果 n 是负整数，且 $ x \neq 0 $。那么：*
+   $$
+   \frac{d}{dx}(x ^ n) = nx^{n - 1}
+   $$
+
+## ***三角函数的导数***
+
+### ***正弦函数的导数***
+
+*正弦函数的导数是余弦函数*
+$$
+\frac{d}{dx}(\sin x) = \cos x
+$$
+
+#### ***例题（与正弦函数有关的函数的导数）***
+
+1. *$ y = x^2 - \sin x $*
+   $$
+   \begin{align*}
+   \frac{dy}{dx} &= 2x - \frac{d}{dx}(\sin x) \quad 差法则
+   \\\ \\\
+   &= 2x - \cos x
+   \end{align*}
+   $$
+
+2. *$ y = \frac{sinx}{x} $*
+   $$
+   \begin{align*}
+   \frac{dy}{dx} &= \frac{x \cdot \frac{d}{dx}(\sin x) - \sin x \cdot 1}{x^2} \quad 商法则
+   \\\ \\\
+   &= \frac{x \cos x - \sin x}{x^2}
+   \end{align*}
+   $$
+
+### ***余弦函数的导数***
+
+*余弦函数的导数就是正弦函数取符号*
+$$
+\frac{d}{dx}(\cos x) = - \sin x
+$$
+
+### ***简谐运动***
+
+*在弹簧或蹦极绳索端点的物体的上下自由摆动就是简谐运动的一个例子*
+
+1. *位置：$ s = 5 \cos t $*
+2. *速度：$ v = \frac{ds}{dt} = \frac{d}{dt}(5 \cos t) = -5 \sin t $*
+3. *加速度：$ a = \frac{dv}{dt} = \frac{d}{dt}(-5 \sin t) = -5 \cos t$*
+
+### ***其他基本三角函数的导数***
+
+*因为 $ \sin x $ 和 $ \cos x $ 都是 x 的可微函数，所以有关的函数：*
+$$
+\begin{align*}
+\tan x &= \frac{\sin x}{\cos x} \quad \cot x = \frac{\cos x}{\sin x}
+\\\ \\\
+\sec &= \frac{1}{\cos x} \quad \csc x = \frac{1}{\sin x}
+\end{align*}
+$$
+*在他们有定义的每个 x 值处都是可微的，利用商法则计算得到的他们的导数，由下面的公式给出：*
+$$
+\begin{align*}
+\frac{d}{dx}(\tan x) = \sec^2 x
+\\\ \\\
+\frac{d}{dx}(\sec x) = \sec x \tan x
+\\\ \\\
+\frac{d}{dx}(\cot x) = - \csc^2 x
+\\\ \\\
+\frac{d}{dx}(\csc x) = - \csc x \cot x
+\end{align*}
+$$
+
+### ***三角函数的连续性***
+
+*因为六个基本三角函数在其定义域上都是可微的，所以他们在其定义域上都是连续的*
+
+*除 x 是 $ \pi / 2 $ 的非零整数倍外 $ \sec x $ 和 $ \tan x $都是连续的，除 x 是 $ \pi $ 的整数倍外 csc x 和 cot x 都是连续的*
+
+*对每个函数，当 $ f(c) $ 有定义时有 $ \lim_{x \to c} f(x) = f(c) $，因此，我们可以用直接代入法来计算三角函数的许多代数组合和复合函数的极限*
+
+#### ***例题（求三角函数的极限）***
+
+$$
+\lim_{x \to 0} \frac{\sqrt{2 + \sec x}}{\cos (\pi - \tan x)} = \frac{\sqrt{2 + \sec 0}}{\cos (\pi - \tan 0)}
+= \frac{\sqrt{2 + 1}}{\cos (\pi - 0)} = \frac{\sqrt{3}}{-1} = -\sqrt{3}
+$$
+
+## ***链式法则***
+
+### ***复合函数的导数***
+
+*1. 定理：链式法则*
+
+*如果 $ f(u) $在点 $ u = g(x) $ 可微 而 $ g(x) $ 在 x 可微, 那么复合函数 $ (f \circ g)(x) = f(g(x))在 x 可微 $，而且：*
+$$
+(f \circ g)'(x) = f'(g(x)) \cdot g'(x)
+$$
+*用 Leibniz 的记号，如果 $ y = f(u) $ 而 $ u = g(x) $，那么：*
+$$
+\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+$$
+*其中 $ \frac{dy}{du} $是在 $ u = g(x) $处取值*
+
+### ***外面 - 里面 法则***
+
+*用以下方式来想链式法则有时是会有助益的：如果 $ y = f(g(x)) $，那么：*
+$$
+\frac{dy}{dx} = f'(g(x)) \cdot g'(x)
+$$
+*用文字表述就是对 外面的函数 $f$ 求导并单独在 里面的函数 $ g(x) $处取值，然后乘上里面函数的导数*
+
+### ***累次应用链式法则***
+
+*为求导数我们有时候要应用链式法则二次或多次*
+
+### ***参数化曲线的斜率***
+
+#### ***dy/dx 的参数公式***
+
+*如果三个导数都存在，且 $dx/dt \neq 0$，那么：*
+$$
+\frac{dy}{dx} = \frac{dy/dt}{dx/dt}
+$$
+
+#### ***$ d^2y / dx^2 $ 的参数公式***
+
+*如果方程 $x = f(t)$，$y = g(t) $ 定义 y 作为 x 的二次可微函数，那么在 $ dx / dt \neq 0 $的地方*
+$$
+\frac{d^2 y}{dx^2} = \frac{dy'/dt}{dx/dt}
+$$
+
+### ***幂链式法则***
+
+*如果 $f$ 是 u 的可微函数，又若 u 是 x 的可微函数，那么把 $ y = f(u) $代入链式法则公式：*
+$$
+\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+$$
+*就导致公式：*
+$$
+\frac{d}{dx}f(u) = f'(u) \frac{du}{dx}
+$$
 
