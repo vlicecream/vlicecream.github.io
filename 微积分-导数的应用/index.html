@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%BE%AE%E7%A7%AF%E5%88%86-%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "微积分","wordcount":  1010 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "微积分","wordcount":  1508 ,
         "url": "https:\/\/example.com\/%E5%BE%AE%E7%A7%AF%E5%88%86-%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8\/","datePublished": "2025-09-08T08:01:00+08:00","dateModified": "2025-09-08T07:59:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">微积分 - 导数的应用</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>微积分</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-08">2025-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1010 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/%E5%BE%AE%E7%A7%AF%E5%88%86-%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/" class="leancloud_visitors" data-flag-title="微积分 - 导数的应用">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-08">2025-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1508 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/%E5%BE%AE%E7%A7%AF%E5%88%86-%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/" class="leancloud_visitors" data-flag-title="微积分 - 导数的应用">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -144,6 +144,21 @@
     <li><a href="#图形的形状"><em><strong>图形的形状</strong></em></a>
       <ul>
         <li><a href="#增函数和减函数的一阶导数检验法"><em><strong>增函数和减函数的一阶导数检验法</strong></em></a></li>
+        <li><a href="#局部极值的一阶导数检验法"><em><strong>局部极值的一阶导数检验法</strong></em></a></li>
+        <li><a href="#凹性"><em><strong>凹性</strong></em></a>
+          <ul>
+            <li><a href="#凹形的二阶导数检验法"><em><strong>凹形的二阶导数检验法</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#拐点"><em><strong>拐点</strong></em></a></li>
+        <li><a href="#局部极值的二阶导数检验法"><em><strong>局部极值的二阶导数检验法</strong></em></a></li>
+        <li><a href="#用手画--y--fx--的图形的一般步骤"><em><strong>用手画 $ y = f(x) $ 的图形的一般步骤</strong></em></a></li>
+        <li><a href="#从函数的导数了解函数"><em><strong>从函数的导数了解函数</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#自治微分方程的图形解"><em><strong>自治微分方程的图形解</strong></em></a>
+      <ul>
+        <li><a href="#平衡点和相直线"><em><strong>平衡点和相直线</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -236,6 +251,70 @@ $$</p>
 <p><em>假设 $f$ 在 [a，b] 上连续并在（a，b）上可微</em></p>
 <p><em>如果在 （a，b）的每一点处 $f&rsquo; &gt; 0$，那么$f$ 在 [a，b] 上是增函数</em></p>
 <p><em>如果在 （a，b）的每一点处 $f&rsquo; &lt; 0$，那么$f$ 在 [a，b] 上是减函数</em></p>
+</li>
+</ol>
+<h3 id="局部极值的一阶导数检验法"><em><strong>局部极值的一阶导数检验法</strong></em></h3>
+<p><em>在临界点 x = c 处</em></p>
+<ol>
+<li><em>$f$ 有局部最小值，如果 $f&rsquo;$ 在 c 从负变到正</em></li>
+<li><em>$f$ 有局部最大值，如果 $f&rsquo;$ 在 c 从正变到负</em></li>
+<li><em>$f$ 没有局部极值，如果 $f&rsquo;$ 在 c 的两边正负号相同</em></li>
+</ol>
+<h3 id="凹性"><em><strong>凹性</strong></em></h3>
+<ol>
+<li>
+<p><em>定义：凹形</em></p>
+<p><em>可微函数 $y = f(x)$ 的图形是</em></p>
+<ul>
+<li><em>在开区间 I 上凹向上的，如果 $y&rsquo;$ 在 I 上递增</em></li>
+<li><em>在开区间 I 上凹向下的，如果 $y&rsquo;$ 在 I 上递减</em></li>
+</ul>
+</li>
+</ol>
+<h4 id="凹形的二阶导数检验法"><em><strong>凹形的二阶导数检验法</strong></em></h4>
+<p><em>二次可微函数 $y = f(x)$ 的图形</em></p>
+<ul>
+<li><em>在 $y&rsquo;&rsquo; &gt; 0$ 的任何区间上是凹向上的</em></li>
+<li><em>在 $y&rsquo;&rsquo; &lt; 0$ 的任何区间上是凹向下的</em></li>
+</ul>
+<h3 id="拐点"><em><strong>拐点</strong></em></h3>
+<p><em>一点称为函数的拐点，如果函数在该点有切线而且在该店改变函数的凹形</em></p>
+<h3 id="局部极值的二阶导数检验法"><em><strong>局部极值的二阶导数检验法</strong></em></h3>
+<ol>
+<li><em>如果$f&rsquo;(c) = 0$ 且 $f&rsquo;&rsquo;(c) &lt; 0$，那么 $f$ 在 $x = c$ 取到局部最大值</em></li>
+<li><em>如果$f&rsquo;(c) = 0$ 且 $f&rsquo;&rsquo;(c) &gt; 0$，那么 $f$ 在 $x = c$ 取到局部最小值</em></li>
+</ol>
+<h3 id="用手画--y--fx--的图形的一般步骤"><em><strong>用手画 $ y = f(x) $ 的图形的一般步骤</strong></em></h3>
+<ol>
+<li><em>求 $y&rsquo;$ 和 $y&rsquo;&rsquo;$</em></li>
+<li><em>求曲线的上升和下降空间</em></li>
+<li><em>确定曲线的凹形</em></li>
+<li><em>综合并展示曲线的总的样子</em></li>
+<li><em>点出特定的点并粗略画出曲线的图形</em></li>
+</ol>
+<h3 id="从函数的导数了解函数"><em><strong>从函数的导数了解函数</strong></em></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250908191333995.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250908191333995.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250908191333995.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250908191333995.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20250908191333995.png"
+        title="从函数的导数了解函数" /></p>
+<h2 id="自治微分方程的图形解"><em><strong>自治微分方程的图形解</strong></em></h2>
+<h3 id="平衡点和相直线"><em><strong>平衡点和相直线</strong></em></h3>
+<ol>
+<li>
+<p><em>自治微分方程</em></p>
+<p><em>对方称 $y^2 = x + 1$ 隐式的求导数就给出：</em>
+$$
+2y\frac{dy}{dx} = 1 \quad \frac{dy}{dx} = \frac{1}{2y}
+$$
+<em>这一微分方程，其中 dy/dx 只是 y 的函数，称为自治微分方程</em></p>
+</li>
+<li>
+<p><em>定义：平衡点或者静止点</em></p>
+<p><em>如果 dy/dx = g(y) 是自治微分方程，那么使得 dy/dx = 0 的 y 的值称为平衡点或静止点</em></p>
 </li>
 </ol>
 </div><div class="post-footer" id="post-footer">
