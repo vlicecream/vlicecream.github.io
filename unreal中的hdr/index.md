@@ -87,7 +87,7 @@
 1. *cLUTs*
 2. *Tonemap*
 
-### ***cLUTs***
+### ***生成 cLUTs***
 
 *首先，生成当前帧的 CLUT。*
 
@@ -106,7 +106,11 @@
 
 *如果不走这个宏的话，他就会按照你的 LUTSize（默认值为32） 生成像素长为 32 x 32 =  1024，像素宽为 32 的 2D LUTs*
 
-```c
+*再然后如果发现你的 `OutputDevice >= 3` 则把 ST 2084/PQ 传输函数将 0-1 范围重新映射到 0-100 尼特的转换*
+
+*SDR输出设备分支采用对数编码，利用对数函数将0到1的范围重新映射到从0到场景中最大像素值（约50）的转换。*
+
+```cpp
 float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 {
 #if USE_VOLUME_LUT == 1
@@ -137,10 +141,295 @@ float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 		Neutral = float4(RGB * Scale, 0);
 	}
 #endif
+    
+    ......
+        
+    float3 LUTEncodedColor = Neutral.rgb;
+	float3 LinearColor;
+	// Decode texture values as ST-2084 (Dolby PQ)
+	BRANCH
+	if (GetOutputDevice() >= TONEMAPPER_OUTPUT_ACES1000nitST2084)
+	{
+		// Since ST2084 returns linear values in nits, divide by a scale factor to convert
+		// the reference nit result to be 1.0 in linear.
+		// (for efficiency multiply by precomputed inverse)
+		LinearColor = ST2084ToLinear(LUTEncodedColor) * LinearToNitsScaleInverse;
+	}
+	// Decode log values
+	else
+	{
+		LinearColor = LogToLin(LUTEncodedColor) - LogToLin(0);
+	}
+}
+
+float3 LogToLin( float3 LogColor )
+{
+	const float LinearRange = 14;
+	const float LinearGrey = 0.18;
+	const float ExposureGrey = 444;
+
+	// Using stripped down, 'pure log', formula. Parameterized by grey points and dynamic range covered.
+	float3 LinearColor = exp2( ( LogColor - ExposureGrey / 1023.0 ) * LinearRange ) * LinearGrey;
+	//float3 LinearColor = 2 * ( pow(10.0, ((LogColor - 0.616596 - 0.03) / 0.432699)) - 0.037584 );	// SLog
+	//float3 LinearColor = ( pow( 10, ( 1023 * LogColor - 685 ) / 300) - .0108 ) / (1 - .0108);	// Cineon
+	//LinearColor = max( 0, LinearColor );
+
+	return LinearColor;
+}
 ```
 
 #### ***（2）白平衡***
 
+*使用上一个步骤计算出来的 `LinearColor` 计算白平衡*
 
+```cpp
+float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
+{
+    ......
+	float3 BalancedColor = WhiteBalance(LinearColor, WhiteTemp, WhiteTint, bIsTemperatureWhiteBalance, (float3x3)WorkingColorSpace.ToXYZ, (float3x3)WorkingColorSpace.FromXYZ);
+    ......
+}
+
+float3 WhiteBalance(float3 LinearColor, float WhiteTemp, float WhiteTint, bool bIsTemperatureWhiteBalance, const float3x3 WCS_2_XYZ, const float3x3 XYZ_2_WCS)
+{
+	float2 SrcWhiteDaylight = D_IlluminantChromaticity(WhiteTemp);
+	float2 SrcWhitePlankian = PlanckianLocusChromaticity(WhiteTemp);
+
+	float2 SrcWhite = WhiteTemp < 4000 ? SrcWhitePlankian : SrcWhiteDaylight;
+	float2 D65White = float2(0.31270, 0.32900);
+
+	{
+		// Offset along isotherm
+		float2 Isothermal = PlanckianIsothermal(WhiteTemp, WhiteTint) - SrcWhitePlankian;
+		SrcWhite += Isothermal;
+	}
+
+	if (!bIsTemperatureWhiteBalance)
+	{
+		float2 Temp = SrcWhite;
+		SrcWhite = D65White;
+		D65White = Temp;
+	}
+
+	float3x3 WhiteBalanceMat = ChromaticAdaptation(SrcWhite, D65White);
+	WhiteBalanceMat = mul( XYZ_2_WCS, mul( WhiteBalanceMat, WCS_2_XYZ ) );
+
+	return mul(WhiteBalanceMat, LinearColor);
+}
+```
+
+*白平衡是利用是**色温值**来选择是普朗克轨迹还是日光模型来算出白点的色度坐标*
+
+*如果是 `色温值 < 4000`则光源更接近于黑体辐射，所以使用普朗克轨迹模型，更通俗点就是人造光源*
+
+*反之，则光源更接近于日光这种，所以使用标准日光模型*
+
+#### ***（3）从sRGB到AP1色彩空间的转换***
+
+*计算白平衡后，色彩空间从sRGBLinear转换为ACESAP1线性色彩空间。*
+
+```cpp
+float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
+{
+    ......
+	float3 ColorAP1 = mul( (float3x3)WorkingColorSpace.ToAP1, BalancedColor );
+    ......
+}
+```
+
+*我们将色域从 sRGB 空间转换到了广色域 AP1，但之前的场景渲染是在 sRGB 线性色彩空间中进行的，因此得到的色域值始终在 sRGB 色域内。*
+
+*现在 UE 出了一个小技巧：场景看起来像是在广色域空间中进行计算的，其原色介于 P3 和 AP1 之间，它使用 Wide_2_AP1 进行颜色转换，最后将参数与原始的 sRGB_2_AP1 转换结果进行插值。*
+
+```cpp
+float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
+{
+    ......
+		// Expand bright saturated colors outside the sRGB gamut to fake wide gamut rendering.
+ 	float  LumaAP1 = dot( ColorAP1, AP1_RGB2Y );
+	float3 ChromaAP1 = ColorAP1 / LumaAP1;
+
+	float ChromaDistSqr = dot( ChromaAP1 - 1, ChromaAP1 - 1 );
+	float ExpandAmount = ( 1 - exp2( -4 * ChromaDistSqr ) ) * ( 1 - exp2( -4 * ExpandGamut * LumaAP1*LumaAP1 ) );
+
+	// Bizarre matrix but this expands sRGB to between P3 and AP1
+	// CIE 1931 chromaticities:	x		y
+	//				Red:		0.6965	0.3065
+	//				Green:		0.245	0.718
+	//				Blue:		0.1302	0.0456
+	//				White:		0.3127	0.329
+	const float3x3 Wide_2_XYZ_MAT = 
+	{
+		0.5441691,  0.2395926,  0.1666943,
+		0.2394656,  0.7021530,  0.0583814,
+		-0.0023439,  0.0361834,  1.0552183,
+	};
+
+	const float3x3 Wide_2_AP1 = mul( XYZ_2_AP1_MAT, Wide_2_XYZ_MAT );
+	const float3x3 ExpandMat = mul( Wide_2_AP1, AP1_2_sRGB );
+
+	float3 ColorExpand = mul( ExpandMat, ColorAP1 );
+	ColorAP1 = lerp( ColorAP1, ColorExpand, ExpandAmount );
+    ColorAP1 = ColorCorrectAll( ColorAP1 );
+    
+    // Store for Linear HDR output without tone curve
+	float3 GradedColor = mul( (float3x3)WorkingColorSpace.FromAP1, ColorAP1 );
+    
+    // Apply Fade track to linear outputs also
+	GradedColor = lerp(GradedColor * ColorScale, OverlayColor.rgb, OverlayColor.a);
+    ......
+}
+```
+
+#### ***（4）SDR中的输出变换***
+
+*这里先随口带过一下：*
+
+*SDR 中的 Output Transform 使用了 ACES 的 LMT + RRT + ODT 变换。首先是 LMT 部分。*
+
+*UE 使用 ACES LMT 中的 BlueLightArtifactFix 部分来修复高亮度蓝色值导致的过饱和问题。*
+
+*然后就又中和掉刚才修复蓝色值的一些操作*
+
+*如果你目前是 SDR Device 输出，则就用这个最终输出颜色*
+
+#### ***（6）HDR中的输出变换***
+
+*UE的HDR输出管线在计算完 `GradedColor` 之后，直接将色彩空间从AP1重新转换为sRGB。*
+
+*最后，为了将编码的 HDR 信号传递到 HDR 显示设备，使用 PQ 的 OETF 传输函数对其进行编码。*
+
+```cpp
+
+	// ACES 1000nit transform with PQ/2084 encoding, user specified gamut 
+	else if( GetOutputDevice() == TONEMAPPER_OUTPUT_ACES1000nitST2084 || GetOutputDevice() == TONEMAPPER_OUTPUT_ACES1000nitScRGB)
+	{		
+		// 1000 nit ODT
+		FACESTonemapParams AcesParams = ComputeACESTonemapParams(ACESMinMaxData, ACESMidData, ACESCoefsLow_0, ACESCoefsHigh_0, ACESCoefsLow_4, ACESCoefsHigh_4, ACESSceneColorMultiplier, ACESGamutCompression);
+		float3 ODTColor = ACESOutputTransforms1000( GradedColor, (float3x3)WorkingColorSpace.ToAP0, AcesParams);
+
+		// Convert from AP1 to specified output gamut except for ScRGB as it might contain negative values. 
+		// In this case, the AP1->output conversion happens through ST2084ToScRGB in the tonemap function
+		if( GetOutputDevice() != TONEMAPPER_OUTPUT_ACES1000nitScRGB )
+		{
+			ODTColor = mul(AP1_2_Output, ODTColor);
+		}
+
+		// Apply conversion to ST-2084 (Dolby PQ)
+		OutDeviceColor = LinearToST2084( ODTColor );
+	}
+
+	// ACES 2000nit transform with PQ/2084 encoding, user specified gamut 
+	else if( GetOutputDevice() == TONEMAPPER_OUTPUT_ACES2000nitST2084 || GetOutputDevice() == TONEMAPPER_OUTPUT_ACES2000nitScRGB)
+	{		
+		// 2000 nit ODT
+		FACESTonemapParams AcesParams = ComputeACESTonemapParams(ACESMinMaxData, ACESMidData, ACESCoefsLow_0, ACESCoefsHigh_0, ACESCoefsLow_4, ACESCoefsHigh_4, ACESSceneColorMultiplier, ACESGamutCompression);
+		float3 ODTColor = ACESOutputTransforms2000( GradedColor, (float3x3)WorkingColorSpace.ToAP0, AcesParams);
+
+		// Convert from AP1 to specified output gamut except for ScRGB as it might contain negative values. 
+		// In this case, the AP1->output conversion happens through ST2084ToScRGB in the tonemap function
+		if ( GetOutputDevice() != TONEMAPPER_OUTPUT_ACES2000nitScRGB)
+		{
+			ODTColor = mul(AP1_2_Output, ODTColor);
+		}
+
+		// Apply conversion to ST-2084 (Dolby PQ)
+		OutDeviceColor = LinearToST2084( ODTColor );
+	}	
+	
+	else if( GetOutputDevice() == TONEMAPPER_OUTPUT_LinearEXR)
+	{
+			float3 OutputGamutColor = mul( AP1_2_Output, mul( (float3x3)WorkingColorSpace.ToAP1, GradedColor ) );
+			OutDeviceColor = LinearToST2084( OutputGamutColor );
+	}
+	// Linear HDR, including all color correction, but no tone curve
+	else if( GetOutputDevice() == TONEMAPPER_OUTPUT_NoToneCurve)
+	{
+			OutDeviceColor = GradedColor;
+	}
+```
+
+### ***使用 cLUTs (Tonemap)***
+
+*使用CLUT的逻辑由PostProcessTonemap.usf处理，其主要功能逻辑在TonemapCommonPS函数中*
+
+*该函数首先计算任何目前尚未完成的后处理，例如Grain、Color Fringe、Sharpen、Bloom、Exposure和Vignette，然后将上述后处理计算得到的最终结果转换为3D LUT的采样坐标来查找颜色：*
+
+```cpp
+half3 ColorLookupTable( half3 LinearColor )
+{
+	float3 LUTEncodedColor;
+	// Encode as ST-2084 (Dolby PQ) values
+	BRANCH
+	if(GetOutputDevice() >= TONEMAPPER_OUTPUT_ACES1000nitST2084)
+	{
+		// ST2084 expects to receive linear values 0-10000 in nits.
+		// So the linear value must be multiplied by a scale factor to convert to nits.
+		// We don't send negative values to LinearToST2084 as it will result in NaN because of pow.
+		LUTEncodedColor = LinearToST2084(max(0, LinearColor) * LinearToNitsScale);
+	}
+	else
+	{
+		LUTEncodedColor = LinToLog( LinearColor + LogToLin( 0 ) );
+	}
+
+	float3 UVW = LUTEncodedColor * LUTScale + LUTOffset;
+
+#if USE_VOLUME_LUT == 1
+	half3 OutDeviceColor = Texture3DSample( ColorGradingLUT, ColorGradingLUTSampler, UVW ).rgb;
+#else
+	half3 OutDeviceColor = UnwrappedTexture3DSample( ColorGradingLUT, ColorGradingLUTSampler, UVW, LUTSize, InvLUTSize ).rgb;
+#endif
+	
+	return OutDeviceColor * 1.05;
+}
+
+float4 TonemapCommonPS(
+	float3 UV,
+	float2 Vignette,
+	float4 GrainUV,
+	float2 ScreenPos, // [-1, 1]x[-1, 1]
+	float2 FullViewUV,
+	float4 SvPosition,
+	out float OutLuminance
+	)
+{
+    ......
+	half3 OutDeviceColor = ColorLookupTable(FinalLinearColor);
+    ......
+}
+```
+
+*因为我们 cLUTs 是非线性的 HDR 空间的值，所以我们经历 Bloom 等一些计算出的颜色也要 To ST2084 后才能去 cLUTs 里面寻找*
+
+*最后，根据 OutputDevice，将 ST2084 转成 ScRGB，输出到下一阶段*
+
+```cpp
+float4 TonemapCommonPS(
+	float3 UV,
+	float2 Vignette,
+	float4 GrainUV,
+	float2 ScreenPos, // [-1, 1]x[-1, 1]
+	float2 FullViewUV,
+	float4 SvPosition,
+	out float OutLuminance
+	)
+{
+    ......
+    if(GetOutputDevice() == TONEMAPPER_OUTPUT_ACES1000nitScRGB || GetOutputDevice() == TONEMAPPER_OUTPUT_ACES2000nitScRGB)
+    {
+            OutColor.xyz = ST2084ToScRGB(OutColor.xyz, GetOutputDevice(), OutputMaxLuminance);
+    }
+    else if(GetOutputDevice() == TONEMAPPER_OUTPUT_LinearEXR)
+    {
+        OutColor.xyz = ST2084ToLinear(OutColor.xyz);
+    }
+    else
+    {
+        OutColor.xyz = OutDeviceColor;
+    }
+    ......
+}
+```
 
 
