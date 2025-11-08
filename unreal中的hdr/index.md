@@ -70,13 +70,21 @@
 
    *默认值 0 但是其实代码判断为0 就会显示1000，如果启用 HDR 输出*
 
+   *跟 `r.HDR.Display.MidLuminance` 配合使用，要不然这个调的太低，场景会灰*
+
 7. `r.HDR.UI.CompositeMode`
 
    *控制UI是否启用HDR合成模式，尝试获得与SDR相同的UI视觉效果。*
 
 8. `r.HDR.UI.Level`
 
-   *控制 UI 合成的高光值*
+   *将用户界面元素合成到高动态范围帧缓冲区时的亮度级别*
+   
+9. `r.HDR.UI.Luminance`
+
+   *控制 UI HDR 亮度值*
+
+   *在将用户界面元素合成到 HDR 帧缓冲区时，其基亮度值（以尼特为单位）乘以 r.HDR.UI.Level 的结果*
 
 *除了 `r.HDR.EnableHDROutput` ，其他的参数都是控制 UE 渲染逻辑的 Shader 参数*
 
@@ -110,7 +118,7 @@
 
 *SDR输出设备分支采用对数编码，利用对数函数将0到1的范围重新映射到从0到场景中最大像素值（约50）的转换。*
 
-```cpp
+```hlsl
 float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 {
 #if USE_VOLUME_LUT == 1
@@ -182,7 +190,7 @@ float3 LogToLin( float3 LogColor )
 
 *使用上一个步骤计算出来的 `LinearColor` 计算白平衡*
 
-```cpp
+```hlsl
 float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 {
     ......
@@ -228,7 +236,7 @@ float3 WhiteBalance(float3 LinearColor, float WhiteTemp, float WhiteTint, bool b
 
 *计算白平衡后，色彩空间从sRGBLinear转换为ACESAP1线性色彩空间。*
 
-```cpp
+```hlsl
 float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 {
     ......
@@ -241,7 +249,7 @@ float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 
 *现在 UE 出了一个小技巧：场景看起来像是在广色域空间中进行计算的，其原色介于 P3 和 AP1 之间，它使用 Wide_2_AP1 进行颜色转换，最后将参数与原始的 sRGB_2_AP1 转换结果进行插值。*
 
-```cpp
+```hlsl
 float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 {
     ......
@@ -299,7 +307,7 @@ float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 
 *最后，为了将编码的 HDR 信号传递到 HDR 显示设备，使用 PQ 的 OETF 传输函数对其进行编码。*
 
-```cpp
+```hlsl
 
 	// ACES 1000nit transform with PQ/2084 encoding, user specified gamut 
 	else if( GetOutputDevice() == TONEMAPPER_OUTPUT_ACES1000nitST2084 || GetOutputDevice() == TONEMAPPER_OUTPUT_ACES1000nitScRGB)
@@ -355,7 +363,7 @@ float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)
 
 *该函数首先计算任何目前尚未完成的后处理，例如Grain、Color Fringe、Sharpen、Bloom、Exposure和Vignette，然后将上述后处理计算得到的最终结果转换为3D LUT的采样坐标来查找颜色：*
 
-```cpp
+```hlsl
 half3 ColorLookupTable( half3 LinearColor )
 {
 	float3 LUTEncodedColor;
@@ -402,9 +410,9 @@ float4 TonemapCommonPS(
 
 *因为我们 cLUTs 是非线性的 HDR 空间的值，所以我们经历 Bloom 等一些计算出的颜色也要 To ST2084 后才能去 cLUTs 里面寻找*
 
-*最后，根据 OutputDevice，将 ST2084 转成 ScRGB，输出到下一阶段*
+*最后，根据 OutputDevice，如果你在编辑器开启了HDR，则会将 ST2084 转成 ScRGB，输出到下一阶段，其他的看分支即可*
 
-```cpp
+```hlsl
 float4 TonemapCommonPS(
 	float3 UV,
 	float2 Vignette,
@@ -429,6 +437,122 @@ float4 TonemapCommonPS(
         OutColor.xyz = OutDeviceColor;
     }
     ......
+}
+```
+
+## ***UI 中的 HDR***
+
+*UI中使用 HDR 主要是在 `CompositeUIPixelShader.usf` 中处理的*
+
+### ***（1）计算 UI 颜色***
+
+*在这里会从一个包含UI元素的纹理中采样颜色。随后进行颜色变换，从 sRGB 空间转换到 REC.2020的线性空间，所以这里 Unreal 会默认一切UI颜色都是为 sRGB*
+
+*在这个步骤，其实就会跟 `r.HDR.UI.Luminance`计算*
+
+```hlsl
+void Main(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+    ...
+	float4 UIColor = ComputeHDRUIColor(Input.UV);
+	...
+}
+
+```
+
+### ***（2）计算场景颜色***
+
+*这里先从场景纹理采样，随后因为我们在之前 Tonemap 中最终输出的是ST2080，所以在这里如果没开启SCRGB的宏，会将ST2080 转成 Rec.2020 线性空间.*
+
+*如果开启ScRGB的宏，最终其实也是转为了 Rec.2020 的颜色空间*
+
+```hlsl
+void Main(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	...
+	float3 SceneColor = Texture2DSample(SceneTexture, SceneSampler, Input.UV).xyz;
+	SceneColor = ComputeHDRSceneColor(SceneColor);
+	...
+}
+
+```
+
+### ***（3）混合 UI 和 场景 颜色***
+
+*最终会在这个步骤将场景和UI混合到一张 RT 上，这里会如果 UI 为半透明会进行特殊处理，如果为 a通道为0或者不透明，则会乘上 `r.HDR.UI.Level` 的值，做运算*
+
+```hlsl
+float3 ComposeUIAndScene(float3 SceneColor, float4 InUIColor, float InUILevel)
+{
+	BRANCH
+	if (InUIColor.w > 0.f && InUIColor.w < 1.f)
+	{
+		// Clamp gamut to sRGB as extended gamut colors bleeding into the UI can look funny
+		SceneColor = max(SceneColor, 0.f);
+
+		// Tonemap HDR under transparent UI with a simple Reinhard to the max luminance of the UI
+		// This prevents HDR bleed through destroying UI legibility
+		// Rec2020 coefficients to compute luminance
+		float KR = 0.2627, KG = 0.678, KB = 0.0593;
+		float Luminance = dot(SceneColor, half3(KR, KG, KB)) / InUILevel;
+		float OutL = 1.f / (Luminance + 1.f);
+
+		// Ease out remapping to avoid hard transitions where UI is near zero opacity
+		SceneColor *= lerp(1.f, OutL * InUILevel, InUIColor.w);
+	}
+
+	// Composite, assuming pre-multiplied alpha
+	return SceneColor * (1.f - InUIColor.w) + InUIColor.xyz * InUILevel;
+}
+
+void Main(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	...
+	OutColor.xyz = ComposeUIAndScene(SceneColor.xyz, UIColor, UILevel);
+	...
+}
+```
+
+### ***（4）色盲模式***
+
+*Unreal 其实对色盲是有过处理的，将合成后的颜色转换成模拟某种色盲（如红绿色盲、蓝黄色盲）所看到的颜色。*
+
+```hlsl
+void Main(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor.rgb = ApplyColorDeficiency(OutColor.rgb);
+}
+```
+
+### ***（5）输出到显示器***
+
+*我们到这个流程的颜色空间为 Rec.2020 线性空间，既然要输出到显示器，肯定必须在转换为 ST 2084（PQ），如果使用 scRGB 编码则就转换为 sRGB色域*
+
+```hlsl
+void Main(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+#if !SCRGB_ENCODING
+	// Linear -> PQ
+	OutColor.xyz = LinearToST2084(OutColor.xyz);
+#else
+	const float3x3 Rec2020_2_sRGB = mul(XYZ_2_sRGB_MAT, Rec2020_2_XYZ_MAT);
+	OutColor.xyz = mul(Rec2020_2_sRGB, OutColor.xyz / ScRGBScaleFactor);
+#endif
 }
 ```
 
