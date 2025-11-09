@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>向量-习题 - Ame</title><meta name="Description" content="标量与向量的一些习题"><meta property="og:url" content="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="向量-习题">
+  <meta property="og:description" content="标量与向量的一些习题">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-23T23:00:00+08:00">
+    <meta property="article:modified_time" content="2025-03-09T15:41:00+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="3D图形学">
+    <meta property="article:tag" content="向量">
+    <meta property="article:tag" content="标量">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="向量-习题">
+  <meta name="twitter:description" content="标量与向量的一些习题">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" /><link rel="prev" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" /><link rel="next" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "向量-习题",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 向量, 标量","wordcount":  3871 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98\/","datePublished": "2024-12-23T23:00:00+08:00","dateModified": "2025-03-09T15:41:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "标量与向量的一些习题"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">向量-习题</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-23">2024-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3871 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" class="leancloud_visitors" data-flag-title="向量-习题">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目大纲"><em><strong>题目大纲</strong></em></a></li>
+    <li><a href="#第一题"><em><strong>第一题</strong></em></a></li>
+    <li><a href="#第二题"><em><strong>第二题</strong></em></a></li>
+    <li><a href="#第三题"><em><strong>第三题</strong></em></a></li>
+    <li><a href="#第四题"><em><strong>第四题</strong></em></a></li>
+    <li><a href="#第五题"><em><strong>第五题</strong></em></a></li>
+    <li><a href="#第六题"><em><strong>第六题</strong></em></a></li>
+    <li><a href="#第七题"><em><strong>第七题</strong></em></a></li>
+    <li><a href="#第八题"><em><strong>第八题</strong></em></a></li>
+    <li><a href="#第九题"><em><strong>第九题</strong></em></a></li>
+    <li><a href="#第十题"><em><strong>第十题</strong></em></a></li>
+    <li><a href="#第十一题"><em><strong>第十一题</strong></em></a></li>
+    <li><a href="#第十二题"><em><strong>第十二题</strong></em></a></li>
+    <li><a href="#第十三题"><em><strong>第十三题</strong></em></a></li>
+    <li><a href="#第十四题"><em><strong>第十四题</strong></em></a></li>
+    <li><a href="#第十五题"><em><strong>第十五题</strong></em></a></li>
+    <li><a href="#第十六题"><em><strong>第十六题</strong></em></a></li>
+    <li><a href="#第十七题"><em><strong>第十七题</strong></em></a></li>
+    <li><a href="#第十八题"><em><strong>第十八题</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="题目大纲"><em><strong>题目大纲</strong></em></h2>
+<ol>
+<li>
+<p><em>设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量</em></p>
+</li>
+<li>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。写出下列问题的解答过程</em></p>
+</li>
+<li>
+<p><em>证明式子</em></p>
+<p><em>(a) $ \vec{u} + \vec{v} =  \vec{v} + \vec{u} $ （加法交换律）</em></p>
+<p><em>(b) $ \vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w} $ （加法结合律）</em></p>
+<p><em>(c) $ (ck)\vec{u} = c(k\vec{u}) $ （标量乘法的结合律）</em></p>
+<p><em>(d) $ k(\vec{u} + \vec{v}) = k\vec{u} + k\vec{v} $ （分配律 1）</em></p>
+<p><em>(e) $ \vec{u}(k + c) = k\vec{u} + c\vec{u} $ （分配律 2）</em></p>
+</li>
+<li>
+<p><em>根据等式  &ldquo;2[(1, 2, 3) − x] − (−2, 0, 4) = −2(1, 2, 3)&quot;，求其中的向量 x。</em></p>
+</li>
+<li>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。</em></p>
+</li>
+<li>
+<p><em>设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$</em></p>
+</li>
+<li>
+<p><em>下列各组向量中，u 与 v 之间的夹角是直角、锐角还是钝角？</em></p>
+<p><em>（a）u = (1, 1, 1)，v = (2, 3, 4)</em></p>
+<p><em>（b）u = (1, 1, 0)，v = (−2, 2, 0)</em></p>
+<p><em>（c）u = (−1, −1, −1)，v = (3, 1, 0)</em></p>
+</li>
+<li>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。计算 u 和 v 之间的夹角 θ</em></p>
+</li>
+<li>
+<p><em>设向量 $ u = (u_x, u_y, u_z)、v = (v_x, v_y, v_z)和 w = (w_x, w_y, w_z)，且 c 和 k 为标量。证明下列点积性质。</em></p>
+<p><em>（a）$ \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u} $</em></p>
+<p><em>（b）$ \vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w} $</em></p>
+<p><em>（c）$ k(\vec{u} \cdot \vec{v}) = (k\vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) $</em></p>
+<p><em>（d）$ \vec{v} \cdot \vec{v} = ||v||^2 $</em></p>
+<p><em>（e）$ 0 \cdot \vec{v} = 0 $</em></p>
+</li>
+<li>
+<p><em>利用余弦定理 （ $  c^2 = a^2 + b^2 - 2ab \cos\theta $ ，其中 a、b、c 分别是三角形 3 条边的边长， θ 为 a 与 b 之间的夹角）来证明：$ u_x v_x + u_y v_y + u_z v_z = ||u|| ||v|| \cos\theta $</em></p>
+</li>
+<li>
+<p><em>设向量 n = (−2, 1)。将向量 g = (0, −9.8) 分解为两个相互正交的向量之和，使它们一个平行于 n、 一个正交于 n。最后，在同一 2D 坐标系中画出这些向量。</em></p>
+</li>
+<li>
+<p><em>设向量 u = (−2, 1, 4)和向量 v = (3, −4, 1)。求向量 w  = u × v ，再证明 w⋅ u= 0 及 w ⋅ v= 0 。</em></p>
+</li>
+<li>
+<p><em>设 A = (0, 0, 0)，B = (0, 1, 3)和 C = (5, 1, 0)三点在某坐标系中定义了一个三角形。求出一正交于此三角形的向量。</em></p>
+</li>
+<li>
+<p><em>证明 $ \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta $</em></p>
+</li>
+<li>
+<p><em>证明：由向量 u 和向量 v 张成的平行四边形面积为|| u × v || ，如图 1.21 所示。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十五题.png"
+        title="向量第十五题" /></p>
+</li>
+<li>
+<p><em>举例证明：存在 3D 向量 u、v 和 w，满足 u x (v x w) ≠ (u x v) x w 。这说明叉积一般不满足结合律。</em></p>
+</li>
+<li>
+<p><em>证明两个非零且相互平行向量的叉积为零向量，即 $ \vec{u} \times k\vec{u} = 0 $。</em></p>
+</li>
+<li>
+<p><em>利用格拉姆—施密特正交化方法，令向量集 {(1, 0, 0), (1, 5, 0), (2, 1, −4)} 规范正交化。</em></p>
+</li>
+</ol>
+<h2 id="第一题"><em><strong>第一题</strong></em></h2>
+<p><em>设向量 u = (1, 2)和向量 v = (3, –4)。写出下列各式的演算过程，并在 2D 坐标系内画出相应的向量</em>
+$$
+\begin{align*}
+\vec{u} + \vec{v}
+&amp;= (u_x + v_x, u_y + v_y)
+\\ \\
+&amp;= (1 + 3, 2 + (-4))
+\\ \\
+&amp;= (4, -2)
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+\vec{u} - \vec{v}
+&amp;= (u_x - v_x, u_y - v_y)
+\\ \\
+&amp;= (1 - 3, 2 - (-4))
+\\ \\
+&amp;= (-2, 6)
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+2\vec{u} + \frac{1}{2} \vec{v}
+&amp;= (2u_x, 2u_y) + (\frac{1}{2} v_x, \frac{1}{2} v_y)
+\\ \\
+&amp;= (2u_x + \frac{1}{2} v_x, 2u_y + \frac{1}{2} v_y)
+\\ \\
+&amp;= (2 + 1.5, 4 + (-2))
+\\ \\
+&amp;= (3.5, 2)
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+-2\vec{u} + \vec{v}
+&amp;= (-2u_x, -2u_y) + (v_x,v_y)
+\\ \\
+&amp;= (-2u_x + v_x, -2u_y, v_y)
+\\ \\
+&amp;= (-2 + 3, -4 + -4)
+\\ \\
+&amp;= (1, -8)
+\end{align*}
+$$</p>
+<h2 id="第二题"><em><strong>第二题</strong></em></h2>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。写出下列问题的解答过程</em>
+$$
+\begin{align*}
+\vec{u} + \vec{v}
+&amp;= (u_x + v_x, u_y + v_y, u_z + v_z)
+\\ \\
+&amp;= (-1 + 3, 3 + (-4), 2 + 1)
+\\ \\
+&amp;= (2, -1, 3)
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+\vec{u} - \vec{v}
+&amp;= (u_x - v_x, u_y - v_y, u_z - v_z)
+\\ \\
+&amp;= (-1 - 3, 3 - (-4), 2 - 1)
+\\ \\
+&amp;= (-4, 7, 1)
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+3\vec{u} + 2\vec{v}
+&amp;= (3u_x, 3u_y, 3u_z) + (2v_x, 2v_y, 2v_z)
+\\ \\
+&amp;= (-3, 9, 6) + (6, -8, 2)
+\\ \\
+&amp;= (-3 + 6, 9 + (-8), 6 + 2)
+\\ \\
+&amp;= (3, 1, 8)
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+-2\vec{u} + \vec{v}
+&amp;= (-2u_x, -2u_y, -2u_z) + (v_x, v_y, v_z)
+\\ \\
+&amp;= (2, -6, -4) + (3, -4, 1)
+\\ \\
+&amp;= (2 + 3, -6 + (-4), -4 + 1)
+\\ \\
+&amp;= (5, -10, -3)
+\end{align*}
+$$</p>
+<h2 id="第三题"><em><strong>第三题</strong></em></h2>
+<p><em>(a) $ \vec{u} + \vec{v} =  \vec{v} + \vec{u} $ （加法交换律）</em>
+$$
+\vec{u} + \vec{v}
+= (u_x + v_x, u_y + v_y, u_z + v_z)
+= (v_x + u_x, v_y + u_y, v_z + u_z)
+= \vec{v} + \vec{u}
+$$
+<em>(b) $ \vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w} $ （加法结合律）</em>
+$$
+\begin{align*}
+\vec{u} + (\vec{v} + \vec{w})
+&amp;= (u_x, u_y, u_z) + (v_x + w_x, v_y + w_y, v_z + w_z)
+\\ \\
+&amp;= (u_x + (v_x + w_x), u_y + (v_y + w_y), u_z + (v_z + w_z))
+\\ \\
+&amp;= ((u_x + v_x) + w_x, (u_y + v_y) + w_y, (u_z + v_z) + w_z)
+\\ \\
+&amp;= (u_x + v_x, u_y + v_y, u_z + v_z) + (w_x, w_y, w_z)
+\\ \\
+&amp;= (\vec{u} + \vec{v}) + \vec{w}
+\end{align*}
+$$
+<em>(c) $ (ck)\vec{u} = c(k\vec{u}) $ （标量乘法的结合律）</em>
+$$
+\begin{align*}
+(ck)\vec{u}
+&amp;= (ck)(u_x, u_y, u_z)
+\\ \\
+&amp;= ((ck)u_x, (ck)u_y, (ck)u_z)
+\\ \\
+&amp;= (c(ku_x), c(ku_y), c(ku_z))
+\\ \\
+&amp;= c(k\vec{u})
+\end{align*}
+$$
+<em>(d) $ k(\vec{u} + \vec{v}) = k\vec{u} + k\vec{v} $ （分配律 1）</em>
+$$
+\begin{align*}
+k(\vec{u} + \vec{v})
+&amp;= k(u_x + v_x, u_y + v_y, u_z + v_z)
+\\ \\
+&amp;= (ku_x + kv_x, ku_y + kv_y, ku_z + kv_z)
+\\ \\
+&amp;= k\vec{u} + k\vec{v}
+\end{align*}
+$$
+<em>(e) $ \vec{u}(k + c) = k\vec{u} + c\vec{u} $ （分配律 2）</em>
+$$
+\begin{align*}
+\vec{u}(k + c)
+&amp;= (u_x(k+c), u_y(k+c), u_z(k+c))
+\\ \\
+&amp;= (ku_x + cu_x, ku_y + cu_y, ku_z + cu_z)
+\\ \\
+&amp;= k\vec{u} + c\vec{u}
+\end{align*}
+$$</p>
+<h2 id="第四题"><em><strong>第四题</strong></em></h2>
+<p><em>根据等式  &ldquo;2[(1, 2, 3) − x] − (−2, 0, 4) = −2(1, 2, 3)&quot;，求其中的向量 x。</em>
+$$
+\begin{align*}
+2[(1, 2, 3) − \vec{x}] − (−2, 0, 4) &amp;= -2(1, 2, 3)
+\\ \\
+[(2, 4, 6) - 2(\vec{x})] - (-2, 0, 4) &amp;= (-2, -4, -6)
+\\ \\
+[(2, 4, 6) - 2(\vec{x})] &amp;= (-2, -4, -6) + (-2, 0, 4)
+\\ \\
+[(2, 4, 6) - 2(\vec{x})] &amp;= (-4, -4, -2)
+\\ \\
+- 2(\vec{x}) &amp;= (-4, -4, -2) - (2, 4, 6)
+\\ \\
+2(\vec{x}) &amp;= - (-6, -8, -8)
+\\ \\
+\vec{x} &amp;= (3, 4, 4)
+\end{align*}
+$$</p>
+<h2 id="第五题"><em><strong>第五题</strong></em></h2>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。对 u 和 v 进行规范化处理。</em>
+$$
+\begin{align*}
+\vec{u}
+= \frac{\vec{u}}{\Vert \vec{u} \Vert}
+= \frac{(u_x, u_y, u_z)}{\sqrt{u_x^2 + u_y^2 + u_z^2}}
+= \frac{(-1, 3, 2)}{\sqrt{1 + 9 + 4}}
+= \frac{(-1, 3, 2)}{\sqrt{14}}
+= (\frac{-1}{\sqrt{14}}, \frac{3}{\sqrt{14}}, \frac{2}{\sqrt{14}})
+\\ \\
+\vec{v}
+= \frac{\vec{v}}{\Vert \vec{v} \Vert}
+= \frac{(v_x, v_y, v_z)}{\sqrt{v_x^2 + v_y^2 + v_z^2}}
+= \frac{(3, -4, 1)}{\sqrt{9 + 16 + 1}}
+= \frac{(3, -4, 1)}{\sqrt{26}}
+= (\frac{3}{\sqrt{26}}, \frac{-4}{\sqrt{26}}, \frac{1}{\sqrt{26}})
+\end{align*}
+$$</p>
+<h2 id="第六题"><em><strong>第六题</strong></em></h2>
+<p><em>设 k 为标量，$向量 u = (u_x, u_y, u_z)。求证||ku|| = ||k|| ||u||$</em>
+$$
+\begin{align*}
+||ku||
+&amp;= ||ku_x, ku_y, ku_z||
+\\ \\
+&amp;= \sqrt{(ku_x)^2 + (ku_y)^2 + (ku_z)^2}
+\\ \\
+&amp;= \sqrt{k^2u_x^2 + k^2u_y^2 + k^2u_z^2}
+\\ \\
+&amp;= \sqrt{k^2 + (u_x^2, u_y^2, u_z^2)}
+\\ \\
+&amp;= \sqrt{k^2} + \sqrt{\vec{u}^2}
+\\ \
+&amp;= ||k|| + ||\vec{u}||
+\end{align*}
+$$</p>
+<h2 id="第七题"><em><strong>第七题</strong></em></h2>
+<p><em>下列各组向量中，u 与 v 之间的夹角是直角、锐角还是钝角？</em></p>
+<p><em>（a）u = (1, 1, 1)，v = (2, 3, 4)</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{2 + 3 + 4}{\sqrt{3} \cdot \sqrt{29}}
+\\ \\
+\cos\theta = \frac{9}{\sqrt{87}}
+\\ \\
+因\cos\theta &gt; 0, 故为锐角
+\\ \\
+如果想求出角度 则可以 θ=arccos(\frac{9}{\sqrt{87}})≈15.8^\circ
+\end{gather*}
+$$</p>
+<p><em>（b）u = (1, 1, 0)，v = (−2, 2, 0)</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{-2 + 2 + 0}{\sqrt{2} \cdot \sqrt{8}}
+\\ \\
+\cos\theta = \frac{0}{\sqrt{16}} = 0
+\\ \\
+因\cos\theta = 0, 故为直角
+\end{gather*}
+$$
+<em>（c）u = (−1, −1, −1)，v = (3, 1, 0)</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{(-3) + (-1) + 0}{\sqrt{3} \cdot \sqrt{10}}
+\\ \\
+\cos\theta = \frac{-4}{\sqrt{30}}
+\\ \\
+因\cos\theta &lt; 0, 故为钝角
+\end{gather*}
+$$</p>
+<h2 id="第八题"><em><strong>第八题</strong></em></h2>
+<p><em>设向量 u = (−1, 3, 2)和向量 v = (3, −4, 1)。计算 u 和 v 之间的夹角 θ</em>
+$$
+\begin{gather*}
+\vec{u} \cdot \vec{v} = ||u|| ||v|| \cos\theta
+\\ \\
+\cos\theta = \frac{\vec{u} \cdot \vec{v}}{||u|| ||v||}
+\\ \\
+\cos\theta = \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \cdot \sqrt{v_x^2 + v_y^2 + v_z^2}}
+\\ \\
+\cos\theta = \frac{(-3) + (-12) + 2}{\sqrt{14} \cdot \sqrt{26}}
+\\ \\
+\cos\theta = \frac{-13}{\sqrt{2\sqrt{91}}}
+\\ \\
+θ=arccos(\frac{-13}{2\sqrt{91}})≈123.7^\circ
+\end{gather*}
+$$</p>
+<h2 id="第九题"><em><strong>第九题</strong></em></h2>
+<p><em>设向量 $ u = (u_x, u_y, u_z)、v = (v_x, v_y, v_z)和 w = (w_x, w_y, w_z)，且 c 和 k 为标量。证明下列点积性质。</em></p>
+<p><em>（a）$ \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u} $</em>
+$$
+\begin{align*}
+\vec{u} \cdot \vec{v}
+&amp;= (u_x, u_y, u_z) + (v_x, v_y, v_z)
+\\ \\
+&amp;= (u_x v_x + u_y v_y + u_z v_z)
+\\ \\
+&amp;= (v_x, v_y, v_z) + (u_x, u_y, u_z)
+\\ \\
+&amp;= \vec{v} \cdot \vec{u}
+\end{align*}
+$$
+<em>（b）$ \vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w} $</em>
+$$
+\begin{align*}
+\vec{u} \cdot (\vec{v} + \vec{w})
+&amp;= (u_x, u_y, u_z) \cdot ((v_x + w_x, v_y + w_y, v_z + w_z))
+\\ \\
+&amp;= u_x(v_x + w_x) + u_y(v_y + w_y) + u_z(v_z + w_z)
+\\ \\
+&amp;= (u_x v_x + u_x w_x) + (u_y v_y + u_y w_y) + (u_z v_z + u_z w_z)
+\\ \\
+&amp;= (u_x v_x + u_y v_y + u_z v_z) + (u_x w_x + u_y w_y + u_z w_z)
+\\ \\
+&amp;= \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}
+\end{align*}
+$$
+<em>（c）$ k(\vec{u} \cdot \vec{v}) = (k\vec{u}) \cdot \vec{v} = \vec{u} \cdot (k\vec{v}) $</em>
+$$
+\begin{align*}
+k(\vec{u} \cdot \vec{v})
+&amp;= k(u_x v_y + u_y v_y + u_z v_z)
+\\ \\
+&amp;= (ku_x)v_x + (ku_y)v_y + (ku_z)v_z
+\\ \\
+&amp;= (k\vec{u}) \cdot \vec{v}
+\\ \\
+&amp;= u_x(kv_x) + u_y(kv_y) + u_z(kv_z)
+\\ \\
+&amp;= \vec{u} \cdot (k\vec{v})
+\end{align*}
+$$
+<em>（d）$ \vec{v} \cdot \vec{v} = ||v||^2 $</em>
+$$
+\begin{align*}
+\vec{v} \cdot \vec{v}
+&amp;= v_x v_x + v_y v_y + v_z v_z
+\\ \\
+&amp;= v_x^2 + v_y^2 + v_z^2
+\\ \\
+&amp;= \sqrt{v_x^2 + v_y^2 + v_z^2}^2
+\\ \\
+&amp;= ||v||^2
+\end{align*}
+$$
+<em>（e）$ 0 \cdot \vec{v} = 0 $</em>
+$$
+\begin{align*}
+0 \cdot \vec{v}
+&amp;= 0v_x + 0v_y + 0v_z
+\\ \\
+&amp;= 0 + 0 + 0
+\\ \\
+&amp;= 0
+\end{align*}
+$$</p>
+<h2 id="第十题"><em><strong>第十题</strong></em></h2>
+<p><em>利用余弦定理 （ $  c^2 = a^2 + b^2 - 2ab \cos\theta $ ，其中 a、b、c 分别是三角形 3 条边的边长， θ 为 a 与 b 之间的夹角）来证明：$ u_x v_x + u_y v_y + u_z v_z = ||u|| ||v|| \cos\theta $</em>
+$$
+\begin{gather*}
+c^2 = a^2 + b^2 - 2ab \cos\theta
+\\ \\
+||w||^2 = ||u||^2 + ||v||^2 - 2||u|| ||v|| \cos\theta ~~~~~~ (因为 c a b都是各边对应的模)
+\\ \\
+||w||^2 = (\vec{u} - \vec{v})^2 = ||u||^2 + ||v||^2 - 2(\vec{u} \cdot \vec{v}) ~~~~~ (点积分配律)
+\\ \\
+||u||^2 + ||v||^2 - 2||u|| ||v|| \cos\theta = ||u||^2 + ||v||^2 - 2(\vec{u} \cdot \vec{v}) ~~~~~ (||w||^2 = ||w||^2)
+\\ \\
+- 2||u|| ||v|| \cos\theta = - 2(\vec{u} \cdot \vec{v})
+\\ \\
+||u|| ||v|| \cos\theta = \vec{u} \cdot \vec{v}
+\end{gather*}
+$$</p>
+<h2 id="第十一题"><em><strong>第十一题</strong></em></h2>
+<p><em>设向量 n = (−2, 1)。将向量 g = (0, −9.8) 分解为两个相互正交的向量之和，使它们一个平行于 n、 一个正交于 n。最后，在同一 2D 坐标系中画出这些向量。</em>
+$$
+\begin{align*}
+\vec{g_{||}}
+&amp;= proj_n(\vec{g})
+\\ \\
+&amp;= (\vec{g} \cdot \frac{\vec{n}}{\Vert \vec{n} \Vert})\frac{\vec{n}}{\Vert \vec{n} \Vert}
+\\ \\
+&amp;= (\frac{(\vec{g} \cdot \vec{n})}{\Vert \vec{n} \Vert ^ 2}) \vec{n}
+\\ \\
+&amp;= (\frac{(g_x n_x + g_y n_y)}{\sqrt{n_x^2 + n_y^2}}) (-2, 1)
+\\ \\
+&amp;= (\frac{(0 + (-9.8))}{\sqrt{5}})(-2, 1)
+\\ \\
+&amp;= −1.96(−2,1)
+\\ \\
+&amp;= (-3.92, −1.96)
+\\ \\
+\vec{g}_\perp &amp;= \vec{g} - \vec{g_{||}}
+\\ \\
+&amp;=  (0, −9.8) − (3.92, −1.96)
+\\ \\
+&amp;= (−3.92, −7.84)
+\end{align*}
+$$
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%b8%80%e9%a2%98.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%b8%80%e9%a2%98.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%b8%80%e9%a2%98.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%b8%80%e9%a2%98.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十一题.png"
+        title="向量第十一题" /></p>
+<h2 id="第十二题"><em><strong>第十二题</strong></em></h2>
+<p><em>设向量 u = (−2, 1, 4)和向量 v = (3, −4, 1)。求向量 w  = u × v ，再证明 w⋅ u= 0 及 w ⋅ v= 0 。</em>
+$$
+\begin{align*}
+\vec{w} = \vec{u} \times \vec{v} &amp;= (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x)
+\\ \\
+&amp;= (1 - (-16), 12 - (-2), 8 - 3)
+\\ \\
+&amp;= (17, 14, 5)
+\\ \\
+\vec{w} \cdot \vec{u} &amp;= (w_x u_x + w_y u_y + w_z u_z)
+\\ \\
+&amp;= (-34 + (14) + (20))
+\\ \\
+&amp;= 0
+\\ \\
+\vec{w} \cdot \vec{v} &amp;= (w_x v_x + w_y v_y + w_z v_z)
+\\ \\
+&amp;= (51 + (-56) + 5)
+\\ \\
+&amp;= 0
+\end{align*}
+$$</p>
+<h2 id="第十三题"><em><strong>第十三题</strong></em></h2>
+<p><em>设 A = (0, 0, 0)，B = (0, 1, 3)和 C = (5, 1, 0)三点在某坐标系中定义了一个三角形。求出一正交于此三角形的向量。</em>
+$$
+\begin{align*}
+\vec{AB} &amp;= B - A = (0 - 0, 1 - 0, 3 - 0) = (0, 1, 3)
+\\ \\
+\vec{AC} &amp;= C - A = (5 - 0, 1 - 0, 0 - 0) = (5, 1, 0)
+\\ \\
+\vec{ABC_\perp} &amp;= \vec{AB} \times \vec{AC}
+\\ \\
+&amp;= (AB_y AC_z - AB_z AC_y, AB_z AC_x - AB_x AC_z, AB_x AC_y - AB_y AC_x)
+\\ \\
+&amp;= (0 - 3, 15 - 0, 0 - 5)
+\\ \\
+&amp;= (-3, 15, -5)
+\end{align*}
+$$</p>
+<h2 id="第十四题"><em><strong>第十四题</strong></em></h2>
+<p><em>证明 $ \Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta $</em>
+$$
+\begin{gather*}
+\Vert \vec{u} \times \vec{v} \Vert = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta
+\\ \\
+\Vert \vec{u} \times \vec{v} \Vert = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_z)
+\\ \\
+\Vert \vec{u} \times \vec{v} \Vert^2 = (u_y v_z - u_z v_y)^2 + (u_z v_x - u_x v_z)^2 + (u_x v_y - u_y v_z)^2
+\\ \\
+\Vert \vec{u} \times \vec{v} \Vert^2
+= (u_y^2 v_z^2 - 2u_yv_zu_zv_y + u_z^2 v_y^2)
++ (u_z^2 v_x^2 - 2u_zv_xu_xv_z + u_x^2 v_z^2) + (u_x^2 v_y^2 - 2u_xv_yu_yv_x + u_y^2 v_x^2)
+\\ \\
+\Vert \vec{u} \Vert^2 \Vert \vec{v} \Vert^2 - (\vec{u} \cdot\vec{v})^2
+= (u_y^2 v_z^2 + u_z^2 v_y^2)
++ (u_z^2 v_x^2 + u_x^2 v_z^2) + (u_x^2 v_y^2 + u_y^2 v_x^2)
+- 2(u_yv_zu_zv_y + u_zv_xu_xv_z + u_xv_yu_yv_x)
+\\ \\
+\Vert \vec{u} \Vert^2 \Vert \vec{v} \Vert^2 - (\vec{u} \cdot\vec{v})
+\end{gather*}
+$$</p>
+<h2 id="第十五题"><em><strong>第十五题</strong></em></h2>
+<p><em>证明：由向量 u 和向量 v 张成的平行四边形面积为 || u x v || ，如图 1.21 所示。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%e5%90%91%e9%87%8f%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/向量第十五题.png"
+        title="向量第十五题" /></p>
+<p>$$
+A = \Vert \vec{v} \Vert h
+\\ \\
+h = \Vert \vec{u} \Vert \sin\theta
+\\ \\
+A = \Vert \vec{u} \Vert \Vert \vec{v} \Vert \sin\theta
+\\ \\
+A = \Vert \vec{u} \times \vec{v} \Vert
+$$</p>
+<h2 id="第十六题"><em><strong>第十六题</strong></em></h2>
+<p><em>举例证明：存在 3D 向量 u、v 和 w，满足 u x (v x w) ≠ (u x v) x w 。这说明叉积一般不满足结合律。</em>
+$$
+\begin{gather*}
+设 \vec{u} = (1, 0, 0), \vec{v} = (1, 1, 0), \vec{w} = (0, 1, 1)
+\\ \\
+\vec{u} \times (\vec{v} \times \vec{w}) = \vec{u} \times (1, -1, 1) = (0, -1, -1)
+\\ \\
+(\vec{u} \times \vec{v}) \times \vec{w} = (0, 0, 1) \times \vec{w} = (-1, 0, 0)
+\\ \\
+故 \vec{u} \times (\vec{v} \times \vec{w}) \neq (\vec{u} \times \vec{v}) \times \vec{w}
+\end{gather*}
+$$</p>
+<h2 id="第十七题"><em><strong>第十七题</strong></em></h2>
+<p><em>证明两个非零且相互平行向量的叉积为零向量，即 $ \vec{u} \times k\vec{u} = 0 $。</em>
+$$
+\begin{align*}
+\vec{u} \times k\vec{u}
+&amp;= (u_y ku_z - u_z ku_y, u_z ku_x - u_x ku_z, u_x ku_y - u_y ku_x )
+\\ \\
+&amp;= k(u_y u_z - u_z u_y, u_z u_x - u_x u_z, u_x u_y - u_y u_x)
+\\ \\
+&amp;= k(0, 0, 0)
+\\ \\
+&amp;= (0, 0, 0)
+\end{align*}
+$$</p>
+<h2 id="第十八题"><em><strong>第十八题</strong></em></h2>
+<p><em>利用格拉姆—施密特正交化方法，令向量集 {(1, 0, 0), (1, 5, 0), (2, 1, −4)} 规范正交化。</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-03-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" data-title="向量-习题" data-hashtags="Unreal,3D图形学,向量,标量"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" data-title="向量-习题"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" data-title="向量-习题"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F%E4%B9%A0%E9%A2%98/" data-title="向量-习题" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/">3D图形学</a>,&nbsp;<a href="/tags/%E5%90%91%E9%87%8F/">向量</a>,&nbsp;<a href="/tags/%E6%A0%87%E9%87%8F/">标量</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="prev" rel="prev" title="向量"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>向量</a>
+            <a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%9F%A9%E9%98%B5/" class="next" rel="next" title="矩阵">矩阵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
