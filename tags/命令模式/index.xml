@@ -4,14 +4,13 @@
         <link>https://example.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
         <description>命令模式 - 标签 - Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 13 Aug 2023 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
     <title>命令模式</title>
     <link>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
-    <pubDate>Fri, 21 Jul 2023 16:29:59 &#43;0800</pubDate>
+    <pubDate>Sun, 13 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[<h1 id="命令模式">命令模式</h1>
-<h2 id="行为变化模式">行为变化模式</h2>
+    <description><![CDATA[<h2 id="行为变化模式"><em><strong>行为变化模式</strong></em></h2>
 <ol>
 <li><em><strong>什么是行为变化</strong></em>
 <ul>
@@ -25,21 +24,21 @@
 </ul>
 </li>
 </ol>
-<h2 id="命令模式前言">命令模式前言</h2>
+<h2 id="命令模式前言"><em><strong>命令模式前言</strong></em></h2>
 <ol>
 <li><em>这个模式跟迭代器模式的地位很像，如果在c++中 其实这个模式很少用到 因为泛型编程里的函数对象已经优化的很好，然后在其他语言 java之类的 这个模式应用的也是很广泛</em></li>
 </ol>
-<h2 id="动机">动机</h2>
+<h2 id="动机"><em><strong>动机</strong></em></h2>
 <ol>
 <li><em>在软件构建过程中, &ldquo;行为请求者&quot;与&quot;行为实现者&quot;通常呈现一种&quot;紧耦合&rdquo;，但在某一个场合&mdash;-比如需要对行为进行&quot;记录、撤销/重(undo/redo)、事务等处理&rdquo;, 这种无法抵御变化的紧耦合是不合适的</em></li>
 <li><em>在这种情况下, 如何将&quot;行为请求者&quot;与&quot;行为实现者&quot;解藕?</em></li>
 <li><em>将一组行为抽象为对象, 可以实现二者之间的松耦合</em></li>
 </ol>
-<h2 id="模式定义">模式定义</h2>
+<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
 <ol>
 <li><em>将一个请求(行为)封装为一个对象, 从而使你可用不同的请求对客户进行参数化，对请求排队或记录日志, 以及支持可撤销的操作</em></li>
 </ol>
-<h2 id="要点总结">要点总结</h2>
+<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
 <ol>
 <li><em>Command模式的根本目的在于将&quot;行为请求者&quot;与&quot;行为实现者&quot;解藕, 在面向对象语言中, 常见的实现手段是&quot;将行为抽象为对象&quot;</em></li>
 <li><em>实现Command接口的具体命令对象ConcreteCommand有时候根据需要可能会保存一些额外的状态信息。通过使用Composite模式, 可以将多个命令封装为一个复合命令</em></li>
