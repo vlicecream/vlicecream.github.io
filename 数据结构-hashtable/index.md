@@ -1,8 +1,6 @@
 # 哈希表
 
 
-# hashtable
-
 ## ***hashtable***
 
 1. ***什么叫hashtable***
