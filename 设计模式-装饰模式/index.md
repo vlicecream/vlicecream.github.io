@@ -267,18 +267,15 @@
              //额外的加密操作...
          }
      };
-     ```
-
      class BufferedStream : public DecoratorStream{
          Stream* stream;//...
-   
+     
      public:
          BufferedStream(Stream* stm):DecoratorStream(stm){
-   
-         }
-         //...
+     }
+     //...
      };
-   
+     
      void Process(){
          //运行时装配
          FileStream* s1=new FileStream();
@@ -286,8 +283,8 @@
          BufferedStream* s3=new BufferedStream(s1);
          BufferedStream* s4=new BufferedStream(s2);
      }
-     
      ```
+     
 
 ## ***模式定义***
 
