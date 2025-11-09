@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering","wordcount":  2940 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering","wordcount":  3101 ,
         "url": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF\/","datePublished": "2025-09-09T08:01:00+08:00","dateModified": "2025-10-09T07:59:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">图形渲染管线</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/real-time-rendering-4/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Real-Time Rendering 4</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-09">2025-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2940 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="leancloud_visitors" data-flag-title="图形渲染管线">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-09">2025-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3101 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="leancloud_visitors" data-flag-title="图形渲染管线">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -143,6 +143,8 @@
       </ul>
     </li>
     <li><a href="#光栅化阶段"><em><strong>光栅化阶段</strong></em></a></li>
+    <li><a href="#像素处理阶段"><em><strong>像素处理阶段</strong></em></a></li>
+    <li><a href="#总结"><em><strong>总结</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="引言"><em><strong>引言</strong></em></h2>
@@ -168,12 +170,12 @@
 <p><em>光栅化阶段和像素处理阶段同样完全运行在 GPU 上</em></p>
 <h2 id="应用阶段"><em><strong>应用阶段</strong></em></h2>
 <p><em>由于应用阶段通常都运行在 CPU 上， 因此开发者可以完全控制在应用阶段发生的事情</em></p>
-<p><em>有一些应用阶段中的任务也可以让 GPU 来进行执行，即通过使用一个叫 做计算着色器（compute shader）的独立模式，该模式会将 GPU 视为一个高度并行 的通用处理器，而忽略其专门用于图形渲染的特殊功能</em></p>
-<p><em>在应用阶段的最后，需要进行渲染的几何物体会被输入到几何处理阶段中，这些几何 物体被称作为渲染图元（rendering primitive），即点、线和三角形。</em></p>
-<p><em>碰撞检测（collision detection）通常会在这个阶段中实现。当检测到两个物体之间 的碰撞之后，会产生相应的响应，并返回给碰撞物体，同时也返回给力反馈设备（如 果有的话）。</em></p>
-<p><em>应用阶段同样也是处理其他来源输入的地方，例如键盘、鼠标或者头戴 式显示器等，会根据不同的输入，从而采取不同的操作。此外，一些加速算法例如特 殊的剔除算法等，以及渲染管线剩余部分无法处理的一切问题，都会在 应用阶段中完成。</em></p>
+<p><em>有一些应用阶段中的任务也可以让 GPU 来进行执行，即通过使用一个叫做计算着色器（compute shader）的独立模式，该模式会将 GPU 视为一个高度并行 的通用处理器，而忽略其专门用于图形渲染的特殊功能</em></p>
+<p><em>在应用阶段的最后，需要进行渲染的几何物体会被输入到几何处理阶段中，这些几何物体被称作为渲染图元（rendering primitive），即点、线和三角形。</em></p>
+<p><em>碰撞检测（collision detection）通常会在这个阶段中实现。当检测到两个物体之间的碰撞之后，会产生相应的响应，并返回给碰撞物体，同时也返回给力反馈设备（如果有的话）。</em></p>
+<p><em>应用阶段同样也是处理其他来源输入的地方，例如键盘、鼠标或者头戴式显示器等，会根据不同的输入，从而采取不同的操作。此外，一些加速算法例如特殊的剔除算法等，以及渲染管线剩余部分无法处理的一切问题，都会在应用阶段中完成。</em></p>
 <h2 id="几何处理阶段"><em><strong>几何处理阶段</strong></em></h2>
-<p><em>运行在 GPU 上的几何处理阶段会负责大部分的逐三角形（per-triangle）和逐顶点 （per-vertex）操作。将几何处理阶段再细分下去，可以划分为以下几个功能性阶 段：顶点着色（vertex shading）、投影（projection）、裁剪（clipping）和屏幕映 射（screen mapping），如图 2.3 所示.</em></p>
+<p><em>运行在 GPU 上的几何处理阶段会负责大部分的逐三角形（per-triangle）和逐顶点 （per-vertex）操作。将几何处理阶段再细分下去，可以划分为以下几个功能性阶段：顶点着色（vertex shading）、投影（projection）、裁剪（clipping）和屏幕映射（screen mapping），如图 2.3 所示.</em></p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -186,16 +188,16 @@
 <p><em>顶点着色（vertex shading）的任务主要有两个</em></p>
 <ol>
 <li><em>一个是计算顶点的位置</em></li>
-<li><em>另一个是 计算那些开发人员想要作为顶点数据进行输出的任何参数，例如法线（normal）和纹理坐标（texture coordinate）等</em></li>
+<li><em>另一个是计算那些开发人员想要作为顶点数据进行输出的任何参数，例如法线（normal）和纹理坐标（texture coordinate）等</em></li>
 </ol>
 <p><em>顶点着色器如今是一个更加通用的单元，它负责计算并设置与每个顶点都相关的数据。例如顶点着色器可以用来计算物体的动画。</em></p>
 <p><em>首先我们描述一下顶点位置是如何被计算出来的，它需要一组顶点坐标来作为输入。 在物体最终进入屏幕的过程中，它需要在不同的空间（space）或者坐标系 （coordinate system）下，进行若干次变换</em></p>
-<p><em>接下来，我们将描述顶点着色的第二类输出。为了创建一个真实的场景，仅仅是渲染物体的位置和形状是不够的，我们还需要对物体的外观信息进行建模，包括物体的材 质（material）信息以及光源照射在物体表面上的效果。从最简单的颜色描述到基于 物理的详细描述，材质和光源可以通过很多方式进行建模。</em></p>
+<p><em>接下来，我们将描述顶点着色的第二类输出。为了创建一个真实的场景，仅仅是渲染物体的位置和形状是不够的，我们还需要对物体的外观信息进行建模，包括物体的材质（material）信息以及光源照射在物体表面上的效果。从最简单的颜色描述到基于物理的详细描述，材质和光源可以通过很多方式进行建模。</em></p>
 <p><em>确定光照作用于材质上所产生的效果，这个操作被称为着色</em></p>
-<p><em>顶点着色的结果（可能是 颜色、向量、纹理坐标或者其他类型的着色数据）会被发送到光栅化阶段中进行插值，并在像素处理阶段中用于计算表面的着色。</em></p>
-<p><em>作为顶点着色的一部分，渲染系统还会进行投影操作和裁剪操作，这两个操作会将整 个可视空间变换为一个标准立方体，这个标准立方体被称为规范可视空间（canonical view volume）</em></p>
+<p><em>顶点着色的结果（可能是颜色、向量、纹理坐标或者其他类型的着色数据）会被发送到光栅化阶段中进行插值，并在像素处理阶段中用于计算表面的着色。</em></p>
+<p><em>作为顶点着色的一部分，渲染系统还会进行投影操作和裁剪操作，这两个操作会将整个可视空间变换为一个标准立方体，这个标准立方体被称为规范可视空间（canonical view volume）</em></p>
 <p><em>首先会进行投影操作，这是在 GPU 上的顶点着色器中完成；</em></p>
-<p><em>有两种常见的投影方法， 一种是正交投影（orthographic），也可以叫做平行投影（parallel）；另一种是透视 投影（perspective）</em></p>
+<p><em>有两种常见的投影方法， 一种是正交投影（orthographic），也可以叫做平行投影（parallel）；另一种是透视投影（perspective）</em></p>
 <h3 id="可选的顶点管理"><em><strong>可选的顶点管理</strong></em></h3>
 <p><em>每个渲染管线中，都会有刚才所描述的顶点处理阶段，当完成顶点处理之后，还有几个可以在 GPU 上执行的可选操作，它们的执行顺序如下：曲面细分 （tessellation）、几何着色（geometry shading）和流式输出（stream out）。</em></p>
 <h4 id="曲面细分"><em><strong>曲面细分</strong></em></h4>
@@ -204,7 +206,7 @@
 <h4 id="几何着色器"><em><strong>几何着色器</strong></em></h4>
 <p><em>这个着色器出现的比曲面细分着色器更早，因此在 GPU 上也更加常见。它和曲面细分着色器的相似点在于，它也将各种类型的图元作为输入，然后生成新的顶点。</em></p>
 <p><em>这是一个较为简单的阶段，因为它能够创建的范围是有限的，能够输出的图元则更加有限</em></p>
-<p><em>几何着色器有好几种用途， 其中最流行的一种就是用来生成粒子。想象我们正在模拟一个烟花爆炸的过程，每颗 火花都可以表示为一个点，即一个简单的顶点。</em></p>
+<p><em>几何着色器有好几种用途， 其中最流行的一种就是用来生成粒子。想象我们正在模拟一个烟花爆炸的过程，每颗火花都可以表示为一个点，即一个简单的顶点。</em></p>
 <h4 id="流式输出"><em><strong>流式输出</strong></em></h4>
 <p><em>这阶段我们可以把GPU作为一个几何引擎</em></p>
 <p><em>说人话就是把数据放在缓冲区，而不是直接输入到渲染管线后面流程并且直接输出到屏幕</em></p>
@@ -216,7 +218,12 @@
 <h3 id="屏幕映射"><em><strong>屏幕映射</strong></em></h3>
 <p><em>只有位于可视空间的图元我们才会传递到屏幕映射阶段。当这些图元进入到这个阶段的时候，坐标还是三维的，所以需要映射到屏幕的二维坐标</em></p>
 <h2 id="光栅化阶段"><em><strong>光栅化阶段</strong></em></h2>
-<p>**</p>
+<p><em>所有在前一阶段中被保留下来的图元，在这个阶段中都会进行光栅化，即找到所有位于图元内部的像素，然后将其发送管线的像素处理阶段</em></p>
+<h2 id="像素处理阶段"><em><strong>像素处理阶段</strong></em></h2>
+<p><em>这一步的目标是计算出每个可见图元所覆盖像素的颜色值</em></p>
+<h2 id="总结"><em><strong>总结</strong></em></h2>
+<p><em>本章节介绍的就是面向实时渲染程序的API以及图形硬件发展而来的结果。</em></p>
+<p><em>离线渲染中也有一套渲染管线，但是经历了与实时渲染完全不同的有演化路径</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
