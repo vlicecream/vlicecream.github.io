@@ -7,19 +7,21 @@
         <title>编写头文件的思路流程(reference) - Ame</title><meta name="Description" content="一个艺术世界"><meta property="og:url" content="https://example.com/c-%E7%BC%96%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%80%9D%E8%B7%AF%E6%B5%81%E7%A8%8Breference/">
   <meta property="og:site_name" content="Ame">
   <meta property="og:title" content="编写头文件的思路流程(reference)">
-  <meta property="og:description" content="编写头文件的思路流程(reference) class内 编写防卫式声明">
+  <meta property="og:description" content="class内 编写防卫式声明
+1 2 3 #ifndef __STRING__ // __STRING__ 自由取 #define __STRING__ // __STRING__ 自由取 #endif ">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-03-16T16:29:59+08:00">
-    <meta property="article:modified_time" content="2023-03-16T16:29:59+08:00">
+    <meta property="article:published_time" content="2023-03-21T17:29:59+08:00">
+    <meta property="article:modified_time" content="2023-03-21T17:29:59+08:00">
     <meta property="article:tag" content="C&#43;&#43;">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
   <meta name="twitter:title" content="编写头文件的思路流程(reference)">
-  <meta name="twitter:description" content="编写头文件的思路流程(reference) class内 编写防卫式声明">
+  <meta name="twitter:description" content="class内 编写防卫式声明
+1 2 3 #ifndef __STRING__ // __STRING__ 自由取 #define __STRING__ // __STRING__ 自由取 #endif ">
 <meta name="application-name" content="Ame林汀">
 <meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/c-%E7%BC%96%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%80%9D%E8%B7%AF%E6%B5%81%E7%A8%8Breference\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "C\u002b\u002b","wordcount":  809 ,
-        "url": "https:\/\/example.com\/c-%E7%BC%96%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%80%9D%E8%B7%AF%E6%B5%81%E7%A8%8Breference\/","datePublished": "2023-03-16T16:29:59+08:00","dateModified": "2023-03-16T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "C\u002b\u002b","wordcount":  788 ,
+        "url": "https:\/\/example.com\/c-%E7%BC%96%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%80%9D%E8%B7%AF%E6%B5%81%E7%A8%8Breference\/","datePublished": "2023-03-21T17:29:59+08:00","dateModified": "2023-03-21T17:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -114,7 +116,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编写头文件的思路流程(reference)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>C++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-16">2023-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 809 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-21">2023-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 788 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/c-%E7%BC%96%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%80%9D%E8%B7%AF%E6%B5%81%E7%A8%8Breference/" class="leancloud_visitors" data-flag-title="编写头文件的思路流程(reference)">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -129,8 +131,7 @@
     <li><a href="#class外"><em><strong>class外</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="编写头文件的思路流程reference">编写头文件的思路流程(reference)</h1>
-<h2 id="class内"><em><strong>class内</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="class内"><em><strong>class内</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>编写防卫式声明</strong></em></p>
@@ -441,7 +442,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-03-16</span>
+                <span>更新于 2023-03-21</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

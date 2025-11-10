@@ -1,8 +1,6 @@
 # lambda
 
 
-# lambda
-
 ## ***lambda***
 
 1. *怎么去定义一个`lambda`*

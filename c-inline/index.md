@@ -1,8 +1,6 @@
 # inline
 
 
-# inline
-
 ## ***什么是内联函数-inline***
 
 1. *引出*

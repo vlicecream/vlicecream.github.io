@@ -4,14 +4,13 @@
         <link>https://example.com/categories/mysql/</link>
         <description>MySQL - 分类 - Ame</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ame)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 30 Jul 2017 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/mysql/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>vlicecream520@gmail.com (Ame)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 30 Jul 2021 16:29:59 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/mysql/" rel="self" type="application/rss+xml" /><item>
     <title>索引</title>
     <link>https://example.com/mysql-%E7%B4%A2%E5%BC%95/</link>
-    <pubDate>Sun, 30 Jul 2017 16:29:59 &#43;0800</pubDate>
+    <pubDate>Fri, 30 Jul 2021 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/mysql-%E7%B4%A2%E5%BC%95/</guid>
-    <description><![CDATA[<h1 id="索引">索引</h1>
-<h2 id="索引的基本种类"><em><strong>索引的基本种类</strong></em></h2>
+    <description><![CDATA[<h2 id="索引的基本种类"><em><strong>索引的基本种类</strong></em></h2>
 <ol>
 <li><em><strong>Innodb</strong></em>
 <ul>
@@ -104,11 +103,10 @@
 <item>
     <title>事务</title>
     <link>https://example.com/mysql-%E4%BA%8B%E5%8A%A1/</link>
-    <pubDate>Tue, 25 Jul 2017 16:29:59 &#43;0800</pubDate>
+    <pubDate>Sun, 25 Jul 2021 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/mysql-%E4%BA%8B%E5%8A%A1/</guid>
-    <description><![CDATA[<h1 id="事务">事务</h1>
-<h2 id="事务-1"><em><strong>事务</strong></em></h2>
+    <description><![CDATA[<h2 id="事务"><em><strong>事务</strong></em></h2>
 <ol>
 <li>
 <p><em><strong>事务是什么</strong></em></p>
@@ -117,19 +115,36 @@
 </ul>
 </li>
 <li>
-<p><strong>事务的ACID</strong></p>]]></description>
+<p><strong>事务的ACID</strong></p>
+<ul>
+<li><em><code>原子性</code>保证全部完成 要么全部失败 没有中间状态 他是靠 <code>undo日志</code>来实现的</em></li>
+<li><em><code>持久性</code>事务修改后的数据会一直存在 他是靠 <code>redo日志</code>来实现的</em></li>
+<li><em><code>隔离性</code>多个事务之间不会互相影响，他是靠<code>MVCC</code>也就是<code>undo log</code>来实现的</em></li>
+<li><em><code>一致性</code>多个事务修改数据后 数据都是一致的</em></li>
+</ul>
+</li>
+<li>
+<p><strong>事务的隔离级别（InnoDB引擎中, 定义了四种隔离级别供我们使用 级别越高性能越低 而隔离性是由mysql的各种锁和MVCC机制来实现的）</strong></p>]]></description>
 </item>
 <item>
     <title>CMD</title>
     <link>https://example.com/mysql-cmd/</link>
-    <pubDate>Fri, 21 Jul 2017 16:29:59 &#43;0800</pubDate>
+    <pubDate>Wed, 21 Jul 2021 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/mysql-cmd/</guid>
-    <description><![CDATA[<h1 id="cmd命令">cmd命令</h1>
-<h2 id="一存储数据的演变过程">一、存储数据的演变过程</h2>
+    <description><![CDATA[<h2 id="一存储数据的演变过程"><em><strong>一、存储数据的演变过程</strong></em></h2>
 <ol>
 <li>
-<p>随意的存到一个文件中、数据格式也是千差万别的完全取决于我们自己</p>]]></description>
+<p><em>随意的存到一个文件中、数据格式也是千差万别的完全取决于我们自己</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pr]]></description>
 </item>
 </channel>
 </rss>

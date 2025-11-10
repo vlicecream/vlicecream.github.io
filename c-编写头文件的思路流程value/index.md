@@ -1,8 +1,6 @@
 # 编写头文件的思路流程(value)
 
 
-# 编写头文件的思路流程(value)
-
 ## ***class内***
 
 1. ***编写防卫式声明***
@@ -114,19 +112,19 @@
    - ```cpp
       #ifndef __COMPLEX__ // __COMPLEX__    自由取
       #define __COMPLEX__ // __COMPLEX__    自由取
-     
+       
       class complex {
       public:
         complex(double r = 0, double i = 0) : re(r), im(i) {}
         complex& operator+=(const complex&);
         double real() const { return re; }
         double imag() const { return im; }
-     
+       
       private:
         double re, im;
         friend complex& __doapl(complex*, const complex&);
       };
-     
+       
       #endif // __COMPLEX__
      ```
 

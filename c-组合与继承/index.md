@@ -1,9 +1,7 @@
 # 组合与继承
 
 
-# 组合与继承
-
-## Composition 组合
+## ***Composition 组合***
 
 1. ***什么是组合及实现***
    
@@ -34,7 +32,7 @@
    - *Container的构造函数首先调用Component的default构造函数然后才执行自己（从内到外）*
    - *Container的析构函数首先执行自己 然后才调用Component的析构函数（从外到内）*
 
-## Inheritance 继承
+## ***Inheritance 继承***
 
 1. ***什么是继承***
    
@@ -63,7 +61,7 @@
    - *Derived 的析构函数首先执行自己, 然后才调用Base的析构函数（从外到内）*
    - ***注意: base class 的 dtor 必须是virtual 否则会出现 underfined behavior***
 
-## 组合&继承的构造和析构
+## ***组合&继承的构造和析构***
 
 1. ***Base: 父类 / Derived: 派生类***
    - *Derived 的构造函数 首先调用Base的default构造函数，然后调用Component的default构造函数，然后才执行自己*

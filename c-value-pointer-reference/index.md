@@ -1,8 +1,6 @@
 # value & poionter & reference
 
 
-# value & poionter & reference
-
 ## ***引用***
 
 1. ***什么是引用***    
