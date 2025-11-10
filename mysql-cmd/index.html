@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/mysql-cmd\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MySQL","wordcount":  12623 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MySQL","wordcount":  12947 ,
         "url": "https:\/\/example.com\/mysql-cmd\/","datePublished": "2017-07-21T16:29:59+08:00","dateModified": "2017-07-21T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,7 +114,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CMD</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>MySQL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-07-21">2017-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 12623 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-07-21">2017-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 12947 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 26 分钟&nbsp;<span id="/mysql-cmd/" class="leancloud_visitors" data-flag-title="CMD">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -126,15 +126,35 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#一存储数据的演变过程">一、存储数据的演变过程</a></li>
-    <li><a href="#二数据库的本质">二、数据库的本质</a></li>
-    <li><a href="#三mysql">三、MYSQL</a></li>
+    <li><a href="#二数据库的本质">二、数据库的本质</a>
+      <ul>
+        <li><a href="#数据库的本质与分类">数据库的本质与分类</a></li>
+        <li><a href="#关系型数据库的特点">关系型数据库的特点</a></li>
+        <li><a href="#非关系型数据库的特点">非关系型数据库的特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#三mysql">三、MYSQL</a>
+      <ul>
+        <li><a href="#数据库的本质与分类-1">数据库的本质与分类</a></li>
+        <li><a href="#关系型数据库的特点-1">关系型数据库的特点</a></li>
+        <li><a href="#非关系型数据库的特点-1">非关系型数据库的特点</a></li>
+      </ul>
+    </li>
     <li><a href="#四重要概念介绍">四、重要概念介绍</a></li>
     <li><a href="#五mysql的安装">五、MYSQL的安装</a></li>
-    <li><a href="#六mysql服务端与客户端">六、MYSQL服务端与客户端</a></li>
+    <li><a href="#六mysql服务端与客户端">六、MYSQL服务端与客户端</a>
+      <ul>
+        <li><a href="#exe文件名">exe文件名</a></li>
+        <li><a href="#注意">注意</a></li>
+        <li><a href="#启动">启动</a></li>
+        <li><a href="#常见软件的默认端口号">常见软件的默认端口号</a></li>
+      </ul>
+    </li>
     <li><a href="#七mysql语句初识">七、MYSQL语句初识</a></li>
     <li><a href="#八环境变量系统服务制作">八、环境变量&amp;系统服务制作</a>
       <ul>
-        <li>
+        <li><a href="#设置环境变量">设置环境变量</a></li>
+        <li><a href="#安装为windows服务">安装为Windows服务</a>
           <ul>
             <li>
               <ul>
@@ -215,84 +235,413 @@
 </nav></div>
             </div><div class="content" id="content"><h1 id="cmd命令">cmd命令</h1>
 <h2 id="一存储数据的演变过程">一、存储数据的演变过程</h2>
+<ol>
+<li>
+<p>随意的存到一个文件中、数据格式也是千差万别的完全取决于我们自己</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.随意的存到一个文件中、数据格式也是千差万别的完全取决于我们自己    &#34;&#34;&#34;    # 小李    jason|123|NB    # 小王    egon-123-DBJ    # 小红    tank~123~hecha    &#34;&#34;&#34;    2.软件开发目录规范    限制了存储数据的具体位置        &#34;&#34;&#34;        bin        conf        core        db        lib        readme        &#34;&#34;&#34;        3.如何将单机变成连网    &#34;&#34;&#34;    假设上述是一个单机游戏    那么每个人的游戏记录只会在自己的计算机上面保存    注册登录的账号也只能在自己的计算机上有效 这样是不行的    所以我们可以    将数据库保存部分全部统一起来    所有人操作数据都来一个地方操作    &#34;&#34;&#34;
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 小李</span>
+</span></span><span class="line"><span class="cl"><span class="n">jason</span><span class="o">|</span><span class="mi">123</span><span class="o">|</span><span class="n">NB</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 小王</span>
+</span></span><span class="line"><span class="cl"><span class="n">egon</span><span class="o">-</span><span class="mi">123</span><span class="o">-</span><span class="n">DBJ</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 小红</span>
+</span></span><span class="line"><span class="cl"><span class="n">tank</span><span class="o">~</span><span class="mi">123</span><span class="o">~</span><span class="n">hecha</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="二数据库的本质">二、数据库的本质</h2>
+</div></li>
+<li>
+<p>软件开发目录规范
+限制了存储数据的具体位置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34;&#34;本质其实就是一款基于网络通信的应用程序那其实每个人都可以开发一款数据库软件 因为它仅仅就是一个基于网络通信的应用程序也就意味着数据库软件其实有很多很多    关系型数据库        MySQL、oracle、db2、access、sql server    非关系型数据库        redis、mongodb、memcache&#34;&#34;&#34;# 关系型    1 数据之间彼此有关系或者约束        男生表和前女友表    2 存储数据的表现形式通常是以表格存储            name     password        hobby        jason      123            学习        egon      123            女教练        tank      123            吃生蚝        每个字段还会有存储类型的限制        比如姓名只能存字符串...# 非关系型    存储数据通常都是以k,v键值对的形式
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">bin</span>
+</span></span><span class="line"><span class="cl"><span class="n">conf</span>
+</span></span><span class="line"><span class="cl"><span class="n">core</span>
+</span></span><span class="line"><span class="cl"><span class="n">db</span>
+</span></span><span class="line"><span class="cl"><span class="n">lib</span>
+</span></span><span class="line"><span class="cl"><span class="n">readme</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="三mysql">三、MYSQL</h2>
+</div></li>
+<li>
+<p>如何将单机变成连网</p>
+<p>假设上述是一个单机游戏
+那么每个人的游戏记录只会在自己的计算机上面保存
+注册登录的账号也只能在自己的计算机上有效 这样是不行的</p>
+<p>所以我们可以
+将数据库保存部分全部统一起来
+所有人操作数据都来一个地方操作</p>
+</li>
+</ol>
+<h2 id="二数据库的本质">二、数据库的本质</h2>
+<h3 id="数据库的本质与分类">数据库的本质与分类</h3>
+<p>数据库本质上就是一款基于网络通信的应用程序。</p>
+<p>这也意味着数据库软件其实有很多很多，主要可以分为两大类：</p>
+<ul>
+<li><strong>关系型数据库 (Relational Database)</strong>
+<ul>
+<li><code>MySQL</code>、<code>Oracle</code>、<code>DB2</code>、<code>Access</code>、<code>SQL Server</code></li>
+</ul>
+</li>
+<li><strong>非关系型数据库 (Non-Relational Database / NoSQL)</strong>
+<ul>
+<li><code>Redis</code>、<code>MongoDB</code>、<code>Memcached</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="关系型数据库的特点">关系型数据库的特点</h3>
+<ol>
+<li>
+<p><strong>数据之间彼此有关系或约束</strong></p>
+<ul>
+<li>例如：<code>男生表</code> 和 <code>前女友表</code> 之间可以通过某个字段建立关联。</li>
+</ul>
+</li>
+<li>
+<p><strong>以表格（Table）的形式存储数据</strong></p>
+<ul>
+<li>数据以行和列的结构进行组织。</li>
+</ul>
+<p><strong>示例表格:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">name</th>
+          <th style="text-align: left">password</th>
+          <th style="text-align: left">hobby</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">jason</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">学习</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">egon</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">女教练</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">tank</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">吃生蚝</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p><strong>字段有严格的类型限制</strong></p>
+<ul>
+<li>例如，姓名字段（<code>name</code>）只能存储字符串类型的数据，年龄字段只能存储数字等。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="非关系型数据库的特点">非关系型数据库的特点</h3>
+<ul>
+<li><strong>以键值对（Key-Value）的形式存储数据</strong>
+<ul>
+<li>数据存储通常都是以 <code>k:v</code> 的形式，结构更加灵活，不依赖于固定的表格模式。</li>
+</ul>
+</li>
+</ul>
+<h2 id="三mysql">三、MYSQL</h2>
+<h3 id="数据库的本质与分类-1">数据库的本质与分类</h3>
+<p>数据库本质上就是一款基于网络通信的应用程序。</p>
+<p>这也意味着数据库软件其实有很多很多，主要可以分为两大类：</p>
+<ul>
+<li><strong>关系型数据库 (Relational Database)</strong>
+<ul>
+<li><code>MySQL</code>、<code>Oracle</code>、<code>DB2</code>、<code>Access</code>、<code>SQL Server</code></li>
+</ul>
+</li>
+<li><strong>非关系型数据库 (Non-Relational Database / NoSQL)</strong>
+<ul>
+<li><code>Redis</code>、<code>MongoDB</code>、<code>Memcached</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="关系型数据库的特点-1">关系型数据库的特点</h3>
+<ol>
+<li>
+<p><strong>数据之间彼此有关系或约束</strong></p>
+<ul>
+<li>例如：<code>男生表</code> 和 <code>前女友表</code> 之间可以通过某个字段建立关联。</li>
+</ul>
+</li>
+<li>
+<p><strong>以表格（Table）的形式存储数据</strong></p>
+<ul>
+<li>数据以行和列的结构进行组织。</li>
+</ul>
+<p><strong>示例表格:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">name</th>
+          <th style="text-align: left">password</th>
+          <th style="text-align: left">hobby</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">jason</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">学习</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">egon</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">女教练</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">tank</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">吃生蚝</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p><strong>字段有严格的类型限制</strong></p>
+<ul>
+<li>例如，姓名字段（<code>name</code>）只能存储字符串类型的数据，年龄字段只能存储数字等。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="非关系型数据库的特点-1">非关系型数据库的特点</h3>
+<ul>
+<li><strong>以键值对（Key-Value）的形式存储数据</strong>
+<ul>
+<li>数据存储通常都是以 <code>k:v</code> 的形式，结构更加灵活，不依赖于固定的表格模式。</li>
+</ul>
+</li>
+</ul>
+<h2 id="四重要概念介绍">四、重要概念介绍</h2>
+<p>任何基于网络通信的应用程序底层用的都是socket。</p>
+<ul>
+<li><strong>服务端</strong>
+<ul>
+<li>基于socket通信</li>
+<li>收发消息</li>
+<li>SQL语句</li>
+</ul>
+</li>
+<li><strong>客户端</strong>
+<ul>
+<li>基于socket通信</li>
+<li>收发消息</li>
+<li>SQL语句</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>MySQL不单单支持MySQL自己的客户端app，还支持其他编程语言来充当客户端操作。</p>
+<p>如何解决语言沟通的障碍？</p>
+<ol>
+<li>让服务端兼容所有的语言（一个人精通多国语言）。</li>
+<li>采用统一的语言（SQL语句）。</li>
+</ol>
+<hr>
+<ul>
+<li>库             》》》             文件夹</li>
+<li>表            》》》             文件</li>
+<li>记录           》》》            文件内一行行的数据</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">name</th>
+          <th style="text-align: left">password</th>
+          <th style="text-align: left">hobby</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">jason</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">学习</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">egon</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">女教练</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">tank</td>
+          <td style="text-align: left">123</td>
+          <td style="text-align: left">吃生蚝</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>表头</strong>
+<ul>
+<li>表格的第一行</li>
+</ul>
+</li>
+<li><strong>字段</strong>
+<ul>
+<li><code>name</code>、<code>password</code>、<code>hobby</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="五mysql的安装">五、MYSQL的安装</h2>
+<p>在IT界，一般都不会轻易地使用最新版本的软件，因为新版本可能会出现各种问题（你原本项目跑得好好的，非要画蛇添足更新版本，然后项目崩溃）。</p>
+<blockquote>
+<p><strong>小段子:</strong></p>
+<p>更新完没事，那么你还是一个普通员工。
+更新完出事，那么你就是一名“烈士”。</p>
+</blockquote>
+<hr>
+<p>MySQL有很多版本（5.6、5.7、8.0），目前企业里面用得比较多的还是5.6左右。</p>
+<p>参考网站：https://www.mysql.com/</p>
+<p>下载5.6版本即可，如果你下载了其他版本问题也不大，因为SQL语句是一样的。</p>
+<p>按照教学方式下载，会将服务端和客户端一并下载到本地。</p>
+<p>为了学习方便，我们将服务端和客户端都在本地启动，后期到了公司，服务端会专门跑在一台服务器上，所有人基于网络连接服务端操作。</p>
+<h2 id="六mysql服务端与客户端">六、MYSQL服务端与客户端</h2>
+<h3 id="exe文件名">exe文件名</h3>
+<ul>
+<li><strong>服务端</strong>: <code>mysqld.exe</code></li>
+<li><strong>客户端</strong>: <code>mysql.exe</code></li>
+</ul>
+<hr>
+<h3 id="注意">注意</h3>
+<blockquote>
+<p>在前期配置MySQL的时候，cmd终端尽量以管理员的身份运行。
+<code>windows+r</code> 输入<code>cmd</code> 进入的是普通用户终端，有一些命令是无法执行的。
+应该搜索<code>cmd</code>，然后右键以管理员身份运行。</p>
+</blockquote>
+<hr>
+<h3 id="启动">启动</h3>
+<p>先切换到<code>mysqld</code>所在的<code>bin</code>目录下，然后输入<code>mysqld</code>即可。</p>
+<p>保留原来的cmd窗口，重新打开一个。</p>
+<hr>
+<h3 id="常见软件的默认端口号">常见软件的默认端口号</h3>
+<ul>
+<li><code>MySQL</code>: 3306</li>
+<li><code>redis</code>: 6379</li>
+<li><code>mongodb</code>: 27017</li>
+<li><code>django</code>: 8000</li>
+<li><code>flask</code>: 5000</li>
+<li>&hellip;</li>
+</ul>
+<p>MySQL第一次以管理员身份进入是没有密码的，直接回车即可。</p>
+<p><strong>客户端连接服务端完整命令</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34;&#34;任何基于网络通信的应用程序底层用的都是socket-服务端    -基于socket通信    -收发消息    -SQL语句-客户端    -基于socket通信    -收发消息    -SQL语句&#34;&#34;&#34;MySQL不单单支持MySQL自己的客户端app还支持其他编程语言来充当客户端操作    如何解决语言沟通的障碍？        # 1 让服务端兼容所有的语言(一个人精通多国语言)        # 2 采用统一的语言(SQL语句)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="四重要概念介绍">四、重要概念介绍</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34;&#34;库             》》》             文件夹表            》》》             文件记录           》》》            文件内一行行的数据        name     password        hobby        jason      123            学习        egon      123            女教练        tank      123            吃生蚝表头                表格的第一行字段字段                name、password、hobby&#34;&#34;&#34;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="五mysql的安装">五、MYSQL的安装</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34;在IT界 一般都不会轻易的使用最新版本的软件，因为新版本可能会出现各种问题(你原本项目跑的好好的 非要画蛇添足更新版本 然后项目奔溃)小段子:    更新完没事 那么你还是一个普通员工    更新完出事 那么你就是一名&#34;烈士&#34;&#34;&#34;&#34;# MySQL有很多版本(5.6、5.7、8.0) 目前企业里面用的比较多的还是5.6左右参考网站:https://www.mysql.com/下载5.6版本即可，如果你下载了其他版本问题也不大，因为sql语句是一样的学按照教学方式下载，会将服务端和客户端一并下载到本地为了学习方便我们将服务端和客户端都在本地启动，后期到了公司服务端会专门跑在一台服务器上，所有人基于网络连接服务端操作
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="六mysql服务端与客户端">六、MYSQL服务端与客户端</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># exe文件名    &#34;&#34;&#34;    服务端    mysqld.exe    客户端    mysql.exe    &#34;&#34;&#34;# 注意    &#34;&#34;&#34;    在前期配置MySQL的时候 cmd终端尽量以管理员的身份运行    windows+r 输入cmd  进入的是普通用户终端 有一些命令是无法执行的    搜索cmd右键 以管理员身份运行    &#34;&#34;&#34;# 启动    先切换到mysqld所在的bin目录下，然后输入mysqld即可    保留原来的cmd窗口重新打开一个&#34;&#34;&#34;常见软件的默认端口号    MySQL  3306    redis  6379    mongodb 27017    django  8000    flask   5000    ...    MySQL第一次以管理员身份进入是没有密码的 直接回车即可客户端连接服务端完整命令    mysql -h 127.0.0.1 -P 3306 -uroot -p&#34;&#34;&#34;
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -h 127.0.0.1 -P <span class="m">3306</span> -uroot -p
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="七mysql语句初识">七、MYSQL语句初识</h2>
+<ol>
+<li>
+<p>MySQL结束是以分号(<code>;</code>)为标志。</p>
+</li>
+<li>
+<p>基本命令</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. MySQL结束是以分号(；)为标志2. 基本命令    show databases  # 查看全部的库名3. MySQL连接精简版命令    mysql -uroot -p     # 省去了默认ip和端口4. 当你输入的命令不对的时候，不想让他继续执行和报错    输入\c即可(不用分号)5. 客户端退出    quit    exit    # 不用加分号6. 当你在连接服务端的时候，直接输入MySQL，就可以登录进去，但是是游客模式，只会给你展示一部分内容
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 查看全部的库名
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>(注：原文为<code>#</code>，在SQL标准中<code>--</code>是更通用的注释符)</em></p>
+</li>
+<li>
+<p>MySQL连接精简版命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -uroot -p
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="八环境变量系统服务制作">八、环境变量&amp;系统服务制作</h2>
+</div><p><em># 省去了默认ip和端口</em></p>
+</li>
+<li>
+<p>当你输入的命令不对的时候，不想让他继续执行和报错，输入<code>\c</code>即可(不用分号)。</p>
+</li>
+<li>
+<p>客户端退出</p>
+<ul>
+<li><code>quit</code></li>
+<li><code>exit</code></li>
+</ul>
+<p>不用加分号</p>
+</li>
+<li>
+<p>当你在连接服务端的时候，直接输入<code>mysql</code>，就可以登录进去，但是是游客模式，只会给你展示一部分内容。</p>
+</li>
+</ol>
+<h2 id="八环境变量系统服务制作">八、环境变量&amp;系统服务制作</h2>
+<h3 id="设置环境变量">设置环境变量</h3>
+<ol>
+<li>找到MySQL的<code>bin</code>文件夹绝对路径。</li>
+<li>右键“我的电脑”，点击“属性”，再点击“高级系统设置”，然后点击“环境变量”。</li>
+<li>在系统变量中找到<code>path</code>，双击它，新建一个条目，把<code>bin</code>文件夹的绝对路径输入进去。</li>
+<li>设置完成后，就可以直接在cmd中输入<code>mysqld</code>了，不用再切换路径。</li>
+</ol>
+<h3 id="安装为windows服务">安装为Windows服务</h3>
+<ol>
+<li>环境变量弄好后，以管理员身份运行cmd，输入以下命令：
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34;&#34;    找到mysql的bin文件夹绝对路径，然后邮件我的电脑，点击属性，再点击高级系统设置，在然后点击环境变量，找到下面的path，双击，在新建一个把文件夹绝对路径输入进去，就可以直接cmd输入mysqld啦，不用切换路径文件夹了    我们环境变量弄好了，直接cmd输入mysqld --install 然后显示Service successfully installed就成功了，这时候我们在打开任务管理器，点击管理，找到mysql，右键点击开始，然后这个时候就被我们设置成系统开机就会自动启动的服务端啦，然后直接cmd 直接连接客户端就好啦&#34;&#34;&#34;
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysqld --install
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h6 id="小知识点补充如何查看当前进程如何杀死当前进程">***小知识点补充——–如何查看当前进程&amp;如何杀死当前进程</h6>
+</div></li>
+<li>如果显示 <code>Service successfully installed</code> 就表示成功了。</li>
+<li>这时候再打开任务管理器，点击“服务”，找到<code>mysql</code>，右键点击“开始”。</li>
+<li>完成以上步骤后，MySQL服务端就被设置成了开机自动启动的服务。</li>
+<li>之后，直接打开cmd连接客户端就好了。</li>
+</ol>
+<h6 id="小知识点补充如何查看当前进程如何杀死当前进程">***小知识点补充——–如何查看当前进程&amp;如何杀死当前进程</h6>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;&#39;&#39;1.如何查看当前进程    tasklist |findstr mysql2.如何杀死进程    taskkill /F /PID PID号&#39;&#39;&#39;
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">1.如何查看当前进程    
+</span></span></span><span class="line"><span class="cl"><span class="s1">tasklist |findstr mysql
+</span></span></span><span class="line"><span class="cl"><span class="s1">2.如何杀死进程    
+</span></span></span><span class="line"><span class="cl"><span class="s1">taskkill /F /PID PID号
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="九设置密码">九、设置密码</h2>
@@ -329,7 +678,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 增    create database ame;    create database yuki charset=&#39;gbk&#39;;# 查    show database;    show create database yuki;# 改    alter database ame charset=&#39;gbk&#39;;# 删    drop database ame;
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 增    create database ame;    create database yuki charset=&#39;gbk&#39;;# 查    show database;    show create database yuki;# 改    alter database ame charset=&#39;gbk&#39;;# 删    drop database ame;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="122-表的增删改查文件">12.2 表的增删改查(文件)</h3>
