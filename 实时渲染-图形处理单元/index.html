@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-11-09T12:21:00+08:00">
-    <meta property="article:modified_time" content="2025-11-09T12:21:00+08:00">
+    <meta property="article:modified_time" content="2025-11-10T14:03:00+08:00">
     <meta property="article:tag" content="Real-Time Rendering">
     <meta property="og:image" content="https://example.com/logo.png">
 
@@ -34,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering","wordcount":  648 ,
-        "url": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83\/","datePublished": "2025-11-09T12:21:00+08:00","dateModified": "2025-11-09T12:21:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering","wordcount":  1838 ,
+        "url": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83\/","datePublished": "2025-11-09T12:21:00+08:00","dateModified": "2025-11-10T14:03:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -114,8 +114,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">图形处理单元</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/real-time-rendering-4/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Real-Time Rendering 4</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-09">2025-11-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 648 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83/" class="leancloud_visitors" data-flag-title="图形处理单元">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-09">2025-11-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1838 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83/" class="leancloud_visitors" data-flag-title="图形处理单元">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -126,7 +126,20 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#引言"><em><strong>引言</strong></em></a></li>
-    <li><a href="#数据并行结构"><em><strong>数据并行结构</strong></em></a></li>
+    <li><a href="#数据并行结构"><em><strong>数据并行结构</strong></em></a>
+      <ul>
+        <li><a href="#cpu"><em><strong>CPU</strong></em></a></li>
+        <li><a href="#gpu"><em><strong>GPU</strong></em></a>
+          <ul>
+            <li><a href="#simd"><em><strong>SIMD</strong></em></a></li>
+            <li><a href="#wrap--wavefronts"><em><strong>wrap / wavefronts</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#影响-gpu-运行效率的点"><em><strong>影响 GPU 运行效率的点</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#gpu-管线概述"><em><strong>GPU 管线概述</strong></em></a></li>
+    <li><a href="#可编程着色器阶段"><em><strong>可编程着色器阶段</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="引言"><em><strong>引言</strong></em></h2>
@@ -135,15 +148,57 @@
 <p><em>各种可编程的着色器（shader）是控制 GPU 的主要手段。为了获得更高的效率，渲染管线中的有些部分仍然只是可配置的，而并非是可编程的，但是 GPU 的整体发展趋势是可编程性和灵活性。</em></p>
 <p><em>我们需要知道一点，由于在存储中访问数据需要花费一定时间，因此延迟是所有处理器都会面临的一个问题</em></p>
 <h2 id="数据并行结构"><em><strong>数据并行结构</strong></em></h2>
+<h3 id="cpu"><em><strong>CPU</strong></em></h3>
 <p><em>不同的处理器架构使用了不同的策略来避免停滞。CPU 经过优化，可以处理大量的数据结构和大型代码段，CPU 一般都具有多个处理器，每个处理器都以串行的方式来执行代码。为了最小化延迟所带来的影响，CPU芯片中的大部分面积都是高速的本地缓存，这些缓存中存满了接下来可能会用到的数据。CPU也还会使用一些智能技能来避免停滞，比如 分支预测 等&hellip;</em></p>
+<h3 id="gpu"><em><strong>GPU</strong></em></h3>
 <p><em>GPU 采用了不同的策略，GPU 芯片中的很大一片面积都是大量的处理器，也叫做着色器核心，GPU芯片中通常会有数千个着色器核心。</em></p>
 <p><em>GPU 是一个流处理器，他会依次处理有序的相似数据。由于数据的相似性（例如一组顶点或者像素），因此 GPU 可以通过大规模并行的方式来处理这些数据</em></p>
 <p><em>GPU 专门对吞吐量（throughput）进行了优化，吞吐量指的是数据能够被处理的最大速度。但是这种快速处理是有代价的，由于用于缓存和控制逻辑的芯片面积较少， 因此每个着色器核心的延迟，通常都会比 CPU 处理器所遇到的延迟要大</em></p>
+<h4 id="simd"><em><strong>SIMD</strong></em></h4>
+<p><em>当遇到令着色处理器停滞的指令时（例如：对于一个给定的表面位置，程序需要知道纹理上对应位置的像素颜色，而这个纹理是一个独立的资源，并不是像素着色程序本地内存中的一部分， 因此可能会涉及到访问纹理的操作），我们通过切换并执行其他片元程序的方式，来让 GPU 时刻保持忙碌，从而避免延迟。</em></p>
+<p><em>更进一步，GPU 可以将指令执行的逻辑与数据分离开来，这种设计叫做单指令、多数据（single instruction， multiple data，SIMD）</em></p>
+<p><em>这种设计会在固定数量的着色器程序上，以一个固定的步长来执行完全相同的指令</em></p>
+<h4 id="wrap--wavefronts"><em><strong>wrap / wavefronts</strong></em></h4>
+<p><em>每个片元的像素着色器调用都可以被称为一个线程，但是这里所说的线程不同于 CPU 的线程，他还包括用于存储着色其输入数据的存储空间，以及用于着色器执行的任何寄存器空间。这些用相同着色器程序会被打包成组</em></p>
+<p><em>NVDIA将其称为一个 wrap，AMD是称为一个 wavefront</em></p>
+<p><em>一个 warp / wavefronts 负责调度一定数量的 GPU 处理核心， 可能是 8 到 64 个，并且都会使用 SIMD 处理。每个线程都会被映射到一个 SIMD 通 道（SIMD lane）。</em></p>
+<h3 id="影响-gpu-运行效率的点"><em><strong>影响 GPU 运行效率的点</strong></em></h3>
+<ol>
+<li>
+<p><em>如果线程的数量很少，那么就只能创建很少的 warp，这可能就没法有效隐藏延迟</em></p>
+</li>
+<li>
+<p><em>影响执行效率的另一个重要特征是着色器程序的结构，其中最重要的一个因素就是每个线程所使用的寄存器数量。</em></p>
+</li>
+<li>
+<p><em>另一个影响整体运行效率的因素是由<code>if</code>语句和循环语句导致的动态分支（dynamic branching）。</em></p>
+<p><em>假设现在我们的着色器程序中遇到了一个<code>if</code>语句，如果所有线程都进入了相同的分支，那么这个 warp 可以不用管其他的分支，继续执行进入的那个分支即可。</em></p>
+<p><em>但是，如果其中有几个线程，甚至是只有一个线程进入了其他的分支，那么 这个 warp 就必须把两个分支都执行一遍，然后再根据每个线程的具体情况，丢弃不需要的结果。这个问题叫做线程发散（thread divergence），它意味着有 一些线程需要去执行一个循环操作，或者是进入了所在 warp 中其他线程都没有进入 的“if”分支，这会导致其他的线程空转。</em></p>
+</li>
+</ol>
+<h2 id="gpu-管线概述"><em><strong>GPU 管线概述</strong></em></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251110135534847.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251110135534847.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251110135534847.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251110135534847.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251110135534847.png"
+        title="GPU 管线概述" /></p>
+<p><em>顶点着色器是一个完全可编程的阶段，它用于实现渲染管线中的几何处理阶段。</em></p>
+<p><em>几何着色器也是一个完全可编程的极端，它可以对图元（点，线，三角形）的顶点进行操作，它也可以用于进行一些逐图元的着色操作，销毁图元或者是创建新图元等</em></p>
+<p><em>曲面细分阶段和几何着色器都是可选的阶段，但并不是所有的 GPU都支持这两个阶段，尤其是移动设备上的 GPU</em></p>
+<p><em>裁剪，三角形设置和三角形遍历阶段，都是由固定功能的硬件进行实现。</em></p>
+<p><em>屏幕映射收到窗口和视口设置的影响，其内部包含了一个简单的缩放和重定位功能。</em></p>
+<p><em>像素着色器阶段是一个完全可编程的阶段</em></p>
+<p><em>合并阶段尽管不是可编程的，但是他是高度可配置的，我们可以为其设定各种各样的操作。合并阶段实现了渲染管线中的合并功能，负责修改维护颜色缓冲，Z-Buffer，模板缓冲以及其他任何与输出相关的缓冲区</em></p>
+<p><em>像素着色器和合并阶段一起，组成了概念化的像素处理阶段</em></p>
+<h2 id="可编程着色器阶段"><em><strong>可编程着色器阶段</strong></em></h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-09</span>
+                <span>更新于 2025-11-10</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
