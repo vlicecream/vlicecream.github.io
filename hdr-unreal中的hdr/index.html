@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Unreal中的HDR - Ame</title><meta name="Description" content="Unreal中的HDR"><meta property="og:url" content="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/">
+  <meta property="og:site_name" content="Ame">
+  <meta property="og:title" content="Unreal中的HDR">
+  <meta property="og:description" content="Unreal中的HDR">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-13T21:01:00+08:00">
+    <meta property="article:modified_time" content="2025-11-08T21:59:00+08:00">
+    <meta property="article:tag" content="HDR">
+    <meta property="article:tag" content="Unrea">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="Unreal中的HDR">
+  <meta name="twitter:description" content="Unreal中的HDR">
+<meta name="application-name" content="Ame林汀">
+<meta name="apple-mobile-web-app-title" content="Ame林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" /><link rel="prev" href="https://example.com/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" /><link rel="next" href="https://example.com/hdr/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Unreal中的HDR",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/hdr-unreal%E4%B8%AD%E7%9A%84hdr\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "HDR, Unrea","wordcount":  3655 ,
+        "url": "https:\/\/example.com\/hdr-unreal%E4%B8%AD%E7%9A%84hdr\/","datePublished": "2025-10-13T21:01:00+08:00","dateModified": "2025-11-08T21:59:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "Unreal中的HDR"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ame"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Ame林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal中的HDR</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/hdr/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HDR</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-10-13">2025-10-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3655 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" class="leancloud_visitors" data-flag-title="Unreal中的HDR">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hdr-相关命令"><em><strong>HDR 相关命令</strong></em></a></li>
+    <li><a href="#hdr-后处理"><em><strong>HDR 后处理</strong></em></a>
+      <ul>
+        <li><a href="#生成-cluts"><em><strong>生成 cLUTs</strong></em></a>
+          <ul>
+            <li><a href="#1中性luts"><em><strong>（1）中性LUTs</strong></em></a></li>
+            <li><a href="#2白平衡"><em><strong>（2）白平衡</strong></em></a></li>
+            <li><a href="#3从srgb到ap1色彩空间的转换"><em><strong>（3）从sRGB到AP1色彩空间的转换</strong></em></a></li>
+            <li><a href="#4sdr中的输出变换"><em><strong>（4）SDR中的输出变换</strong></em></a></li>
+            <li><a href="#6hdr中的输出变换"><em><strong>（6）HDR中的输出变换</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#使用-cluts-tonemap"><em><strong>使用 cLUTs (Tonemap)</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#ui-中的-hdr"><em><strong>UI 中的 HDR</strong></em></a>
+      <ul>
+        <li><a href="#1计算-ui-颜色"><em><strong>（1）计算 UI 颜色</strong></em></a></li>
+        <li><a href="#2计算场景颜色"><em><strong>（2）计算场景颜色</strong></em></a></li>
+        <li><a href="#3混合-ui-和-场景-颜色"><em><strong>（3）混合 UI 和 场景 颜色</strong></em></a></li>
+        <li><a href="#4色盲模式"><em><strong>（4）色盲模式</strong></em></a></li>
+        <li><a href="#5输出到显示器"><em><strong>（5）输出到显示器</strong></em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><em><strong>源码版本 - UE5.5</strong></em></p>
+<h2 id="hdr-相关命令"><em><strong>HDR 相关命令</strong></em></h2>
+<ol>
+<li>
+<p><code>r.HDR.EnableHDROutput</code></p>
+<p><em>控制是否启用 HDR 输出。</em></p>
+<p><em>它主要控制 DXGI 设置，以更改后台缓冲区格式，并允许将 HDR 格式的后台缓冲区发送到 HDR 显示设备。</em></p>
+</li>
+<li>
+<p><code>r.HDR.Display.OutputDevice</code></p>
+<p><em>控制使用哪个输出设备的传输函数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">TAutoConsoleVariable</span><span class="o">&lt;</span><span class="n">int32</span><span class="o">&gt;</span> <span class="n">CVarDisplayOutputDevice</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;r.HDR.Display.OutputDevice&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;Device format of the output display:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;0: sRGB (LDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;1: Rec709 (LDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;2: Explicit gamma mapping (LDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;3: ACES 1000 nit ST-2084 (Dolby PQ) (HDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;4: ACES 2000 nit ST-2084 (Dolby PQ) (HDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;5: ACES 1000 nit ScRGB (HDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;6: ACES 2000 nit ScRGB (HDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;7: Linear EXR (HDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;8: Linear final color, no tone curve (HDR)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;9: Linear final color with tone curve</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ECVF_Scalability</span> <span class="o">|</span> <span class="n">ECVF_RenderThreadSafe</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>r.HDR.Display.ColorGamut</code></p>
+<p><em>控制用作输出设备的色域范围</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">TAutoConsoleVariable</span><span class="o">&lt;</span><span class="n">int32</span><span class="o">&gt;</span> <span class="n">CVarDisplayColorGamut</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;r.HDR.Display.ColorGamut&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;Color gamut of the output display:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;0: Rec709 / sRGB, D65 (default)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;1: DCI-P3, D65</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;2: Rec2020 / BT2020, D65</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;3: ACES, D60</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;4: ACEScg, D60</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ECVF_Scalability</span> <span class="o">|</span> <span class="n">ECVF_RenderThreadSafe</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>r.HDR.Display.MinLuminanceLog10</code></p>
+<p><em>所设定的最低显示输出的 Nit 值（以对数形式表示的值）</em></p>
+<p><em>默认值 -4</em></p>
+</li>
+<li>
+<p><code>r.HDR.Display.MidLuminance</code></p>
+<p><em>18% 灰度的配置显示输出的亮度水平</em></p>
+<p><em>默认值 15</em></p>
+</li>
+<li>
+<p><code>r.HDR.Display.MaxLuminance</code></p>
+<p><em>所配置的显示输出的亮度水平（假设已启用 HDR 输出）。</em></p>
+<p><em>默认值 0 但是其实代码判断为0 就会显示1000，如果启用 HDR 输出</em></p>
+<p><em>跟 <code>r.HDR.Display.MidLuminance</code> 配合使用，要不然这个调的太低，场景会灰</em></p>
+</li>
+<li>
+<p><code>r.HDR.UI.CompositeMode</code></p>
+<p><em>控制UI是否启用HDR合成模式，尝试获得与SDR相同的UI视觉效果。</em></p>
+</li>
+<li>
+<p><code>r.HDR.UI.Level</code></p>
+<p><em>将用户界面元素合成到高动态范围帧缓冲区时的亮度级别</em></p>
+</li>
+<li>
+<p><code>r.HDR.UI.Luminance</code></p>
+<p><em>控制 UI HDR 亮度值</em></p>
+<p><em>在将用户界面元素合成到 HDR 帧缓冲区时，其基亮度值（以尼特为单位）乘以 r.HDR.UI.Level 的结果</em></p>
+</li>
+</ol>
+<p><em>除了 <code>r.HDR.EnableHDROutput</code> ，其他的参数都是控制 UE 渲染逻辑的 Shader 参数</em></p>
+<h2 id="hdr-后处理"><em><strong>HDR 后处理</strong></em></h2>
+<p><em>关于 HDR 的后处理可以分为两个流程，实际里面也有对 SDR 的处理</em></p>
+<ol>
+<li><em>cLUTs</em></li>
+<li><em>Tonemap</em></li>
+</ol>
+<h3 id="生成-cluts"><em><strong>生成 cLUTs</strong></em></h3>
+<p><em>首先，生成当前帧的 CLUT。</em></p>
+<p><em>此逻辑由 <code>PostProcessCombineLUTs.usf</code> 处理。有两个版本可供选择：PS 和 CS，具体取决于当前平台。</em></p>
+<p><em>此 CLUT 包含以下颜色操作：</em></p>
+<ol>
+<li><em>依靠UV计算出 2D/3D 的 中性LUTs</em></li>
+<li><em>白平衡</em></li>
+<li><em>HDR 调色</em></li>
+<li><em>输出变换 （RRT + ODT）</em></li>
+</ol>
+<h4 id="1中性luts"><em><strong>（1）中性LUTs</strong></em></h4>
+<p><em><code>USE_VOLUME_LUT</code> 这个宏内走的会根据你的 LUTSize（默认值为32）生成 32 x 32 x32 的 3D LUTs 表</em></p>
+<p><em>如果不走这个宏的话，他就会按照你的 LUTSize（默认值为32） 生成像素长为 32 x 32 =  1024，像素宽为 32 的 2D LUTs</em></p>
+<p><em>再然后如果发现你的 <code>OutputDevice &gt;= 3</code> 则把 ST 2084/PQ 传输函数将 0-1 范围重新映射到 0-100 尼特的转换</em></p>
+<p><em>SDR输出设备分支采用对数编码，利用对数函数将0到1的范围重新映射到从0到场景中最大像素值（约50）的转换。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">float4</span> <span class="n">CombineLUTsCommon</span><span class="p">(</span><span class="kt">float2</span> <span class="n">InUV</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">InLayerIndex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if USE_VOLUME_LUT == 1</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// construct the neutral color from a 3d position volume texture	</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">Neutral</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float2</span> <span class="n">UV</span> <span class="o">=</span> <span class="n">InUV</span> <span class="o">-</span> <span class="kt">float2</span><span class="p">(</span><span class="mf">0.5f</span> <span class="o">/</span> <span class="n">LUTSize</span><span class="p">,</span> <span class="mf">0.5f</span> <span class="o">/</span> <span class="n">LUTSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">Neutral</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">UV</span> <span class="o">*</span> <span class="n">LUTSize</span> <span class="o">/</span> <span class="p">(</span><span class="n">LUTSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">InLayerIndex</span> <span class="o">/</span> <span class="p">(</span><span class="n">LUTSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mo">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// construct the neutral color from a 2d position in 256x16</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">Neutral</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span> 
+</span></span><span class="line"><span class="cl">		<span class="kt">float2</span> <span class="n">UV</span> <span class="o">=</span> <span class="n">InUV</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// 0.49999f instead of 0.5f to avoid getting into negative values</span>
+</span></span><span class="line"><span class="cl">		<span class="n">UV</span> <span class="o">-=</span> <span class="kt">float2</span><span class="p">(</span><span class="mf">0.49999f</span> <span class="o">/</span> <span class="p">(</span><span class="n">LUTSize</span> <span class="o">*</span> <span class="n">LUTSize</span><span class="p">),</span> <span class="mf">0.49999f</span> <span class="o">/</span> <span class="n">LUTSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="kt">float</span> <span class="n">Scale</span> <span class="o">=</span> <span class="n">LUTSize</span> <span class="o">/</span> <span class="p">(</span><span class="n">LUTSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="kt">float3</span> <span class="n">RGB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		<span class="n">RGB</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="nb">frac</span><span class="p">(</span><span class="n">UV</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">LUTSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">RGB</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">UV</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">RGB</span><span class="p">.</span><span class="n">r</span> <span class="o">/</span> <span class="n">LUTSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">RGB</span><span class="p">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">UV</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">Neutral</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">RGB</span> <span class="o">*</span> <span class="n">Scale</span><span class="p">,</span> <span class="mo">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="kt">float3</span> <span class="n">LUTEncodedColor</span> <span class="o">=</span> <span class="n">Neutral</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">LinearColor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Decode texture values as ST-2084 (Dolby PQ)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BRANCH</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">TONEMAPPER_OUTPUT_ACES1000nitST2084</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Since ST2084 returns linear values in nits, divide by a scale factor to convert</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// the reference nit result to be 1.0 in linear.</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// (for efficiency multiply by precomputed inverse)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LinearColor</span> <span class="o">=</span> <span class="n">ST2084ToLinear</span><span class="p">(</span><span class="n">LUTEncodedColor</span><span class="p">)</span> <span class="o">*</span> <span class="n">LinearToNitsScaleInverse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Decode log values</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LinearColor</span> <span class="o">=</span> <span class="n">LogToLin</span><span class="p">(</span><span class="n">LUTEncodedColor</span><span class="p">)</span> <span class="o">-</span> <span class="n">LogToLin</span><span class="p">(</span><span class="mo">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">float3</span> <span class="n">LogToLin</span><span class="p">(</span> <span class="kt">float3</span> <span class="n">LogColor</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float</span> <span class="n">LinearRange</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float</span> <span class="n">LinearGrey</span> <span class="o">=</span> <span class="mf">0.18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float</span> <span class="n">ExposureGrey</span> <span class="o">=</span> <span class="mi">444</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Using stripped down, &#39;pure log&#39;, formula. Parameterized by grey points and dynamic range covered.</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">LinearColor</span> <span class="o">=</span> <span class="nb">exp2</span><span class="p">(</span> <span class="p">(</span> <span class="n">LogColor</span> <span class="o">-</span> <span class="n">ExposureGrey</span> <span class="o">/</span> <span class="mf">1023.0</span> <span class="p">)</span> <span class="o">*</span> <span class="n">LinearRange</span> <span class="p">)</span> <span class="o">*</span> <span class="n">LinearGrey</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//float3 LinearColor = 2 * ( pow(10.0, ((LogColor - 0.616596 - 0.03) / 0.432699)) - 0.037584 );	// SLog</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//float3 LinearColor = ( pow( 10, ( 1023 * LogColor - 685 ) / 300) - .0108 ) / (1 - .0108);	// Cineon</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//LinearColor = max( 0, LinearColor );</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">LinearColor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2白平衡"><em><strong>（2）白平衡</strong></em></h4>
+<p><em>使用上一个步骤计算出来的 <code>LinearColor</code> 计算白平衡</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">float4</span> <span class="n">CombineLUTsCommon</span><span class="p">(</span><span class="kt">float2</span> <span class="n">InUV</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">InLayerIndex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">BalancedColor</span> <span class="o">=</span> <span class="n">WhiteBalance</span><span class="p">(</span><span class="n">LinearColor</span><span class="p">,</span> <span class="n">WhiteTemp</span><span class="p">,</span> <span class="n">WhiteTint</span><span class="p">,</span> <span class="n">bIsTemperatureWhiteBalance</span><span class="p">,</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">ToXYZ</span><span class="p">,</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">FromXYZ</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">float3</span> <span class="n">WhiteBalance</span><span class="p">(</span><span class="kt">float3</span> <span class="n">LinearColor</span><span class="p">,</span> <span class="kt">float</span> <span class="n">WhiteTemp</span><span class="p">,</span> <span class="kt">float</span> <span class="n">WhiteTint</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">bIsTemperatureWhiteBalance</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float3x3</span> <span class="n">WCS_2_XYZ</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float3x3</span> <span class="n">XYZ_2_WCS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">SrcWhiteDaylight</span> <span class="o">=</span> <span class="n">D_IlluminantChromaticity</span><span class="p">(</span><span class="n">WhiteTemp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">SrcWhitePlankian</span> <span class="o">=</span> <span class="n">PlanckianLocusChromaticity</span><span class="p">(</span><span class="n">WhiteTemp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">SrcWhite</span> <span class="o">=</span> <span class="n">WhiteTemp</span> <span class="o">&lt;</span> <span class="mi">4000</span> <span class="o">?</span> <span class="n">SrcWhitePlankian</span> <span class="o">:</span> <span class="n">SrcWhiteDaylight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">D65White</span> <span class="o">=</span> <span class="kt">float2</span><span class="p">(</span><span class="mf">0.31270</span><span class="p">,</span> <span class="mf">0.32900</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Offset along isotherm</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float2</span> <span class="n">Isothermal</span> <span class="o">=</span> <span class="n">PlanckianIsothermal</span><span class="p">(</span><span class="n">WhiteTemp</span><span class="p">,</span> <span class="n">WhiteTint</span><span class="p">)</span> <span class="o">-</span> <span class="n">SrcWhitePlankian</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SrcWhite</span> <span class="o">+=</span> <span class="n">Isothermal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">bIsTemperatureWhiteBalance</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float2</span> <span class="n">Temp</span> <span class="o">=</span> <span class="n">SrcWhite</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SrcWhite</span> <span class="o">=</span> <span class="n">D65White</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">D65White</span> <span class="o">=</span> <span class="n">Temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float3x3</span> <span class="n">WhiteBalanceMat</span> <span class="o">=</span> <span class="n">ChromaticAdaptation</span><span class="p">(</span><span class="n">SrcWhite</span><span class="p">,</span> <span class="n">D65White</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">WhiteBalanceMat</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="n">XYZ_2_WCS</span><span class="p">,</span> <span class="nb">mul</span><span class="p">(</span> <span class="n">WhiteBalanceMat</span><span class="p">,</span> <span class="n">WCS_2_XYZ</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">mul</span><span class="p">(</span><span class="n">WhiteBalanceMat</span><span class="p">,</span> <span class="n">LinearColor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>白平衡是利用是<strong>色温值</strong>来选择是普朗克轨迹还是日光模型来算出白点的色度坐标</em></p>
+<p><em>如果是 <code>色温值 &lt; 4000</code>则光源更接近于黑体辐射，所以使用普朗克轨迹模型，更通俗点就是人造光源</em></p>
+<p><em>反之，则光源更接近于日光这种，所以使用标准日光模型</em></p>
+<h4 id="3从srgb到ap1色彩空间的转换"><em><strong>（3）从sRGB到AP1色彩空间的转换</strong></em></h4>
+<p><em>计算白平衡后，色彩空间从sRGBLinear转换为ACESAP1线性色彩空间。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">float4</span> <span class="n">CombineLUTsCommon</span><span class="p">(</span><span class="kt">float2</span> <span class="n">InUV</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">InLayerIndex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">ColorAP1</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">ToAP1</span><span class="p">,</span> <span class="n">BalancedColor</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>我们将色域从 sRGB 空间转换到了广色域 AP1，但之前的场景渲染是在 sRGB 线性色彩空间中进行的，因此得到的色域值始终在 sRGB 色域内。</em></p>
+<p><em>现在 UE 出了一个小技巧：场景看起来像是在广色域空间中进行计算的，其原色介于 P3 和 AP1 之间，它使用 Wide_2_AP1 进行颜色转换，最后将参数与原始的 sRGB_2_AP1 转换结果进行插值。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">float4</span> <span class="n">CombineLUTsCommon</span><span class="p">(</span><span class="kt">float2</span> <span class="n">InUV</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">InLayerIndex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Expand bright saturated colors outside the sRGB gamut to fake wide gamut rendering.</span>
+</span></span><span class="line"><span class="cl"> 	<span class="kt">float</span>  <span class="n">LumaAP1</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span> <span class="n">ColorAP1</span><span class="p">,</span> <span class="n">AP1_RGB2Y</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">ChromaAP1</span> <span class="o">=</span> <span class="n">ColorAP1</span> <span class="o">/</span> <span class="n">LumaAP1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">ChromaDistSqr</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span> <span class="n">ChromaAP1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ChromaAP1</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">ExpandAmount</span> <span class="o">=</span> <span class="p">(</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">exp2</span><span class="p">(</span> <span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">ChromaDistSqr</span> <span class="p">)</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">exp2</span><span class="p">(</span> <span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">ExpandGamut</span> <span class="o">*</span> <span class="n">LumaAP1</span><span class="o">*</span><span class="n">LumaAP1</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Bizarre matrix but this expands sRGB to between P3 and AP1</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// CIE 1931 chromaticities:	x		y</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//				Red:		0.6965	0.3065</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//				Green:		0.245	0.718</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//				Blue:		0.1302	0.0456</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//				White:		0.3127	0.329</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float3x3</span> <span class="n">Wide_2_XYZ_MAT</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="mf">0.5441691</span><span class="p">,</span>  <span class="mf">0.2395926</span><span class="p">,</span>  <span class="mf">0.1666943</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="mf">0.2394656</span><span class="p">,</span>  <span class="mf">0.7021530</span><span class="p">,</span>  <span class="mf">0.0583814</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="o">-</span><span class="mf">0.0023439</span><span class="p">,</span>  <span class="mf">0.0361834</span><span class="p">,</span>  <span class="mf">1.0552183</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float3x3</span> <span class="n">Wide_2_AP1</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="n">XYZ_2_AP1_MAT</span><span class="p">,</span> <span class="n">Wide_2_XYZ_MAT</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float3x3</span> <span class="n">ExpandMat</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="n">Wide_2_AP1</span><span class="p">,</span> <span class="n">AP1_2_sRGB</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">ColorExpand</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="n">ExpandMat</span><span class="p">,</span> <span class="n">ColorAP1</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ColorAP1</span> <span class="o">=</span> <span class="nb">lerp</span><span class="p">(</span> <span class="n">ColorAP1</span><span class="p">,</span> <span class="n">ColorExpand</span><span class="p">,</span> <span class="n">ExpandAmount</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ColorAP1</span> <span class="o">=</span> <span class="n">ColorCorrectAll</span><span class="p">(</span> <span class="n">ColorAP1</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Store for Linear HDR output without tone curve</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">GradedColor</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">FromAP1</span><span class="p">,</span> <span class="n">ColorAP1</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Apply Fade track to linear outputs also</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GradedColor</span> <span class="o">=</span> <span class="nb">lerp</span><span class="p">(</span><span class="n">GradedColor</span> <span class="o">*</span> <span class="n">ColorScale</span><span class="p">,</span> <span class="n">OverlayColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">,</span> <span class="n">OverlayColor</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4sdr中的输出变换"><em><strong>（4）SDR中的输出变换</strong></em></h4>
+<p><em>这里先随口带过一下：</em></p>
+<p><em>SDR 中的 Output Transform 使用了 ACES 的 LMT + RRT + ODT 变换。首先是 LMT 部分。</em></p>
+<p><em>UE 使用 ACES LMT 中的 BlueLightArtifactFix 部分来修复高亮度蓝色值导致的过饱和问题。</em></p>
+<p><em>然后就又中和掉刚才修复蓝色值的一些操作</em></p>
+<p><em>如果你目前是 SDR Device 输出，则就用这个最终输出颜色</em></p>
+<h4 id="6hdr中的输出变换"><em><strong>（6）HDR中的输出变换</strong></em></h4>
+<p><em>UE的HDR输出管线在计算完 <code>GradedColor</code> 之后，直接将色彩空间从AP1重新转换为sRGB。</em></p>
+<p><em>最后，为了将编码的 HDR 信号传递到 HDR 显示设备，使用 PQ 的 OETF 传输函数对其进行编码。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// ACES 1000nit transform with PQ/2084 encoding, user specified gamut </span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_ACES1000nitST2084</span> <span class="o">||</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_ACES1000nitScRGB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>		
+</span></span><span class="line"><span class="cl">		<span class="c1">// 1000 nit ODT</span>
+</span></span><span class="line"><span class="cl">		<span class="n">FACESTonemapParams</span> <span class="n">AcesParams</span> <span class="o">=</span> <span class="n">ComputeACESTonemapParams</span><span class="p">(</span><span class="n">ACESMinMaxData</span><span class="p">,</span> <span class="n">ACESMidData</span><span class="p">,</span> <span class="n">ACESCoefsLow_0</span><span class="p">,</span> <span class="n">ACESCoefsHigh_0</span><span class="p">,</span> <span class="n">ACESCoefsLow_4</span><span class="p">,</span> <span class="n">ACESCoefsHigh_4</span><span class="p">,</span> <span class="n">ACESSceneColorMultiplier</span><span class="p">,</span> <span class="n">ACESGamutCompression</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float3</span> <span class="n">ODTColor</span> <span class="o">=</span> <span class="n">ACESOutputTransforms1000</span><span class="p">(</span> <span class="n">GradedColor</span><span class="p">,</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">ToAP0</span><span class="p">,</span> <span class="n">AcesParams</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Convert from AP1 to specified output gamut except for ScRGB as it might contain negative values. </span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// In this case, the AP1-&gt;output conversion happens through ST2084ToScRGB in the tonemap function</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">!=</span> <span class="n">TONEMAPPER_OUTPUT_ACES1000nitScRGB</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ODTColor</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">AP1_2_Output</span><span class="p">,</span> <span class="n">ODTColor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Apply conversion to ST-2084 (Dolby PQ)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">LinearToST2084</span><span class="p">(</span> <span class="n">ODTColor</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// ACES 2000nit transform with PQ/2084 encoding, user specified gamut </span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_ACES2000nitST2084</span> <span class="o">||</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_ACES2000nitScRGB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>		
+</span></span><span class="line"><span class="cl">		<span class="c1">// 2000 nit ODT</span>
+</span></span><span class="line"><span class="cl">		<span class="n">FACESTonemapParams</span> <span class="n">AcesParams</span> <span class="o">=</span> <span class="n">ComputeACESTonemapParams</span><span class="p">(</span><span class="n">ACESMinMaxData</span><span class="p">,</span> <span class="n">ACESMidData</span><span class="p">,</span> <span class="n">ACESCoefsLow_0</span><span class="p">,</span> <span class="n">ACESCoefsHigh_0</span><span class="p">,</span> <span class="n">ACESCoefsLow_4</span><span class="p">,</span> <span class="n">ACESCoefsHigh_4</span><span class="p">,</span> <span class="n">ACESSceneColorMultiplier</span><span class="p">,</span> <span class="n">ACESGamutCompression</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float3</span> <span class="n">ODTColor</span> <span class="o">=</span> <span class="n">ACESOutputTransforms2000</span><span class="p">(</span> <span class="n">GradedColor</span><span class="p">,</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">ToAP0</span><span class="p">,</span> <span class="n">AcesParams</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Convert from AP1 to specified output gamut except for ScRGB as it might contain negative values. </span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// In this case, the AP1-&gt;output conversion happens through ST2084ToScRGB in the tonemap function</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">!=</span> <span class="n">TONEMAPPER_OUTPUT_ACES2000nitScRGB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ODTColor</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">AP1_2_Output</span><span class="p">,</span> <span class="n">ODTColor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Apply conversion to ST-2084 (Dolby PQ)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">LinearToST2084</span><span class="p">(</span> <span class="n">ODTColor</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_LinearEXR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">float3</span> <span class="n">OutputGamutColor</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span> <span class="n">AP1_2_Output</span><span class="p">,</span> <span class="nb">mul</span><span class="p">(</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">WorkingColorSpace</span><span class="p">.</span><span class="n">ToAP1</span><span class="p">,</span> <span class="n">GradedColor</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">LinearToST2084</span><span class="p">(</span> <span class="n">OutputGamutColor</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Linear HDR, including all color correction, but no tone curve</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_NoToneCurve</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">GradedColor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-cluts-tonemap"><em><strong>使用 cLUTs (Tonemap)</strong></em></h3>
+<p><em>使用CLUT的逻辑由PostProcessTonemap.usf处理，其主要功能逻辑在TonemapCommonPS函数中</em></p>
+<p><em>该函数首先计算任何目前尚未完成的后处理，例如Grain、Color Fringe、Sharpen、Bloom、Exposure和Vignette，然后将上述后处理计算得到的最终结果转换为3D LUT的采样坐标来查找颜色：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">half3</span> <span class="n">ColorLookupTable</span><span class="p">(</span> <span class="kt">half3</span> <span class="n">LinearColor</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">LUTEncodedColor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Encode as ST-2084 (Dolby PQ) values</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BRANCH</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">TONEMAPPER_OUTPUT_ACES1000nitST2084</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// ST2084 expects to receive linear values 0-10000 in nits.</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// So the linear value must be multiplied by a scale factor to convert to nits.</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// We don&#39;t send negative values to LinearToST2084 as it will result in NaN because of pow.</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LUTEncodedColor</span> <span class="o">=</span> <span class="n">LinearToST2084</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mo">0</span><span class="p">,</span> <span class="n">LinearColor</span><span class="p">)</span> <span class="o">*</span> <span class="n">LinearToNitsScale</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LUTEncodedColor</span> <span class="o">=</span> <span class="n">LinToLog</span><span class="p">(</span> <span class="n">LinearColor</span> <span class="o">+</span> <span class="n">LogToLin</span><span class="p">(</span> <span class="mo">0</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">UVW</span> <span class="o">=</span> <span class="n">LUTEncodedColor</span> <span class="o">*</span> <span class="n">LUTScale</span> <span class="o">+</span> <span class="n">LUTOffset</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#if USE_VOLUME_LUT == 1</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">half3</span> <span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">Texture3DSample</span><span class="p">(</span> <span class="n">ColorGradingLUT</span><span class="p">,</span> <span class="n">ColorGradingLUTSampler</span><span class="p">,</span> <span class="n">UVW</span> <span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">half3</span> <span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">UnwrappedTexture3DSample</span><span class="p">(</span> <span class="n">ColorGradingLUT</span><span class="p">,</span> <span class="n">ColorGradingLUTSampler</span><span class="p">,</span> <span class="n">UVW</span><span class="p">,</span> <span class="n">LUTSize</span><span class="p">,</span> <span class="n">InvLUTSize</span> <span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">OutDeviceColor</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">float4</span> <span class="n">TonemapCommonPS</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">UV</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">Vignette</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">GrainUV</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">ScreenPos</span><span class="p">,</span> <span class="c1">// [-1, 1]x[-1, 1]</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">FullViewUV</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">SvPosition</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float</span> <span class="n">OutLuminance</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">half3</span> <span class="n">OutDeviceColor</span> <span class="o">=</span> <span class="n">ColorLookupTable</span><span class="p">(</span><span class="n">FinalLinearColor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>因为我们 cLUTs 是非线性的 HDR 空间的值，所以我们经历 Bloom 等一些计算出的颜色也要 To ST2084 后才能去 cLUTs 里面寻找</em></p>
+<p><em>最后，根据 OutputDevice，如果你在编辑器开启了HDR，则会将 ST2084 转成 ScRGB，输出到下一阶段，其他的看分支即可</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">float4</span> <span class="n">TonemapCommonPS</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">UV</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">Vignette</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">GrainUV</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">ScreenPos</span><span class="p">,</span> <span class="c1">// [-1, 1]x[-1, 1]</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float2</span> <span class="n">FullViewUV</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">SvPosition</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float</span> <span class="n">OutLuminance</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_ACES1000nitScRGB</span> <span class="o">||</span> <span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_ACES2000nitScRGB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="n">ST2084ToScRGB</span><span class="p">(</span><span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span> <span class="n">GetOutputDevice</span><span class="p">(),</span> <span class="n">OutputMaxLuminance</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">GetOutputDevice</span><span class="p">()</span> <span class="o">==</span> <span class="n">TONEMAPPER_OUTPUT_LinearEXR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="n">ST2084ToLinear</span><span class="p">(</span><span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="n">OutDeviceColor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ui-中的-hdr"><em><strong>UI 中的 HDR</strong></em></h2>
+<p><em>UI中使用 HDR 主要是在 <code>CompositeUIPixelShader.usf</code> 中处理的</em></p>
+<h3 id="1计算-ui-颜色"><em><strong>（1）计算 UI 颜色</strong></em></h3>
+<p><em>在这里会从一个包含UI元素的纹理中采样颜色。随后进行颜色变换，从 sRGB 空间转换到 REC.2020的线性空间，所以这里 Unreal 会默认一切UI颜色都是为 sRGB</em></p>
+<p><em>在这个步骤，其实就会跟 <code>r.HDR.UI.Luminance</code>计算</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FScreenVertexOutput</span> <span class="n">Input</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float4</span> <span class="n">OutColor</span> <span class="o">:</span> <span class="nd">SV_Target0</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float4</span> <span class="n">UIColor</span> <span class="o">=</span> <span class="n">ComputeHDRUIColor</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">UV</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2计算场景颜色"><em><strong>（2）计算场景颜色</strong></em></h3>
+<p><em>这里先从场景纹理采样，随后因为我们在之前 Tonemap 中最终输出的是ST2080，所以在这里如果没开启SCRGB的宏，会将ST2080 转成 Rec.2020 线性空间.</em></p>
+<p><em>如果开启ScRGB的宏，最终其实也是转为了 Rec.2020 的颜色空间</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FScreenVertexOutput</span> <span class="n">Input</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float4</span> <span class="n">OutColor</span> <span class="o">:</span> <span class="nd">SV_Target0</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float3</span> <span class="n">SceneColor</span> <span class="o">=</span> <span class="n">Texture2DSample</span><span class="p">(</span><span class="n">SceneTexture</span><span class="p">,</span> <span class="n">SceneSampler</span><span class="p">,</span> <span class="n">Input</span><span class="p">.</span><span class="n">UV</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">SceneColor</span> <span class="o">=</span> <span class="n">ComputeHDRSceneColor</span><span class="p">(</span><span class="n">SceneColor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3混合-ui-和-场景-颜色"><em><strong>（3）混合 UI 和 场景 颜色</strong></em></h3>
+<p><em>最终会在这个步骤将场景和UI混合到一张 RT 上，这里会如果 UI 为半透明会进行特殊处理，如果为 a通道为0或者不透明，则会乘上 <code>r.HDR.UI.Level</code> 的值，做运算</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">float3</span> <span class="n">ComposeUIAndScene</span><span class="p">(</span><span class="kt">float3</span> <span class="n">SceneColor</span><span class="p">,</span> <span class="kt">float4</span> <span class="n">InUIColor</span><span class="p">,</span> <span class="kt">float</span> <span class="n">InUILevel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BRANCH</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">InUIColor</span><span class="p">.</span><span class="n">w</span> <span class="o">&gt;</span> <span class="mf">0.f</span> <span class="o">&amp;&amp;</span> <span class="n">InUIColor</span><span class="p">.</span><span class="n">w</span> <span class="o">&lt;</span> <span class="mf">1.f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Clamp gamut to sRGB as extended gamut colors bleeding into the UI can look funny</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SceneColor</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">SceneColor</span><span class="p">,</span> <span class="mf">0.f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Tonemap HDR under transparent UI with a simple Reinhard to the max luminance of the UI</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// This prevents HDR bleed through destroying UI legibility</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Rec2020 coefficients to compute luminance</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float</span> <span class="n">KR</span> <span class="o">=</span> <span class="mf">0.2627</span><span class="p">,</span> <span class="n">KG</span> <span class="o">=</span> <span class="mf">0.678</span><span class="p">,</span> <span class="n">KB</span> <span class="o">=</span> <span class="mf">0.0593</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float</span> <span class="n">Luminance</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">SceneColor</span><span class="p">,</span> <span class="kt">half3</span><span class="p">(</span><span class="n">KR</span><span class="p">,</span> <span class="n">KG</span><span class="p">,</span> <span class="n">KB</span><span class="p">))</span> <span class="o">/</span> <span class="n">InUILevel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">float</span> <span class="n">OutL</span> <span class="o">=</span> <span class="mf">1.f</span> <span class="o">/</span> <span class="p">(</span><span class="n">Luminance</span> <span class="o">+</span> <span class="mf">1.f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Ease out remapping to avoid hard transitions where UI is near zero opacity</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SceneColor</span> <span class="o">*=</span> <span class="nb">lerp</span><span class="p">(</span><span class="mf">1.f</span><span class="p">,</span> <span class="n">OutL</span> <span class="o">*</span> <span class="n">InUILevel</span><span class="p">,</span> <span class="n">InUIColor</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Composite, assuming pre-multiplied alpha</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">SceneColor</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.f</span> <span class="o">-</span> <span class="n">InUIColor</span><span class="p">.</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">InUIColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">*</span> <span class="n">InUILevel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FScreenVertexOutput</span> <span class="n">Input</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float4</span> <span class="n">OutColor</span> <span class="o">:</span> <span class="nd">SV_Target0</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="n">ComposeUIAndScene</span><span class="p">(</span><span class="n">SceneColor</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span> <span class="n">UIColor</span><span class="p">,</span> <span class="n">UILevel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4色盲模式"><em><strong>（4）色盲模式</strong></em></h3>
+<p><em>Unreal 其实对色盲是有过处理的，将合成后的颜色转换成模拟某种色盲（如红绿色盲、蓝黄色盲）所看到的颜色。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FScreenVertexOutput</span> <span class="n">Input</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float4</span> <span class="n">OutColor</span> <span class="o">:</span> <span class="nd">SV_Target0</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OutColor</span><span class="p">.</span><span class="n">rgb</span> <span class="o">=</span> <span class="n">ApplyColorDeficiency</span><span class="p">(</span><span class="n">OutColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5输出到显示器"><em><strong>（5）输出到显示器</strong></em></h3>
+<p><em>我们到这个流程的颜色空间为 Rec.2020 线性空间，既然要输出到显示器，肯定必须在转换为 ST 2084（PQ），如果使用 scRGB 编码则就转换为 sRGB色域</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-hlsl" data-lang="hlsl"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FScreenVertexOutput</span> <span class="n">Input</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="k">out</span> <span class="kt">float4</span> <span class="n">OutColor</span> <span class="o">:</span> <span class="nd">SV_Target0</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if !SCRGB_ENCODING</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Linear -&gt; PQ</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="n">LinearToST2084</span><span class="p">(</span><span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">float3x3</span> <span class="n">Rec2020_2_sRGB</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">XYZ_2_sRGB_MAT</span><span class="p">,</span> <span class="n">Rec2020_2_XYZ_MAT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">Rec2020_2_sRGB</span><span class="p">,</span> <span class="n">OutColor</span><span class="p">.</span><span class="n">xyz</span> <span class="o">/</span> <span class="n">ScRGBScaleFactor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-11-08</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/hdr-unreal%E4%B8%AD%E7%9A%84hdr/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" data-title="Unreal中的HDR" data-hashtags="HDR,Unrea"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" data-hashtag="HDR"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" data-title="Unreal中的HDR"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" data-title="Unreal中的HDR"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/hdr-unreal%E4%B8%AD%E7%9A%84hdr/" data-title="Unreal中的HDR" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hdr/">HDR</a>,&nbsp;<a href="/tags/unrea/">Unrea</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="prev" rel="prev" title="图形渲染管线"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>图形渲染管线</a>
+            <a href="/hdr/" class="next" rel="next" title="SDR与HDR">SDR与HDR<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
