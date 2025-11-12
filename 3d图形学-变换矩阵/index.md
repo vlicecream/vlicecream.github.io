@@ -517,11 +517,11 @@ s_x & 0 & 0 & 0
 R_n
 &=
 \begin{bmatrix}
-c + (1 - c)x^2 & (1-c)xy + sz & (1-c)xz - sy
+c + (1 - c)x^2 & (1-c)xy + sz & (1-c)xz - sy & 0
 \\\ \\\
-(1-c)xy - sz & c + (1 - c)y^2 & (1-c)yz + sx
+(1-c)xy - sz & c + (1 - c)y^2 & (1-c)yz + sx & 0
 \\\ \\\
-(1-c)xz + sy & (1-c)yz - sx & c+ (1-c)z^2
+(1-c)xz + sy & (1-c)yz - sx & c+ (1-c)z^2 &
 \\\ \\\
 0 & 0 & 0 & 1
 \end{bmatrix}
