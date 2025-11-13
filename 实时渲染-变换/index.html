@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering, Transform","wordcount":  3636 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering, Transform","wordcount":  5331 ,
         "url": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2\/","datePublished": "2025-11-11T11:39:00+08:00","dateModified": "2025-11-11T16:39:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/real-time-rendering-4/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Real-Time Rendering 4</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-11">2025-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3636 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2/" class="leancloud_visitors" data-flag-title="变换">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-11">2025-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5331 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2/" class="leancloud_visitors" data-flag-title="变换">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -153,6 +153,19 @@
         <li><a href="#剪切"><em><strong>剪切</strong></em></a></li>
         <li><a href="#变换的连接"><em><strong>变换的连接</strong></em></a></li>
         <li><a href="#刚体变换"><em><strong>刚体变换</strong></em></a></li>
+        <li><a href="#法线变换"><em><strong>法线变换</strong></em></a>
+          <ul>
+            <li><a href="#法线变换的正确方式"><em><strong>法线变换的正确方式</strong></em></a></li>
+            <li><a href="#法线变换的传统方式"><em><strong>法线变换的传统方式</strong></em></a></li>
+            <li><a href="#最后是否归一化法线"><em><strong>最后是否归一化法线</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#计算逆矩阵"><em><strong>计算逆矩阵</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#特殊的矩阵变换和操作"><em><strong>特殊的矩阵变换和操作</strong></em></a>
+      <ul>
+        <li><a href="#欧拉变换"><em><strong>欧拉变换</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -501,7 +514,115 @@ r_{20} &amp; r_{21} &amp; r_{22} &amp; t_z
 \\ \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}
+$$
+<em>刚体变换矩阵 $X$ 的逆矩阵可以通过这两种方式来计算：</em></p>
+<ol>
+<li>
+<p>$$
+X^{-1} = (T(t)R)^{-1} = R^{-1}T(t^{-1}) = R^TT(-t)
 $$</p>
+</li>
+<li>
+<p>$$
+\left.\mathbf{\bar{R}}=\left(
+\begin{array}
+{ccc}\mathbf{r}_{,0} &amp; \mathbf{r}_{,1} &amp; \mathbf{r}_{,2}
+\end{array}\right.\right)=
+\begin{pmatrix}
+\mathbf{r}_0^T, \\ \\
+\mathbf{r}_1^T, \\
+\mathbf{r}_2^T,
+\end{pmatrix}, \\
+\mathbf{X}=
+\begin{pmatrix}
+\mathbf{\bar{R}} &amp; \mathbf{t} \\
+\mathbf{0}^T &amp; 1
+\end{pmatrix},
+$$</p>
+<p><em>其中 $r_{,0}$ 代表了旋转矩阵中的第一列（即第一个逗号取值可以是 0-2，而第二个下标的值始终为 0）</em></p>
+<p><em>$r_0^t$ 代表了旋转矩阵中的第一行。</em></p>
+<p><em>方程中的 0 代表一个 3 x 1 的零向量。</em></p>
+</li>
+</ol>
+<h3 id="法线变换"><em><strong>法线变换</strong></em></h3>
+<p><em>矩阵可以用于对点、线、三角形和其他几何物体进行变换，这些矩阵同样也可以对这些线或者三角形表面的切向量进行变换，然而有一个重要的几何属性并不能总是使用这些矩阵直接进行变换，即表面法线（以及顶点的光照法线）。</em></p>
+<p><em>下图展示了如果使用同样的矩阵同时对几何物体及其发现进行变换的结果</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2.png"
+        title="法线变换" /></p>
+<h4 id="法线变换的正确方式"><em><strong>法线变换的正确方式</strong></em></h4>
+<p><em>对法线正确的变换方式是：</em></p>
+<ol>
+<li><em>使用原始变换矩阵的伴随矩阵的转置矩阵来对其进行变换，而不是使用原始变换矩阵本身。矩阵的伴随矩阵是始终存在的。</em></li>
+<li><em>在变换后通常还需要对法线进行归一化处理。因为法线在经过变换之后，其长度可能会发生变化</em></li>
+</ol>
+<p><em>实际上，我们甚至都不需要计算这个伴随矩阵。</em></p>
+<ul>
+<li><em>在这样的条件下（进行了平移、旋转和均匀缩放操作）， 我们可以直接使用模型的变换矩阵来对法线进行变换；</em></li>
+<li><em>但是如果模型变换涉及了非均 匀缩放或者投影操作，那么就无法使用这种方法对法线进行变换了。</em></li>
+</ul>
+<h4 id="法线变换的传统方式"><em><strong>法线变换的传统方式</strong></em></h4>
+<ol>
+<li><em>计算原始变换矩阵的逆矩阵的转置，即 $(M^{-1})^T$</em></li>
+<li><em>缺点：</em>
+<ul>
+<li><em>这个方法现在也是可以使用的。但是我们并不需要完整的求出这个逆矩阵，这样会很浪费性能</em></li>
+<li><em>并且有时候这个逆矩阵可能并不存在，因为逆矩阵是通过伴随矩阵除以矩阵的行列式获得的，但是行列式可能会为0。行列式为 0 的矩阵被成为奇异矩阵</em></li>
+</ul>
+</li>
+</ol>
+<h4 id="最后是否归一化法线"><em><strong>最后是否归一化法线</strong></em></h4>
+<ol>
+<li>
+<p><em>如果模型变换只涉及平移或者旋转 的话，那么法线的长度是不会发生改变的，因此也就不需要进行归一化处理。</em></p>
+</li>
+<li>
+<p><em>变换中涉及了非均匀缩放的话，那么这个均匀缩放系数（如果是已知的，或者是已经被提取出来的话），也可以直接用来对法线进行归一化处理（直接按照均匀缩放系数进行反向缩放即可）</em></p>
+<p><em>我们还可以将这一步放在对法线变换之前，让左上角 3 x 3 子矩阵除以这个缩放系数, 从而构建一个会生成归一化结果的法线变换矩阵</em></p>
+</li>
+<li>
+<p><em>如果表面法线是从变换之后的三角形中计算出来的话（例如使用三角形的边向量进行叉乘，从而获得垂直于三角形表面的法线），那么法线变换的问题就不需要进行考虑了。切向量的本质和法线并不相同，它可以直接使用原始变换矩阵进行变换。</em></p>
+</li>
+</ol>
+<h3 id="计算逆矩阵"><em><strong>计算逆矩阵</strong></em></h3>
+<p><em>有很多计算都需要使用逆矩阵，例如在不同的坐标系间来回切换的时候。根据一个变换的可用信息不同，我们可以使用以下三种方法来计算一个逆矩阵：</em></p>
+<ul>
+<li>
+<p><em>如果某个矩阵是一次很简单的变换，或者是一系列带参简单变换的组合的话，那么我们可以通过反转“参数”和矩阵次序的方式，来获得这个矩阵的逆矩阵，即进行一系列的反向变换。</em></p>
+<p><em>例如：现在有一个变换矩阵 $M = T(t)R(\phi)$，则其逆矩阵为 $M^{-1} = R(-\phi)T(-t)$。这种求取逆矩阵的方式十分简单且准确，这对于渲染一个大世界而言是十分重要的</em></p>
+</li>
+<li>
+<p><em>如果一个矩阵是正交矩阵的话，那么其逆矩阵和转置矩阵是相等的，即$M^{-1} = M^T$。旋转矩阵是一个正交矩阵，并且任意数量的旋转矩阵组合在一起仍然是一个旋转矩阵，因此其结果也是正交的</em></p>
+</li>
+<li>
+<p><em>如果这些信息都不知道的话，那么我们还可以使用伴随矩阵法、Cramer法则、LU分解法、高斯消元法等方法来计算一个矩阵的逆矩阵。伴随矩阵法和Cramer法则通常要更好一些，因为他们所设计的分支操作较少；</em></p>
+</li>
+</ul>
+<p><em>在进行性能优化的时候，我们还可以对逆矩阵的计算目的进行考虑。例如：如果这个 逆矩阵仅仅是用来对向量进行变换的话，那么通常我们只需要获得左上角子矩阵的逆矩阵即可</em></p>
+<h2 id="特殊的矩阵变换和操作"><em><strong>特殊的矩阵变换和操作</strong></em></h2>
+<h3 id="欧拉变换"><em><strong>欧拉变换</strong></em></h3>
+<p><em>欧拉变换可以构建一个旋转矩阵，将我们自身（相机）或者其他物体指向一个特定的方向</em></p>
+<p><em>首先，我们需要有一个默认的观察方向，通常来说都会让这个方向指向 z 轴负半轴，并且头部指向 y 轴正半轴。</em></p>
+<p><em>欧拉变换是三个旋转矩阵相乘的结果，如下图。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%AC%A7%E6%8B%89%E5%8F%98%E6%8D%A2.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%AC%A7%E6%8B%89%E5%8F%98%E6%8D%A2.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%AC%A7%E6%8B%89%E5%8F%98%E6%8D%A2.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%AC%A7%E6%8B%89%E5%8F%98%E6%8D%A2.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E6%AC%A7%E6%8B%89%E5%8F%98%E6%8D%A2.png"
+        title="欧拉变换" /></p>
+<p><em>欧拉变换通常会使用 $E$ 来进行表示：</em>
+$$
+E(h,p,r) = R_z(r)R_x(p)R_y(h)
+$$
+<em>由于矩阵 $E$ 是由一系列旋转矩阵连接组成的，那么矩阵 $E$ 本身自然也是一个正交矩阵，因此该矩阵的逆矩阵可以表示为 $E^{-1} = E^T = (R_z^T R_x^T R_y^t) = R_y^t R_x^T R_z^T$，当然，一般直接使用 $E^T$ 是最方便的</em></p>
+<p><em>其中欧拉角参数</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
