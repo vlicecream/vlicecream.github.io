@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering, Transform","wordcount":  5331 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering, Transform","wordcount":  6596 ,
         "url": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2\/","datePublished": "2025-11-11T11:39:00+08:00","dateModified": "2025-11-11T16:39:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/real-time-rendering-4/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Real-Time Rendering 4</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-11">2025-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5331 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2/" class="leancloud_visitors" data-flag-title="变换">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-11">2025-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6596 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2/" class="leancloud_visitors" data-flag-title="变换">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -141,7 +141,6 @@
             <li><a href="#x轴旋转矩阵"><em><strong>x轴旋转矩阵</strong></em></a></li>
             <li><a href="#y轴旋转矩阵"><em><strong>y轴旋转矩阵</strong></em></a></li>
             <li><a href="#z轴旋转矩阵"><em><strong>z轴旋转矩阵</strong></em></a></li>
-            <li><a href="#任意轴旋转矩阵"><em><strong>任意轴旋转矩阵</strong></em></a></li>
           </ul>
         </li>
         <li><a href="#缩放"><em><strong>缩放</strong></em></a>
@@ -165,9 +164,22 @@
     </li>
     <li><a href="#特殊的矩阵变换和操作"><em><strong>特殊的矩阵变换和操作</strong></em></a>
       <ul>
-        <li><a href="#欧拉变换"><em><strong>欧拉变换</strong></em></a></li>
+        <li><a href="#欧拉变换"><em><strong>欧拉变换</strong></em></a>
+          <ul>
+            <li><a href="#优点"><em><strong>优点</strong></em></a></li>
+            <li><a href="#缺点"><em><strong>缺点</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#从欧拉变换中提取参数"><em><strong>从欧拉变换中提取参数</strong></em></a></li>
+        <li><a href="#矩阵分解"><em><strong>矩阵分解</strong></em></a>
+          <ul>
+            <li><a href="#用途"><em><strong>用途</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#绕任意轴旋转"><em><strong>绕任意轴旋转</strong></em></a></li>
       </ul>
     </li>
+    <li><a href="#四元数"><em><strong>四元数</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="引言"><em><strong>引言</strong></em></h2>
@@ -350,16 +362,6 @@ R_z(\phi) =
 \\ \\
 0 &amp; 0 &amp; 1 &amp; 0
 \\ \\
-0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
-$$</p>
-<h4 id="任意轴旋转矩阵"><em><strong>任意轴旋转矩阵</strong></em></h4>
-<p>$$
-R_{\mathbf{u}}(\theta) =
-\begin{bmatrix}
-\cos\theta + u_x^2(1-\cos\theta) &amp; u_x u_y(1-\cos\theta) - u_z \sin\theta &amp; u_x u_z(1-\cos\theta) + u_y \sin\theta &amp; 0 \\
-u_y u_x(1-\cos\theta) + u_z \sin\theta &amp; \cos\theta + u_y^2(1-\cos\theta) &amp; u_y u_z(1-\cos\theta) - u_x \sin\theta &amp; 0 \\
-u_z u_x(1-\cos\theta) - u_y \sin\theta &amp; u_z u_y(1-\cos\theta) + u_x \sin\theta &amp; \cos\theta + u_z^2(1-\cos\theta) &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}
 $$</p>
@@ -622,7 +624,96 @@ $$
 E(h,p,r) = R_z(r)R_x(p)R_y(h)
 $$
 <em>由于矩阵 $E$ 是由一系列旋转矩阵连接组成的，那么矩阵 $E$ 本身自然也是一个正交矩阵，因此该矩阵的逆矩阵可以表示为 $E^{-1} = E^T = (R_z^T R_x^T R_y^t) = R_y^t R_x^T R_z^T$，当然，一般直接使用 $E^T$ 是最方便的</em></p>
-<p><em>其中欧拉角参数</em></p>
+<p><em>其中欧拉角参数 h, p, r 代表了每个方向（h 头部，pitch 俯仰角，roll 翻滚角），在有些地方 比如飞行模拟，Unreal中 head被叫做偏航角（yaw）</em></p>
+<ul>
+<li><em>改变 head（yaw）偏航角会让观察者摇头</em></li>
+<li><em>改变 pitch 俯仰角会让观察者点头</em></li>
+<li><em>改变 roll 翻滚角会让观察者歪头</em></li>
+</ul>
+<p><em>欧拉变换不仅仅可以用来调整相机的方向，还可以用来调整任意物体的朝向；同时，欧拉变换不仅可以用于世界空间中，同样也可以用于局部参考坐标系中。</em></p>
+<p><em>在一些欧拉角的表示中，会让 z 轴指向上方；这虽然会让人感到一些困惑，但是它确实只是一种符号表示上的差异，本质上都是等价的。计算机图形学中，在如何看待和表示世界这个问题上，确实存在着一些分歧，即： y 轴向上（y-up）还是 z 轴向上（z-up）。</em></p>
+<h4 id="优点"><em><strong>优点</strong></em></h4>
+<ol>
+<li><em>欧拉角在小角度变换和调整观察者方向方面十分有用</em></li>
+</ol>
+<h4 id="缺点"><em><strong>缺点</strong></em></h4>
+<ol>
+<li>
+<p><em>我们很难将两组欧拉角组合在一起</em></p>
+<p><em>在两组欧拉角之间进行插值，并不是简单地对每个分量分别进行插值就可以完成的。事实上，两组表示形式完全不同的欧拉角，可能会给出完全相同的方向，因此对这两组欧拉角进行插值的话，中间生成的任何一组欧拉角，在理想情况下都不应当导致物体发生旋转。这也是使用其他方向表示方法（例如四元数）的原因之一</em></p>
+</li>
+<li>
+<p><em>万向节死锁</em></p>
+</li>
+</ol>
+<h3 id="从欧拉变换中提取参数"><em><strong>从欧拉变换中提取参数</strong></em></h3>
+<p><em>在某些情况下，我们需要从一个代表欧拉变换的矩阵中，提取出各个方向上所改变的角度，即欧拉变换的参数 h, p ,r。这个过程如下所示：</em>
+$$
+E(h, p ,r) = \begin{bmatrix}
+e_{00} &amp; e_{01} &amp; e_{02}
+\\ \\
+e_{10} &amp; e_{11} &amp; e_{12}
+\\ \\
+e_{20} &amp; e_{21} &amp; e_{22}
+\end{bmatrix}
+= R_z(r) R_x(p) r_y(h)
+$$
+<em>齐次变换矩阵是 4 x 4 的。这里我们只使用了左上角 3 x 3 子矩阵，因为这已经能够提供旋转矩阵的所有必要信息了；也就是说，在完整的 4 x 4 欧拉变换矩阵中，除了最右下角的元素是1之外，其他剩余的元素均为 0</em></p>
+<p><em>我们将三个旋转矩阵相乘，可以获得以下结果：</em>
+$$
+\mathbf{E} =
+\begin{bmatrix}
+\cos r \cos h - \sin r \sin p \sin h &amp; -\sin r \cos p &amp; \cos r \sin h + \sin r \sin p \cos h \\ \\
+\sin r \cos h + \cos r \sin p \sin h &amp; \cos r \cos p &amp; \sin r \sin h - \cos r \sin p \cos h \\ \\
+-\cos p \sin h &amp; \sin p &amp; \cos p \cos h
+\end{bmatrix}
+$$
+<em>我们可以很明显的看出 $\sin p = e_{21}$; 此外，我们可以令 $e_{01}$ 除以 $e_{11}$ 来计算 r，令 $e_{20}$除以$e_{22}$来计算 h：</em>
+$$
+\frac{e_{01}}{e_{11}} = \frac{-\sin r}{\cos r} = -\tan r
+\quad \quad \quad \quad \quad \quad \quad
+\frac{e_{20}}{e_{22}} = \frac{-\sin h}{\cos h} = -\tan h
+$$
+<em>也就是说，我们可以使用 $atan2(y, x)$（包含两个参数的反正切函数）来从矩阵$E$中提取欧拉角的参数h, p, r。即：</em>
+$$
+h = atan2(-e_{20}, e_{22})
+\\ \\
+p = arcsin(e_{21})
+\\ \\
+r = atan2(-e_{01}, e_{11})
+$$</p>
+<p><em>当我们使用欧拉变换的时候，有时会发生一种叫做万向节死锁的现象。</em></p>
+<p><em>即在旋转的过程中失去了一个自由度。例如：假设我们现在按照的顺序 x, y, z 进行变换，然后绕 y 轴旋转了 $\pi / 2$ 的角度，即执行了第二个旋转；这个旋转操作会使得局部坐标系中的 z 轴与原始的 x 轴重合，最终导致绕 z 轴旋转的操作是多余的。</em></p>
+<h3 id="矩阵分解"><em><strong>矩阵分解</strong></em></h3>
+<h4 id="用途"><em><strong>用途</strong></em></h4>
+<ol>
+<li><em>提取物体的缩放因子。</em></li>
+<li><em>找到一个指定坐标系中所需要的变换（例如：某些系统和变换不允许使用任意的 4 x 4 矩阵）</em></li>
+<li><em>确定一个物体是否只经历了刚体变换</em></li>
+<li><em>在只有物体的变换矩阵可用的情况下，在动画的关键帧之间进行插值</em></li>
+<li><em>移除一个旋转变换矩阵中的剪切变换</em></li>
+</ol>
+<p><em>在前文中我们其实已经展示了两个矩阵分解的例子</em></p>
+<ul>
+<li>
+<p><em>例如从一个刚体变换中提取出平移矩阵和旋转矩阵；</em></p>
+</li>
+<li>
+<p><em>从一个正交矩阵中提取出欧拉角</em></p>
+</li>
+</ul>
+<h3 id="绕任意轴旋转"><em><strong>绕任意轴旋转</strong></em></h3>
+<p><em>矩阵如下：</em>
+$$
+R_{\mathbf{u}}(\theta) =
+\begin{bmatrix}
+\cos\theta + u_x^2(1-\cos\theta) &amp; u_x u_y(1-\cos\theta) - u_z \sin\theta &amp; u_x u_z(1-\cos\theta) + u_y \sin\theta &amp; 0 \\ \\
+u_y u_x(1-\cos\theta) + u_z \sin\theta &amp; \cos\theta + u_y^2(1-\cos\theta) &amp; u_y u_z(1-\cos\theta) - u_x \sin\theta &amp; 0 \\ \\
+u_z u_x(1-\cos\theta) - u_y \sin\theta &amp; u_z u_y(1-\cos\theta) + u_x \sin\theta &amp; \cos\theta + u_z^2(1-\cos\theta) &amp; 0 \\ \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</p>
+<h2 id="四元数"><em><strong>四元数</strong></em></h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
