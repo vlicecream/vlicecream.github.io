@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-11-14T15:00:00+08:00">
-    <meta property="article:modified_time" content="2025-11-14T15:41:00+08:00">
+    <meta property="article:modified_time" content="2025-11-15T12:58:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="3D图形学">
     <meta property="article:tag" content="复数">
@@ -37,8 +37,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  1831 ,
-        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-14T15:41:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  3534 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-15T12:58:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">复数与四元数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1831 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3534 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -143,7 +143,17 @@
         <li><a href="#复数的极坐标型"><em><strong>复数的极坐标型</strong></em></a></li>
       </ul>
     </li>
+    <li><a href="#总结三种-2d旋转公式"><em><strong>总结：三种 2D旋转公式</strong></em></a></li>
     <li><a href="#旋转的复合"><em><strong>旋转的复合</strong></em></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#三维空间旋转---引言"><em><strong>三维空间旋转 - 引言</strong></em></a></li>
+    <li><a href="#三维空间旋转的分解"><em><strong>三维空间旋转的分解</strong></em></a></li>
+    <li><a href="#v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></a></li>
+    <li><a href="#v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></a></li>
+    <li><a href="#v的旋转"><em><strong>v的旋转</strong></em></a></li>
+    <li><a href="#总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="复数"><em><strong>复数</strong></em></h1>
@@ -285,15 +295,178 @@ $$
 v&rsquo; = e^{i \theta}v
 $$
 <em>这三种 2D 旋转公式其实都是等价的，根据不同的需求我们可以使用旋转的不同形态</em></p>
+<h2 id="总结三种-2d旋转公式"><em><strong>总结：三种 2D旋转公式</strong></em></h2>
+<ol>
+<li>
+<p><em>2D 旋转公式（矩阵型）</em>
+$$
+v&rsquo; = \begin{bmatrix} \cos(\theta) &amp; -\sin(\theta) \\ \\ \sin(\theta) &amp; \cos(\theta) \end{bmatrix} v
+$$</p>
+</li>
+<li>
+<p><em>2D 旋转公式（复数积型）</em>
+$$
+v&rsquo; = zv = (\cos(\theta) + i\sin(\theta))v
+$$</p>
+</li>
+<li>
+<p><em>2D 旋转公式（指数型）</em>
+$$
+v&rsquo; = e^{i\theta}v
+$$</p>
+</li>
+</ol>
 <h2 id="旋转的复合"><em><strong>旋转的复合</strong></em></h2>
 <p><em>当我们对两个 2D 旋转进行复合时，所得到的变换 $z_{net}$ 仍是一个旋转，而且与施加的次序无关</em></p>
-<p><em>这个等效变换的旋转角是 z_1 与 z_2旋转角之和</em></p>
+<p><em>这个等效变换的旋转角是 $z_1$ 与 $z_2$旋转角之和</em></p>
 <h1 id="三维空间的旋转"><em><strong>三维空间的旋转</strong></em></h1>
+<h2 id="三维空间旋转---引言"><em><strong>三维空间旋转 - 引言</strong></em></h2>
+<p><em>表示三维空间中旋转的方法有很多种，但我们这里关注的是轴角式 (Axisangle) 的旋转。欧拉角的旋转很常用，但是有万向节死锁问题。</em></p>
+<p><em>使用的坐标系是右手坐标系</em></p>
+<p><em>在轴角的表示方法中，一个旋转的定义需要使用到四个变量：旋转轴 u 的 x，y，z 坐标，以及一个旋转角 $\theta$，这咋比欧拉角还多出来一个呢？实际上，任何三维中的旋转只需要三个自由度就可以定义了</em></p>
+<p><em>在三维空间中定义一个方向只需要用到两个量就可以了（与任意两个坐标轴之间的夹角）。最简单的例子就是地球经纬度，我们可以靠经纬度两个变量就可以定义地球任何一个方位。但是如果我们要表达方位上特定的一个点，就需要加上海拔这个第三个变量</em></p>
+<p><em>我们通常都在说旋转是绕着一个向量在旋转，其实就是绕着向量的方向在旋转，所以他的大小（长度）我们是不关心的。所以为了消除这个长度变量，我们可以将长度转化成一个单位向量。故我们从4个自由度就变成 3个自由度了</em></p>
+<h2 id="三维空间旋转的分解"><em><strong>三维空间旋转的分解</strong></em></h2>
+<p><em>首先，我们可以将 v 分解为平行于旋转轴 u 以及正交（垂直）于 u 的两个分量。$v_{\parallel}$ 和 $v_{\perp}$，即：</em>
+$$
+v = v_{\parallel} + v_{\perp}
+$$
+<em>我们可以分别旋转这两个分向量，再将他们旋转的结果相加获得旋转后的向量</em>
+$$
+v&rsquo; = v&rsquo;_{\parallel} + v&rsquo;_{\perp}
+$$
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251115103841859.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251115103841859.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251115103841859.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251115103841859.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251115103841859.png"
+        title="分解示意图" /></p>
+<p><em>可以看到，$v_{\parallel}$ 其实就是 v 在 u 上的正交投影 ，根据正交投影的公式，我们可以得出：</em>
+$$
+\begin{align*}
+v_{\parallel} &amp;= proj_u(v)
+\\ \\
+&amp;= \frac{u \cdot v}{u \cdot u} u
+\\ \\
+&amp;= \frac{u \cdot v}{||u||^2} u \quad \quad \quad \quad \quad \quad (||u||^2 = u \cdot u)
+\\ \\
+&amp;= (u \cdot v)u \quad \quad \quad \quad \quad \quad (||u|| = 1)
+\end{align*}
+$$
+<em>因为 $v = v_{\parallel} + v_{perp}$，我们可以得到：</em>
+$$
+v_{\perp} = v - v_{\parallel} = v - (u \cdot v) u
+$$</p>
+<h2 id="v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></h2>
+<p><em>首先，我们来看一下 $v_{parallel}$ 的旋转。这种情况其实非常简单，从之前的图示中就可以看到，$v_{\parallel}$其实根本就没有旋转，仍然与旋转轴重合，所以：</em></p>
+<p><em>3D旋转公式（向量型，平行情况）</em>
+$$
+v&rsquo; = v&rsquo;_{\parallel}
+$$</p>
+<h2 id="v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></h2>
+<p><em>接下来我们需要处理正交于 u 的 $v_{perp}$。因为这两个向量是正交的，这个旋转可以看做是平面内的一个旋转，因为旋转不改变 $v_{perp}$ 的长度，所以路径是一个圆。下面是这个旋转的示意图，右侧的为俯视图</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/vlicecream/cloudImage/main/v%e7%9a%84%e6%97%8b%e8%bd%ac-20251115130221553.png"
+        data-srcset="https://raw.githubusercontent.com/vlicecream/cloudImage/main/v%e7%9a%84%e6%97%8b%e8%bd%ac-20251115130221553.png, https://raw.githubusercontent.com/vlicecream/cloudImage/main/v%e7%9a%84%e6%97%8b%e8%bd%ac-20251115130221553.png 1.5x, https://raw.githubusercontent.com/vlicecream/cloudImage/main/v%e7%9a%84%e6%97%8b%e8%bd%ac-20251115130221553.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/v的旋转-20251115130221553.png"
+        title="$v_{\perp}$ 的旋转" /></p>
+<p><em>在2D的旋转上我们只有一个向量 $v_{perp}$，用他来表示一个旋转是不够的，所以我们造了一个同时正交于 u 和 $v_{\perp}$ 的向量 w，这个可以通过叉乘来获得：</em>
+$$
+w = u \times v_{\perp}
+$$
+<em>注意叉乘的顺序，因为叉乘不支持交换律。</em></p>
+<p><em>因为 $||u|| = 1$（之前说了 向量 u 转化为单位向量），我们可以发现：</em>
+$$
+\begin{align*}
+\Vert v \Vert &amp;= \Vert u \times v_{\perp} \Vert
+\\ \\
+&amp;= \Vert u \Vert \cdot \Vert v_{\perp} \Vert \cdot \sin(\pi / 2) \quad \quad \quad \quad \quad \quad (\pi / 2 是u与v_{\perp}的夹角)
+\\ \\
+&amp;= \Vert v_{\perp} \Vert
+\end{align*}
+$$
+<em>也就是说，w 和 $v_{\perp}$ 的模长是相同的，所以他们在同一个圆上。我们现在可以把 $v&rsquo;_{\perp}$ 投影到 w 和 $v_{\perp}$，将其分解为 $v&rsquo;_v$ 和 $v&rsquo;_w$。使用一点三角学的知识我们就能得到：</em>
+$$
+\begin{align*}
+v&rsquo;_{\perp} &amp;= v&rsquo;_v + v&rsquo;_w
+\\ \\
+&amp;= \cos(\theta)v_{\perp} + \sin(\theta)w
+\\ \\
+&amp;= \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+\end{align*}
+$$
+<em>这也是完成了旋转第二步，我们可以得到这样一个定理：</em></p>
+<p><em>当 $v_{\perp}$ 正交于旋转轴 u 时，旋转 $\theta$角度之后的 $v&rsquo;_{\perp}$ 为：</em>
+$$
+v&rsquo;_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+$$</p>
+<h2 id="v的旋转"><em><strong>v的旋转</strong></em></h2>
+<p><em>将上面两个结果组合就可以获得：</em>
+$$
+\begin{align*}
+v&rsquo; &amp;= v&rsquo;_{\parallel} + v&rsquo;_{\perp}
+\\ \\
+&amp;= v_{\parallel} + \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+\end{align*}
+$$
+<em>因为叉乘遵守分配律：</em>
+$$
+\begin{align*}
+u \times v_{\perp} &amp;= u \times (v - v_{\parallel})
+\\ \\
+&amp;= u \times v - u \times v_{\parallel}
+\\ \\
+&amp;= u \times v \quad \quad \quad \quad \quad \quad (u 平行于 v_{\perp}，所以 u \times v_{\perp} = 0)
+\end{align*}
+$$
+<em>最后，将 $v_{\parallel} = (u \cdot v)u$ 与 $v_{\perp} = v - (u \cdot v)u$ 代入：</em>
+$$
+\begin{align*}
+v&rsquo; &amp;= (u \cdot v)u + \cos(\theta)(v - (u \cdot v)u) + \sin(\theta)(u \times v)
+\\ \\
+&amp;= \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
+\end{align*}
+$$
+<em>这样我们就得到了一般形式的旋转公式：</em>
+$$
+v&rsquo; = \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
+$$
+<em>马上就能看到四元数跟上面公式的联系了</em></p>
+<h2 id="总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></h2>
+<ol>
+<li>
+<p><em>3D 旋转公式（向量型，正交情况）</em></p>
+<p><em>当 $v_{\parallel}$ 平行于旋转轴 u 时，旋转 $\theta$ 角度之后的 $v&rsquo;_{\parallel}$ 为：</em>
+$$
+v&rsquo;_{\parallel} = v_{\parallel}
+$$</p>
+</li>
+<li>
+<p><em>3D 旋转公式（向量型，正交情况）</em></p>
+<p><em>当 $v_{\perp}$正交于旋转轴 u 时，旋转 $\theta$ 角度之后的 $v&rsquo;_{\parallel}$为：</em>
+$$
+v&rsquo;_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+$$</p>
+</li>
+<li>
+<p><em>3D 旋转公式（向量型，一般情况，也叫做「Rodrigues’ Rotation Formula」</em></p>
+<p><em>3D空间中任意一个 v 沿着单位向量 u 旋转 $\theta$ 角度之后的 v&rsquo; 为：</em>
+$$
+v&rsquo; = \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
+$$</p>
+</li>
+</ol>
+<h1 id="四元数"><em><strong>四元数</strong></em></h1>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-14</span>
+                <span>更新于 2025-11-15</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

@@ -160,11 +160,177 @@ v' = e^{i \theta}v
 $$
 *这三种 2D 旋转公式其实都是等价的，根据不同的需求我们可以使用旋转的不同形态*
 
+## ***总结：三种 2D旋转公式***
+
+1. *2D 旋转公式（矩阵型）*
+   $$
+   v' = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\\ \\\ \sin(\theta) & \cos(\theta) \end{bmatrix} v
+   $$
+
+2. *2D 旋转公式（复数积型）*
+   $$
+   v' = zv = (\cos(\theta) + i\sin(\theta))v
+   $$
+
+3. *2D 旋转公式（指数型）*
+   $$
+   v' = e^{i\theta}v
+   $$
+
 ## ***旋转的复合***
 
 *当我们对两个 2D 旋转进行复合时，所得到的变换 $z_{net}$ 仍是一个旋转，而且与施加的次序无关*
 
-*这个等效变换的旋转角是 z_1 与 z_2旋转角之和*
+*这个等效变换的旋转角是 $z_1$ 与 $z_2$旋转角之和*
 
 # ***三维空间的旋转***
+
+## ***三维空间旋转 - 引言***
+
+*表示三维空间中旋转的方法有很多种，但我们这里关注的是轴角式 (Axisangle) 的旋转。欧拉角的旋转很常用，但是有万向节死锁问题。*
+
+*使用的坐标系是右手坐标系*
+
+*在轴角的表示方法中，一个旋转的定义需要使用到四个变量：旋转轴 u 的 x，y，z 坐标，以及一个旋转角 $\theta$，这咋比欧拉角还多出来一个呢？实际上，任何三维中的旋转只需要三个自由度就可以定义了*
+
+*在三维空间中定义一个方向只需要用到两个量就可以了（与任意两个坐标轴之间的夹角）。最简单的例子就是地球经纬度，我们可以靠经纬度两个变量就可以定义地球任何一个方位。但是如果我们要表达方位上特定的一个点，就需要加上海拔这个第三个变量*
+
+*我们通常都在说旋转是绕着一个向量在旋转，其实就是绕着向量的方向在旋转，所以他的大小（长度）我们是不关心的。所以为了消除这个长度变量，我们可以将长度转化成一个单位向量。故我们从4个自由度就变成 3个自由度了*
+
+## ***三维空间旋转的分解***
+
+*首先，我们可以将 v 分解为平行于旋转轴 u 以及正交（垂直）于 u 的两个分量。$v\_{\parallel}$ 和 $v\_{\perp}$，即：*
+$$
+v = v_{\parallel} + v_{\perp}
+$$
+*我们可以分别旋转这两个分向量，再将他们旋转的结果相加获得旋转后的向量*
+$$
+v' = v'\_{\parallel} + v'\_{\perp}
+$$
+![分解示意图](https://raw.githubusercontent.com/vlicecream/cloudImage/main/image-20251115103841859.png)
+
+*可以看到，$v_{\parallel}$ 其实就是 v 在 u 上的正交投影 ，根据正交投影的公式，我们可以得出：*
+$$
+\begin{align*}
+v_{\parallel} &= proj_u(v)
+\\\ \\\
+&= \frac{u \cdot v}{u \cdot u} u
+\\\ \\\
+&= \frac{u \cdot v}{||u||^2} u \quad \quad \quad \quad \quad \quad (||u||^2 = u \cdot u)
+\\\ \\\
+&= (u \cdot v)u \quad \quad \quad \quad \quad \quad (||u|| = 1)
+\end{align*}
+$$
+*因为 $v = v_{\parallel} + v_{perp}$，我们可以得到：*
+$$
+v_{\perp} = v - v_{\parallel} = v - (u \cdot v) u
+$$
+
+## ***$v_{\parallel}$ 的旋转***
+
+*首先，我们来看一下 $v_{parallel}$ 的旋转。这种情况其实非常简单，从之前的图示中就可以看到，$v_{\parallel}$其实根本就没有旋转，仍然与旋转轴重合，所以：*
+
+*3D旋转公式（向量型，平行情况）*
+$$
+v' = v'_{\parallel}
+$$
+
+## ***$v_{\perp}$ 的旋转***
+
+*接下来我们需要处理正交于 u 的 $v_{perp}$。因为这两个向量是正交的，这个旋转可以看做是平面内的一个旋转，因为旋转不改变 $v_{perp}$ 的长度，所以路径是一个圆。下面是这个旋转的示意图，右侧的为俯视图*
+
+![$v_{\perp}$ 的旋转](https://raw.githubusercontent.com/vlicecream/cloudImage/main/v的旋转-20251115130221553.png)
+
+*在2D的旋转上我们只有一个向量 $v_{perp}$，用他来表示一个旋转是不够的，所以我们造了一个同时正交于 u 和 $v_{\perp}$ 的向量 w，这个可以通过叉乘来获得：*
+$$
+w = u \times v_{\perp}
+$$
+*注意叉乘的顺序，因为叉乘不支持交换律。*
+
+*因为 $||u|| = 1$（之前说了 向量 u 转化为单位向量），我们可以发现：*
+$$
+\begin{align*}
+\Vert v \Vert &= \Vert u \times v_{\perp} \Vert
+\\\ \\\
+&= \Vert u \Vert \cdot \Vert v_{\perp} \Vert \cdot \sin(\pi / 2) \quad \quad \quad \quad \quad \quad (\pi / 2 是u与v_{\perp}的夹角)
+\\\ \\\
+&= \Vert v_{\perp} \Vert
+\end{align*}
+$$
+*也就是说，w 和 $v_{\perp}$ 的模长是相同的，所以他们在同一个圆上。我们现在可以把 $v'\_{\perp}$ 投影到 w 和 $v_{\perp}$，将其分解为 $v'\_v$ 和 $v'\_w$。使用一点三角学的知识我们就能得到：*
+$$
+\begin{align*}
+v'\_{\perp} &= v'\_v + v'\_w
+\\\ \\\
+&= \cos(\theta)v_{\perp} + \sin(\theta)w
+\\\ \\\
+&= \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+\end{align*}
+$$
+*这也是完成了旋转第二步，我们可以得到这样一个定理：*
+
+*当 $v_{\perp}$ 正交于旋转轴 u 时，旋转 $\theta$角度之后的 $v'\_{\perp}$ 为：*
+$$
+v'\_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+$$
+
+## ***v的旋转***
+
+*将上面两个结果组合就可以获得：*
+$$
+\begin{align*}
+v' &= v'\_{\parallel} + v'\_{\perp}
+\\\ \\\
+&= v_{\parallel} + \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+\end{align*}
+$$
+*因为叉乘遵守分配律：*
+$$
+\begin{align*}
+u \times v_{\perp} &= u \times (v - v_{\parallel})
+\\\ \\\
+&= u \times v - u \times v_{\parallel}
+\\\ \\\
+&= u \times v \quad \quad \quad \quad \quad \quad (u 平行于 v_{\perp}，所以 u \times v_{\perp} = 0)
+\end{align*}
+$$
+*最后，将 $v_{\parallel} = (u \cdot v)u$ 与 $v_{\perp} = v - (u \cdot v)u$ 代入：*
+$$
+\begin{align*}
+v' &= (u \cdot v)u + \cos(\theta)(v - (u \cdot v)u) + \sin(\theta)(u \times v)
+\\\ \\\
+&= \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
+\end{align*}
+$$
+*这样我们就得到了一般形式的旋转公式：*
+$$
+v' = \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
+$$
+*马上就能看到四元数跟上面公式的联系了*
+
+## ***总结：轴角式的 3D旋转公式***
+
+1. *3D 旋转公式（向量型，正交情况）*
+
+   *当 $v_{\parallel}$ 平行于旋转轴 u 时，旋转 $\theta$ 角度之后的 $v'\_{\parallel}$ 为：*
+   $$
+   v'\_{\parallel} = v_{\parallel}
+   $$
+
+2. *3D 旋转公式（向量型，正交情况）*
+
+   *当 $v_{\perp}$正交于旋转轴 u 时，旋转 $\theta$ 角度之后的 $v'\_{\parallel}$为：*
+   $$
+   v'\_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+   $$
+
+3. *3D 旋转公式（向量型，一般情况，也叫做「Rodrigues’ Rotation Formula」*
+
+   *3D空间中任意一个 v 沿着单位向量 u 旋转 $\theta$ 角度之后的 v' 为：*
+   $$
+   v' = \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
+   $$
+   
+
+# ***四元数***
 
