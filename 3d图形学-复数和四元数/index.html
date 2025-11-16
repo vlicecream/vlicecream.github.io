@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-11-14T15:00:00+08:00">
-    <meta property="article:modified_time" content="2025-11-15T12:58:00+08:00">
+    <meta property="article:modified_time" content="2025-11-16T12:58:00+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="3D图形学">
     <meta property="article:tag" content="复数">
@@ -37,10 +37,10 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  3534 ,
-        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-15T12:58:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  4296 ,
+        "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-16T12:58:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+            "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "Ame"
             },"description": "复数与四元数"
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">复数与四元数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3534 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4296 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -128,36 +128,54 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#复数的定义"><em><strong>复数的定义</strong></em></a></li>
-    <li><a href="#复数的性质"><em><strong>复数的性质</strong></em></a>
+    <li><a href="#复数"><em><strong>复数</strong></em></a>
       <ul>
-        <li><a href="#复数加减法"><em><strong>复数加减法</strong></em></a></li>
-        <li><a href="#复数乘法"><em><strong>复数乘法</strong></em></a></li>
-        <li><a href="#复数的模长"><em><strong>复数的模长</strong></em></a></li>
-        <li><a href="#复数的共轭"><em><strong>复数的共轭</strong></em></a></li>
-        <li><a href="#模长与共轭之关系"><em><strong>模长与共轭之关系</strong></em></a></li>
+        <li><a href="#复数的定义"><em><strong>复数的定义</strong></em></a></li>
+        <li><a href="#复数的性质"><em><strong>复数的性质</strong></em></a>
+          <ul>
+            <li><a href="#复数加减法"><em><strong>复数加减法</strong></em></a></li>
+            <li><a href="#复数乘法"><em><strong>复数乘法</strong></em></a></li>
+            <li><a href="#复数的模长"><em><strong>复数的模长</strong></em></a></li>
+            <li><a href="#复数的共轭"><em><strong>复数的共轭</strong></em></a></li>
+            <li><a href="#模长与共轭之关系"><em><strong>模长与共轭之关系</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#复数相乘与2d旋转"><em><strong>复数相乘与2D旋转</strong></em></a>
+          <ul>
+            <li><a href="#复数的极坐标型"><em><strong>复数的极坐标型</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#总结三种-2d旋转公式"><em><strong>总结：三种 2D旋转公式</strong></em></a></li>
+        <li><a href="#旋转的复合"><em><strong>旋转的复合</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#复数相乘与2d旋转"><em><strong>复数相乘与2D旋转</strong></em></a>
+    <li><a href="#三维空间的旋转"><em><strong>三维空间的旋转</strong></em></a>
       <ul>
-        <li><a href="#复数的极坐标型"><em><strong>复数的极坐标型</strong></em></a></li>
+        <li><a href="#引言"><em><strong>引言</strong></em></a></li>
+        <li><a href="#旋转的分解"><em><strong>旋转的分解</strong></em></a></li>
+        <li><a href="#v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></a></li>
+        <li><a href="#v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></a></li>
+        <li><a href="#v的旋转"><em><strong>v的旋转</strong></em></a></li>
+        <li><a href="#总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#总结三种-2d旋转公式"><em><strong>总结：三种 2D旋转公式</strong></em></a></li>
-    <li><a href="#旋转的复合"><em><strong>旋转的复合</strong></em></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#三维空间旋转---引言"><em><strong>三维空间旋转 - 引言</strong></em></a></li>
-    <li><a href="#三维空间旋转的分解"><em><strong>三维空间旋转的分解</strong></em></a></li>
-    <li><a href="#v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></a></li>
-    <li><a href="#v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></a></li>
-    <li><a href="#v的旋转"><em><strong>v的旋转</strong></em></a></li>
-    <li><a href="#总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></a></li>
+    <li><a href="#四元数"><em><strong>四元数</strong></em></a>
+      <ul>
+        <li><a href="#什么是四元数"><em><strong>什么是四元数</strong></em></a></li>
+        <li><a href="#定义与性质"><em><strong>定义与性质</strong></em></a>
+          <ul>
+            <li><a href="#模长范数"><em><strong>模长（范数）</strong></em></a></li>
+            <li><a href="#四元数加减法"><em><strong>四元数加减法</strong></em></a></li>
+            <li><a href="#标量乘法"><em><strong>标量乘法</strong></em></a></li>
+            <li><a href="#四元数乘法"><em><strong>四元数乘法</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="复数"><em><strong>复数</strong></em></h1>
-<h2 id="复数的定义"><em><strong>复数的定义</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="复数"><em><strong>复数</strong></em></h2>
+<h3 id="复数的定义"><em><strong>复数的定义</strong></em></h3>
 <p><em>任意复数 $z \in \mathbb{C}$都可以表示为 $z = a + bi$ 的形式，其中 $a, b \in \mathbb{R}$ 而且 $i^2 = 1$。我们将 a 称之为这个复数的实部，b 称之为这个复数的虚部</em></p>
 <p><em>因为 $z = a + bi$ 其实就是对于 { 1, i } 这个基的线性组合，我们也可以用向量来表示一个复数：</em>
 $$
@@ -174,8 +192,8 @@ $$
         data-sizes="auto"
         alt="https://raw.githubusercontent.com/vlicecream/cloudImage/main/%E5%A4%8D%E6%95%B0%E5%9D%90%E6%A0%87%E8%BD%B420251114153431840.png"
         title="复数坐标轴" /></p>
-<h2 id="复数的性质"><em><strong>复数的性质</strong></em></h2>
-<h3 id="复数加减法"><em><strong>复数加减法</strong></em></h3>
+<h3 id="复数的性质"><em><strong>复数的性质</strong></em></h3>
+<h4 id="复数加减法"><em><strong>复数加减法</strong></em></h4>
 <p><em>如果我们有两个复数 $z_1 = a + bi，z_2 = c + di$，他们的和就是分量相加的结果</em>
 $$
 z_1 + z_2 = (a + c) + (b + d)i
@@ -184,7 +202,7 @@ $$
 $$
 z_1 - z_2 = (a - c) + (b - d)i
 $$</p>
-<h3 id="复数乘法"><em><strong>复数乘法</strong></em></h3>
+<h4 id="复数乘法"><em><strong>复数乘法</strong></em></h4>
 <p><em>如果我们有两个复数 $z_1 = a + bi，z_2 = c + di$，我们可以用分配律来计算他们的乘积</em>
 $$
 \begin{align*}
@@ -238,22 +256,22 @@ $$
 $$
 i^2 = i \cdot i = \begin{bmatrix} 0 &amp; -1 \\ \\ 1 &amp; 0 \end{bmatrix} \begin{bmatrix} 0 &amp; -1 \\ \\ 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} -1 &amp; 0 \\ \\ 0 &amp; -1 \end{bmatrix} = -I = -1;
 $$</p>
-<h3 id="复数的模长"><em><strong>复数的模长</strong></em></h3>
+<h4 id="复数的模长"><em><strong>复数的模长</strong></em></h4>
 <p><em>如果 $z = a + bi$，那么他的模长为：</em>
 $$
 ||z|| = \sqrt{a^2 + b^2}
 $$</p>
-<h3 id="复数的共轭"><em><strong>复数的共轭</strong></em></h3>
+<h4 id="复数的共轭"><em><strong>复数的共轭</strong></em></h4>
 <p><em>如果 $z = a + bi$，那么他的共轭为：</em>
 $$
 \bar{z} = a - bi;
 $$</p>
-<h3 id="模长与共轭之关系"><em><strong>模长与共轭之关系</strong></em></h3>
+<h4 id="模长与共轭之关系"><em><strong>模长与共轭之关系</strong></em></h4>
 <p><em>一个复数的模长又可以通过乘积的方式进行计算：</em>
 $$
 ||z|| = \sqrt{z \bar{z}}
 $$</p>
-<h2 id="复数相乘与2d旋转"><em><strong>复数相乘与2D旋转</strong></em></h2>
+<h3 id="复数相乘与2d旋转"><em><strong>复数相乘与2D旋转</strong></em></h3>
 <p><em>既然与复数的相乘代表着 $\begin{bmatrix} a &amp; -b \\ \\ b &amp; a \end{bmatrix}$ 矩阵所做出的变换，那这种变换代表着什么呢？</em></p>
 <p><em><strong>复数的相乘其实是旋转与缩放变换的复合</strong></em></p>
 <p><em>如果有一个复数 $z = a + bi$，那么 z 与任意一个复数 c 相乘都会将 c 逆时针旋转 $\theta = atan2(b, a)$度，并将其缩放 $||z|| = \sqrt{a^2 + b^2}$ 倍</em></p>
@@ -266,7 +284,7 @@ $$
 $$
 v&rsquo; = zv = (\cos(\theta) + i\sin(\theta))v
 $$</p>
-<h3 id="复数的极坐标型"><em><strong>复数的极坐标型</strong></em></h3>
+<h4 id="复数的极坐标型"><em><strong>复数的极坐标型</strong></em></h4>
 <p><em>根据欧拉公式：</em>
 $$
 \cos(\theta) + i \sin(\theta) = e^{i\theta}
@@ -295,7 +313,7 @@ $$
 v&rsquo; = e^{i \theta}v
 $$
 <em>这三种 2D 旋转公式其实都是等价的，根据不同的需求我们可以使用旋转的不同形态</em></p>
-<h2 id="总结三种-2d旋转公式"><em><strong>总结：三种 2D旋转公式</strong></em></h2>
+<h3 id="总结三种-2d旋转公式"><em><strong>总结：三种 2D旋转公式</strong></em></h3>
 <ol>
 <li>
 <p><em>2D 旋转公式（矩阵型）</em>
@@ -316,17 +334,17 @@ v&rsquo; = e^{i\theta}v
 $$</p>
 </li>
 </ol>
-<h2 id="旋转的复合"><em><strong>旋转的复合</strong></em></h2>
+<h3 id="旋转的复合"><em><strong>旋转的复合</strong></em></h3>
 <p><em>当我们对两个 2D 旋转进行复合时，所得到的变换 $z_{net}$ 仍是一个旋转，而且与施加的次序无关</em></p>
 <p><em>这个等效变换的旋转角是 $z_1$ 与 $z_2$旋转角之和</em></p>
-<h1 id="三维空间的旋转"><em><strong>三维空间的旋转</strong></em></h1>
-<h2 id="三维空间旋转---引言"><em><strong>三维空间旋转 - 引言</strong></em></h2>
+<h2 id="三维空间的旋转"><em><strong>三维空间的旋转</strong></em></h2>
+<h3 id="引言"><em><strong>引言</strong></em></h3>
 <p><em>表示三维空间中旋转的方法有很多种，但我们这里关注的是轴角式 (Axisangle) 的旋转。欧拉角的旋转很常用，但是有万向节死锁问题。</em></p>
 <p><em>使用的坐标系是右手坐标系</em></p>
 <p><em>在轴角的表示方法中，一个旋转的定义需要使用到四个变量：旋转轴 u 的 x，y，z 坐标，以及一个旋转角 $\theta$，这咋比欧拉角还多出来一个呢？实际上，任何三维中的旋转只需要三个自由度就可以定义了</em></p>
 <p><em>在三维空间中定义一个方向只需要用到两个量就可以了（与任意两个坐标轴之间的夹角）。最简单的例子就是地球经纬度，我们可以靠经纬度两个变量就可以定义地球任何一个方位。但是如果我们要表达方位上特定的一个点，就需要加上海拔这个第三个变量</em></p>
 <p><em>我们通常都在说旋转是绕着一个向量在旋转，其实就是绕着向量的方向在旋转，所以他的大小（长度）我们是不关心的。所以为了消除这个长度变量，我们可以将长度转化成一个单位向量。故我们从4个自由度就变成 3个自由度了</em></p>
-<h2 id="三维空间旋转的分解"><em><strong>三维空间旋转的分解</strong></em></h2>
+<h3 id="旋转的分解"><em><strong>旋转的分解</strong></em></h3>
 <p><em>首先，我们可以将 v 分解为平行于旋转轴 u 以及正交（垂直）于 u 的两个分量。$v_{\parallel}$ 和 $v_{\perp}$，即：</em>
 $$
 v = v_{\parallel} + v_{\perp}
@@ -359,13 +377,13 @@ $$
 $$
 v_{\perp} = v - v_{\parallel} = v - (u \cdot v) u
 $$</p>
-<h2 id="v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></h2>
+<h3 id="v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></h3>
 <p><em>首先，我们来看一下 $v_{parallel}$ 的旋转。这种情况其实非常简单，从之前的图示中就可以看到，$v_{\parallel}$其实根本就没有旋转，仍然与旋转轴重合，所以：</em></p>
 <p><em>3D旋转公式（向量型，平行情况）</em>
 $$
 v&rsquo; = v&rsquo;_{\parallel}
 $$</p>
-<h2 id="v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></h2>
+<h3 id="v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></h3>
 <p><em>接下来我们需要处理正交于 u 的 $v_{perp}$。因为这两个向量是正交的，这个旋转可以看做是平面内的一个旋转，因为旋转不改变 $v_{perp}$ 的长度，所以路径是一个圆。下面是这个旋转的示意图，右侧的为俯视图</em></p>
 <p><img
         class="lazyload"
@@ -405,7 +423,7 @@ $$
 $$
 v&rsquo;_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
 $$</p>
-<h2 id="v的旋转"><em><strong>v的旋转</strong></em></h2>
+<h3 id="v的旋转"><em><strong>v的旋转</strong></em></h3>
 <p><em>将上面两个结果组合就可以获得：</em>
 $$
 \begin{align*}
@@ -437,7 +455,7 @@ $$
 v&rsquo; = \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \times v)
 $$
 <em>马上就能看到四元数跟上面公式的联系了</em></p>
-<h2 id="总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></h2>
+<h3 id="总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></h3>
 <ol>
 <li>
 <p><em>3D 旋转公式（向量型，正交情况）</em></p>
@@ -461,12 +479,69 @@ v&rsquo; = \cos(\theta)v + (1 - \cos(\theta))(u \cdot v) u +\sin(\theta)(u \time
 $$</p>
 </li>
 </ol>
-<h1 id="四元数"><em><strong>四元数</strong></em></h1>
+<h2 id="四元数"><em><strong>四元数</strong></em></h2>
+<h3 id="什么是四元数"><em><strong>什么是四元数</strong></em></h3>
+<p><em>四元数的定义和复数非常相似，唯一的区别就是复数只有一个虚数，而四元数有3个虚数。所有的四元数$q \in \mathbb{H}$都可以写成下面这种形式：</em>
+$$
+q = a + bi + cj + dk \quad \quad \quad \quad \quad \quad (a, b, c, d \in \mathbb{R})
+$$
+<em>其中：</em>
+$$
+i^2 = j^2 = k^2 = ijk = -1
+$$
+<em>与复数类似，因为四元数其实就是对于基{1, i, j, k}的线性组合，四元数也可以写成向量的形式：</em>
+$$
+q = \begin{bmatrix} a \\ \\ b \\ \\ c \\ \\ d \end{bmatrix}
+$$
+<em>除此之外，我们经常将四元数的实部与虚部分开，并用一个三维的向量来表示虚部，将它表示为标量和向量的有序对形式</em>
+$$
+q = [s, v] \quad \quad \quad \quad \quad \quad (v = \begin{bmatrix} x \\ \\ y \\ \\ z \end{bmatrix}, s, x,y, z \in \mathbb{R})
+$$</p>
+<h3 id="定义与性质"><em><strong>定义与性质</strong></em></h3>
+<h4 id="模长范数"><em><strong>模长（范数）</strong></em></h4>
+<p><em>仿照复数的定义，我们可以暂时将一个四元数 q = a + bi + cj + dk 的模长（或者说范数）定义为：</em>
+$$
+\Vert q \Vert = \sqrt{a^2 + b^2 + c^2 + d^2}
+$$
+<em>如果用标量向量有序对的形式进行表示的话，$q = [s, v]$的模长为：</em>
+$$
+\Vert q \Vert = \sqrt{s^2 + \Vert v \Vert ^2} = \sqrt{s^2 + v \cdot v}
+$$
+<em>显然，四元数的模长很难用几何的方法来进行理解，因为它代表的是一个四维的长度．但是，和高维向量的模长一样，这只是类比复数模长进行衍生定义的结果，你只需要将它理解为一个定义就可以了</em></p>
+<h4 id="四元数加减法"><em><strong>四元数加减法</strong></em></h4>
+<p><em>与复数类似，四元数的加法只需要将分量相加就可以了。</em></p>
+<p><em>如果我们有两个四元数 $q_1 = a + bi + cj + dk，q_2 = e + fi + gi +hk$，那么他们的和为：</em>
+$$
+\begin{align*}
+q_1 + q_2 &amp;= a + bi + cj + dk + e + fi + gi + hk
+\\ \\
+&amp;= (a+e) + (b+f)i + (c+g)j + (d + h)k
+\end{align*}
+$$
+<em>减法也是同理，只要将加号改为减号就可以了</em>
+$$
+q_1 - q_2 = (a - e) + (b - f)i + (c - g)j + (d - h)k
+$$
+<em>如果四元数是以标量向量有序对形式定义的，比如说 $q_1 = [s, \mathbf{v}]，q_2 = [t, \mathbf{u}]$，那么：</em>
+$$
+q_1 \pm q_2 = [s \pm t, \mathbf{v} \pm \mathbf{u}]
+$$</p>
+<h4 id="标量乘法"><em><strong>标量乘法</strong></em></h4>
+<p><em>如果我们有一个四元数 q = a + bi + cj + dk 和一个标量 s，那么他们的乘积为：</em>
+$$
+\begin{align*}
+sq &amp;= s(a + bi + cj + dk)
+\\ \\
+&amp;= sa + sbi + scj + sdk
+\end{align*}
+$$
+<em>四元数与标量相乘是遵守交换律的，也就是说 sq = qs</em></p>
+<h4 id="四元数乘法"><em><strong>四元数乘法</strong></em></h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-15</span>
+                <span>更新于 2025-11-16</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -492,7 +567,7 @@ $$</p>
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ame</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
