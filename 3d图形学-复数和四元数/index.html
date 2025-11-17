@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  4296 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  6022 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-16T12:58:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">复数与四元数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4296 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6022 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -152,10 +152,13 @@
     <li><a href="#三维空间的旋转"><em><strong>三维空间的旋转</strong></em></a>
       <ul>
         <li><a href="#引言"><em><strong>引言</strong></em></a></li>
-        <li><a href="#旋转的分解"><em><strong>旋转的分解</strong></em></a></li>
-        <li><a href="#v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></a></li>
-        <li><a href="#v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></a></li>
-        <li><a href="#v的旋转"><em><strong>v的旋转</strong></em></a></li>
+        <li><a href="#旋转的分解"><em><strong>旋转的分解</strong></em></a>
+          <ul>
+            <li><a href="#v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></a></li>
+            <li><a href="#v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></a></li>
+            <li><a href="#v的旋转"><em><strong>v的旋转</strong></em></a></li>
+          </ul>
+        </li>
         <li><a href="#总结轴角式的-3d旋转公式"><em><strong>总结：轴角式的 3D旋转公式</strong></em></a></li>
       </ul>
     </li>
@@ -168,8 +171,13 @@
             <li><a href="#四元数加减法"><em><strong>四元数加减法</strong></em></a></li>
             <li><a href="#标量乘法"><em><strong>标量乘法</strong></em></a></li>
             <li><a href="#四元数乘法"><em><strong>四元数乘法</strong></em></a></li>
+            <li><a href="#矩阵形式"><em><strong>矩阵形式</strong></em></a></li>
+            <li><a href="#graßmann-积"><em><strong>Graßmann 积</strong></em></a></li>
+            <li><a href="#纯四元数"><em><strong>纯四元数</strong></em></a></li>
+            <li><a href="#逆和共轭"><em><strong>逆和共轭</strong></em></a></li>
           </ul>
         </li>
+        <li><a href="#四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -377,13 +385,13 @@ $$
 $$
 v_{\perp} = v - v_{\parallel} = v - (u \cdot v) u
 $$</p>
-<h3 id="v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></h3>
+<h4 id="v_parallel-的旋转"><em><strong>$v_{\parallel}$ 的旋转</strong></em></h4>
 <p><em>首先，我们来看一下 $v_{parallel}$ 的旋转。这种情况其实非常简单，从之前的图示中就可以看到，$v_{\parallel}$其实根本就没有旋转，仍然与旋转轴重合，所以：</em></p>
 <p><em>3D旋转公式（向量型，平行情况）</em>
 $$
 v&rsquo; = v&rsquo;_{\parallel}
 $$</p>
-<h3 id="v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></h3>
+<h4 id="v_perp-的旋转"><em><strong>$v_{\perp}$ 的旋转</strong></em></h4>
 <p><em>接下来我们需要处理正交于 u 的 $v_{perp}$。因为这两个向量是正交的，这个旋转可以看做是平面内的一个旋转，因为旋转不改变 $v_{perp}$ 的长度，所以路径是一个圆。下面是这个旋转的示意图，右侧的为俯视图</em></p>
 <p><img
         class="lazyload"
@@ -423,7 +431,7 @@ $$
 $$
 v&rsquo;_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
 $$</p>
-<h3 id="v的旋转"><em><strong>v的旋转</strong></em></h3>
+<h4 id="v的旋转"><em><strong>v的旋转</strong></em></h4>
 <p><em>将上面两个结果组合就可以获得：</em>
 $$
 \begin{align*}
@@ -537,6 +545,212 @@ sq &amp;= s(a + bi + cj + dk)
 $$
 <em>四元数与标量相乘是遵守交换律的，也就是说 sq = qs</em></p>
 <h4 id="四元数乘法"><em><strong>四元数乘法</strong></em></h4>
+<p><em>四元数之间的乘法比较特殊，他们是不遵守交换律的，也就是说一般情况下 $q_1q_2 \neq q_2q_1$。这也就有了左乘右乘的区别。结合律和分配律在四元数中都是成立的</em></p>
+<p><em>如果有两个四元数 $q_1 = a + bi + cj + dk$ 和 $q_2 = e + fi + gj + hk$，那么他们的乘积为：</em>
+$$
+\begin{align*}
+q_1 q_2 = &amp;(a + bi + cj + dk)(e + fi + gj + hk)
+\\ \\
+= &amp; ae + afi + agj + ahk  +
+\\ \\
+&amp; bei + bfi^2 + bgij + bhik +
+\\ \\
+&amp; cej + cfji + cgj^2 + chjk +
+\\ \\
+&amp; dek + dfki + dgkj + dhk^2
+\end{align*}
+$$
+<em>这样乘法最终的结果显然非常凌乱，但是我们可以根据 $i^2 = j^2 = k^2 = ijk = -1$这个定义来化简：</em>
+$$
+\begin{align*}
+ijk &amp;= -1
+\\ \\
+iijk &amp;= -i \quad \quad \quad \quad \quad \quad (等式两边同时左乘以i)
+\\ \\
+-jk &amp;= -i \quad \quad \quad \quad \quad \quad (ii = i^2 = -1)
+\\ \\
+jk &amp;= i
+\end{align*}
+$$
+<em>同理：</em>
+$$
+\begin{align*}
+ijk &amp;= -1
+\\ \\
+ijkk &amp;= -k \quad \quad \quad \quad \quad \quad (等式两边同时右乘以k)
+\\ \\
+-ij &amp;= -k
+\\ \\
+ij &amp;= k
+\end{align*}
+$$
+<em>利用 ij = k 这个公式，我们可以继续推导：</em>
+$$
+\begin{align*}
+ij &amp;= k
+\\ \\
+ijj &amp;= kj \quad \quad \quad \quad \quad \quad (等式两边同时右乘以j)
+\\ \\
+-i &amp;= kj
+\\ \\
+kj &amp;= -i
+\end{align*}
+$$</p>
+<table style="border-collapse: collapse; text-align: center; color: #EAEAEA;">
+    <thead>
+        <tr style="background-color: #495057;">
+            <th style="border: 1px solid #6c757d; padding: 8px;">&times;</th>
+            <th style="border: 1px solid #6c757d; padding: 8px;">1</th>
+            <th style="border: 1px solid #6c757d; padding: 8px;"><em>i</em></th>
+            <th style="border: 1px solid #6c757d; padding: 8px;"><em>j</em></th>
+            <th style="border: 1px solid #6c757d; padding: 8px;"><em>k</em></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;">1</th>
+            <td style="border: 1px solid #6c757d; padding: 8px;">1</td>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>i</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>j</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>k</em></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;"><em>i</em></th>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>i</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;">-1</td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B3A3A;"><em>k</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #3A5F8B;">-<em>j</em></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;"><em>j</em></th>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>j</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B3A3A;">-<em>k</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;">-1</td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B7500;"><em>i</em></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;"><em>k</em></th>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>k</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #3A5F8B;"><em>j</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B7500;">-<em>i</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;">-1</td>
+        </tr>
+    </tbody>
+</table>
+<p><em>表格最左列中一个元素右乘以顶行中一个元素的结果就位于这两个元素行列 的交叉处．比如说 𝑗𝑖 = −𝑘．用颜色标记的格子代表着乘法交换律不成立．</em></p>
+<p><em>利用这个表格，我们进一步化简四元数乘积的结果：</em>
+$$
+\begin{align*}
+q_1 q_2 = &amp;(a + bi + cj + dk)(e + fi + gj + hk)
+\\ \\
+= &amp; ae + afi + agj + ahk  +
+\\ \\
+&amp; bei + bfi^2 + bgij + bhik +
+\\ \\
+&amp; cej + cfji + cgj^2 + chjk +
+\\ \\
+&amp; dek + dfki + dgkj + dhk^2
+\\ \\
+= &amp; (ae - bf - cg - dh) +
+\\ \\
+&amp; (be + af - dg + ch)i +
+\\ \\
+&amp; (ce + df + ag +bh)j +
+\\ \\
+&amp; (de - cf + bg + ah)k
+\end{align*}
+$$</p>
+<h4 id="矩阵形式"><em><strong>矩阵形式</strong></em></h4>
+<p><em>可以看到，四元数的相乘其实也是一个线性组合，我们同样可以将它写成矩阵的形式</em>
+$$
+q_1q_2 = \begin{bmatrix} a &amp; -b &amp; -c &amp; -d \\ \\ b &amp; a &amp; -d &amp; c \\ \\ c &amp; d &amp; a &amp; -b \\ \\ d &amp; -c &amp; b &amp; a \end{bmatrix}
+\begin{bmatrix} e \\ \\ f \\ \\ g \\ \\ h \end{bmatrix}
+$$
+<em>因为四元数不符合交换律，所以在下面给出右乘 $q_1$ 的变换矩阵：</em>
+$$
+q_2q_1 = \begin{bmatrix} a &amp; -b &amp; -c &amp; -d \\ \\ b &amp; a &amp; d &amp; -c \\ \\ c &amp; -d &amp; a &amp; b \\ \\ d &amp; c &amp; -b &amp; a \end{bmatrix}
+\begin{bmatrix} e \\ \\ f \\ \\ g \\ \\ h \end{bmatrix}
+$$</p>
+<h4 id="graßmann-积"><em><strong>Graßmann 积</strong></em></h4>
+<p><em>对任意四元数 $q_1 = [s, \mathbf{v}]$，$q_2 = [t, \mathbf{u}]$，$q_1 q_2$的结果是：</em>
+$$
+q_1 q_2 = [st - \mathbf{v} \cdot \mathbf{u}, s\mathbf{u} + t\mathbf{v} + \mathbf{v} \times \mathbf{u}]
+$$
+<em>如果你还记得之前推导 3D 旋转公式时的结果，你应该就能注意到上面这个定理会成为将四元数与旋转联系起来的关键．</em></p>
+<h4 id="纯四元数"><em><strong>纯四元数</strong></em></h4>
+<p><em>如果一个四元数能写成这种形式：$v = [0, \mathbf{v}]$，那我们则称 v 为一个纯四元数，即仅有虚部的四元数。</em></p>
+<p><em>因为纯四元数仅由虚部的3D向量决定，我们可以将任意的3D向量转为纯四元数。</em></p>
+<p><em>纯四元数有一个很重要的特性：如果有两个纯四元数 $v = [0, \mathbf{v}]，u = [0, \mathbf{u}]$，那么：</em>
+$$
+\begin{align*}
+vu &amp;= [0 - \mathbf{v} \cdot \mathbf{u}, 0 + \mathbf{v} \times \mathbf{u}]
+\\ \\
+&amp; = [-\mathbf{v} \cdot \mathbf{u}, \mathbf{v} \times \mathbf{u}]
+\end{align*}
+$$</p>
+<h4 id="逆和共轭"><em><strong>逆和共轭</strong></em></h4>
+<p><em>因为四元数是不遵守交换律的，我们通常不会将两个四元数相除写为 $\frac{p}{q}$ 的 形式．取而代之的是将乘法的逆运算定义为 $𝑝𝑞^{−1}$ 或者 $𝑞^{−1}𝑝$，注意它们的结果一般是不同的．</em></p>
+<p><em>其中，$q^{-1}$是q的逆，我们规定：</em>
+$$
+q q^{-1} = q^{-1}q = 1 \quad \quad \quad \quad \quad \quad (q \neq 0)
+$$
+<em>这也就是说：</em>
+$$
+(pq)q^{-1} = p(qq^{-1}) = p \cdot 1 = p
+\\ \\
+q^{-1}(qp) = (q^{-1}q)p = 1 \cdot p = p
+$$
+<em>所以，右乘 q 的逆运算为右乘 $q^{-1}$，左乘 q的逆运算为左乘$q^{-1}$，这个与矩阵的性质非常相似。</em></p>
+<p><em>我们定义，一个四元数 $q = a + bi + cj + dk$的共轭为 $q^* = a - bi - cj - dk$。如果用标量向量有序对的形式来定义的话，$q = [s，\mathbf{v}]$的共轭为 $q^* = [s, -\mathbf{v}]$</em></p>
+<p><em>共轭四元数一个非常有用的性质就是：</em>
+$$
+\begin{align*}
+qq^* &amp;= [s, \mathbf{v}] \cdot [s, -\mathbf{v}]
+\\ \\
+&amp;= [s^2 - \mathbf{v} \cdot (-\mathbf{v}), s(-\mathbf{v}) + s\mathbf{v} + \mathbf{v} \times (-\mathbf{v})]
+\\ \\
+&amp;= [s^2 + \mathbf{v} \cdot \mathbf{v}, 0] \quad \quad \quad \quad \quad \quad (\mathbf{v} 平行于 -\mathbf{v}, 所以 \mathbf{v} \times (-\mathbf{v}) = 0)
+\\ \\
+&amp;= s^2 + x^2 + y^2 + z^2
+\\ \\
+&amp;= \Vert q \Vert^2
+\end{align*}
+$$
+<em>因为 $(q^*)* = [s, -(-\mathbf{v})] = [s, \mathbf{v}] = q$</em>
+$$
+\begin{align*}
+q^*q &amp;= (q^*)(q^*)*
+\\ \\
+&amp;= \Vert q^* \Vert^2
+\\ \\
+&amp;= s^2 + x^2 + y^2 + z^2
+\\ \\
+&amp;= \Vert q \Vert^2
+\\ \\
+&amp;= qq^*
+\end{align*}
+$$</p>
+<p><em>所以我们得到，$q^*q = qq^*$．这个特殊的乘法是遵守交换律的．</em></p>
+<p><em>如果还记得之前四元数逆的定义：</em>
+$$
+\begin{align*}
+qq^{-1} &amp;= 1
+\\ \\
+q^*qq^{-1} &amp;= q^* \quad \quad \quad \quad \quad \quad (等式两边同时左乘以q^*)
+\\ \\
+(q^*q)q^{-1} &amp;= q^*
+\\ \\
+\Vert q \Vert^2 \cdot q^{-1} &amp;= q^* \quad \quad \quad \quad \quad \quad (q^*q = \Vert q \Vert^2)
+\\ \\
+q^{-1} = \frac{q^*}{\Vert q \Vert^2}
+\end{align*}
+$$
+<em>用这种办法寻找一个四元数的逆会非常高效，我们只需要将一个四元数的虚部改变符号，除以它模长的平方就能获得这个四元数的逆了．</em></p>
+<p><em>如果 $\Vert q \Vert = 1$， 也就是说 𝑞 是一个单位四元数 (Unit Quaternion)，那么：</em>
+$$
+q^{-1} = \frac{q^*}{1^2} = q^*
+$$</p>
+<h3 id="四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

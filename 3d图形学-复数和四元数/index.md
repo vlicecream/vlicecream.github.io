@@ -226,7 +226,7 @@ $$
 v_{\perp} = v - v_{\parallel} = v - (u \cdot v) u
 $$
 
-### ***$v_{\parallel}$ 的旋转***
+#### ***$v_{\parallel}$ 的旋转***
 
 *首先，我们来看一下 $v_{parallel}$ 的旋转。这种情况其实非常简单，从之前的图示中就可以看到，$v_{\parallel}$其实根本就没有旋转，仍然与旋转轴重合，所以：*
 
@@ -235,7 +235,7 @@ $$
 v' = v'_{\parallel}
 $$
 
-### ***$v_{\perp}$ 的旋转***
+#### ***$v_{\perp}$ 的旋转***
 
 *接下来我们需要处理正交于 u 的 $v_{perp}$。因为这两个向量是正交的，这个旋转可以看做是平面内的一个旋转，因为旋转不改变 $v_{perp}$ 的长度，所以路径是一个圆。下面是这个旋转的示意图，右侧的为俯视图*
 
@@ -274,7 +274,7 @@ $$
 v'\_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
 $$
 
-### ***v的旋转***
+#### ***v的旋转***
 
 *将上面两个结果组合就可以获得：*
 $$
@@ -401,4 +401,234 @@ $$
 *四元数与标量相乘是遵守交换律的，也就是说 sq = qs*
 
 #### ***四元数乘法***
+
+*四元数之间的乘法比较特殊，他们是不遵守交换律的，也就是说一般情况下 $q_1q_2 \neq q_2q_1$。这也就有了左乘右乘的区别。结合律和分配律在四元数中都是成立的*
+
+*如果有两个四元数 $q_1 = a + bi + cj + dk$ 和 $q_2 = e + fi + gj + hk$，那么他们的乘积为：*
+$$
+\begin{align*}
+q_1 q_2 = &(a + bi + cj + dk)(e + fi + gj + hk)
+\\\ \\\
+= & ae + afi + agj + ahk  +
+\\\ \\\
+& bei + bfi^2 + bgij + bhik +
+\\\ \\\
+& cej + cfji + cgj^2 + chjk +
+\\\ \\\
+& dek + dfki + dgkj + dhk^2
+\end{align*}
+$$
+*这样乘法最终的结果显然非常凌乱，但是我们可以根据 $i^2 = j^2 = k^2 = ijk = -1$这个定义来化简：*
+$$
+\begin{align*}
+ijk &= -1
+\\\ \\\
+iijk &= -i \quad \quad \quad \quad \quad \quad (等式两边同时左乘以i)
+\\\ \\\
+-jk &= -i \quad \quad \quad \quad \quad \quad (ii = i^2 = -1)
+\\\ \\\
+jk &= i
+\end{align*}
+$$
+*同理：*
+$$
+\begin{align*}
+ijk &= -1
+\\\ \\\
+ijkk &= -k \quad \quad \quad \quad \quad \quad (等式两边同时右乘以k)
+\\\ \\\
+-ij &= -k
+\\\ \\\
+ij &= k
+\end{align*}
+$$
+*利用 ij = k 这个公式，我们可以继续推导：*
+$$
+\begin{align*}
+ij &= k
+\\\ \\\
+ijj &= kj \quad \quad \quad \quad \quad \quad (等式两边同时右乘以j)
+\\\ \\\
+-i &= kj
+\\\ \\\
+kj &= -i
+\end{align*}
+$$
+
+
+<table style="border-collapse: collapse; text-align: center; color: #EAEAEA;">
+    <thead>
+        <tr style="background-color: #495057;">
+            <th style="border: 1px solid #6c757d; padding: 8px;">&times;</th>
+            <th style="border: 1px solid #6c757d; padding: 8px;">1</th>
+            <th style="border: 1px solid #6c757d; padding: 8px;"><em>i</em></th>
+            <th style="border: 1px solid #6c757d; padding: 8px;"><em>j</em></th>
+            <th style="border: 1px solid #6c757d; padding: 8px;"><em>k</em></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;">1</th>
+            <td style="border: 1px solid #6c757d; padding: 8px;">1</td>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>i</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>j</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>k</em></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;"><em>i</em></th>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>i</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;">-1</td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B3A3A;"><em>k</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #3A5F8B;">-<em>j</em></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;"><em>j</em></th>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>j</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B3A3A;">-<em>k</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;">-1</td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B7500;"><em>i</em></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #6c757d; padding: 8px; background-color: #495057;"><em>k</em></th>
+            <td style="border: 1px solid #6c757d; padding: 8px;"><em>k</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #3A5F8B;"><em>j</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px; background-color: #8B7500;">-<em>i</em></td>
+            <td style="border: 1px solid #6c757d; padding: 8px;">-1</td>
+        </tr>
+    </tbody>
+</table>
+
+*表格最左列中一个元素右乘以顶行中一个元素的结果就位于这两个元素行列 的交叉处．比如说 𝑗𝑖 = −𝑘．用颜色标记的格子代表着乘法交换律不成立．*
+
+*利用这个表格，我们进一步化简四元数乘积的结果：*
+$$
+\begin{align*}
+q_1 q_2 = &(a + bi + cj + dk)(e + fi + gj + hk)
+\\\ \\\
+= & ae + afi + agj + ahk  +
+\\\ \\\
+& bei + bfi^2 + bgij + bhik +
+\\\ \\\
+& cej + cfji + cgj^2 + chjk +
+\\\ \\\
+& dek + dfki + dgkj + dhk^2
+\\\ \\\
+= & (ae - bf - cg - dh) +
+\\\ \\\
+& (be + af - dg + ch)i +
+\\\ \\\
+& (ce + df + ag +bh)j +
+\\\ \\\
+& (de - cf + bg + ah)k
+\end{align*}
+$$
+
+#### ***矩阵形式***
+
+*可以看到，四元数的相乘其实也是一个线性组合，我们同样可以将它写成矩阵的形式*
+$$
+q_1q_2 = \begin{bmatrix} a & -b & -c & -d \\\ \\\ b & a & -d & c \\\ \\\ c & d & a & -b \\\ \\\ d & -c & b & a \end{bmatrix}
+\begin{bmatrix} e \\\ \\\ f \\\ \\\ g \\\ \\\ h \end{bmatrix}
+$$
+*因为四元数不符合交换律，所以在下面给出右乘 $q_1$ 的变换矩阵：*
+$$
+q_2q_1 = \begin{bmatrix} a & -b & -c & -d \\\ \\\ b & a & d & -c \\\ \\\ c & -d & a & b \\\ \\\ d & c & -b & a \end{bmatrix}
+\begin{bmatrix} e \\\ \\\ f \\\ \\\ g \\\ \\\ h \end{bmatrix}
+$$
+
+#### ***Graßmann 积***
+
+*对任意四元数 $q_1 = [s, \mathbf{v}]$，$q_2 = [t, \mathbf{u}]$，$q_1 q_2$的结果是：*
+$$
+q_1 q_2 = [st - \mathbf{v} \cdot \mathbf{u}, s\mathbf{u} + t\mathbf{v} + \mathbf{v} \times \mathbf{u}]
+$$
+*如果你还记得之前推导 3D 旋转公式时的结果，你应该就能注意到上面这个定理会成为将四元数与旋转联系起来的关键．*
+
+#### ***纯四元数***
+
+*如果一个四元数能写成这种形式：$v = [0, \mathbf{v}]$，那我们则称 v 为一个纯四元数，即仅有虚部的四元数。*
+
+*因为纯四元数仅由虚部的3D向量决定，我们可以将任意的3D向量转为纯四元数。*
+
+*纯四元数有一个很重要的特性：如果有两个纯四元数 $v = [0, \mathbf{v}]，u = [0, \mathbf{u}]$，那么：*
+$$
+\begin{align*}
+vu &= [0 - \mathbf{v} \cdot \mathbf{u}, 0 + \mathbf{v} \times \mathbf{u}]
+\\\ \\\
+& = [-\mathbf{v} \cdot \mathbf{u}, \mathbf{v} \times \mathbf{u}]
+\end{align*}
+$$
+
+#### ***逆和共轭***
+
+*因为四元数是不遵守交换律的，我们通常不会将两个四元数相除写为 $\frac{p}{q}$ 的 形式．取而代之的是将乘法的逆运算定义为 $𝑝𝑞^{−1}$ 或者 $𝑞^{−1}𝑝$，注意它们的结果一般是不同的．*
+
+*其中，$q^{-1}$是q的逆，我们规定：*
+$$
+q q^{-1} = q^{-1}q = 1 \quad \quad \quad \quad \quad \quad (q \neq 0)
+$$
+*这也就是说：*
+$$
+(pq)q^{-1} = p(qq^{-1}) = p \cdot 1 = p
+\\\ \\\
+q^{-1}(qp) = (q^{-1}q)p = 1 \cdot p = p
+$$
+*所以，右乘 q 的逆运算为右乘 $q^{-1}$，左乘 q的逆运算为左乘$q^{-1}$，这个与矩阵的性质非常相似。*
+
+*我们定义，一个四元数 $q = a + bi + cj + dk$的共轭为 $q^\* = a - bi - cj - dk$。如果用标量向量有序对的形式来定义的话，$q = [s，\mathbf{v}]$的共轭为 $q^\* = [s, -\mathbf{v}]$*
+
+*共轭四元数一个非常有用的性质就是：*
+$$
+\begin{align*}
+qq^* &= [s, \mathbf{v}] \cdot [s, -\mathbf{v}]
+\\\ \\\
+&= [s^2 - \mathbf{v} \cdot (-\mathbf{v}), s(-\mathbf{v}) + s\mathbf{v} + \mathbf{v} \times (-\mathbf{v})]
+\\\ \\\
+&= [s^2 + \mathbf{v} \cdot \mathbf{v}, 0] \quad \quad \quad \quad \quad \quad (\mathbf{v} 平行于 -\mathbf{v}, 所以 \mathbf{v} \times (-\mathbf{v}) = 0)
+\\\ \\\
+&= s^2 + x^2 + y^2 + z^2
+\\\ \\\
+&= \Vert q \Vert^2
+\end{align*}
+$$
+*因为 $(q^\*)\* = [s, -(-\mathbf{v})] = [s, \mathbf{v}] = q$*
+$$
+\begin{align*}
+q^\*q &= (q^\*)(q^\*)*
+\\\ \\\
+&= \Vert q^* \Vert^2
+\\\ \\\
+&= s^2 + x^2 + y^2 + z^2
+\\\ \\\
+&= \Vert q \Vert^2
+\\\ \\\
+&= qq^*
+\end{align*}
+$$
+
+
+*所以我们得到，$q^\*q = qq^\*$．这个特殊的乘法是遵守交换律的．*
+
+*如果还记得之前四元数逆的定义：*
+$$
+\begin{align*}
+qq^{-1} &= 1
+\\\ \\\
+q^\*qq^{-1} &= q^\* \quad \quad \quad \quad \quad \quad (等式两边同时左乘以q^\*)
+\\\ \\\
+(q^\*q)q^{-1} &= q^\*
+\\\ \\\
+\Vert q \Vert^2 \cdot q^{-1} &= q^\* \quad \quad \quad \quad \quad \quad (q^\*q = \Vert q \Vert^2)
+\\\ \\\
+q^{-1} = \frac{q^\*}{\Vert q \Vert^2}
+\end{align*}
+$$
+*用这种办法寻找一个四元数的逆会非常高效，我们只需要将一个四元数的虚部改变符号，除以它模长的平方就能获得这个四元数的逆了．*
+
+*如果 $\Vert q \Vert = 1$， 也就是说 𝑞 是一个单位四元数 (Unit Quaternion)，那么：*
+$$
+q^{-1} = \frac{q^\*}{1^2} = q^\*
+$$
+
+### ***四元数与 3D 旋转***
 
