@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  6022 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  7856 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-16T12:58:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">复数与四元数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6022 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7856 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -177,7 +177,27 @@
             <li><a href="#逆和共轭"><em><strong>逆和共轭</strong></em></a></li>
           </ul>
         </li>
-        <li><a href="#四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></a></li>
+        <li><a href="#四元数的几个定理"><em><strong>四元数的几个定理</strong></em></a>
+          <ul>
+            <li><a href="#定理1"><em><strong>定理1</strong></em></a></li>
+            <li><a href="#定理2"><em><strong>定理2</strong></em></a></li>
+            <li><a href="#定理3"><em><strong>定理3</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></a>
+          <ul>
+            <li><a href="#前言"><em><strong>前言</strong></em></a></li>
+            <li><a href="#v_perp的旋转"><em><strong>$v_{\perp}$的旋转</strong></em></a>
+              <ul>
+                <li><a href="#推导"><em><strong>推导</strong></em></a></li>
+                <li><a href="#总结定理"><em><strong>总结：定理</strong></em></a></li>
+                <li><a href="#q-单位四元数"><em><strong>q 单位四元数</strong></em></a></li>
+              </ul>
+            </li>
+            <li><a href="#v_paraller的旋转"><em><strong>$v_{\paraller}$的旋转</strong></em></a></li>
+            <li><a href="#v的旋转-1"><em><strong>v的旋转</strong></em></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -750,7 +770,120 @@ $$
 $$
 q^{-1} = \frac{q^*}{1^2} = q^*
 $$</p>
+<h3 id="四元数的几个定理"><em><strong>四元数的几个定理</strong></em></h3>
+<h4 id="定理1"><em><strong>定理1</strong></em></h4>
+<p><em>如果 $q = [\cos(\theta), \sin(\theta)\mathbf{u}]$，而且$\mathbf{u}$ 为单位向量，那么 $q^2 = qq = [\cos(2\theta), \sin(2\theta)\mathbf{u}]$</em></p>
+<p><em>这个定理的几何意义就是，如果绕着同一个轴 $\mathbf{u}$ 连续旋转 $\theta$ 度两次，那么所作出的变换等同于直接绕着 $\mathbf{u}$ 旋转 20度</em></p>
+<h4 id="定理2"><em><strong>定理2</strong></em></h4>
+<p><em>假设 $v_{\parallel} = [0, v_{\parallel}]$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$ ，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果 $v_{\parallel}$平行于 $\mathbf{u}$，那么 $qv_{\parallel} = v_{\parallel}q$</em></p>
+<h4 id="定理3"><em><strong>定理3</strong></em></h4>
+<p><em>假设$p_{\perp} = [0, \mathbf{v_{\perp}]}$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果$v_{\perp}$正交于 $\mathbf{u}$，那么 $qv_{\perp} = v_{\perp}q*$</em></p>
 <h3 id="四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></h3>
+<h4 id="前言"><em><strong>前言</strong></em></h4>
+<p><em>我们需要将一个向量$\mathbf{v}$沿着一个用单位向量所定义的旋转轴$\mathbf{u}$旋转$\theta$度，那么我们可以将这个向量$\mathbf{v}$拆分为正交于旋转轴的$v_{\perp}$以及平行于旋转轴的$v_{\parallel}$。我们可以对这两个分向量分别进行旋转，获得$v&rsquo;_{\perp}$和$v&rsquo;_{\parallel}$。将他们相加就是 $\mathbf{v}$ 旋转之后的结果 $v&rsquo; = v&rsquo;_{\parallel} + v&rsquo;_{\perp}$</em></p>
+<p><em>我们可以将这些向量定义为纯四元数：</em>
+$$
+\begin{gather*}
+v = [0, \mathbf{v}] \quad \quad \quad \quad \quad \quad v&rsquo; = [0, \mathbf{v&rsquo;}]
+\\ \\
+v_{\perp} = [0, \mathbf{v_{\perp}}] \quad \quad \quad \quad \quad \quad v&rsquo;_{\perp} = [0, \mathbf{v&rsquo;_{\perp}}]
+\\ \\
+v_{\parallel} = [0, \mathbf{v_{\parallel}}] \quad \quad \quad \quad \quad \quad v&rsquo;_{\parallel} = [0, \mathbf{v&rsquo;_{\parallel}}]
+\\ \\
+u = [0, \mathbf{u}]
+\end{gather*}
+$$
+<em>那么我们就能得到：</em>
+$$
+v = v_{\parallel} + v_{\perp} \quad \quad \quad \quad \quad \quad v&rsquo; = v&rsquo;_{\parallel} + v&rsquo;_{\perp}
+$$</p>
+<h4 id="v_perp的旋转"><em><strong>$v_{\perp}$的旋转</strong></em></h4>
+<h5 id="推导"><em><strong>推导</strong></em></h5>
+<p><em>我们首先讨论正交于旋转轴的 $v_{\perp}$。我们之前推导过，如果一个向量 $v_{\perp}$ 正交于旋转轴 $\mathbf{u}$，那么：</em>
+$$
+v&rsquo;_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+$$
+<em>我们可以很容易地将前面的 $\mathbf{v&rsquo;_{\perp}}$ 和 $\mathbf{v_{\perp}}$ 替换为 $v&rsquo;_{\perp}$ 和 $v_{\perp}$，但是我们仍遗留下来 $\mathbf{u} \times \mathbf{v_{\perp}}$。</em></p>
+<p><em>幸运的是，利用四元数的性质，我们可以将它写成四元数积的形式：</em></p>
+<p><em>如果有两个纯四元数 $v = [0, \mathbf{v}]$，$u = [0, \mathbf{u}]$，那么 $vu = [-\mathbf{v} \cdot \mathbf{u}，\mathbf{v} \times \mathbf{u}]$。类似地：</em>
+$$
+\begin{align*}
+vu_{\perp} &amp;= [-\mathbf{u} \cdot \mathbf{v_{\perp}}, \mathbf{u} \times \mathbf{v_{\perp}}]
+\\ \\
+&amp;= [0, \mathbf{u} \times \mathbf{v_{\perp}}]
+\quad \quad \quad \quad \quad \quad
+因为 \mathbf{v_{\perp}}正交于\mathbf{u}，所以 \mathbf{u} \cdot \mathbf{v_{\perp}}
+\\ \\
+&amp;= \mathbf{u} \times \mathbf{v_{\perp}}
+\end{align*}
+$$
+<em>注意，$uv_{\perp}$ 同样是一个纯四元数。将这个等式以及之前定义的纯四元数代入，我们就能获得：</em>
+$$
+\begin{align*}
+v&rsquo;_{\perp} &amp;= \cos(\theta)v_{\perp} + \sin(\theta)(uv_{\perp}) \quad \quad \quad \quad \quad \quad 通过轴角式v_{\perp}的旋转公式，再把 vu_{\perp}代入
+\\ \\
+&amp;= (cos(\theta) + \sin(\theta)u)v_{\perp} \quad \quad \quad \quad \quad \quad 乘法分配律
+\end{align*}
+$$
+<em>你应该可以注意到，如果我们将$(cos(\theta) + \sin(\theta)u)$ 看作是一个四元数，我们就能将旋转写成四元数的乘积了。如果令 $q = cos(\theta) + \sin(\theta)u$，我们能得到：</em>
+$$
+v&rsquo;_{\perp} = qv_{\perp}
+$$
+<em>如果能构造一个q，那么我们就能完成这个旋转了，我们可以对 q 继续进行变形：</em>
+$$
+\begin{align*}
+q &amp;= \cos(\theta) + \sin(\theta)u
+\\ \\
+&amp;= [\cos(\theta), 0] + [0, \sin(\theta)u]
+\\ \\
+&amp;= [\cos(\theta), \sin(\theta)u]
+\\ \\
+&amp;= \cos(\theta) + \sin(\theta)u_xi + sin(\theta)u_yj + \sin(\theta)u_zk
+\end{align*}
+$$
+<em>这样我们就完成了对 $v_{\perp}$的旋转，我们可以得到下面定理</em></p>
+<h5 id="总结定理"><em><strong>总结：定理</strong></em></h5>
+<p><em>3D 旋转公式（四元数型，正交情况）</em></p>
+<p><em>当 $v_{\perp}$ 正交于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$ 角度后的 $v&rsquo;_{\perp}$ 可以使用四元数乘法来获得获得。</em></p>
+<p><em>令 $v_{\perp} = [0, \mathbf{v_{\perp}}], q = [\cos(\theta), \sin(\theta)\mathbf{u}]$，那么：</em>
+$$
+v&rsquo;_{\perp} = qv_{\perp}
+$$</p>
+<h5 id="q-单位四元数"><em><strong>q 单位四元数</strong></em></h5>
+<p><em>这个我们构造出来的 q其实还是一个单位四元数。因为 ||q|| = 1，他所代表的变换并不会对原项链进行缩放，是一个纯旋转</em>
+$$
+\begin{align*}
+\Vert q \Vert &amp;= \sqrt{\cos^2(\theta) + (\sin(\theta)\mathbf{u} \cdot \sin(\theta)\mathbf{u})}
+\\ \\
+&amp;= \sqrt{\cos^2(\theta) + \sin^2(\theta)(\mathbf{u} \cdot \mathbf{u})}
+\\ \\
+&amp;= \sqrt{\cos^2(\theta) + \sin^2(\theta)(\Vert \mathbf{u} \Vert^2)} \quad \quad \quad \quad \quad \quad (\mathbf{u} \cdot \mathbf{u} = \Vert u \Vert ^2)
+\\ \\
+&amp;= \sqrt{\cos^2(\theta) + \sin^2{\theta}} \quad \quad \quad \quad \quad \quad (\Vert \mathbf{u} \Vert = 1)
+\\ \\
+&amp;= 1 \quad \quad \quad \quad \quad \quad (三角恒等式)
+\end{align*}
+$$</p>
+<h4 id="v_paraller的旋转"><em><strong>$v_{\paraller}$的旋转</strong></em></h4>
+<p><em>我们之前讨论过，如果一个向量$\mathbf{v_[\paraller]}$ 平行于 $\mathbf{u}$，那么旋转不会对他作出任何变换，也就是说：</em></p>
+<p><em>3D 旋转公式（四元数型，平行情况）</em></p>
+<p><em>当 $v_{\parallel}$ 平行于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$角度之后的 $v&rsquo;_{\parallel}$用四元数可以写为：</em>
+$$
+v&rsquo;<em>{\parallel} = v</em>{\parallel}
+$$</p>
+<h4 id="v的旋转-1"><em><strong>v的旋转</strong></em></h4>
+<p><em>有了这些知识，我们能够获得一般情况下 𝑣 ′ 的结果了</em>
+$$
+\begin{align*}
+v&rsquo; &amp;= v&rsquo;_{\parallel} + v&rsquo;_{\perp}
+\\ \\
+&amp;= v_{\parallel} + q v_{\perp} \quad \quad \quad \quad \quad \quad (其中 q = [\cos(\theta), \sin(\theta)u])
+\\ \\
+&amp;= 1 \cdot v_{\parallel} + qv_{\perp} \quad \quad \quad \quad \quad \quad (qq^{-1} = 1 ~ 和 ~ 定理1)
+\\ \\
+&amp;= pp^{-1}v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (令 q = p)
+\end{align*}
+$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

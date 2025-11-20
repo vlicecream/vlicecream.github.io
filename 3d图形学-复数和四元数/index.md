@@ -630,5 +630,147 @@ $$
 q^{-1} = \frac{q^\*}{1^2} = q^\*
 $$
 
+### ***四元数的几个定理***
+
+#### ***定理1***
+
+*如果 $q = [\cos(\theta), \sin(\theta)\mathbf{u}]$，而且$\mathbf{u}$ 为单位向量，那么 $q^2 = qq = [\cos(2\theta), \sin(2\theta)\mathbf{u}]$*
+
+*这个定理的几何意义就是，如果绕着同一个轴 $\mathbf{u}$ 连续旋转 $\theta$ 度两次，那么所作出的变换等同于直接绕着 $\mathbf{u}$ 旋转 20度*
+
+#### ***定理2***
+
+*假设 $v\_{\parallel} = [0, v\_{\parallel}]$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$ ，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果 $v_{\parallel}$平行于 $\mathbf{u}$，那么 $qv_{\parallel} = v_{\parallel}q$*
+
+#### ***定理3***
+
+*假设$p_{\perp} = [0, \mathbf{v_{\perp}]}$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果$v_{\perp}$正交于 $\mathbf{u}$，那么 $qv_{\perp} = v_{\perp}q\*$*
+
 ### ***四元数与 3D 旋转***
+
+#### ***前言***
+
+*我们需要将一个向量$\mathbf{v}$沿着一个用单位向量所定义的旋转轴$\mathbf{u}$旋转$\theta$度，那么我们可以将这个向量$\mathbf{v}$拆分为正交于旋转轴的$v\_{\perp}$以及平行于旋转轴的$v\_{\parallel}$。我们可以对这两个分向量分别进行旋转，获得$v'\_{\perp}$和$v'\_{\parallel}$。将他们相加就是 $\mathbf{v}$ 旋转之后的结果 $v' = v'\_{\parallel} + v'_{\perp}$*
+
+*我们可以将这些向量定义为纯四元数：*
+$$
+\begin{gather*}
+v = [0, \mathbf{v}] \quad \quad \quad \quad \quad \quad v' = [0, \mathbf{v'}]
+\\\ \\\
+v_{\perp} = [0, \mathbf{v_{\perp}}] \quad \quad \quad \quad \quad \quad v'\_{\perp} = [0, \mathbf{v'\_{\perp}}]
+\\\ \\\
+v_{\parallel} = [0, \mathbf{v_{\parallel}}] \quad \quad \quad \quad \quad \quad v'\_{\parallel} = [0, \mathbf{v'\_{\parallel}}]
+\\\ \\\
+u = [0, \mathbf{u}]
+\end{gather*}
+$$
+*那么我们就能得到：*
+$$
+v = v_{\parallel} + v_{\perp} \quad \quad \quad \quad \quad \quad v' = v'\_{\parallel} + v'\_{\perp}
+$$
+
+#### ***$v_{\perp}$的旋转***
+
+##### ***推导***
+
+*我们首先讨论正交于旋转轴的 $v_{\perp}$。我们之前推导过，如果一个向量 $v\_{\perp}$ 正交于旋转轴 $\mathbf{u}$，那么：*
+$$
+v'\_{\perp} = \cos(\theta)v_{\perp} + \sin(\theta)(u \times v_{\perp})
+$$
+*我们可以很容易地将前面的 $\mathbf{v'\_{\perp}}$ 和 $\mathbf{v\_{\perp}}$ 替换为 $v'\_{\perp}$ 和 $v\_{\perp}$，但是我们仍遗留下来 $\mathbf{u} \times \mathbf{v_{\perp}}$。*
+
+
+*幸运的是，利用四元数的性质，我们可以将它写成四元数积的形式：*
+
+*如果有两个纯四元数 $v = [0, \mathbf{v}]$，$u = [0, \mathbf{u}]$，那么 $vu = [-\mathbf{v} \cdot \mathbf{u}，\mathbf{v} \times \mathbf{u}]$。类似地：*
+$$
+\begin{align*}
+vu_{\perp} &= [-\mathbf{u} \cdot \mathbf{v_{\perp}}, \mathbf{u} \times \mathbf{v_{\perp}}]
+\\\ \\\
+&= [0, \mathbf{u} \times \mathbf{v_{\perp}}] 
+\quad \quad \quad \quad \quad \quad 
+因为 \mathbf{v_{\perp}}正交于\mathbf{u}，所以 \mathbf{u} \cdot \mathbf{v_{\perp}}
+\\\ \\\
+&= \mathbf{u} \times \mathbf{v_{\perp}}
+\end{align*}
+$$
+*注意，$uv_{\perp}$ 同样是一个纯四元数。将这个等式以及之前定义的纯四元数代入，我们就能获得：*
+$$
+\begin{align*}
+v'\_{\perp} &= \cos(\theta)v_{\perp} + \sin(\theta)(uv_{\perp}) \quad \quad \quad \quad \quad \quad 通过轴角式v_{\perp}的旋转公式，再把 vu_{\perp}代入
+\\\ \\\
+&= (cos(\theta) + \sin(\theta)u)v_{\perp} \quad \quad \quad \quad \quad \quad 乘法分配律
+\end{align*}
+$$
+*你应该可以注意到，如果我们将$(cos(\theta) + \sin(\theta)u)$ 看作是一个四元数，我们就能将旋转写成四元数的乘积了。如果令 $q = cos(\theta) + \sin(\theta)u$，我们能得到：*
+$$
+v'\_{\perp} = qv_{\perp}
+$$
+*如果能构造一个q，那么我们就能完成这个旋转了，我们可以对 q 继续进行变形：*
+$$
+\begin{align*}
+q &= \cos(\theta) + \sin(\theta)u
+\\\ \\\
+&= [\cos(\theta), 0] + [0, \sin(\theta)u]
+\\\ \\\
+&= [\cos(\theta), \sin(\theta)u]
+\\\ \\\
+&= \cos(\theta) + \sin(\theta)u_xi + sin(\theta)u_yj + \sin(\theta)u_zk
+\end{align*}
+$$
+*这样我们就完成了对 $v_{\perp}$的旋转，我们可以得到下面定理*
+
+##### ***总结：定理***
+
+*3D 旋转公式（四元数型，正交情况）*
+
+*当 $v_{\perp}$ 正交于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$ 角度后的 $v'\_{\perp}$ 可以使用四元数乘法来获得获得。*
+
+*令 $v_{\perp} = [0, \mathbf{v_{\perp}}], q = [\cos(\theta), \sin(\theta)\mathbf{u}]$，那么：*
+$$
+v'\_{\perp} = qv_{\perp}
+$$
+
+##### ***q 单位四元数***
+
+*这个我们构造出来的 q其实还是一个单位四元数。因为 ||q|| = 1，他所代表的变换并不会对原项链进行缩放，是一个纯旋转*
+$$
+\begin{align*}
+\Vert q \Vert &= \sqrt{\cos^2(\theta) + (\sin(\theta)\mathbf{u} \cdot \sin(\theta)\mathbf{u})}
+\\\ \\\
+&= \sqrt{\cos^2(\theta) + \sin^2(\theta)(\mathbf{u} \cdot \mathbf{u})}
+\\\ \\\
+&= \sqrt{\cos^2(\theta) + \sin^2(\theta)(\Vert \mathbf{u} \Vert^2)} \quad \quad \quad \quad \quad \quad (\mathbf{u} \cdot \mathbf{u} = \Vert u \Vert ^2)
+\\\ \\\
+&= \sqrt{\cos^2(\theta) + \sin^2{\theta}} \quad \quad \quad \quad \quad \quad (\Vert \mathbf{u} \Vert = 1)
+\\\ \\\
+&= 1 \quad \quad \quad \quad \quad \quad (三角恒等式)
+\end{align*}
+$$
+
+#### ***$v_{\paraller}$的旋转***
+
+*我们之前讨论过，如果一个向量$\mathbf{v_[\paraller]}$ 平行于 $\mathbf{u}$，那么旋转不会对他作出任何变换，也就是说：*
+
+*3D 旋转公式（四元数型，平行情况）*
+
+*当 $v_{\parallel}$ 平行于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$角度之后的 $v'\_{\parallel}$用四元数可以写为：*
+$$
+v'_{\parallel} = v_{\parallel}
+$$
+
+#### ***v的旋转***
+
+*有了这些知识，我们能够获得一般情况下 𝑣 ′ 的结果了*
+$$
+\begin{align*}
+v' &= v'\_{\parallel} + v'\_{\perp}
+\\\ \\\
+&= v_{\parallel} + q v_{\perp} \quad \quad \quad \quad \quad \quad (其中 q = [\cos(\theta), \sin(\theta)u])
+\\\ \\\
+&= 1 \cdot v_{\parallel} + qv_{\perp} \quad \quad \quad \quad \quad \quad (qq^{-1} = 1 ~ 和 ~ 定理1)
+\\\ \\\
+&= pp^{-1}v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (令 q = p)
+\end{align*}
+$$
 
