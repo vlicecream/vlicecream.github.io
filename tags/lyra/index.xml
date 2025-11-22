@@ -1,27 +1,115 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Lyra&#34; - 标签 - Ting</title>
+        <title>Lyra - 标签 - Ting</title>
         <link>https://example.com/tags/lyra/</link>
-        <description>Lyra&#34; - 标签 - Ting</description>
+        <description>Lyra - 标签 - Ting</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ting)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ting)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/lyra/" rel="self" type="application/rss+xml" /><item>
-    <title>Lyra 架构解析：Experience DataAsset 的动态加载机制</title>
-    <link>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</link>
-    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+            <webMaster>vlicecream520@gmail.com (Ting)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Aug 2025 22:15:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/lyra/" rel="self" type="application/rss+xml" /><item>
+    <title>Lyra - 行为树</title>
+    <link>https://example.com/lyra-%E8%A1%8C%E4%B8%BA%E6%A0%91/</link>
+    <pubDate>Tue, 05 Aug 2025 22:15:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</guid>
-    <description><![CDATA[<p><em><strong>举的例子为 大厅</strong></em></p>
-<h2 id="什么是-experience-dataasset-的动态加载机制"><em><strong>什么是 Experience DataAsset 的动态加载机制</strong></em></h2>
-<p><em>Lyra中是分很多游戏玩法的，他在进入一个新的玩法的时候，就会找到玩法对应的 ULyraExperienceDefinition 的数据，系统根据 ULyraExperienceDefinition 里的内容去激活<strong>Game Features</strong>、<strong>Abilities</strong> 和 <strong>UI</strong> 等。</em></p>]]></description>
+    <guid>https://example.com/lyra-%E8%A1%8C%E4%B8%BA%E6%A0%91/</guid>
+    <description><![CDATA[<h2 id="lyra行为树"><em><strong>Lyra行为树</strong></em></h2>
+<p><em>Lyra是在生成Bot的时候会传入数据 生成AIController，随后在AIController里面绑定行为树</em></p>]]></description>
 </item>
 <item>
-    <title>解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调</title>
-    <link>https://example.com/lyra-igameframeworkinitstateinterface/</link>
-    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <title>Lyra 库存与装备系统</title>
+    <link>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Wed, 23 Jul 2025 21:34:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/lyra-igameframeworkinitstateinterface/</guid>
+    <guid>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[<h2 id="equipment"><em><strong>Equipment</strong></em></h2>
+<p><em>Equipment 是 Lyra 的装备系统，也就是执行装备这个过程逻辑的一个系统</em></p>
+<p><em>它通过 <code>ULyraEquipmentDefinition</code> 这个类，来获得装备的Actor真正的实例，以及装备上会获得什么技能，还有装备到哪里，比如枪装备到人的一个左手骨骼点上</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra-HealthComponent</title>
+    <link>https://example.com/lyra-healthcomponent/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-healthcomponent/</guid>
+    <description><![CDATA[Lyra 里的 HealthComponent]]></description>
+</item>
+<item>
+    <title>Lyra动画层（Anim Layers）与重写机制全解析</title>
+    <link>https://example.com/lyra-animation/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-animation/</guid>
+    <description><![CDATA[<h2 id="参考资料"><em><strong>参考资料</strong></em></h2>
+<p><em><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3" target="_blank" rel="noopener noreffer ">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3</a></em></p>
+<p><em><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3" target="_blank" rel="noopener noreffer ">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3</a></em></p>
+<h2 id="简介"><em><strong>简介</strong></em></h2>
+<p><em>Lyra 的 动画蓝图，首先是采用 蓝图线程安全更新动画，此开启方法在文档中就写了。再次提一句，这实现了使用属性访问（Property Access）来访问其所有数据，并避免了重新计算链接的图层可能使用的值，如 <strong>加速度（Acceleration）</strong> 或 <strong>速度（Velocity）</strong> 。</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra 资源管理核心：自定义 AssetManager 实战</title>
+    <link>https://example.com/lyra-dataassetmanager/</link>
+    <pubDate>Tue, 15 Jul 2025 23:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-dataassetmanager/</guid>
     <description><![CDATA[<h2 id="作用"><em><strong>作用</strong></em></h2>
-<p><em>IGameFrameworkInitStateInterface 的作用，就是将一个组件原本<strong>混乱、单体</strong>的初始化过程（主要挤在BeginPlay里），拆分成一个<strong>清晰、有序、分阶段的“生命周期”</strong>。</em></p>]]></description>
+<p><em>在任何一个 Unreal Engine 项目中，资源（Assets）都是构成游戏世界的基础，包括模型、纹理、蓝图、数据资产等等。随着项目规模的扩大，如何高效、有序地加载和管理这些成千上万的资源，成了一个巨大的挑战。开发者常常会遇到这些问题：</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra架构：Game Feature 篇</title>
+    <link>https://example.com/lyra-gamefeature/</link>
+    <pubDate>Tue, 15 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-gamefeature/</guid>
+    <description><![CDATA[<h2 id="作用"><em><strong>作用</strong></em></h2>
+<p><em><strong>Game Feature</strong>（游戏特性）是虚幻引擎中一个强大的插件系统，旨在实现</em><em>高度模块化和可扩展的游戏开发</em>*。*</p>
+<p><em>想象一下，你可以像搭乐高积木一样构建你的游戏：角色的能力、新的游戏模式、季节性活动，甚至UI界面，都可以作为一个独立的“特性”插件来开发。当需要时，只需<strong>动态地激活</strong>这个插件，所有相关的功能、内容和逻辑就会自动应用到游戏中；不需要时，则可以随时<strong>停用</strong>，干净利落地移除，而不会影响游戏的核心代码。</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra相机系统：数据驱动与责任分离的设计哲学</title>
+    <link>https://example.com/lyra-camera/</link>
+    <pubDate>Sun, 13 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-camera/</guid>
+    <description><![CDATA[<h2 id="lyra的相机系统-简介"><em><strong>Lyra的相机系统 简介</strong></em></h2>
+<p><em>Lyra其实没有用最基本的UCameraComponent，也没有用 USpringComponent</em></p>
+<p><em>他是自己实现了继承于 UCameraComponent的类，他的功能为：</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra-Plugins</title>
+    <link>https://example.com/lyra-plugins/</link>
+    <pubDate>Mon, 16 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-plugins/</guid>
+    <description><![CDATA[<h2 id="modulargameplayactors"><em><strong>ModularGameplayActors</strong></em></h2>
+<h3 id="作用"><em><strong>作用</strong></em></h3>
+<ul>
+<li><em>Lyra 里的插件 <strong><code>ModularGameplayActors</code></strong> 是整个架构的一个核心部分，用来实现 <strong>角色、控制器、HUD 等 Gameplay 类的模块化（Modular）构建机制</strong>。它是 Lyra “模块化组件系统” 的基础，支持你以“插件化方式”给 Actor 添加功能，而不是通过硬继承和写死逻辑。</em></li>
+</ul>
+<h3 id="模块化系统的核心目标"><em><strong>模块化系统的核心目标</strong></em></h3>
+<p><em>传统方式的问题：</em></p>]]></description>
+</item>
+<item>
+    <title>Lyra-GAS</title>
+    <link>https://example.com/lyra-gas/</link>
+    <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-gas/</guid>
+    <description><![CDATA[<h2 id="gas-与-input-调用"><em><strong>GAS 与 Input 调用</strong></em></h2>
+<p><em>经过游戏体验DataAsset和一系列的组件初始化加载后，在 LyraHeroComponent 绑定按键</em></p>]]></description>
+</item>
+<item>
+    <title>深入Lyra输入系统：从按键到能力的完整旅程</title>
+    <link>https://example.com/lyra-input/</link>
+    <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-input/</guid>
+    <description><![CDATA[<h2 id="前言"><em><strong>前言</strong></em></h2>
+<p><em>需要你先了解：</em></p>
+<ol>
+<li><em>Lyra 架构解析：Experience DataAsset 的动态加载机制</em></li>
+</ol>
+<h2 id="lyra-基础-input-流程"><em><strong>Lyra 基础 Input 流程</strong></em></h2>
+<ol>
+<li>
+<p><code>void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState)</code></p>]]></description>
 </item>
 </channel>
 </rss>
