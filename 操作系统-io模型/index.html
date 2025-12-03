@@ -222,35 +222,35 @@
 <li><em>epoll的机制下 保姆无需挨个询问孩子是否要尿尿，而是每个孩子若自己需要尿尿，主动站到事先约定好的地方，而保姆的职责就是看约定好的地方有无孩子。因此，epoll的这种机制，能够高效的处理成千上万的并发连接，而且性能不会随着连接数增加而下降</em></li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center"></th>
-          <th style="text-align: center">select</th>
-          <th style="text-align: center">epoll</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">性能</td>
-          <td style="text-align: center">随着连接数的增加，急剧下降</td>
-          <td style="text-align: center">随着连接数的增加，性能基本不会下降</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">连接数</td>
-          <td style="text-align: center">连接数有限制-1024如果要处理超过1024，则需要修改FD_SETSIZE宏，并重新编译</td>
-          <td style="text-align: center">连接数无限制</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">内在处理机制</td>
-          <td style="text-align: center">轮询</td>
-          <td style="text-align: center">回调callback</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">开发复杂性</td>
-          <td style="text-align: center">低</td>
-          <td style="text-align: center">中</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">select</th>
+<th style="text-align:center">epoll</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">性能</td>
+<td style="text-align:center">随着连接数的增加，急剧下降</td>
+<td style="text-align:center">随着连接数的增加，性能基本不会下降</td>
+</tr>
+<tr>
+<td style="text-align:center">连接数</td>
+<td style="text-align:center">连接数有限制-1024如果要处理超过1024，则需要修改FD_SETSIZE宏，并重新编译</td>
+<td style="text-align:center">连接数无限制</td>
+</tr>
+<tr>
+<td style="text-align:center">内在处理机制</td>
+<td style="text-align:center">轮询</td>
+<td style="text-align:center">回调callback</td>
+</tr>
+<tr>
+<td style="text-align:center">开发复杂性</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">中</td>
+</tr>
+</tbody>
 </table>
 <h2 id="select">select</h2>
 <p><em><strong>select 通过设置或检查存放fd标志位的数据结构进行下一步处理 这会带来问题：</strong></em></p>
@@ -411,7 +411,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

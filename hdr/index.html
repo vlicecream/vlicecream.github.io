@@ -243,34 +243,34 @@
 <p><em>OETF 指的是光电转换函数。 摄像机利用光电转换器将光信号转换为电信号</em></p>
 <p><em>EOTF 与 OETF 相反，它指的是“电光传输函数”。 电视显示器通过 EOTF 来计算输出光的功率</em></p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left"><em>名称</em></th>
-          <th style="text-align: left"><em>方向</em></th>
-          <th style="text-align: left"><em>作用</em></th>
-          <th style="text-align: left"><em>常见例子</em></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><em><strong>EOTF</strong> (Electro-Optical Transfer Function)</em></td>
-          <td style="text-align: left"><em>数码值 → 光</em></td>
-          <td style="text-align: left"><em>显示设备响应</em></td>
-          <td style="text-align: left"><em>PQ / HLG / Gamma</em></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><em><strong>OETF</strong> (Opto-Electronic Transfer Function)</em></td>
-          <td style="text-align: left"><em>光 → 数码值</em></td>
-          <td style="text-align: left"><em>相机编码</em></td>
-          <td style="text-align: left"><em>sRGB / Rec.709</em></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><em><strong>线性化</strong></em></td>
-          <td style="text-align: left"><em>反函数</em></td>
-          <td style="text-align: left"><em>把非线性编码“解码”回线性光</em></td>
-          <td style="text-align: left"></td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th><em>名称</em></th>
+<th><em>方向</em></th>
+<th><em>作用</em></th>
+<th><em>常见例子</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em><strong>EOTF</strong> (Electro-Optical Transfer Function)</em></td>
+<td><em>数码值 → 光</em></td>
+<td><em>显示设备响应</em></td>
+<td><em>PQ / HLG / Gamma</em></td>
+</tr>
+<tr>
+<td><em><strong>OETF</strong> (Opto-Electronic Transfer Function)</em></td>
+<td><em>光 → 数码值</em></td>
+<td><em>相机编码</em></td>
+<td><em>sRGB / Rec.709</em></td>
+</tr>
+<tr>
+<td><em><strong>线性化</strong></em></td>
+<td><em>反函数</em></td>
+<td><em>把非线性编码“解码”回线性光</em></td>
+<td></td>
+</tr>
+</tbody>
 </table>
 <h2 id="色域-wide-color-gamut"><em><strong>色域 (Wide Color Gamut)</strong></em></h2>
 <p><em>色域范围比传统的 sRGB 更宽的叫做宽色域</em></p>
@@ -478,35 +478,35 @@
 </span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="nt">Linear</span> <span class="nt">XYZ</span>
 </span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="o">[</span><span class="nt">乘以色域变换矩阵</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="nt">Linear</span> <span class="nt">sRGB</span>
-</span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="o">[</span><span class="nt">应用</span> <span class="nt">sRGB</span> <span class="nt">EOTF</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="o">[</span><span class="nt">应用</span> <span class="nt">sRGB</span> <span class="nt">OETF</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="nt">sRGB</span> <span class="o">(</span><span class="nt">非线性</span><span class="o">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">步骤</th>
-          <th style="text-align: left">说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><em><strong>1️⃣ 解码 EOTF</strong></em></td>
-          <td style="text-align: left"><em>把 Rec.2020（可能是 Gamma2.4 / PQ / HLG）反线性化为真实的光强响应值。输出是 Linear Rec.2020。</em></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><em><strong>2️⃣ 转换到 XYZ</strong></em></td>
-          <td style="text-align: left"><em>使用固定的 3×3 原色矩阵，从 Rec.2020 转换到 CIE 1931 XYZ（标准视觉空间）。</em></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><em><strong>3️⃣ 从 XYZ 到 Linear sRGB</strong></em></td>
-          <td style="text-align: left"><em>使用另一个 3×3 矩阵，从 XYZ 转成 sRGB 原色定义的线性空间。</em></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><em><strong>4️⃣ 应用 sRGB EOTF</strong></em></td>
-          <td style="text-align: left"><em>对 Linear sRGB 再套上 sRGB 的 gamma（ ≈ 2.2），得到最终非线性 sRGB。</em></td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em><strong>1️⃣ 解码 EOTF</strong></em></td>
+<td><em>把 Rec.2020（可能是 Gamma2.4 / PQ / HLG）反线性化为真实的光强响应值。输出是 Linear Rec.2020。</em></td>
+</tr>
+<tr>
+<td><em><strong>2️⃣ 转换到 XYZ</strong></em></td>
+<td><em>使用固定的 3×3 原色矩阵，从 Rec.2020 转换到 CIE 1931 XYZ（标准视觉空间）。</em></td>
+</tr>
+<tr>
+<td><em><strong>3️⃣ 从 XYZ 到 Linear sRGB</strong></em></td>
+<td><em>使用另一个 3×3 矩阵，从 XYZ 转成 sRGB 原色定义的线性空间。</em></td>
+</tr>
+<tr>
+<td><em><strong>4️⃣ 应用 sRGB OETF</strong></em></td>
+<td><em>对 Linear sRGB 再套上 sRGB 的 gamma（ ≈ 2.2），得到最终非线性 sRGB。</em></td>
+</tr>
+</tbody>
 </table>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -539,7 +539,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

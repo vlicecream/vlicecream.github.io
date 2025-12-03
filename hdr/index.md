@@ -219,7 +219,7 @@ Rec.2020 (非线性)
  → Linear XYZ
  → [乘以色域变换矩阵]
  → Linear sRGB
- → [应用 sRGB EOTF]
+ → [应用 sRGB OETF]
  → sRGB (非线性)
 ```
 
@@ -228,6 +228,6 @@ Rec.2020 (非线性)
 | ***1️⃣ 解码 EOTF***             | *把 Rec.2020（可能是 Gamma2.4 / PQ / HLG）反线性化为真实的光强响应值。输出是 Linear Rec.2020。* |
 | ***2️⃣ 转换到 XYZ***            | *使用固定的 3×3 原色矩阵，从 Rec.2020 转换到 CIE 1931 XYZ（标准视觉空间）。* |
 | ***3️⃣ 从 XYZ 到 Linear sRGB*** | *使用另一个 3×3 矩阵，从 XYZ 转成 sRGB 原色定义的线性空间。* |
-| ***4️⃣ 应用 sRGB EOTF***        | *对 Linear sRGB 再套上 sRGB 的 gamma（ ≈ 2.2），得到最终非线性 sRGB。* |
+| ***4️⃣ 应用 sRGB OETF***        | *对 Linear sRGB 再套上 sRGB 的 gamma（ ≈ 2.2），得到最终非线性 sRGB。* |
 
 

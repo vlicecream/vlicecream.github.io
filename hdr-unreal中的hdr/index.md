@@ -232,9 +232,9 @@ float3 WhiteBalance(float3 LinearColor, float WhiteTemp, float WhiteTint, bool b
 
 *反之，则光源更接近于日光这种，所以使用标准日光模型*
 
-#### ***（3）从sRGB到AP1色彩空间的转换***
+#### ***（3）从sRGB 到AP1色彩空间的转换***
 
-*计算白平衡后，色彩空间从sRGBLinear转换为ACESAP1线性色彩空间。*
+*计算白平衡后，色彩空间从sRGB Linear转换为ACESAP1线性色彩空间。*
 
 ```hlsl
 float4 CombineLUTsCommon(float2 InUV, uint InLayerIndex)

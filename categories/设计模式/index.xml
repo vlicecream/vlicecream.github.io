@@ -10,42 +10,7 @@
     <pubDate>Sun, 20 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%A4%BA%E4%BE%8Bc-%E4%BB%A3%E7%A0%81/</guid>
-    <description><![CDATA[<h2 id="前言">前言</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">在被吐槽代码写的烂之后</span> <span class="err">看了很多源码</span> <span class="err">学习别人怎么写的</span> <span class="err">也专门去看了设计模式</span>
-</span></span><span class="line"><span class="cl"><span class="err">在学艺术的我</span> <span class="err">还是特别热衷于极简艺术的我</span> <span class="err">自己之前写的代码也实在看不进去</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">现在设计模式都看完了</span> <span class="err">用</span><span class="n">golang</span> <span class="err">还有</span> <span class="n">c</span><span class="o">++</span> <span class="err">综合一下每个模式的代码示例</span> <span class="err">但是因为只是示范设计模式</span> <span class="err">不会遵守</span><span class="n">c</span><span class="o">++</span><span class="err">的代码规范</span><span class="p">,</span><span class="err">甚至是伪代码</span>
-</span></span><span class="line"><span class="cl"><span class="err">本篇是</span> <span class="n">c</span><span class="o">++</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">但是听我一句劝</span> <span class="err">虽然看代码模板也可以让你去应付一些场景</span> <span class="err">但是还是要真正去学设计模式</span>
-</span></span><span class="line"><span class="cl"><span class="err">学设计模式</span> <span class="o">=</span> <span class="err">学面向对象</span>
-</span></span><span class="line"><span class="cl"><span class="err">要理清</span> <span class="err">稳定与变化</span> <span class="err">设计模式有些模式也是应用于架构层次的</span> <span class="err">所以有些模式</span> <span class="err">并没有好的代码模板</span>
-</span></span><span class="line"><span class="cl"><span class="err">而且设计模式</span> <span class="err">是人们智慧的精华</span> <span class="err">很值得我们去学习其中的思路精髓</span>
-</span></span><span class="line"><span class="cl"><span class="err">不要被眼前的表象代码迷惑了</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">好的代码是一种艺术</span> <span class="err">也可以通过你的代码诉说你的生活极简品味</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">                                                                                                                                                                                    <span class="o">---</span><span class="err">壬寅年七月初二</span>
-</span></span></code></pr]]></description>
+    <description><![CDATA[前言 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 在被吐槽代码写的烂之后 看了很多源码 学习别人怎么写的 也专门去看了设计模式 在学艺术的我 还是特别热衷于极简艺术的]]></description>
 </item>
 <item>
     <title>解析器</title>
@@ -53,34 +18,7 @@
     <pubDate>Tue, 15 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
-    <description><![CDATA[<h2 id="领域规则模式"><em><strong>领域规则模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是领域规则</strong></em>
-<ul>
-<li><em>在特定领域中, 某些变化虽然频繁, 但可以抽象为某种规则，这时候, 结合特定领域, 将问题抽象为语法规则, 从而给出在该领域下的一般性的解决方案</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Interpreter</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, 如果某一特定领域的问题比较复杂, 类似的结构不断重复出现, 如果使用普通的编程方式来实现将面临非常频繁的变化</em></li>
-<li><em>在这种情况下, 将特定领域的问题表达为某种语法规则下的句子，然后构建一个解释器来解释这样的句子, 从而达到解决问题的目的</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>给定一个语言, 定义他的文法的一种表示, 并定义一种解释器, 这个解释器使用该表示来解释语言中的句子</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>Interpreter模式的应用场景是这个模式的一个难点，只有满足 &ldquo;业务规则频繁变化, 且类似的结构不断重复出现, 并且容易抽象为语言规则的问题&quot;才适合这种模式</em></li>
-<li><em>使用这种模式来表示文法规则, 从而可以使用面向对象技巧来方便的 扩展 文法</em></li>
-<li><em>Interpreter模式适合简单的文法表示, 对于复杂的文法表示, 这种模式会产生较大的类层次结构，需要求助于第三方的语法分析器</em></li>
-</ol>]]></description>
+    <description><![CDATA[领域规则模式 什么是领域规则 在特定领域中, 某些变化虽然频繁, 但可以抽象为某种规则，这时候, 结合特定领域, 将问题抽象为语法规则, 从而给出在该领域]]></description>
 </item>
 <item>
     <title>访问器</title>
@@ -88,48 +26,7 @@
     <pubDate>Mon, 14 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E5%99%A8/</guid>
-    <description><![CDATA[<h2 id="行为变化模式"><em><strong>行为变化模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是行为变化</strong></em>
-<ul>
-<li><em>在组件的构建过程中, 组件行为的变化经常导致组件本身剧烈的变化，&ldquo;行为变化&quot;模式将组件的行为和组件本身进行解藕, 从而支持组件行为的变化, 实现两者之间的松耦合</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Command</em></li>
-<li><em>Visitor</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="访问器---前言"><em><strong>访问器 - 前言</strong></em></h2>
-<ol>
-<li><em>访问器这个模式 <strong>有一个很难的前提</strong></em>
-<ul>
-<li><em>就是在扩展的类的子类个数必须稳定 也就是说要提前就知道有多少个子类 不能增加</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, 由于需求的改变, 某些类层次结构中常常需要增加新的行为(方法)，如果直接在基类中做这样的更改, 将会给子类带来很繁重的变更负担, 甚至破坏原有设计</em></li>
-<li><em>如何在不更改层次结构的前提下, 在运行时根据需要透明的为类层次结构上的各个类动态添加新的操作, 从而避免上述问题?</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>表示一个作用于某对象结构中的各元素操作，使得可以在不改变(稳定)各元素的类的前提下定义(扩展)作用于这些元素的新操作(变化)</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>Visitor模式通过所有双重分发来实现在不更改类层次结构的前提下, 在运行时透明的为类层次结构上的各个类动态添加新的操作</em></li>
-<li><em>所有双重分发即Visitor模式中间包含了两个多态分发</em>
-<ul>
-<li><em>第一个为accept方法的多态辨析</em></li>
-<li><em>第二个为visitElementX方法的多态辨析</em></li>
-</ul>
-</li>
-<li><em>Visitor模式的最大缺点为扩展类层次结构, 会导致visitor类的改变，因此这个模式适用于类层次结构稳定, 而其中的操作方法频繁变化</em></li>
-</ol>]]></description>
+    <description><![CDATA[行为变化模式 什么是行为变化 在组件的构建过程中, 组件行为的变化经常导致组件本身剧烈的变化，&ldquo;行为变化&quot;模式将组件的行为和]]></description>
 </item>
 <item>
     <title>命令模式</title>
@@ -137,40 +34,7 @@
     <pubDate>Sun, 13 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[<h2 id="行为变化模式"><em><strong>行为变化模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是行为变化</strong></em>
-<ul>
-<li><em>在组件的构建过程中, 组件行为的变化经常导致组件本身剧烈的变化，&ldquo;行为变化&quot;模式将组件的行为和组件本身进行解藕, 从而支持组件行为的变化, 实现两者之间的松耦合</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Command</em></li>
-<li><em>Visitor</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="命令模式前言"><em><strong>命令模式前言</strong></em></h2>
-<ol>
-<li><em>这个模式跟迭代器模式的地位很像，如果在c++中 其实这个模式很少用到 因为泛型编程里的函数对象已经优化的很好，然后在其他语言 java之类的 这个模式应用的也是很广泛</em></li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, &ldquo;行为请求者&quot;与&quot;行为实现者&quot;通常呈现一种&quot;紧耦合&rdquo;，但在某一个场合&mdash;-比如需要对行为进行&quot;记录、撤销/重(undo/redo)、事务等处理&rdquo;, 这种无法抵御变化的紧耦合是不合适的</em></li>
-<li><em>在这种情况下, 如何将&quot;行为请求者&quot;与&quot;行为实现者&quot;解藕?</em></li>
-<li><em>将一组行为抽象为对象, 可以实现二者之间的松耦合</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>将一个请求(行为)封装为一个对象, 从而使你可用不同的请求对客户进行参数化，对请求排队或记录日志, 以及支持可撤销的操作</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>Command模式的根本目的在于将&quot;行为请求者&quot;与&quot;行为实现者&quot;解藕, 在面向对象语言中, 常见的实现手段是&quot;将行为抽象为对象&quot;</em></li>
-<li><em>实现Command接口的具体命令对象ConcreteCommand有时候根据需要可能会保存一些额外的状态信息。通过使用Composite模式, 可以将多个命令封装为一个复合命令</em></li>
-<li><em>Command模式与c++中的函数对象有些类似, 但两者行为接口的规范有所区别，Command以面向对象中的&quot;接口-实现&quot;来定义行为函数规范, 更严格, 但有性能损失，c++函数对象以函数签名来定义行为函数规范, 更灵活, 性能更高</em></li>
-</ol>]]></description>
+    <description><![CDATA[行为变化模式 什么是行为变化 在组件的构建过程中, 组件行为的变化经常导致组件本身剧烈的变化，&ldquo;行为变化&quot;模式将组件的行为和]]></description>
 </item>
 <item>
     <title>职责链</title>
@@ -178,42 +42,7 @@
     <pubDate>Sat, 12 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%81%8C%E8%B4%A3%E9%93%BE/</guid>
-    <description><![CDATA[<h2 id="数据结构模式"><em><strong>数据结构模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是数据结构模式</strong></em>
-<ul>
-<li><em>常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Composite</em></li>
-<li><em>Iterator</em></li>
-<li><em>Chain of Resposibility</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="职责链前言"><em><strong>职责链前言</strong></em></h2>
-<ol>
-<li><em>这个模式 其实随着现在数据结构的发展 也过时了</em></li>
-<li><em>但是还是老话 模式过时 思想不会过时</em></li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, 一个请求可能被多个对象处理, 但是每个请求在运行时只能有一个接受者，如果显式指定, 将必不可少的带来发送者和接受者的紧耦合</em></li>
-<li><em>如何使请求的发送者不需要指定具体的接受者?</em></li>
-<li><em>让请求的接受者自己在运行时决定来处理请求, 从而使两者解藕</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>使多个对象都有机会处理请求, 从而避免请求的发送者和接受者之间的耦合关系，将这些对象形成一条链表, 并沿着这条链传递请求, 直到有一个对象处理它为止</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>职责链模式的应用场合在于 &ldquo;一个请求可能有多个接受者, 但是最后真正的接受者只有一个&rdquo;，这时候请求发送者与接受者的耦合有可能出现&quot;变化脆弱&quot;的症状, 职责链的目的就是将二者解藕, 从而更好的应对变化</em></li>
-<li><em>应用了职责链模式后, 对象的职责分派将更具有灵活性，我们可以在运行时动态添加/修改请求的处理职责</em></li>
-<li><em>如果请求传递到职责链的末尾仍得不到处理, 应该有一个合理的缺省机制，这也是每一个接受对象的责任, 而不是发出</em></li>
-</ol>]]></description>
+    <description><![CDATA[数据结构模式 什么是数据结构模式 常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用 典型模式 Composite]]></description>
 </item>
 <item>
     <title>迭代器</title>
@@ -221,43 +50,7 @@
     <pubDate>Fri, 11 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/</guid>
-    <description><![CDATA[<h2 id="数据结构模式"><em><strong>数据结构模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是数据结构</strong></em>
-<ul>
-<li><em>常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Composite</em></li>
-<li><em>Iterator</em></li>
-<li><em>Chain of Resposibility</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="迭代器前言"><em><strong>迭代器前言</strong></em></h2>
-<ol>
-<li><em>这个模式 在 c++ 上其实已经过时了</em></li>
-<li><em>GoF 对迭代器的定义 是面向对象的迭代器 要去遍历很多的虚函数 然而虚函数是有性能代价的 运行时依赖</em></li>
-<li><em>懂得STL 泛型编程的朋友都知道 STL 里面定义了很多迭代器 这里面的迭代器是 模板方法的迭代器 编译时依赖</em></li>
-<li><em>但是一个模式过时 不代表思想会过时 c++的迭代器也是根据这个思想 把算法和容器给隔离开来，而且其他语言 比如java 这个面向对象的迭代器也在使用，所以我们还是得对这个模式一探究竟</em></li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, 集合对象内部结构常常变化各异，但对于这些集合对象, 我们希望在不暴露其内部结构的同时, 可以让外部客户代码透明的访问其中包含的元素，同时这种&quot;透明遍历&quot;也为&quot;同一种算法在多种集合对象上进行操作&quot;提供了可能</em></li>
-<li><em>使用面向对象技术将这种遍历机制抽象为&quot;迭代器对象&quot;，为&quot;应对变化中的集合对象&quot;提供了一种优雅的方式</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>提供一种方法顺序访问一个聚合对象中的各个元素, 而又不暴露(稳定)该对象的内部表示</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>迭代抽象: 访问一个聚合对象的内容而无需暴露他的内部表示</em></li>
-<li><em>迭代多态: 为遍历不同的集合结构提供一个统一的接口, 从而支持同样的算法在不同的集合结构上进行操作</em></li>
-<li><em>迭代器的健壮性考虑: 遍历的同时更改迭代器所在的集合结构, 会导致问题</em></li>
-</ol>]]></description>
+    <description><![CDATA[数据结构模式 什么是数据结构 常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用 典型模式 Composite Iterator Chain]]></description>
 </item>
 <item>
     <title>组合模式</title>
@@ -265,25 +58,7 @@
     <pubDate>Thu, 10 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[<h2 id="数据结构模式"><em><strong>数据结构模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是数据结构模式</strong></em>
-<ul>
-<li><em>常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Composite</em></li>
-<li><em>Iterator</em></li>
-<li><em>Chain of Resposibility</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li>
-<p><em>在软件某些情况下, 客户代码过多的依赖于对象容器复杂的内部实现结构, 对象容器内部实现结构(而非对象接口)的变化将引起客户代码的频繁变化, 带来了代码的维护性、扩展性等弊端</em></p>]]></description>
+    <description><![CDATA[数据结构模式 什么是数据结构模式 常常有一些组件在内部具有特定的数据结构, 如果让客户程序依赖这些特定的数据结构, 将极大的破坏组件的复用 典型模式 Composite]]></description>
 </item>
 <item>
     <title>备忘录</title>
@@ -291,36 +66,7 @@
     <pubDate>Wed, 09 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-    <description><![CDATA[<h2 id="状态变化模式"><em><strong>状态变化模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是状态变化</strong></em>
-<ul>
-<li><em>在组件构建过程中, 某些对象的状态面临变化, 如何对这些变化进行有效的管理? 同时又保证高层的稳定?</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Memento</em></li>
-<li><em>State</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, 某些对象的状态在转换过程中, 可能由于某种需要, 要求程序能够回溯到对象之前的状态</em></li>
-<li><em>如果使用一些公有接口来让其他对象得到对象的状态, 便会暴露对象的细节实现</em></li>
-<li><em>如何实现对象状态的良好保存与恢复? 但同时又不会因此而破坏对象本身的封装性</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>在不破坏封装性的的前提下, 捕获一个对象的内部状态, 并在该对象之外保存此状态，这样以后就可以将该对象恢复到原先保存的状态</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>备忘录(Memento)存储原发器对象的内部状态 在需要时恢复原发器状态</em></li>
-<li><em>Memento模式的核心是信息隐藏, 即原发器需要向外接隐藏信息, 保持其封装性，但同时有需要将状态保持到外界 (Memento)</em></li>
-<li><em>由于现代语言运行时都具有相当的对象序列化支持, 因此往往采用效率高、又较容器正确实现的序列化方案来实现Memento模式</em></li>
-</ol>]]></description>
+    <description><![CDATA[状态变化模式 什么是状态变化 在组件构建过程中, 某些对象的状态面临变化, 如何对这些变化进行有效的管理? 同时又保证高层的稳定? 典型模式 Memento State 动机 在软]]></description>
 </item>
 <item>
     <title>状态模式</title>
@@ -328,24 +74,7 @@
     <pubDate>Wed, 09 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[<h2 id="状态变化模式"><em><strong>状态变化模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是状态变化</strong></em>
-<ul>
-<li><em>在组件构建过程中, 某些对象的状态面临变化, 如何对这些变化进行有效的管理? 同时又保证高层的稳定?</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Memento</em></li>
-<li><em>State</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li>
-<p><em>在软件构建过程中, 某些对象的状态如果改变, 其行为也会随之而发生变化</em></p>]]></description>
+    <description><![CDATA[状态变化模式 什么是状态变化 在组件构建过程中, 某些对象的状态面临变化, 如何对这些变化进行有效的管理? 同时又保证高层的稳定? 典型模式 Memento State 动机 在软]]></description>
 </item>
 <item>
     <title>中介者</title>
@@ -353,41 +82,7 @@
     <pubDate>Mon, 07 Aug 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%B8%AD%E4%BB%8B%E8%80%85/</guid>
-    <description><![CDATA[<h2 id="接口隔离模式"><em><strong>接口隔离模式</strong></em></h2>
-<ol>
-<li><em><strong>什么是接口隔离</strong></em>
-<ul>
-<li><em>在组件构建过程中, 某些接口之间直接的依赖 常常会带来很多问题 甚至根本无法实现</em></li>
-<li><em>采用添加一层间接(稳定)接口, 来隔离本来互相紧密关联的接口是一种常见的解决方案</em></li>
-</ul>
-</li>
-<li><em><strong>典型模式</strong></em>
-<ul>
-<li><em>Façade</em></li>
-<li><em>Proxy</em></li>
-<li><em>Mediator</em></li>
-<li><em>Adapter</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="动机"><em><strong>动机</strong></em></h2>
-<ol>
-<li><em>在软件构建过程中, 经常会出现多个对象互相关联交互的情况, 对象之间常常会维持一种复杂的引用关系，如果遇到一些需求的更改, 这种直接的引用关系将面临不断的变化</em></li>
-<li><em>在这种情况下, 我们可使用一个&quot;中介对象&quot;来管理对象之间的关联关系, 避免相互交互的对象之间的紧耦合引用关系, 从而抵御变化</em></li>
-</ol>
-<h2 id="模式定义"><em><strong>模式定义</strong></em></h2>
-<ol>
-<li><em>用一个中介对象来封装(变化)一系列的对象交互</em></li>
-<li><em>中介者使各对象不需要显式的相互引用(编译时依赖 -&gt; 运行时依赖), 从而使得耦合松散, 而且可以独立的改变他们之间的交互</em></li>
-</ol>
-<h2 id="要点总结"><em><strong>要点总结</strong></em></h2>
-<ol>
-<li><em>将多个对象间复杂的关联关系, Mediator模式将多个对象间的控制逻辑进行集中管理</em></li>
-<li><em>变&quot;多个对象互相关联&quot;为&quot;多个对象和一个中介者关联&quot;, 简化了系统的维护, 抵御了可能的变化</em></li>
-<li><em>随着控制逻辑的复杂变化, Mediator具体对象的实现可能相当复杂，这个时候可对Mediator对象进行分解处理</em></li>
-<li><em>Facade模式是解耦系统间(单向)的对象关联关系</em></li>
-<li><em>Mediator模式是解耦系统内各个对象间(双向)的关联关系</em></li>
-</ol>]]></description>
+    <description><![CDATA[接口隔离模式 什么是接口隔离 在组件构建过程中, 某些接口之间直接的依赖 常常会带来很多问题 甚至根本无法实现 采用添加一层间接(稳定)接口, 来隔离本来]]></description>
 </item>
 </channel>
 </rss>

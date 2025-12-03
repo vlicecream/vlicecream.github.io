@@ -10,11 +10,7 @@
     <pubDate>Fri, 10 Feb 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/</guid>
-    <description><![CDATA[<h1 id="线程到底共享了哪些进程资源">线程到底共享了哪些进程资源?</h1>
-<h2 id="引言"><em><strong>引言</strong></em></h2>
-<ol>
-<li>
-<p><em>鲁迅经常说这样一句话：“反过来想，总是反过来想”，如果你对线程之间共享了哪些进程资源这个问题想不清楚的话那么也可以反过来思考，那就是<strong>有哪些资源是线程私有的</strong></em></p>]]></description>
+    <description><![CDATA[线程到底共享了哪些进程资源? 引言 鲁迅经常说这样一句话：“反过来想，总是反过来想”，如果你对线程之间共享了哪些进程资源这个问题想不清楚的话那么]]></description>
 </item>
 <item>
     <title>进程管理</title>
@@ -22,101 +18,7 @@
     <pubDate>Sun, 17 Jul 2022 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B/</guid>
-    <description><![CDATA[<h1 id="进程管理">进程管理</h1>
-<h1 id="进程与线程"><em><strong>进程与线程</strong></em></h1>
-<h2 id="进程的概念"><em><strong>进程的概念</strong></em></h2>
-<ol>
-<li><em><strong>进程的概念</strong></em>
-<ul>
-<li><em>指一个应用程序运行了起来, 进程是操作系统分配资源的一个最小单位</em></li>
-</ul>
-</li>
-<li><em><strong>进程的结构</strong></em>
-<ul>
-<li><em><code>控制块（PCB）</code>存放着进程的唯一ID，如果运行了多个微信进程，他们的ID也都是不一样的</em></li>
-<li><em><code>数据块</code>存放着进程的原始数据和中间数据</em></li>
-<li><em><code>程序块</code>多个进程共享 存放在文本区域 这个的多个进程是指如果开启了多个微信程序 则多个微信程序共享程序块</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="线程的概念"><em><strong>线程的概念</strong></em></h2>
-<ol>
-<li><em><strong>线程的概念</strong></em>
-<ul>
-<li><em>操作系统最小调度单位, 不能独立运行 被包含于进程, 一个进程可以有一个或多个进程</em></li>
-<li><em>也被叫做轻量级进程 但是轻量级进程多用于内核级进程 而用户级线程成为线程</em></li>
-</ul>
-</li>
-<li><em><strong>内核级线程</strong></em>
-<ul>
-<li><em>线程的控制块在操作系统的内核空间里 被称为内核级线程 但是线程的数据块和程序块还依然在用户控件</em></li>
-<li><em>实现了真正意义上的线程并行</em></li>
-<li><em>不需要运行时系统的参与</em></li>
-<li><em>正因为数据块和程序块在用户空间，所以频繁的切换会导致内核开销大</em></li>
-</ul>
-</li>
-<li><em><strong>用户级线程</strong></em>
-<ul>
-<li><em>线程的控制快在操作系统的用户控件里 被称为用户级线程 不依赖于操作系统 调度依赖于用户程序 在操作系统的视角里其实感觉不到用户级线程的存在</em></li>
-<li><em>线程位于用户控件（不需要模式切换）</em></li>
-<li><em>独立于操作系统（线程可以在不支持他们的操作系统上运行）</em></li>
-<li><em>运行时系统可以切换用户控件中的本地阻塞线程（eg：等待另一个线程完成）</em></li>
-<li><em>系统调用中，对一个线程的阻塞将会导致整个进程的阻塞</em></li>
-<li><em>非真正意义的线程并行（一个进程安排在单个cpu上）</em></li>
-<li><em>不存在时钟中断</em></li>
-<li>更多的用户级线程的知识请看《<a href="https://vlicecream.github.io/%e7%bc%98%e8%b5%b7-%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e5%8d%8f%e7%a8%8b/" target="_blank" rel="noopener noreffer ">如何理解协程?</a>》</li>
-</ul>
-</li>
-</ol>
-<h2 id="进程与线程的区别"><em><strong>进程与线程的区别</strong></em></h2>
-<ol>
-<li><em>进程是操作系统分配资源的最小单位 / 线程是操作系统最小调度单位</em></li>
-<li><em>一个线程只属于一个进程 / 一个进程可以包括多个线程但最少有一个主线程</em></li>
-<li><em>进程在执行过程中拥有独立的内存单元 / 而多个线程共享进程的内存</em></li>
-<li><em>进程编程调试简单可靠性高，但是创建销毁开销大 / 线程正相反，开销小，切换速度快，但是编程调试相对复杂</em></li>
-<li><em>进程间不会相互影响 / 线程一个线程挂掉将导致整个进程挂掉</em></li>
-<li><em>进程适应于多核、多机分布 / 线程适用于多核</em></li>
-<li><em>由于在创建或撤消进程时，系统都要为之分配或回收资源，如内存空间、IO设备等。因此，操作系统所付出的开销将显著地大于在创建或撤消线程时的开销 / 而线程切换只须保存和设置少量寄存器的内容，并不涉及存储器管理方面的操作 / <strong>所以进程切换的开销也远大于线程切换的开销</strong></em></li>
-<li><em>由于同一进程中的多个线程具有相同的地址空间，致使它们之间的同步和通信的实现，也变得比较容易。<strong>进程间通信IPC，线程间可以直接读写进程数据段（如全局变量）来进行通信——需要进程同步和互斥手段的辅助，以保证数据的一致性</strong>。在有的系统中，线程的切换、同步和通信都无须操作系统内核的干预</em></li>
-</ol>
-<h2 id="线程资源"><em><strong>线程资源</strong></em></h2>
-<ul>
-<li><em><strong>详细文章请看《<a href="https://vlicecream.github.io/%e7%bc%98%e8%b5%b7-%e7%ba%bf%e7%a8%8b%e5%88%b0%e5%ba%95%e5%85%b1%e4%ba%ab%e4%ba%86%e5%93%aa%e4%ba%9b%e8%bf%9b%e7%a8%8b%e8%b5%84%e6%ba%90/" target="_blank" rel="noopener noreffer ">线程到底共享了哪些进程资源？</a>》</strong></em></li>
-</ul>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: center">线程共享的资源</th>
-          <th style="text-align: center">线程私有的资源</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">堆区</td>
-          <td style="text-align: center">寄存器</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">打开的文件</td>
-          <td style="text-align: center">栈区</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">数据区（全局变量和static）</td>
-          <td style="text-align: center">程序计数器</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">代码区（每一个函数）</td>
-          <td style="text-align: center">栈指针</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">动态链接库</td>
-          <td style="text-align: center"></td>
-      </tr>
-  </tbody>
-</table>
-<h2 id="说一下-forkwaitexec-函数"><em><strong>说一下 fork，wait，exec 函数</strong></em></h2>
-<ol>
-<li>
-<p><em>父进程产生子进程使用<code>fork</code>拷贝出一个父进程的副本，此时只拷贝了父进程的页表，两个进程都读一块内存的</em></p>]]></description>
+    <description><![CDATA[进程管理 进程与线程 进程的概念 进程的概念 指一个应用程序运行了起来, 进程是操作系统分配资源的一个最小单位 进程的结构 控制块（PCB）存放着进程的唯]]></description>
 </item>
 </channel>
 </rss>

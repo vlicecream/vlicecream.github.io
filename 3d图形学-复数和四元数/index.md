@@ -646,6 +646,13 @@ $$
 
 *假设$p_{\perp} = [0, \mathbf{v_{\perp}]}$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果$v_{\perp}$正交于 $\mathbf{u}$，那么 $qv_{\perp} = v_{\perp}q\*$*
 
+#### ***定理4***
+
+*对任意四元数 $q_1 = [s, \mathbf{v}], q_2 = [t, \mathbf{u}]$：*
+$$
+q_1^* q_2^* = (q_2q_1^*)
+$$
+
 ### ***四元数与 3D 旋转***
 
 #### ***前言***
@@ -750,13 +757,13 @@ $$
 
 #### ***$v_{\paraller}$的旋转***
 
-*我们之前讨论过，如果一个向量$\mathbf{v_[\paraller]}$ 平行于 $\mathbf{u}$，那么旋转不会对他作出任何变换，也就是说：*
+*我们之前讨论过，如果一个向量 $\mathbf{v_{\parallel}}$ 平行于 $\mathbf{u}$，那么旋转不会对他作出任何变换，也就是说：*
 
 *3D 旋转公式（四元数型，平行情况）*
 
 *当 $v_{\parallel}$ 平行于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$角度之后的 $v'\_{\parallel}$用四元数可以写为：*
 $$
-v'_{\parallel} = v_{\parallel}
+v'\_{\parallel} = v\_{\parallel}
 $$
 
 #### ***v的旋转***
@@ -770,7 +777,123 @@ v' &= v'\_{\parallel} + v'\_{\perp}
 \\\ \\\
 &= 1 \cdot v_{\parallel} + qv_{\perp} \quad \quad \quad \quad \quad \quad (qq^{-1} = 1 ~ 和 ~ 定理1)
 \\\ \\\
-&= pp^{-1}v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (令 q = p)
+&= pp^{-1}v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (令 q = p^2)
+\\\ \\\
+&= pp^\*v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (p^{-1} = p^\*)
+\\\ \\\
+&= pv_{\parallel}p^* + pv_{\perp}p^*
+\\\ \\\
+&= p(v_{\parallel} + v_{\perp})p^*
+\\\ \\\
+&= pvp^*
 \end{align*}
+$$
+*3D 旋转公式（四元数型，一般情况）*
+
+*任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$度之后的 $\mathbf{v'}$ 可以使用四元数乘法来获得。*
+
+*令 $v = [0, \mathbf{v}], q = [\cos(\frac{1}{2}\theta), \sin(\frac{1}{2}\theta)\mathbf{u}]$，那么：*
+$$
+v' = qvq^* = qvq^{-1}
+$$
+*换句话说，如果我们有 $q = [\cos(\theta)，\sin(\theta)\mathbf{u}]$，那么 $v' = qvq^\*$ 可以将 $\mathbf{v}$沿着 $\mathbf{u}$旋转20度*
+
+#### ***总结 3D旋转***
+
+1. *3D 旋转公式（四元数型，正交情况）*
+
+   *当 $v_{\perp}$ 正交于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$ 角度后的 $v'\_{\perp}$ 可以使用四元数乘法来获得获得。*
+
+   *令 $v_{\perp} = [0, \mathbf{v_{\perp}}], q = [\cos(\theta), \sin(\theta)\mathbf{u}]$，那么：*
+   $$
+   v'\_{\perp} = qv_{\perp}
+   $$
+
+2. *3D 旋转公式（四元数型，平行情况）*
+
+   *当 $v_{\parallel}$ 平行于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$角度之后的 $v'\_{\parallel}$用四元数可以写为：*
+   $$
+   v'\_{\parallel} = v\_{\parallel}
+   $$
+
+3. *3D 旋转公式（四元数型，一般情况）*
+
+   *任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$度之后的 $\mathbf{v'}$ 可以使用四元数乘法来获得。*
+
+   *令 $v = [0, \mathbf{v}], q = [\cos(\frac{1}{2}\theta), \sin(\frac{1}{2}\theta)\mathbf{u}]$，那么：*
+   $$
+   v' = qvq^* = qvq^{-1}
+   $$
+
+### ***3D旋转的矩阵形式***
+
+*3D 旋转公式（矩阵型）*
+
+*任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$ 角度之后的 $v'$ 可以使用矩阵乘法来获得。*
+
+*令 $a = \cos(\frac{1}{2}\theta), b = \sin(\frac{1}{2}\theta)u_x, c = \sin(\frac{1}{2}\theta)u_y, d = \sin(\frac{1}{2}\theta)u_z$，那么：*
+$$
+v' = 
+\begin{bmatrix}
+1 - 2c^2 - 2d^2 & 2bc - 2ad & 2ac + 2bd
+\\\ \\\
+2bc + 2ad & 1 - 2b^2 - 2d^2 & 2cd - 2ab
+\\\ \\\
+2bd - 2ac & 2ab + 2cd & 1 - 2b^2 - 2c^2
+\end{bmatrix}
+$$
+
+
+*虽然 3D 旋转的矩阵形式可能不如四元数形式简单，而且占用更多的空间， 但是对于大批量的变换，使用预计算好的矩阵是比四元数乘法更有效率的．*
+
+### ***旋转的复合***
+
+*假设有两个表示沿着不同轴，不同角度旋转的四元数 $q_1$, $q_2$，我们先对 $v$ 进行 $q_1$ 的变换，再进行 q_2 的变换，变换的结果是什么呢？*
+
+*我们分步进行。首先，我们实施 $q_1$的变换，变换之后的 $v'$为：*
+$$
+v' = q_1 v q_1^*
+$$
+*接下来，对 $v'$ 进行 $q_2$的变换，得到 $v''$*
+$$
+v'' = q_2v'q_2^\* = q_2q_1vq_1^\*q_2^\*
+$$
+*我们对这两个变换进行复合，写为一个等价交换的形式：*
+$$
+v'' = q_{net}vq_{net}^*
+$$
+*在运用定理4：*
+$$
+\begin{align*}
+v'' &= q_2q_1vq_1^\*q_2^\*
+\\\ \\\
+&= (q_2q_1)v(q_2q_1)
+\end{align*}
+$$
+*注意四元数乘法的顺序，我们先进行的是 𝑞1 的变 换，再进行 𝑞2 的变换．*
+
+*比如说我们还需要进行第三个旋转 𝑞3，那么：*
+$$
+v''' = q_3(q_2q_1)v(q_2q_1)^\*q_3^\*
+$$
+
+### ***双倍覆盖***
+
+*单位四元数与 3D 旋转有一个「2 对 1 满射同态」(2-1 Surjective Homomorphism) 关系，或者说单位四元数双倍覆盖 (Double Cover) 了 3D 旋转．*
+
+*通俗来说就是同一个 3D 旋转可以使用两个不同的四元数来表示。*
+
+*从旋转公式中也能推导出相同的结果：*
+$$
+(-q)v(-q)^* = (-1)^2qvq^* = qvq^*
+$$
+
+### ***指数形式***
+
+*任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$ 角度之后的 $\mathbf{v'}$ 可以使用四元数的指数表示：*
+
+*令 $v = [0, \mathbf{v}]$，$u = [0, \mathbf{u}]$，那么：*
+$$
+v' = e^{u\frac{\theta}{2}}ve^{-u\frac{\theta}{2}}
 $$
 

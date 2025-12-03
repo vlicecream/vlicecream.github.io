@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  7856 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 3D图形学, 复数, 四元数","wordcount":  9052 ,
         "url": "https:\/\/example.com\/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0\/","datePublished": "2025-11-14T15:00:00+08:00","dateModified": "2025-11-16T12:58:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">复数与四元数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>3D图形学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7856 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-14">2025-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9052 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%A4%8D%E6%95%B0%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0/" class="leancloud_visitors" data-flag-title="复数与四元数">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -182,6 +182,7 @@
             <li><a href="#定理1"><em><strong>定理1</strong></em></a></li>
             <li><a href="#定理2"><em><strong>定理2</strong></em></a></li>
             <li><a href="#定理3"><em><strong>定理3</strong></em></a></li>
+            <li><a href="#定理4"><em><strong>定理4</strong></em></a></li>
           </ul>
         </li>
         <li><a href="#四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></a>
@@ -196,8 +197,13 @@
             </li>
             <li><a href="#v_paraller的旋转"><em><strong>$v_{\paraller}$的旋转</strong></em></a></li>
             <li><a href="#v的旋转-1"><em><strong>v的旋转</strong></em></a></li>
+            <li><a href="#总结-3d旋转"><em><strong>总结 3D旋转</strong></em></a></li>
           </ul>
         </li>
+        <li><a href="#3d旋转的矩阵形式"><em><strong>3D旋转的矩阵形式</strong></em></a></li>
+        <li><a href="#旋转的复合-1"><em><strong>旋转的复合</strong></em></a></li>
+        <li><a href="#双倍覆盖"><em><strong>双倍覆盖</strong></em></a></li>
+        <li><a href="#指数形式"><em><strong>指数形式</strong></em></a></li>
       </ul>
     </li>
   </ul>
@@ -778,6 +784,11 @@ $$</p>
 <p><em>假设 $v_{\parallel} = [0, v_{\parallel}]$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$ ，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果 $v_{\parallel}$平行于 $\mathbf{u}$，那么 $qv_{\parallel} = v_{\parallel}q$</em></p>
 <h4 id="定理3"><em><strong>定理3</strong></em></h4>
 <p><em>假设$p_{\perp} = [0, \mathbf{v_{\perp}]}$是一个纯四元数，而 $q = [\alpha, \beta\mathbf{u}]$，其中 $\mathbf{u}$ 是一个单位向量，$\alpha, \beta \in \mathbb{R}$。在这种条件下，如果$v_{\perp}$正交于 $\mathbf{u}$，那么 $qv_{\perp} = v_{\perp}q*$</em></p>
+<h4 id="定理4"><em><strong>定理4</strong></em></h4>
+<p><em>对任意四元数 $q_1 = [s, \mathbf{v}], q_2 = [t, \mathbf{u}]$：</em>
+$$
+q_1^* q_2^* = (q_2q_1^*)
+$$</p>
 <h3 id="四元数与-3d-旋转"><em><strong>四元数与 3D 旋转</strong></em></h3>
 <h4 id="前言"><em><strong>前言</strong></em></h4>
 <p><em>我们需要将一个向量$\mathbf{v}$沿着一个用单位向量所定义的旋转轴$\mathbf{u}$旋转$\theta$度，那么我们可以将这个向量$\mathbf{v}$拆分为正交于旋转轴的$v_{\perp}$以及平行于旋转轴的$v_{\parallel}$。我们可以对这两个分向量分别进行旋转，获得$v&rsquo;_{\perp}$和$v&rsquo;_{\parallel}$。将他们相加就是 $\mathbf{v}$ 旋转之后的结果 $v&rsquo; = v&rsquo;_{\parallel} + v&rsquo;_{\perp}$</em></p>
@@ -865,11 +876,11 @@ $$
 \end{align*}
 $$</p>
 <h4 id="v_paraller的旋转"><em><strong>$v_{\paraller}$的旋转</strong></em></h4>
-<p><em>我们之前讨论过，如果一个向量$\mathbf{v_[\paraller]}$ 平行于 $\mathbf{u}$，那么旋转不会对他作出任何变换，也就是说：</em></p>
+<p><em>我们之前讨论过，如果一个向量 $\mathbf{v_{\parallel}}$ 平行于 $\mathbf{u}$，那么旋转不会对他作出任何变换，也就是说：</em></p>
 <p><em>3D 旋转公式（四元数型，平行情况）</em></p>
 <p><em>当 $v_{\parallel}$ 平行于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$角度之后的 $v&rsquo;_{\parallel}$用四元数可以写为：</em>
 $$
-v&rsquo;<em>{\parallel} = v</em>{\parallel}
+v&rsquo;_{\parallel} = v_{\parallel}
 $$</p>
 <h4 id="v的旋转-1"><em><strong>v的旋转</strong></em></h4>
 <p><em>有了这些知识，我们能够获得一般情况下 𝑣 ′ 的结果了</em>
@@ -881,8 +892,104 @@ v&rsquo; &amp;= v&rsquo;_{\parallel} + v&rsquo;_{\perp}
 \\ \\
 &amp;= 1 \cdot v_{\parallel} + qv_{\perp} \quad \quad \quad \quad \quad \quad (qq^{-1} = 1 ~ 和 ~ 定理1)
 \\ \\
-&amp;= pp^{-1}v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (令 q = p)
+&amp;= pp^{-1}v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (令 q = p^2)
+\\ \\
+&amp;= pp^*v_{\parallel} + ppv_{\perp} \quad \quad \quad \quad \quad \quad (p^{-1} = p^*)
+\\ \\
+&amp;= pv_{\parallel}p^* + pv_{\perp}p^*
+\\ \\
+&amp;= p(v_{\parallel} + v_{\perp})p^*
+\\ \\
+&amp;= pvp^*
 \end{align*}
+$$
+<em>3D 旋转公式（四元数型，一般情况）</em></p>
+<p><em>任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$度之后的 $\mathbf{v&rsquo;}$ 可以使用四元数乘法来获得。</em></p>
+<p><em>令 $v = [0, \mathbf{v}], q = [\cos(\frac{1}{2}\theta), \sin(\frac{1}{2}\theta)\mathbf{u}]$，那么：</em>
+$$
+v&rsquo; = qvq^* = qvq^{-1}
+$$
+<em>换句话说，如果我们有 $q = [\cos(\theta)，\sin(\theta)\mathbf{u}]$，那么 $v&rsquo; = qvq^*$ 可以将 $\mathbf{v}$沿着 $\mathbf{u}$旋转20度</em></p>
+<h4 id="总结-3d旋转"><em><strong>总结 3D旋转</strong></em></h4>
+<ol>
+<li>
+<p><em>3D 旋转公式（四元数型，正交情况）</em></p>
+<p><em>当 $v_{\perp}$ 正交于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$ 角度后的 $v&rsquo;_{\perp}$ 可以使用四元数乘法来获得获得。</em></p>
+<p><em>令 $v_{\perp} = [0, \mathbf{v_{\perp}}], q = [\cos(\theta), \sin(\theta)\mathbf{u}]$，那么：</em>
+$$
+v&rsquo;_{\perp} = qv_{\perp}
+$$</p>
+</li>
+<li>
+<p><em>3D 旋转公式（四元数型，平行情况）</em></p>
+<p><em>当 $v_{\parallel}$ 平行于旋转轴 $\mathbf{u}$ 时，旋转 $\theta$角度之后的 $v&rsquo;_{\parallel}$用四元数可以写为：</em>
+$$
+v&rsquo;_{\parallel} = v_{\parallel}
+$$</p>
+</li>
+<li>
+<p><em>3D 旋转公式（四元数型，一般情况）</em></p>
+<p><em>任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$度之后的 $\mathbf{v&rsquo;}$ 可以使用四元数乘法来获得。</em></p>
+<p><em>令 $v = [0, \mathbf{v}], q = [\cos(\frac{1}{2}\theta), \sin(\frac{1}{2}\theta)\mathbf{u}]$，那么：</em>
+$$
+v&rsquo; = qvq^* = qvq^{-1}
+$$</p>
+</li>
+</ol>
+<h3 id="3d旋转的矩阵形式"><em><strong>3D旋转的矩阵形式</strong></em></h3>
+<p><em>3D 旋转公式（矩阵型）</em></p>
+<p><em>任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$ 角度之后的 $v&rsquo;$ 可以使用矩阵乘法来获得。</em></p>
+<p><em>令 $a = \cos(\frac{1}{2}\theta), b = \sin(\frac{1}{2}\theta)u_x, c = \sin(\frac{1}{2}\theta)u_y, d = \sin(\frac{1}{2}\theta)u_z$，那么：</em>
+$$
+v&rsquo; =
+\begin{bmatrix}
+1 - 2c^2 - 2d^2 &amp; 2bc - 2ad &amp; 2ac + 2bd
+\\ \\
+2bc + 2ad &amp; 1 - 2b^2 - 2d^2 &amp; 2cd - 2ab
+\\ \\
+2bd - 2ac &amp; 2ab + 2cd &amp; 1 - 2b^2 - 2c^2
+\end{bmatrix}
+$$</p>
+<p><em>虽然 3D 旋转的矩阵形式可能不如四元数形式简单，而且占用更多的空间， 但是对于大批量的变换，使用预计算好的矩阵是比四元数乘法更有效率的．</em></p>
+<h3 id="旋转的复合-1"><em><strong>旋转的复合</strong></em></h3>
+<p><em>假设有两个表示沿着不同轴，不同角度旋转的四元数 $q_1$, $q_2$，我们先对 $v$ 进行 $q_1$ 的变换，再进行 q_2 的变换，变换的结果是什么呢？</em></p>
+<p><em>我们分步进行。首先，我们实施 $q_1$的变换，变换之后的 $v&rsquo;$为：</em>
+$$
+v&rsquo; = q_1 v q_1^*
+$$
+<em>接下来，对 $v&rsquo;$ 进行 $q_2$的变换，得到 $v&rsquo;&rsquo;$</em>
+$$
+v&rsquo;&rsquo; = q_2v&rsquo;q_2^* = q_2q_1vq_1^*q_2^*
+$$
+<em>我们对这两个变换进行复合，写为一个等价交换的形式：</em>
+$$
+v&rsquo;&rsquo; = q_{net}vq_{net}^*
+$$
+<em>在运用定理4：</em>
+$$
+\begin{align*}
+v&rsquo;&rsquo; &amp;= q_2q_1vq_1^*q_2^*
+\\ \\
+&amp;= (q_2q_1)v(q_2q_1)
+\end{align*}
+$$
+<em>注意四元数乘法的顺序，我们先进行的是 𝑞1 的变 换，再进行 𝑞2 的变换．</em></p>
+<p><em>比如说我们还需要进行第三个旋转 𝑞3，那么：</em>
+$$
+v&rsquo;&rsquo;&rsquo; = q_3(q_2q_1)v(q_2q_1)^*q_3^*
+$$</p>
+<h3 id="双倍覆盖"><em><strong>双倍覆盖</strong></em></h3>
+<p><em>单位四元数与 3D 旋转有一个「2 对 1 满射同态」(2-1 Surjective Homomorphism) 关系，或者说单位四元数双倍覆盖 (Double Cover) 了 3D 旋转．</em></p>
+<p><em>通俗来说就是同一个 3D 旋转可以使用两个不同的四元数来表示。</em></p>
+<p><em>从旋转公式中也能推导出相同的结果：</em>
+$$
+(-q)v(-q)^* = (-1)^2qvq^* = qvq^*
+$$</p>
+<h3 id="指数形式"><em><strong>指数形式</strong></em></h3>
+<p><em>任意向量 $\mathbf{v}$ 沿着以单位向量定义的旋转轴 $\mathbf{u}$ 旋转 $\theta$ 角度之后的 $\mathbf{v&rsquo;}$ 可以使用四元数的指数表示：</em></p>
+<p><em>令 $v = [0, \mathbf{v}]$，$u = [0, \mathbf{u}]$，那么：</em>
+$$
+v&rsquo; = e^{u\frac{\theta}{2}}ve^{-u\frac{\theta}{2}}
 $$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -913,7 +1020,7 @@ $$</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.134.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

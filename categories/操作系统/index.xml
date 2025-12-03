@@ -10,10 +10,7 @@
     <pubDate>Tue, 19 Jul 2022 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-io%E6%A8%A1%E5%9E%8B/</guid>
-    <description><![CDATA[<h1 id="io模型">IO模型</h1>
-<h1 id="5种-io模型"><em><strong>5种 IO模型</strong></em></h1>
-<h2 id="从tcp发送信息流程开始讲起"><em><strong>从TCP发送信息流程开始讲起</strong></em></h2>
-<p><em>要深入的理解各种 I/O 模型，那么必须先了解下产生各种IO的原因是什么，要知道这其中的本质问题那么我们就必须要知道一条消息是如何从一个人发送到另外一个人的</em></p>]]></description>
+    <description><![CDATA[IO模型 5种 IO模型 从TCP发送信息流程开始讲起 要深入的理解各种 I/O 模型，那么必须先了解下产生各种IO的原因是什么，要知道这其中的本质问题那么]]></description>
 </item>
 <item>
     <title>进程管理</title>
@@ -21,101 +18,7 @@
     <pubDate>Sun, 17 Jul 2022 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B/</guid>
-    <description><![CDATA[<h1 id="进程管理">进程管理</h1>
-<h1 id="进程与线程"><em><strong>进程与线程</strong></em></h1>
-<h2 id="进程的概念"><em><strong>进程的概念</strong></em></h2>
-<ol>
-<li><em><strong>进程的概念</strong></em>
-<ul>
-<li><em>指一个应用程序运行了起来, 进程是操作系统分配资源的一个最小单位</em></li>
-</ul>
-</li>
-<li><em><strong>进程的结构</strong></em>
-<ul>
-<li><em><code>控制块（PCB）</code>存放着进程的唯一ID，如果运行了多个微信进程，他们的ID也都是不一样的</em></li>
-<li><em><code>数据块</code>存放着进程的原始数据和中间数据</em></li>
-<li><em><code>程序块</code>多个进程共享 存放在文本区域 这个的多个进程是指如果开启了多个微信程序 则多个微信程序共享程序块</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="线程的概念"><em><strong>线程的概念</strong></em></h2>
-<ol>
-<li><em><strong>线程的概念</strong></em>
-<ul>
-<li><em>操作系统最小调度单位, 不能独立运行 被包含于进程, 一个进程可以有一个或多个进程</em></li>
-<li><em>也被叫做轻量级进程 但是轻量级进程多用于内核级进程 而用户级线程成为线程</em></li>
-</ul>
-</li>
-<li><em><strong>内核级线程</strong></em>
-<ul>
-<li><em>线程的控制块在操作系统的内核空间里 被称为内核级线程 但是线程的数据块和程序块还依然在用户控件</em></li>
-<li><em>实现了真正意义上的线程并行</em></li>
-<li><em>不需要运行时系统的参与</em></li>
-<li><em>正因为数据块和程序块在用户空间，所以频繁的切换会导致内核开销大</em></li>
-</ul>
-</li>
-<li><em><strong>用户级线程</strong></em>
-<ul>
-<li><em>线程的控制快在操作系统的用户控件里 被称为用户级线程 不依赖于操作系统 调度依赖于用户程序 在操作系统的视角里其实感觉不到用户级线程的存在</em></li>
-<li><em>线程位于用户控件（不需要模式切换）</em></li>
-<li><em>独立于操作系统（线程可以在不支持他们的操作系统上运行）</em></li>
-<li><em>运行时系统可以切换用户控件中的本地阻塞线程（eg：等待另一个线程完成）</em></li>
-<li><em>系统调用中，对一个线程的阻塞将会导致整个进程的阻塞</em></li>
-<li><em>非真正意义的线程并行（一个进程安排在单个cpu上）</em></li>
-<li><em>不存在时钟中断</em></li>
-<li>更多的用户级线程的知识请看《<a href="https://vlicecream.github.io/%e7%bc%98%e8%b5%b7-%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e5%8d%8f%e7%a8%8b/" target="_blank" rel="noopener noreffer ">如何理解协程?</a>》</li>
-</ul>
-</li>
-</ol>
-<h2 id="进程与线程的区别"><em><strong>进程与线程的区别</strong></em></h2>
-<ol>
-<li><em>进程是操作系统分配资源的最小单位 / 线程是操作系统最小调度单位</em></li>
-<li><em>一个线程只属于一个进程 / 一个进程可以包括多个线程但最少有一个主线程</em></li>
-<li><em>进程在执行过程中拥有独立的内存单元 / 而多个线程共享进程的内存</em></li>
-<li><em>进程编程调试简单可靠性高，但是创建销毁开销大 / 线程正相反，开销小，切换速度快，但是编程调试相对复杂</em></li>
-<li><em>进程间不会相互影响 / 线程一个线程挂掉将导致整个进程挂掉</em></li>
-<li><em>进程适应于多核、多机分布 / 线程适用于多核</em></li>
-<li><em>由于在创建或撤消进程时，系统都要为之分配或回收资源，如内存空间、IO设备等。因此，操作系统所付出的开销将显著地大于在创建或撤消线程时的开销 / 而线程切换只须保存和设置少量寄存器的内容，并不涉及存储器管理方面的操作 / <strong>所以进程切换的开销也远大于线程切换的开销</strong></em></li>
-<li><em>由于同一进程中的多个线程具有相同的地址空间，致使它们之间的同步和通信的实现，也变得比较容易。<strong>进程间通信IPC，线程间可以直接读写进程数据段（如全局变量）来进行通信——需要进程同步和互斥手段的辅助，以保证数据的一致性</strong>。在有的系统中，线程的切换、同步和通信都无须操作系统内核的干预</em></li>
-</ol>
-<h2 id="线程资源"><em><strong>线程资源</strong></em></h2>
-<ul>
-<li><em><strong>详细文章请看《<a href="https://vlicecream.github.io/%e7%bc%98%e8%b5%b7-%e7%ba%bf%e7%a8%8b%e5%88%b0%e5%ba%95%e5%85%b1%e4%ba%ab%e4%ba%86%e5%93%aa%e4%ba%9b%e8%bf%9b%e7%a8%8b%e8%b5%84%e6%ba%90/" target="_blank" rel="noopener noreffer ">线程到底共享了哪些进程资源？</a>》</strong></em></li>
-</ul>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: center">线程共享的资源</th>
-          <th style="text-align: center">线程私有的资源</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">堆区</td>
-          <td style="text-align: center">寄存器</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">打开的文件</td>
-          <td style="text-align: center">栈区</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">数据区（全局变量和static）</td>
-          <td style="text-align: center">程序计数器</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">代码区（每一个函数）</td>
-          <td style="text-align: center">栈指针</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">动态链接库</td>
-          <td style="text-align: center"></td>
-      </tr>
-  </tbody>
-</table>
-<h2 id="说一下-forkwaitexec-函数"><em><strong>说一下 fork，wait，exec 函数</strong></em></h2>
-<ol>
-<li>
-<p><em>父进程产生子进程使用<code>fork</code>拷贝出一个父进程的副本，此时只拷贝了父进程的页表，两个进程都读一块内存的</em></p>]]></description>
+    <description><![CDATA[进程管理 进程与线程 进程的概念 进程的概念 指一个应用程序运行了起来, 进程是操作系统分配资源的一个最小单位 进程的结构 控制块（PCB）存放着进程的唯]]></description>
 </item>
 <item>
     <title>概述</title>
@@ -123,118 +26,7 @@
     <pubDate>Sat, 16 Jul 2022 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0/</guid>
-    <description><![CDATA[<h1 id="概念">概念</h1>
-<h1 id="用户空间与内核空间"><em><strong>用户空间与内核空间</strong></em></h1>
-<h2 id="用户空间与内核空间-1"><em><strong>用户空间与内核空间</strong></em></h2>
-<ol>
-<li><em><strong>什么是内核空间与用户空间</strong></em>
-<ul>
-<li><em>在操作系统分为用户空间和内核空间用户空间里运行着应用程序</em></li>
-<li><em>用户程序不能直接操作内核</em></li>
-<li><em>内核空间独立于普通的应用程序 可以访问受保存的内存空间,也可以访问底层硬件设备</em></li>
-</ul>
-</li>
-<li><em><strong>为什么要区分内核空间和用户控件</strong></em>
-<ul>
-<li><em>很简单 为了安全 因为用户程序可能会有很多隐患 比如清空内存 清空寄存器</em></li>
-<li><em>操作系统也分了特权指令和非特权指令，对于非常危险的指令 只允许操作系统及其相关的模块使用 也就是特权指令</em></li>
-<li><em>用户程序的指令 就是非特权指令 这里要注意 中断指令也是非特权指令</em></li>
-<li><em>intel的cpu分为4个特权等级 Ring0~Ring3    如果等级是Ring3则说明进程是运行在用户态 Ring0则说明是进程运行在内核态</em></li>
-</ul>
-</li>
-</ol>
-<h1 id="时钟管理"><em><strong>时钟管理</strong></em></h1>
-<h2 id="时钟管理-1"><em><strong>时钟管理</strong></em></h2>
-<ol>
-<li><em><strong>什么是时钟管理</strong></em>
-<ul>
-<li><em>在操作系统里面有个非常重要的就是时钟 他还是一个硬件</em></li>
-</ul>
-</li>
-<li><em><strong>作用</strong></em>
-<ul>
-<li><em>记录着系统时间</em></li>
-<li><em>时钟中断 (用来进行 进程 or 线程 切换)</em></li>
-</ul>
-</li>
-</ol>
-<h1 id="中断机制"><em><strong>中断机制</strong></em></h1>
-<h2 id="中断机制-1"><em><strong>中断机制</strong></em></h2>
-<ol>
-<li><em><strong>什么是中断</strong></em>
-<ul>
-<li><em>中断 是为了解决外部设备完成某些工作后通知CPU的一种机制(譬如硬盘完成读写操作后通过中断告知CPU已经完成)</em></li>
-</ul>
-</li>
-<li><em><strong>中断的分类</strong></em>
-<ul>
-<li><em>中断可以分为同步中断和异步中断</em></li>
-<li><em>同步中断是当指令执行时由 CPU 控制单元产生，之所以称为同步，是因为只有在一条指令执行完毕后 CPU 才会发出中断，而不是发生在代码指令执行期间  &mdash; 比如系统调用</em></li>
-<li><em>异步中断是指由其他硬件设备依照 CPU 时钟信号随机产生，即意味着中断能够在指令之间发生 &mdash; 例如键盘中断</em></li>
-<li><em>根据 Intel 官方资料，同步中断称为异常(exception)，异步中断被称为中断(interrupt)。中断可分为 可屏蔽中断(Maskable interrupt)和 非屏蔽中断(Nomaskable interrupt)。异常可分为 故障(fault)、陷阱(trap)、终止(abort)三类    从广义上讲，中断可分为四类：中断、故障、陷阱、终止</em></li>
-</ul>
-</li>
-<li><em><strong>中断分类图示</strong></em>
-<ul>
-<li></li>
-</ul>
-</li>
-</ol>
-<h2 id="中断的处理过程"><em><strong>中断的处理过程</strong></em></h2>
-<ol>
-<li><em><strong>关中断</strong></em>
-<ul>
-<li><em>进入不可再次响应中断的状态，由硬件实现</em></li>
-</ul>
-</li>
-<li><em><strong>保存断点</strong></em>
-<ul>
-<li><em>为了在[中断处理]结束后能正确返回到中断点。由硬件实现</em></li>
-</ul>
-</li>
-<li><em><strong>引出中断服务程序</strong></em>
-<ul>
-<li><em>将[中断服务程序]入口地址送PC，转向[中断服务程序]。可由硬件实现，也可由软件实现</em></li>
-</ul>
-</li>
-<li><em><strong>保存现场和屏蔽字</strong></em>
-<ul>
-<li><em>保护现场、置屏蔽字、开中断，即保护CPU中某些寄存器的内容、设置[中断处理]次序、允 许更高级的中断请求得到响应，实现中断嵌套由软件实现</em></li>
-</ul>
-</li>
-<li><em><strong>开中断</strong></em>
-<ul>
-<li><em>看 - 4</em></li>
-</ul>
-</li>
-<li><em><strong>执行中断服务程序</strong></em>
-<ul>
-<li><em>实际上有效的中断处理工作是在此程序段中实现的。由软件程序实现</em></li>
-</ul>
-</li>
-<li><em><strong>退出中断</strong></em>
-<ul>
-<li><em>在退出时，又应进入不可中断状态，即关中断、恢复屏蔽字、恢复现场、开中断、中断返回。由软件实现</em></li>
-</ul>
-</li>
-<li><em><strong>流程图示</strong></em>
-<ul>
-<li></li>
-</ul>
-</li>
-</ol>
-<h1 id="系统调用"><em><strong>系统调用</strong></em></h1>
-<h2 id="执行一个系统调用时os-发生的过程"><em><strong>执行一个系统调用时，OS 发生的过程</strong></em></h2>
-<ol>
-<li><em>执行用户程序(如:fork)</em></li>
-<li><em>根据glibc中的函数实现，取得系统调用号并执行int $0x80产生中断</em></li>
-<li><em>进行地址空间的转换和堆栈的切换，执行SAVE_ALL。(进行内核模式)</em></li>
-<li><em>进行中断处理，根据系统调用表调用内核函数</em></li>
-<li><em>执行内核函数</em></li>
-<li><em>执行 RESTORE_ALL 并返回用户模式</em></li>
-</ol>
-<h2 id="系统调用跟函数调用的区别"><em><strong>系统调用跟函数调用的区别</strong></em></h2>
-<p></p>]]></description>
+    <description><![CDATA[概念 用户空间与内核空间 用户空间与内核空间 什么是内核空间与用户空间 在操作系统分为用户空间和内核空间用户空间里运行着应用程序 用户程序不能直接操作]]></description>
 </item>
 </channel>
 </rss>

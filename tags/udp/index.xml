@@ -10,49 +10,7 @@
     <pubDate>Tue, 03 Jan 2023 16:29:59 &#43;0800</pubDate>
     <author>Ame</author>
     <guid>https://example.com/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-tcpudp/</guid>
-    <description><![CDATA[<h1 id="tcpudp">TCP/UDP</h1>
-<h1 id="传输层"><em><strong>传输层</strong></em></h1>
-<h2 id="传输层的定义"><em><strong>传输层的定义</strong></em></h2>
-<ul>
-<li><em>传输层是第一次在端对端也就是主机对主机的一层 专门负责处理上层的数据 负责可靠不可靠的传输</em></li>
-<li><em>传输层下层是使用 mac 和 ip 地址来寻找到特定主机 但是光凭 mac ip 可不够,还要需要端口, 也是在这一层 有了端口的概念</em></li>
-<li><em>这一层的数据单位称为数据段</em></li>
-</ul>
-<h1 id="tcp"><em><strong>TCP</strong></em></h1>
-<h2 id="tcp-概念--流控制"><em><strong>TCP 概念 &amp; 流控制</strong></em></h2>
-<ul>
-<li><em>TCP是 <strong>面向有链接</strong> 协议, 因为他是 <strong>流控制</strong>，也被称作流式协议</em></li>
-<li><em><strong>流控制：</strong> 接收端告诉发送端 我这边可以接收多少数据 发送端也跟接收端确认少数据 取最小值 将数据切割</em></li>
-<li><em>TCP是可靠协议 他有一系列的方法来实现可靠性</em></li>
-</ul>
-<h2 id="tcp-序列号--应答机制"><em><strong>TCP 序列号 &amp; 应答机制</strong></em></h2>
-<ol>
-<li><strong>引出：</strong>
-<ul>
-<li><em>TCP是一个可靠协议 所以TCP需要各种方法来保证他的可靠性</em></li>
-</ul>
-</li>
-<li><strong>解决：</strong>
-<ul>
-<li><em>发送端发送数据后 接收端接收成功 会发送一个<strong>ACK应答</strong></em></li>
-<li><strong>缺点</strong>
-<ul>
-<li><em>万一ACK发送失败 发送端就会一直发送数据 这是一个问题</em></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>优化：</strong>
-<ul>
-<li><em>引入 <strong>序列号</strong> 机制 为每一个数据都打上一个序列号 ACK也算一个序列号</em></li>
-<li><em>接收端收到数据后, 就会分析她下一次应该接收数据的序列号 然后以ACK应答出去</em></li>
-</ul>
-</li>
-</ol>
-<h2 id="tcp-重发超时"><em><strong>TCP 重发超时</strong></em></h2>
-<ol>
-<li>
-<p><em><strong>RTT 与 RTO</strong></em></p>]]></description>
+    <description><![CDATA[TCP/UDP 传输层 传输层的定义 传输层是第一次在端对端也就是主机对主机的一层 专门负责处理上层的数据 负责可靠不可靠的传输 传输层下层是使用 mac 和 ip 地址来寻找到]]></description>
 </item>
 </channel>
 </rss>
