@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gameplay%E6%A1%86%E6%9E%B6\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Gameplay","wordcount":  1044 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Gameplay","wordcount":  1125 ,
         "url": "https:\/\/example.com\/unreal-gameplay%E6%A1%86%E6%9E%B6\/","datePublished": "2024-08-18T16:29:59+08:00","dateModified": "2024-08-18T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Gameplay框架</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-08-18">2024-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1044 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-08-18">2024-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1125 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/unreal-gameplay%E6%A1%86%E6%9E%B6/" class="leancloud_visitors" data-flag-title="Gameplay框架">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -140,6 +140,7 @@
     <li><a href="#aplayerstate"><em><strong><code>APlayerState</code></strong></em></a></li>
     <li><a href="#apawn"><em><strong><code>APawn</code></strong></em></a></li>
     <li><a href="#acharacter"><em><strong><code>ACharacter</code></strong></em></a></li>
+    <li><a href="#hud--ui"><em><strong>HUD / UI</strong></em></a></li>
     <li><a href="#总结"><em><strong>总结</strong></em></a></li>
   </ul>
 </nav></div>
@@ -154,12 +155,13 @@
 <h2 id="ugameinstance"><em><strong><code>UGameInstance</code></strong></em></h2>
 <p><em>唯一跨关卡存在的对象。也就是全局数据实例</em></p>
 <p><em>当你从“主菜单”切换到“第一关”时，World 被销毁了，GameMode 重置了，但 GameInstance 依然存在。通常用来保存全局数据（如设置、存档数据、网络Session管理）。</em></p>
+<p><em>他是存在于客户端 和 服务端，主导权肯定在服务端，然后同步到客户端，防止玩家作弊</em></p>
 <h2 id="agamemode"><em><strong><code>AGameMode</code></strong></em></h2>
 <p><em>制定游戏规则。比如：怎么算赢？玩家在哪里出生？能不能暂停？</em></p>
 <p><em>GameMode 只存在于服务器端。客户端不知道规则，只能听服务器指挥。这是为了防止作弊。</em></p>
 <h2 id="agamestate"><em><strong><code>AGameState</code></strong></em></h2>
 <p><em>记录整个游戏当前的状态。比如：比赛剩余时间、红蓝队总比分、当前是第几波怪。</em></p>
-<p><em>它由服务器更新，并同步（Replicated）给所有客户端。每个玩家都能看到 GameState。</em></p>
+<p><em>它由服务器更新，并同步给所有客户端。每个玩家都能看到 GameState。</em></p>
 <h2 id="aplayercontroller"><em><strong><code>APlayerController</code></strong></em></h2>
 <p><em>它是玩家意志的体现。它接收键盘鼠标输入，并告诉游戏里的角色该做什么。它也是处理 UI（HUD）的地方。</em></p>
 <ul>
@@ -169,54 +171,60 @@
 <h2 id="aplayerstate"><em><strong><code>APlayerState</code></strong></em></h2>
 <p><em>记录属于个人但在全局重要的数据。比如：玩家名字、个人击杀数、Ping值、当前等级。</em></p>
 <p><em>即便玩家的角色（Pawn）死掉了，Controller 还没重生，PlayerState 依然存在，数据不会丢。它会同步给所有客户端（这样你按Tab键才能看到队友的分数）。</em></p>
+<ul>
+<li><em>服务器有所有玩家的 APlayerState。</em></li>
+<li><em>客户端只有<strong>自己</strong>的 APlayerState。</em></li>
+</ul>
 <h2 id="apawn"><em><strong><code>APawn</code></strong></em></h2>
 <p><em>可以被 Controller “附身”的 Actor。是最小可控制单位，比如载具，说白了就是Character的行走逻辑不合适的都用这个</em></p>
 <h2 id="acharacter"><em><strong><code>ACharacter</code></strong></em></h2>
 <p><em>Pawn 的特化子类。它自带了 CharacterMovementComponent（角色移动组件），帮你处理好了极其复杂的双足行走逻辑（走路、跳跃、游泳、网络平滑插值）</em></p>
+<h2 id="hud--ui"><em><strong>HUD / UI</strong></em></h2>
+<p><em>AHUD类是 UI管理者</em></p>
 <h2 id="总结"><em><strong>总结</strong></em></h2>
 <table>
 <thead>
 <tr>
-<th>类名 (Class)</th>
-<th>存在位置</th>
-<th>作用总结</th>
+<th><em>类名 (Class)</em></th>
+<th><em>存在位置</em></th>
+<th><em>作用总结</em></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>GameInstance</strong></td>
-<td>Client &amp; Server</td>
-<td>跨关卡全局管理，如设置、存档。</td>
+<td><em><strong>GameInstance</strong></em></td>
+<td><em>Client &amp; Server</em></td>
+<td><em>跨关卡全局管理，如设置、存档。</em></td>
 </tr>
 <tr>
-<td><strong>GameMode</strong></td>
-<td><strong>Server Only</strong></td>
-<td>权威规则制定者，客户端不存在。</td>
+<td><em><strong>GameMode</strong></em></td>
+<td><em>Server Only</em></td>
+<td><em>权威规则制定者，客户端不存在。</em></td>
 </tr>
 <tr>
-<td><strong>GameState</strong></td>
-<td>Server &amp; Clients</td>
-<td>比赛的当前状态（比分、时间），大家都能看。</td>
+<td><em><strong>GameState</strong></em></td>
+<td><em>Server &amp; Clients</em></td>
+<td><em>比赛的当前状态（比分、时间），大家都能看。</em></td>
 </tr>
 <tr>
-<td><strong>PlayerController</strong></td>
-<td>Server &amp; <strong>Own Client</strong></td>
-<td>玩家的输入处理、UI逻辑。我在服务器有备份，但我看不到别人的。</td>
+<td><em><strong>PlayerController</strong></em></td>
+<td><em>Server &amp; Client</em></td>
+<td><em>玩家的输入处理、UI逻辑。我在服务器有备份，但我看不到别人的。</em></td>
 </tr>
 <tr>
-<td><strong>PlayerState</strong></td>
-<td>Server &amp; Clients</td>
-<td>玩家的个人数据（KDA、名字），大家都能看。</td>
+<td><em><strong>PlayerState</strong></em></td>
+<td><em>Server &amp; Clients</em></td>
+<td><em>玩家的个人数据（KDA、名字），大家都能看。</em></td>
 </tr>
 <tr>
-<td><strong>Pawn/Character</strong></td>
-<td>Server &amp; Clients</td>
-<td>玩家在世界里的实体模型。</td>
+<td><em><strong>Pawn/Character</strong></em></td>
+<td><em>Server &amp; Clients</em></td>
+<td><em>玩家在世界里的实体模型。</em></td>
 </tr>
 <tr>
-<td><strong>HUD / Widget</strong></td>
-<td><strong>Own Client Only</strong></td>
-<td>纯本地的UI显示。</td>
+<td><em><strong>HUD / UI</strong></em></td>
+<td><em>Client Only</em></td>
+<td><em>纯本地的UI显示。</em></td>
 </tr>
 </tbody>
 </table>

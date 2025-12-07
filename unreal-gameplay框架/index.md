@@ -23,6 +23,8 @@
 
 *当你从“主菜单”切换到“第一关”时，World 被销毁了，GameMode 重置了，但 GameInstance 依然存在。通常用来保存全局数据（如设置、存档数据、网络Session管理）。*
 
+*他是存在于客户端 和 服务端，主导权肯定在服务端，然后同步到客户端，防止玩家作弊*
+
 ## ***`AGameMode`***
 
 *制定游戏规则。比如：怎么算赢？玩家在哪里出生？能不能暂停？*
@@ -33,7 +35,7 @@
 
 *记录整个游戏当前的状态。比如：比赛剩余时间、红蓝队总比分、当前是第几波怪。*
 
-*它由服务器更新，并同步（Replicated）给所有客户端。每个玩家都能看到 GameState。*
+*它由服务器更新，并同步给所有客户端。每个玩家都能看到 GameState。*
 
 ## ***`APlayerController`***
 
@@ -48,6 +50,9 @@
 
 *即便玩家的角色（Pawn）死掉了，Controller 还没重生，PlayerState 依然存在，数据不会丢。它会同步给所有客户端（这样你按Tab键才能看到队友的分数）。*
 
+- *服务器有所有玩家的 APlayerState。*
+- *客户端只有**自己**的 APlayerState。*
+
 ## ***`APawn`***
 
 *可以被 Controller “附身”的 Actor。是最小可控制单位，比如载具，说白了就是Character的行走逻辑不合适的都用这个*
@@ -56,15 +61,19 @@
 
 *Pawn 的特化子类。它自带了 CharacterMovementComponent（角色移动组件），帮你处理好了极其复杂的双足行走逻辑（走路、跳跃、游泳、网络平滑插值）*
 
+## ***HUD / UI***
+
+*AHUD类是 UI管理者*
+
 ## ***总结***
 
-| 类名 (Class)         | 存在位置                | 作用总结                                                     |
-| -------------------- | ----------------------- | ------------------------------------------------------------ |
-| **GameInstance**     | Client & Server         | 跨关卡全局管理，如设置、存档。                               |
-| **GameMode**         | **Server Only**         | 权威规则制定者，客户端不存在。                               |
-| **GameState**        | Server & Clients        | 比赛的当前状态（比分、时间），大家都能看。                   |
-| **PlayerController** | Server & **Own Client** | 玩家的输入处理、UI逻辑。我在服务器有备份，但我看不到别人的。 |
-| **PlayerState**      | Server & Clients        | 玩家的个人数据（KDA、名字），大家都能看。                    |
-| **Pawn/Character**   | Server & Clients        | 玩家在世界里的实体模型。                                     |
-| **HUD / Widget**     | **Own Client Only**     | 纯本地的UI显示。                                             |
+| *类名 (Class)*         | *存在位置*         | *作用总结*                                                   |
+| ---------------------- | ------------------ | ------------------------------------------------------------ |
+| ***GameInstance***     | *Client & Server*  | *跨关卡全局管理，如设置、存档。*                             |
+| ***GameMode***         | *Server Only*      | *权威规则制定者，客户端不存在。*                             |
+| ***GameState***        | *Server & Clients* | *比赛的当前状态（比分、时间），大家都能看。*                 |
+| ***PlayerController*** | *Server & Client*  | *玩家的输入处理、UI逻辑。我在服务器有备份，但我看不到别人的。* |
+| ***PlayerState***      | *Server & Clients* | *玩家的个人数据（KDA、名字），大家都能看。*                  |
+| ***Pawn/Character***   | *Server & Clients* | *玩家在世界里的实体模型。*                                   |
+| ***HUD / UI***         | *Client Only*      | *纯本地的UI显示。*                                           |
 
