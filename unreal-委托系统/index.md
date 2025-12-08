@@ -108,3 +108,11 @@ MyDelegate.BindUObject(this, &MyClass::MyFunc, 10086);
 
 *场景：如果你写一个底层的 Manager，不想让外面的 UI 随便乱发广播，就用 Event。*
 
+## ***`FSimpleDelegate`***
+
+*Unreal 帮你实现的最简单的 无参数 无返回值的单播委托*
+
+## ***`FSimpleMulticastDelegate`***
+
+*Unreal 帮你实现的最简单的 无参数 无返回值的多播委托*
+
