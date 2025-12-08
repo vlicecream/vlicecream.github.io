@@ -116,3 +116,7 @@ MyDelegate.BindUObject(this, &MyClass::MyFunc, 10086);
 
 *Unreal 帮你实现的最简单的 无参数 无返回值的多播委托*
 
+## ***`FTSSimpleMulticastDelegate`***
+
+*Unreal 帮你实现的最简单的 无参数 无返回值的多播委托，但是他是线程安全的*
+
