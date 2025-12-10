@@ -4,44 +4,44 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Unreal 的智能指针 - Ting</title><meta name="Description" content="Unreal 的智能指针"><meta property="og:url" content="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
+        <title>Unreal 的模板方法 - Ting</title><meta name="Description" content="Unreal 的模板方法"><meta property="og:url" content="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/">
   <meta property="og:site_name" content="Ting">
-  <meta property="og:title" content="Unreal 的智能指针">
-  <meta property="og:description" content="Unreal 的智能指针">
+  <meta property="og:title" content="Unreal 的模板方法">
+  <meta property="og:description" content="Unreal 的模板方法">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-08-19T16:29:59+08:00">
-    <meta property="article:modified_time" content="2024-08-19T16:29:59+08:00">
+    <meta property="article:published_time" content="2024-08-20T16:29:59+08:00">
+    <meta property="article:modified_time" content="2024-08-20T16:29:59+08:00">
     <meta property="article:tag" content="Unreal">
-    <meta property="article:tag" content="智能指针">
+    <meta property="article:tag" content="模板方法">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
-  <meta name="twitter:title" content="Unreal 的智能指针">
-  <meta name="twitter:description" content="Unreal 的智能指针">
+  <meta name="twitter:title" content="Unreal 的模板方法">
+  <meta name="twitter:description" content="Unreal 的模板方法">
 <meta name="application-name" content="林汀">
 <meta name="apple-mobile-web-app-title" content="林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" /><link rel="prev" href="https://example.com/unreal-%E5%A7%94%E6%89%98%E7%B3%BB%E7%BB%9F/" /><link rel="next" href="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" /><link rel="prev" href="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" /><link rel="next" href="https://example.com/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Unreal 的智能指针",
+        "headline": "Unreal 的模板方法",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/example.com\/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 智能指针","wordcount":  1714 ,
-        "url": "https:\/\/example.com\/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88\/","datePublished": "2024-08-19T16:29:59+08:00","dateModified": "2024-08-19T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/example.com\/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, 模板方法","wordcount":  688 ,
+        "url": "https:\/\/example.com\/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95\/","datePublished": "2024-08-20T16:29:59+08:00","dateModified": "2024-08-20T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "Ame"
-            },"description": "Unreal 的智能指针"
+            },"description": "Unreal 的模板方法"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -67,7 +67,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" selected>简体中文</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -101,7 +101,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header><div class="search-dropdown desktop">
@@ -113,10 +113,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal 的智能指针</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal 的模板方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-08-19">2024-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1714 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="Unreal 的智能指针">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-08-20">2024-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 688 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" class="leancloud_visitors" data-flag-title="Unreal 的模板方法">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -126,175 +126,155 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#智能指针"><em><strong>智能指针</strong></em></a>
-          <ul>
-            <li><a href="#管理-uobject-及其派生类-如-aactor-uactorcomponent"><em><strong>管理 <code>UObject</code> 及其派生类 (如 <code>AActor</code>, <code>UActorComponent</code>)</strong></em></a></li>
-            <li><a href="#阵营二管理非-uobject-的普通-c-类"><em><strong>阵营二：管理非 <code>UObject</code> 的普通 C++ 类</strong></em></a></li>
-          </ul>
-        </li>
-        <li><a href="#最终决策流程图"><em><strong>最终决策流程图</strong></em></a></li>
-      </ul>
-    </li>
+    <li><a href="#什么是模板"><em><strong>什么是模板</strong></em></a></li>
+    <li><a href="#泛型编程"><em><strong>泛型编程</strong></em></a></li>
+    <li><a href="#模板偏特化"><em><strong>模板偏特化</strong></em></a></li>
+    <li><a href="#可变长参数模板"><em><strong>可变长参数模板</strong></em></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="智能指针"><em><strong>智能指针</strong></em></h3>
-<ul>
-<li><em><strong>问题背景：</strong></em> <em>我们之前提到，在堆(Heap)上用 new 创建了对象，就必须在某个地方用 delete 来销毁它。这个过程完全靠程序员手动管理，极其容易出错。忘记 delete 会导致内存泄漏；对同一个指针 delete 两次会导致程序崩溃；访问一个已经被 delete 的指针（悬挂指针）也是灾难性的。</em></li>
-<li><em><strong>解决方案：</strong></em> <em>智能指针！它是一个C++对象（一个“管家”），内部包装了一个原始指针（一把“钥匙”）。这个管家对象利用C++的作用域规则，在自己被销毁时（例如函数结束、对象生命周期结束），自动地、确定地 delete 它所管理的指针。</em></li>
-</ul>
-<h4 id="管理-uobject-及其派生类-如-aactor-uactorcomponent"><em><strong>管理 <code>UObject</code> 及其派生类 (如 <code>AActor</code>, <code>UActorComponent</code>)</strong></em></h4>
-<p><em><code>UObject</code> 是Unreal引擎的核心，所有继承自它的对象都由<strong>垃圾回收 (Garbage Collection, GC)</strong> 系统统一管理生命周期。我们要做的是正确地“配合”GC工作。</em></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"><em>指针类型</em></th>
-<th style="text-align:left"><em>何时使用？(最佳实践)</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><em><code>TObjectPtr&lt;T&gt;</code></em></td>
-<td style="text-align:left"><em>【首选/默认】 任何时候你需要一个指向UObject的指针，都应该优先使用它。无论是成员变量还是局部变量。</em><br><br> <em>核心优势： 当它指向的UObject被销毁时，<code>TObjectPtr</code>会自动变为空指针 (<code>nullptr</code>)，彻底杜绝了悬挂指针崩溃的风险。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><em><code>UPROPERTY()</code> 宏</em></td>
-<td style="text-align:left"><em>当你需要防止一个UObject被GC回收时，必须用<code>UPROPERTY()</code>来标记持有它的指针。 <br></em><br> <em>黄金组合： <code>UPROPERTY() TObjectPtr&lt;T&gt;</code>。<code>UPROPERTY</code>负责“保活”，<code>TObjectPtr</code>负责“安全访问”。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><em><code>TWeakObjectPtr&lt;T&gt;</code></em></td>
-<td style="text-align:left"><em>当你需要引用一个UObject，但不想阻止它被GC回收时使用。</em> <br><br> <em>核心用途： 避免循环引用。例如，一个子Actor想引用它的父Actor，但不希望因为这个引用导致父Actor永远无法被销毁。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><em><code>TSubclassOf&lt;T&gt;</code></em></td>
-<td style="text-align:left"><em>【极其常用】 当你需要一个变量来持有某个蓝图或C++类本身，以便后续用它来生成(Spawn)新的实例时。 <br/><br/></em> <em>核心优势： 类型安全。它在编辑器和编译期就能保证你赋给这个变量的，必须是指定的基类 T 或其子类。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><em><code>TSoftObjectPtr&lt;T&gt;</code></em></td>
-<td style="text-align:left"><em>【软引用-实例】 当你需要引用一个资源（如纹理、网格体、音效），但不想在游戏一开始就把它加载到内存里时使用<br/><br/>核心优势： 延迟加载 (Lazy Load)。它只存一个路径字符串，不占实际资源内存。你需要时才手动加载（同步或异步），是优化内存和启动速度的神器。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><em><code>TSoftClassPtr&lt;T&gt;</code></em></td>
-<td style="text-align:left"><em>【软引用-类型】 当你需要引用一个蓝图类（以便后续生成），但不想一开始就把这个蓝图类加载进内存时。<br/><br/>核心优势： 它是 TSubclassOf 的“轻量版”。比如你有100种武器，用硬引用(TSubclassOf)会导致100个武器资源全部加载；用软引用(TSoftClassPtr)则只加载路径，玩家选中哪个才加载哪个。</em></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h4 id="阵营二管理非-uobject-的普通-c-类"><em><strong>阵营二：管理非 <code>UObject</code> 的普通 C++ 类</strong></em></h4>
-<p><em>对于那些你自己创建的、不继承自 <code>UOject</code> 的普通C++类（例如 Slate UI 的逻辑类、自定义的数据管理器等），GC系统完全不管它们。</em></p>
-<p><em>这时，我们就需要请出C++的传统智能指针来手动管理它们的生命周期。</em></p>
-<p><em>说是c++的传统指针，其实也是Unreal在于基础上自己封装的</em></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">指针类型</th>
-<th style="text-align:left">所有权模型</th>
-<th style="text-align:left">何时使用？</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong><code>TSharedPtr&lt;T&gt;</code> / <code>TSharedRef&lt;T&gt;</code></strong></td>
-<td style="text-align:left"><em>共享所有权 (Shared Ownership)</em></td>
-<td style="text-align:left"><em>【最常用】 当一个对象需要被多个其他对象共同拥有和管理时。它使用引用计数，当最后一个所有者消失时，对象被自动销毁。<code>TSharedRef</code>是保证永不为空的版本。</em> <br><br> <em>核心用途：Slate UI, 异步任务, 共享的数据管理器。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>TWeakPtr&lt;T&gt;</code></strong></td>
-<td style="text-align:left"><em>无所有权 (Non-owning Observer)</em></td>
-<td style="text-align:left"><em>当你需要“观察”一个由<code>TSharedPtr</code>管理的对象，但不想成为它的所有者（即不想增加引用计数）时。</em> <br> <em>核心用途： 缓存指针，以及打破<code>TSharedPtr</code>之间的循环引用。</em></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>TUniquePtr&lt;T&gt;</code></strong></td>
-<td style="text-align:left"><em>独占所有权 (Exclusive Ownership)</em></td>
-<td style="text-align:left"><em>当一个对象在任何时候都只能有一个唯一的所有者时。它非常轻量，性能接近原始指针，但不能被复制，只能被移动 (Move)。</em> <br><br> <em>核心用途：工厂函数的返回值，Pimpl惯用法。</em></td>
-</tr>
-</tbody>
-</table>
-<h3 id="最终决策流程图"><em><strong>最终决策流程图</strong></em></h3>
-<p><em>当你需要一个指针时，这样问自己：</em></p>
-<ol>
-<li><em>我要指向的对象是 UObject 吗？ (Actor, Widget, Asset等)</em>
-<ul>
-<li><em>否 (普通 C++ 类/结构体)</em>
-<ul>
-<li><em>我需要独占它吗？ (生命周期随我结束)</em>
-<ul>
-<li><em>是 -&gt; TUniquePtr<T> (最高效)</em></li>
-</ul>
-</li>
-<li><em>我需要和其他人共享它吗？</em>
-<ul>
-<li><em>是 -&gt; TSharedPtr<T> (配合 TWeakPtr 破除循环)</em></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em>是 (UObject 体系)</em>
-<ul>
-<li><em>它必须现在就在内存里吗？ (还是说只是个硬盘路径？)</em>
-<ul>
-<li><em>否 (硬盘路径/延迟加载)</em>
-<ul>
-<li><em>指向具体资源 (如纹理) -&gt; TSoftObjectPtr<T></em></li>
-<li><em>指向蓝图类 (如 BP_Enemy) -&gt; TSoftClassPtr<T></em></li>
-</ul>
-</li>
-<li><em>是 (内存中存在的对象)</em>
-<ul>
-<li><em>它是“类”还是“实例”？</em>
-<ul>
-<li><em>是类 (用于生成) -&gt; TSubclassOf<T></em></li>
-<li><em>是实例 (活着的对象)</em>
-<ul>
-<li><em>我负责“保活”它吗？ (我是它的主人？)</em>
-<ul>
-<li><em>是 -&gt; UPROPERTY() + TObjectPtr<T> (强引用)</em></li>
-<li><em>否 (我只是引用/观察，它可能死掉)</em>
-<ul>
-<li><em>是 -&gt; TWeakObjectPtr<T> (安全，死后变nullptr)</em></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</div><div class="post-footer" id="post-footer">
+            </div><div class="content" id="content"><h2 id="什么是模板"><em><strong>什么是模板</strong></em></h2>
+<p><em>模板就是 代码的模具</em></p>
+<p><em>你写一段代码，把类型挖空，用一个占位符 T 代替。编译时，编译器会根据你传入的真实类型，自动生辰对应的代码。</em></p>
+<p><em>例如：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 这里的 typename T 就是占位符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span><span class="o">*</span> <span class="n">FindActor</span><span class="p">(</span><span class="n">UWorld</span><span class="o">*</span> <span class="n">World</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// T::StaticClass() 要求传入的 T 必须是 UObject 体系的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 这就是泛型编程的“隐式约束”
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">Cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">UGameplayStatics</span><span class="o">::</span><span class="n">GetActorOfClass</span><span class="p">(</span><span class="n">World</span><span class="p">,</span> <span class="n">T</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">AMyCharacter</span><span class="o">*</span> <span class="n">Char</span> <span class="o">=</span> <span class="n">FindActor</span><span class="o">&lt;</span><span class="n">AMyCharacter</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><code>UCLASS</code> &amp; <code>USTRUCT</code> &amp; <code>UFUNCTION</code> 不能是模板</em></p>
+<h2 id="泛型编程"><em><strong>泛型编程</strong></em></h2>
+<p><em>泛型编程的核心思想就是：我不关心你是什么类型，我只关心你能不能做这件事</em></p>
+<p><em>例如我们要写一个函数，打印任何对象的名称，我们不关心他是 <code>AActor</code> 还是 <code>UComponent</code>，只要他有<code>GetName()</code> 方法就行</em></p>
+<p><em><strong>类型转换</strong></em></p>
+<p><em>一个 B 继承于 A，我们想把 A 转换成 B，只需要 <code>Cast&lt;B&gt;(A)</code>。</em></p>
+<p><em>这 <code>Cast&lt;T&gt;(Obj)</code> 就很好用，他也是模板，泛型编程。他不关心T是什么，只关心 T 和 Obj 有继承关系 就够了</em></p>
+<h2 id="模板偏特化"><em><strong>模板偏特化</strong></em></h2>
+<p><em>Unreal 其实是有偏特化的，因为他就是c++魔改</em></p>
+<p><em>偏特化只能适用于 class or struct，不能用于 function</em></p>
+<p><em>不能暴露给蓝图  UCLASS / USTRUCT / UFUNCTION</em></p>
+<p><em>所以Unreal 的模板偏特化是用于编写底层工具库，序列化工具的核心技术</em></p>
+<h2 id="可变长参数模板"><em><strong>可变长参数模板</strong></em></h2>
+<p><em>这个模板允许你传入任意数量、任意类型的参数</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 1. 递归终止函数（Base Case）
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 当参数被剥离完了，就调用这个空的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">MySuperLog</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 2. 递归展开函数
+</span></span></span><span class="line"><span class="cl"><span class="c1">// FirstArg: 当前处理的第一个参数
+</span></span></span><span class="line"><span class="cl"><span class="c1">// RestArgs: 剩下的一堆参数包
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MySuperLog</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">FirstArg</span><span class="p">,</span> <span class="k">const</span> <span class="n">Args</span><span class="o">&amp;</span><span class="p">...</span> <span class="n">RestArgs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 打印当前的第一个参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 这里利用了 UE 的 FString::FromInt/FromFloat 等转换，或者简单的 &lt;&lt; 重载
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 为了演示简单，我们假设是 String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogTemp</span><span class="p">,</span> <span class="n">Warning</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;Param: %s&#34;</span><span class="p">),</span> <span class="o">*</span><span class="n">LexToString</span><span class="p">(</span><span class="n">FirstArg</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 递归调用：把剩下的参数包传下去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MySuperLog</span><span class="p">(</span><span class="n">RestArgs</span><span class="p">...);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// --- 使用 ---
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">GameStart</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">int32</span> <span class="n">Health</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">Speed</span> <span class="o">=</span> <span class="mf">50.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FString</span> <span class="n">Name</span> <span class="o">=</span> <span class="s">&#34;PlayerOne&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 一次性打印不同类型，数量不限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MySuperLog</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Health</span><span class="p">,</span> <span class="n">Speed</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// 输出:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Param: PlayerOne
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Param: 100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Param: 50.500000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2024-08-19</span>
+                <span>更新于 2024-08-20</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title="Unreal 的智能指针" data-hashtags="Unreal,智能指针"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title="Unreal 的智能指针"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title="Unreal 的智能指针"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-title="Unreal 的智能指针" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" data-title="Unreal 的模板方法" data-hashtags="Unreal,模板方法"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" data-title="Unreal 的模板方法"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" data-title="Unreal 的模板方法"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" data-title="Unreal 的模板方法" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/">模板方法</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/unreal-%E5%A7%94%E6%89%98%E7%B3%BB%E7%BB%9F/" class="prev" rel="prev" title="Unreal的委托系统"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Unreal的委托系统</a>
-            <a href="/unreal-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" class="next" rel="next" title="Unreal 的模板方法">Unreal 的模板方法<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/unreal-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="prev" rel="prev" title="Unreal 的智能指针"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Unreal 的智能指针</a>
+            <a href="/3d%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%90%91%E9%87%8F/" class="next" rel="next" title="向量">向量<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
