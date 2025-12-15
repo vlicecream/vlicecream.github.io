@@ -1,24 +1,88 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Lyra&#34; - 标签 - Ting</title>
+        <title>Lyra - 标签 - Ting</title>
         <link>https://example.com/tags/lyra/</link>
-        <description>Lyra&#34; - 标签 - Ting</description>
+        <description>Lyra - 标签 - Ting</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>vlicecream520@gmail.com (Ting)</managingEditor>
-            <webMaster>vlicecream520@gmail.com (Ting)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/lyra/" rel="self" type="application/rss+xml" /><item>
-    <title>Lyra 架构解析：Experience DataAsset 的动态加载机制</title>
-    <link>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</link>
-    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+            <webMaster>vlicecream520@gmail.com (Ting)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Aug 2025 22:15:00 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/lyra/" rel="self" type="application/rss+xml" /><item>
+    <title>Lyra - 行为树</title>
+    <link>https://example.com/lyra-%E8%A1%8C%E4%B8%BA%E6%A0%91/</link>
+    <pubDate>Tue, 05 Aug 2025 22:15:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/</guid>
-    <description><![CDATA[举的例子为 大厅 什么是 Experience DataAsset 的动态加载机制 Lyra中是分很多游戏玩法的，他在进入一个新的玩法的时候，就会找到玩法对应的 ULyraExperienceDefinition 的数据，系统根据 ULyraExperienceDefinition 里的内]]></description>
+    <guid>https://example.com/lyra-%E8%A1%8C%E4%B8%BA%E6%A0%91/</guid>
+    <description><![CDATA[Lyra行为树 Lyra是在生成Bot的时候会传入数据 生成AIController，随后在AIController里面绑定行为树 注意事项 我们使]]></description>
 </item>
 <item>
-    <title>解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调</title>
-    <link>https://example.com/lyra-igameframeworkinitstateinterface/</link>
-    <pubDate>Thu, 10 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <title>Lyra 库存与装备系统</title>
+    <link>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Wed, 23 Jul 2025 21:34:00 &#43;0800</pubDate>
     <author>Ame</author>
-    <guid>https://example.com/lyra-igameframeworkinitstateinterface/</guid>
-    <description><![CDATA[作用 IGameFrameworkInitStateInterface 的作用，就是将一个组件原本混乱、单体的初始化过程（主要挤在BeginPlay里），拆分成一个清晰、有序、分阶段的“生命周期”。 它允许不]]></description>
+    <guid>https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[Equipment Equipment 是 Lyra 的装备系统，也就是执行装备这个过程逻辑的一个系统 它通过 ULyraEquipmentDefinition 这个类，来获得装备的Actor真正的实例，以及装备上会获得什么技能，还有装备]]></description>
+</item>
+<item>
+    <title>Lyra-HealthComponent</title>
+    <link>https://example.com/lyra-healthcomponent/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-healthcomponent/</guid>
+    <description><![CDATA[Lyra 里的 HealthComponent]]></description>
+</item>
+<item>
+    <title>Lyra动画层（Anim Layers）与重写机制全解析</title>
+    <link>https://example.com/lyra-animation/</link>
+    <pubDate>Wed, 23 Jul 2025 20:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-animation/</guid>
+    <description><![CDATA[参考资料 https://dev.epicgames.com/documentation/zh-cn/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine?application_version=5.3 https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-animation-blueprint-linking-in-unreal-engine?application_version=5.3 简介 Lyra 的 动画蓝图，首先是采用 蓝图线程安全更新动画，此开启方法在文档中就写了。再次提一句，这实现了使用属性访问（Property A]]></description>
+</item>
+<item>
+    <title>Lyra 资源管理核心：自定义 AssetManager 实战</title>
+    <link>https://example.com/lyra-dataassetmanager/</link>
+    <pubDate>Tue, 15 Jul 2025 23:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-dataassetmanager/</guid>
+    <description><![CDATA[作用 在任何一个 Unreal Engine 项目中，资源（Assets）都是构成游戏世界的基础，包括模型、纹理、蓝图、数据资产等等。随着项目规模的扩大，如何高效、有序]]></description>
+</item>
+<item>
+    <title>Lyra架构：Game Feature 篇</title>
+    <link>https://example.com/lyra-gamefeature/</link>
+    <pubDate>Tue, 15 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-gamefeature/</guid>
+    <description><![CDATA[作用 Game Feature（游戏特性）是虚幻引擎中一个强大的插件系统，旨在实现高度模块化和可扩展的游戏开发*。* 想象一下，你可以像搭乐高积木一样构]]></description>
+</item>
+<item>
+    <title>Lyra相机系统：数据驱动与责任分离的设计哲学</title>
+    <link>https://example.com/lyra-camera/</link>
+    <pubDate>Sun, 13 Jul 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-camera/</guid>
+    <description><![CDATA[Lyra的相机系统 简介 Lyra其实没有用最基本的UCameraComponent，也没有用 USpringComponent 他是自己实现了继承于 UCameraCompone]]></description>
+</item>
+<item>
+    <title>Lyra-Plugins</title>
+    <link>https://example.com/lyra-plugins/</link>
+    <pubDate>Mon, 16 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-plugins/</guid>
+    <description><![CDATA[ModularGameplayActors 作用 Lyra 里的插件 ModularGameplayActors 是整个架构的一个核心部分，用来实现 角色、控制器、HUD 等 Gameplay 类的模块化（Modular）构建机制。它是 Lyra “模块化组件系统” 的]]></description>
+</item>
+<item>
+    <title>Lyra-GAS</title>
+    <link>https://example.com/lyra-gas/</link>
+    <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-gas/</guid>
+    <description><![CDATA[GAS 与 Input 调用 经过游戏体验DataAsset和一系列的组件初始化加载后，在 LyraHeroComponent 绑定按键 1 2 3 4 5 /* 此函数是技能函数，比如鼠标左键枪开火 在 ULyraInputConfig 里配置 AbilityInputActions]]></description>
+</item>
+<item>
+    <title>深入Lyra输入系统：从按键到能力的完整旅程</title>
+    <link>https://example.com/lyra-input/</link>
+    <pubDate>Mon, 09 Jun 2025 21:34:00 &#43;0800</pubDate>
+    <author>Ame</author>
+    <guid>https://example.com/lyra-input/</guid>
+    <description><![CDATA[前言 需要你先了解： Lyra 架构解析：Experience DataAsset 的动态加载机制 Lyra 基础 Input 流程 void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState) 经历过加载游戏体验的DataAsset后，就来到]]></description>
 </item>
 </channel>
 </rss>
