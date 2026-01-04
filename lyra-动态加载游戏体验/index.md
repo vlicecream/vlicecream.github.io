@@ -1,4 +1,4 @@
-# Lyra 架构解析：Experience DataAsset 的动态加载机制
+# Lyra - Experience DataAsset 的动态加载机制
 
 
 ***举的例子为 大厅***

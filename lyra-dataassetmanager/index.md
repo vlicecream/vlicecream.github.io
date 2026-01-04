@@ -1,4 +1,4 @@
-# Lyra 资源管理核心：自定义 AssetManager 实战
+# Lyra - 自定义 AssetManager
 
 
 ## ***作用***

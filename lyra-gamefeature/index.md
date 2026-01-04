@@ -1,15 +1,15 @@
-# Lyra架构：Game Feature 篇
+# Lyra - Game Feature
 
 
-## ***作用***
+## ***什么是GameFeature***
 
-***Game Feature**（游戏特性）是虚幻引擎中一个强大的插件系统，旨在实现**高度模块化和可扩展的游戏开发**。*
+*Game Feature（游戏特性）是虚幻引擎中一个强大的插件系统，旨在实现高度模块化和可扩展的游戏开发。*
 
-*想象一下，你可以像搭乐高积木一样构建你的游戏：角色的能力、新的游戏模式、季节性活动，甚至UI界面，都可以作为一个独立的“特性”插件来开发。当需要时，只需**动态地激活**这个插件，所有相关的功能、内容和逻辑就会自动应用到游戏中；不需要时，则可以随时**停用**，干净利落地移除，而不会影响游戏的核心代码。*
+*想象一下，你可以像搭乐高积木一样构建你的游戏：角色的能力、新的游戏模式、季节性活动，甚至UI界面，都可以作为一个独立的“特性”插件来开发。当需要时，只需动态地激活这个插件，所有相关的功能、内容和逻辑就会自动应用到游戏中；不需要时，则可以随时停用，干净利落地移除，而不会影响游戏的核心代码。*
 
-*这种方式极大地**降低了团队协作的耦合度**，让大型项目管理变得前所未有的清晰和高效。*
+*这种方式极大地降低了团队协作的耦合度，让大型项目管理变得前所未有的清晰和高效。*
 
-*可以理解为游戏Mod把*
+*简单理解就可以理解为游戏Mod把，加载了就有这块功能，卸载了就没有这块功能*
 
 ## ***创建一个GameFeature插件***
 
@@ -29,7 +29,11 @@
 
 5. *这样的话我们就创建好了，记得在插件设置里面启动你刚刚创建好的插件*
 
-## ***GameFeature接口***
+## ***`UGameFeatureAction`***
+
+*`UGameFeatureAction` 是你在加载 Gamefeature的时候可以顺便干的事，比如你可以给主角或者其他类 Add Componment，也可以自定义给主角添加特定能力(Ability)*
+
+### ***重要接口***
 
 1. `virtual void OnGameFeatureRegistering() override;`
 
@@ -46,4 +50,8 @@
 4. `virtual void OnGameFeatureDeactivating(FGameFeatureDeactivatingContext& Context) override; `
 
    *当游戏逻辑通过调用 UGameFeaturesSubsystem::Get().DeactivateGameFeaturePlugin() 来**主动停用**这个插件时触发*
+
+## ***注意***
+
+1. *可以主项目引用 GameFeature 里的资源 但是编译会报 Error Log，所以不推荐这么做，因为你用 GameFeature 的资源的时候，这个GameFeature可能未被加载。故只能GameFeature引用主项目这块*
 

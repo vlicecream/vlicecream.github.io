@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering, Transform","wordcount":  6596 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Real-Time Rendering, Transform","wordcount":  6982 ,
         "url": "https:\/\/example.com\/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2\/","datePublished": "2025-11-11T11:39:00+08:00","dateModified": "2025-11-11T16:39:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">变换</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/real-time-rendering-4/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Real-Time Rendering 4</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-11">2025-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6596 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-11">2025-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6982 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93-%E5%8F%98%E6%8D%A2/" class="leancloud_visitors" data-flag-title="变换">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -179,7 +179,24 @@
         <li><a href="#绕任意轴旋转"><em><strong>绕任意轴旋转</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#四元数"><em><strong>四元数</strong></em></a></li>
+    <li><a href="#四元数"><em><strong>四元数</strong></em></a>
+      <ul>
+        <li><a href="#四元数的定义"><em><strong>四元数的定义</strong></em></a></li>
+        <li><a href="#数学运算"><em><strong>数学运算</strong></em></a>
+          <ul>
+            <li><a href="#乘法"><em><strong>乘法</strong></em></a></li>
+            <li><a href="#加法"><em><strong>加法</strong></em></a></li>
+            <li><a href="#共轭"><em><strong>共轭</strong></em></a></li>
+            <li><a href="#模长"><em><strong>模长</strong></em></a></li>
+            <li><a href="#虚数单位"><em><strong>虚数单位</strong></em></a></li>
+            <li><a href="#四元数的逆"><em><strong>四元数的逆</strong></em></a></li>
+            <li><a href="#共轭法则"><em><strong>共轭法则</strong></em></a></li>
+            <li><a href="#模长法则"><em><strong>模长法则</strong></em></a></li>
+            <li><a href="#乘法分配律"><em><strong>乘法分配律</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="引言"><em><strong>引言</strong></em></h2>
@@ -714,6 +731,84 @@ u_z u_x(1-\cos\theta) - u_y \sin\theta &amp; u_z u_y(1-\cos\theta) + u_x \sin\th
 \end{bmatrix}
 $$</p>
 <h2 id="四元数"><em><strong>四元数</strong></em></h2>
+<p><em>四元数可以用于稳定且恒定速度的方向插值，这是欧拉角很难实现的。</em></p>
+<h3 id="四元数的定义"><em><strong>四元数的定义</strong></em></h3>
+<p>$$
+\hat{\mathbf{q}} = (\mathbf{q}_v, \mathbf{q}_w) = iq_x + jq_y + kq_z + q_w = \mathbf{q}_v + q_w
+\\ \\
+\mathbf{q}_v = iq_x + jq_y + kq_z = (q_x, q_y, q_z)
+\\ \\
+i^2 = j^2 = k^2 = -1, jk = -kj = i, ki = -ik = j, ok = -ji = k
+$$</p>
+<ul>
+<li><em>$q_w$ 是四元数 $\hat{q}$ 中的实数部分（实部）</em></li>
+<li><em>$q_v$ 是四元数 $\hat{q}$ 中的虚数部分（虚部）</em></li>
+<li><em>i, j, k 叫做虚数单位。</em></li>
+</ul>
+<p><em>四元数的结构和复数类似，但是复数只有一个虚部，而四元数则包含三个虚部</em></p>
+<h3 id="数学运算"><em><strong>数学运算</strong></em></h3>
+<h4 id="乘法"><em><strong>乘法</strong></em></h4>
+<p>$$
+\begin{align*}
+\hat{q}\hat{r} &amp;= (iq_x + jq_y + kq_z + q_w)(ir_x + jr_y + kr_z + r_w)
+\\ \\
+&amp;= i(q_yr_z - q_zr_y + r_wq_x + q_wr_x)
+\\ \\
+&amp; \quad + j(q_zr_x - q_xr_z + r_wq_y + q_wr_y)
+\\ \\
+&amp; \quad + k(q_xr_y - q_yr_x + t_wq_z + q_wr_z)
+\\ \\
+&amp; \quad + q_wr_w - q_xr_x - q_yr_y - q_zr_z
+\\ \\
+&amp;= (\mathbf{q}_v \times \mathbf{r}_v + r_w\mathbf{q}_v + q_w\mathbf{r}_v, q_wr_w - \mathbf{q}_v \cdot \mathbf{r}_v)
+\end{align*}
+$$</p>
+<h4 id="加法"><em><strong>加法</strong></em></h4>
+<p>$$
+\hat{\mathbf{q}} + \hat{\mathbf{r}} = (\mathbf{q}_v, q_w) + (\mathbf{r}_v, r_w) = (\mathbf{q}_v + \mathbf{r}_v, q_w + r_w)
+$$</p>
+<h4 id="共轭"><em><strong>共轭</strong></em></h4>
+<p>$$
+\hat{\mathbf{q}}^* = (\mathbf{q}_v, q_w)^* = (-\mathbf{q}_v, q_w)
+$$</p>
+<h4 id="模长"><em><strong>模长</strong></em></h4>
+<p>$$
+n(\hat{\mathbf{q}})
+= \sqrt{\hat{\mathbf{q}} \hat{\mathbf{q}}^<em>}
+= \sqrt{\hat{\mathbf{q}}^</em> \hat{\mathbf{q}}}
+= \sqrt{\mathbf{q}_v \cdot \mathbf{q}_v + q^2_w}
+= \sqrt{q^2_x + q^2_y + q^2_z + q^2_w}
+$$</p>
+<h4 id="虚数单位"><em><strong>虚数单位</strong></em></h4>
+<p>$$
+\hat{i} = (0, 1)
+$$</p>
+<h4 id="四元数的逆"><em><strong>四元数的逆</strong></em></h4>
+<p>$$
+\hat{q}^{-1} = \frac{1}{n(\hat{q})^2} \hat{q}^*
+$$</p>
+<h4 id="共轭法则"><em><strong>共轭法则</strong></em></h4>
+<p>$$
+\begin{align*}
+(\hat{\mathbf{q}}^<em>)^</em> &amp;= \hat{\mathbf{q}}
+\\ \\
+(\hat{\mathbf{q}} + \hat{\mathbf{r}})^* &amp;= \hat{\mathbf{q}}^* + \hat{\mathbf{r}}^*
+\\ \\
+(\hat{\mathbf{q}} \hat{\mathbf{r}})^* &amp;= \hat{\mathbf{r}}^* \hat{\mathbf{q}}^*
+\end{align*}
+$$</p>
+<h4 id="模长法则"><em><strong>模长法则</strong></em></h4>
+<p>$$
+\begin{align*}
+n(\hat{\mathbf{q}}^<em>) &amp;= n(\hat{\mathbf{q}})
+\\ \\
+n(\hat{\mathbf{q}} \hat{\mathbf{r}}) &amp;= n(\hat{\mathbf{q}})n(\hat{\mathbf{r}})
+\end{align</em>}
+$$</p>
+<h4 id="乘法分配律"><em><strong>乘法分配律</strong></em></h4>
+<p>$$
+\hat{\mathbf{p}}(s\hat{q} + t\hat{\mathbf{r}}) =
+$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -745,7 +840,7 @@ $$</p>
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

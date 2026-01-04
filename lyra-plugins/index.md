@@ -1,4 +1,4 @@
-# Lyra-Plugins
+# Lyra - Plugins
 
 
 ## ***ModularGameplayActors***

@@ -516,3 +516,104 @@ $$
 
 ## ***四元数***
 
+*四元数可以用于稳定且恒定速度的方向插值，这是欧拉角很难实现的。*
+
+### ***四元数的定义***
+
+$$
+\hat{\mathbf{q}} = (\mathbf{q}_v, \mathbf{q}_w) = iq_x + jq_y + kq_z + q_w = \mathbf{q}_v + q_w
+\\\ \\\
+\mathbf{q}_v = iq_x + jq_y + kq_z = (q_x, q_y, q_z)
+\\\ \\\
+i^2 = j^2 = k^2 = -1, jk = -kj = i, ki = -ik = j, ok = -ji = k
+$$
+
+* *$q_w$ 是四元数 $\hat{q}$ 中的实数部分（实部）*
+* *$q_v$ 是四元数 $\hat{q}$ 中的虚数部分（虚部）*
+* *i, j, k 叫做虚数单位。*
+
+*四元数的结构和复数类似，但是复数只有一个虚部，而四元数则包含三个虚部*
+
+### ***数学运算***
+
+#### ***乘法***
+
+$$
+\begin{align*}
+\hat{q}\hat{r} &= (iq_x + jq_y + kq_z + q_w)(ir_x + jr_y + kr_z + r_w)
+\\\ \\\
+&= i(q_yr_z - q_zr_y + r_wq_x + q_wr_x)
+\\\ \\\
+& \quad + j(q_zr_x - q_xr_z + r_wq_y + q_wr_y)
+\\\ \\\
+& \quad + k(q_xr_y - q_yr_x + t_wq_z + q_wr_z)
+\\\ \\\
+& \quad + q_wr_w - q_xr_x - q_yr_y - q_zr_z
+\\\ \\\
+&= (\mathbf{q}_v \times \mathbf{r}_v + r_w\mathbf{q}_v + q_w\mathbf{r}_v, q_wr_w - \mathbf{q}_v \cdot \mathbf{r}_v)
+\end{align*}
+$$
+
+#### ***加法***
+
+$$
+\hat{\mathbf{q}} + \hat{\mathbf{r}} = (\mathbf{q}_v, q_w) + (\mathbf{r}_v, r_w) = (\mathbf{q}_v + \mathbf{r}_v, q_w + r_w) 
+$$
+
+#### ***共轭***
+
+$$
+\hat{\mathbf{q}}^* = (\mathbf{q}_v, q_w)^* = (-\mathbf{q}_v, q_w)
+$$
+
+#### ***模长***
+
+$$
+n(\hat{\mathbf{q}}) 
+= \sqrt{\hat{\mathbf{q}} \hat{\mathbf{q}}^*} 
+= \sqrt{\hat{\mathbf{q}}^* \hat{\mathbf{q}}} 
+= \sqrt{\mathbf{q}_v \cdot \mathbf{q}_v + q^2_w}
+= \sqrt{q^2_x + q^2_y + q^2_z + q^2_w}
+$$
+
+#### ***虚数单位***
+
+$$
+\hat{i} = (0, 1)
+$$
+
+#### ***四元数的逆***
+
+$$
+\hat{q}^{-1} = \frac{1}{n(\hat{q})^2} \hat{q}^*
+$$
+
+#### ***共轭法则***
+
+$$
+\begin{align*}
+(\hat{\mathbf{q}}^*)^* &= \hat{\mathbf{q}}
+\\\ \\\
+(\hat{\mathbf{q}} + \hat{\mathbf{r}})^* &= \hat{\mathbf{q}}^* + \hat{\mathbf{r}}^*
+\\\ \\\
+(\hat{\mathbf{q}} \hat{\mathbf{r}})^* &= \hat{\mathbf{r}}^* \hat{\mathbf{q}}^*
+\end{align*}
+$$
+
+#### ***模长法则***
+
+$$
+\begin{align*}
+n(\hat{\mathbf{q}}^*) &= n(\hat{\mathbf{q}})
+\\\ \\\
+n(\hat{\mathbf{q}} \hat{\mathbf{r}}) &= n(\hat{\mathbf{q}})n(\hat{\mathbf{r}})
+\end{align*}
+$$
+
+#### ***乘法分配律***
+
+$$
+\hat{\mathbf{p}}(s\hat{q} + t\hat{\mathbf{r}}) = 
+$$
+
+

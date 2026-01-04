@@ -1,4 +1,4 @@
-# 解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调
+# Lyra - IGameFrameworkInitStateInterface的核心回调
 
 
 ## ***作用***

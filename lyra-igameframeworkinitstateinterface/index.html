@@ -4,22 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调 - Ting</title><meta name="Description" content="IGameFrameworkInitStateInterface 怎么玩的"><meta property="og:url" content="https://example.com/lyra-igameframeworkinitstateinterface/">
+        <title>Lyra - IGameFrameworkInitStateInterface的核心回调 - Ting</title><meta name="Description" content="IGameFrameworkInitStateInterface 怎么玩的"><meta property="og:url" content="https://example.com/lyra-igameframeworkinitstateinterface/">
   <meta property="og:site_name" content="Ting">
-  <meta property="og:title" content="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调">
+  <meta property="og:title" content="Lyra - IGameFrameworkInitStateInterface的核心回调">
   <meta property="og:description" content="IGameFrameworkInitStateInterface 怎么玩的">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-07-10T21:34:00+08:00">
-    <meta property="article:modified_time" content="2025-11-10T18:04:22+08:00">
+    <meta property="article:modified_time" content="2025-12-26T15:41:21+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="Lyra&#34;">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
-  <meta name="twitter:title" content="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调">
+  <meta name="twitter:title" content="Lyra - IGameFrameworkInitStateInterface的核心回调">
   <meta name="twitter:description" content="IGameFrameworkInitStateInterface 怎么玩的">
 <meta name="application-name" content="林汀">
 <meta name="apple-mobile-web-app-title" content="林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -30,13 +30,13 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调",
+        "headline": "Lyra - IGameFrameworkInitStateInterface的核心回调",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-igameframeworkinitstateinterface\/"
         },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra\u0022","wordcount":  1366 ,
-        "url": "https:\/\/example.com\/lyra-igameframeworkinitstateinterface\/","datePublished": "2025-07-10T21:34:00+08:00","dateModified": "2025-11-10T18:04:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/example.com\/lyra-igameframeworkinitstateinterface\/","datePublished": "2025-07-10T21:34:00+08:00","dateModified": "2025-12-26T15:41:21+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -113,10 +113,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - IGameFrameworkInitStateInterface的核心回调</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1366 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/lyra-igameframeworkinitstateinterface/" class="leancloud_visitors" data-flag-title="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调">
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/lyra-igameframeworkinitstateinterface/" class="leancloud_visitors" data-flag-title="Lyra - IGameFrameworkInitStateInterface的核心回调">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -431,15 +431,15 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-10&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c802f48f3bc7513b909bd3f18c2239948d6d0704" target="_blank" title="commit by vlicecream(vlicecream@163.com) c802f48f3bc7513b909bd3f18c2239948d6d0704: First Commit">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c802f48</a></span>
+                <span>更新于 2025-12-26&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/79fd2cf5383a9db9ff22d5ec3950cab9a70b3fd2" target="_blank" title="commit by vlicecream(vlicecream@163.com) 79fd2cf5383a9db9ff22d5ec3950cab9a70b3fd2: Update Lyra List Title">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>79fd2cf</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
                             <a class="link-to-markdown" href="/lyra-igameframeworkinitstateinterface/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调" data-hashtags="Unreal,Lyra&#34;"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="解密Lyra初始化流程：IGameFrameworkInitStateInterface的核心回调" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="Lyra - IGameFrameworkInitStateInterface的核心回调" data-hashtags="Unreal,Lyra&#34;"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="Lyra - IGameFrameworkInitStateInterface的核心回调"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="Lyra - IGameFrameworkInitStateInterface的核心回调"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-igameframeworkinitstateinterface/" data-title="Lyra - IGameFrameworkInitStateInterface的核心回调" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -452,14 +452,14 @@
     </div>
 
     <div class="post-nav"><a href="/p4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="p4v的下载和使用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>p4v的下载和使用</a>
-            <a href="/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/" class="next" rel="next" title="Lyra 架构解析：Experience DataAsset 的动态加载机制">Lyra 架构解析：Experience DataAsset 的动态加载机制<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/lyra-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C/" class="next" rel="next" title="Lyra - Experience DataAsset 的动态加载机制">Lyra - Experience DataAsset 的动态加载机制<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

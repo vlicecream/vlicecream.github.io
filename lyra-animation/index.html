@@ -4,39 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Lyra动画层（Anim Layers）与重写机制全解析 - Ting</title><meta name="Description" content="Lyra 里的 动画蓝图"><meta property="og:url" content="https://example.com/lyra-animation/">
+        <title>Lyra - Anim Layers - Ting</title><meta name="Description" content="Lyra 里的 动画蓝图"><meta property="og:url" content="https://example.com/lyra-animation/">
   <meta property="og:site_name" content="Ting">
-  <meta property="og:title" content="Lyra动画层（Anim Layers）与重写机制全解析">
+  <meta property="og:title" content="Lyra - Anim Layers">
   <meta property="og:description" content="Lyra 里的 动画蓝图">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-07-23T20:34:00+08:00">
-    <meta property="article:modified_time" content="2025-11-10T18:04:22+08:00">
+    <meta property="article:modified_time" content="2025-12-26T15:41:21+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="Lyra">
     <meta property="og:image" content="https://example.com/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://example.com/logo.png">
-  <meta name="twitter:title" content="Lyra动画层（Anim Layers）与重写机制全解析">
+  <meta name="twitter:title" content="Lyra - Anim Layers">
   <meta name="twitter:description" content="Lyra 里的 动画蓝图">
 <meta name="application-name" content="林汀">
 <meta name="apple-mobile-web-app-title" content="林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/lyra-animation/" /><link rel="prev" href="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" /><link rel="next" href="https://example.com/lyra-healthcomponent/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/lyra-animation/" /><link rel="prev" href="https://example.com/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" /><link rel="next" href="https://example.com/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Lyra动画层（Anim Layers）与重写机制全解析",
+        "headline": "Lyra - Anim Layers",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-animation\/"
         },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra","wordcount":  667 ,
-        "url": "https:\/\/example.com\/lyra-animation\/","datePublished": "2025-07-23T20:34:00+08:00","dateModified": "2025-11-10T18:04:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/example.com\/lyra-animation\/","datePublished": "2025-07-23T20:34:00+08:00","dateModified": "2025-12-26T15:41:21+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -113,10 +113,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra动画层（Anim Layers）与重写机制全解析</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - Anim Layers</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-23">2025-07-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 667 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/lyra-animation/" class="leancloud_visitors" data-flag-title="Lyra动画层（Anim Layers）与重写机制全解析">
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/lyra-animation/" class="leancloud_visitors" data-flag-title="Lyra - Anim Layers">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -151,15 +151,15 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-10&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c802f48f3bc7513b909bd3f18c2239948d6d0704" target="_blank" title="commit by vlicecream(vlicecream@163.com) c802f48f3bc7513b909bd3f18c2239948d6d0704: First Commit">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c802f48</a></span>
+                <span>更新于 2025-12-26&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/79fd2cf5383a9db9ff22d5ec3950cab9a70b3fd2" target="_blank" title="commit by vlicecream(vlicecream@163.com) 79fd2cf5383a9db9ff22d5ec3950cab9a70b3fd2: Update Lyra List Title">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>79fd2cf</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
                             <a class="link-to-markdown" href="/lyra-animation/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-animation/" data-title="Lyra动画层（Anim Layers）与重写机制全解析" data-hashtags="Unreal,Lyra"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-animation/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-animation/" data-title="Lyra动画层（Anim Layers）与重写机制全解析"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-animation/" data-title="Lyra动画层（Anim Layers）与重写机制全解析"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-animation/" data-title="Lyra动画层（Anim Layers）与重写机制全解析" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-animation/" data-title="Lyra - Anim Layers" data-hashtags="Unreal,Lyra"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-animation/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-animation/" data-title="Lyra - Anim Layers"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-animation/" data-title="Lyra - Anim Layers"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-animation/" data-title="Lyra - Anim Layers" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -172,14 +172,14 @@
     </div>
 
     <div class="post-nav"><a href="/ue%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8rider%E6%97%B6%E7%BC%93%E5%AD%98c%E7%9B%98/" class="prev" rel="prev" title="UE开发使用Rider时缓存干爆C盘的解决方案"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>UE开发使用Rider时缓存干爆C盘的解决方案</a>
-            <a href="/lyra-healthcomponent/" class="next" rel="next" title="Lyra-HealthComponent">Lyra-HealthComponent<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/lyra-%E5%BA%93%E5%AD%98%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F/" class="next" rel="next" title="Lyra - 库存与装备系统">Lyra - 库存与装备系统<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
