@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-07-15T21:34:00+08:00">
-    <meta property="article:modified_time" content="2026-01-05T13:36:10+08:00">
+    <meta property="article:modified_time" content="2026-01-06T16:06:23+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="Lyra">
     <meta property="og:image" content="https://example.com/logo.png">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-gamefeature\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra","wordcount":  2017 ,
-        "url": "https:\/\/example.com\/lyra-gamefeature\/","datePublished": "2025-07-15T21:34:00+08:00","dateModified": "2026-01-05T13:36:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra","wordcount":  2240 ,
+        "url": "https:\/\/example.com\/lyra-gamefeature\/","datePublished": "2025-07-15T21:34:00+08:00","dateModified": "2026-01-06T16:06:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - Game Feature</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2017 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2240 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/lyra-gamefeature/" class="leancloud_visitors" data-flag-title="Lyra - Game Feature">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -128,6 +128,7 @@
   <ul>
     <li><a href="#什么是gamefeature"><em><strong>什么是GameFeature</strong></em></a></li>
     <li><a href="#创建一个gamefeature插件"><em><strong>创建一个GameFeature插件</strong></em></a></li>
+    <li><a href="#feature-state"><em><strong>Feature State</strong></em></a></li>
     <li><a href="#ugamefeaturedata"><em><strong>UGameFeatureData</strong></em></a>
       <ul>
         <li><a href="#featurestate"><em><strong>FeatureState</strong></em></a></li>
@@ -196,6 +197,13 @@
 <p><em>这样的话我们就创建好了，记得在插件设置里面启动你刚刚创建好的插件</em></p>
 </li>
 </ol>
+<h2 id="feature-state"><em><strong>Feature State</strong></em></h2>
+<ol>
+<li><em>Installed：意味着该插件位于本地存储中（即位于硬盘上），但尚未注册、加载或激活。好比你买了一个游戏卡带，放在游戏机旁边，游戏机只知道你的卡带在哪里</em></li>
+<li><em>Registered：已注册意味着插件中的资源已知，但尚未加载。好比你游戏卡带插进了游戏机，但是你还没有开始游戏</em></li>
+<li><em>Loaded：已加载意味着插件已加载到内存中并注册到某些游戏系统，但尚未激活且不会影响游戏玩法。</em></li>
+<li><em>Active：活动意味着插件已完全加载并处于活动状态。它的功能也影响了游戏玩法。</em></li>
+</ol>
 <h2 id="ugamefeaturedata"><em><strong>UGameFeatureData</strong></em></h2>
 <p><em>在你创建好一个Feature后就会有该DataAsset，在里面填入这个GameFeature的数据</em></p>
 <h3 id="featurestate"><em><strong>FeatureState</strong></em></h3>
@@ -252,13 +260,13 @@
 <li><em>CookRule：EPrimaryAssetCookRule 枚举，这个枚举定义了一个主资源在打包过程中的行为。它决定了资源是在开发环境还是生成环境中被包含。</em></li>
 </ul>
 <h3 id="eprimaryassetcookrule"><em><strong>EPrimaryAssetCookRule</strong></em></h3>
-<p><em><code>FPrimaryAssetRules</code>：这个枚举定义了一个主资源在打包过程中的行为。它决定了资源是在开发环境还是生成环境中被包含</em></p>
+<p><em><code>FPrimaryAssetRules</code>：这个枚举定义了一个主资源在打包过程中的行为。它决定了资源是在开发环境还是生产环境中被包含</em></p>
 <ul>
 <li><em>Unknown: 默认值。如果没有特殊规定，只要被其他资源引用，它就会被烘焙。</em></li>
 <li><em>NeverCook：绝对不烘焙，如果有引用该资源，直接报错</em></li>
 <li><em>ProductionNeverCook：如果有其他东西依赖于资产，资产将在开发中被烘焙，但永远不会在生产构建中被烘焙。</em></li>
 <li><em>DevelopmentAlwaysProductionNeverCook: 资产永远在开发的时候烘焙，即使没被引用。永远不会在生产构件中被烘焙</em></li>
-<li><em>DevelopmentAlwaysProductionUnknownCook：资产永远在开发中被烘焙；关于它是否应该在生产中烘焙尚不清楚。如果有其他东西依赖于它，它会在生产中煮熟。</em></li>
+<li><em>DevelopmentAlwaysProductionUnknownCook：资产永远在开发中被烘焙；关于它是否应该在生产中烘焙尚不清楚。如果有其他东西依赖于它，它会在生产中烘焙。</em></li>
 <li><em>AlwaysCook：资产无论在什么环境都会被烘焙</em></li>
 </ul>
 <h2 id="注意"><em><strong>注意</strong></em></h2>
@@ -269,8 +277,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-01-05&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/edf992706a220fcf6905c15cd572bea71238d1f3" target="_blank" title="commit by vlicecream(vlicecream@163.com) edf992706a220fcf6905c15cd572bea71238d1f3: Update Lyra-GameFeature">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>edf9927</a></span>
+                <span>更新于 2026-01-06&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/1ffaa9184e28c4f7151b1f991367e51d460b4c59" target="_blank" title="commit by vlicecream(vlicecream@163.com) 1ffaa9184e28c4f7151b1f991367e51d460b4c59: Add CommonuiLyra And Water">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>1ffaa91</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
