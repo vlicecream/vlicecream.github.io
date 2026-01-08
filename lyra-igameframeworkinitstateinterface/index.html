@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-igameframeworkinitstateinterface\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra\u0022","wordcount":  1658 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra\u0022","wordcount":  1981 ,
         "url": "https:\/\/example.com\/lyra-igameframeworkinitstateinterface\/","datePublished": "2025-07-10T21:34:00+08:00","dateModified": "2026-01-08T17:51:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - UGameFrameworkComponentManager</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1658 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1981 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/lyra-igameframeworkinitstateinterface/" class="leancloud_visitors" data-flag-title="Lyra - UGameFrameworkComponentManager">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -134,7 +134,9 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="ugameframeworkcomponentmanager"><em><strong>UGameFrameworkComponentManager</strong></em></h2>
-<p><em>UGameFrameworkComponentManager 是虚幻引擎（Unreal Engine）中 <strong>模块化玩法（Modular Gameplay）</strong> 插件提供的一个核心组件管理器。它的主要作用是动态地向 Actor 添加或删除组件，而无需在 Actor 的 C++ 代码或蓝图类中硬编码这些组件。</em></p>
+<p><em>游戏框架组件管理器 是 模块化Gameplay插件（Modular Gameplay plugin） 中的一个 游戏实例子系统（Game Instance Subsystem） 。它可以与 游戏功能插件（Game Feature Plugins）一起使用。 该子系统中实现的函数可以由 游戏功能操作（Game Feature Actions） 用于支持可扩展性。 游戏功能操作由一般Gameplay代码用于协调不同Gameplay对象之间的通信。管理器实现两个基本系统：扩展处理程序（Extension Handlers）和 初始化状态（Initialization States）。</em></p>
+<p><em>扩展处理程序也就是比如监听所有的Controller，如果有Controller初始化，并且有状态流转都会出发这个扩展处理事件</em></p>
+<p><em>初始化功能一般都要和 IGameFrameworkInitStateInterface 打配合</em></p>
 <h2 id="igameframeworkinitstateinterface"><em><strong>IGameFrameworkInitStateInterface</strong></em></h2>
 <p><em>IGameFrameworkInitStateInterface 的作用，就是将一个组件原本<strong>混乱、单体</strong>的初始化过程（主要挤在BeginPlay里），拆分成一个<strong>清晰、有序、分阶段的“生命周期”</strong>。</em></p>
 <p><em>它允许不同组件之间优雅地声明和等待依赖关系，从而构建出<strong>可预测、可扩展、无惧异步加载</strong>的复杂系统。</em></p>
@@ -165,7 +167,56 @@
 </li>
 </ol>
 <h2 id="正常工作流程"><em><strong>正常工作流程</strong></em></h2>
-<p><em>假设我们有4个 FGAmeplayTag： <code>LyraGameplayTags::InitState_Spawned, LyraGameplayTags::InitState_DataAvailable, LyraGameplayTags::InitState_DataInitialized, LyraGameplayTags::InitState_GameplayReady</code></em></p>
+<p><em>首先：我们需要在Actor中去注册到 UGameFrameworkComponentManager</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AModularCharacter</span><span class="o">::</span><span class="n">PreInitializeComponents</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">PreInitializeComponents</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">UGameFrameworkComponentManager</span><span class="o">::</span><span class="n">AddGameFrameworkComponentReceiver</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>  <span class="c1">// 注册
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AModularCharacter</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只要他BeginPlay了就会发送扩展事件 并且将自己的状态传递过去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">UGameFrameworkComponentManager</span><span class="o">::</span><span class="n">SendGameFrameworkComponentExtensionEvent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">UGameFrameworkComponentManager</span><span class="o">::</span><span class="n">NAME_GameActorReady</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AModularCharacter</span><span class="o">::</span><span class="n">EndPlay</span><span class="p">(</span><span class="k">const</span> <span class="n">EEndPlayReason</span><span class="o">::</span><span class="n">Type</span> <span class="n">EndPlayReason</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UGameFrameworkComponentManager</span><span class="o">::</span><span class="n">RemoveGameFrameworkComponentReceiver</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>  <span class="c1">// 移除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">EndPlay</span><span class="p">(</span><span class="n">EndPlayReason</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>假设我们有4个 FGAmeplayTag： <code>LyraGameplayTags::InitState_Spawned, LyraGameplayTags::InitState_DataAvailable, LyraGameplayTags::InitState_DataInitialized, LyraGameplayTags::InitState_GameplayReady</code></em></p>
 <p><em>我们还有两个Component：</em></p>
 <ol>
 <li><em><code>class LYRAGAME_API ULyraHeroComponent : public UPawnComponent, public IGameFrameworkInitStateInterface</code></em></li>

@@ -3,7 +3,11 @@
 
 ## ***UGameFrameworkComponentManager***
 
-*UGameFrameworkComponentManager 是虚幻引擎（Unreal Engine）中 **模块化玩法（Modular Gameplay）** 插件提供的一个核心组件管理器。它的主要作用是动态地向 Actor 添加或删除组件，而无需在 Actor 的 C++ 代码或蓝图类中硬编码这些组件。*
+*游戏框架组件管理器 是 模块化Gameplay插件（Modular Gameplay plugin） 中的一个 游戏实例子系统（Game Instance Subsystem） 。它可以与 游戏功能插件（Game Feature Plugins）一起使用。 该子系统中实现的函数可以由 游戏功能操作（Game Feature Actions） 用于支持可扩展性。 游戏功能操作由一般Gameplay代码用于协调不同Gameplay对象之间的通信。管理器实现两个基本系统：扩展处理程序（Extension Handlers）和 初始化状态（Initialization States）。*
+
+*扩展处理程序也就是比如监听所有的Controller，如果有Controller初始化，并且有状态流转都会出发这个扩展处理事件*
+
+*初始化功能一般都要和 IGameFrameworkInitStateInterface 打配合*
 
 ## ***IGameFrameworkInitStateInterface***
 
@@ -40,6 +44,32 @@
    *在这个函数内部，你会调用 UGameFrameworkComponentManager 提供的一些工具函数（如 ContinueInitStateChain），来触发一次从当前状态到最终状态的连续转换尝试*
 
 ## ***正常工作流程***
+
+*首先：我们需要在Actor中去注册到 UGameFrameworkComponentManager*
+
+```cpp
+void AModularCharacter::PreInitializeComponents()
+{
+	Super::PreInitializeComponents();
+
+	UGameFrameworkComponentManager::AddGameFrameworkComponentReceiver(this);  // 注册
+}
+
+void AModularCharacter::BeginPlay()
+{
+    // 只要他BeginPlay了就会发送扩展事件 并且将自己的状态传递过去
+	UGameFrameworkComponentManager::SendGameFrameworkComponentExtensionEvent(this, UGameFrameworkComponentManager::NAME_GameActorReady); 
+    
+	Super::BeginPlay();
+}
+
+void AModularCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	UGameFrameworkComponentManager::RemoveGameFrameworkComponentReceiver(this);  // 移除
+
+	Super::EndPlay(EndPlayReason);
+}
+```
 
 *假设我们有4个 FGAmeplayTag： `LyraGameplayTags::InitState_Spawned, LyraGameplayTags::InitState_DataAvailable, LyraGameplayTags::InitState_DataInitialized, LyraGameplayTags::InitState_GameplayReady`*
 
