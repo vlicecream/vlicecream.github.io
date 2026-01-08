@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-01-06T15:34:00+08:00">
-    <meta property="article:modified_time" content="2026-01-07T08:16:20+08:00">
+    <meta property="article:modified_time" content="2026-01-08T17:51:51+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="Lyra">
     <meta property="article:tag" content="CommonUI">
@@ -37,8 +37,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-commonui\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra, CommonUI, UI","wordcount":  1368 ,
-        "url": "https:\/\/example.com\/lyra-commonui\/","datePublished": "2026-01-06T15:34:00+08:00","dateModified": "2026-01-07T08:16:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra, CommonUI, UI","wordcount":  1539 ,
+        "url": "https:\/\/example.com\/lyra-commonui\/","datePublished": "2026-01-06T15:34:00+08:00","dateModified": "2026-01-08T17:51:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - CommonUI</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-06">2026-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1368 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/lyra-commonui/" class="leancloud_visitors" data-flag-title="Lyra - CommonUI">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-06">2026-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1539 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/lyra-commonui/" class="leancloud_visitors" data-flag-title="Lyra - CommonUI">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -219,14 +219,23 @@
 <li>
 <p><em>UPrimaryGameLayout：游戏的主要游戏 UI 布局，这个小部件类代表如何布局、推送和显示所有图层单人游戏的用户界面。分屏游戏中的每个玩家都会收到自己的主要游戏布局。</em></p>
 <p><em>内部通过 TMap&lt;FGameplayTag, UCommonActivatableWidgetContainerBase*&gt; 维护了多个图层。</em></p>
+<ul>
+<li><em>HUD: 游戏内的玩家信息 比如血条 小地图 不需要跟玩家交互</em></li>
+<li><em>GameMenu：跟游戏玩法相关的UI，比如 Shop</em></li>
+<li><em>Menu：主菜单或者设置菜单之类的</em></li>
+<li><em>Model：模态化UI，比如二次确认弹窗</em></li>
+</ul>
+</li>
+<li>
+<p><em>UCommonUIExtensions：UI的BlueprintFunctionLibrary，提供一些给蓝图或者c++使用的接口，比如呼出 UI ， 查看用户当然输入设备是不是手柄</em></p>
 </li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-01-07&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c61696d0814af71e7e5f73e45c62bff0c221548e" target="_blank" title="commit by vlicecream(vlicecream@163.com) c61696d0814af71e7e5f73e45c62bff0c221548e: Update">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c61696d</a></span>
+                <span>更新于 2026-01-08&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/f597b41541e4f313625eae0718bad1cc1ae7c877" target="_blank" title="commit by vlicecream(vlicecream@163.com) f597b41541e4f313625eae0718bad1cc1ae7c877: Update Lyra-Commonui">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>f597b41</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

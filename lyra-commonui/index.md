@@ -77,5 +77,12 @@
 6. *UPrimaryGameLayout：游戏的主要游戏 UI 布局，这个小部件类代表如何布局、推送和显示所有图层单人游戏的用户界面。分屏游戏中的每个玩家都会收到自己的主要游戏布局。*
 
    *内部通过 TMap<FGameplayTag, UCommonActivatableWidgetContainerBase\*> 维护了多个图层。*
+   
+   * *HUD: 游戏内的玩家信息 比如血条 小地图 不需要跟玩家交互*
+   * *GameMenu：跟游戏玩法相关的UI，比如 Shop*
+   * *Menu：主菜单或者设置菜单之类的*
+   * *Model：模态化UI，比如二次确认弹窗*
+   
+7. *UCommonUIExtensions：UI的BlueprintFunctionLibrary，提供一些给蓝图或者c++使用的接口，比如呼出 UI ， 查看用户当然输入设备是不是手柄*
 
 

@@ -1,13 +1,19 @@
-# Lyra - IGameFrameworkInitStateInterface的核心回调
+# Lyra - UGameFrameworkComponentManager
 
 
-## ***作用***
+## ***UGameFrameworkComponentManager***
+
+*UGameFrameworkComponentManager 是虚幻引擎（Unreal Engine）中 **模块化玩法（Modular Gameplay）** 插件提供的一个核心组件管理器。它的主要作用是动态地向 Actor 添加或删除组件，而无需在 Actor 的 C++ 代码或蓝图类中硬编码这些组件。*
+
+## ***IGameFrameworkInitStateInterface***
 
 *IGameFrameworkInitStateInterface 的作用，就是将一个组件原本**混乱、单体**的初始化过程（主要挤在BeginPlay里），拆分成一个**清晰、有序、分阶段的“生命周期”**。*
 
 *它允许不同组件之间优雅地声明和等待依赖关系，从而构建出**可预测、可扩展、无惧异步加载**的复杂系统。*
 
-## ***核心接口***
+*在传统的开发模式（全是 BeginPlay）中，剧组就像是一群没有排练过的人，导演一喊“开机”，演员、灯光、摄影、录音全部同时开始干活，结果往往是：演员还没换好衣服摄影就开始拍了，或者灯光还没架好录音就开始录了。在程序里，这就是所谓的“竞态条件” —— 组件 A 还没初始化完数据，组件 B 就尝试去读取它，导致游戏崩溃或逻辑错误。*
+
+## ***IGameFrameworkInitStateInterface的核心接口***
 
 1. `virtual FName GetFeatureName() const override { return NAME_ActorFeatureName; }`
 
