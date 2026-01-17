@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal","wordcount":  437 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal","wordcount":  1090 ,
         "url": "https:\/\/example.com\/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F\/","datePublished": "2026-01-05T20:34:00+08:00","dateModified": "2026-01-05T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">渲染 - 水体模拟</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-05">2026-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 437 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F/" class="leancloud_visitors" data-flag-title="渲染 - 水体模拟">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-05">2026-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1090 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F/" class="leancloud_visitors" data-flag-title="渲染 - 水体模拟">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -128,8 +128,18 @@
     <li><a href="#基础"><em><strong>基础</strong></em></a>
       <ul>
         <li><a href="#波动方程"><em><strong>波动方程</strong></em></a></li>
-        <li><a href="#unreal材质实现波动方程"><em><strong>Unreal材质实现波动方程</strong></em></a></li>
-        <li><a href="#平移和方向"><em><strong>平移和方向</strong></em></a></li>
+        <li><a href="#平移和方向"><em><strong>平移和方向</strong></em></a>
+          <ul>
+            <li><a href="#平移"><em><strong>平移</strong></em></a></li>
+            <li><a href="#方向"><em><strong>方向</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#法线的矫正"><em><strong>法线的矫正</strong></em></a>
+          <ul>
+            <li><a href="#法线"><em><strong>法线</strong></em></a></li>
+            <li><a href="#偏导数"><em><strong>偏导数</strong></em></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -139,36 +149,31 @@
 <p>$$
 F(x) = A \cdot \sin(\frac{2\pi}{T}x + p)
 $$</p>
-<h3 id="unreal材质实现波动方程"><em><strong>Unreal材质实现波动方程</strong></em></h3>
-<p><em>这个材质实现了一个基于世界坐标x轴的简单正弦顶点位移。简单来说他能让物体像海浪一下上下波动</em></p>
 <p><em>参数介绍：</em></p>
 <table>
 <thead>
 <tr>
-<th><em>参数名</em></th>
-<th><em>对应公式</em></th>
+<th><em>参数</em></th>
 <th><em>作用</em></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><em><strong>WaveLength</strong></em></td>
 <td><em>T</em></td>
 <td><em>波长。数值越大，波越平缓（宽）；数值越小，波越密集（窄）。</em></td>
 </tr>
 <tr>
-<td><em><strong>Amplitude</strong></em></td>
 <td><em>A</em></td>
 <td><em>振幅。数值越大，波浪起伏越高；设为 0 则变回平面。</em></td>
 </tr>
 <tr>
-<td><em><strong>Phase</strong></em></td>
 <td><em>p</em></td>
 <td><em>相位。改变它会让波浪产生位移，通常用来做动画。</em></td>
 </tr>
 </tbody>
 </table>
 <h3 id="平移和方向"><em><strong>平移和方向</strong></em></h3>
+<h4 id="平移"><em><strong>平移</strong></em></h4>
 <p><em>如果让水波要看起来匀速水平无限的循环移动，只要让 p 相位的数据不断地取波浪一个周期的数值就好了</em></p>
 <p><em>具体的做法就是要知道每移动一个波长需要的时间：</em></p>
 <p><em>根据 时间 = 路程 / 速度 可以得到：</em>
@@ -187,9 +192,57 @@ $$
 frac(\frac{Time}{SpeedCycle})
 $$
 <em>最后我们映射到弧度，因为 $ \sin{x} = \sin{x + 2\pi} $</em></p>
-<p><em>好了，平移解决了 咱们来看方向：</em>
+<h4 id="方向"><em><strong>方向</strong></em></h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="C:%5cUsers%5c25718%5cDownloads%5cgeogebra-export.png"
+        data-srcset="C:%5cUsers%5c25718%5cDownloads%5cgeogebra-export.png, C:%5cUsers%5c25718%5cDownloads%5cgeogebra-export.png 1.5x, C:%5cUsers%5c25718%5cDownloads%5cgeogebra-export.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\25718\Downloads\geogebra-export.png"
+        title="geogebra-export" /></p>
+<p><em>看图 我们目前 想要水波朝着U向量前进，就得首先将U进行归一化，使其变成单位向量。</em></p>
+<p><em>随后我们必须将sin波垂直于U向量，也就是将屏幕上的像素点都要通过点积算出在U向量的投影长度（只要投影长度相同的点，它们都处于同一条<strong>垂直于U向量 的直线</strong>上），并将它作为sin波的输入，这样就可以了。</em></p>
+<p><em>形象的比喻：一把梳子，U向量是梳子的梳柄，然后梳子的齿就是一排排的波浪，点积的作用就是确定每一个像素点落在了哪一根“梳子齿”上，因为梳子齿永远和手柄是垂直的，所以你通过点积算出来的波浪也永远是垂直于方向的</em></p>
+<p><em>点积公式：</em>
+$$
+\mathbf{u} \cdot \mathbf{v} = \vert u \vert \vert v \vert \cos(\theta)
+$$
+<em>由于U是一个单位向量，所以$ \vert v \vert \cos(\theta) $就是 v向量在u向量上的投影</em></p>
+<p><em>随后我们将这个放入我们的sin波方程：</em>
+$$
+F(x) = A \cdot \sin(\frac{2\pi}{T}x + p)
+\\ \\
+F(x) = A \cdot \sin(\frac{2\pi}{T} (\mathbf{u} \cdot \mathbf{v}) + p)
 $$</p>
-<p>$$</p>
+<h3 id="法线的矫正"><em><strong>法线的矫正</strong></em></h3>
+<h4 id="法线"><em><strong>法线</strong></em></h4>
+<p><em>什么是法线：在曲面上某一点，垂直于该点切平面（Tangent Plane）的向量，就是该点的法线（Normal）。</em></p>
+<ul>
+<li><em>切平面：比如你有一个足球，随便找一个点，然后你有一个硬纸板，你贴在这个点上，那么这张硬纸板在数学上就叫 切平面</em></li>
+<li><em>法线：你往这个硬纸板上插一根直立的吸管，那么这个吸管就是法线</em></li>
+</ul>
+<p><em>我们怎么计算出法线：那么就是微积分中的偏导数了</em></p>
+<h4 id="偏导数"><em><strong>偏导数</strong></em></h4>
+<p><em>简单介绍：导数是求曲线的某一点斜率，偏导数则求曲面上某一点在特定方向（如 x 或 y）上的斜率。这两个斜率都是一个数。 / 切平面则是由两个偏导数（x 方向斜率和 y方向斜率）共同确定的一个平面</em></p>
+<p><em>偏导数符号：$ \partial{z} $</em></p>
+<p><em>对 x 求偏导：</em>
+$$
+f_x(x, y) = \frac{\partial{z}}{\partial{x}} = \lim_{\Delta{x} \to 0} \frac{f(x + \Delta{x}, y) - f(x , y)}{\Delta{x}}
+$$
+<em>对 y 求偏导：</em>
+$$
+f_y(x, y) = \frac{\partial{z}}{\partial{y}} = \lim_{\Delta{y} \to 0} \frac{f(x, y + \Delta{y}) - f(x , y)}{\Delta{y}}
+$$
+<em>求出法线：两个方向的切向量叉乘就是垂直于他们的法线</em>
+$$
+\vec{Normal} = \vec{T} \times \vec{B}
+$$
+<em>简化后的终极公式：这里就不展示过程了，大家可以推导一下</em>
+$$
+\vec{Normal} = (-\frac{\partial{z}}{\partial{x}}, -\frac{\partial{z}}{\partial{y}}, 1)
+$$
+<em>别忘记归一化，让法线变成单位向量哦~</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
