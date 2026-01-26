@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal","wordcount":  1090 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal","wordcount":  1172 ,
         "url": "https:\/\/example.com\/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F\/","datePublished": "2026-01-05T20:34:00+08:00","dateModified": "2026-01-05T20:34:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,7 +114,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">渲染 - 水体模拟</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-05">2026-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1090 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-05">2026-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1172 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/%E6%B8%B2%E6%9F%93-%E6%B0%B4%E4%BD%93%E6%A8%A1%E6%8B%9F/" class="leancloud_visitors" data-flag-title="渲染 - 水体模拟">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -140,8 +140,10 @@
             <li><a href="#偏导数"><em><strong>偏导数</strong></em></a></li>
           </ul>
         </li>
+        <li><a href="#总结"><em><strong>总结</strong></em></a></li>
       </ul>
     </li>
+    <li><a href="#gerstner"><em><strong>Gerstner</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="基础"><em><strong>基础</strong></em></h2>
@@ -243,6 +245,19 @@ $$
 \vec{Normal} = (-\frac{\partial{z}}{\partial{x}}, -\frac{\partial{z}}{\partial{y}}, 1)
 $$
 <em>别忘记归一化，让法线变成单位向量哦~</em></p>
+<h3 id="总结"><em><strong>总结</strong></em></h3>
+<p><em>这个就是基础的水公式，但是这个水公式太过于平缓，比如海洋那种带浪尖的就不适合</em></p>
+<h2 id="gerstner"><em><strong>Gerstner</strong></em></h2>
+<p><em>公式：</em>
+$$
+% 顶点位置公式
+P(x,y,t)
+= \begin{cases}
+x&rsquo; = x + \sum_{i=1}^{n} (Q_i A_i D_{ix} \cos(W_i)) \
+y&rsquo; = y + \sum_{i=1}^{n} (Q_i A_i D_{iy} \cos(W_i)) \
+z&rsquo; = \sum_{i=1}^{n} (A_i \sin(W_i))
+\end{cases}
+$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
