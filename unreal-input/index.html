@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-input\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Input","wordcount":  716 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Input","wordcount":  753 ,
         "url": "https:\/\/example.com\/unreal-input\/","datePublished": "2026-01-26T21:34:00+08:00","dateModified": "2026-01-26T23:40:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - 传统输入 与 增强输入</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-26">2026-01-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 716 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-26">2026-01-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 753 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unreal-input/" class="leancloud_visitors" data-flag-title="Unreal - 传统输入 与 增强输入">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -142,29 +142,39 @@
 </ul>
 <p><em><strong>结果：</strong> 你的角色代码里会充斥着这种“逻辑毛线团”：</em></p>
 <blockquote>
-<p><em>如果 (在车里) { 执行手刹 }</em>
-<em>否则如果 (在水里) { w执行上浮 }</em>
-<em>否则 { 执行跳跃 }</em></p>
+<p><em>如果 (在车里) { 执行手刹 }</em></p>
+<p><em>否则如果 (在水里) { w执行上浮 }</em></p>
+<p><em>否则 { 执行跳跃 }</em></p>
 </blockquote>
 <p><em>这就像老式街机，如果你想把“发射”键改成“确认”键，你得拿烙铁去后台重新接线。线越多，你就越容易把自己绕晕。</em></p>
 <h2 id="增强输入"><em><strong>增强输入</strong></em></h2>
-<p><em>增强输入把“按键”和“动作”彻底分开了。它由四个核心零件组成，我们用</em>*“多功能特工手表”*<em>来比喻：</em></p>
-<p><em>1. Input Action (IA) —— “功能按钮”</em></p>
-<p><em>这是特工手表上的一个<strong>虚拟按钮</strong>。</em></p>
+<p><em>增强输入把“按键”和“动作”彻底分开了。</em></p>
+<ol>
+<li>
+<p><em>Input Action (IA) —— “功能按钮”</em></p>
+<p><em><strong>Input Action</strong> 就是技能表里的</em>*“轻攻击”、“交互”、“翻滚”<strong>。*
+*它不关心你是按了鼠标左键还是手柄的 R1，它只代表一个</strong>动作意图**。*</p>
 <ul>
-<li><em><strong>例子</strong>：我们定义一个 IA 叫 IA_Interact（交互）。它不代表任何具体按键，它只代表玩家的一个</em><em>意图</em>*。*</li>
+<li><em><strong>例子</strong>：你定义一个 IA_Attack。</em></li>
+<li><em><strong>好处</strong>：无论玩家是在用键盘、PS5 手柄还是方向盘开黑，你的 C++ 代码里只需要监听 IA_Attack 触发了没，而不需要去管玩家到底按了哪个键。</em></li>
 </ul>
-<ol start="2">
-<li><em>Input Mapping Context (IMC) —— “技能卡带”</em></li>
+</li>
+<li>
+<p><em>Input Mapping Context (IMC) —— “技能卡带”</em></p>
+<p><em>同一个“空格键”，在不同模式下的功能完全不同：</em></p>
+<ol>
+<li><em><strong>步行模式</strong>：空格键 = <strong>跳跃 (IA_Jump)</strong></em></li>
+<li><em><strong>驾驶模式</strong>：空格键 = <strong>手刹 (IA_Handbrake)</strong></em></li>
+<li><em><strong>跳伞模式</strong>：空格键 = <strong>开伞 (IA_OpenParachute)</strong></em></li>
 </ol>
-<p><em>这是最神奇的地方。你可以准备多张卡带：</em></p>
+<p><em><strong>怎么玩？</strong></em></p>
 <ul>
-<li><em><strong>【步行卡带】</strong>：把 空格键 映射给 IA_Jump。</em></li>
-<li><em><strong>【驾驶卡带】</strong>：把 空格键 映射给 IA_Handbrake（手刹）。</em></li>
-<li><em><strong>【UI 菜单卡带】</strong>：把 空格键 映射给 IA_Confirm（确定）。</em></li>
+<li><em>当玩家<strong>拉开车门</strong>那一刻，你只需要代码里一行 Add Mapping Context (驾驶模式)。</em></li>
+<li><em><strong>神奇的事发生了</strong>：系统会自动把“步行模式”的按键屏蔽掉，同样的物理空格键，现在输出的指令自动变成了“手刹”。</em></li>
 </ul>
-<p><em><strong>操作</strong>：当玩家拉开车门时，你只需要代码里一行 Add Mapping Context (驾驶卡带)。系统会自动把之前的步行按键“顶掉”。</em>
-<em><strong>比喻</strong>：这就像特工换了一套外骨骼模块。同样的物理按键，因为插槽里的卡带变了，输出的指令就全变了。</em></p>
+<p><em><strong>这就是增强输入的魅力：</strong> 你再也不用在代码里写 if (是在车里) { 手刹 } else { 跳跃 } 这种又臭又长的代码了。</em></p>
+</li>
+</ol>
 <h2 id="总结"><em><strong>总结</strong></em></h2>
 <table>
 <thead>
