@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-26T21:34:00+08:00">
-    <meta property="article:modified_time" content="2026-01-07T17:13:39+08:00">
+    <meta property="article:modified_time" content="2026-02-07T17:18:16+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="GAS">
     <meta property="og:image" content="https://example.com/logo.png">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  650 ,
-        "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-01-07T17:13:39+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  5195 ,
+        "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-07T17:18:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 650 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5195 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -126,78 +126,316 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#abilitysystemcomponent"><em><strong>AbilitySystemComponent</strong></em></a></li>
+    <li><a href="#abilitysystemcomponent"><em><strong>AbilitySystemComponent</strong></em></a>
+      <ul>
+        <li><a href="#fpredictionkey"><em><strong>FPredictionKey</strong></em></a></li>
+      </ul>
+    </li>
     <li><a href="#iabilitysysteminterface"><em><strong>IAbilitySystemInterface</strong></em></a></li>
     <li><a href="#uabilitysystemglobals"><em><strong>UAbilitySystemGlobals</strong></em></a></li>
     <li><a href="#gameplayabilityga"><em><strong>GameplayAbility(GA)</strong></em></a>
       <ul>
-        <li><a href="#gameplayability"><em><strong>GameplayAbility</strong></em></a></li>
+        <li><a href="#ugameplayability"><em><strong>UGameplayAbility</strong></em></a></li>
         <li><a href="#uabilitytask"><em><strong>UAbilityTask</strong></em></a></li>
-        <li><a href="#fgameplayabilitytargetdata_singletargethit"><em><strong>FGameplayAbilityTargetData_SingleTargetHit</strong></em></a></li>
+        <li><a href="#agameplayabilitytargetactor"><em><strong>AGameplayAbilityTargetActor</strong></em></a></li>
+        <li><a href="#ugameplayabilityworldreticle"><em><strong>UGameplayAbilityWorldReticle</strong></em></a></li>
+        <li><a href="#fgameplayabilityspec"><em><strong>FGameplayAbilitySpec</strong></em></a></li>
+        <li><a href="#fgameplayabilityspechandle"><em><strong>FGameplayAbilitySpecHandle</strong></em></a></li>
+        <li><a href="#fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></a></li>
+        <li><a href="#fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></a></li>
+        <li><a href="#fgameplayabilityactivationinfo"><em><strong>FGameplayAbilityActivationInfo</strong></em></a></li>
+        <li><a href="#fgameplayabilityactorinfo"><em><strong>FGameplayAbilityActorInfo</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#效果系统"><em><strong>效果系统</strong></em></a>
       <ul>
-        <li><a href="#gameplayeffect"><em><strong>GameplayEffect</strong></em></a></li>
-        <li><a href="#ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></a></li>
+        <li><a href="#ugameplayeffect"><em><strong>UGameplayEffect</strong></em></a></li>
+        <li><a href="#fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></a></li>
+        <li><a href="#fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></a></li>
+        <li><a href="#factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></a></li>
+        <li><a href="#factivegameplayeffecthandle"><em><strong>FActiveGameplayEffectHandle</strong></em></a></li>
         <li><a href="#fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></a></li>
+        <li><a href="#fgameplayeffectcontexthandle"><em><strong>FGameplayEffectContextHandle</strong></em></a></li>
+        <li><a href="#ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></a></li>
+        <li><a href="#ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></a></li>
         <li><a href="#ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></a></li>
         <li><a href="#ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></a></li>
-        <li><a href="#ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></a></li>
+        <li><a href="#fgameplayeffectspec-1"><em><strong>FGameplayEffectSpec</strong></em></a></li>
+        <li><a href="#faggregator"><em><strong>FAggregator</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#表现层"><em><strong>表现层</strong></em></a>
       <ul>
-        <li><a href="#gameplaycue"><em><strong>GameplayCue</strong></em></a></li>
+        <li><a href="#ugameplaycue"><em><strong>UGameplayCue</strong></em></a></li>
         <li><a href="#ugameplaycuemanager"><em><strong>UGameplayCueManager</strong></em></a></li>
+        <li><a href="#agameplaycuenotify_static"><em><strong>AGameplayCueNotify_Static</strong></em></a></li>
+        <li><a href="#agameplaycuenotify_actor"><em><strong>AGameplayCueNotify_Actor</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#uattributeset"><em><strong>UAttributeSet</strong></em></a></li>
+    <li><a href="#uattributeset"><em><strong>UAttributeSet</strong></em></a>
+      <ul>
+        <li><a href="#fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></a></li>
+        <li><a href="#fattributedefaultswidget"><em><strong>FAttributeDefaultsWidget</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#元数据与逻辑"><em><strong>元数据与逻辑</strong></em></a>
+      <ul>
+        <li><a href="#fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></a></li>
+        <li><a href="#uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#gas调试"><em><strong>GAS调试</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="abilitysystemcomponent"><em><strong>AbilitySystemComponent</strong></em></h2>
-<p><em>GAS 的心脏。</em></p>
-<p><em>处理所有 Ability 的赋予、激活，管理 Attribute 的修改，以及处理 GameplayEffect 的应用与移除。</em></p>
+<p><em>GAS 的心脏。用于与玩法能力系统 (GameplayAbilities System) 对接的核心 Actor 组件。</em></p>
+<p><em>更加通俗的理解就是：它是连接你的角色（Actor）与技能系统（GAS）的桥梁/核心入口</em></p>
+<p><em>它负责所有 Gameplay Ability 的赋予与激活，管理 Attribute 的聚合修改，处理 Gameplay Effect 的生命周期，并作为 Gameplay Tags 的宿主来驱动状态逻辑，同时在底层处理所有相关数据的网络同步与动作预测。</em></p>
+<h3 id="fpredictionkey"><em><strong>FPredictionKey</strong></em></h3>
+<p><em><strong>FPredictionKey</strong> 是 GameplayAbility 系统中支持“客户端预测”的一种通用方式。它本质上是一个 <strong>ID</strong>，用于标识客户端所执行的预测动作及其产生的“副作用”（Side Effects）。UAbilitySystemComponent（ASC）负责在客户端和服务器之间同步这个预测键及其关联的副作用。</em></p>
+<p><em>本质上，任何行为都可以与一个预测键关联，例如“激活技能”。</em></p>
+<ol>
+<li><em><strong>流程开始</strong>：客户端生成一个全新的预测键，并在调用 ServerTryActivateAbility 时将其发送给服务器。</em></li>
+<li><em><strong>服务器响应</strong>：服务器会确认或拒绝该请求（触发 ClientActivateAbilitySucceed 或 Failed）。</em></li>
+<li><em><strong>本地预测阶段</strong>：在客户端预测技能运行期间，它会产生各种</em><em>副作用</em>*（如应用 GameplayEffects、触发事件、播放动画等）。每产生一个副作用，客户端都会将其与启动时生成的那个预测键关联起来。*</li>
+<li><em><strong>结果处理</strong>：</em>
+<ul>
+<li><em><strong>如果激活被拒绝</strong>：客户端可以立即回滚（撤销）这些关联的副作用</em>。</li>
+<li><em><strong>如果激活被接受</strong>：客户端必须等待服务器同步真实的副作用数据。</em>
+<ul>
+<li><em>（ClientActivatbleAbilitySucceed 远程调用会立即发送，但属性同步可能晚几帧到达）。</em></li>
+<li><em>一旦服务器版本的副作用同步完成，客户端就会撤销本地预测的临时副作用（并以服务器同步过来的权威数据为准）。</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><em>一般并不会将伤害数值客户端会预测，只会预测技能特效这些表现效果</em></p>
+<p><em><strong>FPredictionKey 本身主要提供以下功能：</strong></em></p>
+<ul>
+<li><em><strong>唯一 ID 系统</strong>：支持“当前”和“基础”整数构成的依赖链系统。</em></li>
+<li><em><strong>特殊的网络序列化（NetSerialize）实现</strong>：<strong>该预测键只会序列化给发起预测的那个客户端</strong>。</em>
+<ul>
+<li><em>这一点至关重要：它允许我们将预测键存在同步状态中，但只有给服务器发送过该键的客户端才能真正看到它（其他客户端不会收到多余的预测数据）。</em></li>
+</ul>
+</li>
+</ul>
 <h2 id="iabilitysysteminterface"><em><strong>IAbilitySystemInterface</strong></em></h2>
 <p><em>一个契约。确保引擎和 GAS 内部（如 GameplayCue）无论在哪个 Actor 身上，都能通过一个统一的接口 GetAbilitySystemComponent() 找到它的心脏。</em></p>
 <h2 id="uabilitysystemglobals"><em><strong>UAbilitySystemGlobals</strong></em></h2>
-<p><em>全局单例配置类</em></p>
+<p><em>存储能力系统（GAS）的全局数据。</em></p>
+<p><em>可以通过“开发者设置”（Developer Settings）中的“项目 -&gt; 游戏玩法能力设置”（Game -&gt; Gameplay Abilities Settings）进行配置。</em></p>
 <h2 id="gameplayabilityga"><em><strong>GameplayAbility(GA)</strong></em></h2>
-<h3 id="gameplayability"><em><strong>GameplayAbility</strong></em></h3>
-<p><em>定义技能是什么。</em></p>
+<h3 id="ugameplayability"><em><strong>UGameplayAbility</strong></em></h3>
+<p><em>能力 (Abilities) 定义了自定义的玩法逻辑，这些逻辑可以由玩家或外部游戏逻辑激活。</em></p>
 <p><em>它包含技能的释放逻辑、CD、消耗、标签要求。</em></p>
 <h3 id="uabilitytask"><em><strong>UAbilityTask</strong></em></h3>
 <p><em>异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）</em></p>
-<h3 id="fgameplayabilitytargetdata_singletargethit"><em><strong>FGameplayAbilityTargetData_SingleTargetHit</strong></em></h3>
-<p><em>数据传输协议。用于将客户端选中的目标（位置、Actor 指针等）打包发给服务器。</em></p>
+<h3 id="agameplayabilitytargetactor"><em><strong>AGameplayAbilityTargetActor</strong></em></h3>
+<p><em>3D 世界的“选择器”。</em></p>
+<p><em>用于在场景中生成视觉辅助（如圆形范围、直线射线）。它负责捕捉玩家选中的目标，并将其打包成 TargetData 发送给服务器。</em></p>
+<p><em>警告：</em></p>
+<ul>
+<li>
+<p><em>这些角色在每次能力激活时都会生成一次，并且在默认形式下效率不高</em></p>
+</li>
+<li>
+<p><em>对于大多数游戏，您需要子类化并大量修改此 actor，或者您需要在特定于游戏的 actor 或蓝图中实现类似的功能，以避免 actor 生成成本</em></p>
+</li>
+<li>
+<p><em>这个类没有经过内部游戏的充分测试，但它是一个有用的类，可以用来了解目标复制是如何发生的</em></p>
+</li>
+</ul>
+<h3 id="ugameplayabilityworldreticle"><em><strong>UGameplayAbilityWorldReticle</strong></em></h3>
+<p><em>目标的“反馈准心”。</em></p>
+<p><em>专门用于显示目标确认的反馈效果，比如选中的敌人脚下的红圈，或者技能预判的虚影。</em></p>
+<h3 id="fgameplayabilityspec"><em><strong>FGameplayAbilitySpec</strong></em></h3>
+<p><em>技能的“说明书实例”。</em></p>
+<p><em>当你调用 GiveAbility 时，系统会把 GA 类封装成一个 Spec。它存储了技能的等级、输入绑定 ID、以及谁是这个技能的原始所有者。它是技能在内存中真实存在的“户口本”。</em></p>
+<h3 id="fgameplayabilityspechandle"><em><strong>FGameplayAbilitySpecHandle</strong></em></h3>
+<p><em>技能在内存中的“唯一身份证”。</em></p>
+<ul>
+<li><em><strong>定义</strong>：一个全局唯一的整数标识符，指向 ASC 中的 FGameplayAbilitySpec。</em></li>
+<li><em><strong>作用</strong>：在 C++ 中，你</em><em>不应该</em>*保存 UGameplayAbility 的指针，而是应该保存这个 Handle。*</li>
+<li><em><strong>应用场景</strong>：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统只认这个 ID。</em></li>
+</ul>
+<h3 id="fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></h3>
+<p><em>这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。</em></p>
+<p><em>该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。</em></p>
+<p><em>生成者（Producers）示例：</em></p>
+<ul>
+<li><em><strong>碰撞事件</strong>：重叠（Overlap）或命中（Hit）碰撞事件生成关于近战攻击中“谁被击中”的目标数据。</em></li>
+<li><em><strong>准星射线检测</strong>：鼠标输入触发射线检测（Hit Trace），将准星前方的 Actor 转换为目标数据。</em></li>
+<li><em><strong>视角信息</strong>：鼠标输入导致目标数据直接从所有者的准星视角源点或方向生成。</em></li>
+<li><em><strong>AOE/光环</strong>：范围伤害或光环发生脉冲，将施法者周围半径内的所有 Actor 添加到目标数据中。</em></li>
+<li><em><strong>“涂抹”锁定模式</strong>：类似于《铁甲飞龙》（Panzer Dragoon）风格的滑动涂抹锁定模式。</em></li>
+<li><em><strong>MMORPG 地面 AOE</strong>：典型的地面范围技能瞄准方式（可能同时包含一个地面坐标位置和在该区域内的 Actor 列表）。</em></li>
+</ul>
+<p><em>消费者（Consumers）示例：</em></p>
+<ul>
+<li><em><strong>应用效果</strong>：向目标数据中的所有 Actor 应用一个 GameplayEffect。</em></li>
+<li><em><strong>寻找最近目标</strong>：从目标数据包含的所有对象中找到距离最近的 Actor。</em></li>
+<li><em><strong>逻辑调用</strong>：对目标数据中的所有 Actor 调用某个特定的函数。</em></li>
+<li><em><strong>数据操作</strong>：过滤（Filter）或合并（Merge）多个目标数据。</em></li>
+<li><em><strong>生成对象</strong>：在目标数据指定的位置生成（Spawn）一个新的 Actor。</em></li>
+</ul>
+<h3 id="fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></h3>
+<p><em>用来包装 FGameplayAbilityTargetData 的句柄</em></p>
+<p><em>它的存在主要有以下两个核心目的：</em></p>
+<ul>
+<li><em><strong>性能优化</strong>：避免我们在蓝图中不得不频繁地拷贝整个完整的目标数据结构体。</em></li>
+<li><em><strong>支持多态性</strong>：允许我们在目标数据结构中使用多态特性（即一个句柄可以指向不同类型的具体子类数据）。</em></li>
+<li><em><strong>网络同步支持</strong>：允许我们实现 NetSerialize（网络序列化），从而在客户端和服务器之间实现“按值同步（Replication by value）”。</em></li>
+</ul>
+<h3 id="fgameplayabilityactivationinfo"><em><strong>FGameplayAbilityActivationInfo</strong></em></h3>
+<p><em>技能的“网络状态快照”。</em></p>
+<ul>
+<li><em><strong>定义</strong>：存储在技能实例中的结构体，记录了当前技能是如何启动的。</em></li>
+<li><em><strong>作用</strong>：它是处理网络同步（Replication）和预测（Prediction）时的重要依据。</em></li>
+<li><em><strong>核心状态</strong>：</em>
+<ul>
+<li><em>ActivationMode：标识当前是“本地预测（Predicting）”、“服务器权威（Authority）”还是“远程非权威（Non-Authoritative）”。</em></li>
+</ul>
+</li>
+<li><em><strong>价值</strong>：在技能内部逻辑中，你可以通过它判断：“我现在是在客户端先行播放特效吗？”或者是“我现在是在服务器做最后的数值结算吗？”</em></li>
+</ul>
+<h3 id="fgameplayabilityactorinfo"><em><strong>FGameplayAbilityActorInfo</strong></em></h3>
+<p><em>技能的“环境快照”。</em></p>
+<p><em>记录了技能相关的 Owner、Avatar（化身）、SkeletalMesh、甚至 MovementComponent。它能让技能内部快速获取这些组件，避免频繁调用 GetComponent 造成的性能损耗。</em></p>
 <h2 id="效果系统"><em><strong>效果系统</strong></em></h2>
-<h3 id="gameplayeffect"><em><strong>GameplayEffect</strong></em></h3>
+<h3 id="ugameplayeffect"><em><strong>UGameplayEffect</strong></em></h3>
 <p><em>数据容器。它不包含逻辑代码，只包含“修改什么属性、持续多久、有什么标签”。</em></p>
+<p><em>GE 表达了 GAS 架构中一个极其重要的原则：数据与逻辑的彻底分离。</em></p>
+<ol>
+<li>
+<p><em>“驱动一切”的数据资产：</em></p>
+<p><em>在 GAS 中，UGameplayEffect 本质上是一个“复杂的结构体”。它就像一张处方单，上面写着：加多少血、持续多久、带什么标签。所有的属性改变（Attributes）和状态切换（Tags）都必须通过它来驱动。</em></p>
+</li>
+<li>
+<p><em>为什么不让写蓝图逻辑（No Graphs）？</em></p>
+<ul>
+<li><em>性能考销：GE 在游戏中会被高频触发、叠加和同步。如果每个 GE 内部都有复杂的蓝图逻辑，性能会迅速崩溃。</em></li>
+<li><em>可预测性：GE 的作用应该是确定的。逻辑应该写在 Ability (GA) 里，或者写在 Execution Calculation（重型计算器）里，而不是写在 GE 这个“数据包”里。</em></li>
+<li><em>网络优化：纯数据的同步比同步一段逻辑要高效得多。</em></li>
+</ul>
+</li>
+<li>
+<p><em>所谓的“模板（Templating）”：</em></p>
+<p><em>你在编辑器里右键创建 Gameplay Effect 蓝图时，你其实只是在利用蓝图的界面来填表（设置数值）。这被称为“模板化”。你只是在给这个资产设置初始值，而不是在给它写程序。</em></p>
+</li>
+</ol>
+<h3 id="fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></h3>
+<p><em>这个结构体他告诉了我们</em></p>
+<ul>
+<li><em>使用了哪个 UGameplayEffect（引用的是不可变的常量数据资产）。</em></li>
+<li><em>等级是多少（Level）。</em></li>
+<li><em>谁发起的（Instigator）。</em></li>
+</ul>
+<h3 id="fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></h3>
+<p><em>允许蓝图仅生成一次 GameplayEffectSpec，随后通过句柄对其进行引用，从而实现将其多次应用或应用给多个不同的目标。</em></p>
+<h3 id="factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></h3>
+<p><em>正在运行的“效果快照”。</em></p>
+<p><em>存储在 ASC 内部的结构体。它代表了一个正在生效的持续性（Duration）或永久性（Infinite）的 GE。你想知道自己身上有多少层 Buff，看的就是它。</em></p>
+<h3 id="factivegameplayeffecthandle"><em><strong>FActiveGameplayEffectHandle</strong></em></h3>
+<p><em>效果的“遥控器”。</em></p>
+<p><em>一个唯一的 ID。当你应用一个 Buff 后，系统返回这个句柄。你想手动移除某个 Buff（比如驱散效果），必须通过这个句柄来操作。</em></p>
+<h3 id="fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></h3>
+<p><em>这是一个用于存储 “发起者”及相关数据（例如位置和目标）的数据结构。</em></p>
+<p><em>开发者可以派生（子类化）该结构，以添加特定于游戏的自定义信息。</em></p>
+<p><em>由于该结构贯穿于整个效果执行的全过程，因此它是追踪单次执行过程中“瞬态信息（Transient Information）”的绝佳位置。</em></p>
+<h3 id="fgameplayeffectcontexthandle"><em><strong>FGameplayEffectContextHandle</strong></em></h3>
+<p><em>包装 FGameplayEffectContext 或子类的句柄，以允许其具有多态性并正确复制</em></p>
+<h3 id="ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></h3>
+<p><em>该类用于通过蓝图或原生代码（C++）执行自定义的玩法效果（Gameplay Effect）修饰符计算。</em></p>
+<p><em>MMC 的核心定位是：为 Gameplay Effect (GE) 里的某一个属性修改提供动态数值。</em></p>
+<ul>
+<li><em>单一属性修改：如果你只需要算出一个数值（比如“伤害值”或“加血量”），并填入 GE 的某一个 Modifier 里。</em></li>
+<li><em>需要客户端预测 (Prediction)：这是最关键的一点。MMC 在客户端和服务器都会运行。如果你希望玩家按下按键，UI 上的数值（如蓝条、体力）立即顺滑减少，必须用 MMC</em>。</li>
+<li><em>公式相对独立：公式只涉及基础的数学运算。例如：</em>
+<ul>
+<li><em>加血量 = 等级 * 20 + 基础值</em></li>
+<li><em>技能消耗 = 基础消耗 * (1 - 冷却缩减属性)</em></li>
+</ul>
+</li>
+<li><em>逻辑简单：它只能返回一个 float，不能直接修改标签（Tags）或执行复杂的逻辑分支。</em></li>
+</ul>
 <h3 id="ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></h3>
 <p><em>重型计算器。用于处理最复杂的伤害公式（涉及多属性对比，如：攻击者的破甲 vs 目标的护甲）。</em></p>
-<h3 id="fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></h3>
-<p><em>溯源信息。记录了“谁释放了 GE”、“从哪里释放”、“命中了哪个点”。</em></p>
+<p><em>ExecCalc 的核心定位是：处理涉及多个属性交互、复杂逻辑的最终结算。</em></p>
+<ul>
+<li><em>多属性交互（经典伤害公式）：如果你的计算需要同时读取来源（Source）和目标（Target）的大量属性。例如：</em>
+<ul>
+<li><em>最终伤害 = (攻击者攻击力 * 暴击倍率 - 目标防御力) * (1 - 目标的免伤率) * 属性克制系数。</em></li>
+</ul>
+</li>
+<li><em>修改多个属性：ExecCalc 一次执行可以同时修改多个属性。例如：</em>
+<ul>
+<li><em>一个“吸血”效果：同时减少目标的 Health，增加来源的 Health。</em></li>
+<li><em>一个“破甲攻击”：同时扣除目标的 Shield 和 Health。</em></li>
+</ul>
+</li>
+<li><em>复杂逻辑判断：内部可以写 if-else。例如：</em>
+<ul>
+<li><em>“如果目标生命值低于 20%，则触发斩杀，伤害翻倍”。</em></li>
+<li><em>“如果目标有‘护盾’标签，则伤害先扣除护盾”。</em></li>
+</ul>
+</li>
+<li><em>不需要/不建议预测：ExecCalc 通常只在服务器运行。因为伤害结算涉及跨对象的数据交换，客户端预测极易产生“血条回跳”现象。</em></li>
+</ul>
 <h3 id="ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></h3>
 <p><em>它是存储在 FGameplayEffectContext 中的自定义动态数据载体。</em></p>
 <p><em>你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 <code>float HeadshotMultiplier</code>。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。</em></p>
 <h3 id="ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></h3>
 <p><em>UE5.3 引入的模块化设计。将以前杂乱的 GE 设置（如持续时间、几率等）解耦成组件，提高性能。</em></p>
-<h3 id="ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></h3>
-<p><em>轻量级动态参数。用于为 GE 里的某一个 Modifier 提供动态数值（如：伤害 = 等级 x 2.0）</em></p>
+<h3 id="fgameplayeffectspec-1"><em><strong>FGameplayEffectSpec</strong></em></h3>
+<p>*效果的“出厂配置”。</p>
+<p><em>在 GE 真正应用到目标之前，系统会创建一个 Spec。它捕获了当前的属性快照（Snapshot）并计算好最终数值。它是 GE 从“静态数据”向“动态计算”转化的中间桥梁。</em></p>
+<h3 id="faggregator"><em><strong>FAggregator</strong></em></h3>
+<p><em>属性的“数学聚合器”。</em></p>
+<p><em>这是 AttributeSet 底层的数学引擎。当一个属性（如攻击力）被 10 个不同的 Buff（加算、乘算）同时修改时，是它负责根据优先级和叠加规则计算出最终结果。</em></p>
 <h2 id="表现层"><em><strong>表现层</strong></em></h2>
-<h3 id="gameplaycue"><em><strong>GameplayCue</strong></em></h3>
+<h3 id="ugameplaycue"><em><strong>UGameplayCue</strong></em></h3>
 <p><em>处理非数值的表现（特效、音效、震动）。</em></p>
 <p><em>通过 GameplayTag 触发。它的优点是“火后即焚”，不参与服务器的回滚，只在客户端执行。</em></p>
 <h3 id="ugameplaycuemanager"><em><strong>UGameplayCueManager</strong></em></h3>
 <p><em>GC 的分发中心。它负责扫描项目中的 GC 路径，并将 Tag 路由到对应的 Notify 或 Actor 上。</em></p>
+<h3 id="agameplaycuenotify_static"><em><strong>AGameplayCueNotify_Static</strong></em></h3>
+<p><em>“火后即焚”的表现。</em></p>
+<p><em>专门处理瞬间触发的特效（如爆炸、打击感）。它性能极高，因为它不需要在场景中生成长久存在的 Actor。</em></p>
+<h3 id="agameplaycuenotify_actor"><em><strong>AGameplayCueNotify_Actor</strong></em></h3>
+<p><em>“持续存在”的表现。</em></p>
+<p><em>用于处理持续性的效果表现（如身上一直冒火、护盾光圈）。它会创建一个真实的 Actor 挂在目标身上，支持复杂的开启和关闭逻辑。</em></p>
 <h2 id="uattributeset"><em><strong>UAttributeSet</strong></em></h2>
 <p><em>属性仓库。存储 Health, Mana, Attack 等浮点数。</em></p>
+<h3 id="fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></h3>
+<p><em>属性的“门牌号”。</em></p>
+<p><em>它不仅仅是一个名字，而是一个结构体，包装了对 UAttributeSet 中特定字段的反射引用。你在代码中指定“修改生命值”时，传的就是这个。</em></p>
+<h3 id="fattributedefaultswidget"><em><strong>FAttributeDefaultsWidget</strong></em></h3>
+<p><em>属性的“初始化模板”。</em></p>
+<p><em>用于在 DataAsset 中方便地批量配置属性初始值，通常用于 NPC 或不同等级职业的属性初始化。</em></p>
+<h2 id="元数据与逻辑"><em><strong>元数据与逻辑</strong></em></h2>
+<h3 id="fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></h3>
+<p><em>GAS 的“神经递质”。</em></p>
+<p><em>GAS 几乎所有的判断（能不能放技能、能不能吃 Buff、触发什么特效）全部依赖 Tag。没有标签，GAS 只是普通的属性库；有了标签，它才真正拥有了“逻辑”。</em></p>
+<h3 id="uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></h3>
+<p><em>GAS 的“万能工具箱”。</em></p>
+<p><em>提供了一系列静态函数，让你在蓝图中能轻松地获取 ASC、应用 GE、判断 Tag。它是 C++ 底层与蓝图表现层之间的快速通道。</em></p>
+<h2 id="gas调试"><em><strong>GAS调试</strong></em></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">showdebug gameplayabilitysystem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>在控制台输入 showdebug gameplayabilitysystem。这个命令显示的界面，本质上就是把上面提到的所有 <strong>Spec</strong>、<strong>ActiveGE</strong>、<strong>Tags</strong> 的实时状态可视化给你看。</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-01-07&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/fb2f267c6d328e14538d49db98af94876eefc4eb" target="_blank" title="commit by vlicecream(vlicecream@163.com) fb2f267c6d328e14538d49db98af94876eefc4eb: Update Wave">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>fb2f267</a></span>
+                <span>更新于 2026-02-07&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/4034ca7f9eae4e03cdd5a63703d0453a1f334609" target="_blank" title="commit by vlicecream(vlicecream@163.com) 4034ca7f9eae4e03cdd5a63703d0453a1f334609: Update GAS">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4034ca7</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
