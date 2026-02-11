@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-26T21:34:00+08:00">
-    <meta property="article:modified_time" content="2026-02-07T17:18:16+08:00">
+    <meta property="article:modified_time" content="2026-02-09T17:35:14+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="GAS">
     <meta property="og:image" content="https://example.com/logo.png">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  5957 ,
-        "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-07T17:18:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  7432 ,
+        "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-09T17:35:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5957 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7432 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -151,6 +151,7 @@
     <li><a href="#效果系统"><em><strong>效果系统</strong></em></a>
       <ul>
         <li><a href="#ugameplayeffect"><em><strong>UGameplayEffect</strong></em></a></li>
+        <li><a href="#fattributebasedfloat"><em><strong>FAttributeBasedFloat</strong></em></a></li>
         <li><a href="#fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></a></li>
         <li><a href="#fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></a></li>
         <li><a href="#factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></a></li>
@@ -161,8 +162,6 @@
         <li><a href="#ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></a></li>
         <li><a href="#ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></a></li>
         <li><a href="#ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></a></li>
-        <li><a href="#fgameplayeffectspec-1"><em><strong>FGameplayEffectSpec</strong></em></a></li>
-        <li><a href="#faggregator"><em><strong>FAggregator</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#表现层"><em><strong>表现层</strong></em></a>
@@ -171,6 +170,7 @@
         <li><a href="#ugameplaycuemanager"><em><strong>UGameplayCueManager</strong></em></a></li>
         <li><a href="#agameplaycuenotify_static"><em><strong>AGameplayCueNotify_Static</strong></em></a></li>
         <li><a href="#agameplaycuenotify_actor"><em><strong>AGameplayCueNotify_Actor</strong></em></a></li>
+        <li><a href="#fgameplaycueparameters"><em><strong>FGameplayCueParameters</strong></em></a></li>
       </ul>
     </li>
     <li><a href="#uattributeset"><em><strong>UAttributeSet</strong></em></a>
@@ -182,6 +182,7 @@
     <li><a href="#元数据与逻辑"><em><strong>元数据与逻辑</strong></em></a>
       <ul>
         <li><a href="#fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></a></li>
+        <li><a href="#fgameplayattributedata"><em><strong>FGameplayAttributeData</strong></em></a></li>
         <li><a href="#uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></a></li>
       </ul>
     </li>
@@ -197,7 +198,7 @@
 <p><em>它定义了技能“具体要做什么”。包含技能的释放顺序、激活条件、消耗以及冷却。它是一段逻辑代码块，比如“闪避”、“火球术”或“打开宝箱”。</em></p>
 <p><em>3. Attribute Set —— 属性仓库</em></p>
 <p><em>它是专门存放数值的地方。比如 Health、Mana、Strength。它不仅存储浮点数，还负责处理属性变动时的限制逻辑，比如血量不能超过最大上限。</em></p>
-<p><em>4. Gameplay Effects (GE) —— 数值修改指令</em></p>
+<p><em>4. Gameplay Effects (GE) —— 技能效果</em></p>
 <p><em>它是改变属性的载体。它不包含代码逻辑，只包含数据。比如“每秒扣 10 点血”、“永久增加 5 点力量”或者“给目标附加一个眩晕状态”。</em></p>
 <p><em>5. Gameplay Tags —— 逻辑胶水</em></p>
 <p><em>它是层级化的字符串标签。它是 GAS 系统判断逻辑的灵魂，比如通过检查角色是否有“State.Dead”标签来决定是否允许释放技能。</em></p>
@@ -206,7 +207,7 @@
 <p><em>7. Ability Tasks —— 异步处理机</em></p>
 <p><em>因为技能通常是持续的过程，它允许技能在运行中“等待”特定事件。比如“等待动画播放到某个节点”、“等待玩家再次输入”或“等待 2 秒钟”。</em></p>
 <p><em>总结：</em></p>
-<p><em>你可以把 GAS 想象成一个自动化的流程：玩家按下按键触发“能力(GA)”，能力检查“标签(Tags)”确认状态，通过“任务(Tasks)”执行异步过程，产生“效果(GE)”去修改“属性集(Attribute Set)”中的数值，最后触发“提示(GC)”播放华丽的特效。</em></p>
+<p><em>你可以把 GAS 想象成一个自动化的流程：一般来说玩家按下按键触发“能力(GA)”，能力检查“标签(Tags)”确认状态，通过“任务(Tasks)”执行异步过程，产生“效果(GE)”去修改“属性集(Attribute Set)”中的数值，最后触发“提示(GC)”播放华丽的特效。</em></p>
 <h2 id="abilitysystemcomponent"><em><strong>AbilitySystemComponent</strong></em></h2>
 <p><em>GAS 的心脏。用于与玩法能力系统 (GameplayAbilities System) 对接的核心 Actor 组件。</em></p>
 <p><em>更加通俗的理解就是：它是连接你的角色（Actor）与技能系统（GAS）的桥梁/核心入口</em></p>
@@ -334,7 +335,7 @@
 <li>
 <p><em>为什么不让写蓝图逻辑（No Graphs）？</em></p>
 <ul>
-<li><em>性能考销：GE 在游戏中会被高频触发、叠加和同步。如果每个 GE 内部都有复杂的蓝图逻辑，性能会迅速崩溃。</em></li>
+<li><em>性能开销：GE 在游戏中会被高频触发、叠加和同步。如果每个 GE 内部都有复杂的蓝图逻辑，性能会迅速崩溃。</em></li>
 <li><em>可预测性：GE 的作用应该是确定的。逻辑应该写在 Ability (GA) 里，或者写在 Execution Calculation（重型计算器）里，而不是写在 GE 这个“数据包”里。</em></li>
 <li><em>网络优化：纯数据的同步比同步一段逻辑要高效得多。</em></li>
 </ul>
@@ -344,6 +345,48 @@
 <p><em>你在编辑器里右键创建 Gameplay Effect 蓝图时，你其实只是在利用蓝图的界面来填表（设置数值）。这被称为“模板化”。你只是在给这个资产设置初始值，而不是在给它写程序。</em></p>
 </li>
 </ol>
+<h3 id="fattributebasedfloat"><em><strong>FAttributeBasedFloat</strong></em></h3>
+<p><em>1. BackingAttribute（支撑属性捕获定义）</em>
+<em>数据类型：FGameplayEffectAttributeCaptureDefinition</em>
+<em>介绍：这是整个计算的“传感器”。它决定了我们要去抓取谁的属性。</em>
+<em>它的数据包含：</em></p>
+<ul>
+<li><em>AttributeToCapture：具体的属性指针（比如攻击力、蓝量）。</em></li>
+<li><em>Source / Target：是从施法者身上抓，还是从受击者身上抓。</em></li>
+<li><em>bSnapshot：是否快照。如果设为 true，则记录放技能那一刻的属性；如果为 false，则在效果结算那一刻读取实时属性。</em></li>
+</ul>
+<p><em>2. Coefficient（系数）</em>
+<em>数据类型：FScalableFloat</em>
+<em>介绍：公式里的乘数。注意，源码里显示它是一个 FScalableFloat。</em>
+<em>深度含义：这意味着你的“系数”本身也可以随着 GE 的等级（Level）而变化。</em>
+<em>游戏场景：比如“法力加成”。1 级 GE 时，伤害是蓝量的 1.0 倍；到了 5 级 GE，伤害可能变成蓝量的 1.5 倍。这就是靠这个系数的 FScalableFloat 曲线来实现的。</em></p>
+<p><em>3. PreMultiplyAdditiveValue（预加值）</em>
+<em>数据类型：FScalableFloat</em>
+<em>介绍：在乘法执行前，先给捕获到的属性值加上的底数。</em>
+<em>逻辑顺序：计算器会先执行 (属性值 + 预加值)。</em>
+<em>游戏场景：比如“保底计算”。即便你的蓝量（属性）是 0，你可以设预加值为 10，保证后面乘以系数时不会算出 0。</em></p>
+<p><em>4. PostMultiplyAdditiveValue（后加值）</em>
+<em>数据类型：FScalableFloat</em>
+<em>介绍：在乘法执行完毕后，最后加上的一个固定偏移量。</em>
+<em>逻辑顺序：(系数 * 前面的结果) + 这个值。</em>
+<em>游戏场景：比如“基于蓝量的额外固伤”。你的一招基础伤害是 100（后加值），然后再额外加上蓝量的 20%。</em></p>
+<p><em>5. AttributeCurve（属性曲线表）</em>
+<em>数据类型：FCurveTableRowHandle</em>
+<em>介绍：这是源码里最精彩的部分。如果这里填了数据，系统就不直接使用属性数值了，而是把属性数值当做 X 轴坐标，去这张表里查对应的 Y 轴结果。</em>
+<em>游戏场景：比如“非线性属性收益”。你的力量达到 100 之后，每点力量带来的伤害提升会越来越少（边际递减），这种复杂的数学曲线不需要写代码，直接把这张表填上就行。</em></p>
+<p><em>6. AttributeCalculationType（属性计算策略）</em>
+<em>数据类型：EAttributeBasedFloatCalculationType</em>
+<em>介绍：它决定了计算器怎么看待抓到的那个属性。</em>
+<em>常用选项：</em></p>
+<ul>
+<li><em>AttributeMagnitude：直接拿属性的当前值（算完 Buff 的结果）。</em></li>
+<li><em>AttributeBaseValue：只看属性的基础值（不看任何临时 Buff）。</em></li>
+<li><em>AttributeEvaluatedUpToChannel：这是一个很深的功能，允许你计算属性时只计算到特定的“层级/通道”，比如无视某些高级别的 Buff。</em></li>
+</ul>
+<p><em>7. SourceTagFilter / TargetTagFilter（标签过滤器）</em>
+<em>数据类型：FGameplayTagContainer</em>
+<em>介绍：这是给计算过程加的“前置滤网”。</em>
+<em>作用：只有当来源（Source）或目标（Target）拥有这些特定的标签时，这个属性修改才会生效。如果标签不匹配，这一整套公式可能会直接返回 0。</em></p>
 <h3 id="fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></h3>
 <p><em>这个结构体他告诉了我们</em></p>
 <ul>
@@ -373,8 +416,8 @@
 <li><em>需要客户端预测 (Prediction)：这是最关键的一点。MMC 在客户端和服务器都会运行。如果你希望玩家按下按键，UI 上的数值（如蓝条、体力）立即顺滑减少，必须用 MMC</em>。</li>
 <li><em>公式相对独立：公式只涉及基础的数学运算。例如：</em>
 <ul>
-<li><em>加血量 = 等级 * 20 + 基础值</em></li>
-<li><em>技能消耗 = 基础消耗 * (1 - 冷却缩减属性)</em></li>
+<li>加血量 = 等级 * 20 + 基础值</li>
+<li>技能消耗 = 基础消耗 * (1 - 冷却缩减属性)</li>
 </ul>
 </li>
 <li><em>逻辑简单：它只能返回一个 float，不能直接修改标签（Tags）或执行复杂的逻辑分支。</em></li>
@@ -385,7 +428,7 @@
 <ul>
 <li><em>多属性交互（经典伤害公式）：如果你的计算需要同时读取来源（Source）和目标（Target）的大量属性。例如：</em>
 <ul>
-<li><em>最终伤害 = (攻击者攻击力 * 暴击倍率 - 目标防御力) * (1 - 目标的免伤率) * 属性克制系数。</em></li>
+<li>最终伤害 = (攻击者攻击力 * 暴击倍率 - 目标防御力) * (1 - 目标的免伤率) * 属性克制系数。</li>
 </ul>
 </li>
 <li><em>修改多个属性：ExecCalc 一次执行可以同时修改多个属性。例如：</em>
@@ -407,12 +450,6 @@
 <p><em>你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 <code>float HeadshotMultiplier</code>。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。</em></p>
 <h3 id="ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></h3>
 <p><em>UE5.3 引入的模块化设计。将以前杂乱的 GE 设置（如持续时间、几率等）解耦成组件，提高性能。</em></p>
-<h3 id="fgameplayeffectspec-1"><em><strong>FGameplayEffectSpec</strong></em></h3>
-<p>*效果的“出厂配置”。</p>
-<p><em>在 GE 真正应用到目标之前，系统会创建一个 Spec。它捕获了当前的属性快照（Snapshot）并计算好最终数值。它是 GE 从“静态数据”向“动态计算”转化的中间桥梁。</em></p>
-<h3 id="faggregator"><em><strong>FAggregator</strong></em></h3>
-<p><em>属性的“数学聚合器”。</em></p>
-<p><em>这是 AttributeSet 底层的数学引擎。当一个属性（如攻击力）被 10 个不同的 Buff（加算、乘算）同时修改时，是它负责根据优先级和叠加规则计算出最终结果。</em></p>
 <h2 id="表现层"><em><strong>表现层</strong></em></h2>
 <h3 id="ugameplaycue"><em><strong>UGameplayCue</strong></em></h3>
 <p><em>处理非数值的表现（特效、音效、震动）。</em></p>
@@ -425,6 +462,15 @@
 <h3 id="agameplaycuenotify_actor"><em><strong>AGameplayCueNotify_Actor</strong></em></h3>
 <p><em>“持续存在”的表现。</em></p>
 <p><em>用于处理持续性的效果表现（如身上一直冒火、护盾光圈）。它会创建一个真实的 Actor 挂在目标身上，支持复杂的开启和关闭逻辑。</em></p>
+<h3 id="fgameplaycueparameters"><em><strong>FGameplayCueParameters</strong></em></h3>
+<p><em>表现层的“情报包”。</em></p>
+<p><em>当一个 Cue 触发时（比如一次大爆炸），这个结构体负责传递所有的细节。它就像是一个公文包，里面装载了：</em></p>
+<ul>
+<li><em>Location / Normal：爆炸发生的精确坐标和法线方向。</em></li>
+<li><em>RawMagnitude：一个原始的浮点数值（比如用来缩放爆炸特效的大小）。</em></li>
+<li><em>EffectContext：溯源信息，让你知道是哪个技能、哪把武器触发了这个特效。</em>
+<em>没有它，你的特效只能呆板地播放，有了它，特效才能实现“哪里被打哪喷血”的精准反馈。</em></li>
+</ul>
 <h2 id="uattributeset"><em><strong>UAttributeSet</strong></em></h2>
 <p><em>属性仓库。存储 Health, Mana, Attack 等浮点数。</em></p>
 <h3 id="fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></h3>
@@ -437,6 +483,14 @@
 <h3 id="fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></h3>
 <p><em>GAS 的“神经递质”。</em></p>
 <p><em>GAS 几乎所有的判断（能不能放技能、能不能吃 Buff、触发什么特效）全部依赖 Tag。没有标签，GAS 只是普通的属性库；有了标签，它才真正拥有了“逻辑”。</em></p>
+<h3 id="fgameplayattributedata"><em><strong>FGameplayAttributeData</strong></em></h3>
+<p><em>属性的“保险箱”。</em></p>
+<p><em>这是你在 AttributeSet 中定义的每一个属性的真实数据类型。它不像普通的 float，它内部包含两个核心数值：</em></p>
+<ul>
+<li><em>BaseValue（基础值）：你的永久属性。</em></li>
+<li><em>CurrentValue（当前值）：算上所有临时 Buff/Debuff 后的最终数值。</em>
+<em>理解这两者的区别，是解决“为什么我 Buff 消失后血量回不到上限”等问题的关键。</em></li>
+</ul>
 <h3 id="uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></h3>
 <p><em>GAS 的“万能工具箱”。</em></p>
 <p><em>提供了一系列静态函数，让你在蓝图中能轻松地获取 ASC、应用 GE、判断 Tag。它是 C++ 底层与蓝图表现层之间的快速通道。</em></p>
@@ -454,8 +508,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-07&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/4034ca7f9eae4e03cdd5a63703d0453a1f334609" target="_blank" title="commit by vlicecream(vlicecream@163.com) 4034ca7f9eae4e03cdd5a63703d0453a1f334609: Update GAS">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4034ca7</a></span>
+                <span>更新于 2026-02-09&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/e31216c40aec8e5155de7c4e750e26df90c62404" target="_blank" title="commit by vlicecream(vlicecream@163.com) e31216c40aec8e5155de7c4e750e26df90c62404: Update GASe">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e31216c</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
