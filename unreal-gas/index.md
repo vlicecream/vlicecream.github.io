@@ -114,89 +114,85 @@ showdebug abilitysystem
 
 *Tags 标签属性组*
 
-​    *Ability Tags 用于标识技能本身的标签 能够让其他逻辑或系统识别出此技能的类别*
+* *Ability Tags 用于标识技能本身的标签 能够让其他逻辑或系统识别出此技能的类别*
 
-​    *Cancel Abilities With Tag 当此技能激活时 会自动寻找并取消掉当前角色身上正在运行且带有这些标签的其他技能*
+* *Cancel Abilities With Tag 当此技能激活时 会自动寻找并取消掉当前角色身上正在运行且带有这些标签的其他技能*
 
-​    *Block Abilities With Tag 当此技能处于激活状态时 会阻止任何带有这些标签的新技能被触发激活*
+* *Block Abilities With Tag 当此技能处于激活状态时 会阻止任何带有这些标签的新技能被触发激活*
 
-​    *Activation Owned Tags 技能在激活期间 技能持有者（ASC）会自动获得这些标签 技能结束时标签随之移除*
+* *Activation Owned Tags 技能在激活期间 技能持有者（ASC）会自动获得这些标签 技能结束时标签随之移除*
 
-​    *Activation Required Tags 激活的前提条件 只有当技能持有者（ASC）已经具备了这些标签时 技能才允许被开启*
+* *Activation Required Tags 激活的前提条件 只有当技能持有者（ASC）已经具备了这些标签时 技能才允许被开启*
 
-​    *Activation Blocked Tags 激活的排除条件 如果技能持有者（ASC）身上带有这些标签 那么该技能将被锁定无法激活*
+* *Activation Blocked Tags 激活的排除条件 如果技能持有者（ASC）身上带有这些标签 那么该技能将被锁定无法激活*
 
-​    *Source Required Tags 检查技能的发起者 只有当发起者（Source Object）具备这些标签时 技能才能成功触发*
+* *Source Required Tags 检查技能的发起者 只有当发起者（Source Object）具备这些标签时 技能才能成功触发*
 
-​    *Source Blocked Tags 检查技能的发起者 如果发起者（Source Object）具备这些标签 技能将无法被成功激活*
+* *Source Blocked Tags 检查技能的发起者 如果发起者（Source Object）具备这些标签 技能将无法被成功激活*
 
-​    *Target Required Tags 检查技能的目标 只有当目标对象具备这些标签时 技能才会对该目标产生效果*
+* *Target Required Tags 检查技能的目标 只有当目标对象具备这些标签时 技能才会对该目标产生效果*
 
-​    *Target Blocked Tags 检查技能的目标 如果目标对象具备这些标签 技能将无法对该目标产生任何效果*
+* *Target Blocked Tags 检查技能的目标 如果目标对象具备这些标签 技能将无法对该目标产生任何效果*
 
 *Input 输入属性组*
 
-​    *Replicate Input Directly 勾选后会将玩家的原始按键输入直接同步给服务器 而不是通过常规的技能指令流*
+* *Replicate Input Directly 勾选后会将玩家的原始按键输入直接同步给服务器 而不是通过常规的技能指令流*
 
 *Advanced 高级属性组*
 
-​    *Replication Policy 决定了技能的状态和变量是否在网络上进行同步的策略枚举*
+* *Replication Policy 决定了技能的状态和变量是否在网络上进行同步的策略枚举*
 
-​        *Do Not Replicate 技能不进行网络同步 仅在各自触发的那一端运行*
+  * *Do Not Replicate 技能不进行网络同步 仅在各自触发的那一端运行*
 
-​        *Replicate 技能的内部状态和变量会从服务器同步给所有相关的客户端*
+  * *Replicate 技能的内部状态和变量会从服务器同步给所有相关的客户端*
 
-​    *Instancing Policy 决定了技能在内存中如何创建实例对象的策略枚举*
+* *Instancing Policy 决定了技能在内存中如何创建实例对象的策略枚举*
 
-​        *Non Instanced 技能不产生实例 所有角色共享一个类定义 内存效率最高但不能存储个体状态*
+  * *Non Instanced 技能不产生实例 所有角色共享一个类定义 内存效率最高但不能存储个体状态*
 
-​        *Instanced Per Actor 每个角色在首次使用该技能时创建一个持久实例 适合存储角色的连招段数等*
+  * *Instanced Per Actor 每个角色在首次使用该技能时创建一个持久实例 适合存储角色的连招段数等*
 
-​        *Instanced Per Execution 每次按下技能都会创建一个全新的独立实例 适合处理复杂的独立逻辑*
+  * *Instanced Per Execution 每次按下技能都会创建一个全新的独立实例 适合处理复杂的独立逻辑*
 
-​    *Server Respects Remote Ability Cancellation 决定了当客户端尝试主动取消技能时 服务器是否听从该请求*
+* *Server Respects Remote Ability Cancellation 决定了当客户端尝试主动取消技能时 服务器是否听从该请求*
 
-​    *Retrigger Instanced Ability 对于实例化技能 如果在运行中再次触发 是否停止当前运行并从头重新开始*
+* *Retrigger Instanced Ability 对于实例化技能 如果在运行中再次触发 是否停止当前运行并从头重新开始*
 
-​    *Net Execution Policy 决定了技能在客户端和服务器之间执行顺序和同步关系的策略枚举*
+* *Net Execution Policy 决定了技能在客户端和服务器之间执行顺序和同步关系的策略枚举*
 
-​        *Local Predicted 本地预测模式 客户端立即执行并在服务器端进行验证 这种模式下的操作感最流畅*
+  * *Local Predicted 本地预测模式 客户端立即执行并在服务器端进行验证 这种模式下的操作感最流畅*
 
-​        *Local Only 仅本地模式 技能只在本地客户端运行 不会与服务器进行任何通信*
+  * *Local Only 仅本地模式 技能只在本地客户端运行 不会与服务器进行任何通信*
 
-​        *Server Only 仅服务器模式 技能只在服务器运行 客户端不运行任何逻辑 适合安全性高的数值逻辑*
+  * *Server Only 仅服务器模式 技能只在服务器运行 客户端不运行任何逻辑 适合安全性高的数值逻辑*
 
-​        *Server Initiated 服务器启动模式 必须由服务器决定何时启动技能并通知客户端同步执行*
+  * *Server Initiated 服务器启动模式 必须由服务器决定何时启动技能并通知客户端同步执行*
 
-​    *Net Security Policy 决定了技能激活权限等级以防止客户端作弊的策略枚举*
-
-​        *Client Or Server 客户端或服务器模式 允许客户端请求激活 灵活但安全性一般*
-
-​        *Server Only Execution 即使客户端请求 也要等服务器确认指令传回后才允许开始执行*
-
-​        *Server Only Termination 客户端无权主动停止技能 必须由服务器判定结束后发送指令*
-
-​        *Server Only 技能的启动和停止完全由服务器掌控 具有最高的防作弊安全性*
+* *Net Security Policy 决定了技能激活权限等级以防止客户端作弊的策略枚举*
+  * *Client Or Server 客户端或服务器模式 允许客户端请求激活 灵活但安全性一般*
+  * *Server Only Execution 即使客户端请求 也要等服务器确认指令传回后才允许开始执行*
+  * *Server Only Termination 客户端无权主动停止技能 必须由服务器判定结束后发送指令*
+  * *Server Only 技能的启动和停止完全由服务器掌控 具有最高的防作弊安全性*
 
 *Costs 消耗属性组*
 
-​    *Cost Gameplay Effect Class 指定一个 Gameplay Effect 类 用于定义释放技能需要消耗的属性如法力或体力*
+* *Cost Gameplay Effect Class 指定一个 Gameplay Effect 类 用于定义释放技能需要消耗的属性如法力或体力*
 
 *Triggers 触发属性组*
 
-​    *Ability Triggers 定义了触发技能的各种外部条件数组 包含触发源类型和对应的触发标签*
+* *Ability Triggers 定义了触发技能的各种外部条件数组 包含触发源类型和对应的触发标签*
 
-​        *Trigger Source 决定了技能响应何种外部逻辑变化来尝试自动激活的策略枚举*
+* *Trigger Source 决定了技能响应何种外部逻辑变化来尝试自动激活的策略枚举*
 
-​            *Gameplay Event 监听并响应特定的游戏事件标签 通常由其他逻辑发送事件及其数据载荷来精准触发*
+  * *Gameplay Event 监听并响应特定的游戏事件标签 通常由其他逻辑发送事件及其数据载荷来精准触发*
 
-​            *Owned Tag Added 当技能持有者（ASC）获得并新增了匹配的标签时 立即触发技能尝试自动激活*
+  * *Owned Tag Added 当技能持有者（ASC）获得并新增了匹配的标签时 立即触发技能尝试自动激活*
 
-​            *Owned Tag Present 状态检查触发 只要技能持有者（ASC）当前正持有匹配的标签 技能便满足自动激活前提*
+  * *Owned Tag Present 状态检查触发 只要技能持有者（ASC）当前正持有匹配的标签 技能便满足自动激活前提*
 
 *Cooldowns 冷却属性组*
 
-​    *Cooldown Gameplay Effect Class 指定一个 Gameplay Effect 类 用于通过标签和持续时间定义技能的冷却逻辑*
+* *Cooldown Gameplay Effect Class 指定一个 Gameplay Effect 类 用于通过标签和持续时间定义技能的冷却逻辑*
 
 ### ***UAbilityTask***
 
