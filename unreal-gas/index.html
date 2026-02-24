@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-26T21:34:00+08:00">
-    <meta property="article:modified_time" content="2026-02-09T17:35:14+08:00">
+    <meta property="article:modified_time" content="2026-02-12T13:28:50+08:00">
     <meta property="article:tag" content="Unreal">
     <meta property="article:tag" content="GAS">
     <meta property="og:image" content="https://example.com/logo.png">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  7432 ,
-        "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-09T17:35:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  7421 ,
+        "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-12T13:28:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7432 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7421 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -134,9 +134,16 @@
     </li>
     <li><a href="#iabilitysysteminterface"><em><strong>IAbilitySystemInterface</strong></em></a></li>
     <li><a href="#uabilitysystemglobals"><em><strong>UAbilitySystemGlobals</strong></em></a></li>
-    <li><a href="#gameplayabilityga"><em><strong>GameplayAbility(GA)</strong></em></a>
+    <li><a href="#元数据与逻辑"><em><strong>元数据与逻辑</strong></em></a>
       <ul>
-        <li><a href="#ugameplayability"><em><strong>UGameplayAbility</strong></em></a></li>
+        <li><a href="#fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></a></li>
+        <li><a href="#uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#gas调试"><em><strong>GAS调试</strong></em></a></li>
+    <li><a href="#能力系统"><em><strong>能力系统</strong></em></a>
+      <ul>
+        <li><a href="#ugameplayabilityga"><em><strong>UGameplayAbility(GA)</strong></em></a></li>
         <li><a href="#uabilitytask"><em><strong>UAbilityTask</strong></em></a></li>
         <li><a href="#agameplayabilitytargetactor"><em><strong>AGameplayAbilityTargetActor</strong></em></a></li>
         <li><a href="#ugameplayabilityworldreticle"><em><strong>UGameplayAbilityWorldReticle</strong></em></a></li>
@@ -176,17 +183,10 @@
     <li><a href="#uattributeset"><em><strong>UAttributeSet</strong></em></a>
       <ul>
         <li><a href="#fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></a></li>
+        <li><a href="#fgameplayattributedata"><em><strong>FGameplayAttributeData</strong></em></a></li>
         <li><a href="#fattributedefaultswidget"><em><strong>FAttributeDefaultsWidget</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#元数据与逻辑"><em><strong>元数据与逻辑</strong></em></a>
-      <ul>
-        <li><a href="#fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></a></li>
-        <li><a href="#fgameplayattributedata"><em><strong>FGameplayAttributeData</strong></em></a></li>
-        <li><a href="#uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></a></li>
-      </ul>
-    </li>
-    <li><a href="#gas调试"><em><strong>GAS调试</strong></em></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="什么是gas"><em><strong>什么是GAS</strong></em></h2>
@@ -245,9 +245,26 @@
 <p><em>一个契约。确保引擎和 GAS 内部（如 GameplayCue）无论在哪个 Actor 身上，都能通过一个统一的接口 GetAbilitySystemComponent() 找到它的心脏。</em></p>
 <h2 id="uabilitysystemglobals"><em><strong>UAbilitySystemGlobals</strong></em></h2>
 <p><em>存储能力系统（GAS）的全局数据。</em></p>
-<p><em>可以通过“开发者设置”（Developer Settings）中的“项目 -&gt; 游戏玩法能力设置”（Game -&gt; Gameplay Abilities Settings）进行配置。</em></p>
-<h2 id="gameplayabilityga"><em><strong>GameplayAbility(GA)</strong></em></h2>
-<h3 id="ugameplayability"><em><strong>UGameplayAbility</strong></em></h3>
+<p><em>可以通过“项目设置”（Project Settings）中的“游戏玩法能力设置”（Game -&gt; Gameplay Abilities Settings）进行配置。</em></p>
+<h2 id="元数据与逻辑"><em><strong>元数据与逻辑</strong></em></h2>
+<h3 id="fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></h3>
+<p><em>GAS 的 “神经递质”。</em></p>
+<p><em>GAS 几乎所有的判断（能不能放技能、能不能吃 Buff、触发什么特效）全部依赖 Tag。没有标签，GAS 只是普通的属性库；有了标签，它才真正拥有了“逻辑”。</em></p>
+<h3 id="uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></h3>
+<p><em>GAS 的“万能工具箱”。</em></p>
+<p><em>提供了一系列静态函数，让你在蓝图中能轻松地获取 ASC、应用 GE、判断 Tag。它是 C++ 底层与蓝图表现层之间的快速通道。</em></p>
+<h2 id="gas调试"><em><strong>GAS调试</strong></em></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">showdebug abilitysystem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>在控制台输入 showdebug abilitysystem。这个命令显示的界面，本质上就是把上面提到的所有 <strong>Spec</strong>、<strong>ActiveGE</strong>、<strong>Tags</strong> 的实时状态可视化给你看。</em></p>
+<h2 id="能力系统"><em><strong>能力系统</strong></em></h2>
+<h3 id="ugameplayabilityga"><em><strong>UGameplayAbility(GA)</strong></em></h3>
 <p><em>能力 (Abilities) 定义了自定义的玩法逻辑，这些逻辑可以由玩家或外部游戏逻辑激活。</em></p>
 <p><em>它包含技能的释放逻辑、CD、消耗、标签要求。</em></p>
 <h3 id="uabilitytask"><em><strong>UAbilityTask</strong></em></h3>
@@ -476,40 +493,27 @@
 <h3 id="fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></h3>
 <p><em>属性的“门牌号”。</em></p>
 <p><em>它不仅仅是一个名字，而是一个结构体，包装了对 UAttributeSet 中特定字段的反射引用。你在代码中指定“修改生命值”时，传的就是这个。</em></p>
-<h3 id="fattributedefaultswidget"><em><strong>FAttributeDefaultsWidget</strong></em></h3>
-<p><em>属性的“初始化模板”。</em></p>
-<p><em>用于在 DataAsset 中方便地批量配置属性初始值，通常用于 NPC 或不同等级职业的属性初始化。</em></p>
-<h2 id="元数据与逻辑"><em><strong>元数据与逻辑</strong></em></h2>
-<h3 id="fgameplaytag--fgameplaytagcontainer"><em><strong>FGameplayTag / FGameplayTagContainer</strong></em></h3>
-<p><em>GAS 的“神经递质”。</em></p>
-<p><em>GAS 几乎所有的判断（能不能放技能、能不能吃 Buff、触发什么特效）全部依赖 Tag。没有标签，GAS 只是普通的属性库；有了标签，它才真正拥有了“逻辑”。</em></p>
 <h3 id="fgameplayattributedata"><em><strong>FGameplayAttributeData</strong></em></h3>
 <p><em>属性的“保险箱”。</em></p>
 <p><em>这是你在 AttributeSet 中定义的每一个属性的真实数据类型。它不像普通的 float，它内部包含两个核心数值：</em></p>
 <ul>
-<li><em>BaseValue（基础值）：你的永久属性。</em></li>
-<li><em>CurrentValue（当前值）：算上所有临时 Buff/Debuff 后的最终数值。</em>
-<em>理解这两者的区别，是解决“为什么我 Buff 消失后血量回不到上限”等问题的关键。</em></li>
+<li>
+<p><em>BaseValue（基础值）：你的永久属性。</em></p>
+</li>
+<li>
+<p><em>CurrentValue（当前值）：算上所有临时 Buff/Debuff 后的最终数值。</em></p>
+<p><em>理解这两者的区别，是解决“为什么我 Buff 消失后血量回不到上限”等问题的关键。</em></p>
+</li>
 </ul>
-<h3 id="uabilitysystemblueprintlibrary"><em><strong>UAbilitySystemBlueprintLibrary</strong></em></h3>
-<p><em>GAS 的“万能工具箱”。</em></p>
-<p><em>提供了一系列静态函数，让你在蓝图中能轻松地获取 ASC、应用 GE、判断 Tag。它是 C++ 底层与蓝图表现层之间的快速通道。</em></p>
-<h2 id="gas调试"><em><strong>GAS调试</strong></em></h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">showdebug gameplayabilitysystem
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><em>在控制台输入 showdebug gameplayabilitysystem。这个命令显示的界面，本质上就是把上面提到的所有 <strong>Spec</strong>、<strong>ActiveGE</strong>、<strong>Tags</strong> 的实时状态可视化给你看。</em></p>
+<h3 id="fattributedefaultswidget"><em><strong>FAttributeDefaultsWidget</strong></em></h3>
+<p><em>属性的“初始化模板”。</em></p>
+<p><em>用于在 DataAsset 中方便地批量配置属性初始值，通常用于 NPC 或不同等级职业的属性初始化。</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-09&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/e31216c40aec8e5155de7c4e750e26df90c62404" target="_blank" title="commit by vlicecream(vlicecream@163.com) e31216c40aec8e5155de7c4e750e26df90c62404: Update GASe">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e31216c</a></span>
+                <span>更新于 2026-02-12&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c9b232d96d5d1bbcd3a8d1c42d73382ba7fde194" target="_blank" title="commit by vlicecream(vlicecream@163.com) c9b232d96d5d1bbcd3a8d1c42d73382ba7fde194: Update GAS">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c9b232d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

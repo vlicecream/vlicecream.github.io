@@ -78,11 +78,33 @@
 
 *存储能力系统（GAS）的全局数据。*
 
-*可以通过“开发者设置”（Developer Settings）中的“项目 -> 游戏玩法能力设置”（Game -> Gameplay Abilities Settings）进行配置。*
+*可以通过“项目设置”（Project Settings）中的“游戏玩法能力设置”（Game -> Gameplay Abilities Settings）进行配置。*
 
-## ***GameplayAbility(GA)***
+## ***元数据与逻辑***
 
-### ***UGameplayAbility***
+### ***FGameplayTag / FGameplayTagContainer***
+
+*GAS 的 “神经递质”。*
+
+*GAS 几乎所有的判断（能不能放技能、能不能吃 Buff、触发什么特效）全部依赖 Tag。没有标签，GAS 只是普通的属性库；有了标签，它才真正拥有了“逻辑”。*
+
+### ***UAbilitySystemBlueprintLibrary***
+
+*GAS 的“万能工具箱”。*
+
+*提供了一系列静态函数，让你在蓝图中能轻松地获取 ASC、应用 GE、判断 Tag。它是 C++ 底层与蓝图表现层之间的快速通道。*
+
+## ***GAS调试***
+
+```cmd
+showdebug abilitysystem
+```
+
+*在控制台输入 showdebug abilitysystem。这个命令显示的界面，本质上就是把上面提到的所有 **Spec**、**ActiveGE**、**Tags** 的实时状态可视化给你看。*
+
+## ***能力系统***
+
+### ***UGameplayAbility(GA)***
 
 *能力 (Abilities) 定义了自定义的玩法逻辑，这些逻辑可以由玩家或外部游戏逻辑激活。*
 
@@ -365,20 +387,6 @@
 
 *它不仅仅是一个名字，而是一个结构体，包装了对 UAttributeSet 中特定字段的反射引用。你在代码中指定“修改生命值”时，传的就是这个。*
 
-### ***FAttributeDefaultsWidget***
-
-*属性的“初始化模板”。*
-
-*用于在 DataAsset 中方便地批量配置属性初始值，通常用于 NPC 或不同等级职业的属性初始化。*
-
-## ***元数据与逻辑***
-
-### ***FGameplayTag / FGameplayTagContainer***
-
-*GAS 的“神经递质”。*
-
-*GAS 几乎所有的判断（能不能放技能、能不能吃 Buff、触发什么特效）全部依赖 Tag。没有标签，GAS 只是普通的属性库；有了标签，它才真正拥有了“逻辑”。*
-
 ### ***FGameplayAttributeData***
 
 *属性的“保险箱”。*
@@ -386,20 +394,14 @@
 *这是你在 AttributeSet 中定义的每一个属性的真实数据类型。它不像普通的 float，它内部包含两个核心数值：*
 
 - *BaseValue（基础值）：你的永久属性。*
+
 - *CurrentValue（当前值）：算上所有临时 Buff/Debuff 后的最终数值。*
+
   *理解这两者的区别，是解决“为什么我 Buff 消失后血量回不到上限”等问题的关键。*
 
-### ***UAbilitySystemBlueprintLibrary***
+### ***FAttributeDefaultsWidget***
 
-*GAS 的“万能工具箱”。*
+*属性的“初始化模板”。*
 
-*提供了一系列静态函数，让你在蓝图中能轻松地获取 ASC、应用 GE、判断 Tag。它是 C++ 底层与蓝图表现层之间的快速通道。*
-
-## ***GAS调试***
-
-```cmd
-showdebug gameplayabilitysystem
-```
-
-*在控制台输入 showdebug gameplayabilitysystem。这个命令显示的界面，本质上就是把上面提到的所有 **Spec**、**ActiveGE**、**Tags** 的实时状态可视化给你看。*
+*用于在 DataAsset 中方便地批量配置属性初始值，通常用于 NPC 或不同等级职业的属性初始化。*
 

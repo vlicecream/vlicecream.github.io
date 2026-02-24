@@ -85,4 +85,25 @@
    
 7. *UCommonUIExtensions：UI的BlueprintFunctionLibrary，提供一些给蓝图或者c++使用的接口，比如呼出 UI ， 查看用户当然输入设备是不是手柄*
 
+### ***第二切入点：大厅 Frontend***
+
+1. *大厅 Frontend 地图是 `/Script/Engine.World'/Game/System/FrontEnd/Maps/L_LyraFrontEnd.L_LyraFrontEnd'`，在这张地图的 World Setting中的 Default Gameplay Experience指定的就是大厅的游戏体验资产。*
+
+   *打开此资产，随后会发现有UGameFeatureAction 是AddComponents，这个AddComponent会将LyraGameState中加入 B_LyraFrontendStateComponent。这个组件就包含着进入大厅的逻辑*
+
+2. *ULyraFrontendStateComponent：该类继承了 UGameStateComponent，并且还继承了 ILoadingPRocessInterface 的接口，这说明了该组件有显示进度的功能*
+
+   *`ULyraFrontendStateComponent::OnExperienceLoaded`：该函数会起FControlFlow（记得在项目中启动这个插件），创建了4个流程：*
+
+   1. *`FlowStep_WaitForUserInitialization`： 清除用户的所有房间连接，并且判断用户是否是断线重连，如果是则重置用户状态。*
+   2. *`FlowStep_TryShowPressStartScreen`：判断是否需要添加开始加载UI*
+   3. *`FlowStep_TryJoinRequestedSession`：判断是否是因为好友邀请而进来的，是的话则不需要到主菜单大厅，直接加入游戏即可*
+   4. *`FlowStep_TryShowMainScreen`：显示主菜单*
+
+*就这样主菜单就可以显示出来了，主菜单和开始加载页面都是通过第一切入点写的UPrimaryGameLayout中的方法来直接加入显示的*
+
+### ***第三切入点：ULyraActivatableWidget***
+
+*该类继承于 `UCommonActivatableWidget`，其实就是做了一个InputMode的功能，再打开GameMenu之类的，我们就不用去手动的SetInputMode，在关闭的时候也不用手动的设置，这些就都可以自动的去帮我们做了*
+
 
