@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  11717 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  11731 ,
         "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-25T17:53:24+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11717 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11731 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -169,17 +169,25 @@
     <li><a href="#效果系统"><em><strong>效果系统</strong></em></a>
       <ul>
         <li><a href="#ugameplayeffect"><em><strong>UGameplayEffect</strong></em></a></li>
-        <li><a href="#fattributebasedfloat"><em><strong>FAttributeBasedFloat</strong></em></a></li>
-        <li><a href="#fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></a></li>
-        <li><a href="#fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></a></li>
-        <li><a href="#factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></a></li>
-        <li><a href="#factivegameplayeffecthandle"><em><strong>FActiveGameplayEffectHandle</strong></em></a></li>
-        <li><a href="#fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></a></li>
-        <li><a href="#fgameplayeffectcontexthandle"><em><strong>FGameplayEffectContextHandle</strong></em></a></li>
-        <li><a href="#ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></a></li>
-        <li><a href="#ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></a></li>
-        <li><a href="#ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></a></li>
-        <li><a href="#ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></a></li>
+        <li><a href="#ge-蓝图属性相关"><em><strong>GE 蓝图属性相关</strong></em></a>
+          <ul>
+            <li><a href="#fattributebasedfloat"><em><strong>FAttributeBasedFloat</strong></em></a></li>
+            <li><a href="#ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></a></li>
+            <li><a href="#ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></a></li>
+            <li><a href="#ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></a></li>
+            <li><a href="#ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#ge重要结构体"><em><strong>GE重要结构体</strong></em></a>
+          <ul>
+            <li><a href="#fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></a></li>
+            <li><a href="#fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></a></li>
+            <li><a href="#factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></a></li>
+            <li><a href="#factivegameplayeffecthandle"><em><strong>FActiveGameplayEffectHandle</strong></em></a></li>
+            <li><a href="#fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></a></li>
+            <li><a href="#fgameplayeffectcontexthandle"><em><strong>FGameplayEffectContextHandle</strong></em></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li><a href="#表现层"><em><strong>表现层</strong></em></a>
@@ -868,7 +876,8 @@
 <p><em>你在编辑器里右键创建 Gameplay Effect 蓝图时，你其实只是在利用蓝图的界面来填表（设置数值）。这被称为“模板化”。你只是在给这个资产设置初始值，而不是在给它写程序。</em></p>
 </li>
 </ol>
-<h3 id="fattributebasedfloat"><em><strong>FAttributeBasedFloat</strong></em></h3>
+<h3 id="ge-蓝图属性相关"><em><strong>GE 蓝图属性相关</strong></em></h3>
+<h4 id="fattributebasedfloat"><em><strong>FAttributeBasedFloat</strong></em></h4>
 <p><em>1. BackingAttribute（支撑属性捕获定义）</em>
 <em>数据类型：FGameplayEffectAttributeCaptureDefinition</em>
 <em>介绍：这是整个计算的“传感器”。它决定了我们要去抓取谁的属性。</em>
@@ -910,28 +919,7 @@
 <em>数据类型：FGameplayTagContainer</em>
 <em>介绍：这是给计算过程加的“前置滤网”。</em>
 <em>作用：只有当来源（Source）或目标（Target）拥有这些特定的标签时，这个属性修改才会生效。如果标签不匹配，这一整套公式可能会直接返回 0。</em></p>
-<h3 id="fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></h3>
-<p><em>这个结构体他告诉了我们</em></p>
-<ul>
-<li><em>使用了哪个 UGameplayEffect（引用的是不可变的常量数据资产）。</em></li>
-<li><em>等级是多少（Level）。</em></li>
-<li><em>谁发起的（Instigator）。</em></li>
-</ul>
-<h3 id="fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></h3>
-<p><em>允许蓝图仅生成一次 GameplayEffectSpec，随后通过句柄对其进行引用，从而实现将其多次应用或应用给多个不同的目标。</em></p>
-<h3 id="factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></h3>
-<p><em>正在运行的“效果快照”。</em></p>
-<p><em>存储在 ASC 内部的结构体。它代表了一个正在生效的持续性（Duration）或永久性（Infinite）的 GE。你想知道自己身上有多少层 Buff，看的就是它。</em></p>
-<h3 id="factivegameplayeffecthandle"><em><strong>FActiveGameplayEffectHandle</strong></em></h3>
-<p><em>效果的“遥控器”。</em></p>
-<p><em>一个唯一的 ID。当你应用一个 Buff 后，系统返回这个句柄。你想手动移除某个 Buff（比如驱散效果），必须通过这个句柄来操作。</em></p>
-<h3 id="fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></h3>
-<p><em>这是一个用于存储 “发起者”及相关数据（例如位置和目标）的数据结构。</em></p>
-<p><em>开发者可以派生（子类化）该结构，以添加特定于游戏的自定义信息。</em></p>
-<p><em>由于该结构贯穿于整个效果执行的全过程，因此它是追踪单次执行过程中“瞬态信息（Transient Information）”的绝佳位置。</em></p>
-<h3 id="fgameplayeffectcontexthandle"><em><strong>FGameplayEffectContextHandle</strong></em></h3>
-<p><em>包装 FGameplayEffectContext 或子类的句柄，以允许其具有多态性并正确复制</em></p>
-<h3 id="ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></h3>
+<h4 id="ugameplaymodmagnitudecalculation"><em><strong>UGameplayModMagnitudeCalculation</strong></em></h4>
 <p><em>该类用于通过蓝图或原生代码（C++）执行自定义的玩法效果（Gameplay Effect）修饰符计算。</em></p>
 <p><em>MMC 的核心定位是：为 Gameplay Effect (GE) 里的某一个属性修改提供动态数值。</em></p>
 <ul>
@@ -945,7 +933,7 @@
 </li>
 <li><em>逻辑简单：它只能返回一个 float，不能直接修改标签（Tags）或执行复杂的逻辑分支。</em></li>
 </ul>
-<h3 id="ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></h3>
+<h4 id="ugameplayeffectexecutioncalculation"><em><strong>UGameplayEffectExecutionCalculation</strong></em></h4>
 <p><em>重型计算器。用于处理最复杂的伤害公式（涉及多属性对比，如：攻击者的破甲 vs 目标的护甲）。</em></p>
 <p><em>ExecCalc 的核心定位是：处理涉及多个属性交互、复杂逻辑的最终结算。</em></p>
 <ul>
@@ -968,11 +956,33 @@
 </li>
 <li><em>不需要/不建议预测：ExecCalc 通常只在服务器运行。因为伤害结算涉及跨对象的数据交换，客户端预测极易产生“血条回跳”现象。</em></li>
 </ul>
-<h3 id="ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></h3>
+<h4 id="ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></h4>
 <p><em>它是存储在 FGameplayEffectContext 中的自定义动态数据载体。</em></p>
 <p><em>你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 <code>float HeadshotMultiplier</code>。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。</em></p>
-<h3 id="ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></h3>
+<h4 id="ugameplayeffectcomponent"><em><strong>UGameplayEffectComponent</strong></em></h4>
 <p><em>UE5.3 引入的模块化设计。将以前杂乱的 GE 设置（如持续时间、几率等）解耦成组件，提高性能。</em></p>
+<h3 id="ge重要结构体"><em><strong>GE重要结构体</strong></em></h3>
+<h4 id="fgameplayeffectspec"><em><strong>FGameplayEffectSpec</strong></em></h4>
+<p><em>这个结构体他告诉了我们</em></p>
+<ul>
+<li><em>使用了哪个 UGameplayEffect（引用的是不可变的常量数据资产）。</em></li>
+<li><em>等级是多少（Level）。</em></li>
+<li><em>谁发起的（Instigator）。</em></li>
+</ul>
+<h4 id="fgameplayeffectspechandle"><em><strong>FGameplayEffectSpecHandle</strong></em></h4>
+<p><em>允许蓝图仅生成一次 GameplayEffectSpec，随后通过句柄对其进行引用，从而实现将其多次应用或应用给多个不同的目标。</em></p>
+<h4 id="factivegameplayeffect"><em><strong>FActiveGameplayEffect</strong></em></h4>
+<p><em>正在运行的“效果快照”。</em></p>
+<p><em>存储在 ASC 内部的结构体。它代表了一个正在生效的持续性（Duration）或永久性（Infinite）的 GE。你想知道自己身上有多少层 Buff，看的就是它。</em></p>
+<h4 id="factivegameplayeffecthandle"><em><strong>FActiveGameplayEffectHandle</strong></em></h4>
+<p><em>效果的“遥控器”。</em></p>
+<p><em>一个唯一的 ID。当你应用一个 Buff 后，系统返回这个句柄。你想手动移除某个 Buff（比如驱散效果），必须通过这个句柄来操作。</em></p>
+<h4 id="fgameplayeffectcontext"><em><strong>FGameplayEffectContext</strong></em></h4>
+<p><em>这是一个用于存储 “发起者”及相关数据（例如位置和目标）的数据结构。</em></p>
+<p><em>开发者可以派生（子类化）该结构，以添加特定于游戏的自定义信息。</em></p>
+<p><em>由于该结构贯穿于整个效果执行的全过程，因此它是追踪单次执行过程中“瞬态信息（Transient Information）”的绝佳位置。</em></p>
+<h4 id="fgameplayeffectcontexthandle"><em><strong>FGameplayEffectContextHandle</strong></em></h4>
+<p><em>包装 FGameplayEffectContext 或子类的句柄，以允许其具有多态性并正确复制</em></p>
 <h2 id="表现层"><em><strong>表现层</strong></em></h2>
 <h3 id="ugameplaycue"><em><strong>UGameplayCue</strong></em></h3>
 <p><em>处理非数值的表现（特效、音效、震动）。</em></p>

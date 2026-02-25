@@ -492,7 +492,9 @@ showdebug abilitysystem
 
    *你在编辑器里右键创建 Gameplay Effect 蓝图时，你其实只是在利用蓝图的界面来填表（设置数值）。这被称为“模板化”。你只是在给这个资产设置初始值，而不是在给它写程序。*
 
-### ***FAttributeBasedFloat***
+### ***GE 蓝图属性相关***
+
+#### ***FAttributeBasedFloat***
 
 *1. BackingAttribute（支撑属性捕获定义）*
 *数据类型：FGameplayEffectAttributeCaptureDefinition*
@@ -540,43 +542,7 @@ showdebug abilitysystem
 *介绍：这是给计算过程加的“前置滤网”。*
 *作用：只有当来源（Source）或目标（Target）拥有这些特定的标签时，这个属性修改才会生效。如果标签不匹配，这一整套公式可能会直接返回 0。*
 
-### ***FGameplayEffectSpec***
-
-*这个结构体他告诉了我们*
-
-- *使用了哪个 UGameplayEffect（引用的是不可变的常量数据资产）。*
-- *等级是多少（Level）。*
-- *谁发起的（Instigator）。*
-
-### ***FGameplayEffectSpecHandle***
-
-*允许蓝图仅生成一次 GameplayEffectSpec，随后通过句柄对其进行引用，从而实现将其多次应用或应用给多个不同的目标。*
-
-### ***FActiveGameplayEffect***
-
-*正在运行的“效果快照”。*
-
-*存储在 ASC 内部的结构体。它代表了一个正在生效的持续性（Duration）或永久性（Infinite）的 GE。你想知道自己身上有多少层 Buff，看的就是它。*
-
-### ***FActiveGameplayEffectHandle***
-
-*效果的“遥控器”。*
-
-*一个唯一的 ID。当你应用一个 Buff 后，系统返回这个句柄。你想手动移除某个 Buff（比如驱散效果），必须通过这个句柄来操作。*
-
-### ***FGameplayEffectContext***
-
-*这是一个用于存储 “发起者”及相关数据（例如位置和目标）的数据结构。*
-
-*开发者可以派生（子类化）该结构，以添加特定于游戏的自定义信息。*
-
-*由于该结构贯穿于整个效果执行的全过程，因此它是追踪单次执行过程中“瞬态信息（Transient Information）”的绝佳位置。*
-
-### ***FGameplayEffectContextHandle***
-
-*包装 FGameplayEffectContext 或子类的句柄，以允许其具有多态性并正确复制*
-
-### ***UGameplayModMagnitudeCalculation***
+#### ***UGameplayModMagnitudeCalculation***
 
 *该类用于通过蓝图或原生代码（C++）执行自定义的玩法效果（Gameplay Effect）修饰符计算。*
 
@@ -589,7 +555,7 @@ showdebug abilitysystem
   - 技能消耗 = 基础消耗 * (1 - 冷却缩减属性)
 - *逻辑简单：它只能返回一个 float，不能直接修改标签（Tags）或执行复杂的逻辑分支。*
 
-### ***UGameplayEffectExecutionCalculation***
+#### ***UGameplayEffectExecutionCalculation***
 
 *重型计算器。用于处理最复杂的伤害公式（涉及多属性对比，如：攻击者的破甲 vs 目标的护甲）。*
 
@@ -605,15 +571,53 @@ showdebug abilitysystem
   - *“如果目标有‘护盾’标签，则伤害先扣除护盾”。*
 - *不需要/不建议预测：ExecCalc 通常只在服务器运行。因为伤害结算涉及跨对象的数据交换，客户端预测极易产生“血条回跳”现象。*
 
-### ***UGameplayEffectContextPayloadBase***
+#### ***UGameplayEffectContextPayloadBase***
 
 *它是存储在 FGameplayEffectContext 中的自定义动态数据载体。*
 
 *你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 `float HeadshotMultiplier`。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。*
 
-### ***UGameplayEffectComponent***
+#### ***UGameplayEffectComponent***
 
 *UE5.3 引入的模块化设计。将以前杂乱的 GE 设置（如持续时间、几率等）解耦成组件，提高性能。*
+
+### ***GE重要结构体***
+
+#### ***FGameplayEffectSpec***
+
+*这个结构体他告诉了我们*
+
+- *使用了哪个 UGameplayEffect（引用的是不可变的常量数据资产）。*
+- *等级是多少（Level）。*
+- *谁发起的（Instigator）。*
+
+#### ***FGameplayEffectSpecHandle***
+
+*允许蓝图仅生成一次 GameplayEffectSpec，随后通过句柄对其进行引用，从而实现将其多次应用或应用给多个不同的目标。*
+
+#### ***FActiveGameplayEffect***
+
+*正在运行的“效果快照”。*
+
+*存储在 ASC 内部的结构体。它代表了一个正在生效的持续性（Duration）或永久性（Infinite）的 GE。你想知道自己身上有多少层 Buff，看的就是它。*
+
+#### ***FActiveGameplayEffectHandle***
+
+*效果的“遥控器”。*
+
+*一个唯一的 ID。当你应用一个 Buff 后，系统返回这个句柄。你想手动移除某个 Buff（比如驱散效果），必须通过这个句柄来操作。*
+
+#### ***FGameplayEffectContext***
+
+*这是一个用于存储 “发起者”及相关数据（例如位置和目标）的数据结构。*
+
+*开发者可以派生（子类化）该结构，以添加特定于游戏的自定义信息。*
+
+*由于该结构贯穿于整个效果执行的全过程，因此它是追踪单次执行过程中“瞬态信息（Transient Information）”的绝佳位置。*
+
+#### ***FGameplayEffectContextHandle***
+
+*包装 FGameplayEffectContext 或子类的句柄，以允许其具有多态性并正确复制*
 
 ## ***表现层***
 
