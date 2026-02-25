@@ -87,7 +87,7 @@ showdebug abilitysystem
    virtual void InitAbilityActorInfo(AActor* InOwnerActor, AActor* InAvatarActor);
    ```
 
-   - *翻译：设置该 ASC 的“主人”（Owner）和“化身”（Avatar）。*
+   - *作用：设置该 ASC 的“主人”（Owner）和“化身”（Avatar）。*
    - *入参：*
      - *OwnerActor：逻辑上的所有者（通常是 PlayerState 或 Pawn）。*
      - *AvatarActor：表现上的物理实体（通常是 Character）。*
@@ -103,7 +103,7 @@ showdebug abilitysystem
    FGameplayAbilitySpecHandle GiveAbility(const FGameplayAbilitySpec& AbilitySpec);
    ```
 
-   *让角色拥有一项技能*
+   * *作用：让角色拥有一项技能*
 
 3. ```cpp
    UFUNCTION(BlueprintCallable, Category = "Abilities")
@@ -121,7 +121,7 @@ showdebug abilitysystem
    virtual FGameplayEffectContextHandle MakeEffectContext() const;
    ```
 
-   - *翻译：创建效果上下文句柄。*
+   - *作用：创建效果上下文句柄。*
    - *核心逻辑：这个函数用于生成一个空的、但已经初始化了基础信息的容器。它会自动把当前的 OwnerActor（所有者，如 PlayerState）和 AvatarActor（表现肉体，如 Character）填进去。这个上下文（Context）就像是一张空白的身份证，记录了这一发效果到底是谁发出来的。*
    - *开发提示：这是一个虚函数，你可以重写它来携带更多自定义数据。比如在射击游戏中，你可以在重写的 Context 里加入是否爆头、子弹飞行距离等信息。这个生成的句柄随后会被传入 MakeOutgoingSpec，确保这些背景数据能一路跟随 GE 传递到目标的伤害计算（ExecCalc）逻辑中，让目标知道自己是被谁、从哪、用什么方式打中的。*
 
@@ -129,7 +129,7 @@ showdebug abilitysystem
    virtual FGameplayEffectSpecHandle MakeOutgoingSpec(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level, FGameplayEffectContextHandle Context) const;
    ```
 
-   - *翻译：创建一个待发送的 GE 规范句柄。*
+   - *作用：创建一个待发送的 GE 规范句柄。*
    - *入参：*
      - *GameplayEffectClass：你想使用的 GE 类。*
      - *Level：等级。*
@@ -142,7 +142,7 @@ showdebug abilitysystem
    virtual FActiveGameplayEffectHandle ApplyGameplayEffectSpecToSelf(const FGameplayEffectSpec& GameplayEffect, FPredictionKey PredictionKey = FPredictionKey());
    ```
 
-   - *翻译：应用已经配置好的 GE 规范（Spec）至目标或自身。*
+   - *作用：应用已经配置好的 GE 规范（Spec）至目标或自身。*
    - *入参：*
      - *Spec：这是一个已经填好了所有数据的“全家桶”对象（可以通过 FGameplayEffectSpecHandle 获取）。它里面已经包含了等级、上下文、甚至你手动设置的动态数值（SetByCaller）。*
      - *Target：仅在 ToTarget 中使用，指定效果的接收方。*
@@ -155,7 +155,7 @@ showdebug abilitysystem
    FActiveGameplayEffectHandle ApplyGameplayEffectToSelf(const UGameplayEffect *GameplayEffect, float Level, const FGameplayEffectContextHandle& EffectContext, FPredictionKey PredictionKey = FPredictionKey());
    ```
 
-   - *翻译：将状态效果（GE）应用至目标或自身。*
+   - *作用：将状态效果（GE）应用至目标或自身。*
    - *入参（综合介绍）：*
      - *GameplayEffect：想要施加的 GE 类（UClass）。它决定了效果的类型，比如是回血、扣血还是增加防御。*
      - *Target：仅在 ToTarget 中使用。指定谁来接收这个效果。如果是 ToSelf，则默认接收者就是调用者自己。*
@@ -168,7 +168,7 @@ showdebug abilitysystem
    float GetNumericAttribute(const FGameplayAttribute& Attribute) const;
    ```
 
-   - *翻译：获取属性的当前最终数值。*
+   - *作用：获取属性的当前最终数值。*
    - *入参：*
      - *Attribute：目标属性，通常通过 AttributeSet 的宏获取。*
    - *核心逻辑：它返回的是经过所有 Buff 修正后的最终数字。比如基础血量 100，身上有加 20 血的 Buff，这里就会返回 120。*
@@ -177,7 +177,7 @@ showdebug abilitysystem
    virtual int32 HandleGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);
    ```
 
-   - *翻译：发送/触发一个游戏事件。*
+   - *作用：发送/触发一个游戏事件。*
    - *入参：*
      - *EventTag：触发事件的标签，比如 Event.OnHit。*
      - *Payload：携带的数据包，包含受击者、攻击者、位置等丰富信息。*
@@ -187,7 +187,7 @@ showdebug abilitysystem
     FOnGameplayAttributeValueChange& GetGameplayAttributeValueChangeDelegate(FGameplayAttribute Attribute);
     ```
 
-    - *翻译：获取属性值变化的监听委托。*
+    - *作用：获取属性值变化的监听委托。*
     - *入参：*
       - *Attribute：想要监听的属性。*
     - *核心逻辑：这是做 UI 界面联动最核心的接口。当血量或能量变化时，它会自动广播，让你的 UI 及时更新。*
@@ -199,7 +199,7 @@ showdebug abilitysystem
     void CancelAllAbilities(UGameplayAbility* Ignore=nullptr);
     ```
 
-    - *翻译：根据标签强行取消/打断技能。*
+    - *作用：根据标签强行取消/打断技能。*
     - *入参：*
       - *WithTags：匹配这些标签的技能将被关闭。*
       - *WithoutTags：不包含这些标签的技能才会被关闭。*
@@ -321,10 +321,6 @@ showdebug abilitysystem
 
 * *Cooldown Gameplay Effect Class 指定一个 Gameplay Effect 类 用于通过标签和持续时间定义技能的冷却逻辑*
 
-### ***UAbilityTask***
-
-*异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）*
-
 ### ***重要接口***
 
 1. ```cpp
@@ -338,7 +334,7 @@ showdebug abilitysystem
 
    *在 CanActivateAbility 的逻辑中就会调用 K2_CanActivateAbility，K2_CanActivateAbility就是在蓝图里面专门写的函数*
 
-   - *翻译：判断技能当前能否激活。*
+   - *作用：判断技能当前能否激活。*
    - *入参：*
      - *SourceTags/TargetTags：来源方和目标方的标签容器。*
    - *核心逻辑：系统在调用 TryActivateAbility 时会先运行这个函数。它会检查技能配置里的各种标签要求（比如：处于晕眩状态不能放技能）。你也可以重写它来增加自定义的限制条件。*
@@ -347,20 +343,17 @@ showdebug abilitysystem
    virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData);
    ```
 
-   - *翻译：激活技能。*
+   - *作用：激活技能后的逻辑*
    - *入参：*
-     - *Handle：技能的唯一识别句柄。*
-     - *ActorInfo：技能持有者的环境信息（如谁释放的技能）。*
-     - *ActivationInfo：有关此次激活的网络同步信息。*
      - *TriggerEventData：如果是通过事件触发的技能，这里包含了触发时的详细数据。*
    - *核心逻辑：这是技能逻辑的总入口。所有的播放动画、产生特效、发射子弹等逻辑都从这里开始编写。*
    - *老司机提醒：此为技能逻辑，如果想释放一个技能，还得调用 `TryActivateAbility`*
-
+   
 3. ```cpp
    virtual bool CommitAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr);
    ```
 
-   - *翻译：提交技能。*
+   - *作用：提交技能。*
    - *入参：*
      - *与激活函数的入参基本一致。*
      - *OptionalRelevantTags：如果提交失败，可以用来返回失败的具体原因标签。*
@@ -370,7 +363,7 @@ showdebug abilitysystem
    virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled);
    ```
 
-   - *翻译：结束技能。*
+   - *作用：结束技能后的逻辑*
    - *入参：*
      - *bReplicateEndAbility：是否需要将结束信号同步给其他端。*
      - *bWasCancelled：技能是正常播放完结束的，还是被外部逻辑强行打断的。*
@@ -380,14 +373,14 @@ showdebug abilitysystem
    FGameplayAbilityActorInfo GetActorInfo() const;
    ```
 
-   - *翻译：获取技能相关的 Actor 信息。*
+   - *作用：获取技能相关的 Actor 信息。*
    - *核心逻辑：在技能内部使用。通过它可以直接获取到 AvatarActor（当前的肉体小人）、OwnerActor（逻辑上的所有者）以及 ASC 组件。这是技能内部寻找“我是谁”的最快方式。*
 
 6. ```cpp
    void SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload);
    ```
 
-   - *翻译：发送游戏事件。*
+   - *作用：发送游戏事件。*
    - *入参：*
      - *EventTag：标识事件的标签。*
      - *Payload：携带的各种数据包。*
@@ -397,7 +390,7 @@ showdebug abilitysystem
    virtual void CancelAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateCancelAbility);
    ```
 
-   - *翻译：取消/打断当前技能。*
+   - *作用：取消/打断当前技能后的逻辑*
    - *入参：*
      - *bReplicateCancelAbility：是否需要将取消信号同步到其他端。*
    - *核心逻辑：这是技能响应“被强行中止”时的处理函数。它的内部实现通常会自动调用 EndAbility，并显式地将 bWasCancelled 参数设为 true。*
@@ -418,29 +411,6 @@ showdebug abilitysystem
 - ***定义**：一个全局唯一的整数标识符，指向 ASC 中的 FGameplayAbilitySpec。*
 - ***作用**：在 C++ 中，你**不应该**保存 UGameplayAbility 的指针，而是应该保存这个 Handle。*
 - ***应用场景**：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统只认这个 ID。*
-
-#### ***FGameplayAbilityTargetData***
-
-*这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。*
-
-*该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。*
-
-*生成者（Producers）示例：*
-
-- ***碰撞事件**：重叠（Overlap）或命中（Hit）碰撞事件生成关于近战攻击中“谁被击中”的目标数据。*
-- ***准星射线检测**：鼠标输入触发射线检测（Hit Trace），将准星前方的 Actor 转换为目标数据。*
-- ***视角信息**：鼠标输入导致目标数据直接从所有者的准星视角源点或方向生成。*
-- ***AOE/光环**：范围伤害或光环发生脉冲，将施法者周围半径内的所有 Actor 添加到目标数据中。*
-- ***“涂抹”锁定模式**：类似于《铁甲飞龙》（Panzer Dragoon）风格的滑动涂抹锁定模式。*
-- ***MMORPG 地面 AOE**：典型的地面范围技能瞄准方式（可能同时包含一个地面坐标位置和在该区域内的 Actor 列表）。*
-
-*消费者（Consumers）示例：*
-
-- ***应用效果**：向目标数据中的所有 Actor 应用一个 GameplayEffect。*
-- ***寻找最近目标**：从目标数据包含的所有对象中找到距离最近的 Actor。*
-- ***逻辑调用**：对目标数据中的所有 Actor 调用某个特定的函数。*
-- ***数据操作**：过滤（Filter）或合并（Merge）多个目标数据。*
-- ***生成对象**：在目标数据指定的位置生成（Spawn）一个新的 Actor。*
 
 #### ***FGameplayAbilityTargetDataHandle***
 
@@ -468,7 +438,17 @@ showdebug abilitysystem
 
 *记录了技能相关的 Owner、Avatar（化身）、SkeletalMesh、甚至 MovementComponent。它能让技能内部快速获取这些组件，避免频繁调用 GetComponent 造成的性能损耗。*
 
+#### ***FGameplayAbilityTargetData***
+
+*这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。*
+
+*该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。*
+
 ### ***一些其他的杂项***
+
+### ***UAbilityTask***
+
+*异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）*
 
 #### ***AGameplayAbilityTargetActor***
 

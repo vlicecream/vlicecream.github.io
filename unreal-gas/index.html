@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  12232 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  11717 ,
         "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-25T17:53:24+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 12232 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 25 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11717 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -146,19 +146,19 @@
       <ul>
         <li><a href="#ugameplayabilityga"><em><strong>UGameplayAbility(GA)</strong></em></a></li>
         <li><a href="#ga蓝图属性"><em><strong>GA蓝图属性</strong></em></a></li>
-        <li><a href="#uabilitytask"><em><strong>UAbilityTask</strong></em></a></li>
         <li><a href="#重要接口"><em><strong>重要接口</strong></em></a></li>
         <li><a href="#重要接口里面的参数"><em><strong>重要接口里面的参数</strong></em></a>
           <ul>
             <li><a href="#fgameplayabilityspec"><em><strong>FGameplayAbilitySpec</strong></em></a></li>
             <li><a href="#fgameplayabilityspechandle"><em><strong>FGameplayAbilitySpecHandle</strong></em></a></li>
-            <li><a href="#fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></a></li>
             <li><a href="#fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></a></li>
             <li><a href="#fgameplayabilityactivationinfo"><em><strong>FGameplayAbilityActivationInfo</strong></em></a></li>
             <li><a href="#fgameplayabilityactorinfo"><em><strong>FGameplayAbilityActorInfo</strong></em></a></li>
+            <li><a href="#fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></a></li>
           </ul>
         </li>
-        <li><a href="#一些其他的杂项"><em><strong>一些其他的杂项</strong></em></a>
+        <li><a href="#一些其他的杂项"><em><strong>一些其他的杂项</strong></em></a></li>
+        <li><a href="#uabilitytask"><em><strong>UAbilityTask</strong></em></a>
           <ul>
             <li><a href="#agameplayabilitytargetactor"><em><strong>AGameplayAbilityTargetActor</strong></em></a></li>
             <li><a href="#ugameplayabilityworldreticle"><em><strong>UGameplayAbilityWorldReticle</strong></em></a></li>
@@ -258,7 +258,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：设置该 ASC 的“主人”（Owner）和“化身”（Avatar）。</em></li>
+<li><em>作用：设置该 ASC 的“主人”（Owner）和“化身”（Avatar）。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>OwnerActor：逻辑上的所有者（通常是 PlayerState 或 Pawn）。</em></li>
@@ -289,7 +289,9 @@
 </span></span><span class="line"><span class="cl"><span class="n">FGameplayAbilitySpecHandle</span> <span class="nf">GiveAbility</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span> <span class="n">AbilitySpec</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>让角色拥有一项技能</em></p>
+</div><ul>
+<li><em>作用：让角色拥有一项技能</em></li>
+</ul>
 </li>
 <li>
 <div class="highlight"><div class="chroma">
@@ -319,7 +321,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：创建效果上下文句柄。</em></li>
+<li><em>作用：创建效果上下文句柄。</em></li>
 <li><em>核心逻辑：这个函数用于生成一个空的、但已经初始化了基础信息的容器。它会自动把当前的 OwnerActor（所有者，如 PlayerState）和 AvatarActor（表现肉体，如 Character）填进去。这个上下文（Context）就像是一张空白的身份证，记录了这一发效果到底是谁发出来的。</em></li>
 <li><em>开发提示：这是一个虚函数，你可以重写它来携带更多自定义数据。比如在射击游戏中，你可以在重写的 Context 里加入是否爆头、子弹飞行距离等信息。这个生成的句柄随后会被传入 MakeOutgoingSpec，确保这些背景数据能一路跟随 GE 传递到目标的伤害计算（ExecCalc）逻辑中，让目标知道自己是被谁、从哪、用什么方式打中的。</em></li>
 </ul>
@@ -334,7 +336,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：创建一个待发送的 GE 规范句柄。</em></li>
+<li><em>作用：创建一个待发送的 GE 规范句柄。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>GameplayEffectClass：你想使用的 GE 类。</em></li>
@@ -359,7 +361,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：应用已经配置好的 GE 规范（Spec）至目标或自身。</em></li>
+<li><em>作用：应用已经配置好的 GE 规范（Spec）至目标或自身。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>Spec：这是一个已经填好了所有数据的“全家桶”对象（可以通过 FGameplayEffectSpecHandle 获取）。它里面已经包含了等级、上下文、甚至你手动设置的动态数值（SetByCaller）。</em></li>
@@ -384,7 +386,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：将状态效果（GE）应用至目标或自身。</em></li>
+<li><em>作用：将状态效果（GE）应用至目标或自身。</em></li>
 <li><em>入参（综合介绍）：</em>
 <ul>
 <li><em>GameplayEffect：想要施加的 GE 类（UClass）。它决定了效果的类型，比如是回血、扣血还是增加防御。</em></li>
@@ -407,7 +409,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：获取属性的当前最终数值。</em></li>
+<li><em>作用：获取属性的当前最终数值。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>Attribute：目标属性，通常通过 AttributeSet 的宏获取。</em></li>
@@ -426,7 +428,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：发送/触发一个游戏事件。</em></li>
+<li><em>作用：发送/触发一个游戏事件。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>EventTag：触发事件的标签，比如 Event.OnHit。</em></li>
@@ -446,7 +448,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：获取属性值变化的监听委托。</em></li>
+<li><em>作用：获取属性值变化的监听委托。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>Attribute：想要监听的属性。</em></li>
@@ -471,7 +473,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：根据标签强行取消/打断技能。</em></li>
+<li><em>作用：根据标签强行取消/打断技能。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>WithTags：匹配这些标签的技能将被关闭。</em></li>
@@ -642,8 +644,6 @@
 <ul>
 <li><em>Cooldown Gameplay Effect Class 指定一个 Gameplay Effect 类 用于通过标签和持续时间定义技能的冷却逻辑</em></li>
 </ul>
-<h3 id="uabilitytask"><em><strong>UAbilityTask</strong></em></h3>
-<p><em>异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）</em></p>
 <h3 id="重要接口"><em><strong>重要接口</strong></em></h3>
 <ol>
 <li>
@@ -664,7 +664,7 @@
 </div><p><em>K2_CanActivateAbility：K2_ 是 Kismet 2 的缩写（虚幻蓝图系统的代号）。带有 K2_ 前缀的函数通常是 C++ 内部使用的“蓝图版本”。</em></p>
 <p><em>在 CanActivateAbility 的逻辑中就会调用 K2_CanActivateAbility，K2_CanActivateAbility就是在蓝图里面专门写的函数</em></p>
 <ul>
-<li><em>翻译：判断技能当前能否激活。</em></li>
+<li><em>作用：判断技能当前能否激活。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>SourceTags/TargetTags：来源方和目标方的标签容器。</em></li>
@@ -683,12 +683,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：激活技能。</em></li>
+<li><em>作用：激活技能后的逻辑</em></li>
 <li><em>入参：</em>
 <ul>
-<li><em>Handle：技能的唯一识别句柄。</em></li>
-<li><em>ActorInfo：技能持有者的环境信息（如谁释放的技能）。</em></li>
-<li><em>ActivationInfo：有关此次激活的网络同步信息。</em></li>
 <li><em>TriggerEventData：如果是通过事件触发的技能，这里包含了触发时的详细数据。</em></li>
 </ul>
 </li>
@@ -706,7 +703,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：提交技能。</em></li>
+<li><em>作用：提交技能。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>与激活函数的入参基本一致。</em></li>
@@ -726,7 +723,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：结束技能。</em></li>
+<li><em>作用：结束技能后的逻辑</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>bReplicateEndAbility：是否需要将结束信号同步给其他端。</em></li>
@@ -746,7 +743,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：获取技能相关的 Actor 信息。</em></li>
+<li><em>作用：获取技能相关的 Actor 信息。</em></li>
 <li><em>核心逻辑：在技能内部使用。通过它可以直接获取到 AvatarActor（当前的肉体小人）、OwnerActor（逻辑上的所有者）以及 ASC 组件。这是技能内部寻找“我是谁”的最快方式。</em></li>
 </ul>
 </li>
@@ -760,7 +757,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：发送游戏事件。</em></li>
+<li><em>作用：发送游戏事件。</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>EventTag：标识事件的标签。</em></li>
@@ -780,7 +777,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><em>翻译：取消/打断当前技能。</em></li>
+<li><em>作用：取消/打断当前技能后的逻辑</em></li>
 <li><em>入参：</em>
 <ul>
 <li><em>bReplicateCancelAbility：是否需要将取消信号同步到其他端。</em></li>
@@ -801,26 +798,6 @@
 <li><em><strong>定义</strong>：一个全局唯一的整数标识符，指向 ASC 中的 FGameplayAbilitySpec。</em></li>
 <li><em><strong>作用</strong>：在 C++ 中，你</em><em>不应该</em>*保存 UGameplayAbility 的指针，而是应该保存这个 Handle。*</li>
 <li><em><strong>应用场景</strong>：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统只认这个 ID。</em></li>
-</ul>
-<h4 id="fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></h4>
-<p><em>这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。</em></p>
-<p><em>该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。</em></p>
-<p><em>生成者（Producers）示例：</em></p>
-<ul>
-<li><em><strong>碰撞事件</strong>：重叠（Overlap）或命中（Hit）碰撞事件生成关于近战攻击中“谁被击中”的目标数据。</em></li>
-<li><em><strong>准星射线检测</strong>：鼠标输入触发射线检测（Hit Trace），将准星前方的 Actor 转换为目标数据。</em></li>
-<li><em><strong>视角信息</strong>：鼠标输入导致目标数据直接从所有者的准星视角源点或方向生成。</em></li>
-<li><em><strong>AOE/光环</strong>：范围伤害或光环发生脉冲，将施法者周围半径内的所有 Actor 添加到目标数据中。</em></li>
-<li><em><strong>“涂抹”锁定模式</strong>：类似于《铁甲飞龙》（Panzer Dragoon）风格的滑动涂抹锁定模式。</em></li>
-<li><em><strong>MMORPG 地面 AOE</strong>：典型的地面范围技能瞄准方式（可能同时包含一个地面坐标位置和在该区域内的 Actor 列表）。</em></li>
-</ul>
-<p><em>消费者（Consumers）示例：</em></p>
-<ul>
-<li><em><strong>应用效果</strong>：向目标数据中的所有 Actor 应用一个 GameplayEffect。</em></li>
-<li><em><strong>寻找最近目标</strong>：从目标数据包含的所有对象中找到距离最近的 Actor。</em></li>
-<li><em><strong>逻辑调用</strong>：对目标数据中的所有 Actor 调用某个特定的函数。</em></li>
-<li><em><strong>数据操作</strong>：过滤（Filter）或合并（Merge）多个目标数据。</em></li>
-<li><em><strong>生成对象</strong>：在目标数据指定的位置生成（Spawn）一个新的 Actor。</em></li>
 </ul>
 <h4 id="fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></h4>
 <p><em>用来包装 FGameplayAbilityTargetData 的句柄</em></p>
@@ -845,7 +822,12 @@
 <h4 id="fgameplayabilityactorinfo"><em><strong>FGameplayAbilityActorInfo</strong></em></h4>
 <p><em>技能的“环境快照”。</em></p>
 <p><em>记录了技能相关的 Owner、Avatar（化身）、SkeletalMesh、甚至 MovementComponent。它能让技能内部快速获取这些组件，避免频繁调用 GetComponent 造成的性能损耗。</em></p>
+<h4 id="fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></h4>
+<p><em>这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。</em></p>
+<p><em>该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。</em></p>
 <h3 id="一些其他的杂项"><em><strong>一些其他的杂项</strong></em></h3>
+<h3 id="uabilitytask"><em><strong>UAbilityTask</strong></em></h3>
+<p><em>异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）</em></p>
 <h4 id="agameplayabilitytargetactor"><em><strong>AGameplayAbilityTargetActor</strong></em></h4>
 <p><em>3D 世界的“选择器”。</em></p>
 <p><em>用于在场景中生成视觉辅助（如圆形范围、直线射线）。它负责捕捉玩家选中的目标，并将其打包成 TargetData 发送给服务器。</em></p>
