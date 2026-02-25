@@ -39,37 +39,6 @@
 
 *你可以把 GAS 想象成一个自动化的流程：一般来说玩家按下按键触发“能力(GA)”，能力检查“标签(Tags)”确认状态，通过“任务(Tasks)”执行异步过程，产生“效果(GE)”去修改“属性集(Attribute Set)”中的数值，最后触发“提示(GC)”播放华丽的特效。*
 
-## ***AbilitySystemComponent***
-
-*GAS 的心脏。用于与玩法能力系统 (GameplayAbilities System) 对接的核心 Actor 组件。*
-
-*更加通俗的理解就是：它是连接你的角色（Actor）与技能系统（GAS）的桥梁/核心入口*
-
-*它负责所有 Gameplay Ability 的赋予与激活，管理 Attribute 的聚合修改，处理 Gameplay Effect 的生命周期，并作为 Gameplay Tags 的宿主来驱动状态逻辑，同时在底层处理所有相关数据的网络同步与动作预测。*
-
-### ***FPredictionKey***
-
-***FPredictionKey** 是 GameplayAbility 系统中支持“客户端预测”的一种通用方式。它本质上是一个 **ID**，用于标识客户端所执行的预测动作及其产生的“副作用”（Side Effects）。UAbilitySystemComponent（ASC）负责在客户端和服务器之间同步这个预测键及其关联的副作用。*
-
-*本质上，任何行为都可以与一个预测键关联，例如“激活技能”。*
-
-1. ***流程开始**：客户端生成一个全新的预测键，并在调用 ServerTryActivateAbility 时将其发送给服务器。*
-2. ***服务器响应**：服务器会确认或拒绝该请求（触发 ClientActivateAbilitySucceed 或 Failed）。*
-3. ***本地预测阶段**：在客户端预测技能运行期间，它会产生各种**副作用**（如应用 GameplayEffects、触发事件、播放动画等）。每产生一个副作用，客户端都会将其与启动时生成的那个预测键关联起来。*
-4. ***结果处理**：*
-   - ***如果激活被拒绝**：客户端可以立即回滚（撤销）这些关联的副作用*。
-   - ***如果激活被接受**：客户端必须等待服务器同步真实的副作用数据。*
-     - *（ClientActivatbleAbilitySucceed 远程调用会立即发送，但属性同步可能晚几帧到达）。*
-     - *一旦服务器版本的副作用同步完成，客户端就会撤销本地预测的临时副作用（并以服务器同步过来的权威数据为准）。*
-
-*一般并不会将伤害数值客户端会预测，只会预测技能特效这些表现效果*
-
-***FPredictionKey 本身主要提供以下功能：***
-
-- ***唯一 ID 系统**：支持“当前”和“基础”整数构成的依赖链系统。*
-- ***特殊的网络序列化（NetSerialize）实现**：**该预测键只会序列化给发起预测的那个客户端**。*
-  - *这一点至关重要：它允许我们将预测键存在同步状态中，但只有给服务器发送过该键的客户端才能真正看到它（其他客户端不会收到多余的预测数据）。*
-
 ## ***IAbilitySystemInterface***
 
 *一个契约。确保引擎和 GAS 内部（如 GameplayCue）无论在哪个 Actor 身上，都能通过一个统一的接口 GetAbilitySystemComponent() 找到它的心脏。*
@@ -79,6 +48,8 @@
 *存储能力系统（GAS）的全局数据。*
 
 *可以通过“项目设置”（Project Settings）中的“游戏玩法能力设置”（Game -> Gameplay Abilities Settings）进行配置。*
+
+*（注意，如果Unreal版本低于5.5，则 ProjectSetting 找不到，只能去 DefaultGame.ini 里面手动配置）*
 
 ## ***元数据与逻辑***
 
@@ -101,6 +72,162 @@ showdebug abilitysystem
 ```
 
 *在控制台输入 showdebug abilitysystem。这个命令显示的界面，本质上就是把上面提到的所有 **Spec**、**ActiveGE**、**Tags** 的实时状态可视化给你看。*
+
+## ***AbilitySystemComponent***
+
+*GAS 的心脏。用于与玩法能力系统 (GameplayAbilities System) 对接的核心 Actor 组件。*
+
+*更加通俗的理解就是：它是连接你的角色（Actor）与技能系统（GAS）的桥梁/核心入口*
+
+*它负责所有 Gameplay Ability 的赋予与激活，管理 Attribute 的聚合修改，处理 Gameplay Effect 的生命周期，并作为 Gameplay Tags 的宿主来驱动状态逻辑，同时在底层处理所有相关数据的网络同步与动作预测。*
+
+### ***一些重要接口***
+
+1. ```cpp
+   virtual void InitAbilityActorInfo(AActor* InOwnerActor, AActor* InAvatarActor);
+   ```
+
+   - *翻译：设置该 ASC 的“主人”（Owner）和“化身”（Avatar）。*
+   - *入参：*
+     - *OwnerActor：逻辑上的所有者（通常是 PlayerState 或 Pawn）。*
+     - *AvatarActor：表现上的物理实体（通常是 Character）。*
+   - *核心逻辑：这是 ASC 的启动开关。如果不调用它，技能放不出来、属性同步不了、UI 也会报错。*
+
+2. ```cpp
+   /*
+   	FGameplayAbilitySpec AbilitySpec(AbilityCDO, AbilityLevel);
+   	AbilitySpec.SourceObject = SourceObject;
+   	AbilitySpec.DynamicAbilityTags.AddTag(InputTag);
+   */
+   
+   FGameplayAbilitySpecHandle GiveAbility(const FGameplayAbilitySpec& AbilitySpec);
+   ```
+
+   *让角色拥有一项技能*
+
+3. ```cpp
+   UFUNCTION(BlueprintCallable, Category = "Abilities")
+   bool TryActivateAbility(FGameplayAbilitySpecHandle AbilityToActivate, bool bAllowRemoteActivation = true);
+   ```
+
+   *尝试去激活一个技能。为什么说尝试？因为它里面会触发 `CanActivateAbility`等一系列检查*
+
+   *bAllowRemoteActivation：*
+
+   * *（True）当你在客户端调用此函数时，如果该技能被配置为“在服务器上运行”，客户端会自动向服务器发送一个 RPC 请求，告诉服务器：“我要放这个技能了*
+   * *（False）激活请求只会留在本地。如果该技能需要服务器确认，而你禁用了远程激活，那么激活就会失败。*
+
+4. ```cpp
+   virtual FGameplayEffectContextHandle MakeEffectContext() const;
+   ```
+
+   - *翻译：创建效果上下文句柄。*
+   - *核心逻辑：这个函数用于生成一个空的、但已经初始化了基础信息的容器。它会自动把当前的 OwnerActor（所有者，如 PlayerState）和 AvatarActor（表现肉体，如 Character）填进去。这个上下文（Context）就像是一张空白的身份证，记录了这一发效果到底是谁发出来的。*
+   - *开发提示：这是一个虚函数，你可以重写它来携带更多自定义数据。比如在射击游戏中，你可以在重写的 Context 里加入是否爆头、子弹飞行距离等信息。这个生成的句柄随后会被传入 MakeOutgoingSpec，确保这些背景数据能一路跟随 GE 传递到目标的伤害计算（ExecCalc）逻辑中，让目标知道自己是被谁、从哪、用什么方式打中的。*
+
+5. ```cpp
+   virtual FGameplayEffectSpecHandle MakeOutgoingSpec(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level, FGameplayEffectContextHandle Context) const;
+   ```
+
+   - *翻译：创建一个待发送的 GE 规范句柄。*
+   - *入参：*
+     - *GameplayEffectClass：你想使用的 GE 类。*
+     - *Level：等级。*
+     - *Context：施法上下文。*
+   - *核心逻辑：这是配合下一个函数使用的前提。它就像是先填好一张“发货单”但还没发货。你会拿到一个 Handle，通过这个 Handle 你可以调用 SetSetByCallerMagnitude 等函数来修改这批货的“重量”或“属性”，改完后再用 Apply 接口发出去。*
+
+6. ```cpp
+   virtual FActiveGameplayEffectHandle ApplyGameplayEffectSpecToTarget(const FGameplayEffectSpec& GameplayEffect, UAbilitySystemComponent *Target, FPredictionKey PredictionKey=FPredictionKey());
+   
+   virtual FActiveGameplayEffectHandle ApplyGameplayEffectSpecToSelf(const FGameplayEffectSpec& GameplayEffect, FPredictionKey PredictionKey = FPredictionKey());
+   ```
+
+   - *翻译：应用已经配置好的 GE 规范（Spec）至目标或自身。*
+   - *入参：*
+     - *Spec：这是一个已经填好了所有数据的“全家桶”对象（可以通过 FGameplayEffectSpecHandle 获取）。它里面已经包含了等级、上下文、甚至你手动设置的动态数值（SetByCaller）。*
+     - *Target：仅在 ToTarget 中使用，指定效果的接收方。*
+     - *PredictionKey：网络预测键，用于消除客户端的操作延迟感。*
+   - *核心逻辑：这是 GAS 中最高级的应用方式。与之前直接传 UClass 不同，这种方式允许你在效果真正发出去之前，对它进行最后的修改。*
+
+7. ```cpp
+   FActiveGameplayEffectHandle ApplyGameplayEffectToTarget(UGameplayEffect *GameplayEffect, UAbilitySystemComponent *Target, float Level = UGameplayEffect::INVALID_LEVEL, FGameplayEffectContextHandle Context = FGameplayEffectContextHandle(), FPredictionKey PredictionKey = FPredictionKey());
+   
+   FActiveGameplayEffectHandle ApplyGameplayEffectToSelf(const UGameplayEffect *GameplayEffect, float Level, const FGameplayEffectContextHandle& EffectContext, FPredictionKey PredictionKey = FPredictionKey());
+   ```
+
+   - *翻译：将状态效果（GE）应用至目标或自身。*
+   - *入参（综合介绍）：*
+     - *GameplayEffect：想要施加的 GE 类（UClass）。它决定了效果的类型，比如是回血、扣血还是增加防御。*
+     - *Target：仅在 ToTarget 中使用。指定谁来接收这个效果。如果是 ToSelf，则默认接收者就是调用者自己。*
+     - *Level：效果的等级。用于缩放 GE 内部的数值。比如 1 级技能伤害是 100，2 级可能是 200，就靠这个参数传递。*
+     - *Context / EffectContext：上下文句柄。它记录了这次施法的完整背景，比如谁发起的、通过哪个技能发的、命中了哪个点。它是追溯伤害来源（KillCam 或战斗日志）的关键数据。*
+     - *PredictionKey：网络预测键。用于处理客户端延迟。它能让玩家在点击技能的瞬间，本地先看到血条变动或 Buff 出现，而不需要等待服务器的往返确认，保证了游戏手感的流畅。*
+   - *核心逻辑：这是 GAS 修改属性的终极入口。无论技能逻辑多么复杂，最后一步通常都是通过这两个函数把效果实实在在地挂到角色身上。调用后会返回一个 FActiveGameplayEffectHandle，你可以拿着这个句柄来查询该 Buff 的剩余时间或手动将其移除。*
+
+8. ```cpp
+   float GetNumericAttribute(const FGameplayAttribute& Attribute) const;
+   ```
+
+   - *翻译：获取属性的当前最终数值。*
+   - *入参：*
+     - *Attribute：目标属性，通常通过 AttributeSet 的宏获取。*
+   - *核心逻辑：它返回的是经过所有 Buff 修正后的最终数字。比如基础血量 100，身上有加 20 血的 Buff，这里就会返回 120。*
+
+9. ```cpp
+   virtual int32 HandleGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);
+   ```
+
+   - *翻译：发送/触发一个游戏事件。*
+   - *入参：*
+     - *EventTag：触发事件的标签，比如 Event.OnHit。*
+     - *Payload：携带的数据包，包含受击者、攻击者、位置等丰富信息。*
+   - *核心逻辑：用于触发那些不需要按键、而是由特定行为激发的技能（例如受击反击、暴击回血）。*
+
+10. ```cpp
+    FOnGameplayAttributeValueChange& GetGameplayAttributeValueChangeDelegate(FGameplayAttribute Attribute);
+    ```
+
+    - *翻译：获取属性值变化的监听委托。*
+    - *入参：*
+      - *Attribute：想要监听的属性。*
+    - *核心逻辑：这是做 UI 界面联动最核心的接口。当血量或能量变化时，它会自动广播，让你的 UI 及时更新。*
+
+11. ```cpp
+    void CancelAbility(UGameplayAbility* Ability);	
+    void CancelAbilityHandle(const FGameplayAbilitySpecHandle& AbilityHandle);
+    void CancelAbilities(const FGameplayTagContainer* WithTags=nullptr, const FGameplayTagContainer* WithoutTags=nullptr, UGameplayAbility* Ignore=nullptr);
+    void CancelAllAbilities(UGameplayAbility* Ignore=nullptr);
+    ```
+
+    - *翻译：根据标签强行取消/打断技能。*
+    - *入参：*
+      - *WithTags：匹配这些标签的技能将被关闭。*
+      - *WithoutTags：不包含这些标签的技能才会被关闭。*
+      - *Ignore：不会关闭的技能*
+    - *核心逻辑：用于实现硬控逻辑，比如眩晕时取消所有正在读条的技能。*
+
+### ***FPredictionKey***
+
+***FPredictionKey** 是 GameplayAbility 系统中支持“客户端预测”的一种通用方式。它本质上是一个 **ID**，用于标识客户端所执行的预测动作及其产生的“副作用”（Side Effects）。UAbilitySystemComponent（ASC）负责在客户端和服务器之间同步这个预测键及其关联的副作用。*
+
+*本质上，任何行为都可以与一个预测键关联，例如“激活技能”。*
+
+1. ***流程开始**：客户端生成一个全新的预测键，并在调用 ServerTryActivateAbility 时将其发送给服务器。*
+2. ***服务器响应**：服务器会确认或拒绝该请求（触发 ClientActivateAbilitySucceed 或 Failed）。*
+3. ***本地预测阶段**：在客户端预测技能运行期间，它会产生各种**副作用**（如应用 GameplayEffects、触发事件、播放动画等）。每产生一个副作用，客户端都会将其与启动时生成的那个预测键关联起来。*
+4. ***结果处理**：*
+   - ***如果激活被拒绝**：客户端可以立即回滚（撤销）这些关联的副作用*。
+   - ***如果激活被接受**：客户端必须等待服务器同步真实的副作用数据。*
+     - *（ClientActivatbleAbilitySucceed 远程调用会立即发送，但属性同步可能晚几帧到达）。*
+     - *一旦服务器版本的副作用同步完成，客户端就会撤销本地预测的临时副作用（并以服务器同步过来的权威数据为准）。*
+
+*一般并不会将伤害数值客户端会预测，只会预测技能特效这些表现效果*
+
+***FPredictionKey 本身主要提供以下功能：***
+
+- ***唯一 ID 系统**：支持“当前”和“基础”整数构成的依赖链系统。*
+- ***特殊的网络序列化（NetSerialize）实现**：**该预测键只会序列化给发起预测的那个客户端**。*
+  - *这一点至关重要：它允许我们将预测键存在同步状态中，但只有给服务器发送过该键的客户端才能真正看到它（其他客户端不会收到多余的预测数据）*
 
 ## ***能力系统***
 
@@ -198,33 +325,93 @@ showdebug abilitysystem
 
 *异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）*
 
-### ***AGameplayAbilityTargetActor***
+### ***重要接口***
 
-*3D 世界的“选择器”。*
+1. ```cpp
+   virtual bool CanActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayTagContainer* SourceTags = nullptr, const FGameplayTagContainer* TargetTags = nullptr, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+   
+   UFUNCTION(BlueprintImplementableEvent, Category = Ability, DisplayName="CanActivateAbility", meta=(ScriptName="CanActivateAbility"))
+   bool K2_CanActivateAbility(FGameplayAbilityActorInfo ActorInfo, const FGameplayAbilitySpecHandle Handle, FGameplayTagContainer& RelevantTags) const;
+   ```
 
-*用于在场景中生成视觉辅助（如圆形范围、直线射线）。它负责捕捉玩家选中的目标，并将其打包成 TargetData 发送给服务器。*
+   *K2_CanActivateAbility：K2_ 是 Kismet 2 的缩写（虚幻蓝图系统的代号）。带有 K2_ 前缀的函数通常是 C++ 内部使用的“蓝图版本”。*
 
-*警告：*
+   *在 CanActivateAbility 的逻辑中就会调用 K2_CanActivateAbility，K2_CanActivateAbility就是在蓝图里面专门写的函数*
 
-* *这些角色在每次能力激活时都会生成一次，并且在默认形式下效率不高*
+   - *翻译：判断技能当前能否激活。*
+   - *入参：*
+     - *SourceTags/TargetTags：来源方和目标方的标签容器。*
+   - *核心逻辑：系统在调用 TryActivateAbility 时会先运行这个函数。它会检查技能配置里的各种标签要求（比如：处于晕眩状态不能放技能）。你也可以重写它来增加自定义的限制条件。*
 
-* *对于大多数游戏，您需要子类化并大量修改此 actor，或者您需要在特定于游戏的 actor 或蓝图中实现类似的功能，以避免 actor 生成成本*
+2. ```cpp
+   virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData);
+   ```
 
-* *这个类没有经过内部游戏的充分测试，但它是一个有用的类，可以用来了解目标复制是如何发生的*
+   - *翻译：激活技能。*
+   - *入参：*
+     - *Handle：技能的唯一识别句柄。*
+     - *ActorInfo：技能持有者的环境信息（如谁释放的技能）。*
+     - *ActivationInfo：有关此次激活的网络同步信息。*
+     - *TriggerEventData：如果是通过事件触发的技能，这里包含了触发时的详细数据。*
+   - *核心逻辑：这是技能逻辑的总入口。所有的播放动画、产生特效、发射子弹等逻辑都从这里开始编写。*
+   - *老司机提醒：此为技能逻辑，如果想释放一个技能，还得调用 `TryActivateAbility`*
 
-### ***UGameplayAbilityWorldReticle***
+3. ```cpp
+   virtual bool CommitAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr);
+   ```
 
-*目标的“反馈准心”。*
+   - *翻译：提交技能。*
+   - *入参：*
+     - *与激活函数的入参基本一致。*
+     - *OptionalRelevantTags：如果提交失败，可以用来返回失败的具体原因标签。*
+   - *核心逻辑：这个函数会自动去检查技能的消耗（Cost）和冷却（Cooldown）。只有这两个检查都通过了，它才会扣除资源并开始计算冷却。如果返回 false，说明资源不足或冷却没好。*
 
-*专门用于显示目标确认的反馈效果，比如选中的敌人脚下的红圈，或者技能预判的虚影。*
+4. ```cpp
+   virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled);
+   ```
 
-### ***FGameplayAbilitySpec***
+   - *翻译：结束技能。*
+   - *入参：*
+     - *bReplicateEndAbility：是否需要将结束信号同步给其他端。*
+     - *bWasCancelled：技能是正常播放完结束的，还是被外部逻辑强行打断的。*
+   - *核心逻辑：这是最重要的清理接口。如果你不调用它，技能会永远处于“运行中”状态，导致角色可能无法再次释放技能，或者标签一直挂在身上不消失。*
+
+5. ```cpp
+   FGameplayAbilityActorInfo GetActorInfo() const;
+   ```
+
+   - *翻译：获取技能相关的 Actor 信息。*
+   - *核心逻辑：在技能内部使用。通过它可以直接获取到 AvatarActor（当前的肉体小人）、OwnerActor（逻辑上的所有者）以及 ASC 组件。这是技能内部寻找“我是谁”的最快方式。*
+
+6. ```cpp
+   void SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload);
+   ```
+
+   - *翻译：发送游戏事件。*
+   - *入参：*
+     - *EventTag：标识事件的标签。*
+     - *Payload：携带的各种数据包。*
+   - *核心逻辑：用于技能内部的主动通信。比如你的技能在某一时刻达成了一个特殊条件，可以发送一个事件来触发角色身上的其他被动技能或特定的特效表现。*
+
+7. ```cpp
+   virtual void CancelAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateCancelAbility);
+   ```
+
+   - *翻译：取消/打断当前技能。*
+   - *入参：*
+     - *bReplicateCancelAbility：是否需要将取消信号同步到其他端。*
+   - *核心逻辑：这是技能响应“被强行中止”时的处理函数。它的内部实现通常会自动调用 EndAbility，并显式地将 bWasCancelled 参数设为 true。*
+   - *开发提示：它与 EndAbility 的区别在于，CancelAbility 专门用于非自愿的打断（比如被敌人眩晕、被沉默或玩家按了另一个会互斥掉当前技能的操作）。当你需要针对“被动中断”写一些特殊逻辑（比如中断施法后进入更长的冷却）时，会关注这个流程。*
+
+### ***重要接口里面的参数***
+
+#### ***FGameplayAbilitySpec***
 
 *技能的“说明书实例”。*
 
 *当你调用 GiveAbility 时，系统会把 GA 类封装成一个 Spec。它存储了技能的等级、输入绑定 ID、以及谁是这个技能的原始所有者。它是技能在内存中真实存在的“户口本”。*
 
-### ***FGameplayAbilitySpecHandle***
+#### ***FGameplayAbilitySpecHandle***
 
 *技能在内存中的“唯一身份证”。*
 
@@ -232,7 +419,7 @@ showdebug abilitysystem
 - ***作用**：在 C++ 中，你**不应该**保存 UGameplayAbility 的指针，而是应该保存这个 Handle。*
 - ***应用场景**：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统只认这个 ID。*
 
-### ***FGameplayAbilityTargetData***
+#### ***FGameplayAbilityTargetData***
 
 *这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。*
 
@@ -255,7 +442,7 @@ showdebug abilitysystem
 - ***数据操作**：过滤（Filter）或合并（Merge）多个目标数据。*
 - ***生成对象**：在目标数据指定的位置生成（Spawn）一个新的 Actor。*
 
-### ***FGameplayAbilityTargetDataHandle***
+#### ***FGameplayAbilityTargetDataHandle***
 
 *用来包装 FGameplayAbilityTargetData 的句柄*
 
@@ -265,7 +452,7 @@ showdebug abilitysystem
 - ***支持多态性**：允许我们在目标数据结构中使用多态特性（即一个句柄可以指向不同类型的具体子类数据）。*
 - ***网络同步支持**：允许我们实现 NetSerialize（网络序列化），从而在客户端和服务器之间实现“按值同步（Replication by value）”。*
 
-### ***FGameplayAbilityActivationInfo***
+#### ***FGameplayAbilityActivationInfo***
 
 *技能的“网络状态快照”。*
 
@@ -275,11 +462,33 @@ showdebug abilitysystem
   - *ActivationMode：标识当前是“本地预测（Predicting）”、“服务器权威（Authority）”还是“远程非权威（Non-Authoritative）”。*
 - ***价值**：在技能内部逻辑中，你可以通过它判断：“我现在是在客户端先行播放特效吗？”或者是“我现在是在服务器做最后的数值结算吗？”*
 
-### ***FGameplayAbilityActorInfo***
+#### ***FGameplayAbilityActorInfo***
 
 *技能的“环境快照”。*
 
 *记录了技能相关的 Owner、Avatar（化身）、SkeletalMesh、甚至 MovementComponent。它能让技能内部快速获取这些组件，避免频繁调用 GetComponent 造成的性能损耗。*
+
+### ***一些其他的杂项***
+
+#### ***AGameplayAbilityTargetActor***
+
+*3D 世界的“选择器”。*
+
+*用于在场景中生成视觉辅助（如圆形范围、直线射线）。它负责捕捉玩家选中的目标，并将其打包成 TargetData 发送给服务器。*
+
+*警告：*
+
+* *这些角色在每次能力激活时都会生成一次，并且在默认形式下效率不高*
+
+* *对于大多数游戏，您需要子类化并大量修改此 actor，或者您需要在特定于游戏的 actor 或蓝图中实现类似的功能，以避免 actor 生成成本*
+
+* *这个类没有经过内部游戏的充分测试，但它是一个有用的类，可以用来了解目标复制是如何发生的*
+
+#### ***UGameplayAbilityWorldReticle***
+
+*目标的“反馈准心”。*
+
+*专门用于显示目标确认的反馈效果，比如选中的敌人脚下的红圈，或者技能预判的虚影。*
 
 ## ***效果系统***
 
