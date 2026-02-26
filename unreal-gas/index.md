@@ -784,6 +784,10 @@ showdebug abilitysystem
 - *REPNOTIFY_Always：无论值是否发生变化，只要服务器发送了同步包，客户端就必须触发一次 OnRep 函数。*
 - *为什么 GAS 喜欢用 Always：因为在 GAS 中，有时候基础值（BaseValue）没变，但内部的计算状态（比如 Buff 叠加）可能需要刷新。使用 Always 可以确保客户端的属性状态始终与服务器保持高度一致，即便数字看起来没变，逻辑也会重新检查一遍。*
 
+#### ***GAMEPLAYATTRIBUTE_REPNOTIFY***
+
+*此宏的作用是确保客户端在收到新数值后，能够正确地通知技能系统组件（ASC）去更新内部的数值状态（包括基础值和当前值），并触发相关的监听回调。*
+
 ### ***FGameplayAttribute***
 
 *属性的“门牌号”。*

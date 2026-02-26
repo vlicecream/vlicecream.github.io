@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  14919 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  14990 ,
         "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-26T17:50:15+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 14919 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 14990 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 30 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -205,6 +205,7 @@
           <ul>
             <li><a href="#attribute_accessors"><em><strong>ATTRIBUTE_ACCESSORS</strong></em></a></li>
             <li><a href="#doreplifetime_condition_notify"><em><strong>DOREPLIFETIME_CONDITION_NOTIFY</strong></em></a></li>
+            <li><a href="#gameplayattribute_repnotify"><em><strong>GAMEPLAYATTRIBUTE_REPNOTIFY</strong></em></a></li>
           </ul>
         </li>
         <li><a href="#fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></a></li>
@@ -1203,6 +1204,8 @@
 <li><em>REPNOTIFY_Always：无论值是否发生变化，只要服务器发送了同步包，客户端就必须触发一次 OnRep 函数。</em></li>
 <li><em>为什么 GAS 喜欢用 Always：因为在 GAS 中，有时候基础值（BaseValue）没变，但内部的计算状态（比如 Buff 叠加）可能需要刷新。使用 Always 可以确保客户端的属性状态始终与服务器保持高度一致，即便数字看起来没变，逻辑也会重新检查一遍。</em></li>
 </ul>
+<h4 id="gameplayattribute_repnotify"><em><strong>GAMEPLAYATTRIBUTE_REPNOTIFY</strong></em></h4>
+<p><em>此宏的作用是确保客户端在收到新数值后，能够正确地通知技能系统组件（ASC）去更新内部的数值状态（包括基础值和当前值），并触发相关的监听回调。</em></p>
 <h3 id="fgameplayattribute"><em><strong>FGameplayAttribute</strong></em></h3>
 <p><em>属性的“门牌号”。</em></p>
 <p><em>它不仅仅是一个名字，而是一个结构体，包装了对 UAttributeSet 中特定字段的反射引用。你在代码中指定“修改生命值”时，传的就是这个。</em></p>
