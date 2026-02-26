@@ -482,17 +482,76 @@ showdebug abilitysystem
 
    *在 GAS 中，UGameplayEffect 本质上是一个“复杂的结构体”。它就像一张处方单，上面写着：加多少血、持续多久、带什么标签。所有的属性改变（Attributes）和状态切换（Tags）都必须通过它来驱动。*
 
-2. *为什么不让写蓝图逻辑（No Graphs）？*
+2. *为什么不让写蓝图逻辑？*
 
    - *性能开销：GE 在游戏中会被高频触发、叠加和同步。如果每个 GE 内部都有复杂的蓝图逻辑，性能会迅速崩溃。*
    - *可预测性：GE 的作用应该是确定的。逻辑应该写在 Ability (GA) 里，或者写在 Execution Calculation（重型计算器）里，而不是写在 GE 这个“数据包”里。*
    - *网络优化：纯数据的同步比同步一段逻辑要高效得多。*
 
-3. *所谓的“模板（Templating）”：*
+3. *所谓的“模板”：*
 
    *你在编辑器里右键创建 Gameplay Effect 蓝图时，你其实只是在利用蓝图的界面来填表（设置数值）。这被称为“模板化”。你只是在给这个资产设置初始值，而不是在给它写程序。*
 
 ### ***GE 蓝图属性相关***
+
+***Status（状态）***
+
+- *Editor Status Text*
+  - *说明: 纯编辑器的备注文本。*
+  - *作用: 不影响游戏逻辑，仅用于开发者在蓝图列表中写备注，方便识别这个 GE 的作用。*
+
+***Duration（持续时间策略）***
+
+- *Duration Policy: 定义该效果如何在时间维度上存在。*
+  - *Instant (瞬时) 效果应用后立即修改属性的“基础值”（Base Value），然后立即销毁。常用于扣血、加金钱。*
+  - *Infinite (永久) 效果永久挂在目标身上，除非手动移除或被标签（Tags）清除。常用于被动技能。*
+  - *Has Duration (限时): 效果持续一段时间后自动移除。选择此项后会多出一个 Duration Magnitude 用于设置具体的秒数。常用于眩晕 3 秒、增加攻击力 10 秒。*
+
+***Gameplay Effect（核心变更逻辑）***
+
+- *Components (组件)*
+  - *说明: UE5 新增的模块化功能。点击 + 号可以添加不同的逻辑块。*
+  - *可选组件举例 (你也可以自定义组件)*
+    - *Chance To Apply: 设置该 GE 成功触发的百分比概率。*
+- *Modifiers (属性修改器)*
+  - *说明: 最常用的功能，通过数学运算直接改属性。*
+  - *内部选项*
+    - *Attribute: 选择你要修改的属性（如 Health, Mana）。*
+    - *Modifier Op: 运算方式，包括 Add (加减)、Multiply (乘)、Divide (除)、Override (覆盖/强行设为某值)。*
+    - *Magnitude: 数值来源。可以是固定值，也可以是根据另一个属性计算出的值（Attribute Based）。*
+- *Executions (执行计算)*
+  - *说明: 关联 C++ 或蓝图编写的 GameplayEffectExecutionCalculation 类。*
+  - 作用: 用于处理极其复杂的伤害公式（例如：伤害 = 攻击力 * 技能倍率 - 敌方护甲，且涉及暴击随机数时)
+
+***Gameplay Cues（视觉与音效表现）***
+
+- *Require Modifier Success to Trigger Cues*:
+  - *作用: 如果勾选，只有当上面的 Modifiers 成功修改了属性（没被免疫或失效）时，才会播放特效。*
+- *Suppress Stacking Cues*
+  - *作用: 如果该 GE 正在堆叠（Stacking），勾选此项后，增加层数时不会重复播放特效，只在第一层播一次。*
+- *Gameplay Cues*
+  - *说明: 特效标签数组。*
+  - *作用: 在这里填入标签（如 GameplayCue.Character.Hit），系统会自动寻找对应的 GameplayCueNotify 蓝图并播放。*
+  - *Magnitude Attribute 数值来源属性：在特效蓝图（Gameplay Cue Notify）中，你可以获取这个数值。例如，你可以根据这个数值的大小来缩放爆炸粒子的大小，或者改变音效的音量。如果设为 None，则只发送基础的触发信号*
+  - *Min Level 最小等级限制：如果当前施放的 Gameplay Effect 等级低于这个值，该特效将不会播放。这允许你为同一个技能在不同等级配置不同的表现。例如：1-5 级播放小火球特效，6 级以上播放大火球特效。*
+  - *Max Level 最大等级限制：配合 Min Level 使用。如果技能等级超过了这个值，该特效将停止触发。如果设置为 0.0 且 Min Level 也是 0.0，通常表示不进行等级过滤，全等级触发*
+
+***Stacking（堆叠策略）***
+
+- *Stacking Type*
+  - *None: 不堆叠。每次应用都会创建一个新的独立 GE 实例。*
+  - *Aggregate by Source (按来源堆叠): 记录施法者。如果 A 给目标上两次 GE，层数增加；如果 A 给一次，B 给一次，目标身上会有两个独立的 GE。*
+  - *Aggregate by Target (按目标堆叠): 不管是谁施放的，只要是同类 GE，在目标身上就只算一个，层数往上加*
+
+*注意： 一旦你将 Stacking Type 设置为非 None，下方会出现更多详细枚举：*
+
+- *Stack Limit Count: 最大堆叠层数。*
+- *Stack Duration Refresh Policy (时长刷新策略)*:
+  - *Refresh on Successful Application: 每次叠新层数，持续时间重置。*
+  - *Never Refresh: 叠层不影响计时，时间到期全消失。*
+- *Stack Expiration Policy (到期策略)*
+  - *Clear Entire Stack: 时间到，所有层数瞬间全没。*
+  - *Remove Single Stack and Refresh Duration: 时间到，只减一层，然后重新开始倒计时（逐层掉落）。*
 
 #### ***FAttributeBasedFloat***
 
@@ -571,17 +630,11 @@ showdebug abilitysystem
   - *“如果目标有‘护盾’标签，则伤害先扣除护盾”。*
 - *不需要/不建议预测：ExecCalc 通常只在服务器运行。因为伤害结算涉及跨对象的数据交换，客户端预测极易产生“血条回跳”现象。*
 
-#### ***UGameplayEffectContextPayloadBase***
-
-*它是存储在 FGameplayEffectContext 中的自定义动态数据载体。*
-
-*你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 `float HeadshotMultiplier`。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。*
-
 #### ***UGameplayEffectComponent***
 
 *UE5.3 引入的模块化设计。将以前杂乱的 GE 设置（如持续时间、几率等）解耦成组件，提高性能。*
 
-### ***GE重要结构体***
+### ***GE重要成员***
 
 #### ***FGameplayEffectSpec***
 
@@ -618,6 +671,12 @@ showdebug abilitysystem
 #### ***FGameplayEffectContextHandle***
 
 *包装 FGameplayEffectContext 或子类的句柄，以允许其具有多态性并正确复制*
+
+#### ***UGameplayEffectContextPayloadBase***
+
+*它是存储在 FGameplayEffectContext 中的自定义动态数据载体。*
+
+*你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 `float HeadshotMultiplier`。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。*
 
 ## ***表现层***
 
@@ -658,6 +717,73 @@ showdebug abilitysystem
 
 *属性仓库。存储 Health, Mana, Attack 等浮点数。*
 
+### ***几个重要的宏***
+
+#### ***ATTRIBUTE_ACCESSORS***
+
+```cpp
+#define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
+	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
+	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
+	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
+	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
+```
+
+- *作用：属性访问器自动化宏。*
+- *核心逻辑：这是一个“全家桶”宏，它会自动为你定义的每一个属性（如血量、攻击力）生成四个标准函数。如果没有这个宏，你需要为每一个属性手动写这四个函数，代码量会非常冗余。*
+- *ATTRIBUTE_ACCESSORS 这个是自己手写的 用来整合下面四个宏，下面四个宏才是GAS自带的*
+
+1. *生成的四个函数具体是什么（以属性名 Health 为例）*
+
+   * *GetHealthAttribute()：获取属性的元数据。这在调用效果、监听属性变化（Delegate）或者在计算逻辑（ExecCalc）中标识属性时非常有用。*
+   * *GetHealth()：获取当前血量的具体数值（float）。*
+   * *SetHealth(float NewVal)：直接设置血量的当前值。*
+   * *InitHealth(float NewVal)：初始化血量的基础值。通常只在角色刚刚出生或等级提升重置属性时使用。*
+
+2. *为什么必须用这个宏*
+
+   - *规范化：GAS 的很多底层逻辑（比如属性同步、UI 监听）都依赖于特定的函数命名规则。这个宏确保了你的函数名与引擎底层要求的完全一致，避免因为拼写错误导致的功能失效。*
+   - *效率：在 AttributeSet 中，如果你有 20 个属性，手动写就是 80 个函数，而用这个宏只需要在每个属性定义下加一行代码。*
+   - *注意这个只能在UAttributeSet中使用*
+
+3. *老司机的建议*
+
+   * *配合宏定义：这个宏通常不是引擎自带的（虽然有些版本提供了类似的），绝大多数项目都会在项目的头文件里手动定义它。如果你发现代码报错找不到这个宏，记得去把这段定义贴到你的公共头文件（如 ProjectName.h）里。*
+
+   * *属性声明范例：*
+
+     ```cpp
+     UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Attributes")
+     FGameplayAttributeData Health;
+     ATTRIBUTE_ACCESSORS(UMyAttributeSet, Health)
+     ```
+
+#### ***DOREPLIFETIME_CONDITION_NOTIFY***
+
+`DOREPLIFETIME_CONDITION_NOTIFY(ULyraHealthSet, Health, COND_None, REPNOTIFY_Always);`
+
+- *作用：带条件和通知规则的生命周期同步注册宏。*
+- *核心逻辑：这个宏写在 GetLifetimeReplicatedProps 函数里。它是虚幻引擎网络底层用来注册变量同步的“最强版本”，比标准的 DOREPLIFETIME 多了两个控制维度。*
+- *参数介绍：*
+  - *ULyraHealthSet：类名。*
+  - *Health：变量名。*
+  - *COND_None：同步条件枚举（下文详细介绍）。*
+  - *REPNOTIFY_Always：通知触发规则枚举（下文详细介绍）。*
+
+*同步条件枚举（ELifetimeCondition）常用值介绍*
+
+- *COND_None：无条件同步。只要变量变了，服务器就会发给所有客户端。这是属性同步最常用的设置。*
+- *COND_OwnerOnly：只同步给拥有者。比如玩家的体力值，其他玩家不需要知道，只需要同步给控制这个角色的玩家即可。*
+- *COND_SkipOwner：同步给除拥有者以外的所有人。常用于某些只在他人表现上存在的特效逻辑。*
+- *COND_SimulatedOnly：只同步给模拟客户端。即不发给服务器，也不发给主控客户端。*
+- *COND_AutonomousOnly：只同步给主控客户端。*
+
+*通知触发规则枚举（ERepNotifyCondition）常用值介绍*
+
+- *REPNOTIFY_OnChanged：只有当值发生变化时才触发 OnRep 函数。这是虚幻引擎默认的行为。*
+- *REPNOTIFY_Always：无论值是否发生变化，只要服务器发送了同步包，客户端就必须触发一次 OnRep 函数。*
+- *为什么 GAS 喜欢用 Always：因为在 GAS 中，有时候基础值（BaseValue）没变，但内部的计算状态（比如 Buff 叠加）可能需要刷新。使用 Always 可以确保客户端的属性状态始终与服务器保持高度一致，即便数字看起来没变，逻辑也会重新检查一遍。*
+
 ### ***FGameplayAttribute***
 
 *属性的“门牌号”。*
@@ -674,11 +800,46 @@ showdebug abilitysystem
 
 - *CurrentValue（当前值）：算上所有临时 Buff/Debuff 后的最终数值。*
 
-  *理解这两者的区别，是解决“为什么我 Buff 消失后血量回不到上限”等问题的关键。*
+### ***重要函数***
 
-### ***FAttributeDefaultsWidget***
+1. *GameplayEffect 执行前会触发此函数*
 
-*属性的“初始化模板”。*
+   `virtual bool PreGameplayEffectExecute(FGameplayEffectModCallbackData& Data) override;`
 
-*用于在 DataAsset 中方便地批量配置属性初始值，通常用于 NPC 或不同等级职业的属性初始化。*
+   - *核心逻辑：在一个 GE（状态效果）真正修改属性数值之前触发。*
+   - *应用场景：你可以通过返回 false 来取消这次修改。例如，如果你身上有一个“免疫伤害”的标签，你可以在这里拦截所有伤害类的 GE。*
+
+2. *GameplayEffect 执行后会触发此函数*
+
+   `virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;`
+
+   - *核心逻辑：这是 GAS 中最频繁使用的函数。它在 GE 修改完属性后触发，此时你可以拿到修改后的最终数值。*
+   - *应用场景：处理核心战斗逻辑。比如：检查血量是否归零并触发死亡、根据受到的伤害数值触发受击动效、将溢出的伤害转化为护盾等。*
+
+3. *属性基础值变更前会触发此函数*
+
+   `virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;`
+
+   - *核心逻辑：当属性的“基础值”（BaseValue，不含 Buff 加成）即将发生永久性改变时触发。*
+   - *应用场景：用于数值钳制（Clamping）。例如，确保你的基础血量永远不会设置到 0 以下，或者不会超过基础血量的上限。*
+
+4. *属性当前值变更前会触发此函数*
+
+   `virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;`
+
+   - *核心逻辑：当属性的“当前值”（CurrentValue，包含所有 Buff 修正后的值）即将发生改变时触发。*
+   - *应用场景：这是处理数值限制的最常见地方。比如：当你通过一个 Buff 临时增加最大血量时，在这里确保当前血量不会超过新的最大血量。*
+
+5. *属性变更后会触发此函数*
+
+   `virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;`
+
+   - *核心逻辑：无论是什么原因导致的属性变化，在变化完成后都会触发。*
+   - *应用场景：同步 UI 或者触发简单的被动反应。因为它不提供 GE 的上下文（不知道是谁改的），所以它比 PostGameplayEffectExecute 更纯粹，只关注数字变了这件事。*
+
+6. *注册属性网络同步*
+
+   `virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;`
+
+   *核心逻辑：如果你在做多人游戏，这个函数是必须重写的。你需要在里面通过 DOREPLIFETIME 宏把每一个属性注册到同步列表里。没有这一步，客户端永远拿不到服务器更新的血量。*
 
