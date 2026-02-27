@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  15125 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  15260 ,
         "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-26T17:50:15+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15125 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15260 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 31 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -151,10 +151,10 @@
           <ul>
             <li><a href="#fgameplayabilityspec"><em><strong>FGameplayAbilitySpec</strong></em></a></li>
             <li><a href="#fgameplayabilityspechandle"><em><strong>FGameplayAbilitySpecHandle</strong></em></a></li>
-            <li><a href="#fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></a></li>
             <li><a href="#fgameplayabilityactivationinfo"><em><strong>FGameplayAbilityActivationInfo</strong></em></a></li>
             <li><a href="#fgameplayabilityactorinfo"><em><strong>FGameplayAbilityActorInfo</strong></em></a></li>
             <li><a href="#fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></a></li>
+            <li><a href="#fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></a></li>
           </ul>
         </li>
         <li><a href="#一些其他的杂项"><em><strong>一些其他的杂项</strong></em></a>
@@ -540,42 +540,7 @@
 </ul>
 </li>
 <li>
-<p><em>获取技能相关的 Actor 信息。</em></p>
-<p><code>FGameplayAbilityActorInfo GetActorInfo() const;</code></p>
-<ul>
-<li><em>核心逻辑：在技能内部使用。通过它可以直接获取到 AvatarActor（当前的肉体小人）、OwnerActor（逻辑上的所有者）以及 ASC 组件。这是技能内部寻找“我是谁”的最快方式。</em></li>
-</ul>
-</li>
-<li>
-<p><em>发送游戏事件。</em></p>
-<p><code>void SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload);</code></p>
-<ul>
-<li><em>入参：</em>
-<ul>
-<li><em>EventTag：标识事件的标签。</em></li>
-<li><em>Payload：携带的各种数据包。</em></li>
-</ul>
-</li>
-<li><em>核心逻辑：用于技能内部的主动通信。比如你的技能在某一时刻达成了一个特殊条件，可以发送一个事件来触发角色身上的其他被动技能或特定的特效表现。</em></li>
-</ul>
-</li>
-<li>
-<p><em>ASC里的函数：发送/触发一个游戏事件。</em></p>
-<p><code>virtual int32 HandleGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);</code></p>
-<ul>
-<li><em>入参：</em>
-<ul>
-<li><em>EventTag：触发事件的标签，比如 Event.OnHit。</em></li>
-<li><em>Payload：携带的数据包，包含受击者、攻击者、位置等丰富信息。</em></li>
-</ul>
-</li>
-<li><em>核心逻辑：用于触发那些不需要按键、而是由特定行为激发的技能（例如受击反击、暴击回血）。</em></li>
-</ul>
-</li>
-<li>
 <p><em>取消/打断当前技能后的逻辑</em></p>
-</li>
-</ol>
 <p><code>virtual void CancelAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateCancelAbility);</code></p>
 <ul>
 <li><em>入参：</em>
@@ -586,7 +551,7 @@
 <li><em>核心逻辑：这是技能响应“被强行中止”时的处理函数。它的内部实现通常会自动调用 EndAbility，并显式地将 bWasCancelled 参数设为 true。</em></li>
 <li><em>开发提示：它与 EndAbility 的区别在于，CancelAbility 专门用于非自愿的打断（比如被敌人眩晕、被沉默或玩家按了另一个会互斥掉当前技能的操作）。当你需要针对“被动中断”写一些特殊逻辑（比如中断施法后进入更长的冷却）时，会关注这个流程。</em></li>
 </ul>
-<ol start="11">
+</li>
 <li>
 <p><em>ASC里的函数：根据标签强行取消/打断技能。</em></p>
 <div class="highlight"><div class="chroma">
@@ -614,6 +579,41 @@
 <li><em>核心逻辑：用于实现硬控逻辑，比如眩晕时取消所有正在读条的技能。</em></li>
 </ul>
 </li>
+<li>
+<p><em>获取技能相关的 Actor 信息。</em></p>
+<p><code>FGameplayAbilityActorInfo GetActorInfo() const;</code></p>
+<ul>
+<li><em>核心逻辑：在技能内部使用。通过它可以直接获取到 AvatarActor（当前的肉体小人）、OwnerActor（逻辑上的所有者）以及 ASC 组件。这是技能内部寻找“我是谁”的最快方式。</em></li>
+</ul>
+</li>
+<li>
+<p><em>发送游戏事件。</em></p>
+</li>
+</ol>
+<p><code>void SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload);</code></p>
+<ul>
+<li><em>入参：</em>
+<ul>
+<li><em>EventTag：标识事件的标签。</em></li>
+<li><em>Payload：携带的各种数据包。</em></li>
+</ul>
+</li>
+<li><em>核心逻辑：用于技能内部的主动通信。比如你的技能在某一时刻达成了一个特殊条件，可以发送一个事件来触发角色身上的其他被动技能或特定的特效表现。</em></li>
+</ul>
+<ol start="11">
+<li>
+<p><em>ASC里的函数：发送/触发一个游戏事件。</em></p>
+<p><code>virtual int32 HandleGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);</code></p>
+<ul>
+<li><em>入参：</em>
+<ul>
+<li><em>EventTag：触发事件的标签，比如 Event.OnHit。</em></li>
+<li><em>Payload：携带的数据包，包含受击者、攻击者、位置等丰富信息。</em></li>
+</ul>
+</li>
+<li><em>核心逻辑：用于触发那些不需要按键、而是由特定行为激发的技能（例如受击反击、暴击回血）。</em></li>
+</ul>
+</li>
 </ol>
 <h3 id="重要接口里面的参数"><em><strong>重要接口里面的参数</strong></em></h3>
 <h4 id="fgameplayabilityspec"><em><strong>FGameplayAbilitySpec</strong></em></h4>
@@ -623,11 +623,8 @@
 <p><em>技能在内存中的“唯一身份证”。</em></p>
 <ul>
 <li><em><strong>定义</strong>：一个全局唯一的整数标识符，指向 ASC 中的 FGameplayAbilitySpec。</em></li>
-<li><em><strong>作用</strong>：在 C++ 中，你</em><em>不应该</em>*保存 UGameplayAbility 的指针，而是应该保存这个 Handle。*</li>
-<li><em><strong>应用场景</strong>：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统只认这个 ID。</em></li>
+<li><em><strong>应用场景</strong>：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统会认这个 ID。</em></li>
 </ul>
-<h4 id="fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></h4>
-<p><em>用来包装 FGameplayAbilityTargetData 的句柄</em></p>
 <p><em>它的存在主要有以下两个核心目的：</em></p>
 <ul>
 <li><em><strong>性能优化</strong>：避免我们在蓝图中不得不频繁地拷贝整个完整的目标数据结构体。</em></li>
@@ -652,6 +649,14 @@
 <h4 id="fgameplayabilitytargetdata"><em><strong>FGameplayAbilityTargetData</strong></em></h4>
 <p><em>这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。</em></p>
 <p><em>该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。</em></p>
+<h4 id="fgameplayabilitytargetdatahandle"><em><strong>FGameplayAbilityTargetDataHandle</strong></em></h4>
+<p><em>用来包装 FGameplayAbilityTargetData 的句柄</em></p>
+<p><em>它的存在主要有以下两个核心目的：</em></p>
+<ul>
+<li><em><strong>性能优化</strong>：避免我们在蓝图中不得不频繁地拷贝整个完整的目标数据结构体。</em></li>
+<li><em><strong>支持多态性</strong>：允许我们在目标数据结构中使用多态特性（即一个句柄可以指向不同类型的具体子类数据）。</em></li>
+<li><em><strong>网络同步支持</strong>：允许我们实现 NetSerialize（网络序列化），从而在客户端和服务器之间实现“按值同步（Replication by value）”。</em></li>
+</ul>
 <h3 id="一些其他的杂项"><em><strong>一些其他的杂项</strong></em></h3>
 <h4 id="uabilitytask"><em><strong>UAbilityTask</strong></em></h4>
 <p><em>异步处理机。技能是瞬时启动的，Task 允许技能“等待”某事发生（如：等待动画结束、等待一个碰撞、等待一段时间）</em></p>

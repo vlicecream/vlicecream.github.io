@@ -273,13 +273,37 @@ showdebug abilitysystem
      - *bWasCancelled：技能是正常播放完结束的，还是被外部逻辑强行打断的。*
    - *核心逻辑：这是最重要的清理接口。如果你不调用它，技能会永远处于“运行中”状态，导致角色可能无法再次释放技能，或者标签一直挂在身上不消失。*
 
-7. *获取技能相关的 Actor 信息。*
+7. *取消/打断当前技能后的逻辑*
+
+      `virtual void CancelAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateCancelAbility);`
+
+      - *入参：*
+        - *bReplicateCancelAbility：是否需要将取消信号同步到其他端。*
+      - *核心逻辑：这是技能响应“被强行中止”时的处理函数。它的内部实现通常会自动调用 EndAbility，并显式地将 bWasCancelled 参数设为 true。*
+      - *开发提示：它与 EndAbility 的区别在于，CancelAbility 专门用于非自愿的打断（比如被敌人眩晕、被沉默或玩家按了另一个会互斥掉当前技能的操作）。当你需要针对“被动中断”写一些特殊逻辑（比如中断施法后进入更长的冷却）时，会关注这个流程。*
+
+8. *ASC里的函数：根据标签强行取消/打断技能。*
+
+   ```cpp
+   void CancelAbility(UGameplayAbility* Ability);	
+   void CancelAbilityHandle(const FGameplayAbilitySpecHandle& AbilityHandle);
+   void CancelAbilities(const FGameplayTagContainer* WithTags=nullptr, const FGameplayTagContainer* WithoutTags=nullptr, UGameplayAbility* Ignore=nullptr);
+   void CancelAllAbilities(UGameplayAbility* Ignore=nullptr);
+   ```
+
+   - *入参：*
+     - *WithTags：匹配这些标签的技能将被关闭。*
+     - *WithoutTags：不包含这些标签的技能才会被关闭。*
+     - *Ignore：不会关闭的技能*
+   - *核心逻辑：用于实现硬控逻辑，比如眩晕时取消所有正在读条的技能。*
+
+9. *获取技能相关的 Actor 信息。*
 
    `FGameplayAbilityActorInfo GetActorInfo() const;`
 
    - *核心逻辑：在技能内部使用。通过它可以直接获取到 AvatarActor（当前的肉体小人）、OwnerActor（逻辑上的所有者）以及 ASC 组件。这是技能内部寻找“我是谁”的最快方式。*
 
-8. *发送游戏事件。*
+10. *发送游戏事件。*
 
    `void SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload);`
 
@@ -288,38 +312,14 @@ showdebug abilitysystem
      - *Payload：携带的各种数据包。*
    - *核心逻辑：用于技能内部的主动通信。比如你的技能在某一时刻达成了一个特殊条件，可以发送一个事件来触发角色身上的其他被动技能或特定的特效表现。*
 
-9. *ASC里的函数：发送/触发一个游戏事件。*
+11. *ASC里的函数：发送/触发一个游戏事件。*
 
-   `virtual int32 HandleGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);`
-
-   - *入参：*
-     - *EventTag：触发事件的标签，比如 Event.OnHit。*
-     - *Payload：携带的数据包，包含受击者、攻击者、位置等丰富信息。*
-   - *核心逻辑：用于触发那些不需要按键、而是由特定行为激发的技能（例如受击反击、暴击回血）。*
-
-10. *取消/打断当前技能后的逻辑*
-
-   `virtual void CancelAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateCancelAbility);`
-
-   - *入参：*
-     - *bReplicateCancelAbility：是否需要将取消信号同步到其他端。*
-   - *核心逻辑：这是技能响应“被强行中止”时的处理函数。它的内部实现通常会自动调用 EndAbility，并显式地将 bWasCancelled 参数设为 true。*
-   - *开发提示：它与 EndAbility 的区别在于，CancelAbility 专门用于非自愿的打断（比如被敌人眩晕、被沉默或玩家按了另一个会互斥掉当前技能的操作）。当你需要针对“被动中断”写一些特殊逻辑（比如中断施法后进入更长的冷却）时，会关注这个流程。*
-
-11. *ASC里的函数：根据标签强行取消/打断技能。*
-
-    ```cpp
-    void CancelAbility(UGameplayAbility* Ability);	
-    void CancelAbilityHandle(const FGameplayAbilitySpecHandle& AbilityHandle);
-    void CancelAbilities(const FGameplayTagContainer* WithTags=nullptr, const FGameplayTagContainer* WithoutTags=nullptr, UGameplayAbility* Ignore=nullptr);
-    void CancelAllAbilities(UGameplayAbility* Ignore=nullptr);
-    ```
+    `virtual int32 HandleGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);`
 
     - *入参：*
-      - *WithTags：匹配这些标签的技能将被关闭。*
-      - *WithoutTags：不包含这些标签的技能才会被关闭。*
-      - *Ignore：不会关闭的技能*
-    - *核心逻辑：用于实现硬控逻辑，比如眩晕时取消所有正在读条的技能。*
+      - *EventTag：触发事件的标签，比如 Event.OnHit。*
+      - *Payload：携带的数据包，包含受击者、攻击者、位置等丰富信息。*
+    - *核心逻辑：用于触发那些不需要按键、而是由特定行为激发的技能（例如受击反击、暴击回血）。*
 
 ### ***重要接口里面的参数***
 
@@ -334,12 +334,7 @@ showdebug abilitysystem
 *技能在内存中的“唯一身份证”。*
 
 - ***定义**：一个全局唯一的整数标识符，指向 ASC 中的 FGameplayAbilitySpec。*
-- ***作用**：在 C++ 中，你**不应该**保存 UGameplayAbility 的指针，而是应该保存这个 Handle。*
-- ***应用场景**：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统只认这个 ID。*
-
-#### ***FGameplayAbilityTargetDataHandle***
-
-*用来包装 FGameplayAbilityTargetData 的句柄*
+- ***应用场景**：当你需要手动结束技能（EndAbility）或者取消特定技能（CancelAbilityHandle）时，系统会认这个 ID。*
 
 *它的存在主要有以下两个核心目的：*
 
@@ -368,6 +363,16 @@ showdebug abilitysystem
 *这是一个用于处理目标数据的通用结构体。目标是让通用的函数能够生成这些数据，并由其他通用函数来消费/处理这些数据。*
 
 *该结构能够同时持有特定的 Actor/对象引用，以及通用的位置（Location）/ 方向（Direction）/ 源点（Origin）信息。*
+
+#### ***FGameplayAbilityTargetDataHandle***
+
+*用来包装 FGameplayAbilityTargetData 的句柄*
+
+*它的存在主要有以下两个核心目的：*
+
+- ***性能优化**：避免我们在蓝图中不得不频繁地拷贝整个完整的目标数据结构体。*
+- ***支持多态性**：允许我们在目标数据结构中使用多态特性（即一个句柄可以指向不同类型的具体子类数据）。*
+- ***网络同步支持**：允许我们实现 NetSerialize（网络序列化），从而在客户端和服务器之间实现“按值同步（Replication by value）”。*
 
 ### ***一些其他的杂项***
 
