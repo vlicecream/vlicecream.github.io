@@ -440,16 +440,33 @@ showdebug abilitysystem
 ***Gameplay Effect（核心变更逻辑）***
 
 - *Components (组件)*
-  - *说明: UE5 新增的模块化功能。点击 + 号可以添加不同的逻辑块。*
+  - *说明: UE5.3之后 新增的模块化功能。点击 + 号可以添加不同的逻辑块。*
   - *可选组件举例 (你也可以自定义组件)*
-    - *Chance To Apply: 设置该 GE 成功触发的百分比概率。*
+    - *Grant Tags to Target Actor: 给该GE贴上标签。*
+  
 - *Modifiers (属性修改器)*
+  
   - *说明: 最常用的功能，通过数学运算直接改属性。*
+  
   - *内部选项*
+    
     - *Attribute: 选择你要修改的属性（如 Health, Mana）。*
+    
     - *Modifier Op: 运算方式，包括 Add (加减)、Multiply (乘)、Divide (除)、Override (覆盖/强行设为某值)。*
+    
+      最终值 = ((基础值 + 所有加法总和) \* 所有乘法总和 / 所有除法总和) -> 最后执行 Override
+    
+      | *操作符 (ModOp)*                | *数学公式*             | *典型使用场景*                  | *备注*                                                      |
+      | ------------------------------- | ---------------------- | ------------------------------- | ----------------------------------------------------------- |
+      | ***Additive (Add)***            | *新值 = 旧值 + 修正值* | *生命值上限 +100，攻击力 +5*    | *最常用的修改方式。*                                        |
+      | ***Multiplicitive (Multiply)*** | 新值 = 旧值 * 修正值   | *攻击力提升 20% (修正值为 1.2)* | *多个乘法通常是加法堆叠。*（100 * (1.0 + 0.1 + 0.1) = 120） |
+      | ***Division (Divide)***         | *新值 = 旧值 / 修正值* | *技能冷却缩减，防御力减半*      | *较少直接使用，通常用于负面效果或特殊缩放。*                |
+      | ***Override (Override)***       | *新值 = 修正值*        | *强制移动速度变为 0，强制无敌*  | *霸道总裁。无视之前的任何计算，直接覆盖*                    |
+    
     - *Magnitude: 数值来源。可以是固定值，也可以是根据另一个属性计算出的值（Attribute Based）。*
+  
 - *Executions (执行计算)*
+  
   - *说明: 关联 C++ 或蓝图编写的 GameplayEffectExecutionCalculation 类。*
   - 作用: 用于处理极其复杂的伤害公式（例如：伤害 = 攻击力 * 技能倍率 - 敌方护甲，且涉及暴击随机数时)
 
@@ -479,9 +496,20 @@ showdebug abilitysystem
 - *Stack Duration Refresh Policy (时长刷新策略)*:
   - *Refresh on Successful Application: 每次叠新层数，持续时间重置。*
   - *Never Refresh: 叠层不影响计时，时间到期全消失。*
+- *Stack Period Reset Policy (周期重置策略)*
+  - *如果 GE 是周期性触发的（比如每 1 秒扣一次血），新层到来时，这个 1 秒的间隔要不要重置？*
+  - *Reset on Successful Application: 重置。如果你快要掉血了，此时中了一箭，掉血的时机往后推 1 秒。*
+  - *Never Reset: 不重置。无论中多少箭，掉血的频率始终固定。*
 - *Stack Expiration Policy (到期策略)*
   - *Clear Entire Stack: 时间到，所有层数瞬间全没。*
   - *Remove Single Stack and Refresh Duration: 时间到，只减一层，然后重新开始倒计时（逐层掉落）。*
+  - *Refresh Duration：这个 GE 永远不会因为时间到期而自动消失。使用场景：在某些 UI 设计中，你希望玩家看到一个进度条不断地转圈（比如“战斗状态”），而不是消失*
+- *Overflow Effects (溢出效果)*
+  - *这是一个 GE 数组。当层数已满且再次触发该 GE 时，系统会额外触发这里配置的 GE。*
+  - *典型应用：比如“灼烧”堆满 10 层后，触发一个“爆炸” GE。*
+- *Deny Overflow Application (拒绝溢出应用)*
+  - *如果不打勾（默认）：即使层数满了，新的应用虽然不加层数，但依然会触发上面的“刷新时长”或“重置周期”逻辑。*
+  - *如果打勾：层数满了以后，后续的所有应用直接被忽略，不会刷新时间，也不会触发溢出效果。*
 
 #### ***FAttributeBasedFloat***
 

@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  15260 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  15849 ,
         "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-26T17:50:15+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15260 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 31 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15849 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 32 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -722,29 +722,78 @@
 </ul>
 <p><em><strong>Gameplay Effect（核心变更逻辑）</strong></em></p>
 <ul>
-<li><em>Components (组件)</em>
+<li>
+<p><em>Components (组件)</em></p>
 <ul>
-<li><em>说明: UE5 新增的模块化功能。点击 + 号可以添加不同的逻辑块。</em></li>
+<li><em>说明: UE5.3之后 新增的模块化功能。点击 + 号可以添加不同的逻辑块。</em></li>
 <li><em>可选组件举例 (你也可以自定义组件)</em>
 <ul>
-<li><em>Chance To Apply: 设置该 GE 成功触发的百分比概率。</em></li>
+<li><em>Grant Tags to Target Actor: 给该GE贴上标签。</em></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><em>Modifiers (属性修改器)</em>
+<li>
+<p><em>Modifiers (属性修改器)</em></p>
 <ul>
-<li><em>说明: 最常用的功能，通过数学运算直接改属性。</em></li>
-<li><em>内部选项</em>
+<li>
+<p><em>说明: 最常用的功能，通过数学运算直接改属性。</em></p>
+</li>
+<li>
+<p><em>内部选项</em></p>
 <ul>
-<li><em>Attribute: 选择你要修改的属性（如 Health, Mana）。</em></li>
-<li><em>Modifier Op: 运算方式，包括 Add (加减)、Multiply (乘)、Divide (除)、Override (覆盖/强行设为某值)。</em></li>
-<li><em>Magnitude: 数值来源。可以是固定值，也可以是根据另一个属性计算出的值（Attribute Based）。</em></li>
-</ul>
+<li>
+<p><em>Attribute: 选择你要修改的属性（如 Health, Mana）。</em></p>
+</li>
+<li>
+<p><em>Modifier Op: 运算方式，包括 Add (加减)、Multiply (乘)、Divide (除)、Override (覆盖/强行设为某值)。</em></p>
+<p>最终值 = ((基础值 + 所有加法总和) * 所有乘法总和 / 所有除法总和) -&gt; 最后执行 Override</p>
+<table>
+<thead>
+<tr>
+<th><em>操作符 (ModOp)</em></th>
+<th><em>数学公式</em></th>
+<th><em>典型使用场景</em></th>
+<th><em>备注</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em><strong>Additive (Add)</strong></em></td>
+<td><em>新值 = 旧值 + 修正值</em></td>
+<td><em>生命值上限 +100，攻击力 +5</em></td>
+<td><em>最常用的修改方式。</em></td>
+</tr>
+<tr>
+<td><em><strong>Multiplicitive (Multiply)</strong></em></td>
+<td>新值 = 旧值 * 修正值</td>
+<td><em>攻击力提升 20% (修正值为 1.2)</em></td>
+<td><em>多个乘法通常是加法堆叠。</em>（100 * (1.0 + 0.1 + 0.1) = 120）</td>
+</tr>
+<tr>
+<td><em><strong>Division (Divide)</strong></em></td>
+<td><em>新值 = 旧值 / 修正值</em></td>
+<td><em>技能冷却缩减，防御力减半</em></td>
+<td><em>较少直接使用，通常用于负面效果或特殊缩放。</em></td>
+</tr>
+<tr>
+<td><em><strong>Override (Override)</strong></em></td>
+<td><em>新值 = 修正值</em></td>
+<td><em>强制移动速度变为 0，强制无敌</em></td>
+<td><em>霸道总裁。无视之前的任何计算，直接覆盖</em></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><em>Magnitude: 数值来源。可以是固定值，也可以是根据另一个属性计算出的值（Attribute Based）。</em></p>
 </li>
 </ul>
 </li>
-<li><em>Executions (执行计算)</em>
+</ul>
+</li>
+<li>
+<p><em>Executions (执行计算)</em></p>
 <ul>
 <li><em>说明: 关联 C++ 或蓝图编写的 GameplayEffectExecutionCalculation 类。</em></li>
 <li>作用: 用于处理极其复杂的伤害公式（例如：伤害 = 攻击力 * 技能倍率 - 敌方护甲，且涉及暴击随机数时)</li>
@@ -792,10 +841,30 @@
 <li><em>Never Refresh: 叠层不影响计时，时间到期全消失。</em></li>
 </ul>
 </li>
+<li><em>Stack Period Reset Policy (周期重置策略)</em>
+<ul>
+<li><em>如果 GE 是周期性触发的（比如每 1 秒扣一次血），新层到来时，这个 1 秒的间隔要不要重置？</em></li>
+<li><em>Reset on Successful Application: 重置。如果你快要掉血了，此时中了一箭，掉血的时机往后推 1 秒。</em></li>
+<li><em>Never Reset: 不重置。无论中多少箭，掉血的频率始终固定。</em></li>
+</ul>
+</li>
 <li><em>Stack Expiration Policy (到期策略)</em>
 <ul>
 <li><em>Clear Entire Stack: 时间到，所有层数瞬间全没。</em></li>
 <li><em>Remove Single Stack and Refresh Duration: 时间到，只减一层，然后重新开始倒计时（逐层掉落）。</em></li>
+<li><em>Refresh Duration：这个 GE 永远不会因为时间到期而自动消失。使用场景：在某些 UI 设计中，你希望玩家看到一个进度条不断地转圈（比如“战斗状态”），而不是消失</em></li>
+</ul>
+</li>
+<li><em>Overflow Effects (溢出效果)</em>
+<ul>
+<li><em>这是一个 GE 数组。当层数已满且再次触发该 GE 时，系统会额外触发这里配置的 GE。</em></li>
+<li><em>典型应用：比如“灼烧”堆满 10 层后，触发一个“爆炸” GE。</em></li>
+</ul>
+</li>
+<li><em>Deny Overflow Application (拒绝溢出应用)</em>
+<ul>
+<li><em>如果不打勾（默认）：即使层数满了，新的应用虽然不加层数，但依然会触发上面的“刷新时长”或“重置周期”逻辑。</em></li>
+<li><em>如果打勾：层数满了以后，后续的所有应用直接被忽略，不会刷新时间，也不会触发溢出效果。</em></li>
 </ul>
 </li>
 </ul>
