@@ -437,12 +437,87 @@ showdebug abilitysystem
   - *Infinite (永久) 效果永久挂在目标身上，除非手动移除或被标签（Tags）清除。常用于被动技能。*
   - *Has Duration (限时): 效果持续一段时间后自动移除。选择此项后会多出一个 Duration Magnitude 用于设置具体的秒数。常用于眩晕 3 秒、增加攻击力 10 秒。*
 
+*如果选择 永久或者限时 则就会弹出来一个Period (周期)：每多少秒 GE效果就会触发一次*
+
+- *Execute Periodic Effect on Application (应用时立即执行周期效果)*
+- Periodic Inhibition Policy (周期抑制策略)
+  - *状态： Never Reset（从不重置）。*
+  - *背景： “抑制（Inhibition）”是指 GE 因为某些原因暂时失效了（比如目标获得了免疫某种属性的 Tag）。*
+  - *各选项含义：*
+    - *Never Reset： 计时器像个背景闹钟一样一直跑。如果 GE 被抑制了 0.5 秒后恢复，计时器不会归零，而是继续走完剩下的时间。*
+    - *Reset Timer：当 GE 从“被抑制”恢复为“正常”时，重新开始 1 秒的倒计时。*
+    - *Execute and Reset： 当从“被抑制”恢复时，立刻跳一次伤害，并重新开始 1 秒倒计时。*
+
 ***Gameplay Effect（核心变更逻辑）***
 
 - *Components (组件)*
   - *说明: UE5.3之后 新增的模块化功能。点击 + 号可以添加不同的逻辑块。*
+  
   - *可选组件举例 (你也可以自定义组件)*
-    - *Grant Tags to Target Actor: 给该GE贴上标签。*
+    
+    1. *Apply Additional Effects (应用额外效果)*
+    
+       - **功能：** 当这个 GE 应用到目标身上时，自动触发其他的 GE。
+    
+       - **例子：** “火球术” GE 在造成伤害的同时，通过这个组件额外触发一个“点燃（持续掉血）”的 GE。
+    
+    2. *Block Abilities with Tags (通过标签阻断技能)*
+    
+       - **功能：** 只要这个 GE 还在目标身上，目标就无法激活带有特定标签的技能。
+    
+       - **例子：** “沉默”状态。给目标一个 GE，组件里填入 Ability.Active。此时目标所有带有该标签的技能都按不出来。
+    
+    3. *Chance To Apply This Effect (应用概率)*
+    
+       - ***功能：** 给这个 GE 设置一个触发几率。*
+    
+       - ***例子：** “暴击”或“眩晕”。设置 20% 的几率，只有运气好时，这个 GE 才会真正挂到目标身上。*
+    
+    4. *Custom Can Apply This Effect (自定义应用条件)*
+    
+       - ***功能：** 允许程序员编写复杂的 C++ 逻辑来判断“该 GE 是否能应用”。*
+    
+       - ***例子：** 只有当目标生命值低于 30% 时，这个“斩杀” GE 才能生效。*
+    
+    5. *Grant Gameplay Abilities (授予技能)*
+    
+       - ***功能：** 当这个 GE 存在时，目标会临时获得某些技能；GE 消失，技能回收。*
+    
+       - ***例子：** 捡到一个“喷气背包”道具（GE），玩家临时获得了“飞行”技能。*
+    
+    6. *Grant Tags to Target Actor (授予目标标签)*
+    
+       - **功能：** 当 GE 存在时，给目标打上特定的 Gameplay Tags。
+    
+       - **例子：** “眩晕”状态。GE 存在期间，目标拥有 State.Stunned 标签。这常用于配合其他的逻辑判断（如：不能移动）。
+    
+    7. *Immunity to Other Effects (效果免疫)*
+    
+       - **功能：** 让目标免疫特定类型的 GE。
+    
+       - **例子：** “圣盾术”。添加此组件并设置 Debuff 标签。此时任何带有 Debuff 标签的 GE 都无法应用到目标身上。
+    
+    8. Remove Other Effects (移除其他效果)
+    
+       - **功能：** 当这个 GE 应用时，清除目标身上已有的特定 GE。
+    
+       - **例子：** “清心术”或“驱散”。应用这个 GE 时，自动移除目标身上所有的 Type.Poison（毒） 标签的效果。
+    
+    9. Require Tags to Apply/Continue This Effect (应用/持续标签需求)
+    
+       - **功能：** 只有目标拥有（或没有）某些标签时，这个 GE 才能开始或继续。
+    
+       - **例子：** “水下呼吸”。要求目标必须拥有 State.InWater 标签。如果目标离开了水，这个 GE 会自动失效。
+    
+    10. Tags This Effect Has (Asset Tags) (效果自身拥有的标签)
+    
+        - **功能：** 给这个 GE 资产本身打标签。
+    
+        - **例子：** 将一个 GE 标记为 Type.Buff.Positive。这样其他的系统（比如 UI 或驱散系统）可以通过标签找到并处理它。
+    
+    11. UI 相关组件 (UI Data)
+    
+        - **UI Data (Text Only):** 纯文本的 UI 数据，通常存放 Buff 的名称、描述。
   
 - *Modifiers (属性修改器)*
   
