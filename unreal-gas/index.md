@@ -685,40 +685,152 @@ showdebug abilitysystem
 
 *你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 `float HeadshotMultiplier`。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。*
 
-## ***表现层***
-
-### ***UGameplayCue***
-
-*处理非数值的表现（特效、音效、震动）。*
-
-*通过 GameplayTag 触发。它的优点是“火后即焚”，不参与服务器的回滚，只在客户端执行。*
-
-### ***UGameplayCueManager***
-
-*GC 的分发中心。它负责扫描项目中的 GC 路径，并将 Tag 路由到对应的 Notify 或 Actor 上。*
-
-### ***AGameplayCueNotify_Static***
-
-*“火后即焚”的表现。*
-
-*专门处理瞬间触发的特效（如爆炸、打击感）。它性能极高，因为它不需要在场景中生成长久存在的 Actor。*
-
-### ***AGameplayCueNotify_Actor***
-
-*“持续存在”的表现。*
-
-*用于处理持续性的效果表现（如身上一直冒火、护盾光圈）。它会创建一个真实的 Actor 挂在目标身上，支持复杂的开启和关闭逻辑。*
-
-### ***FGameplayCueParameters***
-
-*表现层的“情报包”。*
-
-*当一个 Cue 触发时（比如一次大爆炸），这个结构体负责传递所有的细节。它就像是一个公文包，里面装载了：*
-
-- *Location / Normal：爆炸发生的精确坐标和法线方向。*
-- *RawMagnitude：一个原始的浮点数值（比如用来缩放爆炸特效的大小）。*
-- *EffectContext：溯源信息，让你知道是哪个技能、哪把武器触发了这个特效。*
-  *没有它，你的特效只能呆板地播放，有了它，特效才能实现“哪里被打哪喷血”的精准反馈。*
+- ## ***表现层***
+  
+  *处理非数值的表现（特效、音效、震动）。*
+  
+  *通过 GameplayTag 触发。不参与服务器的回滚，只在客户端执行。*
+  
+  ### ***核心路由：UGameplayCueManager***
+  
+  - **分发中心（The Router）：** 它是表现层的“神经中枢”。它在项目启动时扫描指定的路径，建立 **GameplayTag → 表现类（Notify）** 的映射表。
+  - **性能优化：** 负责维护对象池（Recycle Pool），避免频繁创建和销毁 Actor 带来的开销。当一个 Tag 触发时，它负责寻找最合适的处理器来展示效果。
+  
+  ### ***静态处理器：UGameplayCueNotify_Static***
+  
+  - **本质： 继承自 UObject 的轻量级单例。*
+  - *特性：“火后即焚” (Fire and Forget)。它不在场景中产生持久实体。*
+  - *适用场景：处理瞬时状态。如命中时的火花、挥刀的音效、短暂的屏幕震动。*
+  - *优势： 极高的性能，不参与复杂的生命周期管理，是处理大量爆发性特效的首选。*
+  
+  ### ***动态载体：AGameplayCueNotify_Actor***
+  
+  - *本质： 实现了 GC 协议函数的 AActor。*
+  - *特性：“状态伴随” (Lifecycle Managed)。它作为一个真实的实体存在于 3D 世界中，支持挂载组件（Niagara、声音、模型）。*
+  - *适用场景： 处理持续性状态（WhileActive）。如身上的中毒绿烟、护盾光圈、持续的喷泉特效。*
+  - *设计逻辑： 之所以继承自 Actor，是为了利用引擎成熟的 Transform（空间变换）、Component（组件化）以及 Tick（帧更新）系统，从而实现随角色移动或随时间渐变的复杂效果。*
+  
+  ### ***数据包：FGameplayCueParameters***
+  
+  - *本质： 表现层的“任务简报” (Payload)。*
+  
+  - *核心作用： 解决“表现如何根据上下文变化”的问题。*
+  
+  - *装载信息：*
+  
+    1. ***强度与规模 (Magnitude)***
+  
+       * ***Normalized Magnitude (归一化强度):***
+  
+         *通常是一个 0.0 到 1.0 之间的值。常用于设置特效的比例（比如蓄力越久，光圈越大）。*
+  
+       - ***Raw Magnitude (原始强度):***
+  
+         *传递过来的原始数值。比如在伤害 GE 中，这通常是最终计算出的伤害数字。你可以根据这个数字决定播放轻微的出血还是喷涌的出血特效。*
+  
+    2. ***标签情报 (Tags)***
+  
+       - ***Matched Tag Name (匹配标签):***
+  
+         *当前触发这个 Notify 的具体标签。如果你一个 Notify 关联了多个 Tag（如 Abiltiy.Fire.Small 和 Ability.Fire.Big），这个引脚会告诉你到底是哪一个命中了。*
+  
+       - ***Original Tag (原始标签):***
+  
+         *最开始触发 Cue 的那个标签，不受“标签剥离”或“通配符匹配”的影响。*
+  
+       - ***Aggregated Source/Target Tags (来源/目标聚合标签):***
+  
+         *包含了攻击方和受击方在这一瞬间**所有的** Gameplay Tags。这非常强大，例如：你可以根据目标是否有 State.InWater 标签，决定火球术击中时是产生爆炸还是产生水蒸气。*
+  
+    3. ***物理与位置 (World Info)***
+  
+       - **Location (位置):**
+  
+         *特效发生的 3D 坐标。这是爆炸或火花生成的精准点。*
+  
+       - ***Normal (法线):***
+  
+         *碰撞表面的朝向。用于让火花或者弹孔贴图贴在墙面上时角度是正确的。*
+  
+       - ***Physical Material (物理材质):***
+  
+         *打到了什么材质。是金属、木头还是布料？你可以据此切换音效（叮当声 vs 噗噗声）。*
+  
+    4. ***角色关系 (Actors)***
+  
+       - ***Instigator (扇动者/主使人):***
+  
+         *通常是释放技能的那个 **Controller** 或 **Pawn**。用于追踪“谁”干的。*
+  
+       - ***Effect Causer (效果产生物):***
+  
+         *具体的物理媒介。例如：发射出的子弹 Actor 或者手里的那把枪。*
+  
+       - ***SourceObject (源对象):***
+  
+         *通常是一个静态数据对象（如 WeaponData 资产），让你知道这次表现是基于哪种武器配置。*
+  
+       - ***Target Attach Component (目标挂载组件):***
+  
+         *如果特效需要粘在角色身上，这个引脚告诉你应该挂在哪个组件上（通常是 Mesh）。*
+  
+    5. ***等级与深度信息 (Levels & Context)***
+  
+       - ***Gameplay Effect Level (GE 等级):***
+  
+         *触发此特效的 GE 等级。等级越高，特效可以设计得更华丽。*
+  
+       - ***Ability Level (技能等级):***
+  
+         *触发此特效的技能等级。*
+  
+       - ***Effect Context (效果上下文句柄):***
+  
+         *这是最有用的“黑盒子”。它包含了完整的溯源链。在 C++ 或蓝图中，你可以进一步从这里提取出“击中结果（HitResult）”或者自定义的数据（如 Lyra 项目中利用它传递团队 ID）。*
+  
+    6. ***技术参数 (Technical)***
+  
+       - ***bReplicateLocationWhenUsingMinimalRepProxy (最小化同步代理位置同步):***
+  
+         *这是一个底层优化开关。在极简的网络同步模式下，决定是否需要同步具体的地理位置信息，通常开发者不需要手动修改它。*
+  
+    *可以将 FGameplayCueParameters 想象成一份“快递单”。有时候系统会自动帮你填好发件人信息，但有时候（比如具体的撞击坐标）必须由你亲手填上去。*
+  
+  #### ***哪些参数会被自动传进去***
+  
+  1. *通过 Gameplay Effect (GE) 触发 —— 大部分自动填充*
+  
+     *这是最常用的场景。如果你在 GE 的 GameplayCues 栏位里添加了一个 Tag，那么：*
+  
+     - *GAS 自动填充的项目：*
+       - *Instigator / EffectCauser / SourceObject： 从产生这个 GE 的 EffectContext 中自动提取。*
+       - *EffectContext：自动携带触发该 GE 的完整上下文。*
+       - *GameplayEffectLevel： 自动填充为 GE 的等级。*
+       - *AbilityLevel： 如果 GE 是由技能产生的，自动填充技能等级。*
+       - *RawMagnitude： 自动填充为该 GE 的 Modifier 数值（例如：如果你有一个伤害 GE 扣了 50 血，这个 50 会自动塞进 RawMagnitude）。*
+  
+     - *需要你手动处理的项目：*
+       - *Location / Normal： GE 本身逻辑上并不一定知道“物理撞击点”。如果你需要位置信息，你需要在产生 GE 之前，通过 EffectContext 塞入一个 HitResult。GAS 发现有 HitResult 时，会自动把里面的位置和法线转填到 Cue 参数里。*
+  
+  2. *在 Ability (GA) 中通过节点手动触发 —— 全手动填充*
+  
+     *如果你在蓝图里使用 Execute Gameplay Cue with Params 或者 Add Gameplay Cue 节点：*
+  
+     - *情况：系统此时只是一张白纸。*
+  
+     - *你的工作： 你必须自己创建一个 MakeGameplayCueParameters 结构体，并把值连上去。*
+  
+     - *为什么要手动？ 因为此时系统不知道你触发这个特效的意图。比如你做一个“原地回血”的特效，你可能需要手动把 Location 连成玩家的位置。*
+  
+  3. *“半自动”：通过 EffectContext 传递*
+  
+     *这是高阶开发者最常用的技巧。*
+  
+     1. *你在 Ability 开始时，使用 MakeEffectContext 创建上下文。*
+  
+     2. *你调用 **AddHitResult** 把射线检测的结果（包含位置、法线、物理材质）塞进去。*
+  
+     3. *魔法发生了： 只要这个 Context 被用来产生 GE 或直接触发 Cue，GAS 就会自动从这个“公文包”里拿出位置、法线、物理材质、Instigator 等信息，填满 FGameplayCueParameters。*
 
 ## ***UAttributeSet***
 
