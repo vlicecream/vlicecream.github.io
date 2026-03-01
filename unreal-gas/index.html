@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/unreal-gas\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  18785 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, GAS","wordcount":  18811 ,
         "url": "https:\/\/example.com\/unreal-gas\/","datePublished": "2025-12-26T21:34:00+08:00","dateModified": "2026-02-26T17:50:15+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - GAS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 18785 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-26">2025-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 18811 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 38 分钟&nbsp;<span id="/unreal-gas/" class="leancloud_visitors" data-flag-title="Unreal - GAS">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -728,11 +728,20 @@
 <li><em>Execute Periodic Effect on Application (应用时立即执行周期效果)</em></li>
 <li>Periodic Inhibition Policy (周期抑制策略)
 <ul>
-<li><em>状态： Never Reset（从不重置）。</em></li>
-<li><em>背景： “抑制（Inhibition）”是指 GE 因为某些原因暂时失效了（比如目标获得了免疫某种属性的 Tag）。</em></li>
+<li><em>“抑制（Inhibition）”是指 GE 因为某些原因暂时失效了（比如目标获得了免疫某种属性的 Tag）。</em></li>
 <li><em>各选项含义：</em>
 <ul>
-<li><em>Never Reset： 计时器像个背景闹钟一样一直跑。如果 GE 被抑制了 0.5 秒后恢复，计时器不会归零，而是继续走完剩下的时间。</em></li>
+<li><em>Never Reset：</em>
+<ul>
+<li><em>过程：</em>
+<ul>
+<li><em>在 0.5 秒时，敌人进入了“无敌/抑制”状态。</em></li>
+<li><em>在 1.2 秒时，敌人脱离了“无敌/抑制”状态。</em></li>
+<li><em>结果： 闹钟在后台跳过了 1.0 秒那个点。敌人没领到 1.0 秒的那次伤害。 敌人需要等到 2.0 秒那个点才能领下一次伤害。</em></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><em>Reset Timer：当 GE 从“被抑制”恢复为“正常”时，重新开始 1 秒的倒计时。</em></li>
 <li><em>Execute and Reset： 当从“被抑制”恢复时，立刻跳一次伤害，并重新开始 1 秒倒计时。</em></li>
 </ul>

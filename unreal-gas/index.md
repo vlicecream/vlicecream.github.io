@@ -441,10 +441,13 @@ showdebug abilitysystem
 
 - *Execute Periodic Effect on Application (应用时立即执行周期效果)*
 - Periodic Inhibition Policy (周期抑制策略)
-  - *状态： Never Reset（从不重置）。*
-  - *背景： “抑制（Inhibition）”是指 GE 因为某些原因暂时失效了（比如目标获得了免疫某种属性的 Tag）。*
+  - *“抑制（Inhibition）”是指 GE 因为某些原因暂时失效了（比如目标获得了免疫某种属性的 Tag）。*
   - *各选项含义：*
-    - *Never Reset： 计时器像个背景闹钟一样一直跑。如果 GE 被抑制了 0.5 秒后恢复，计时器不会归零，而是继续走完剩下的时间。*
+    - *Never Reset：*
+      - *过程：*
+        - *在 0.5 秒时，敌人进入了“无敌/抑制”状态。*
+        - *在 1.2 秒时，敌人脱离了“无敌/抑制”状态。*
+        - *结果： 闹钟在后台跳过了 1.0 秒那个点。敌人没领到 1.0 秒的那次伤害。 敌人需要等到 2.0 秒那个点才能领下一次伤害。*
     - *Reset Timer：当 GE 从“被抑制”恢复为“正常”时，重新开始 1 秒的倒计时。*
     - *Execute and Reset： 当从“被抑制”恢复时，立刻跳一次伤害，并重新开始 1 秒倒计时。*
 
