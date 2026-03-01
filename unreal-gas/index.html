@@ -1198,8 +1198,6 @@
 <h4 id="ugameplayeffectcontextpayloadbase"><em><strong>UGameplayEffectContextPayloadBase</strong></em></h4>
 <p><em>它是存储在 FGameplayEffectContext 中的自定义动态数据载体。</em></p>
 <p><em>你可以写一个 UHeadshotPayload 继承自这个 Base，里面存一个 <code>float HeadshotMultiplier</code>。在应用 GE 前，把这个 Payload 塞进 Context，后续的伤害计算类（ExecCalc）就能精准地把它取出来。</em></p>
-<ul>
-<li>
 <h2 id="表现层"><em><strong>表现层</strong></em></h2>
 <p><em>处理非数值的表现（特效、音效、震动）。</em></p>
 <p><em>通过 GameplayTag 触发。不参与服务器的回滚，只在客户端执行。</em></p>
@@ -1388,8 +1386,6 @@
 </ol>
 </li>
 </ol>
-</li>
-</ul>
 <h2 id="uattributeset"><em><strong>UAttributeSet</strong></em></h2>
 <p><em>属性仓库。存储 Health, Mana, Attack 等浮点数。</em></p>
 <h3 id="几个重要的宏"><em><strong>几个重要的宏</strong></em></h3>
