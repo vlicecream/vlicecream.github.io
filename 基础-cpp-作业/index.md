@@ -505,6 +505,65 @@
 
 ---
 
+抱歉，刚才确实说得**不够严谨**。你说得对：虚幻的智能指针系统确实分为两套：**一套专门给普通 C++ 类用，另一套专门给 UObject 用。**
+
+如果把 `TSharedPtr` 用在 `UObject` 上，会导致内存管理冲突甚至崩溃。为了纠正这个错误，我们重新梳理一下针对 **UObject** 的智能指针（管理机制）。
+
+---
+
+## ***22 - UObject 专属智能指针***
+
+### *第一题：UE5 新标准 (TObjectPtr)*
+
+***题目描述：***
+*在虚幻引擎 5 中，官方推荐在类成员变量中使用 `TObjectPtr<T>` 代替传统的原始指针 `T*`。*
+
+*   *请展示如何在类中定义一个 `TObjectPtr<UStaticMeshComponent>`。*
+*   *要求：说明在开发过程中（Editor）它比原始指针多出了哪些功能（如动态访问追踪）。*
+
+---
+
+### *第二题：防止 UObject 内存泄漏 (TWeakObjectPtr)*
+
+***题目描述：***
+*`UPROPERTY` 指针是强引用，会阻止 GC 回收对象。如果你只想观察一个对象而不影响它的生命周期，必须使用弱引用。*
+
+*   *假设你有一个指向 `APlayerState` 的指针。*
+*   *请展示如何使用 `TWeakObjectPtr` 存储它。*
+*   *编写逻辑：在访问该玩家状态前，如何判断该对象是否已经被 GC 回收。*
+
+---
+
+### *第三题：延迟加载与资源优化 (TSoftObjectPtr)*
+
+***题目描述：***
+*如果直接在类里使用 `UPROPERTY` 引用一个大贴图或模型，加载该类时会导致所有资源被同步加载。`TSoftObjectPtr` 存储的是路径，只有在需要时才加载。*
+
+*   *定义一个 `TSoftObjectPtr<UTexture2D>` 变量。*
+*   *编写代码：演示如何判断资源是否已加载，如果没有加载，如何同步加载它（`ToSoftObjectPath`）。*
+
+### *第四题：类型安全的类引用 (TSubclassOf)*
+
+***题目描述：***
+*在开发 UI 框架时，我们经常需要指定“要创建哪一个蓝图类”。如果直接用 `UClass*`，编辑器会允许你选择任何类（甚至选个石头），这非常危险。*
+
+*   *请定义一个 `TSubclassOf<UUserWidget>` 类型的变量 `DefaultWidgetClass`。*
+*   *编写逻辑：判断该变量是否有效，如果有效，使用 `CreateWidget` 创建它。*
+*   *要求：解释为什么 `TSubclassOf` 比 `UClass*` 更安全。*
+
+---
+
+### *第五题：延迟类加载与内存优化 (TSoftClassPtr)*
+
+***题目描述：***
+*在大型 UI 系统中，如果你在主菜单里通过 `TSubclassOf` 引用了 100 个复杂的二级菜单蓝图，加载主菜单时这 100 个蓝图会全部被加载进内存（即使玩家根本不打开它们）。*
+
+*   *请定义一个 `TSoftClassPtr<UUserWidget>` 类型的变量 `SoftWidgetClass`。*
+*   *编写代码逻辑：*
+    1.  *检查该类是否已经加载。*
+    2.  *如果未加载，使用 `LoadSynchronous()` 将其加载并转换为 `TSubclassOf`。*
+*   *要求：说明在 UI 框架设计中，什么情况下该用 `TSoftClassPtr` 而不是 `TSubclassOf`。*
+
 ## ***答案 2 - 3 判断循环逻辑语句***
 
 这里是为您准备的 5 道作业题的标准答案（采用标准 C++ 编写）。您可以直接发给学生参考，或者作为评分标准。
@@ -1075,8 +1134,6 @@ protected:
 };
 ```
 
-## 
-
 ## ***答案  13 - 14 接口与多态 (Interfaces & Polymorphism)***
 
 ### *第一题：定义交互接口*
@@ -1570,5 +1627,143 @@ void UMyUI::InitializeTaskList()
 }
 ```
 
-## 
+## ***答案 22 UObject 专属智能指针 (UObject Specific)***
+
+### *第一题：UE5 新标准 (TObjectPtr)*
+
+***考察点：** 掌握 UE5 成员变量定义的最新规范。*
+
+```cpp
+UCLASS()
+class AMyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    // UE5 推荐写法，代替传统的 UStaticMeshComponent* Mesh;
+    UPROPERTY(VisibleAnywhere)
+    TObjectPtr<UStaticMeshComponent> MeshPtr;
+};
+/* 
+   注意：TObjectPtr 只在类成员变量（Header）中使用，
+   函数内部的局部变量依然推荐使用原始指针 T*。
+*/
+```
+
+---
+
+### *第二题：防止 UObject 内存泄漏 (TWeakObjectPtr)*
+
+***考察点：** 使用弱引用（WeakPtr）配合 GC 检查，避免“假死”引用。*
+
+```cpp
+void AMyHUD::CheckPlayerStatus()
+{
+    // 定义弱引用变量
+    TWeakObjectPtr<APlayerState> WeakPlayerState = MyPlayerState;
+
+    // 判断对象是否还活着（且没被标记为 PendingKill）
+    if (WeakPlayerState.IsValid())
+    {
+        UE_LOG(LogTemp, Log, TEXT("玩家分数: %f"), WeakPlayerState->GetScore());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("玩家状态对象已销毁"));
+    }
+}
+```
+
+---
+
+### *第三题：延迟加载与资源优化 (TSoftObjectPtr)*
+
+***考察点：** 理解资源路径引用与手动加载。*
+
+```cpp
+UPROPERTY(EditAnywhere)
+TSoftObjectPtr<UTexture2D> LazyTexture;
+
+void AMyActor::LoadIcon()
+{
+    // 1. 检查是否已经加载到内存
+    if (LazyTexture.IsPending())
+    {
+        // 2. 同步加载（实际项目中常用异步加载 LoadAsync）
+        UTexture2D* LoadedTexture = LazyTexture.LoadSynchronous();
+    }
+}
+```
+
+---
+
+*第四题：类型安全的类引用 (TSubclassOf)*
+
+***考察点：** 限制类的选择范围，确保 `CreateWidget` 或 `SpawnActor` 的目标类型合法。*
+
+```cpp
+// .h
+UPROPERTY(EditAnywhere, Category = "UI")
+TSubclassOf<UUserWidget> DefaultWidgetClass; // 只能在编辑器里选 UserWidget 及其子类
+
+// .cpp
+void AMyHUD::ShowInitialWidget()
+{
+    // 1. 检查是否在编辑器里设置了该类
+    if (DefaultWidgetClass)
+    {
+        // 2. 创建 Widget 实例
+        UUserWidget* NewWidget = CreateWidget<UUserWidget>(GetWorld(), DefaultWidgetClass);
+        if (NewWidget)
+        {
+            NewWidget->AddToViewport();
+        }
+    }
+}
+/* 
+   解答：TSubclassOf 提供了模板过滤功能。
+   如果你写 TSubclassOf<UUserWidget>，编辑器在下拉列表中只会显示 Widget 蓝图，
+   不会显示 Actor 蓝图或其他无关类，从而在编译阶段和配置阶段防止错误。
+*/
+```
+
+---
+
+### *第五题：延迟类加载与内存优化 (TSoftClassPtr)*
+
+***考察点：** 软引用（Soft Reference）的概念，避免启动时产生巨大的“加载链”。*
+
+```cpp
+// .h
+UPROPERTY(EditAnywhere, Category = "UI")
+TSoftClassPtr<UUserWidget> SoftWidgetClass; // 存储的是路径，不会直接加载
+
+// .cpp
+void UMinimalistUISystem::OpenExpensiveWidget()
+{
+    // 1. 获取类（如果还没加载，这会返回空）
+    UClass* WidgetClass = SoftWidgetClass.Get();
+
+    if (!WidgetClass)
+    {
+        UE_LOG(LogTemp, Log, TEXT("正在同步加载 UI 类..."));
+        
+        // 2. 同步加载类资源（也可以使用异步加载异步器 FStreamableManager）
+        WidgetClass = SoftWidgetClass.LoadSynchronous();
+    }
+
+    if (WidgetClass)
+    {
+        // 3. 此时 WidgetClass 已经加载完毕，可以正常创建
+        CreateWidget<UUserWidget>(GetWorld(), WidgetClass)->AddToViewport();
+    }
+}
+/* 
+   解答：
+   - TSubclassOf 是“硬引用”：加载持有它的 A 对象，就会立刻加载 B 类。
+   - TSoftClassPtr 是“软引用”：加载 A 对象时，只存了 B 类的名字/路径，B 不进内存。
+   在 UI 框架中，不常用的设置页面、复杂的商店页面应使用 TSoftClassPtr，
+   只有当玩家真正点击时才去加载，从而减少游戏的初始加载时间和内存占用。
+*/
+```
 

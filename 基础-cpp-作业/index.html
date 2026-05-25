@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/%E5%9F%BA%E7%A1%80-cpp-%E4%BD%9C%E4%B8%9A\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "B站-课程","wordcount":  13457 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "B站-课程","wordcount":  15361 ,
         "url": "https:\/\/example.com\/%E5%9F%BA%E7%A1%80-cpp-%E4%BD%9C%E4%B8%9A\/","datePublished": "2026-05-25T16:29:59+08:00","dateModified": "2026-05-25T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">B站 - 虚幻 c++ 基础 作业</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>C++</a>&nbsp;<a href="/categories/%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>课程</a>&nbsp;<a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-25">2026-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 13457 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 27 分钟&nbsp;<span id="/%E5%9F%BA%E7%A1%80-cpp-%E4%BD%9C%E4%B8%9A/" class="leancloud_visitors" data-flag-title="B站 - 虚幻 c&#43;&#43; 基础 作业">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-25">2026-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15361 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 31 分钟&nbsp;<span id="/%E5%9F%BA%E7%A1%80-cpp-%E4%BD%9C%E4%B8%9A/" class="leancloud_visitors" data-flag-title="B站 - 虚幻 c&#43;&#43; 基础 作业">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -198,6 +198,15 @@
         <li><a href="#第五题综合应用ui-列表动态绑定-comprehensive"><em>第五题：综合应用：UI 列表动态绑定 (Comprehensive)</em></a></li>
       </ul>
     </li>
+    <li><a href="#22---uobject-专属智能指针"><em><strong>22 - UObject 专属智能指针</strong></em></a>
+      <ul>
+        <li><a href="#第一题ue5-新标准-tobjectptr"><em>第一题：UE5 新标准 (TObjectPtr)</em></a></li>
+        <li><a href="#第二题防止-uobject-内存泄漏-tweakobjectptr"><em>第二题：防止 UObject 内存泄漏 (TWeakObjectPtr)</em></a></li>
+        <li><a href="#第三题延迟加载与资源优化-tsoftobjectptr"><em>第三题：延迟加载与资源优化 (TSoftObjectPtr)</em></a></li>
+        <li><a href="#第四题类型安全的类引用-tsubclassof"><em>第四题：类型安全的类引用 (TSubclassOf)</em></a></li>
+        <li><a href="#第五题延迟类加载与内存优化-tsoftclassptr"><em>第五题：延迟类加载与内存优化 (TSoftClassPtr)</em></a></li>
+      </ul>
+    </li>
     <li><a href="#答案-2---3-判断循环逻辑语句"><em><strong>答案 2 - 3 判断循环逻辑语句</strong></em></a>
       <ul>
         <li><a href="#第一题血量预警系统"><em>第一题：血量预警系统</em></a></li>
@@ -234,7 +243,6 @@
         <li><a href="#第五题综合应用ui-系统基类设计"><em>第五题：综合应用：UI 系统基类设计</em></a></li>
       </ul>
     </li>
-    <li><a href="#heading"></a></li>
     <li><a href="#答案--13---14-接口与多态-interfaces--polymorphism"><em><strong>答案  13 - 14 接口与多态 (Interfaces &amp; Polymorphism)</strong></em></a>
       <ul>
         <li><a href="#第一题定义交互接口"><em>第一题：定义交互接口</em></a></li>
@@ -271,7 +279,14 @@
         <li><a href="#第五题综合应用ui-列表动态绑定"><em>第五题：综合应用：UI 列表动态绑定</em></a></li>
       </ul>
     </li>
-    <li><a href="#heading-1"></a></li>
+    <li><a href="#答案-22-uobject-专属智能指针-uobject-specific"><em><strong>答案 22 UObject 专属智能指针 (UObject Specific)</strong></em></a>
+      <ul>
+        <li><a href="#第一题ue5-新标准-tobjectptr-1"><em>第一题：UE5 新标准 (TObjectPtr)</em></a></li>
+        <li><a href="#第二题防止-uobject-内存泄漏-tweakobjectptr-1"><em>第二题：防止 UObject 内存泄漏 (TWeakObjectPtr)</em></a></li>
+        <li><a href="#第三题延迟加载与资源优化-tsoftobjectptr-1"><em>第三题：延迟加载与资源优化 (TSoftObjectPtr)</em></a></li>
+        <li><a href="#第五题延迟类加载与内存优化-tsoftclassptr-1"><em>第五题：延迟类加载与内存优化 (TSoftClassPtr)</em></a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="前言"><em><strong>前言</strong></em></h2>
@@ -722,6 +737,56 @@
 <li><em>要求：在 Lambda 内部捕获当前循环的索引 <code>i</code>（作为 TaskID），点击时打印 &ldquo;Selected Task ID: X&rdquo;。</em></li>
 </ul>
 <hr>
+<p>抱歉，刚才确实说得<strong>不够严谨</strong>。你说得对：虚幻的智能指针系统确实分为两套：<strong>一套专门给普通 C++ 类用，另一套专门给 UObject 用。</strong></p>
+<p>如果把 <code>TSharedPtr</code> 用在 <code>UObject</code> 上，会导致内存管理冲突甚至崩溃。为了纠正这个错误，我们重新梳理一下针对 <strong>UObject</strong> 的智能指针（管理机制）。</p>
+<hr>
+<h2 id="22---uobject-专属智能指针"><em><strong>22 - UObject 专属智能指针</strong></em></h2>
+<h3 id="第一题ue5-新标准-tobjectptr"><em>第一题：UE5 新标准 (TObjectPtr)</em></h3>
+<p><em><strong>题目描述：</strong></em>
+<em>在虚幻引擎 5 中，官方推荐在类成员变量中使用 <code>TObjectPtr&lt;T&gt;</code> 代替传统的原始指针 <code>T*</code>。</em></p>
+<ul>
+<li><em>请展示如何在类中定义一个 <code>TObjectPtr&lt;UStaticMeshComponent&gt;</code>。</em></li>
+<li><em>要求：说明在开发过程中（Editor）它比原始指针多出了哪些功能（如动态访问追踪）。</em></li>
+</ul>
+<hr>
+<h3 id="第二题防止-uobject-内存泄漏-tweakobjectptr"><em>第二题：防止 UObject 内存泄漏 (TWeakObjectPtr)</em></h3>
+<p><em><strong>题目描述：</strong></em>
+<em><code>UPROPERTY</code> 指针是强引用，会阻止 GC 回收对象。如果你只想观察一个对象而不影响它的生命周期，必须使用弱引用。</em></p>
+<ul>
+<li><em>假设你有一个指向 <code>APlayerState</code> 的指针。</em></li>
+<li><em>请展示如何使用 <code>TWeakObjectPtr</code> 存储它。</em></li>
+<li><em>编写逻辑：在访问该玩家状态前，如何判断该对象是否已经被 GC 回收。</em></li>
+</ul>
+<hr>
+<h3 id="第三题延迟加载与资源优化-tsoftobjectptr"><em>第三题：延迟加载与资源优化 (TSoftObjectPtr)</em></h3>
+<p><em><strong>题目描述：</strong></em>
+<em>如果直接在类里使用 <code>UPROPERTY</code> 引用一个大贴图或模型，加载该类时会导致所有资源被同步加载。<code>TSoftObjectPtr</code> 存储的是路径，只有在需要时才加载。</em></p>
+<ul>
+<li><em>定义一个 <code>TSoftObjectPtr&lt;UTexture2D&gt;</code> 变量。</em></li>
+<li><em>编写代码：演示如何判断资源是否已加载，如果没有加载，如何同步加载它（<code>ToSoftObjectPath</code>）。</em></li>
+</ul>
+<h3 id="第四题类型安全的类引用-tsubclassof"><em>第四题：类型安全的类引用 (TSubclassOf)</em></h3>
+<p><em><strong>题目描述：</strong></em>
+<em>在开发 UI 框架时，我们经常需要指定“要创建哪一个蓝图类”。如果直接用 <code>UClass*</code>，编辑器会允许你选择任何类（甚至选个石头），这非常危险。</em></p>
+<ul>
+<li><em>请定义一个 <code>TSubclassOf&lt;UUserWidget&gt;</code> 类型的变量 <code>DefaultWidgetClass</code>。</em></li>
+<li><em>编写逻辑：判断该变量是否有效，如果有效，使用 <code>CreateWidget</code> 创建它。</em></li>
+<li><em>要求：解释为什么 <code>TSubclassOf</code> 比 <code>UClass*</code> 更安全。</em></li>
+</ul>
+<hr>
+<h3 id="第五题延迟类加载与内存优化-tsoftclassptr"><em>第五题：延迟类加载与内存优化 (TSoftClassPtr)</em></h3>
+<p><em><strong>题目描述：</strong></em>
+<em>在大型 UI 系统中，如果你在主菜单里通过 <code>TSubclassOf</code> 引用了 100 个复杂的二级菜单蓝图，加载主菜单时这 100 个蓝图会全部被加载进内存（即使玩家根本不打开它们）。</em></p>
+<ul>
+<li><em>请定义一个 <code>TSoftClassPtr&lt;UUserWidget&gt;</code> 类型的变量 <code>SoftWidgetClass</code>。</em></li>
+<li><em>编写代码逻辑：</em>
+<ol>
+<li><em>检查该类是否已经加载。</em></li>
+<li><em>如果未加载，使用 <code>LoadSynchronous()</code> 将其加载并转换为 <code>TSubclassOf</code>。</em></li>
+</ol>
+</li>
+<li><em>要求：说明在 UI 框架设计中，什么情况下该用 <code>TSoftClassPtr</code> 而不是 <code>TSubclassOf</code>。</em></li>
+</ul>
 <h2 id="答案-2---3-判断循环逻辑语句"><em><strong>答案 2 - 3 判断循环逻辑语句</strong></em></h2>
 <p>这里是为您准备的 5 道作业题的标准答案（采用标准 C++ 编写）。您可以直接发给学生参考，或者作为评分标准。</p>
 <hr>
@@ -1687,8 +1752,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="heading"></h2>
-<h2 id="答案--13---14-接口与多态-interfaces--polymorphism"><em><strong>答案  13 - 14 接口与多态 (Interfaces &amp; Polymorphism)</strong></em></h2>
+</div><h2 id="答案--13---14-接口与多态-interfaces--polymorphism"><em><strong>答案  13 - 14 接口与多态 (Interfaces &amp; Polymorphism)</strong></em></h2>
 <h3 id="第一题定义交互接口"><em>第一题：定义交互接口</em></h3>
 <p><em><strong>考察点：</strong> 虚幻接口的特殊结构（U/I 类的配合）。</em></p>
 <div class="highlight"><div class="chroma">
@@ -2494,8 +2558,242 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-1"></h2>
-</div><div class="post-footer" id="post-footer">
+</div><h2 id="答案-22-uobject-专属智能指针-uobject-specific"><em><strong>答案 22 UObject 专属智能指针 (UObject Specific)</strong></em></h2>
+<h3 id="第一题ue5-新标准-tobjectptr-1"><em>第一题：UE5 新标准 (TObjectPtr)</em></h3>
+<p><em><strong>考察点：</strong> 掌握 UE5 成员变量定义的最新规范。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AMyActor</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AActor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// UE5 推荐写法，代替传统的 UStaticMeshComponent* Mesh;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">UStaticMeshComponent</span><span class="o">&gt;</span> <span class="n">MeshPtr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">   注意：TObjectPtr 只在类成员变量（Header）中使用，
+</span></span></span><span class="line"><span class="cl"><span class="cm">   函数内部的局部变量依然推荐使用原始指针 T*。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="第二题防止-uobject-内存泄漏-tweakobjectptr-1"><em>第二题：防止 UObject 内存泄漏 (TWeakObjectPtr)</em></h3>
+<p><em><strong>考察点：</strong> 使用弱引用（WeakPtr）配合 GC 检查，避免“假死”引用。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AMyHUD</span><span class="o">::</span><span class="n">CheckPlayerStatus</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 定义弱引用变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">APlayerState</span><span class="o">&gt;</span> <span class="n">WeakPlayerState</span> <span class="o">=</span> <span class="n">MyPlayerState</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断对象是否还活着（且没被标记为 PendingKill）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">WeakPlayerState</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogTemp</span><span class="p">,</span> <span class="n">Log</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;玩家分数: %f&#34;</span><span class="p">),</span> <span class="n">WeakPlayerState</span><span class="o">-&gt;</span><span class="n">GetScore</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogTemp</span><span class="p">,</span> <span class="n">Warning</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;玩家状态对象已销毁&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="第三题延迟加载与资源优化-tsoftobjectptr-1"><em>第三题：延迟加载与资源优化 (TSoftObjectPtr)</em></h3>
+<p><em><strong>考察点：</strong> 理解资源路径引用与手动加载。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">TSoftObjectPtr</span><span class="o">&lt;</span><span class="n">UTexture2D</span><span class="o">&gt;</span> <span class="n">LazyTexture</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AMyActor</span><span class="o">::</span><span class="n">LoadIcon</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1. 检查是否已经加载到内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">LazyTexture</span><span class="p">.</span><span class="n">IsPending</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2. 同步加载（实际项目中常用异步加载 LoadAsync）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">UTexture2D</span><span class="o">*</span> <span class="n">LoadedTexture</span> <span class="o">=</span> <span class="n">LazyTexture</span><span class="p">.</span><span class="n">LoadSynchronous</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p><em>第四题：类型安全的类引用 (TSubclassOf)</em></p>
+<p><em><strong>考察点：</strong> 限制类的选择范围，确保 <code>CreateWidget</code> 或 <code>SpawnActor</code> 的目标类型合法。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// .h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;UI&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UUserWidget</span><span class="o">&gt;</span> <span class="n">DefaultWidgetClass</span><span class="p">;</span> <span class="c1">// 只能在编辑器里选 UserWidget 及其子类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// .cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">AMyHUD</span><span class="o">::</span><span class="n">ShowInitialWidget</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1. 检查是否在编辑器里设置了该类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">DefaultWidgetClass</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2. 创建 Widget 实例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">UUserWidget</span><span class="o">*</span> <span class="n">NewWidget</span> <span class="o">=</span> <span class="n">CreateWidget</span><span class="o">&lt;</span><span class="n">UUserWidget</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span> <span class="n">DefaultWidgetClass</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">NewWidget</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">NewWidget</span><span class="o">-&gt;</span><span class="n">AddToViewport</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">   解答：TSubclassOf 提供了模板过滤功能。
+</span></span></span><span class="line"><span class="cl"><span class="cm">   如果你写 TSubclassOf&lt;UUserWidget&gt;，编辑器在下拉列表中只会显示 Widget 蓝图，
+</span></span></span><span class="line"><span class="cl"><span class="cm">   不会显示 Actor 蓝图或其他无关类，从而在编译阶段和配置阶段防止错误。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="第五题延迟类加载与内存优化-tsoftclassptr-1"><em>第五题：延迟类加载与内存优化 (TSoftClassPtr)</em></h3>
+<p><em><strong>考察点：</strong> 软引用（Soft Reference）的概念，避免启动时产生巨大的“加载链”。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// .h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;UI&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">TSoftClassPtr</span><span class="o">&lt;</span><span class="n">UUserWidget</span><span class="o">&gt;</span> <span class="n">SoftWidgetClass</span><span class="p">;</span> <span class="c1">// 存储的是路径，不会直接加载
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// .cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">UMinimalistUISystem</span><span class="o">::</span><span class="n">OpenExpensiveWidget</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1. 获取类（如果还没加载，这会返回空）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UClass</span><span class="o">*</span> <span class="n">WidgetClass</span> <span class="o">=</span> <span class="n">SoftWidgetClass</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">WidgetClass</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogTemp</span><span class="p">,</span> <span class="n">Log</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;正在同步加载 UI 类...&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2. 同步加载类资源（也可以使用异步加载异步器 FStreamableManager）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">WidgetClass</span> <span class="o">=</span> <span class="n">SoftWidgetClass</span><span class="p">.</span><span class="n">LoadSynchronous</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">WidgetClass</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 3. 此时 WidgetClass 已经加载完毕，可以正常创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CreateWidget</span><span class="o">&lt;</span><span class="n">UUserWidget</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span> <span class="n">WidgetClass</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">AddToViewport</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">   解答：
+</span></span></span><span class="line"><span class="cl"><span class="cm">   - TSubclassOf 是“硬引用”：加载持有它的 A 对象，就会立刻加载 B 类。
+</span></span></span><span class="line"><span class="cl"><span class="cm">   - TSoftClassPtr 是“软引用”：加载 A 对象时，只存了 B 类的名字/路径，B 不进内存。
+</span></span></span><span class="line"><span class="cl"><span class="cm">   在 UI 框架中，不常用的设置页面、复杂的商店页面应使用 TSoftClassPtr，
+</span></span></span><span class="line"><span class="cl"><span class="cm">   只有当玩家真正点击时才去加载，从而减少游戏的初始加载时间和内存占用。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
