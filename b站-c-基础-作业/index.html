@@ -36,7 +36,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/b%E7%AB%99-c-%E5%9F%BA%E7%A1%80-%E4%BD%9C%E4%B8%9A\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "C\u002b\u002b, 课程, Unreal","wordcount":  16641 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "C\u002b\u002b, 课程, Unreal","wordcount":  16709 ,
         "url": "https:\/\/example.com\/b%E7%AB%99-c-%E5%9F%BA%E7%A1%80-%E4%BD%9C%E4%B8%9A\/","datePublished": "2026-05-25T16:29:59+08:00","dateModified": "2026-05-25T16:29:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -116,7 +116,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">B站 - 虚幻 c++ 基础 作业</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/b%E7%AB%99-%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>B站-课程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-25">2026-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 16641 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-25">2026-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 16709 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 34 分钟&nbsp;<span id="/b%E7%AB%99-c-%E5%9F%BA%E7%A1%80-%E4%BD%9C%E4%B8%9A/" class="leancloud_visitors" data-flag-title="B站 - 虚幻 c&#43;&#43; 基础 作业">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -166,10 +166,10 @@
     </li>
     <li><a href="#13---14-接口与多态-interfaces--polymorphism"><em><strong>13 - 14 接口与多态 (Interfaces &amp; Polymorphism)</strong></em></a>
       <ul>
-        <li><a href="#第一题定义交互接口-interface-definition"><em>第一题：定义交互接口 (Interface Definition)</em></a></li>
+        <li><a href="#第一题知识拓展定义交互接口-interface-definition"><em>第一题：（知识拓展）定义交互接口 (Interface Definition)</em></a></li>
         <li><a href="#第二题多态的基础虚函数-virtual--override"><em>第二题：多态的基础——虚函数 (Virtual &amp; Override)</em></a></li>
         <li><a href="#第三题指针的多态行为-polymorphism-via-pointers"><em>第三题：指针的多态行为 (Polymorphism via Pointers)</em></a></li>
-        <li><a href="#第四题接口的动态检测-interface-casting"><em>第四题：接口的动态检测 (Interface Casting)</em></a></li>
+        <li><a href="#第四题知识拓展接口的动态检测-interface-casting"><em>第四题：（知识拓展）接口的动态检测 (Interface Casting)</em></a></li>
         <li><a href="#第五题综合应用技能管理器-array--polymorphism"><em>第五题：综合应用：技能管理器 (Array &amp; Polymorphism)</em></a></li>
       </ul>
     </li>
@@ -227,7 +227,7 @@
         <li><a href="#第五题boss-战逻辑模拟"><em>第五题：Boss 战逻辑模拟</em></a></li>
       </ul>
     </li>
-    <li><a href="#答案---4---数组与字典-tarray--tmap"><em><strong>答案 - 4 - 数组与字典 (TArray &amp; TMap)</strong></em></a>
+    <li><a href="#答案--4--数组与字典-tarray--tmap"><em><strong>答案  4  数组与字典 (TArray &amp; TMap)</strong></em></a>
       <ul>
         <li><a href="#第一题背包物品清单"><em>第一题：背包物品清单</em></a></li>
         <li><a href="#第二题最高伤害统计"><em>第二题：最高伤害统计</em></a></li>
@@ -539,7 +539,7 @@
 </ul>
 <hr>
 <h2 id="13---14-接口与多态-interfaces--polymorphism"><em><strong>13 - 14 接口与多态 (Interfaces &amp; Polymorphism)</strong></em></h2>
-<h3 id="第一题定义交互接口-interface-definition"><em>第一题：定义交互接口 (Interface Definition)</em></h3>
+<h3 id="第一题知识拓展定义交互接口-interface-definition"><em>第一题：（知识拓展）定义交互接口 (Interface Definition)</em></h3>
 <p><em><strong>题目描述：</strong></em>
 <em>在虚幻引擎中，接口（Interface）用于定义一种“行为协议”。一个类只要“实现”了该接口，就必须具备某种能力。</em></p>
 <ul>
@@ -547,6 +547,7 @@
 <li><em>在接口中声明一个纯虚函数：<code>virtual void ExecuteInteract() = 0;</code>。</em></li>
 <li><em>要求：简述在虚幻 C++ 中，<code>U</code> 开头的类和 <code>I</code> 开头的类分别起什么作用。</em></li>
 </ul>
+<p><em>此内容课程没讲过，请搜集资料自学拓展（自学能力也很重要哦）</em></p>
 <hr>
 <h3 id="第二题多态的基础虚函数-virtual--override"><em>第二题：多态的基础——虚函数 (Virtual &amp; Override)</em></h3>
 <p><em><strong>题目描述：</strong></em>
@@ -568,7 +569,7 @@
 <li><em>要求：解释为什么同一个指针变量调用同一个函数名，却产生了不同的结果。</em></li>
 </ul>
 <hr>
-<h3 id="第四题接口的动态检测-interface-casting"><em>第四题：接口的动态检测 (Interface Casting)</em></h3>
+<h3 id="第四题知识拓展接口的动态检测-interface-casting"><em>第四题：（知识拓展）接口的动态检测 (Interface Casting)</em></h3>
 <p><em><strong>题目描述：</strong></em>
 <em>当我们拿到一个通用的 <code>AActor*</code> 指针时，并不确定它是否支持某种交互，这时需要用到接口转换。</em></p>
 <ul>
@@ -578,6 +579,7 @@
 <li><em>如果转换成功（不为空），调用其 <code>ExecuteInteract()</code> 函数。</em></li>
 <li><em>如果失败，打印 &ldquo;目标不可交互&rdquo;。</em></li>
 </ul>
+<p><em>此内容课程没讲过，请搜集资料自学拓展（自学能力也很重要哦）</em></p>
 <hr>
 <h3 id="第五题综合应用技能管理器-array--polymorphism"><em>第五题：综合应用：技能管理器 (Array &amp; Polymorphism)</em></h3>
 <p><em><strong>题目描述：</strong></em>
@@ -1123,7 +1125,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="答案---4---数组与字典-tarray--tmap"><em><strong>答案 - 4 - 数组与字典 (TArray &amp; TMap)</strong></em></h2>
+</div><h2 id="答案--4--数组与字典-tarray--tmap"><em><strong>答案  4  数组与字典 (TArray &amp; TMap)</strong></em></h2>
 <h3 id="第一题背包物品清单"><em>第一题：背包物品清单</em></h3>
 <p><em><strong>考察点：</strong> <code>TArray</code> 的基本定义、<code>Add</code> 函数、<code>Num</code> 函数以及 <code>for-each</code> 遍历。</em></p>
 <div class="highlight"><div class="chroma">

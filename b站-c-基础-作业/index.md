@@ -256,7 +256,7 @@
 
 ## ***13 - 14 接口与多态 (Interfaces & Polymorphism)***
 
-### *第一题：定义交互接口 (Interface Definition)*
+### *第一题：（知识拓展）定义交互接口 (Interface Definition)*
 
 ***题目描述：***
 *在虚幻引擎中，接口（Interface）用于定义一种“行为协议”。一个类只要“实现”了该接口，就必须具备某种能力。*
@@ -264,6 +264,8 @@
 *   *请定义一个 C++ 接口 `IMyInteractableInterface`。*
 *   *在接口中声明一个纯虚函数：`virtual void ExecuteInteract() = 0;`。*
 *   *要求：简述在虚幻 C++ 中，`U` 开头的类和 `I` 开头的类分别起什么作用。*
+
+*此内容课程没讲过，请搜集资料自学拓展（自学能力也很重要哦）*
 
 ---
 
@@ -291,7 +293,7 @@
 
 ---
 
-### *第四题：接口的动态检测 (Interface Casting)*
+### *第四题：（知识拓展）接口的动态检测 (Interface Casting)*
 
 ***题目描述：***
 *当我们拿到一个通用的 `AActor*` 指针时，并不确定它是否支持某种交互，这时需要用到接口转换。*
@@ -301,6 +303,8 @@
 *   *使用 `Cast<IMyInteractableInterface>(Target)` 尝试将其转换为接口指针。*
 *   *如果转换成功（不为空），调用其 `ExecuteInteract()` 函数。*
 *   *如果失败，打印 "目标不可交互"。*
+
+*此内容课程没讲过，请搜集资料自学拓展（自学能力也很重要哦）*
 
 ---
 
@@ -775,7 +779,7 @@ void ABossFight::SimulateBossBattle()
 }
 ```
 
-## ***答案 - 4 - 数组与字典 (TArray & TMap)***
+## ***答案  4  数组与字典 (TArray & TMap)***
 
 ### *第一题：背包物品清单*
 
