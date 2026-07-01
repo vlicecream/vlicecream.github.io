@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/p4-ubuntu%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Porforce","wordcount":  227 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Porforce","wordcount":  360 ,
         "url": "https:\/\/example.com\/p4-ubuntu%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8\/","datePublished": "2025-07-07T22:00:00+08:00","dateModified": "2025-07-07T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Ubuntu搭建P4服务器</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/p4/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>P4</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-07">2025-07-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 227 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-07">2025-07-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 360 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/p4-ubuntu%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="leancloud_visitors" data-flag-title="Ubuntu搭建P4服务器">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -126,20 +126,24 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#下载并安装-p4d"><em><strong>下载并安装 p4d</strong></em></a></li>
-    <li><a href="#创建服务用户和数据目录"><em><strong>创建服务用户和数据目录</strong></em></a></li>
-    <li><a href="#设置环境变量为-perforce-用户"><em><strong>设置环境变量（为 <code>perforce</code> 用户）</strong></em></a>
+    <li><a href="#下载并安装-p4d-核心程序"><em><strong>下载并安装 P4D 核心程序</strong></em></a></li>
+    <li><a href="#创建服务用户与独立数据目录"><em><strong>创建服务用户与独立数据目录</strong></em></a></li>
+    <li><a href="#初始化两个-perforce-实例-unicode-模式"><em><strong>初始化两个 Perforce 实例 (Unicode 模式)</strong></em></a></li>
+    <li><a href="#配置-systemd-服务文件"><em><strong>配置 Systemd 服务文件</strong></em></a>
       <ul>
-        <li><a href="#添加以下内容"><em><strong>添加以下内容</strong></em></a></li>
-        <li><a href="#生效"><em><strong>生效</strong></em></a></li>
-        <li><a href="#初始化-perforce-服务端"><em><strong>初始化 Perforce 服务端</strong></em></a></li>
-        <li><a href="#启动服务"><em><strong>启动服务</strong></em></a></li>
+        <li><a href="#配置-simple-服务"><em><strong>配置 Simple 服务：</strong></em></a></li>
+        <li><a href="#配置-sprout-服务"><em><strong>配置 Sprout 服务：</strong></em></a></li>
       </ul>
     </li>
-    <li><a href="#配置-systemd-服务"><em><strong>配置 systemd 服务</strong></em></a></li>
+    <li><a href="#启用并启动服务"><em><strong>启用并启动服务</strong></em></a>
+      <ul>
+        <li><a href="#检查状态与防火墙设置"><em><strong>检查状态与防火墙设置</strong></em></a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="下载并安装-p4d"><em><strong>下载并安装 p4d</strong></em></h2>
+            </div><div class="content" id="content"><h2 id="下载并安装-p4d-核心程序"><em><strong>下载并安装 P4D 核心程序</strong></em></h2>
+<p><em>（两个实例共用一个执行文件）</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -154,77 +158,53 @@
 </span></span><span class="line"><span class="cl">sudo mv p4d /usr/local/bin/
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="创建服务用户和数据目录"><em><strong>创建服务用户和数据目录</strong></em></h2>
+</div><h2 id="创建服务用户与独立数据目录"><em><strong>创建服务用户与独立数据目录</strong></em></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo useradd -m perforce
-</span></span><span class="line"><span class="cl">sudo mkdir -p /opt/perforce/depots
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 Simple 实例目录</span>
+</span></span><span class="line"><span class="cl">sudo mkdir -p /opt/perforce/Simple
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 Sprout 实例目录</span>
+</span></span><span class="line"><span class="cl">sudo mkdir -p /opt/perforce/Sprout
+</span></span><span class="line"><span class="cl"><span class="c1"># 统一授权</span>
 </span></span><span class="line"><span class="cl">sudo chown -R perforce:perforce /opt/perforce
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="设置环境变量为-perforce-用户"><em><strong>设置环境变量（为 <code>perforce</code> 用户）</strong></em></h2>
-<p><em><code>sudo -i -u perforce bash</code> 会进入到 perforce 命令行</em></p>
+</div><h2 id="初始化两个-perforce-实例-unicode-模式"><em><strong>初始化两个 Perforce 实例 (Unicode 模式)</strong></em></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -i -u perforce bash
-</span></span><span class="line"><span class="cl">vi ~/.bashrc
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 初始化 Simple (1666)</span>
+</span></span><span class="line"><span class="cl">sudo -u perforce p4d -r /opt/perforce/Simple -p <span class="m">1666</span> -xi
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化 Sprout (1667)</span>
+</span></span><span class="line"><span class="cl">sudo -u perforce p4d -r /opt/perforce/Sprout -p <span class="m">1667</span> -xi
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="添加以下内容"><em><strong>添加以下内容</strong></em></h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">P4PORT</span><span class="o">=</span><span class="m">1666</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">P4ROOT</span><span class="o">=</span>/opt/perforce/depots
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="生效"><em><strong>生效</strong></em></h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> ~/.bashrc
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="初始化-perforce-服务端"><em><strong>初始化 Perforce 服务端</strong></em></h3>
+</div><h2 id="配置-systemd-服务文件"><em><strong>配置 Systemd 服务文件</strong></em></h2>
+<p><em>我们需要创建两个独立的服务文件来管理这两个实例。</em></p>
+<h3 id="配置-simple-服务"><em><strong>配置 Simple 服务：</strong></em></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">p4d -r <span class="nv">$P4ROOT</span> -p <span class="nv">$P4PORT</span> -xi
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="启动服务"><em><strong>启动服务</strong></em></h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">p4d -r <span class="nv">$P4ROOT</span> -p <span class="nv">$P4PORT</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="配置-systemd-服务"><em><strong>配置 systemd 服务</strong></em></h2>
-<p><em>创建服务文件</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/systemd/system/p4d.service
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/systemd/system/p4d-simple.service
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>写入以下内容：</em></p>
@@ -245,50 +225,103 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Perforce Helix Core Server</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Perforce Server - Simple (Port 1666)</span>
 </span></span><span class="line"><span class="cl"><span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
 </span></span><span class="line"><span class="cl"><span class="na">User</span><span class="o">=</span><span class="s">perforce</span>
-</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/p4d -r /opt/perforce/depots -p 1666</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/p4d -r /opt/perforce/Simple -p 1666</span>
 </span></span><span class="line"><span class="cl"><span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>启用并启动服务：</em></p>
+</div><h3 id="配置-sprout-服务"><em><strong>配置 Sprout 服务：</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/systemd/system/p4d-sprout.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>写入以下内容：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Perforce Server - Sprout (Port 1667)</span>
+</span></span><span class="line"><span class="cl"><span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">User</span><span class="o">=</span><span class="s">perforce</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/p4d -r /opt/perforce/Sprout -p 1667</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="启用并启动服务"><em><strong>启用并启动服务</strong></em></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl daemon-reexec
-</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
-</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> p4d
-</span></span><span class="line"><span class="cl">sudo systemctl start p4d
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动 Simple</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> p4d-simple
+</span></span><span class="line"><span class="cl">sudo systemctl start p4d-simple
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动 Sprout</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> p4d-sprout
+</span></span><span class="line"><span class="cl">sudo systemctl start p4d-sprout
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>检查状态</em></p>
+</div><h3 id="检查状态与防火墙设置"><em><strong>检查状态与防火墙设置</strong></em></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status p4d
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><em>开放防火墙端口（如有需要）</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw allow <span class="m">1666</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查状态</span>
+</span></span><span class="line"><span class="cl">sudo systemctl status p4d-simple
+</span></span><span class="line"><span class="cl">sudo systemctl status p4d-sprout
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开放防火墙端口</span>
+</span></span><span class="line"><span class="cl">sudo ufw allow <span class="m">1666</span>
+</span></span><span class="line"><span class="cl">sudo ufw allow <span class="m">1667</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
