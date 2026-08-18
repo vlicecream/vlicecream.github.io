@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/example.com\/lyra-commonui\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra, CommonUI, UI","wordcount":  2398 ,
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra, CommonUI, UI","wordcount":  3101 ,
         "url": "https:\/\/example.com\/lyra-commonui\/","datePublished": "2026-01-06T15:34:00+08:00","dateModified": "2026-02-12T16:34:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - CommonUI</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-06">2026-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2398 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/lyra-commonui/" class="leancloud_visitors" data-flag-title="Lyra - CommonUI">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-06">2026-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3101 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/lyra-commonui/" class="leancloud_visitors" data-flag-title="Lyra - CommonUI">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -131,6 +131,15 @@
     <li><a href="#commonui-文档"><em><strong>CommonUI 文档</strong></em></a></li>
     <li><a href="#commonui的作用"><em><strong>CommonUI的作用</strong></em></a></li>
     <li><a href="#commonui的使用场景"><em><strong>CommonUI的使用场景</strong></em></a></li>
+    <li><a href="#什么是-ucommonactivatablewidget"><em><strong>什么是 UCommonActivatableWidget</strong></em></a></li>
+    <li><a href="#生命周期重要函数"><em><strong>生命周期重要函数</strong></em></a>
+      <ul>
+        <li><a href="#nativepreconstruct"><em>NativePreConstruct</em></a></li>
+        <li><a href="#nativeconstruct"><em>NativeConstruct</em></a></li>
+        <li><a href="#nativeonactivated"><em>NativeOnActivated</em></a></li>
+        <li><a href="#nativeondeactivatedondeactivated"><em><strong>NativeOnDeactivated/OnDeactivated</strong></em></a></li>
+      </ul>
+    </li>
     <li><a href="#lyra里的ui"><em><strong>Lyra里的UI</strong></em></a>
       <ul>
         <li><a href="#第一切入点commongame插件"><em><strong>第一切入点：CommonGame插件</strong></em></a></li>
@@ -165,6 +174,101 @@
 <p><em>此外，不推荐将CommonUI用于使用WidgetComponents放置的控件。由于CommonUI依赖光标焦点浏览、激活顺序和绘制顺序/层ID，CommonUI仍可以处理你的2D游戏HUD，但不适用于游戏世界中放置的控件。</em></p>
 <p><em>如果你有现有UI，可以考虑迁移到CommonUI。做出此决定时，考虑你的UI是否接近完成，以及未来是否有可以从使用CommonUI中获益的UI开发计划。</em></p>
 <p><em>此外，考虑是否可以使用CommonUI创建新控件，同时与旧UI交互，或者是否需要刷新整个UI以迁移到CommonUI。</em></p>
+<h2 id="什么是-ucommonactivatablewidget"><em><strong>什么是 UCommonActivatableWidget</strong></em></h2>
+<p><em>UCommonActivatableWidget 是 CommonUI 插件中最核心的基类。它继承自 UUserWidget，但扩展了极其强大的生命周期管理和输入响应机制。</em></p>
+<ul>
+<li><em><strong>原生 UMG 问题</strong>：只有 Construct（创建）和 Destruct（销毁），难以处理“界面存在但被遮挡”或“界面存在但失去焦点”的情况。</em></li>
+<li><em><strong>CommonUI 方案</strong>：引入了 <strong>激活 (Activate)</strong> 和 <strong>反激活 (Deactivate)</strong> 的概念，专门用于处理 UI 栈中的层级切换。</em></li>
+</ul>
+<h2 id="生命周期重要函数"><em><strong>生命周期重要函数</strong></em></h2>
+<h3 id="nativepreconstruct"><em>NativePreConstruct</em></h3>
+<ul>
+<li><em>触发时机：在编辑器内预览或游戏运行 UI刚创建时。</em></li>
+<li><em>作用：设置一些在设计时就能看到的样式、颜色、默认文本。</em></li>
+</ul>
+<h3 id="nativeconstruct"><em>NativeConstruct</em></h3>
+<ul>
+<li><em>触发时机：当 Widget 被添加到 Viewport 或者添加到某个 Stack 容器时触发。</em></li>
+<li><em>注意点：</em>
+<ul>
+<li><em>在 CommonUI 中，Construct 触发并不代表玩家现在能操作它。</em></li>
+<li><em>它可能只是被“加载”到了 UI 栈的底层，处于不可见或不可点击状态。</em></li>
+<li><em>建议：只在这里做一次性的资源加载、事件绑定（Bind Event to&hellip;）。</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="nativeonactivated"><em>NativeOnActivated</em></h3>
+<ul>
+<li><em><strong>触发时机</strong>：当 bIsActivated 变为 true 时。</em></li>
+<li><em><strong>核心作用</strong>：</em>
+<ol>
+<li><em><strong>捕获焦点</strong>：系统会根据 GetDesiredFocusTarget 自动把手柄/键盘焦点移到此 UI。</em></li>
+<li><em><strong>配置输入模式</strong>：系统会读取 Input Config，决定是否禁用玩家的移动、是否显示鼠标。</em></li>
+<li><em><strong>动画触发</strong>：在这里播放“入场动画” (Fade In)。</em></li>
+<li><em><strong>注册返回键</strong>：只有在激活后，该 UI 的返回逻辑（Back Action）才生效。</em></li>
+</ol>
+</li>
+</ul>
+<h3 id="nativeondeactivatedondeactivated"><em><strong>NativeOnDeactivated/OnDeactivated</strong></em></h3>
+<ul>
+<li><em><strong>触发时机</strong>：当 bIsActivated 变为 false 时。</em></li>
+<li><em><strong>核心作用</strong>：</em>
+<ol>
+<li><em><strong>释放焦点</strong>：把焦点还给上一个 UI 或游戏世界。</em></li>
+<li><em><strong>清理状态</strong>：停止循环音效、清空临时的输入缓存。</em></li>
+<li><em><strong>出场动画</strong>：在这里播放“消失动画”。</em></li>
+</ol>
+</li>
+<li><em><strong>关键理解</strong>：反激活后的 UI 如果没有从父级移除，它依然渲染在屏幕上，只是玩家无法通过手柄/键盘与之交互。</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><em>状态/行为</em></th>
+<th><em>Construct (构造)</em></th>
+<th><em>Activate (激活)</em></th>
+<th><em>Deactivate (反激活)</em></th>
+<th><em>Destruct (销毁)</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em><strong>内存占用</strong></em></td>
+<td><em>是</em></td>
+<td><em>是</em></td>
+<td><em>是</em></td>
+<td><em>否</em></td>
+</tr>
+<tr>
+<td><em><strong>视觉渲染</strong></em></td>
+<td><em>取决于 Visibility</em></td>
+<td><em>取决于 Visibility</em></td>
+<td><em>取决于 Visibility</em></td>
+<td><em>否</em></td>
+</tr>
+<tr>
+<td><em><strong>手柄焦点</strong></em></td>
+<td><em>不一定获得</em></td>
+<td><em><strong>自动获得</strong></em></td>
+<td><em><strong>自动丢失</strong></em></td>
+<td><em>否</em></td>
+</tr>
+<tr>
+<td><em><strong>响应返回键</strong></em></td>
+<td><em>否</em></td>
+<td><em><strong>是</strong></em></td>
+<td><em>否</em></td>
+<td><em>否</em></td>
+</tr>
+<tr>
+<td><em><strong>处理玩家输入</strong></em></td>
+<td><em>否</em></td>
+<td><em><strong>是 (根据 Config)</strong></em></td>
+<td><em>否</em></td>
+<td><em>否</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="lyra里的ui"><em><strong>Lyra里的UI</strong></em></h2>
 <h3 id="第一切入点commongame插件"><em><strong>第一切入点：CommonGame插件</strong></em></h3>
 <ol>
