@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lyra - EOS - Ting</title><meta name="Description" content="Lyra 的 EOS / OSS 联机实现梳理"><meta property="og:url" content="https://example.com/lyra-eos/">
+  <meta property="og:site_name" content="Ting">
+  <meta property="og:title" content="Lyra - EOS">
+  <meta property="og:description" content="Lyra 的 EOS / OSS 联机实现梳理">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-20T00:00:00+08:00">
+    <meta property="article:modified_time" content="2026-08-25T15:50:11+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="EOS">
+    <meta property="article:tag" content="OSS">
+    <meta property="article:tag" content="Lyra">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="Lyra - EOS">
+  <meta name="twitter:description" content="Lyra 的 EOS / OSS 联机实现梳理">
+<meta name="application-name" content="林汀">
+<meta name="apple-mobile-web-app-title" content="林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/lyra-eos/" /><link rel="next" href="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lyra - EOS",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/lyra-eos\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, EOS, OSS, Lyra","wordcount":  4222 ,
+        "url": "https:\/\/example.com\/lyra-eos\/","datePublished": "2026-08-20T00:00:00+08:00","dateModified": "2026-08-25T15:50:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "Lyra 的 EOS / OSS 联机实现梳理"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ting"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/lyra-eos/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ting"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/lyra-eos/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - EOS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-20">2026-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4222 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/lyra-eos/" class="leancloud_visitors" data-flag-title="Lyra - EOS">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-lyra-的-eos-实现"><em><strong>什么是 Lyra 的 EOS 实现</strong></em></a></li>
+    <li><a href="#它到底用的是-oss-还是-online-services"><em><strong>它到底用的是 OSS 还是 Online Services</strong></em></a>
+      <ul>
+        <li><a href="#1-当前-commonuser-默认走-ossv1"><em>1. 当前 CommonUser 默认走 OSSv1</em></a></li>
+        <li><a href="#2-ossv2-路径存在但不是当前主路"><em>2. OSSv2 路径存在，但不是当前主路</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#eos-是怎么被启用的"><em><strong>EOS 是怎么被启用的</strong></em></a>
+      <ul>
+        <li><a href="#1-默认工程不是-eos"><em>1. 默认工程不是 EOS</em></a></li>
+        <li><a href="#2-eos-target-会指定-customconfig"><em>2. EOS Target 会指定 CustomConfig</em></a></li>
+        <li><a href="#3-custom-eos-配置切换底层-onlinesubsystem"><em>3. Custom EOS 配置切换底层 OnlineSubsystem</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#eossettings-负责哪些能力"><em><strong>EOSSettings 负责哪些能力</strong></em></a></li>
+    <li><a href="#eos-netdriver-是怎么接进来的"><em><strong>EOS NetDriver 是怎么接进来的</strong></em></a></li>
+    <li><a href="#commonuser-登录流程"><em><strong>CommonUser 登录流程</strong></em></a>
+      <ul>
+        <li><a href="#1-前端普通玩家登录"><em>1. 前端普通玩家登录</em></a></li>
+        <li><a href="#2-dedicated-server-登录"><em>2. Dedicated Server 登录</em></a></li>
+        <li><a href="#3-commonuser-的实际登录步骤"><em>3. CommonUser 的实际登录步骤</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#online-context-是怎么理解的"><em><strong>Online Context 是怎么理解的</strong></em></a></li>
+    <li><a href="#steameos-和纯-eos-的差异"><em><strong>SteamEOS 和纯 EOS 的差异</strong></em></a>
+      <ul>
+        <li><a href="#纯-eos"><em>纯 EOS</em></a></li>
+        <li><a href="#steameos"><em>SteamEOS</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#commonsession-开房流程"><em><strong>CommonSession 开房流程</strong></em></a>
+      <ul>
+        <li><a href="#1-userfacingexperience-生成-hostrequest"><em>1. UserFacingExperience 生成 HostRequest</em></a></li>
+        <li><a href="#2-hostsession-进入在线-session-创建"><em>2. HostSession 进入在线 Session 创建</em></a></li>
+        <li><a href="#3-ossv1-创建-eos-session"><em>3. OSSv1 创建 EOS Session</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#搜房和加入流程"><em><strong>搜房和加入流程</strong></em></a>
+      <ul>
+        <li><a href="#1-搜房-findsessions"><em>1. 搜房 FindSessions</em></a></li>
+        <li><a href="#2-加入-joinsession"><em>2. 加入 JoinSession</em></a></li>
+        <li><a href="#3-travel-到服务器"><em>3. Travel 到服务器</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#lobby-schema-是干什么的"><em><strong>Lobby Schema 是干什么的</strong></em></a></li>
+    <li><a href="#presence-是怎么更新的"><em><strong>Presence 是怎么更新的</strong></em></a></li>
+    <li><a href="#quickplay-是怎么工作的"><em><strong>QuickPlay 是怎么工作的</strong></em></a></li>
+    <li><a href="#学习时应该先看哪些文件"><em><strong>学习时应该先看哪些文件</strong></em></a>
+      <ul>
+        <li><a href="#配置入口"><em>配置入口</em></a></li>
+        <li><a href="#target-入口"><em>Target 入口</em></a></li>
+        <li><a href="#登录入口"><em>登录入口</em></a></li>
+        <li><a href="#session-入口"><em>Session 入口</em></a></li>
+        <li><a href="#lyra-接入点"><em>Lyra 接入点</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#最容易踩的坑"><em><strong>最容易踩的坑</strong></em></a></li>
+    <li><a href="#简述工作流程"><em><strong>简述工作流程</strong></em></a></li>
+    <li><a href="#一句话总结"><em><strong>一句话总结</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="什么是-lyra-的-eos-实现"><em><strong>什么是 Lyra 的 EOS 实现</strong></em></h2>
+<p><em>Lyra 并没有把 EOS SDK 直接写进 Gameplay 代码里。它的在线系统是一个“配置驱动 + CommonUser / CommonSession 抽象”的结构：玩法层只关心登录、开房、搜房、加入、跳转，真正底层是 Null、Steam、EOS 还是 SteamEOS，由 Target 和 ini 配置决定。</em></p>
+<ul>
+<li><em><strong>玩法层</strong></em>：<code>LyraGame</code>、前端流程、GameMode 只调用 <code>CommonUserSubsystem</code> 和 <code>CommonSessionSubsystem</code>。</li>
+<li><em><strong>抽象层</strong></em>：<code>CommonUser</code> 负责用户登录、权限检查、平台用户和本地玩家绑定；<code>CommonSession</code> 负责 Host / Find / Join / Travel。</li>
+<li><em><strong>在线服务层</strong></em>：当前工程默认走 OSSv1，也就是 <code>OnlineSubsystem</code>、<code>IOnlineIdentity</code>、<code>IOnlineSession</code> 这套接口。</li>
+<li><em><strong>EOS Provider</strong></em>：当使用 <code>LyraGameEOS</code> 或 <code>LyraServerEOS</code> Target 时，默认 OnlineSubsystem 会变成 <code>OnlineSubsystemEOS</code>。</li>
+</ul>
+<p>所以它的整体关系更像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Lyra Gameplay / UI / GameMode
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">CommonUser / CommonSession
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">OnlineSubsystem OSSv1 接口
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">OnlineSubsystemEOS 插件
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">EOS SDK / Epic Online Services
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="它到底用的是-oss-还是-online-services"><em><strong>它到底用的是 OSS 还是 Online Services</strong></em></h2>
+<h3 id="1-当前-commonuser-默认走-ossv1"><em>1. 当前 CommonUser 默认走 OSSv1</em></h3>
+<p><code>Plugins/CommonUser/Source/CommonUser/CommonUser.Build.cs</code> 里有一个关键开关：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">bUseOnlineSubsystemV1</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个值为 <code>true</code> 时，CommonUser 会：</p>
+<ul>
+<li><em><strong>依赖</strong></em>：<code>OnlineSubsystem</code>。</li>
+<li><em><strong>定义宏</strong></em>：<code>COMMONUSER_OSSV1=1</code>。</li>
+<li><em><strong>使用接口</strong></em>：<code>IOnlineSubsystem</code>、<code>IOnlineIdentity</code>、<code>IOnlineSession</code>、<code>IOnlineExternalUI</code>、<code>IOnlinePresence</code>。</li>
+</ul>
+<p>也就是说，虽然 EOS Target 会启用 <code>OnlineServicesEOS</code>，但这份 Lyra 代码里的 CommonUser / CommonSession 主路径还是 OSSv1。</p>
+<h3 id="2-ossv2-路径存在但不是当前主路"><em>2. OSSv2 路径存在，但不是当前主路</em></h3>
+<p>代码里能看到 <code>#if COMMONUSER_OSSV1 / #else</code> 两套分支：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#if COMMONUSER_OSSV1
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">Online</span><span class="o">::</span><span class="n">GetSubsystem</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OnlineSub</span><span class="o">-&gt;</span><span class="n">GetIdentityInterface</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OnlineSub</span><span class="o">-&gt;</span><span class="n">GetSessionInterface</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">GetServices</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span> <span class="n">EOnlineServices</span><span class="o">::</span><span class="n">Default</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OnlineServices</span><span class="o">-&gt;</span><span class="n">GetAuthInterface</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OnlineServices</span><span class="o">-&gt;</span><span class="n">GetLobbiesInterface</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><em><strong>OSSv1</strong></em>：老 OnlineSubsystem 接口，Lyra 当前实际使用。</li>
+<li><em><strong>OSSv2</strong></em>：<code>OnlineServicesInterface</code> / <code>OnlineServicesEOS</code> 新接口，代码有保留，但不少地方仍有 TODO。</li>
+</ul>
+<p>所以学习这份工程时，先按 OSSv1 理解最准确。</p>
+<hr>
+<h2 id="eos-是怎么被启用的"><em><strong>EOS 是怎么被启用的</strong></em></h2>
+<h3 id="1-默认工程不是-eos"><em>1. 默认工程不是 EOS</em></h3>
+<p>普通 <code>Config/DefaultEngine.ini</code> 里默认是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[OnlineServices]</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultServices</span><span class="o">=</span><span class="s">Null</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这说明普通 Lyra 默认是本地 Null Online，不是 EOS。</p>
+<h3 id="2-eos-target-会指定-customconfig"><em>2. EOS Target 会指定 CustomConfig</em></h3>
+<p><code>Source/LyraGameEOS.Target.cs</code> 的核心是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">CustomConfig</span> <span class="p">=</span> <span class="s">&#34;EOS&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EnablePlugins</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;OnlineServicesEOS&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;OnlineSubsystemEOS&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">OptionalPlugins</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;EOSReservedHooks&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这代表构建 <code>LyraGameEOS</code> 时，会额外读取：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Config/Custom/EOS/DefaultEngine.ini
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dedicated Server 也有对应版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">LyraServerEOS.Target.cs
+</span></span><span class="line"><span class="cl">LyraServerSteamEOS.Target.cs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-custom-eos-配置切换底层-onlinesubsystem"><em>3. Custom EOS 配置切换底层 OnlineSubsystem</em></h3>
+<p><code>Config/Custom/EOS/DefaultEngine.ini</code> 里最关键的是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[OnlineSubsystem]</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultPlatformService</span><span class="o">=</span><span class="s">EOS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[OnlineSubsystemEOS]</span>
+</span></span><span class="line"><span class="cl"><span class="na">bEnabled</span><span class="o">=</span><span class="s">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[OnlineServices]</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultServices</span><span class="o">=</span><span class="s">Epic</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这三段的意思是：</p>
+<ul>
+<li><em><strong>DefaultPlatformService=EOS</strong></em>：OSSv1 的默认 OnlineSubsystem 变成 EOS。</li>
+<li><em><strong>bEnabled=true</strong></em>：启用 <code>OnlineSubsystemEOS</code>。</li>
+<li><em><strong>DefaultServices=Epic</strong></em>：OSSv2 的默认服务设为 Epic；虽然当前 CommonUser 主路是 OSSv1，但配置也给 OSSv2 留了入口。</li>
+</ul>
+<hr>
+<h2 id="eossettings-负责哪些能力"><em><strong>EOSSettings 负责哪些能力</strong></em></h2>
+<p>EOS 自己的设置在：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[/Script/OnlineSubsystemEOS.EOSSettings]</span>
+</span></span><span class="line"><span class="cl"><span class="na">bEnableOverlay</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bEnableSocialOverlay</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bEnableEditorOverlay</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bUseEAS</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bUseEOSConnect</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bMirrorStatsToEOS</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bMirrorAchievementsToEOS</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bUseEOSSessions</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">bMirrorPresenceToEAS</span><span class="o">=</span><span class="s">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些开关可以这样理解：</p>
+<ul>
+<li><em><strong>bUseEAS</strong></em>：使用 Epic Account Services，用于 Epic 账号体系登录。</li>
+<li><em><strong>bUseEOSConnect</strong></em>：使用 EOS Connect，用于跨平台产品用户身份。</li>
+<li><em><strong>bUseEOSSessions</strong></em>：Session 使用 EOS 后端能力。</li>
+<li><em><strong>bMirrorPresenceToEAS</strong></em>：把 Presence 同步到 Epic Account 侧。</li>
+<li><em><strong>bEnableOverlay / bEnableSocialOverlay</strong></em>：启用 EOS Overlay 和社交 Overlay。</li>
+<li><em><strong>bMirrorStatsToEOS / bMirrorAchievementsToEOS</strong></em>：把统计和成就同步到 EOS。</li>
+</ul>
+<p>实际项目上线时，还要填自己的 Artifact 信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">DefaultArtifactName</span><span class="o">=</span><span class="s">ARTIFACTNAME</span>
+</span></span><span class="line"><span class="cl"><span class="na">+Artifacts</span><span class="o">=</span><span class="s">(ArtifactName=&#34;ARTIFACTNAME&#34;,ClientId=&#34;CLIENTID&#34;,ClientSecret=&#34;CLIENTSECRET&#34;,ProductId=&#34;PRODUCTID&#34;,SandboxId=&#34;SANDBOXID&#34;,DeploymentId=&#34;DEPLOYTMENTID&#34;,EncryptionKey=&#34;ENCRYPTIONKEY&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Lyra 示例里这些值默认是注释状态，不能直接拿来上线。</p>
+<hr>
+<h2 id="eos-netdriver-是怎么接进来的"><em><strong>EOS NetDriver 是怎么接进来的</strong></em></h2>
+<p>EOS 配置还替换了网络驱动：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[/Script/Engine.Engine]</span>
+</span></span><span class="line"><span class="cl"><span class="na">!NetDriverDefinitions</span><span class="o">=</span><span class="s">ClearArray</span>
+</span></span><span class="line"><span class="cl"><span class="na">+NetDriverDefinitions</span><span class="o">=</span><span class="s">(DefName=&#34;GameNetDriver&#34;,DriverClassName=&#34;/Script/SocketSubsystemEOS.NetDriverEOS&#34;,DriverClassNameFallback=&#34;/Script/OnlineSubsystemUtils.IpNetDriver&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="na">+NetDriverDefinitions</span><span class="o">=</span><span class="s">(DefName=&#34;BeaconNetDriver&#34;,DriverClassName=&#34;/Script/SocketSubsystemEOS.NetDriverEOS&#34;,DriverClassNameFallback=&#34;/Script/OnlineSubsystemUtils.IpNetDriver&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="na">+NetDriverDefinitions</span><span class="o">=</span><span class="s">(DefName=&#34;DemoNetDriver&#34;,DriverClassName=&#34;/Script/Engine.DemoNetDriver&#34;,DriverClassNameFallback=&#34;/Script/Engine.DemoNetDriver&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><em><strong>GameNetDriver</strong></em>：正常玩家联机走 EOS Socket NetDriver。</li>
+<li><em><strong>BeaconNetDriver</strong></em>：Party / Reservation Beacon 也走 EOS Socket。</li>
+<li><em><strong>Fallback</strong></em>：如果 EOS NetDriver 不可用，会退回 <code>IpNetDriver</code>。</li>
+</ul>
+<p>这就是为什么 Lyra 的 <code>ClientTravel</code> 最后拿到的连接字符串可以交给 EOS 网络层处理。</p>
+<hr>
+<h2 id="commonuser-登录流程"><em><strong>CommonUser 登录流程</strong></em></h2>
+<h3 id="1-前端普通玩家登录"><em>1. 前端普通玩家登录</em></h3>
+<p>前端流程在 <code>ULyraFrontendStateComponent</code> 里排了几个步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">QueueStep</span><span class="p">(</span><span class="s">&#34;Wait For User Initialization&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">QueueStep</span><span class="p">(</span><span class="s">&#34;Try Show Press Start Screen&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">QueueStep</span><span class="p">(</span><span class="s">&#34;Try Join Requested Session&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">QueueStep</span><span class="p">(</span><span class="s">&#34;Try Show Main Screen&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果平台不需要 Press Start，Lyra 会直接：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UserSubsystem</span><span class="o">-&gt;</span><span class="n">TryToInitializeForLocalPlay</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">FInputDeviceId</span><span class="p">(),</span> <span class="nb">false</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个函数内部请求的是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Params</span><span class="p">.</span><span class="n">RequestedPrivilege</span> <span class="o">=</span> <span class="n">ECommonUserPrivilege</span><span class="o">::</span><span class="n">CanPlay</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以普通前端进入游戏时，默认只要求“能玩本地游戏”，不一定强制在线。</p>
+<h3 id="2-dedicated-server-登录"><em>2. Dedicated Server 登录</em></h3>
+<p>Dedicated Server 启动时，<code>ALyraGameMode::TryDedicatedServerLogin()</code> 会检查自己是不是在默认地图上运行。如果是，它会调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UserSubsystem</span><span class="o">-&gt;</span><span class="n">TryToLoginForOnlinePlay</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个函数内部请求的是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Params</span><span class="p">.</span><span class="n">RequestedPrivilege</span> <span class="o">=</span> <span class="n">ECommonUserPrivilege</span><span class="o">::</span><span class="n">CanPlayOnline</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功或失败后都会继续：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">HostDedicatedServerMatch</span><span class="p">(</span><span class="n">ECommonSessionOnlineMode</span><span class="o">::</span><span class="n">Online</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这说明 Lyra 的 Dedicated Server 登录失败不一定阻止开服。注释里也写得很清楚：一些 OnlineSubsystem 可能期望服务器登录，但 Dedicated Server 本身不强制依赖用户登录。</p>
+<h3 id="3-commonuser-的实际登录步骤"><em>3. CommonUser 的实际登录步骤</em></h3>
+<p><code>LoginLocalUser()</code> 会创建 <code>FUserLoginRequest</code>，然后进入 <code>ProcessLoginRequest()</code>。</p>
+<p>它的大致顺序是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">检查当前是否已经 LoggedIn
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">尝试 TransferPlatformAuth
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">尝试 AutoLogin
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">尝试 ShowLoginUI
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">检查 CanPlay / CanPlayOnline 权限
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">绑定 LocalPlayer / PlayerState 的 UniqueNetId
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OSSv1 下 <code>TransferPlatformAuth</code> 直接返回 <code>false</code>，所以当前主路更像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">已有登录
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">AutoLogin
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">External Login UI
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">Privilege Check
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>相关接口都是 OSSv1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">IdentityInterface</span><span class="o">-&gt;</span><span class="n">AutoLogin</span><span class="p">(...)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ExternalUI</span><span class="o">-&gt;</span><span class="n">ShowLoginUI</span><span class="p">(...)</span>
+</span></span><span class="line"><span class="cl"><span class="n">IdentityInterface</span><span class="o">-&gt;</span><span class="n">GetUserPrivilege</span><span class="p">(...)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="online-context-是怎么理解的"><em><strong>Online Context 是怎么理解的</strong></em></h2>
+<p><code>ECommonUserOnlineContext</code> 里有几个容易混的概念：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Game</span>
+</span></span><span class="line"><span class="cl"><span class="n">Default</span>
+</span></span><span class="line"><span class="cl"><span class="n">Service</span>
+</span></span><span class="line"><span class="cl"><span class="n">ServiceOrDefault</span>
+</span></span><span class="line"><span class="cl"><span class="n">Platform</span>
+</span></span><span class="line"><span class="cl"><span class="n">PlatformOrDefault</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以这样记：</p>
+<ul>
+<li><em><strong>Default</strong></em>：当前默认 OnlineSubsystem。EOS Target 下通常就是 EOS。</li>
+<li><em><strong>Platform</strong></em>：当前原生平台服务。例如 SteamEOS 下可能是 Steam。</li>
+<li><em><strong>Service</strong></em>：外部在线服务。Lyra 这里预留给更复杂的服务拆分。</li>
+<li><em><strong>Game</strong></em>：玩法代码使用的高层语义。它会先处理平台上下文，再处理最终服务上下文。</li>
+</ul>
+<p><code>ProcessLoginRequest()</code> 里有一段关键逻辑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">Request</span><span class="o">-&gt;</span><span class="n">DesiredContext</span> <span class="o">==</span> <span class="n">ECommonUserOnlineContext</span><span class="o">::</span><span class="n">Game</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Request</span><span class="o">-&gt;</span><span class="n">CurrentContext</span> <span class="o">=</span> <span class="n">ResolveOnlineContext</span><span class="p">(</span><span class="n">ECommonUserOnlineContext</span><span class="o">::</span><span class="n">PlatformOrDefault</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Request</span><span class="o">-&gt;</span><span class="n">CurrentContext</span> <span class="o">=</span> <span class="n">ResolveOnlineContext</span><span class="p">(</span><span class="n">Request</span><span class="o">-&gt;</span><span class="n">DesiredContext</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这就是 SteamEOS 场景下“先平台、后 EOS”的基础。</p>
+<hr>
+<h2 id="steameos-和纯-eos-的差异"><em><strong>SteamEOS 和纯 EOS 的差异</strong></em></h2>
+<h3 id="纯-eos"><em>纯 EOS</em></h3>
+<p><code>Config/Custom/EOS/DefaultEngine.ini</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[OnlineSubsystem]</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultPlatformService</span><span class="o">=</span><span class="s">EOS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[OnlineServices]</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultServices</span><span class="o">=</span><span class="s">Epic</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>纯 EOS 下，Default OnlineSubsystem 就是 EOS。</p>
+<h3 id="steameos"><em>SteamEOS</em></h3>
+<p><code>Config/Custom/SteamEOS/DefaultEngine.ini</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[OnlineSubsystem]</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultPlatformService</span><span class="o">=</span><span class="s">EOS</span>
+</span></span><span class="line"><span class="cl"><span class="na">NativePlatformService</span><span class="o">=</span><span class="s">Steam</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[/Script/OnlineSubsystemEOS.EOSSettings]</span>
+</span></span><span class="line"><span class="cl"><span class="na">SteamTokenType</span><span class="o">=</span><span class="s">WebApi:epiconlineservices</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[OnlineSubsystem]</span>
+</span></span><span class="line"><span class="cl"><span class="na">bLoadNativeOSSBeforeDefault</span><span class="o">=</span><span class="s">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个配置表达的是：</p>
+<ul>
+<li><em><strong>DefaultPlatformService=EOS</strong></em>：游戏主要在线服务还是 EOS。</li>
+<li><em><strong>NativePlatformService=Steam</strong></em>：原生平台是 Steam。</li>
+<li><em><strong>SteamTokenType</strong></em>：EOS 通过 Steam WebApi token 做平台集成。</li>
+<li><em><strong>bLoadNativeOSSBeforeDefault</strong></em>：先加载 Steam，再加载 EOS，保证 EOS 初始化时 Steam DLL 和平台环境已经准备好。</li>
+</ul>
+<p>所以 SteamEOS 不是“只用 Steam”，而是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Steam 负责原生平台身份 / 发布平台集成
+</span></span><span class="line"><span class="cl">EOS 负责跨平台在线服务 / Session / Presence 等
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="commonsession-开房流程"><em><strong>CommonSession 开房流程</strong></em></h2>
+<h3 id="1-userfacingexperience-生成-hostrequest"><em>1. UserFacingExperience 生成 HostRequest</em></h3>
+<p>Lyra 的每个可见玩法体验由 <code>ULyraUserFacingExperienceDefinition</code> 描述。它会创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCommonSession_HostSessionRequest</span><span class="o">*</span> <span class="n">Result</span> <span class="o">=</span> <span class="n">Subsystem</span><span class="o">-&gt;</span><span class="n">CreateOnlineHostSessionRequest</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后填入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Result</span><span class="o">-&gt;</span><span class="n">MapID</span> <span class="o">=</span> <span class="n">MapID</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Result</span><span class="o">-&gt;</span><span class="n">ModeNameForAdvertisement</span> <span class="o">=</span> <span class="n">UserFacingExperienceName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Result</span><span class="o">-&gt;</span><span class="n">ExtraArgs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;Experience&#34;</span><span class="p">,</span> <span class="n">ExperienceName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Result</span><span class="o">-&gt;</span><span class="n">MaxPlayerCount</span> <span class="o">=</span> <span class="n">MaxPlayerCount</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也就是说，Lyra 开房不是直接写死地图和模式，而是从 UserFacingExperience 数据资产生成 HostRequest。</p>
+<h3 id="2-hostsession-进入在线-session-创建"><em>2. HostSession 进入在线 Session 创建</em></h3>
+<p><code>UCommonSessionSubsystem::HostSession()</code> 会判断：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Offline
+</span></span><span class="line"><span class="cl">    -&gt; 直接 ServerTravel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Online / LAN
+</span></span><span class="line"><span class="cl">    -&gt; CreateOnlineSessionInternal
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当前 OSSv1 主路最后会进入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">CreateOnlineSessionInternalOSSv1</span><span class="p">(...)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-ossv1-创建-eos-session"><em>3. OSSv1 创建 EOS Session</em></h3>
+<p>创建 Session 时，Lyra 会构造 <code>FCommonSession_OnlineSessionSettings</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FCommonSession_OnlineSessionSettings</span> <span class="nf">HostSettings</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Request</span><span class="o">-&gt;</span><span class="n">OnlineMode</span> <span class="o">==</span> <span class="n">ECommonSessionOnlineMode</span><span class="o">::</span><span class="n">LAN</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Request</span><span class="o">-&gt;</span><span class="n">bUsePresence</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxPlayers</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后写入几个可搜索字段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">bUseLobbiesIfAvailable</span> <span class="o">=</span> <span class="n">Request</span><span class="o">-&gt;</span><span class="n">bUseLobbies</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">bUseLobbiesVoiceChatIfAvailable</span> <span class="o">=</span> <span class="n">Request</span><span class="o">-&gt;</span><span class="n">bUseLobbiesVoiceChat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_GAMEMODE</span><span class="p">,</span> <span class="n">Request</span><span class="o">-&gt;</span><span class="n">ModeNameForAdvertisement</span><span class="p">,</span> <span class="n">ViaOnlineService</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_MAPNAME</span><span class="p">,</span> <span class="n">Request</span><span class="o">-&gt;</span><span class="n">GetMapName</span><span class="p">(),</span> <span class="n">ViaOnlineService</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_MATCHING_TIMEOUT</span><span class="p">,</span> <span class="mf">120.0f</span><span class="p">,</span> <span class="n">ViaOnlineService</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_SESSION_TEMPLATE_NAME</span><span class="p">,</span> <span class="s">&#34;GameSession&#34;</span><span class="p">,</span> <span class="n">ViaOnlineService</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_ONLINESUBSYSTEM_VERSION</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="n">ViaOnlineService</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Sessions</span><span class="o">-&gt;</span><span class="n">CreateSession</span><span class="p">(</span><span class="o">*</span><span class="n">UserId</span><span class="p">,</span> <span class="n">NAME_GameSession</span><span class="p">,</span> <span class="n">HostSettings</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果当前默认 OnlineSubsystem 是 EOS，这个 <code>CreateSession</code> 实际就是交给 <code>OnlineSubsystemEOS</code>。</p>
+<hr>
+<h2 id="搜房和加入流程"><em><strong>搜房和加入流程</strong></em></h2>
+<h3 id="1-搜房-findsessions"><em>1. 搜房 FindSessions</em></h3>
+<p><code>FindSessions()</code> 会创建 <code>FCommonOnlineSearchSettingsOSSv1</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">QuerySettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_ONLINESUBSYSTEM_VERSION</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="n">Equals</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">InSearchRequest</span><span class="o">-&gt;</span><span class="n">bUseLobbies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QuerySettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SEARCH_LOBBIES</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="n">Equals</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>真正查找时又加了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">SearchSettings</span><span class="o">-&gt;</span><span class="n">QuerySettings</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">SETTING_SESSION_TEMPLATE_NAME</span><span class="p">,</span> <span class="s">&#34;GameSession&#34;</span><span class="p">,</span> <span class="n">Equals</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Sessions</span><span class="o">-&gt;</span><span class="n">FindSessions</span><span class="p">(</span><span class="o">*</span><span class="n">LocalPlayer</span><span class="o">-&gt;</span><span class="n">GetPreferredUniqueNetId</span><span class="p">().</span><span class="n">GetUniqueNetId</span><span class="p">(),</span> <span class="n">SearchSettings</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以 Lyra 默认只找同一套模板创建出来的游戏 Session，避免搜到不兼容的房间。</p>
+<h3 id="2-加入-joinsession"><em>2. 加入 JoinSession</em></h3>
+<p>加入时主路是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Request</span><span class="o">-&gt;</span><span class="n">Result</span><span class="p">.</span><span class="n">Session</span><span class="p">.</span><span class="n">SessionSettings</span><span class="p">.</span><span class="n">bUsesPresence</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Request</span><span class="o">-&gt;</span><span class="n">Result</span><span class="p">.</span><span class="n">Session</span><span class="p">.</span><span class="n">SessionSettings</span><span class="p">.</span><span class="n">bUseLobbiesIfAvailable</span> <span class="o">=</span> <span class="n">bUseLobbiesDefault</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Sessions</span><span class="o">-&gt;</span><span class="n">JoinSession</span><span class="p">(</span><span class="o">*</span><span class="n">LocalPlayer</span><span class="o">-&gt;</span><span class="n">GetPreferredUniqueNetId</span><span class="p">().</span><span class="n">GetUniqueNetId</span><span class="p">(),</span> <span class="n">NAME_GameSession</span><span class="p">,</span> <span class="n">Request</span><span class="o">-&gt;</span><span class="n">Result</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功后：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FinishJoinSession</span><span class="p">(</span><span class="n">Result</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果没有启用 Reservation Beacon，就会直接：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">InternalTravelToSession</span><span class="p">(</span><span class="n">NAME_GameSession</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-travel-到服务器"><em>3. Travel 到服务器</em></h3>
+<p><code>InternalTravelToSession()</code> 里会通过 OnlineSubsystem 解析连接字符串：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Sessions</span><span class="o">-&gt;</span><span class="n">GetResolvedConnectString</span><span class="p">(</span><span class="n">SessionName</span><span class="p">,</span> <span class="n">URL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">ClientTravel</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">TRAVEL_Absolute</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这一步非常关键：客户端不需要自己拼 IP 或 EOS P2P 地址，而是让当前 OnlineSubsystem 返回正确的连接字符串。</p>
+<hr>
+<h2 id="lobby-schema-是干什么的"><em><strong>Lobby Schema 是干什么的</strong></em></h2>
+<p>EOS 配置里还有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[OnlineServices.Lobbies]</span>
+</span></span><span class="line"><span class="cl"><span class="na">+SchemaDescriptors</span><span class="o">=</span><span class="s">(Id=&#34;GameLobby&#34;, ParentId=&#34;LobbyBase&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="na">+SchemaAttributeDescriptors</span><span class="o">=</span><span class="s">(Id=&#34;GAMEMODE&#34;, Type=&#34;String&#34;, Flags=(&#34;Public&#34;), MaxSize=64)</span>
+</span></span><span class="line"><span class="cl"><span class="na">+SchemaAttributeDescriptors</span><span class="o">=</span><span class="s">(Id=&#34;MAPNAME&#34;, Type=&#34;String&#34;, Flags=(&#34;Public&#34;), MaxSize=64)</span>
+</span></span><span class="line"><span class="cl"><span class="na">+SchemaAttributeDescriptors</span><span class="o">=</span><span class="s">(Id=&#34;MATCHTIMEOUT&#34;, Type=&#34;Double&#34;, Flags=(&#34;Public&#34;))</span>
+</span></span><span class="line"><span class="cl"><span class="na">+SchemaAttributeDescriptors</span><span class="o">=</span><span class="s">(Id=&#34;SESSIONTEMPLATENAME&#34;, Type=&#34;String&#34;, Flags=(&#34;Public&#34;), MaxSize=64)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些主要服务于 OSSv2 / OnlineServices Lobbies 路径。虽然当前 CommonSession 主路是 OSSv1，但 Lyra 已经把 OSSv2 Lobby 需要的 Schema 也写在配置里。</p>
+<p>可以理解成：</p>
+<ul>
+<li><em><strong>OSSv1 Session Settings</strong></em>：用 <code>SETTING_GAMEMODE</code>、<code>SETTING_MAPNAME</code> 等键值广告房间。</li>
+<li><em><strong>OSSv2 Lobby Schema</strong></em>：提前声明 Lobby 有哪些字段、字段类型、是否可搜索。</li>
+</ul>
+<hr>
+<h2 id="presence-是怎么更新的"><em><strong>Presence 是怎么更新的</strong></em></h2>
+<p><code>UCommonUserBasicPresence</code> 会监听：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">CommonSession</span><span class="o">-&gt;</span><span class="n">OnSessionInformationChangedEvent</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当 Session 状态变化时，它会把状态同步到在线服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Status_InGame</span>
+</span></span><span class="line"><span class="cl"><span class="n">Status_MainMenu</span>
+</span></span><span class="line"><span class="cl"><span class="n">Status_Matchmaking</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>并写入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">game_mode</span>
+</span></span><span class="line"><span class="cl"><span class="n">map_name</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>EOS 配置里对应：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[/Script/CommonUser.CommonUserBasicPresence]</span>
+</span></span><span class="line"><span class="cl"><span class="na">bEnableSessionsBasedPresence</span><span class="o">=</span><span class="s">true</span>
+</span></span><span class="line"><span class="cl"><span class="na">PresenceStatusInGame</span><span class="o">=</span><span class="s">Status_InGame</span>
+</span></span><span class="line"><span class="cl"><span class="na">PresenceStatusMainMenu</span><span class="o">=</span><span class="s">Status_MainMenu</span>
+</span></span><span class="line"><span class="cl"><span class="na">PresenceStatusMatchmaking</span><span class="o">=</span><span class="s">Status_Matchmaking</span>
+</span></span><span class="line"><span class="cl"><span class="na">PresenceKeyGameMode</span><span class="o">=</span><span class="s">game_mode</span>
+</span></span><span class="line"><span class="cl"><span class="na">PresenceKeyMapName</span><span class="o">=</span><span class="s">map_name</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这说明 Lyra 的 Presence 不是到处手动更新，而是跟 Session 状态绑定。</p>
+<hr>
+<h2 id="quickplay-是怎么工作的"><em><strong>QuickPlay 是怎么工作的</strong></em></h2>
+<p><code>QuickPlaySession()</code> 的逻辑很简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">进入 Matchmaking 状态
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">FindSessions
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">如果找到结果，Join 第一个
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">如果没找到，HostSession 自己开房
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>代码里甚至有 TODO，说明它现在没有复杂排序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// We should probably look at ping?
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以 Lyra 的 QuickPlay 更像教学用的基础实现，不是成熟商业匹配系统。</p>
+<p>如果正式做项目，通常还要扩展：</p>
+<ul>
+<li><em><strong>匹配规则</strong></em>：地图、模式、地区、段位、队伍人数。</li>
+<li><em><strong>结果排序</strong></em>：Ping、人数、服务器负载。</li>
+<li><em><strong>失败重试</strong></em>：搜不到房、Join 失败、Session 满员后的回退。</li>
+<li><em><strong>Dedicated Server 分配</strong></em>：不要只靠玩家 Host。</li>
+</ul>
+<hr>
+<h2 id="学习时应该先看哪些文件"><em><strong>学习时应该先看哪些文件</strong></em></h2>
+<h3 id="配置入口"><em>配置入口</em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Config/DefaultEngine.ini
+</span></span><span class="line"><span class="cl">Config/Custom/EOS/DefaultEngine.ini
+</span></span><span class="line"><span class="cl">Config/Custom/SteamEOS/DefaultEngine.ini
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重点看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">DefaultPlatformService</span>
+</span></span><span class="line"><span class="cl"><span class="na">DefaultServices</span>
+</span></span><span class="line"><span class="cl"><span class="na">OnlineSubsystemEOS.EOSSettings</span>
+</span></span><span class="line"><span class="cl"><span class="na">NetDriverDefinitions</span>
+</span></span><span class="line"><span class="cl"><span class="na">OnlineServices.Lobbies</span>
+</span></span><span class="line"><span class="cl"><span class="na">CommonUserBasicPresence</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="target-入口"><em>Target 入口</em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGameEOS.Target.cs
+</span></span><span class="line"><span class="cl">Source/LyraServerEOS.Target.cs
+</span></span><span class="line"><span class="cl">Source/LyraGameSteamEOS.Target.cs
+</span></span><span class="line"><span class="cl">Source/LyraServerSteamEOS.Target.cs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重点看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">CustomConfig</span> <span class="p">=</span> <span class="s">&#34;EOS&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EnablePlugins</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(...)</span>
+</span></span><span class="line"><span class="cl"><span class="n">OptionalPlugins</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;EOSReservedHooks&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="登录入口"><em>登录入口</em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Plugins/CommonUser/Source/CommonUser/Private/CommonUserSubsystem.cpp
+</span></span><span class="line"><span class="cl">Plugins/CommonUser/Source/CommonUser/Public/CommonUserTypes.h
+</span></span><span class="line"><span class="cl">Plugins/CommonUser/Source/CommonUser/Private/AsyncAction_CommonUserInitialize.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重点看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">CreateOnlineContexts</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">TryToInitializeForLocalPlay</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">TryToLoginForOnlinePlay</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">LoginLocalUser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">ProcessLoginRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HandleUserLoginCompleted</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HandleCheckPrivilegesComplete</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="session-入口"><em>Session 入口</em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Plugins/CommonUser/Source/CommonUser/Private/CommonSessionSubsystem.cpp
+</span></span><span class="line"><span class="cl">Plugins/CommonUser/Source/CommonUser/Public/CommonSessionSubsystem.h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重点看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">CreateOnlineHostSessionRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HostSession</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">CreateOnlineSessionInternalOSSv1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">FindSessionsInternalOSSv1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">JoinSessionInternalOSSv1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">InternalTravelToSession</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">CleanUpSessions</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lyra-接入点"><em>Lyra 接入点</em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/UI/Frontend/LyraFrontendStateComponent.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/GameModes/LyraGameMode.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/GameModes/LyraUserFacingExperienceDefinition.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/System/LyraGameInstance.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些文件说明 Lyra 是如何把前端、登录、体验数据、开服和 travel 串起来的。</p>
+<hr>
+<h2 id="最容易踩的坑"><em><strong>最容易踩的坑</strong></em></h2>
+<ul>
+<li><em><strong>只改 DefaultEngine.ini 不够</strong></em>：EOS 主要在 <code>Config/Custom/EOS</code> 里，必须用对应 Target 或 CustomConfig 才会加载。</li>
+<li><em><strong>插件启用不等于登录成功</strong></em>：还要填正确的 <code>ArtifactName</code>、<code>ClientId</code>、<code>ClientSecret</code>、<code>ProductId</code>、<code>SandboxId</code>、<code>DeploymentId</code>。</li>
+<li><em><strong>当前主路是 OSSv1</strong></em>：不要看到 <code>OnlineServicesEOS</code> 就以为 CommonUser 已经切到 OSSv2。</li>
+<li><em><strong>Session 和 Lobby 概念会混</strong></em>：OSSv1 下 Lyra 仍然用 <code>IOnlineSession</code>，但可以通过 <code>bUseLobbiesIfAvailable</code> 让底层使用可用的 Lobby 能力。</li>
+<li><em><strong>SteamEOS 不是 Steam 联机</strong></em>：它是 Steam 原生平台 + EOS 跨平台服务。</li>
+<li><em><strong>QuickPlay 很基础</strong></em>：Lyra 的 QuickPlay 更像示例，不是完整 matchmaking。</li>
+<li><em><strong>Dedicated Server 登录失败仍可能开服</strong></em>：代码注释说明服务器不强制依赖用户登录，但某些 OnlineSubsystem 可能需要。</li>
+</ul>
+<hr>
+<h2 id="简述工作流程"><em><strong>简述工作流程</strong></em></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">构建 LyraGameEOS / LyraServerEOS
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">加载 Config/Custom/EOS/DefaultEngine.ini
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">Default OnlineSubsystem 变成 EOS
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">CommonUser 初始化 OnlineSubsystem + Identity
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">前端或服务器触发用户登录
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">CommonSession 创建 / 搜索 / 加入 Session
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">OnlineSubsystemEOS 把请求转给 EOS
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">成功后 ServerTravel / ClientTravel
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="一句话总结"><em><strong>一句话总结</strong></em></h2>
+<p><em>Lyra 的 EOS 不是“玩法代码直接调用 EOS SDK”，而是通过 Target 选择配置、通过 <code>OnlineSubsystemEOS</code> 提供底层能力、通过 <code>CommonUser</code> 和 <code>CommonSession</code> 把登录与联机流程包装成游戏可用的通用接口。</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-08-25&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/4089673938a086523134a4ee4c88799f1aa47498" target="_blank" title="commit by vlicecream(vlicecream@163.com) 4089673938a086523134a4ee4c88799f1aa47498: Add Net Blog">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4089673</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/lyra-eos/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-eos/" data-title="Lyra - EOS" data-hashtags="Unreal,EOS,OSS,Lyra"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-eos/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-eos/" data-title="Lyra - EOS"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-eos/" data-title="Lyra - EOS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-eos/" data-title="Lyra - EOS"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/eos/">EOS</a>,&nbsp;<a href="/tags/oss/">OSS</a>,&nbsp;<a href="/tags/lyra/">Lyra</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" class="next" rel="next" title="Lyra - 网络同步">Lyra - 网络同步<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

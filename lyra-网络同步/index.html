@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lyra - 网络同步 - Ting</title><meta name="Description" content="Lyra 的网络同步流程梳理"><meta property="og:url" content="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/">
+  <meta property="og:site_name" content="Ting">
+  <meta property="og:title" content="Lyra - 网络同步">
+  <meta property="og:description" content="Lyra 的网络同步流程梳理">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-25T00:00:00+08:00">
+    <meta property="article:modified_time" content="2026-08-25T00:00:00+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="Lyra">
+    <meta property="article:tag" content="Network">
+    <meta property="article:tag" content="GAS">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="Lyra - 网络同步">
+  <meta name="twitter:description" content="Lyra 的网络同步流程梳理">
+<meta name="application-name" content="林汀">
+<meta name="apple-mobile-web-app-title" content="林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" /><link rel="prev" href="https://example.com/lyra-eos/" /><link rel="next" href="https://example.com/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lyra - 网络同步",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Lyra, Network, GAS","wordcount":  5117 ,
+        "url": "https:\/\/example.com\/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5\/","datePublished": "2026-08-25T00:00:00+08:00","dateModified": "2026-08-25T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "Lyra 的网络同步流程梳理"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ting"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ting"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lyra - 网络同步</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal-lyra/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal-Lyra</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-25">2026-08-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5117 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" class="leancloud_visitors" data-flag-title="Lyra - 网络同步">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#lyra-同步对象怎么分层"><em><strong>Lyra 同步对象怎么分层</strong></em></a></li>
+    <li><a href="#第一条主线experience-的同步"><em><strong>第一条主线：Experience 的同步</strong></em></a></li>
+    <li><a href="#第二条主线playerstate-承载长期玩家状态"><em><strong>第二条主线：PlayerState 承载长期玩家状态</strong></em></a></li>
+    <li><a href="#第三条主线pawnextension-解决初始化顺序问题"><em><strong>第三条主线：PawnExtension 解决初始化顺序问题</strong></em></a></li>
+    <li><a href="#第四条主线character-的移动同步"><em><strong>第四条主线：Character 的移动同步</strong></em></a></li>
+    <li><a href="#第五条主线gas-的网络同步"><em><strong>第五条主线：GAS 的网络同步</strong></em></a></li>
+    <li><a href="#第六条主线attribute-怎么同步"><em><strong>第六条主线：Attribute 怎么同步</strong></em></a></li>
+    <li><a href="#第七条主线开火同步"><em><strong>第七条主线：开火同步</strong></em></a></li>
+    <li><a href="#第八条主线inventory-的-fastarray-同步"><em><strong>第八条主线：Inventory 的 FastArray 同步</strong></em></a></li>
+    <li><a href="#第九条主线equipment-的-fastarray-同步"><em><strong>第九条主线：Equipment 的 FastArray 同步</strong></em></a></li>
+    <li><a href="#第十条主线quickbar-怎么同步"><em><strong>第十条主线：QuickBar 怎么同步</strong></em></a></li>
+    <li><a href="#第十一条主线characterparts-外观同步"><em><strong>第十一条主线：CharacterParts 外观同步</strong></em></a></li>
+    <li><a href="#第十二条主线team-同步"><em><strong>第十二条主线：Team 同步</strong></em></a></li>
+    <li><a href="#第十三条主线消息不是都靠网络复制"><em><strong>第十三条主线：消息不是都靠网络复制</strong></em></a></li>
+    <li><a href="#第十四条主线replicationgraph-在-lyra-里的定位"><em><strong>第十四条主线：ReplicationGraph 在 Lyra 里的定位</strong></em></a></li>
+    <li><a href="#lyra-用到的-unreal-网络机制汇总"><em><strong>Lyra 用到的 Unreal 网络机制汇总</strong></em></a></li>
+    <li><a href="#从源码应该怎么读"><em><strong>从源码应该怎么读</strong></em></a>
+      <ul>
+        <li><a href="#1-experience-同步"><em><strong>1. Experience 同步</strong></em></a></li>
+        <li><a href="#2-playerstate-和-asc"><em><strong>2. PlayerState 和 ASC</strong></em></a></li>
+        <li><a href="#3-pawn-初始化"><em><strong>3. Pawn 初始化</strong></em></a></li>
+        <li><a href="#4-gas-属性与伤害"><em><strong>4. GAS 属性与伤害</strong></em></a></li>
+        <li><a href="#5-武器开火"><em><strong>5. 武器开火</strong></em></a></li>
+        <li><a href="#6-背包和装备"><em><strong>6. 背包和装备</strong></em></a></li>
+        <li><a href="#7-replicationgraph"><em><strong>7. ReplicationGraph</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#几个容易误解的点"><em><strong>几个容易误解的点</strong></em></a>
+      <ul>
+        <li><a href="#1-gameplaymessage-不是网络复制"><em><strong>1. GameplayMessage 不是网络复制</strong></em></a></li>
+        <li><a href="#2-onrep-不应该做权威逻辑"><em><strong>2. OnRep 不应该做权威逻辑</strong></em></a></li>
+        <li><a href="#3-client-预测不等于-client-权威"><em><strong>3. Client 预测不等于 Client 权威</strong></em></a></li>
+        <li><a href="#4-uobject-可以复制但需要挂在可复制-actor--component-下"><em><strong>4. UObject 可以复制，但需要挂在可复制 Actor / Component 下</strong></em></a></li>
+        <li><a href="#5-fastarray-不是万能数组"><em><strong>5. FastArray 不是万能数组</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#最后总结"><em><strong>最后总结</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><em>Lyra 的网络同步不是简单地给变量加 <code>Replicated</code>。它的核心设计是：先把数据放到正确的对象上，然后再决定用属性复制、RPC、GAS、FastArray、SubObject 或 RepGraph 去同步。</em></p>
+<p><em>所以学习 Lyra 网络同步时，不要一开始就陷入各种宏，而是先问四个问题：</em></p>
+<ul>
+<li><em><strong>这个数据谁有权修改？</strong></em></li>
+<li><em><strong>这个数据应该放在 PlayerState、Pawn、Controller、GameState，还是某个 Component 上？</strong></em></li>
+<li><em><strong>哪些客户端需要看到这个数据？</strong></em></li>
+<li><em><strong>客户端收到以后，是要保存状态，还是触发表现？</strong></em></li>
+</ul>
+<p><em>Lyra 的整体同步关系可以先理解成这样：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Client 输入 / 预测表现
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">Server 权威校验 / 修改真实状态
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">Replication / RPC / GAS / FastArray
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">Client OnRep / GameplayMessage / GameplayCue / UI 表现
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="lyra-同步对象怎么分层"><em><strong>Lyra 同步对象怎么分层</strong></em></h2>
+<p><em>Lyra 没有把所有状态都塞到 Character 上，而是按照生命周期拆开了。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">GameState
+</span></span><span class="line"><span class="cl">  - 当前 Experience
+</span></span><span class="line"><span class="cl">  - 全局 AbilitySystemComponent
+</span></span><span class="line"><span class="cl">  - 全局消息
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PlayerState
+</span></span><span class="line"><span class="cl">  - 玩家长期状态
+</span></span><span class="line"><span class="cl">  - AbilitySystemComponent
+</span></span><span class="line"><span class="cl">  - PawnData
+</span></span><span class="line"><span class="cl">  - Team
+</span></span><span class="line"><span class="cl">  - StatTags
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Pawn / Character
+</span></span><span class="line"><span class="cl">  - 当前这条命
+</span></span><span class="line"><span class="cl">  - 移动
+</span></span><span class="line"><span class="cl">  - 动画表现
+</span></span><span class="line"><span class="cl">  - 当前 Avatar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Controller
+</span></span><span class="line"><span class="cl">  - 玩家输入来源
+</span></span><span class="line"><span class="cl">  - QuickBar
+</span></span><span class="line"><span class="cl">  - WeaponState
+</span></span><span class="line"><span class="cl">  - 本地玩家相关组件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Inventory / Equipment / CharacterParts
+</span></span><span class="line"><span class="cl">  - 动态列表
+</span></span><span class="line"><span class="cl">  - FastArray
+</span></span><span class="line"><span class="cl">  - Replicated SubObject
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这里最重要的一句话是：</em></p>
+<blockquote>
+<p><em><strong>PlayerState 代表玩家本人，Pawn 代表玩家当前这条命。</strong></em></p>
+</blockquote>
+<p><em>所以 Lyra 把 <code>AbilitySystemComponent</code> 放在 <code>ALyraPlayerState</code> 上，而不是放在 <code>ALyraCharacter</code> 上。这样角色死亡、销毁、重生时，能力系统依然跟着玩家走。</em></p>
+<hr>
+<h2 id="第一条主线experience-的同步"><em><strong>第一条主线：Experience 的同步</strong></em></h2>
+<p><em>Lyra 的玩法内容由 Experience 决定。服务器选择 Experience 后，需要让客户端也加载同一套玩法内容。</em></p>
+<p><em>核心类是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ALyraGameState
+</span></span><span class="line"><span class="cl">  -&gt; ULyraExperienceManagerComponent
+</span></span><span class="line"><span class="cl">      -&gt; CurrentExperience
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><code>ULyraExperienceManagerComponent</code> 本身是可复制组件：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ULyraExperienceManagerComponent</span><span class="o">::</span><span class="n">ULyraExperienceManagerComponent</span><span class="p">(...)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SetIsReplicatedByDefault</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它里面的 <code>CurrentExperience</code> 是 RepNotify：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">ReplicatedUsing</span><span class="o">=</span><span class="n">OnRep_CurrentExperience</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ULyraExperienceDefinition</span><span class="o">&gt;</span> <span class="n">CurrentExperience</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>流程是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Server 选择 Experience
+</span></span><span class="line"><span class="cl">  -&gt; SetCurrentExperience()
+</span></span><span class="line"><span class="cl">  -&gt; CurrentExperience 复制到 Client
+</span></span><span class="line"><span class="cl">  -&gt; Client 触发 OnRep_CurrentExperience()
+</span></span><span class="line"><span class="cl">  -&gt; Client 执行 StartExperienceLoad()
+</span></span><span class="line"><span class="cl">  -&gt; Client 加载同一套 GameFeature / ActionSet / DataAsset
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>也就是说，Lyra 不是把所有玩法类硬编码进 GameMode，而是先同步一个 Experience，再让所有端根据这个 Experience 去加载玩法资源。</em></p>
+<hr>
+<h2 id="第二条主线playerstate-承载长期玩家状态"><em><strong>第二条主线：PlayerState 承载长期玩家状态</strong></em></h2>
+<p><em><code>ALyraPlayerState</code> 是 Lyra 网络同步里最核心的类之一。</em></p>
+<p><em>构造函数里创建 ASC：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">AbilitySystemComponent</span> <span class="o">=</span> <span class="n">ObjectInitializer</span><span class="p">.</span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">ULyraAbilitySystemComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">(</span><span class="s">&#34;AbilitySystemComponent&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">SetIsReplicated</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">SetReplicationMode</span><span class="p">(</span><span class="n">EGameplayEffectReplicationMode</span><span class="o">::</span><span class="n">Mixed</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这里有两个关键点：</em></p>
+<ul>
+<li><em><strong>ASC 是复制的</strong></em>：技能、效果、属性相关状态可以通过 GAS 自己的复制系统同步。</li>
+<li><em><strong>ReplicationMode 是 Mixed</strong></em>：Owner 获得更完整的 GameplayEffect 信息，其他客户端拿到必要信息，减少带宽。</li>
+</ul>
+<p><em>PlayerState 还复制这些重要字段：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">PawnData</span><span class="p">,</span> <span class="n">SharedParams</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">MyPlayerConnectionType</span><span class="p">,</span> <span class="n">SharedParams</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">MyTeamID</span><span class="p">,</span> <span class="n">SharedParams</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">MySquadID</span><span class="p">,</span> <span class="n">SharedParams</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">StatTags</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>其中 <code>PawnData</code> 非常关键。服务器设置 PawnData 后，会给 ASC 授予对应的 AbilitySet：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">ULyraAbilitySet</span><span class="o">*</span> <span class="nl">AbilitySet</span> <span class="p">:</span> <span class="n">PawnData</span><span class="o">-&gt;</span><span class="n">AbilitySets</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">AbilitySet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">AbilitySet</span><span class="o">-&gt;</span><span class="n">GiveToAbilitySystem</span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以可以这样理解：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Experience 决定这局是什么玩法
+</span></span><span class="line"><span class="cl">PawnData 决定这个玩家用什么角色配置
+</span></span><span class="line"><span class="cl">AbilitySet 决定这个玩家拥有什么能力、效果、属性
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第三条主线pawnextension-解决初始化顺序问题"><em><strong>第三条主线：PawnExtension 解决初始化顺序问题</strong></em></h2>
+<p><em>网络游戏里，客户端收到对象的顺序是不稳定的。Pawn 可能先到，PlayerState 可能后到；Controller 可能已经复制了，但 PawnData 还没到。</em></p>
+<p><em>Lyra 用 <code>ULyraPawnExtensionComponent</code> 管这个问题。</em></p>
+<p><em>它复制 PawnData：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">ULyraPawnExtensionComponent</span><span class="p">,</span> <span class="n">PawnData</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端收到 PawnData 后：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ULyraPawnExtensionComponent</span><span class="o">::</span><span class="n">OnRep_PawnData</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CheckDefaultInitialization</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><code>CheckDefaultInitialization()</code> 会推进 InitState：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Spawned
+</span></span><span class="line"><span class="cl">  -&gt; DataAvailable
+</span></span><span class="line"><span class="cl">  -&gt; DataInitialized
+</span></span><span class="line"><span class="cl">  -&gt; GameplayReady
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>只有当 PawnData、Controller、PlayerState 等条件都满足后，Lyra 才初始化 ASC：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">AbilitySystemComponent</span> <span class="o">=</span> <span class="n">InASC</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">InitAbilityActorInfo</span><span class="p">(</span><span class="n">InOwnerActor</span><span class="p">,</span> <span class="n">Pawn</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这里的 OwnerActor 通常是 PlayerState，AvatarActor 是当前 Pawn。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ASC Owner  = PlayerState
+</span></span><span class="line"><span class="cl">ASC Avatar = Pawn / Character
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这就是为什么 Lyra 的角色重生不会重新创建一整套能力系统，而是把 PlayerState 上的 ASC 重新绑定到新的 Pawn。</em></p>
+<hr>
+<h2 id="第四条主线character-的移动同步"><em><strong>第四条主线：Character 的移动同步</strong></em></h2>
+<p><em>Lyra 的移动同步主要还是依赖 Unreal 原生的 <code>CharacterMovementComponent</code>。</em></p>
+<p><em>也就是说：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">客户端输入移动
+</span></span><span class="line"><span class="cl">  -&gt; 本地预测
+</span></span><span class="line"><span class="cl">  -&gt; 发送移动数据给服务器
+</span></span><span class="line"><span class="cl">  -&gt; 服务器校验
+</span></span><span class="line"><span class="cl">  -&gt; 必要时校正客户端
+</span></span><span class="line"><span class="cl">  -&gt; 其他客户端看到 Simulated Proxy 的移动
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>Lyra 在这个基础上额外复制了一个压缩后的加速度：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">,</span> <span class="n">ReplicatedUsing</span> <span class="o">=</span> <span class="n">OnRep_ReplicatedAcceleration</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">FLyraReplicatedAcceleration</span> <span class="n">ReplicatedAcceleration</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它只复制给模拟代理：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_CONDITION</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">ReplicatedAcceleration</span><span class="p">,</span> <span class="n">COND_SimulatedOnly</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>原因是本地控制者自己有输入，不需要服务器再告诉自己加速度；真正需要这个数据的是其他客户端上的远端角色，用它来改善动画表现。</em></p>
+<p><em>Lyra 还定义了 <code>FastSharedReplication</code>：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">NetMulticast</span><span class="p">,</span> <span class="n">unreliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">FastSharedReplication</span><span class="p">(</span><span class="k">const</span> <span class="n">FSharedRepMovement</span><span class="o">&amp;</span> <span class="n">SharedRepMovement</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这是配合 ReplicationGraph 的快速共享移动路径，用来在默认属性复制被跳过的帧里，仍然可以用 unreliable multicast 发一份轻量移动数据。</em></p>
+<p><em>不过当前工程配置里：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[/Script/LyraGame.LyraReplicationGraphSettings]</span>
+</span></span><span class="line"><span class="cl"><span class="na">bDisableReplicationGraph</span><span class="o">=</span><span class="s">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以默认情况下 RepGraph 是关闭的。代码保留了这条优化路径，但普通运行不一定会启用。</em></p>
+<hr>
+<h2 id="第五条主线gas-的网络同步"><em><strong>第五条主线：GAS 的网络同步</strong></em></h2>
+<p><em>Lyra 的技能、Buff、伤害、血量都主要走 GAS。</em></p>
+<p><em>默认 Lyra GameplayAbility 是本地预测的：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">NetExecutionPolicy</span> <span class="o">=</span> <span class="n">EGameplayAbilityNetExecutionPolicy</span><span class="o">::</span><span class="n">LocalPredicted</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NetSecurityPolicy</span> <span class="o">=</span> <span class="n">EGameplayAbilityNetSecurityPolicy</span><span class="o">::</span><span class="n">ClientOrServer</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>简单理解就是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">客户端先预测执行
+</span></span><span class="line"><span class="cl">  -&gt; 服务端再权威确认
+</span></span><span class="line"><span class="cl">  -&gt; 如果预测不一致，GAS 负责回滚 / 修正
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>输入链路大概是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">LyraHeroComponent 绑定 EnhancedInput
+</span></span><span class="line"><span class="cl">  -&gt; InputTag Pressed / Released
+</span></span><span class="line"><span class="cl">  -&gt; ULyraAbilitySystemComponent 记录 InputPressedSpecHandles
+</span></span><span class="line"><span class="cl">  -&gt; PlayerController::PostProcessInput()
+</span></span><span class="line"><span class="cl">  -&gt; ASC::ProcessAbilityInput()
+</span></span><span class="line"><span class="cl">  -&gt; TryActivateAbility()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>技能激活、技能结束、InputPressed、InputReleased 这些，很多都不是 Lyra 自己手写 RPC，而是 GAS 内部已经处理了预测键、能力句柄和复制事件。</em></p>
+<hr>
+<h2 id="第六条主线attribute-怎么同步"><em><strong>第六条主线：Attribute 怎么同步</strong></em></h2>
+<p><em>Lyra 的生命值在 <code>ULyraHealthSet</code> 里。</em></p>
+<p><em><code>Health</code> 和 <code>MaxHealth</code> 都是 RepNotify：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">ReplicatedUsing</span> <span class="o">=</span> <span class="n">OnRep_Health</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">FGameplayAttributeData</span> <span class="n">Health</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">ReplicatedUsing</span> <span class="o">=</span> <span class="n">OnRep_MaxHealth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">FGameplayAttributeData</span> <span class="n">MaxHealth</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>复制规则是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_CONDITION_NOTIFY</span><span class="p">(</span><span class="n">ULyraHealthSet</span><span class="p">,</span> <span class="n">Health</span><span class="p">,</span> <span class="n">COND_None</span><span class="p">,</span> <span class="n">REPNOTIFY_Always</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOREPLIFETIME_CONDITION_NOTIFY</span><span class="p">(</span><span class="n">ULyraHealthSet</span><span class="p">,</span> <span class="n">MaxHealth</span><span class="p">,</span> <span class="n">COND_None</span><span class="p">,</span> <span class="n">REPNOTIFY_Always</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端收到后会执行：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">GAMEPLAYATTRIBUTE_REPNOTIFY</span><span class="p">(</span><span class="n">ULyraHealthSet</span><span class="p">,</span> <span class="n">Health</span><span class="p">,</span> <span class="n">OldValue</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>然后 Lyra 会广播本地事件，比如：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">OnHealthChanged
+</span></span><span class="line"><span class="cl">OnMaxHealthChanged
+</span></span><span class="line"><span class="cl">OnOutOfHealth
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这些事件再被 UI、死亡逻辑、表现层监听。</em></p>
+<p><em>需要注意的是，伤害不是直接复制 <code>Damage</code> 这个临时属性。Lyra 的流程是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">GameplayEffect / Execution 算出 Damage
+</span></span><span class="line"><span class="cl">  -&gt; PostGameplayEffectExecute()
+</span></span><span class="line"><span class="cl">  -&gt; Health = Health - Damage
+</span></span><span class="line"><span class="cl">  -&gt; Damage 清零
+</span></span><span class="line"><span class="cl">  -&gt; Health 复制给客户端
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第七条主线开火同步"><em><strong>第七条主线：开火同步</strong></em></h2>
+<p><em>Lyra 的远程武器同步很适合拿来理解“客户端手感”和“服务器权威”的分工。</em></p>
+<p><em>大流程是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">客户端按下开火
+</span></span><span class="line"><span class="cl">  -&gt; 激活 RangedWeapon Ability
+</span></span><span class="line"><span class="cl">  -&gt; 本地 PerformLocalTargeting() 做射线检测
+</span></span><span class="line"><span class="cl">  -&gt; 本地立刻播放开火表现 / hit marker 预测
+</span></span><span class="line"><span class="cl">  -&gt; 构造 GameplayAbilityTargetData
+</span></span><span class="line"><span class="cl">  -&gt; CallServerSetReplicatedTargetData() 发给服务器
+</span></span><span class="line"><span class="cl">  -&gt; 服务器消费 TargetData
+</span></span><span class="line"><span class="cl">  -&gt; 服务器校验并应用 GameplayEffect
+</span></span><span class="line"><span class="cl">  -&gt; HealthSet 改血
+</span></span><span class="line"><span class="cl">  -&gt; Health 复制给所有需要的客户端
+</span></span><span class="line"><span class="cl">  -&gt; 服务器 ClientConfirmTargetData() 回给开火客户端
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这里的核心函数是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ULyraGameplayAbility_RangedWeapon::StartRangedWeaponTargeting()
+</span></span><span class="line"><span class="cl">ULyraGameplayAbility_RangedWeapon::PerformLocalTargeting()
+</span></span><span class="line"><span class="cl">ULyraGameplayAbility_RangedWeapon::OnTargetDataReadyCallback()
+</span></span><span class="line"><span class="cl">ULyraWeaponStateComponent::ClientConfirmTargetData()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端本地先 trace，是为了手感。服务器最后确认，是为了权威。</em></p>
+<p><em>所以这条链路可以总结成：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">客户端负责“我感觉我打中了”
+</span></span><span class="line"><span class="cl">服务器负责“这次到底算不算打中”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第八条主线inventory-的-fastarray-同步"><em><strong>第八条主线：Inventory 的 FastArray 同步</strong></em></h2>
+<p><em>Lyra 的背包不是普通数组复制，而是 <code>FFastArraySerializer</code>。</em></p>
+<p><em>核心结构是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ULyraInventoryManagerComponent
+</span></span><span class="line"><span class="cl">  -&gt; FLyraInventoryList : FFastArraySerializer
+</span></span><span class="line"><span class="cl">      -&gt; TArray&lt;FLyraInventoryEntry&gt;
+</span></span><span class="line"><span class="cl">          -&gt; ULyraInventoryItemInstance
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><code>FLyraInventoryList</code> 使用 FastArray delta 序列化：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">return</span> <span class="n">FFastArraySerializer</span><span class="o">::</span><span class="n">FastArrayDeltaSerialize</span><span class="o">&lt;</span><span class="n">FLyraInventoryEntry</span><span class="p">,</span> <span class="n">FLyraInventoryList</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Entries</span><span class="p">,</span> <span class="n">DeltaParms</span><span class="p">,</span> <span class="o">*</span><span class="k">this</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它的好处是：</em></p>
+<ul>
+<li><em><strong>不是整个数组每次重发</strong></em>。</li>
+<li><em><strong>只同步新增、删除、变化的元素</strong></em>。</li>
+<li><em><strong>客户端可以在 PostReplicatedAdd / PreReplicatedRemove 里处理表现</strong></em>。</li>
+</ul>
+<p><em>每个物品实例 <code>ULyraInventoryItemInstance</code> 自己也复制：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">StatTags</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">ItemDef</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>因为 ItemInstance 是 UObject，不是 Actor，所以 Lyra 还需要把它作为 replicated subobject 注册：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">AddReplicatedSubObject</span><span class="p">(</span><span class="n">Instance</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以 Inventory 实际上是两层同步：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">FastArray 同步“列表里有哪些物品”
+</span></span><span class="line"><span class="cl">SubObject 同步“每个物品自己的数据”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第九条主线equipment-的-fastarray-同步"><em><strong>第九条主线：Equipment 的 FastArray 同步</strong></em></h2>
+<p><em>装备系统和背包系统很像。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ULyraEquipmentManagerComponent
+</span></span><span class="line"><span class="cl">  -&gt; FLyraEquipmentList : FFastArraySerializer
+</span></span><span class="line"><span class="cl">      -&gt; TArray&lt;FLyraAppliedEquipmentEntry&gt;
+</span></span><span class="line"><span class="cl">          -&gt; ULyraEquipmentInstance
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>装备列表复制：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">ThisClass</span><span class="p">,</span> <span class="n">EquipmentList</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>装备实例作为 replicated subobject：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">AddReplicatedSubObject</span><span class="p">(</span><span class="n">Result</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端收到装备增加时：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">PostReplicatedAdd</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span> <span class="n">Entry</span><span class="p">.</span><span class="n">Instance</span><span class="o">-&gt;</span><span class="n">OnEquipped</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端收到装备移除时：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">PreReplicatedRemove</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span> <span class="n">Entry</span><span class="p">.</span><span class="n">Instance</span><span class="o">-&gt;</span><span class="n">OnUnequipped</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这就是为什么你看到装备同步后，客户端会自动生成/销毁对应装备表现。</em></p>
+<hr>
+<h2 id="第十条主线quickbar-怎么同步"><em><strong>第十条主线：QuickBar 怎么同步</strong></em></h2>
+<p><em>QuickBar 是装备栏，逻辑比 Inventory / Equipment 更直接。</em></p>
+<p><em>切换槽位是 Server RPC：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span> <span class="n">Reliable</span><span class="p">,</span> <span class="n">BlueprintCallable</span><span class="p">,</span> <span class="n">Category</span><span class="o">=</span><span class="s">&#34;Lyra&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">SetActiveSlotIndex</span><span class="p">(</span><span class="n">int32</span> <span class="n">NewIndex</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>槽位数组和当前激活槽位是 RepNotify：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">ReplicatedUsing</span><span class="o">=</span><span class="n">OnRep_Slots</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">ULyraInventoryItemInstance</span><span class="o">&gt;&gt;</span> <span class="n">Slots</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">ReplicatedUsing</span><span class="o">=</span><span class="n">OnRep_ActiveSlotIndex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">int32</span> <span class="n">ActiveSlotIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>流程是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">客户端请求切换槽位
+</span></span><span class="line"><span class="cl">  -&gt; Server RPC: SetActiveSlotIndex()
+</span></span><span class="line"><span class="cl">  -&gt; 服务器修改 ActiveSlotIndex
+</span></span><span class="line"><span class="cl">  -&gt; ActiveSlotIndex 复制到客户端
+</span></span><span class="line"><span class="cl">  -&gt; OnRep_ActiveSlotIndex()
+</span></span><span class="line"><span class="cl">  -&gt; GameplayMessage 通知 UI
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这里可以看到 RPC 和 RepNotify 的分工：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">RPC 负责“我要切换”
+</span></span><span class="line"><span class="cl">Replicated Property 负责“现在切到哪里了”
+</span></span><span class="line"><span class="cl">OnRep 负责“收到以后刷新表现”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第十一条主线characterparts-外观同步"><em><strong>第十一条主线：CharacterParts 外观同步</strong></em></h2>
+<p><em>角色外观部件也是 FastArray。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ULyraPawnComponent_CharacterParts
+</span></span><span class="line"><span class="cl">  -&gt; FLyraCharacterPartList : FFastArraySerializer
+</span></span><span class="line"><span class="cl">      -&gt; FLyraAppliedCharacterPartEntry
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它同步的不是简单 Mesh，而是“应用了哪些 CharacterPart”。客户端收到增删改以后，会生成或销毁对应的外观 Actor。</em></p>
+<p><em>这类数据适合 FastArray，因为它是动态列表，并且经常是增删改，而不是每帧变化。</em></p>
+<hr>
+<h2 id="第十二条主线team-同步"><em><strong>第十二条主线：Team 同步</strong></em></h2>
+<p><em>队伍信息主要在 PlayerState 上。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">ReplicatedUsing</span><span class="o">=</span><span class="n">OnRep_MyTeamID</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">FGenericTeamId</span> <span class="n">MyTeamID</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>服务器修改队伍：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">SetGenericTeamId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span> <span class="n">MyTeamID</span> <span class="o">=</span> <span class="n">NewTeamID</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span> <span class="n">ConditionalBroadcastTeamChanged</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端收到队伍变化：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">OnRep_MyTeamID</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span> <span class="n">ConditionalBroadcastTeamChanged</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>Character 上也有一份 <code>MyTeamID</code>，它跟随 Controller / PlayerState 的队伍，用来让 Pawn 本身也能作为 TeamAgent 被查询。</em></p>
+<p><em>所以队伍系统大概是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PlayerState 保存玩家队伍
+</span></span><span class="line"><span class="cl">Character 缓存当前 Pawn 队伍
+</span></span><span class="line"><span class="cl">TeamSubsystem 负责查询、比较、伤害判断
+</span></span><span class="line"><span class="cl">AsyncAction_ObserveTeam 负责蓝图/UI 监听变化
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第十三条主线消息不是都靠网络复制"><em><strong>第十三条主线：消息不是都靠网络复制</strong></em></h2>
+<p><em>Lyra 很多表现层通知使用 <code>GameplayMessageSubsystem</code>。</em></p>
+<p><em>需要注意：GameplayMessage 本身更像本地消息总线，不等于网络复制系统。</em></p>
+<p><em>比如 GameState 提供了两个 multicast：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">NetMulticast</span><span class="p">,</span> <span class="n">Unreliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MulticastMessageToClients</span><span class="p">(</span><span class="k">const</span> <span class="n">FLyraVerbMessage</span> <span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">NetMulticast</span><span class="p">,</span> <span class="n">Reliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MulticastReliableMessageToClients</span><span class="p">(</span><span class="k">const</span> <span class="n">FLyraVerbMessage</span> <span class="n">Message</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>客户端收到 multicast 后，再在本地广播 GameplayMessage：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UGameplayMessageSubsystem</span><span class="o">::</span><span class="n">Get</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="n">BroadcastMessage</span><span class="p">(</span><span class="n">Message</span><span class="p">.</span><span class="n">Verb</span><span class="p">,</span> <span class="n">Message</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>也就是说：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">网络层：NetMulticast 把消息送到客户端
+</span></span><span class="line"><span class="cl">本地层：GameplayMessageSubsystem 通知 UI / 逻辑模块
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这种设计让 UI 不需要直接依赖 GameState、ASC 或 Weapon 代码。</em></p>
+<hr>
+<h2 id="第十四条主线replicationgraph-在-lyra-里的定位"><em><strong>第十四条主线：ReplicationGraph 在 Lyra 里的定位</strong></em></h2>
+<p><em>ReplicationGraph 是 Unreal 用来优化大量 Actor 复制的系统。普通复制会对每个连接判断很多 Actor 的相关性，而 RepGraph 会提前把 Actor 放进不同节点。</em></p>
+<p><em>Lyra 自己实现了：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ULyraReplicationGraph
+</span></span><span class="line"><span class="cl">ULyraReplicationGraphNode_AlwaysRelevant_ForConnection
+</span></span><span class="line"><span class="cl">ULyraReplicationGraphNode_PlayerStateFrequencyLimiter
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>主要思路是：</em></p>
+<ul>
+<li><em><strong>空间化节点</strong></em>：距离相关 Actor 放到 GridSpatialization2D。</li>
+<li><em><strong>全局 AlwaysRelevant</strong></em>：所有客户端都需要的 Actor。</li>
+<li><em><strong>连接级 AlwaysRelevant</strong></em>：只对某个连接重要的 Actor，比如自己的 Controller、ViewTarget、PlayerState。</li>
+<li><em><strong>PlayerState 限频节点</strong></em>：不是每帧复制所有 PlayerState，而是分批复制。</li>
+<li><em><strong>FastSharedReplication</strong></em>：配合角色移动做更轻的共享更新。</li>
+</ul>
+<p><em>但是当前默认配置关闭了：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">bDisableReplicationGraph</span><span class="o">=</span><span class="s">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以学习 Lyra 时，可以先理解它的设计，再决定是否在自己的项目中打开。</em></p>
+<hr>
+<h2 id="lyra-用到的-unreal-网络机制汇总"><em><strong>Lyra 用到的 Unreal 网络机制汇总</strong></em></h2>
+<p><em>Lyra 主要用到了这些 Unreal 网络同步机制：</em></p>
+<table>
+<thead>
+<tr>
+<th><em>机制</em></th>
+<th><em>Lyra 中的用途</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Replicated</code> / <code>OnRep</code></td>
+<td><em>同步状态，比如 Health、PawnData、Team、QuickBar</em></td>
+</tr>
+<tr>
+<td><code>Server RPC</code></td>
+<td><em>客户端请求服务器做事，比如切换 QuickBar</em></td>
+</tr>
+<tr>
+<td><code>Client RPC</code></td>
+<td><em>服务器通知某个客户端，比如命中确认</em></td>
+</tr>
+<tr>
+<td><code>NetMulticast</code></td>
+<td><em>服务器广播消息或表现</em></td>
+</tr>
+<tr>
+<td><code>CharacterMovement</code></td>
+<td><em>移动预测、服务端校正、模拟代理移动</em></td>
+</tr>
+<tr>
+<td><code>GAS Replication</code></td>
+<td><em>Ability、GameplayEffect、Attribute、Prediction、TargetData</em></td>
+</tr>
+<tr>
+<td><code>FastArraySerializer</code></td>
+<td><em>Inventory、Equipment、CharacterParts 动态列表</em></td>
+</tr>
+<tr>
+<td><code>Replicated SubObject</code></td>
+<td><em>ItemInstance、EquipmentInstance 这种 UObject 复制</em></td>
+</tr>
+<tr>
+<td><code>Replication Condition</code></td>
+<td><em>OwnerOnly、SkipOwner、SimulatedOnly 等条件复制</em></td>
+</tr>
+<tr>
+<td><code>Push Model</code></td>
+<td><em>属性变化时主动标脏，比如 PawnData、TeamID</em></td>
+</tr>
+<tr>
+<td><code>GameplayMessage</code></td>
+<td><em>客户端本地解耦通知 UI / 逻辑</em></td>
+</tr>
+<tr>
+<td><code>GameplayCue</code></td>
+<td><em>GAS 驱动表现，如特效、音效</em></td>
+</tr>
+<tr>
+<td><code>ReplicationGraph</code></td>
+<td><em>大规模 Actor 复制优化，Lyra 默认关闭</em></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="从源码应该怎么读"><em><strong>从源码应该怎么读</strong></em></h2>
+<p><em>如果想自己从代码里追 Lyra 网络同步，我建议按下面顺序读：</em></p>
+<h3 id="1-experience-同步"><em><strong>1. Experience 同步</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/GameModes/LyraGameState.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/GameModes/LyraGameState.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/GameModes/LyraExperienceManagerComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>先看 <code>CurrentExperience</code> 怎么从服务器复制到客户端。</em></p>
+<h3 id="2-playerstate-和-asc"><em><strong>2. PlayerState 和 ASC</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/Player/LyraPlayerState.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Player/LyraPlayerState.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/AbilitySystem/LyraAbilitySystemComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/AbilitySystem/LyraAbilitySystemComponent.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>重点看 ASC 为什么在 PlayerState 上，以及 PawnData 如何授予 AbilitySet。</em></p>
+<h3 id="3-pawn-初始化"><em><strong>3. Pawn 初始化</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/Character/LyraPawnExtensionComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Character/LyraPawnExtensionComponent.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/Character/LyraCharacter.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Character/LyraCharacter.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>重点看 PawnData、Controller、PlayerState 到齐后如何进入 GameplayReady。</em></p>
+<h3 id="4-gas-属性与伤害"><em><strong>4. GAS 属性与伤害</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/AbilitySystem/Attributes/LyraCombatSet.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/AbilitySystem/Attributes/LyraCombatSet.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>重点看 Health 如何复制，以及 Damage 如何变成 Health 改变。</em></p>
+<h3 id="5-武器开火"><em><strong>5. 武器开火</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/Weapons/LyraWeaponStateComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Weapons/LyraWeaponStateComponent.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>重点看 TargetData 如何从客户端发到服务器，以及服务器如何确认命中。</em></p>
+<h3 id="6-背包和装备"><em><strong>6. 背包和装备</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/Inventory/LyraInventoryManagerComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Inventory/LyraInventoryManagerComponent.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/Inventory/LyraInventoryItemInstance.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Inventory/LyraInventoryItemInstance.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/Equipment/LyraEquipmentManagerComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Equipment/LyraEquipmentManagerComponent.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/Equipment/LyraEquipmentInstance.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Equipment/LyraEquipmentInstance.cpp
+</span></span><span class="line"><span class="cl">Source/LyraGame/Equipment/LyraQuickBarComponent.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/Equipment/LyraQuickBarComponent.cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>重点看 FastArray 和 replicated subobject。</em></p>
+<h3 id="7-replicationgraph"><em><strong>7. ReplicationGraph</strong></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Source/LyraGame/System/LyraReplicationGraph.h
+</span></span><span class="line"><span class="cl">Source/LyraGame/System/LyraReplicationGraph.cpp
+</span></span><span class="line"><span class="cl">Config/DefaultGame.ini
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>重点看它如何路由 Actor，以及为什么当前默认关闭。</em></p>
+<hr>
+<h2 id="几个容易误解的点"><em><strong>几个容易误解的点</strong></em></h2>
+<h3 id="1-gameplaymessage-不是网络复制"><em><strong>1. GameplayMessage 不是网络复制</strong></em></h3>
+<p><em>GameplayMessage 是本地消息分发。它可以被网络 RPC 触发，但它自己不是网络层。</em></p>
+<h3 id="2-onrep-不应该做权威逻辑"><em><strong>2. OnRep 不应该做权威逻辑</strong></em></h3>
+<p><em>OnRep 是客户端收到状态后的响应，适合刷新 UI、播放表现、触发本地事件。真正权威修改应该在服务器。</em></p>
+<h3 id="3-client-预测不等于-client-权威"><em><strong>3. Client 预测不等于 Client 权威</strong></em></h3>
+<p><em>Lyra 开火时客户端先 trace，是为了手感；最终是否命中、是否扣血，仍然由服务器决定。</em></p>
+<h3 id="4-uobject-可以复制但需要挂在可复制-actor--component-下"><em><strong>4. UObject 可以复制，但需要挂在可复制 Actor / Component 下</strong></em></h3>
+<p><em>ItemInstance、EquipmentInstance 不是 Actor，但可以通过 replicated subobject 复制。前提是它们挂在 InventoryManager / EquipmentManager 这类可复制组件下面。</em></p>
+<h3 id="5-fastarray-不是万能数组"><em><strong>5. FastArray 不是万能数组</strong></em></h3>
+<p><em>FastArray 适合动态列表增删改，比如背包、装备、外观。每帧变化的数据，比如移动，就不适合用 FastArray。</em></p>
+<hr>
+<h2 id="最后总结"><em><strong>最后总结</strong></em></h2>
+<p><em>如果用一句话总结 Lyra 的网络同步：</em></p>
+<blockquote>
+<p><em><strong>Lyra 用 PlayerState 保存玩家长期权威状态，用 Pawn 表达当前身体和移动，用 GAS 管能力和属性，用 FastArray 管动态列表，用 RPC 处理请求和确认，用 GameplayMessage 解耦本地表现，用 RepGraph 预留大规模复制优化。</strong></em></p>
+</blockquote>
+<p><em>再压缩一下，就是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PlayerState：玩家长期状态
+</span></span><span class="line"><span class="cl">Pawn：当前表现和移动
+</span></span><span class="line"><span class="cl">ASC/GAS：能力、效果、属性、预测
+</span></span><span class="line"><span class="cl">FastArray：背包、装备、外观列表
+</span></span><span class="line"><span class="cl">RPC：请求、确认、广播
+</span></span><span class="line"><span class="cl">OnRep：客户端收到状态后的表现刷新
+</span></span><span class="line"><span class="cl">RepGraph：大规模复制优化
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>只要能顺着这几条线去读源码，Lyra 的网络同步就不会是一堆散乱的宏，而是一套比较清楚的状态归属和数据流设计。</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-08-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Lyra - 网络同步" data-hashtags="Unreal,Lyra,Network,GAS"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Lyra - 网络同步"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Lyra - 网络同步"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/lyra-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Lyra - 网络同步"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/lyra/">Lyra</a>,&nbsp;<a href="/tags/network/">Network</a>,&nbsp;<a href="/tags/gas/">GAS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/lyra-eos/" class="prev" rel="prev" title="Lyra - EOS"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lyra - EOS</a>
+            <a href="/%E7%BC%98%E8%B5%B7-%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%BA%95%E5%85%B1%E4%BA%AB%E4%BA%86%E9%82%A3%E4%BA%9B%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90/" class="next" rel="next" title="线程共享了哪些进程资源">线程共享了哪些进程资源<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

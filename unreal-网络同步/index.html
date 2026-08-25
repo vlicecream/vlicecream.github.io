@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Unreal - 网络同步 - Ting</title><meta name="Description" content="Unreal 的网络同步基础"><meta property="og:url" content="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/">
+  <meta property="og:site_name" content="Ting">
+  <meta property="og:title" content="Unreal - 网络同步">
+  <meta property="og:description" content="Unreal 的网络同步基础">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-25T00:00:00+08:00">
+    <meta property="article:modified_time" content="2026-08-25T00:00:00+08:00">
+    <meta property="article:tag" content="Unreal">
+    <meta property="article:tag" content="Network">
+    <meta property="og:image" content="https://example.com/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/logo.png">
+  <meta name="twitter:title" content="Unreal - 网络同步">
+  <meta name="twitter:description" content="Unreal 的网络同步基础">
+<meta name="application-name" content="林汀">
+<meta name="apple-mobile-web-app-title" content="林汀"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" /><link rel="prev" href="https://example.com/b%E7%AB%99-c-%E5%9F%BA%E7%A1%80-%E4%BD%9C%E4%B8%9A/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Unreal - 网络同步",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Unreal, Network","wordcount":  4465 ,
+        "url": "https:\/\/example.com\/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5\/","datePublished": "2026-08-25T00:00:00+08:00","dateModified": "2026-08-25T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Ting","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Ame"
+            },"description": "Unreal 的网络同步基础"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ting"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>林汀</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ting"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>林汀</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Unreal - 网络同步</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ame</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unreal/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Unreal</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-25">2026-08-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4465 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" class="leancloud_visitors" data-flag-title="Unreal - 网络同步">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#网络同步基础"><em><strong>网络同步基础</strong></em></a></li>
+    <li><a href="#server-authority"><em><strong>Server Authority</strong></em></a></li>
+    <li><a href="#role-和-authority"><em><strong>Role 和 Authority</strong></em></a>
+      <ul>
+        <li><a href="#authority"><em><strong>Authority</strong></em></a></li>
+        <li><a href="#locally-controlled"><em><strong>Locally Controlled</strong></em></a></li>
+        <li><a href="#simulated-proxy"><em><strong>Simulated Proxy</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#ownership所有权"><em><strong>Ownership（所有权）</strong></em></a></li>
+    <li><a href="#属性复制-replicated"><em><strong>属性复制 Replicated</strong></em></a></li>
+    <li><a href="#onrep-是什么"><em><strong>OnRep 是什么</strong></em></a></li>
+    <li><a href="#rpc-是什么"><em><strong>RPC 是什么</strong></em></a>
+      <ul>
+        <li><a href="#server-rpc"><em><strong>Server RPC</strong></em></a></li>
+        <li><a href="#client-rpc"><em><strong>Client RPC</strong></em></a></li>
+        <li><a href="#netmulticast-rpc"><em><strong>NetMulticast RPC</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#reliable-和-unreliable"><em><strong>Reliable 和 Unreliable</strong></em></a>
+      <ul>
+        <li><a href="#reliable"><em><strong>Reliable</strong></em></a></li>
+        <li><a href="#unreliable"><em><strong>Unreliable</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#属性复制和-rpc-怎么选"><em><strong>属性复制和 RPC 怎么选</strong></em></a></li>
+    <li><a href="#replication-condition"><em><strong>Replication Condition</strong></em></a></li>
+    <li><a href="#relevancy-相关性"><em><strong>Relevancy 相关性</strong></em></a></li>
+    <li><a href="#netupdatefrequency-和-forcenetupdate"><em><strong>NetUpdateFrequency 和 ForceNetUpdate</strong></em></a></li>
+    <li><a href="#dormancy-休眠"><em><strong>Dormancy 休眠</strong></em></a></li>
+    <li><a href="#netserialize-和量化"><em><strong>NetSerialize 和量化</strong></em></a></li>
+    <li><a href="#移动同步和预测"><em><strong>移动同步和预测</strong></em></a></li>
+    <li><a href="#fastarray"><em><strong>FastArray</strong></em></a></li>
+    <li><a href="#subobject-replication"><em><strong>SubObject Replication</strong></em></a></li>
+    <li><a href="#gas-网络同步"><em><strong>GAS 网络同步</strong></em></a></li>
+    <li><a href="#gameplaycue-和-gameplaymessage"><em><strong>GameplayCue 和 GameplayMessage</strong></em></a>
+      <ul>
+        <li><a href="#gameplaycue"><em><strong>GameplayCue</strong></em></a></li>
+      </ul>
+    </li>
+    <li><a href="#replicationgraph"><em><strong>ReplicationGraph</strong></em></a></li>
+    <li><a href="#基础总结"><em><strong>基础总结</strong></em></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="网络同步基础"><em><strong>网络同步基础</strong></em></h2>
+<p><em>在理解 Unreal 网络同步之前，先要明确一个核心问题：网络同步并不是“给变量加一个 Replicated 就完事了”。真正重要的是要先判断数据的归属、修改权限、同步对象和客户端收到后的表现逻辑。</em></p>
+<p><em>网络同步最核心的问题是：</em></p>
+<ul>
+<li><em>谁拥有权威？</em></li>
+<li><em>谁发起请求？</em></li>
+<li><em>谁需要收到结果？</em></li>
+<li><em>收到以后是保存状态，还是播放表现？</em></li>
+</ul>
+<p><em>只要这几个问题想清楚，大部分同步逻辑就不会乱。</em></p>
+<hr>
+<h2 id="server-authority"><em><strong>Server Authority</strong></em></h2>
+<p><em>Unreal 默认是服务器权威模型，也就是：真正可信的游戏结果由 Server 决定。</em></p>
+<p><em>举个例子，玩家开枪时：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Client：我按下鼠标左键，我感觉我打中了
+</span></span><span class="line"><span class="cl">Server：我来判断你到底有没有打中
+</span></span><span class="line"><span class="cl">Client：收到结果后刷新 UI / 播放反馈
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以 Client 可以做预测，可以先播放表现，但是最终的真实状态应该由 Server 修改。</em></p>
+<p><em>常见例子：</em></p>
+<table>
+<thead>
+<tr>
+<th><em>数据</em></th>
+<th><em>应该谁决定</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>是否造成伤害</em></td>
+<td><em>Server</em></td>
+</tr>
+<tr>
+<td><em>目标是否死亡</em></td>
+<td><em>Server</em></td>
+</tr>
+<tr>
+<td><em>背包是否增加物品</em></td>
+<td><em>Server</em></td>
+</tr>
+<tr>
+<td><em>当前装备是哪把武器</em></td>
+<td><em>Server</em></td>
+</tr>
+<tr>
+<td><em>本地准星扩散表现</em></td>
+<td><em>Client 可以预测</em></td>
+</tr>
+<tr>
+<td><em>开火音效 / 镜头抖动</em></td>
+<td><em>Client 可以先播</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>所以写网络逻辑时，第一反应应该是：这个东西是不是会影响游戏结果？如果会，就应该让服务器决定。</em></p>
+<hr>
+<h2 id="role-和-authority"><em><strong>Role 和 Authority</strong></em></h2>
+<p><em>Unreal 里经常会看到这些判断：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">HasAuthority</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">GetLocalRole</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">IsLocallyControlled</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它们用来判断当前这份对象实例，在当前机器上是什么身份。</em></p>
+<h3 id="authority"><em><strong>Authority</strong></em></h3>
+<p><em><code>HasAuthority()</code> 表示这个 Actor 当前是否由服务器权威控制。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">HasAuthority</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只有服务器执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>大多数修改真实游戏状态的逻辑，都应该放在服务器执行。</em></p>
+<h3 id="locally-controlled"><em><strong>Locally Controlled</strong></em></h3>
+<p><em><code>IsLocallyControlled()</code> 常用于 Pawn / Character，表示这个 Pawn 是否由本机玩家控制。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">IsLocallyControlled</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 本地玩家自己的输入、摄像机、UI、预测表现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>比如第一人称相机、准星、输入处理，通常只应该在本地控制的 Pawn 上执行。</em></p>
+<h3 id="simulated-proxy"><em><strong>Simulated Proxy</strong></em></h3>
+<p><em>如果一个角色是其他玩家的角色，那么在你客户端上它通常是 Simulated Proxy。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">你的客户端：
+</span></span><span class="line"><span class="cl">  你的角色 = Autonomous Proxy / Locally Controlled
+</span></span><span class="line"><span class="cl">  别人的角色 = Simulated Proxy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>Simulated Proxy 不负责输入，只接收服务器同步过来的移动和状态，然后播放表现。</em></p>
+<hr>
+<h2 id="ownership所有权"><em><strong>Ownership（所有权）</strong></em></h2>
+<p><em>Ownership 决定一个 Actor 属于哪个连接。这个概念非常重要，因为它会影响 RPC 能不能发、属性复制给谁。</em></p>
+<p><em>比如 PlayerController 是某个客户端拥有的，PlayerState 通常也跟这个玩家连接相关。</em></p>
+<p><em>常见规则：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Client 想调用 Server RPC
+</span></span><span class="line"><span class="cl">  -&gt; 这个 RPC 所在 Actor / Component 通常需要被该 Client 拥有
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Server 想调用 Client RPC
+</span></span><span class="line"><span class="cl">  -&gt; 目标 Actor 通常也需要有明确 Owner
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以如果你在一个不属于该客户端的 Actor 上调用 Server RPC，很可能根本发不到服务器。</em></p>
+<p><em><strong>如何设置和检查 Ownership？</strong></em></p>
+<ul>
+<li>
+<p><em>检查拥有权：</em></p>
+<p><em>在代码中，你可以调用 <code>GetOwner()</code> 或者 <code>IsLocallyControlled()</code></em></p>
+</li>
+<li>
+<p><em>设置拥有权：</em></p>
+<p><em>在服务器上调用 <code>Actor-&gt;SetOwner(NewOwner)</code>。</em></p>
+<p><em>注意： 只有服务器有权更改所有权。</em></p>
+</li>
+</ul>
+<p><em><strong>常见的坑</strong></em></p>
+<p><em>情景</em></p>
+<ul>
+<li><em>你写了一个“宝箱” Actor。玩家走过去按 E，宝箱里调用了一个 ServerOpenChest() 的 Server RPC。</em></li>
+</ul>
+<p><em>结果：</em></p>
+<ul>
+<li><em>没反应，服务器日志显示丢弃了 RPC。</em></li>
+</ul>
+<p><em>原因：</em></p>
+<ul>
+<li><em>因为宝箱不属于玩家。宝箱是服务器放在关卡里的，它的 Owner 通常是空（即服务器）。玩家没有所有权，就不能直接在宝箱上发 Server RPC。</em></li>
+</ul>
+<p><em>解决方法：</em></p>
+<ul>
+<li><em>玩家必须在自己的 <strong>PlayerController</strong> 或者 <strong>Pawn</strong>（这两个是你肯定拥有的）里面发起 Server RPC，告诉服务器：</em>“我想打开那个宝箱，它的 ID 是 XXX。”* 然后由服务器去执行打开宝箱的逻辑。*</li>
+</ul>
+<p><em>这也是为什么很多输入请求、装备栏请求、玩家操作，会放在 Controller、PlayerState、Pawn 或它们的组件上。因为这些对象跟玩家连接关系明确。</em></p>
+<hr>
+<h2 id="属性复制-replicated"><em><strong>属性复制 Replicated</strong></em></h2>
+<p><em>属性复制适合同步“状态”。</em></p>
+<p><em>比如：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Replicated</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">int32</span> <span class="n">Ammo</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>或者：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">ReplicatedUsing</span> <span class="o">=</span> <span class="n">OnRep_Health</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">Health</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>服务器修改属性后，Unreal 会在合适的网络帧把变化复制到客户端。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Server 修改 Health
+</span></span><span class="line"><span class="cl">  -&gt; 网络复制
+</span></span><span class="line"><span class="cl">  -&gt; Client 收到新的 Health
+</span></span><span class="line"><span class="cl">  -&gt; 如果有 OnRep，触发 OnRep_Health()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>注意：属性复制一般是 Server 到 Client。Client 本地改一个 Replicated 变量，不会自动同步到 Server。</em></p>
+<p><em>所以不要以为：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Health</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>只要变量有 <code>Replicated</code>，Client 改了就能通知服务器。不是这样的。真实状态应该由服务器改。</em></p>
+<p><em><strong>一个非常重要的“坑”（Server 端的区别）</strong></em></p>
+<p><em>如果你希望服务器（作为监听服务器/玩家）也执行这段逻辑，你必须手动调用它：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">GetLocalRole</span><span class="p">()</span> <span class="o">==</span> <span class="n">ROLE_Authority</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OnRep_Health</span><span class="p">(</span><span class="mf">100.0f</span><span class="p">);</span> <span class="c1">// 手动调用，因为服务器不会自动触发 RepNotify
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="onrep-是什么"><em><strong>OnRep 是什么</strong></em></h2>
+<p><em><code>OnRep</code> 是客户端收到复制属性变化后调用的函数。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">ReplicatedUsing</span> <span class="o">=</span> <span class="n">OnRep_Health</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">Health</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">OnRep_Health</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>它适合做客户端表现刷新，比如：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">刷新血条
+</span></span><span class="line"><span class="cl">播放受击表现
+</span></span><span class="line"><span class="cl">更新 UI
+</span></span><span class="line"><span class="cl">触发本地事件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>但 OnRep 不适合做服务器权威逻辑。</em></p>
+<p><em>可以这样理解：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Server 修改状态
+</span></span><span class="line"><span class="cl">Replication 发送状态
+</span></span><span class="line"><span class="cl">Client OnRep 响应状态变化
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>例如血量同步：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Server:
+</span></span><span class="line"><span class="cl">  Health = 50
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Client:
+</span></span><span class="line"><span class="cl">  收到 Health = 50
+</span></span><span class="line"><span class="cl">  OnRep_Health()
+</span></span><span class="line"><span class="cl">  刷新血条
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="rpc-是什么"><em><strong>RPC 是什么</strong></em></h2>
+<p><em>RPC 适合同步“行为”或者“请求”。</em></p>
+<p><em>Unreal 常见 RPC 有三种：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span> <span class="n">Reliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ServerDoSomething</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Client</span><span class="p">,</span> <span class="n">Reliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ClientDoSomething</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">NetMulticast</span><span class="p">,</span> <span class="n">Unreliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MulticastDoSomething</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="server-rpc"><em><strong>Server RPC</strong></em></h3>
+<p><em>Client 请求 Server 做事。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span> <span class="n">Reliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">SetActiveSlotIndex</span><span class="p">(</span><span class="n">int32</span> <span class="n">NewIndex</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>比如玩家按键切换武器：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Client 按下切枪键
+</span></span><span class="line"><span class="cl">  -&gt; Server RPC 请求切换
+</span></span><span class="line"><span class="cl">  -&gt; Server 检查是否合法
+</span></span><span class="line"><span class="cl">  -&gt; Server 修改 ActiveSlotIndex
+</span></span><span class="line"><span class="cl">  -&gt; ActiveSlotIndex 复制给客户端
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这里 RPC 只是“请求”，真正状态还是服务器修改，再通过属性复制同步结果。</em></p>
+<h3 id="client-rpc"><em><strong>Client RPC</strong></em></h3>
+<p><em>Server 通知某个客户端。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Client</span><span class="p">,</span> <span class="n">Reliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ClientConfirmTargetData</span><span class="p">(...);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>比如服务器只需要告诉某一个玩家：这次操作是否成功。这个时候用 Client RPC 很合适。</em></p>
+<h3 id="netmulticast-rpc"><em><strong>NetMulticast RPC</strong></em></h3>
+<p><em>Server 广播给多个客户端。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">NetMulticast</span><span class="p">,</span> <span class="n">Unreliable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MulticastPlayEffect</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>适合一次性表现，比如爆炸、全局提示、某些特效。</em></p>
+<p><em>不过 Multicast 不适合滥用。能用属性复制、局部预测或者表现系统解决的，就不一定要全场广播 RPC。</em></p>
+<hr>
+<h2 id="reliable-和-unreliable"><em><strong>Reliable 和 Unreliable</strong></em></h2>
+<p><em>RPC 可以分为 Reliable 和 Unreliable。</em></p>
+<h3 id="reliable"><em><strong>Reliable</strong></em></h3>
+<p><em>Reliable 表示必须送到。</em></p>
+<p><em>适合：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">购买成功
+</span></span><span class="line"><span class="cl">切换装备
+</span></span><span class="line"><span class="cl">任务完成
+</span></span><span class="line"><span class="cl">关键 UI 通知
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>但是 Reliable 不能滥用，因为如果大量 Reliable 堵住，会影响后续网络包。</em></p>
+<h3 id="unreliable"><em><strong>Unreliable</strong></em></h3>
+<p><em>Unreliable 表示可以丢。</em></p>
+<p><em>适合：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">枪口火焰
+</span></span><span class="line"><span class="cl">脚步声
+</span></span><span class="line"><span class="cl">普通命中特效
+</span></span><span class="line"><span class="cl">频繁移动表现
+</span></span><span class="line"><span class="cl">不重要的临时反馈
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>简单判断：如果这个事件丢了一次，游戏状态不会错，就可以考虑 Unreliable。</em></p>
+<hr>
+<h2 id="属性复制和-rpc-怎么选"><em><strong>属性复制和 RPC 怎么选</strong></em></h2>
+<p><em>可以用这个规则判断：</em></p>
+<table>
+<thead>
+<tr>
+<th><em>需求</em></th>
+<th><em>更适合</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>同步一个持续存在的状态</em></td>
+<td><em>Replicated Property</em></td>
+</tr>
+<tr>
+<td><em>状态变化后客户端要刷新表现</em></td>
+<td><em>ReplicatedUsing / OnRep</em></td>
+</tr>
+<tr>
+<td><em>Client 请求 Server 做事</em></td>
+<td><em>Server RPC</em></td>
+</tr>
+<tr>
+<td><em>Server 单独通知某个 Client</em></td>
+<td><em>Client RPC</em></td>
+</tr>
+<tr>
+<td><em>Server 广播一次表现事件</em></td>
+<td><em>NetMulticast</em></td>
+</tr>
+<tr>
+<td><em>大量列表增删改</em></td>
+<td><em>FastArray</em></td>
+</tr>
+<tr>
+<td><em>技能、Buff、属性、预测</em></td>
+<td><em>GAS</em></td>
+</tr>
+<tr>
+<td><em>大量 Actor 相关性优化</em></td>
+<td><em>ReplicationGraph</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>举几个例子：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">血量是多少？
+</span></span><span class="line"><span class="cl">  -&gt; Replicated Attribute / OnRep
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">我要换枪
+</span></span><span class="line"><span class="cl">  -&gt; Server RPC 请求
+</span></span><span class="line"><span class="cl">  -&gt; Server 修改当前装备
+</span></span><span class="line"><span class="cl">  -&gt; 属性复制结果
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">爆炸特效
+</span></span><span class="line"><span class="cl">  -&gt; 表现系统或 NetMulticast
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">背包新增一个物品
+</span></span><span class="line"><span class="cl">  -&gt; Server 修改 Inventory
+</span></span><span class="line"><span class="cl">  -&gt; FastArray 同步差异
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">玩家开火
+</span></span><span class="line"><span class="cl">  -&gt; 本地预测表现
+</span></span><span class="line"><span class="cl">  -&gt; TargetData 发给 Server
+</span></span><span class="line"><span class="cl">  -&gt; Server 校验并应用伤害
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="replication-condition"><em><strong>Replication Condition</strong></em></h2>
+<p><em>不是所有属性都要发给所有客户端。Unreal 提供了复制条件。</em></p>
+<p><em>常见条件有：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">COND_None</span>
+</span></span><span class="line"><span class="cl"><span class="n">COND_OwnerOnly</span>
+</span></span><span class="line"><span class="cl"><span class="n">COND_SkipOwner</span>
+</span></span><span class="line"><span class="cl"><span class="n">COND_SimulatedOnly</span>
+</span></span><span class="line"><span class="cl"><span class="n">COND_AutonomousOnly</span>
+</span></span><span class="line"><span class="cl"><span class="n">COND_InitialOnly</span>
+</span></span><span class="line"><span class="cl"><span class="n">COND_ReplayOnly</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>含义大概是：</em></p>
+<table>
+<thead>
+<tr>
+<th><em>条件</em></th>
+<th><em>含义</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COND_None</code></td>
+<td><em>发给所有相关客户端</em></td>
+</tr>
+<tr>
+<td><code>COND_OwnerOnly</code></td>
+<td><em>只发给 Owner</em></td>
+</tr>
+<tr>
+<td><code>COND_SkipOwner</code></td>
+<td><em>发给除了 Owner 以外的人</em></td>
+</tr>
+<tr>
+<td><code>COND_SimulatedOnly</code></td>
+<td><em>只发给模拟代理</em></td>
+</tr>
+<tr>
+<td><code>COND_AutonomousOnly</code></td>
+<td><em>只发给自主代理</em></td>
+</tr>
+<tr>
+<td><code>COND_InitialOnly</code></td>
+<td><em>只在初始复制时发一次</em></td>
+</tr>
+<tr>
+<td><code>COND_ReplayOnly</code></td>
+<td><em>只给 Replay</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>比如本地玩家自己的视角旋转，自己本来就知道，不需要服务器再发回来，就可以 <code>SkipOwner</code>。</em></p>
+<p><em>远端角色动画需要某些额外数据，本地玩家自己不需要，就可以 <code>SimulatedOnly</code>。</em></p>
+<hr>
+<h2 id="relevancy-相关性"><em><strong>Relevancy 相关性</strong></em></h2>
+<p><em>服务器不是把所有 Actor 都发给所有客户端。它会先判断某个 Actor 对某个连接是否相关。</em></p>
+<p><em>比如一个很远的道具，客户端根本看不到，就没必要同步。</em></p>
+<p><em>常见相关性参数：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">bAlwaysRelevant</span>
+</span></span><span class="line"><span class="cl"><span class="n">bOnlyRelevantToOwner</span>
+</span></span><span class="line"><span class="cl"><span class="n">bNetUseOwnerRelevancy</span>
+</span></span><span class="line"><span class="cl"><span class="n">NetCullDistanceSquared</span>
+</span></span><span class="line"><span class="cl"><span class="n">IsNetRelevantFor</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>简单理解：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">相关 -&gt; 可以考虑复制
+</span></span><span class="line"><span class="cl">不相关 -&gt; 不发
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以如果你发现某个 Actor 在客户端不存在，除了看 <code>Replicated</code>，还要看它对这个客户端是否 relevant。</em></p>
+<hr>
+<h2 id="netupdatefrequency-和-forcenetupdate"><em><strong>NetUpdateFrequency 和 ForceNetUpdate</strong></em></h2>
+<p><em>Actor 不是每一帧都复制。<code>NetUpdateFrequency</code> 控制这个 Actor 每秒最多被考虑复制多少次。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">SetNetUpdateFrequency</span><span class="p">(</span><span class="mf">100.0f</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>频率越高，更新越及时，但带宽压力越大。</em></p>
+<p><em>如果某个关键状态刚刚变化，希望尽快发出去，可以调用：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ForceNetUpdate</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>比如服务器刚刚修改了一个关键状态，就可以强制尽快进行一次网络更新。</em></p>
+<hr>
+<h2 id="dormancy-休眠"><em><strong>Dormancy 休眠</strong></em></h2>
+<p><em>有些 Actor 很少变化，比如门、箱子、机关、拾取物。它们没必要一直参与复制，可以进入 Dormancy。</em></p>
+<p><em>常见状态：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DORM_Awake</span>
+</span></span><span class="line"><span class="cl"><span class="n">DORM_DormantAll</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>如果休眠后又发生变化，需要唤醒：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FlushNetDormancy</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">ForceNetUpdate</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>简单理解：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">平时不变 -&gt; 休眠省带宽
+</span></span><span class="line"><span class="cl">发生变化 -&gt; 唤醒并同步
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="netserialize-和量化"><em><strong>NetSerialize 和量化</strong></em></h2>
+<p><em>网络同步不是所有数据都原样发送。很多数据会被压缩或量化。</em></p>
+<p><em>比如位置、旋转、速度，如果全部用完整 float 发送，带宽会很大。Unreal 里常见这些类型：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FVector_NetQuantize</span>
+</span></span><span class="line"><span class="cl"><span class="n">FVector_NetQuantize10</span>
+</span></span><span class="line"><span class="cl"><span class="n">FVector_NetQuantize100</span>
+</span></span><span class="line"><span class="cl"><span class="n">FRotator</span>
+</span></span><span class="line"><span class="cl"><span class="n">FRepMovement</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这些类型会用更适合网络传输的方式序列化数据。</em></p>
+<p><em>如果你自己定义结构体，也可以实现：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">NetSerialize</span><span class="p">(</span><span class="n">FArchive</span><span class="o">&amp;</span> <span class="n">Ar</span><span class="p">,</span> <span class="n">UPackageMap</span><span class="o">*</span> <span class="n">Map</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&amp;</span> <span class="n">bOutSuccess</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这样可以控制这个结构体在网络中怎么被压缩、写入和读取。</em></p>
+<hr>
+<h2 id="移动同步和预测"><em><strong>移动同步和预测</strong></em></h2>
+<p><em>角色移动是网络游戏里最特殊的一类同步。</em></p>
+<p><em>如果所有移动都等服务器返回，玩家会感觉非常卡。所以 Unreal 的 CharacterMovement 内置了客户端预测和服务器校正。</em></p>
+<p><em>大概流程是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Client 输入移动
+</span></span><span class="line"><span class="cl">  -&gt; 本地立刻移动，保证手感
+</span></span><span class="line"><span class="cl">  -&gt; 把移动请求发给 Server
+</span></span><span class="line"><span class="cl">  -&gt; Server 校验移动是否合法
+</span></span><span class="line"><span class="cl">  -&gt; 如果 Client 预测错了，Server 发校正
+</span></span><span class="line"><span class="cl">  -&gt; 其他 Client 接收这个角色的模拟移动
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以移动同步不是简单的 <code>Replicated FVector Location</code>。不要自己手写一套位置复制去替代 CharacterMovement，除非你非常清楚自己在做什么。</em></p>
+<hr>
+<h2 id="fastarray"><em><strong>FastArray</strong></em></h2>
+<p><em>普通数组如果频繁增删改，直接复制会比较重。Unreal 提供了 <code>FFastArraySerializer</code>，适合动态列表同步。</em></p>
+<p><em>常见结构是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">FMyEntry</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FFastArraySerializerItem</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">FMyList</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FFastArraySerializer</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TArray</span><span class="o">&lt;</span><span class="n">FMyEntry</span><span class="o">&gt;</span> <span class="n">Entries</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>FastArray 的优势是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">只同步新增项
+</span></span><span class="line"><span class="cl">只同步删除项
+</span></span><span class="line"><span class="cl">只同步变化项
+</span></span><span class="line"><span class="cl">客户端能知道哪些项被 Add / Remove / Change
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>适合：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">背包物品
+</span></span><span class="line"><span class="cl">装备列表
+</span></span><span class="line"><span class="cl">角色外观部件
+</span></span><span class="line"><span class="cl">Buff 列表
+</span></span><span class="line"><span class="cl">任务列表
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>不适合：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">每帧移动
+</span></span><span class="line"><span class="cl">每帧旋转
+</span></span><span class="line"><span class="cl">高频临时表现
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="subobject-replication"><em><strong>SubObject Replication</strong></em></h2>
+<p><em>Unreal 不只 Actor 能复制，ActorComponent 和 UObject 子对象也可以复制。</em></p>
+<p><em>比如背包里的一个物品实例可能是 UObject。它不是 Actor，但只要挂在一个可复制 Actor / Component 下，并注册成 replicated subobject，也可以参与同步。</em></p>
+<p><em>大概关系是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PlayerState / Pawn
+</span></span><span class="line"><span class="cl">  -&gt; Replicated Component
+</span></span><span class="line"><span class="cl">      -&gt; Replicated SubObject
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这种方式适合把复杂数据拆成独立对象，而不是全部塞进一个 Actor 的属性里。</em></p>
+<hr>
+<h2 id="gas-网络同步"><em><strong>GAS 网络同步</strong></em></h2>
+<p><em>GAS 自己已经内置了大量网络同步能力，包括：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Ability 激活
+</span></span><span class="line"><span class="cl">GameplayEffect 复制
+</span></span><span class="line"><span class="cl">GameplayTag 复制
+</span></span><span class="line"><span class="cl">Attribute 复制
+</span></span><span class="line"><span class="cl">PredictionKey
+</span></span><span class="line"><span class="cl">TargetData
+</span></span><span class="line"><span class="cl">GameplayCue
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>所以如果项目使用 GAS，不要随便自己写 RPC 去同步技能状态和 Buff 状态。优先使用 GAS 自己的机制。</em></p>
+<p><em>比如伤害流程通常应该是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Server 应用 GameplayEffect
+</span></span><span class="line"><span class="cl">  -&gt; Attribute 改变
+</span></span><span class="line"><span class="cl">  -&gt; Attribute 复制
+</span></span><span class="line"><span class="cl">  -&gt; Client OnRep / Attribute Change Delegate
+</span></span><span class="line"><span class="cl">  -&gt; UI 和表现刷新
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>而不是：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Client RPC: 你扣 10 点血
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>后者很容易让状态分裂，后期也很难维护。</em></p>
+<hr>
+<h2 id="gameplaycue-和-gameplaymessage"><em><strong>GameplayCue 和 GameplayMessage</strong></em></h2>
+<p><em>这两个东西容易混淆。</em></p>
+<h3 id="gameplaycue"><em><strong>GameplayCue</strong></em></h3>
+<p><em>GameplayCue 属于 GAS，常用来表现 GameplayEffect 相关的特效、音效、镜头反馈。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">GameplayEffect 触发
+</span></span><span class="line"><span class="cl">  -&gt; GameplayCue 播放表现
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>比如燃烧、治疗、命中特效，都可以走 GameplayCue。</em></p>
+<h2 id="replicationgraph"><em><strong>ReplicationGraph</strong></em></h2>
+<p><em>普通复制在玩家和 Actor 很多时，服务器需要频繁判断每个 Actor 对每个连接是否相关，这会比较重。</em></p>
+<p><em>ReplicationGraph 的思路是提前把 Actor 分组：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">空间格子节点
+</span></span><span class="line"><span class="cl">AlwaysRelevant 节点
+</span></span><span class="line"><span class="cl">OwnerOnly 节点
+</span></span><span class="line"><span class="cl">Team 节点
+</span></span><span class="line"><span class="cl">连接专属节点
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>这样每个客户端只从相关节点里拿 Actor，减少遍历成本。</em></p>
+<p><em>不过 ReplicationGraph 属于优化层。学习网络同步时，应该先理解属性复制、RPC、Ownership、GAS、FastArray，再看 ReplicationGraph。</em></p>
+<hr>
+<h2 id="基础总结"><em><strong>基础总结</strong></em></h2>
+<p><em>Unreal 网络同步可以先记住这张表：</em></p>
+<table>
+<thead>
+<tr>
+<th><em>问题</em></th>
+<th><em>常用机制</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>这个状态要同步给客户端</em></td>
+<td><code>Replicated</code></td>
+</tr>
+<tr>
+<td><em>客户端收到状态后要刷新表现</em></td>
+<td><code>OnRep</code></td>
+</tr>
+<tr>
+<td><em>客户端请求服务器操作</em></td>
+<td><code>Server RPC</code></td>
+</tr>
+<tr>
+<td><em>服务器通知单个客户端</em></td>
+<td><code>Client RPC</code></td>
+</tr>
+<tr>
+<td><em>服务器广播一次事件</em></td>
+<td><code>NetMulticast</code></td>
+</tr>
+<tr>
+<td><em>只想发给某些客户端</em></td>
+<td><code>Replication Condition</code></td>
+</tr>
+<tr>
+<td><em>Actor 太远不想发</em></td>
+<td><code>Relevancy</code></td>
+</tr>
+<tr>
+<td><em>Actor 很少变化</em></td>
+<td><code>Dormancy</code></td>
+</tr>
+<tr>
+<td><em>动态数组增删改</em></td>
+<td><code>FastArray</code></td>
+</tr>
+<tr>
+<td><em>UObject 也要同步</em></td>
+<td><code>SubObject Replication</code></td>
+</tr>
+<tr>
+<td><em>技能、Buff、属性、预测</em></td>
+<td><code>GAS</code></td>
+</tr>
+<tr>
+<td><em>大量 Actor 优化</em></td>
+<td><code>ReplicationGraph</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>最后用一句话总结：</em></p>
+<blockquote>
+<p><em><strong>状态用 Replicated，同步后的表现用 OnRep，请求用 Server RPC，确认用 Client RPC，一次性广播用 Multicast，大列表用 FastArray，技能属性用 GAS，大规模优化用 ReplicationGraph。</strong></em></p>
+</blockquote>
+<p><em>理解了这些基础，再去看具体项目的网络代码，就会发现它不是在乱用网络宏，而是在不同场景下选择不同的同步工具。</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-08-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Unreal - 网络同步" data-hashtags="Unreal,Network"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-hashtag="Unreal"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Unreal - 网络同步"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Unreal - 网络同步"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/unreal-%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" data-title="Unreal - 网络同步"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unreal/">Unreal</a>,&nbsp;<a href="/tags/network/">Network</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/b%E7%AB%99-c-%E5%9F%BA%E7%A1%80-%E4%BD%9C%E4%B8%9A/" class="prev" rel="prev" title="B站 - 虚幻 c&#43;&#43; 基础 作业"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>B站 - 虚幻 c++ 基础 作业</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ting</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
