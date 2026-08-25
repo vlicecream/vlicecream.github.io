@@ -514,6 +514,14 @@ FRepMovement
 
 ```cpp
 bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
+/*
+    核心逻辑：全量同步。
+    工作方式：每当这个结构体需要同步时，它会把所有的属性一股脑地写进二进制流发给客户端。
+    特点：
+        手动挡：你需要自己写 Ar << MyVar 这样的代码。
+        无记忆：它不关心上次发了什么，每次都发当前完整的数据。
+    适用场景：小型结构体（例如只有位置、旋转），或者需要极其精细的位压缩时。
+*/
 ```
 
 *这样可以控制这个结构体在网络中怎么被压缩、写入和读取。*
@@ -642,7 +650,7 @@ Client RPC: 你扣 10 点血
 
 ---
 
-## ***GameplayCue 和 GameplayMessage***
+## ***GameplayCue***
 
 *这两个东西容易混淆。*
 
